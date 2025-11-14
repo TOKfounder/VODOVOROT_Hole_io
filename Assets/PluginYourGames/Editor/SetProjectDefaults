@@ -1,0 +1,23 @@
+#if UNITY_EDITOR
+using UnityEngine;
+using UnityEditor;
+using UnityEditor.Build;
+using UnityEditor.Build.Reporting;
+
+public class SetProjectDefaults : IPreprocessBuildWithReport
+{
+    public int callbackOrder => 0;
+
+    public void OnPreprocessBuild(BuildReport report)
+    {
+        // Включим Run In Background
+        PlayerSettings.runInBackground = true;
+
+        // Принудительно Gzip для WebGL (Brotli - false)
+        PlayerSettings.WebGL.compressionFormat = WebGLCompressionFormat.Gzip;
+
+        // Можешь добавить и другие параметры
+        Debug.Log("Project settings applied automatically before build!");
+    }
+}
+#endif
