@@ -1,0 +1,23 @@
+[Libraries]
+[Libraries]/Library/
+[Libraries]/Temp/
+[Libraries]/Obj/
+[Libraries]/Build/
+[Libraries]/Builds/
+[Libraries]/Logs/
+[Libraries]/UserSettings/
+
+# VSCode
+.vscode/
+
+# Rider
+.idea/
+
+# Unity
+Library/
+Temp/
+Obj/
+Build/
+Builds/
+Logs/
+UserSettings/

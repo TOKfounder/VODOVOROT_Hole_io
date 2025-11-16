@@ -19,7 +19,7 @@ public class LanguageManager : MonoBehaviour
 		Instance = this;
 		Mflag.onClick.AddListener(Onclick);
 		Dflag.onClick.AddListener(Onclick);
-    // DontDestroyOnLoad(gameObject);
+    DontDestroyOnLoad(gameObject);
 	}
 
 	void Start()

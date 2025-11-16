@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Hole3D_io.sln"
+    "dotnet.defaultSolution": "VortexHole3D_io.sln"
 }

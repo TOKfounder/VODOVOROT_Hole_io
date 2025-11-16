@@ -266,7 +266,8 @@ public class MainMenuController : MonoBehaviour
 		PanelOfSkins[2].text = YG2.saves.langRu ? "Золотой\nунитаз" : "Golden\nbowl";
 		PanelOfSkins[3].text = YG2.saves.langRu ? "Трон\nКощея" : "Scrag's\nThrone";
 		PanelOfSkins[4].text = YG2.saves.langRu ? "Туалет\nБога" : "God's\nToilet";
-		PanelOfSkins[5].text = YG2.saves.langRu ? "Особенности" : "Features";
+		PanelOfSkins[5].text = YG2.saves.langRu ? "Красный\nТазик" : "Red\nbasin";
+		PanelOfSkins[6].text = YG2.saves.langRu ? "Особенности" : "Features";
 
 		PanelOfLeaders.text = YG2.saves.langRu ? "Легенды" : "Legends";
 
@@ -298,10 +299,11 @@ public class MainMenuController : MonoBehaviour
 		PanelOfModes[11].text = YG2.saves.langRu ? "Скоро в игре" : "Coming soon in the game";
 
 		PanelOfProgress[0].text = YG2.saves.langRu ? "Прогресс" : "Progress";
-		PanelOfProgress[1].text = YG2.saves.langRu ? "Белый\nДруг" : "White\nFriend";
-		PanelOfProgress[2].text = YG2.saves.langRu ? "Золотой\nунитаз" : "Golden\nbowl";
-		PanelOfProgress[3].text = YG2.saves.langRu ? "Трон\nКощея" : "Scrag's\nThrone";
-		PanelOfProgress[4].text = YG2.saves.langRu ? "Туалет\nБога" : "God's\nToilet";
+		PanelOfProgress[1].text = YG2.saves.langRu ? "Красный\nТазик" : "Red\nbasin";
+		PanelOfProgress[2].text = YG2.saves.langRu ? "Белый\nДруг" : "White\nFriend";
+		PanelOfProgress[3].text = YG2.saves.langRu ? "Золотой\nунитаз" : "Golden\nbowl";
+		PanelOfProgress[4].text = YG2.saves.langRu ? "Трон\nКощея" : "Scrag's\nThrone";
+		PanelOfProgress[5].text = YG2.saves.langRu ? "Туалет\nБога" : "God's\nToilet";
 
 		PanelOfValute[0].text = YG2.saves.langRu ? "Магазин Валюты" : "Currency Store";
 		PanelOfValute[1].text = YG2.saves.langRu ? "Баланс:" : "Balance:";
@@ -331,7 +333,8 @@ public class MainMenuController : MonoBehaviour
 		DPanelOfSkins[2].text = YG2.saves.langRu ? "Золотой\nунитаз" : "Golden\nbowl";
 		DPanelOfSkins[3].text = YG2.saves.langRu ? "Трон\nКощея" : "Scrag's\nThrone";
 		DPanelOfSkins[4].text = YG2.saves.langRu ? "Туалет\nБога" : "God's\nToilet";
-		DPanelOfSkins[5].text = YG2.saves.langRu ? "Особенности" : "Features";
+		DPanelOfSkins[5].text = YG2.saves.langRu ? "Красный\nТазик" : "Red\nbasin";
+		DPanelOfSkins[6].text = YG2.saves.langRu ? "Особенности" : "Features";
 
 		DPanelOfLeaders.text = YG2.saves.langRu ? "Легенды" : "Legends";
 
@@ -363,10 +366,11 @@ public class MainMenuController : MonoBehaviour
 		DPanelOfModes[11].text = YG2.saves.langRu ? "Скоро в игре" : "Coming soon in the game";
 
 		DPanelOfProgress[0].text = YG2.saves.langRu ? "Прогресс" : "Progress";
-		DPanelOfProgress[1].text = YG2.saves.langRu ? "Белый\nДруг" : "White\nFriend";
-		DPanelOfProgress[2].text = YG2.saves.langRu ? "Золотой\nунитаз" : "Golden\nbowl";
-		DPanelOfProgress[3].text = YG2.saves.langRu ? "Трон\nКощея" : "Scrag's\nThrone";
-		DPanelOfProgress[4].text = YG2.saves.langRu ? "Туалет\nБога" : "God's\nToilet";
+		DPanelOfProgress[1].text = YG2.saves.langRu ? "Красный\nТазик" : "Red\nbasin";
+		DPanelOfProgress[2].text = YG2.saves.langRu ? "Белый\nДруг" : "White\nFriend";
+		DPanelOfProgress[3].text = YG2.saves.langRu ? "Золотой\nунитаз" : "Golden\nbowl";
+		DPanelOfProgress[4].text = YG2.saves.langRu ? "Трон\nКощея" : "Scrag's\nThrone";
+		DPanelOfProgress[5].text = YG2.saves.langRu ? "Туалет\nБога" : "God's\nToilet";
 
 		DPanelOfValute[0].text = YG2.saves.langRu ? "Магазин Валюты" : "Currency Store";
 		DPanelOfValute[1].text = YG2.saves.langRu ? "Баланс:" : "Balance:";

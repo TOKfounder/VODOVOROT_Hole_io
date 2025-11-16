@@ -1,3 +1,0 @@
-﻿Build path: C:/MYproject/Games/Hole3D_io/B/B
-Build number: 0
-PluginYG version: 2.007

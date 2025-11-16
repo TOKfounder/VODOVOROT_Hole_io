@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
 	public Material[] materials;
 
 	public GameObject mainToilet;
+	public GameObject mainObodok;
 
 	public GameObject CanvasForDesktop;
 	public GameObject CanvasForMobile;
@@ -54,7 +55,7 @@ public class GameController : MonoBehaviour
 			YG2.saves.langRu = true;
 			YG2.saves.score = 0;
 			YG2.saves.equipedMaterial = 0;
-			YG2.saves.massiveOfObtaining = new int[] { 1, 0, 0, 0 };
+			YG2.saves.massiveOfObtaining = new int[] { 1, 0, 0, 0, 0 };
 			YG2.saves.exp = 0;
 			YG2.saves.isFirst = false;
 			YG2.saves.levelOfProgress = 1;
@@ -64,7 +65,7 @@ public class GameController : MonoBehaviour
 			YG2.saves.selectedMapID = 0;
 		}
 		YG2.SaveProgress();
-		ChangeMaterial(YG2.saves.equipedMaterial);
+		ChangeMain(YG2.saves.equipedMaterial);
 		// SaveScreenshot();
 	}
 	//---------------------------------------------------------------------------------------------------
@@ -112,10 +113,21 @@ public class GameController : MonoBehaviour
 		SceneManager.LoadScene(0);
 	}
 
-	public void ChangeMaterial(int chosenObj)
+	public void ChangeMain(int chosenObj)
 	{
-		mainToilet.GetComponent<Renderer>().material = materials[chosenObj];
-		if (YG2.saves.equipedMaterial == chosenObj) return;
+		// if (YG2.saves.equipedMaterial == chosenObj) return;
+		if (chosenObj == 0)
+		{
+			mainToilet.SetActive(false);
+			mainObodok.SetActive(true);
+			mainObodok.GetComponent<Renderer>().material = materials[chosenObj];
+		}
+		else
+		{
+			mainToilet.SetActive(true);
+			mainObodok.SetActive(false);
+			mainToilet.GetComponent<Renderer>().material = materials[chosenObj];
+		}
 		YG2.saves.equipedMaterial = chosenObj;
 		YG2.SaveProgress();
 	}

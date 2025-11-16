@@ -47,7 +47,7 @@ public class EndGameController : MonoBehaviour
 		if (GamingManager.Instance.timer <= 360f)
 		{
 			resultImage.sprite = spritesOfResult[0];
-			currentCoinIncome = 27;
+			currentCoinIncome = 30;
 		}
 		else if (GamingManager.Instance.timer <= 600f)
 		{
@@ -57,7 +57,7 @@ public class EndGameController : MonoBehaviour
 		else
 		{
 			resultImage.sprite = spritesOfResult[2];
-			currentCoinIncome = 13;
+			currentCoinIncome = 15;
 		}
 		YG2.saves.goldCoins += currentCoinIncome;
 		MexpText.text = "+50";

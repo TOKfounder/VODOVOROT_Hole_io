@@ -6,9 +6,9 @@ namespace YG
 		public bool langRu = true;
 		public int score = 0;
 		public int equipedMaterial = 0;
-		public int[] massiveOfObtaining = { 1, 0, 0, 0 };
+		public int[] massiveOfObtaining = { 1, 0, 0, 0, 0 };
 		public int exp = 0;
-		public int levelOfProgress = 1;
+		public int levelOfProgress = 0;
 		public int goldCoins = 0;
 		public int chosenMode = 0;
 		public bool isNickGiven = false;

@@ -5,8 +5,8 @@ using YG;
 public class HorizontalLayout3D : MonoBehaviour
 {
 	public static HorizontalLayout3D Instance;
-	public float radius = 5f; // радиус круга
-	public float startAngle = 0f;
+	public float radius = 120f; // радиус круга
+	public float startAngle = 50f;
 	public Camera targetCamera;
 	public GameObject[] captions;
 	public Text feature;
@@ -17,25 +17,27 @@ public class HorizontalLayout3D : MonoBehaviour
 	public Text costForDonate;
 	public Button donateButton;
 
-	private string[] toiletIDs = {"white", "gold", "scrag", "lord" };
+	private string[] toiletIDs = {"obodok", "white", "gold", "scrag", "lord" };
 	private float initialAngle;
 	private float targetAngle;
 	private float timeElapsed;
 	private bool isRotating = false;
 
 	private int chosenObj = 0;
-	private string[] features = { "Этот унитаз готов поддержать тебя в любой трудной и странной ситуации!",
+	private string[] features = { "Этот красный тазик – для тех, кто любит жить на скорости! Бросай вызов привычному, залетай в тазик!",
+	 "Этот унитаз готов поддержать тебя в любой трудной и странной ситуации!",
 	 "Блеск роскоши для истинных чемпионов! Стань королём туалетных побед.",
 	 "Сиди с комфортом и властвуй! Злые силы не пройдут через эту дыру...",
 	 "На этом троне даже проблемы исчезают! Почувствуй себя властелином стока." };
-	private string[] featuresEn = { "This toilet bowl is ready to support you in any difficult and strange situation!",
+	private string[] featuresEn = { "This red basin is for those who like to live at speed! Challenge the familiar, fly into the basin!",
+	 "This toilet bowl is ready to support you in any difficult and strange situation!",
 	 "The splendor of luxury for true champions! Become the king of toilet victories.",
 	 "Sit comfortably and rule! Evil forces will not pass through this hole...",
 	 "On this throne, even problems disappear! Feel like the lord of the drain." };
 
-	private int[] necessaryLevels = { 1, 4, 7, 10 };
-	private int[] costsForCoins = { 0, 270, 800, 2400 };
-	private int[] costsForDonate = { 0, 10, 40, 100 };
+	private int[] necessaryLevels = {0, 1, 4, 7, 10 };
+	private int[] costsForCoins = { 0, 30, 270, 800, 2400 };
+	private int[] costsForDonate = { 0, 10000, 10, 40, 100 };
 
 	void Awake()
 	{
@@ -93,9 +95,12 @@ public class HorizontalLayout3D : MonoBehaviour
 	{
 		if (isRotating) return;
 		initialAngle = startAngle;
-		float angle = right ? -90f : 90f;
-		chosenObj = right ? chosenObj + 1 : chosenObj + 3;
-		chosenObj %= 4;
+		// int count = transform.childCount;
+		int count = 5;
+		float val = 360f / count;
+		float angle = right ? -val : val;
+		chosenObj = right ? chosenObj + 1 : chosenObj + count - 1;
+		chosenObj %= count;
 		targetAngle = startAngle + angle;
 		timeElapsed = 0f;
 		isRotating = true;
@@ -120,13 +125,23 @@ public class HorizontalLayout3D : MonoBehaviour
 	}
 	public void UpdateForChosen()
 	{
+		Debug.Log(chosenObj);
 		if (YG2.saves.massiveOfObtaining[chosenObj] == 0)
 		{
 			buttonOfBuying.SetActive(true);
 			buttonOfEquiping.SetActive(false);
 			necessaryLevel.text = YG2.saves.langRu ? $"{necessaryLevels[chosenObj]} уровень" : $"{necessaryLevels[chosenObj]} level";
 			costForCoins.text = $"{costsForCoins[chosenObj]}";
-			costForDonate.text = $"{costsForDonate[chosenObj]}";
+			if (chosenObj == 1)
+			{
+				costForDonate.text = "";
+				donateButton.interactable = false;
+			}
+			else
+			{
+				costForDonate.text = $"{costsForDonate[chosenObj]}";
+				donateButton.interactable = true;
+			}
 		}
 		else
 		{
@@ -185,7 +200,7 @@ public class HorizontalLayout3D : MonoBehaviour
 	
 	public void EquipMaterial()
 	{
-		GameController.Instance.ChangeMaterial(chosenObj);
+		GameController.Instance.ChangeMain(chosenObj);
 		UpdateForChosen();
 	}
 }
