@@ -112,6 +112,7 @@
     <None Include="Assets\PluginYourGames\Scripts\Platform\Editor\AsmdefPlatformCreate.txt" />
     <None Include="Assets\PluginYourGames\Editor\ModulesListYG2.txt" />
     <None Include="Assets\PluginYourGames\Scripts\Server\Editor\UpdatePluginYGTemp.txt" />
+    <None Include="Assets\PluginYourGames\Editor\BuildLogYG2.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
