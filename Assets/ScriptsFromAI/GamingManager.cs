@@ -58,6 +58,7 @@ public class GamingManager : MonoBehaviour
 		// LanguageManager.Instance.Onclick();
 	}
 
+	public void HandleTimer(bool b) => timerGo = b;
 
 	void FixedUpdate()
 	{
@@ -85,7 +86,6 @@ public class GamingManager : MonoBehaviour
 	public void EndOfGame()
 	{
 		timerGo = false;
-		Debug.Log(timer);
 		once = false;
 	}
 
@@ -100,8 +100,9 @@ public class GamingManager : MonoBehaviour
 		PanelOfEnd[0].text = YG2.saves.langRu ? "Опыт:" : "Experience:";
 		PanelOfEnd[1].text = YG2.saves.langRu ? "Итог" : "Result";
 		PanelOfEnd[2].text = YG2.saves.langRu ? "Монеты:" : "Coins:";
-		PanelOfEnd[3].text = YG2.saves.langRu ? "Продолжить" : "Continue";
-		PanelOfEnd[4].text = YG2.saves.langRu ? "x3 Монеты\n(короткая реклама)" : "x3 Coins\n(short ad)";
+		PanelOfEnd[3].text = YG2.saves.langRu ? "Бриллианты:" : "Brilliants:";
+		PanelOfEnd[4].text = YG2.saves.langRu ? "Продолжить" : "Continue";
+		PanelOfEnd[5].text = YG2.saves.langRu ? "x3 Монеты\n(короткая реклама)" : "x3 Coins\n(short ad)";
 
 
 		//----------------------------------------------------------------------------------------------------------------------------
@@ -115,7 +116,8 @@ public class GamingManager : MonoBehaviour
 		DPanelOfEnd[0].text = YG2.saves.langRu ? "Опыт:" : "Experience:";
 		DPanelOfEnd[1].text = YG2.saves.langRu ? "Итог" : "Result";
 		DPanelOfEnd[2].text = YG2.saves.langRu ? "Монеты:" : "Coins:";
-		DPanelOfEnd[3].text = YG2.saves.langRu ? "Продолжить" : "Continue";
-		DPanelOfEnd[4].text = YG2.saves.langRu ? "x3 Монеты\n(короткая реклама)" : "x3 Coins\n(short ad)";
+		DPanelOfEnd[3].text = YG2.saves.langRu ? "Бриллианты:" : "Brilliants:";
+		DPanelOfEnd[4].text = YG2.saves.langRu ? "Продолжить" : "Continue";
+		DPanelOfEnd[5].text = YG2.saves.langRu ? "x3 Монеты\n(короткая реклама)" : "x3 Coins\n(short ad)";
 	}
 }

@@ -14,7 +14,7 @@ namespace YG
 		public bool isNickGiven = false;
 		public string nickName = "Игрок";
 		public int selectedMapID = 1;
-		public int diamonds = 3;
+		public int diamonds = 6;
 		public bool isGaming;
 		public float soundValue = 0.5f;
 		public float musicValue = 0.5f;

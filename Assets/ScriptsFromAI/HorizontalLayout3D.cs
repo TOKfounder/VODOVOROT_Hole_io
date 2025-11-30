@@ -16,6 +16,7 @@ public class HorizontalLayout3D : MonoBehaviour
 	public Text costForCoins;
 	public Text costForDonate;
 	public Button donateButton;
+	public Image currencyImage;
 
 	private string[] toiletIDs = {"obodok", "white", "gold", "scrag", "lord" };
 	private float initialAngle;
@@ -36,7 +37,7 @@ public class HorizontalLayout3D : MonoBehaviour
 	 "On this throne, even problems disappear! Feel like the lord of the drain." };
 
 	private int[] necessaryLevels = {0, 1, 4, 7, 10 };
-	private int[] costsForCoins = { 0, 30, 270, 800, 2400 };
+	private int[] costsForCoins = { 0, 20, 270, 800, 2400 };
 	private int[] costsForDonate = { 0, 10000, 10, 40, 100 };
 
 	void Awake()
@@ -136,11 +137,13 @@ public class HorizontalLayout3D : MonoBehaviour
 			{
 				costForDonate.text = "";
 				donateButton.interactable = false;
+				currencyImage.color = new Color(1, 1, 1, 0);
 			}
 			else
 			{
 				costForDonate.text = $"{costsForDonate[chosenObj]}";
 				donateButton.interactable = true;
+				currencyImage.color = new Color(1, 1, 1, 1);
 			}
 		}
 		else
@@ -190,12 +193,14 @@ public class HorizontalLayout3D : MonoBehaviour
 		else if (id == 3)
 		{
 			//покупка за яны
+			Debug.Log("Сработала обработка Инапа");
 			isBought = true;
 		}
 		if (isBought)
 			YG2.saves.massiveOfObtaining[chosenObj] = 1;
 		YG2.SaveProgress();
 		UpdateForChosen();
+		MainMenuController.Instance.UpdateTriggers();
 	}
 	
 	public void EquipMaterial()

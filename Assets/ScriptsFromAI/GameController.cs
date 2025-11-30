@@ -45,9 +45,9 @@ public class GameController : MonoBehaviour
 
 	void Start()
 	{
-		// YG2.saves.isFirst = true;
+		if (!YG2.saves.isGaming)
+			YG2.InterstitialAdvShow();
 		Time.timeScale = 1f;
-		// Для обнуления
 		if (YG2.saves.isFirst)
 		{
 			YG2.saves.soundValue = 0.5f;
@@ -58,11 +58,22 @@ public class GameController : MonoBehaviour
 			YG2.saves.massiveOfObtaining = new int[] { 1, 0, 0, 0, 0 };
 			YG2.saves.exp = 0;
 			YG2.saves.isFirst = false;
-			YG2.saves.levelOfProgress = 1;
+			YG2.saves.levelOfProgress = 0;
 			YG2.saves.goldCoins = 0;
 			YG2.saves.chosenMode = 0;
-			YG2.saves.diamonds = 3;
+			YG2.saves.diamonds = 6;
 			YG2.saves.selectedMapID = 0;
+			YG2.GetLeaderboard("BestPlayers");
+			YG2.SetLeaderboard("BestPlayers", YG2.saves.exp);
+		}
+		if( YG2.saves.massiveOfObtaining.Length < 5)	
+		{
+			int[] newArray = new int[5];
+			for(int i = 0; i < YG2.saves.massiveOfObtaining.Length; i++)
+			{
+				newArray[i] = YG2.saves.massiveOfObtaining[i];
+			}
+			YG2.saves.massiveOfObtaining = newArray;
 		}
 		YG2.SaveProgress();
 		ChangeMain(YG2.saves.equipedMaterial);
@@ -109,13 +120,11 @@ public class GameController : MonoBehaviour
 	{
 		YG2.saves.isGaming = false;
 		YG2.SaveProgress();
-		YG2.InterstitialAdvShow();
 		SceneManager.LoadScene(0);
 	}
 
 	public void ChangeMain(int chosenObj)
 	{
-		// if (YG2.saves.equipedMaterial == chosenObj) return;
 		if (chosenObj == 0)
 		{
 			mainToilet.SetActive(false);

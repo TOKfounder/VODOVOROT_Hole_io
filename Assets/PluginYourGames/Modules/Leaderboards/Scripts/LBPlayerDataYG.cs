@@ -30,6 +30,11 @@ namespace YG
         public MonoBehaviour[] topPlayerActivityComponents = new MonoBehaviour[0];
         public MonoBehaviour[] currentPlayerActivityComponents = new MonoBehaviour[0];
 
+        [Header("Custom Highlighting")]
+        public Image backgroundImg;         // Фон строки для цвета (золото/серебро/бронза)
+        public Image medalImg;              // Иконка медали (опционально, если добавишь спрайты)
+        public LayoutElement layoutElement; // Для контроля высоты строки (пробелы/отступы)
+
         public class Data
         {
             public string rank;
@@ -95,12 +100,77 @@ namespace YG
                 }
             }
 
+            // Новые методы для выделения топ-3
+            SetHighlight();
+            SetSpacing();
+
             void ActivityMomoObjects(MonoBehaviour[] objects, bool activity)
             {
                 for (int i = 0; i < objects.Length; i++)
                 {
                     objects[i].enabled = activity;
                 }
+            }
+        }
+
+        private void SetHighlight()
+        {
+            if (!int.TryParse(data.rank, out int rank)) return; // Если rank не число, пропустить
+
+            // Цвета фона
+            if (backgroundImg != null)
+            {
+                if (rank == 1)
+                {
+                    backgroundImg.color = new Color(1f, 0.84f, 0f); // Золото (#FFD700)
+                }
+                else if (rank == 2)
+                {
+                    backgroundImg.color = new Color(0.75f, 0.75f, 0.75f); // Серебро (#C0C0C0)
+                }
+                else if (rank == 3)
+                {
+                    backgroundImg.color = new Color(0.8f, 0.5f, 0.2f); // Бронза (#CD7F32)
+                }
+                else
+                {
+                    backgroundImg.color = Color.white; // Обычный фон
+                }
+            }
+
+            // Контраст текста ранга (опционально, подкорректируй под свои цвета)
+            Color rankColor = (rank <= 3) ? Color.black : Color.black; // Пример: чёрный для топ-3
+#if TMP_YG2
+            if (textMP.rank != null) textMP.rank.color = rankColor;
+#endif
+            if (textLegasy.rank != null) textLegasy.rank.color = rankColor;
+
+            // Медали (если medalImg подключён и спрайты готовы в Resources)
+            if (medalImg != null)
+            {
+                medalImg.gameObject.SetActive(rank <= 3);
+                if (rank == 1) medalImg.sprite = Resources.Load<Sprite>("GoldMedal");
+                else if (rank == 2) medalImg.sprite = Resources.Load<Sprite>("SilverMedal");
+                else if (rank == 3) medalImg.sprite = Resources.Load<Sprite>("BronzeMedal");
+            }
+        }
+
+        private void SetSpacing()
+        {
+            if (layoutElement == null) layoutElement = GetComponent<LayoutElement>();
+            if (layoutElement == null) return; // Если нет, пропустить
+
+            if (!int.TryParse(data.rank, out int rank)) return;
+
+            if (rank <= 3)
+            {
+                layoutElement.minHeight = 100f; // Больше высота для топ-3 (визуальный пробел)
+                layoutElement.preferredHeight = 100f;
+            }
+            else
+            {
+                layoutElement.minHeight = 60f; // Стандарт для остальных
+                layoutElement.preferredHeight = 60f;
             }
         }
     }

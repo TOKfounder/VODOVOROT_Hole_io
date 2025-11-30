@@ -8,7 +8,7 @@ namespace PinePie.SimpleJoystick.Examples.DemoScript
 		private JoystickController joystickController;
 		public GameObject WithoutCamera;
 		public float rotationSpeed = 10f;
-		public float[] levelSpeeds = {6f, 6.89f, 7.78f, 8.67f, 9.56f, 10.44f, 11.33f, 12.22f, 14f, 17f};
+		public float[] levelSpeeds = {6f, 6.89f, 7.78f, 8.67f, 9.56f, 10.44f, 13.83f, 15.22f, 20f, 25f};
 
 		private Vector3 movement;
 		private Rigidbody rb;

@@ -27,6 +27,9 @@ public class MainMenuController : MonoBehaviour
 
 
 	[Header("Mobile UI")]
+	public GameObject triggerForDaimonds;
+	public GameObject triggerForNewSkin;
+
 	public Button couple;
 	public Button hand;
 	public Button bag;
@@ -36,6 +39,7 @@ public class MainMenuController : MonoBehaviour
 	public Text Thand;
 	public Text Tbag;
 	public Text Tbox;
+	public Text scoreText;
 
 	public Text[] MainMenu;
 	public Text[] PanelOfSkins;
@@ -45,7 +49,11 @@ public class MainMenuController : MonoBehaviour
 	public Text[] PanelOfModes;
 	public Text[] PanelOfProgress;
 	public Text[] PanelOfValute;
+
 [Header("Desktop UI")]
+	public GameObject DtriggerForDaimonds;
+	public GameObject DtriggerForNewSkin;
+
 	public Button Dcouple;
 	public Button Dhand;
 	public Button Dbag;
@@ -55,6 +63,8 @@ public class MainMenuController : MonoBehaviour
 	public Text DThand;
 	public Text DTbag;
 	public Text DTbox;
+	public Text DscoreText;
+
 	public Text[] DMainMenu;
 	public Text[] DPanelOfSkins;
 	public Text DPanelOfLeaders;
@@ -69,7 +79,6 @@ public class MainMenuController : MonoBehaviour
 	private int CntBag = 5;
 	private int CntBox = 10;
 
-	bool subscribed = false;
 
 
 
@@ -81,19 +90,13 @@ public class MainMenuController : MonoBehaviour
 
 	void OnEnable()
 	{
-		if (!subscribed) {
-			YG2.onPurchaseSuccess += SuccessPurchased;
-			subscribed = true;
-		}
+		YG2.onPurchaseSuccess += SuccessPurchased;
 		YG2.onPurchaseFailed += FailedPurchased;
 		YG2.onRewardAdv += UpgradeForAdv;
 	}
 	private void OnDisable()
 	{
-		 if (subscribed) {
-			YG2.onPurchaseSuccess -= SuccessPurchased;
-			subscribed = false;
-    }
+		YG2.onPurchaseSuccess -= SuccessPurchased;
 		YG2.onPurchaseFailed -= FailedPurchased;
 		YG2.onRewardAdv -= UpgradeForAdv;
 	}
@@ -116,8 +119,34 @@ public class MainMenuController : MonoBehaviour
 		Dhand.onClick.AddListener(() => ShowRewardedAdv("hand"));
 		Dbag.onClick.AddListener(() => ShowRewardedAdv("bag"));
 		Dbox.onClick.AddListener(() => ShowRewardedAdv("box"));
+		UpdateTriggers();
 	}
 
+	public void UpdateTriggers()
+	{
+		Debug.Log("Проверка Триггеров");
+		triggerForNewSkin.SetActive(CheckForNewSkin());
+		triggerForDaimonds.SetActive(CheckForDaimonds());
+		DtriggerForNewSkin.SetActive(CheckForNewSkin());
+		DtriggerForDaimonds.SetActive(CheckForDaimonds());
+		
+	}
+	public bool CheckForNewSkin()
+	{
+		Debug.Log("Проверка Магазина");
+		int[] necessaryLevels = {0, 1, 4, 7, 10 };
+		int[] costsForCoins = {0, 20, 270, 800, 2400 };
+		for (int i = 0; i < YG2.saves.massiveOfObtaining.Length; i++)
+		{
+			if (YG2.saves.massiveOfObtaining[i] == 1)
+				continue;
+			if (necessaryLevels[i] <= YG2.saves.levelOfProgress)
+				return true;
+			if (costsForCoins[i] <= YG2.saves.goldCoins)
+				return true;
+		}
+		return false;
+	}
 	private void ShowRewardedAdv(string rewardID) => YG2.RewardedAdvShow(rewardID);
 
 	private void UpgradeForAdv(string id)
@@ -160,19 +189,19 @@ public class MainMenuController : MonoBehaviour
 	private void SuccessPurchased(string id)
 	{
 		if (id == "hand")
-			YG2.saves.diamonds += 20/2;
+			YG2.saves.diamonds += 20;
 		else if (id == "bag")
-			YG2.saves.diamonds += 100/2;
+			YG2.saves.diamonds += 100;
 		else if (id == "box")
-			YG2.saves.diamonds += 300/2;
+			YG2.saves.diamonds += 300;
 		else if (id == "chest")
-			YG2.saves.diamonds += 600/2;
+			YG2.saves.diamonds += 600;
 		else if (id == "gold")
-			YG2.saves.massiveOfObtaining[1] = 1;
-		else if (id == "scrag")
 			YG2.saves.massiveOfObtaining[2] = 1;
-		else if (id == "lord")
+		else if (id == "scrag")
 			YG2.saves.massiveOfObtaining[3] = 1;
+		else if (id == "lord")
+			YG2.saves.massiveOfObtaining[4] = 1;
 		YG2.SaveProgress();
     YG2.ConsumePurchaseByID(id);
 		Debug.Log($"Покупка {id} сохранена и обработана");
@@ -191,6 +220,7 @@ public class MainMenuController : MonoBehaviour
 		YG2.saves.diamonds = 0;
 		YG2.SaveProgress();
 		UpdatePanelOfValute();
+		UpdateTriggers();
 	}
 
 	private void FailedPurchased(string id)
@@ -207,7 +237,7 @@ public class MainMenuController : MonoBehaviour
 	public void UpdateMainMenu()
 	{
 		UpdateMapOnBackground(YG2.saves.selectedMapID);
-		YG2.saves.levelOfProgress = (int)(YG2.saves.exp / 100f) + 1;
+		YG2.saves.levelOfProgress = (int)(YG2.saves.exp / 100f);
 		levelText.text = $"{(int)(YG2.saves.exp / 100f)}";
 		pointText.text = $"{Tool.ConvertText(YG2.saves.goldCoins)}";
 		levelImage.fillAmount = YG2.saves.exp % 100 / 100f;
@@ -221,6 +251,7 @@ public class MainMenuController : MonoBehaviour
 		}
 		UpdateUI();
 		UpdatePanelOfValute();
+		UpdateTriggers();
 	}
 
 	public void UpdateMapOnBackground(int id)
@@ -229,6 +260,8 @@ public class MainMenuController : MonoBehaviour
 		YG2.saves.selectedMapID = id;
 		// YG2.SaveProgress();
 	}
+
+	public bool CheckForDaimonds() => YG2.saves.diamonds != 0;
 
 	public void UpdatePanelOfValute()
 	{
@@ -251,7 +284,9 @@ public class MainMenuController : MonoBehaviour
 
 	public void UpdateUI()
 	{
-		MainMenu[0].text = YG2.saves.langRu ? "Туалетная Дыра.ио" : "Toilet Hole";
+		scoreText.text = YG2.saves.exp.ToString();
+
+		MainMenu[0].text = YG2.saves.langRu ? "ВОДОВОРОТ Дыра.ио" : "WHIRLPOOL Hole";
 		MainMenu[1].text = YG2.saves.langRu ? "Введите ваш ник" : "Enter your nickname";
 		MainMenu[2].text = YG2.saves.langRu ? "Уровень" : "Level";
 		MainMenu[3].text = YG2.saves.langRu ? "Магазин\nСкинов" : "Skin\nStore";
@@ -317,8 +352,9 @@ public class MainMenuController : MonoBehaviour
 
 		//--------------------------------------------------------------------------------------------------------------------------
 
+		DscoreText.text = YG2.saves.exp.ToString();
 
-		DMainMenu[0].text = YG2.saves.langRu ? "Туалетная Дыра.ио" : "Toilet Hole";
+		DMainMenu[0].text = YG2.saves.langRu ? "ВОДОВОРОТ Дыра.ио" : "WHIRLPOOL Hole";
 		DMainMenu[1].text = YG2.saves.langRu ? "Введите ваш ник" : "Enter your nickname";
 		DMainMenu[2].text = YG2.saves.langRu ? "Уровень" : "Level";
 		DMainMenu[3].text = YG2.saves.langRu ? "Магазин\nСкинов" : "Skin\nStore";
@@ -382,5 +418,6 @@ public class MainMenuController : MonoBehaviour
 		DPanelOfValute[7].text = YG2.saves.langRu ? "Обменять" : "Exchange";
 
 	}
+
 
 }
