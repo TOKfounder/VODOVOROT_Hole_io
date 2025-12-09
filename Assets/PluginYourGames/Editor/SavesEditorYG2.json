@@ -1,0 +1,34 @@
+{
+    "intExample": 5,
+    "strExample": "Hello!",
+    "boolExample": [
+        false,
+        false,
+        false,
+        false
+    ],
+    "idSave": 31035,
+    "isFirst": false,
+    "langRu": true,
+    "score": 1542,
+    "equipedMaterial": 0,
+    "massiveOfObtaining": [
+        1,
+        0,
+        0,
+        0,
+        0
+    ],
+    "exp": 0,
+    "levelOfProgress": 0,
+    "goldCoins": 0,
+    "chosenMode": 0,
+    "isNickGiven": false,
+    "nickName": "Игрок",
+    "selectedMapID": 0,
+    "diamonds": 6,
+    "isGaming": true,
+    "soundValue": 0.5,
+    "musicValue": 0.5,
+    "done": true
+}

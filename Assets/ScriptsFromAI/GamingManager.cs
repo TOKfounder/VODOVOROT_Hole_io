@@ -7,6 +7,7 @@ public class GamingManager : MonoBehaviour
 	public static GamingManager Instance;
 	public GameObject MobpanelOfEnd;
 	public GameObject DeskpanelOfEnd;
+	public float perc = 0f;
 	public float minX;
 	public float maxX;
 	public float minZ;
@@ -22,9 +23,11 @@ public class GamingManager : MonoBehaviour
 	public int score;
 
 [Header("Mobile UI")]
+	public Text BoostText;
 	public Text[] MobilePanelOfSettings;
 	public Text[] PanelOfEnd;
 [Header("Desktop UI")]
+	public Text DBoostText;
 	public Text[] DesktopPanelOfSettings;
 	public Text[] DPanelOfEnd;
 
@@ -63,7 +66,7 @@ public class GamingManager : MonoBehaviour
 	void FixedUpdate()
 	{
 		score = YG2.saves.score;
-		float perc = (float)YG2.saves.score / (AllValues - 20);
+		perc = (float)YG2.saves.score / (AllValues - 20);
 		if (once && (int)(perc * 100) >= 100)
 		{
 			if (YG2.envir.isMobile)
@@ -87,16 +90,25 @@ public class GamingManager : MonoBehaviour
 	{
 		timerGo = false;
 		once = false;
+		Time.timeScale = 0;
+		Invoke(nameof(timeScalingBitLater), 7f);
 	}
+
+	void timeScalingBitLater()
+	{
+		Time.timeScale = 0f;
+	} 
 
 	public void UpdateUI()
 	{
+		BoostText.text = YG2.saves.langRu ? "Буст Скорости" : "Speed Boost";
 		MobilePanelOfSettings[0].text = YG2.saves.langRu ? "Настройки" : "Settings";
 		MobilePanelOfSettings[1].text = YG2.saves.langRu ? "Язык" : "Language";
 		MobilePanelOfSettings[2].text = YG2.saves.langRu ? "Звуки" : "Sounds";
 		MobilePanelOfSettings[3].text = YG2.saves.langRu ? "Музыка" : "Music";
 		MobilePanelOfSettings[4].text = YG2.saves.langRu ? "Завершить игру" : "End the game";
 
+		DBoostText.text = YG2.saves.langRu ? "Буст Скорости" : "Speed Boost";
 		PanelOfEnd[0].text = YG2.saves.langRu ? "Опыт:" : "Experience:";
 		PanelOfEnd[1].text = YG2.saves.langRu ? "Итог" : "Result";
 		PanelOfEnd[2].text = YG2.saves.langRu ? "Монеты:" : "Coins:";

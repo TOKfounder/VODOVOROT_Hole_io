@@ -93,6 +93,7 @@
     <Compile Include="Assets\ScriptsFromAI\ProgressController.cs" />
     <Compile Include="Assets\PluginYourGames\Modules\RewardedAdv\Scripts\RewardedAdv_interface.cs" />
     <Compile Include="Assets\UsedAssets\Fries and Seagull\City 03\Scene Props\Scripts\ArrayArrangement.cs" />
+    <Compile Include="Assets\ScriptsFromAI\BoostButton.cs" />
     <Compile Include="Assets\PluginYourGames\Scripts\Basic\YGInsides.cs" />
     <Compile Include="Assets\PluginYourGames\Scripts\EditorScr\FileYG.cs" />
     <Compile Include="Assets\PluginYourGames\Modules\Authorization\Scripts\Auth_info.cs" />
@@ -179,7 +180,6 @@
     <Compile Include="Assets\PluginYourGames\Scripts\Basic\IPlatformsYG2.cs" />
     <Compile Include="Assets\PluginYourGames\Scripts\Other\EventsYG2.cs" />
     <Compile Include="Assets\PluginYourGames\Platforms\YandexGames\Scripts\OwnHost\OwnHost.cs" />
-    <Compile Include="Assets\ScriptsFromAI\CustomLeaderboard.cs" />
     <Compile Include="Assets\ScriptsFromAI\BlackHoleController.cs" />
     <Compile Include="Assets\PluginYourGames\Modules\Storage\Example\Scripts\SaverTest.cs" />
     <Compile Include="Assets\PluginYourGames\Scripts\Basic\InitAttributes.cs" />

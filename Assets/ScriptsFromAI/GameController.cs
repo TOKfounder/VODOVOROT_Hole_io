@@ -45,8 +45,9 @@ public class GameController : MonoBehaviour
 
 	void Start()
 	{
-		if (!YG2.saves.isGaming)
-			YG2.InterstitialAdvShow();
+		// YG2.saves.isFirst = true;
+		// if (!YG2.saves.isGaming)
+		YG2.InterstitialAdvShow();
 		Time.timeScale = 1f;
 		if (YG2.saves.isFirst)
 		{
@@ -61,7 +62,7 @@ public class GameController : MonoBehaviour
 			YG2.saves.levelOfProgress = 0;
 			YG2.saves.goldCoins = 0;
 			YG2.saves.chosenMode = 0;
-			YG2.saves.diamonds = 6;
+			YG2.saves.diamonds = 3;
 			YG2.saves.selectedMapID = 0;
 			YG2.GetLeaderboard("BestPlayers");
 			YG2.SetLeaderboard("BestPlayers", YG2.saves.exp);

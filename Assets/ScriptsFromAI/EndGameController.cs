@@ -36,7 +36,7 @@ public class EndGameController : MonoBehaviour
 			float koef = (float)YG2.saves.score / (GamingManager.Instance.AllValues - 20);
 			int exp = (int)(50 * koef);
 			currentCoinIncome = (int)(13 * koef);
-			brillCount = (int)(5 * koef);
+			brillCount = (int)(4 * koef);
 			MexpText.text = $"+{exp}";
 			expText.text = $"+{exp}";
 			YG2.saves.exp += exp;
@@ -55,19 +55,19 @@ public class EndGameController : MonoBehaviour
 		{
 			resultImage.sprite = spritesOfResult[0];
 			currentCoinIncome = 30;
-			brillCount = 7;
+			brillCount = 5;
 		}
 		else if (GamingManager.Instance.timer <= 600f)
 		{
 			resultImage.sprite = spritesOfResult[1];
 			currentCoinIncome = 20;
-			brillCount = 6;
+			brillCount = 4;
 		}
 		else
 		{
 			resultImage.sprite = spritesOfResult[2];
 			currentCoinIncome = 15;
-			brillCount = 5;
+			brillCount = 3;
 		}
 		YG2.saves.goldCoins += currentCoinIncome;
 		MexpText.text = "+50";

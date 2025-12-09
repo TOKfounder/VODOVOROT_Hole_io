@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
+using YG.Utils.LB;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class MainMenuController : MonoBehaviour
 
 
 	[Header("Mobile UI")]
+	public Text rank;
+
 	public GameObject triggerForDaimonds;
 	public GameObject triggerForNewSkin;
 
@@ -51,6 +54,8 @@ public class MainMenuController : MonoBehaviour
 	public Text[] PanelOfValute;
 
 [Header("Desktop UI")]
+	public Text Drank;
+
 	public GameObject DtriggerForDaimonds;
 	public GameObject DtriggerForNewSkin;
 
@@ -93,12 +98,15 @@ public class MainMenuController : MonoBehaviour
 		YG2.onPurchaseSuccess += SuccessPurchased;
 		YG2.onPurchaseFailed += FailedPurchased;
 		YG2.onRewardAdv += UpgradeForAdv;
+		YG2.onGetLeaderboard += onUpdateLB;
+		YG2.GetLeaderboard("BestPlayers");
 	}
 	private void OnDisable()
 	{
 		YG2.onPurchaseSuccess -= SuccessPurchased;
 		YG2.onPurchaseFailed -= FailedPurchased;
 		YG2.onRewardAdv -= UpgradeForAdv;
+		YG2.onGetLeaderboard -= onUpdateLB;
 	}
 	void Start()
 	{
@@ -249,16 +257,28 @@ public class MainMenuController : MonoBehaviour
 			nameInput.text = YG2.saves.nickName;
 			DnameInput.text = YG2.saves.nickName;
 		}
+		OnOpenLeaderboard();
 		UpdateUI();
 		UpdatePanelOfValute();
 		UpdateTriggers();
+	}
+
+	private void onUpdateLB(LBData lbData)
+	{
+		rank.text = "";
+		Drank.text = "";
+		if (lbData.technoName == "BestPlayers")
+		{
+			rank.text = $"{lbData.currentPlayer.rank}";
+			Drank.text = $"{lbData.currentPlayer.rank}";
+		}
 	}
 
 	public void UpdateMapOnBackground(int id)
 	{
 		mapField.sprite = maps[id];
 		YG2.saves.selectedMapID = id;
-		// YG2.SaveProgress();
+		YG2.SaveProgress();
 	}
 
 	public bool CheckForDaimonds() => YG2.saves.diamonds != 0;

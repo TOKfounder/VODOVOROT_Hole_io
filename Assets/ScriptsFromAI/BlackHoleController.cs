@@ -8,6 +8,8 @@ public class BlackHoleController : MonoBehaviour
 {
 	public static BlackHoleController Instance;
 
+	public Text nickname;
+	public Image border;
 	public GameObject pointsPref;
 	public GameObject WithoutCamera;
 	public Vector3 size;
@@ -26,20 +28,13 @@ public class BlackHoleController : MonoBehaviour
 			5127,    // Level 6
 			8751,    // Level 7
 			11375,   // Level 8
-			13000    // Level 9 (максимум)
+			13000,    // Level 9 (максимум)
+			15000
 	};
-	float[] levelScales = { 0.41f, 0.81f, 1.61f, 2.41f, 4.1f, 6f, 8f, 10f, 12f, 13.5f }; // scale на каждом уровне
+	float[] levelScales = { 0.41f, 0.81f, 1.61f, 2.41f, 4.1f, 6f, 8f, 10f, 12f, 13.5f, 67f }; // scale на каждом уровне
 	public float score;
 	private Vector3 targetScale;   // Куда хотим прийти
-	private float scaleLerpSpeed = 3f; // Насколько быстро "растёт" (чем больше, тем быстрее)
-
-	// public Queue<GameObject> absorbQueue = new Queue<GameObject>();
-
-	// public void EnqueueForAbsorption(GameObject obj)
-	// {
-	// 		absorbQueue.Enqueue(obj);
-	// }
-
+	private float scaleLerpSpeed = 2f; // Насколько быстро "растёт" (чем больше, тем быстрее)
 
 	void Awake()
 	{
@@ -56,33 +51,12 @@ public class BlackHoleController : MonoBehaviour
 		if (YG2.envir.isMobile)
 			Camera.main.transform.localPosition = new Vector3(0, 2.21199989f, -5.85099983f);
 		mainCanvas = GameController.Instance.currentCanvas;
+		if (YG2.saves.nickName != "")
+			nickname.text = YG2.saves.nickName;
 		YG2.SaveProgress();
-    // StartCoroutine(AbsorbCoroutine());
 	}
 
-	// IEnumerator AbsorbCoroutine()
-	// {
-	// 		while (true)
-	// 		{
-	// 				int batchSize = 10; // Сколько обрабатывать за вызов
-	// 				for (int i = 0; i < batchSize && absorbQueue.Count > 0; i++)
-	// 				{
-	// 						GameObject obj = absorbQueue.Dequeue();
-	// 						Absorb(obj); // Обработай объект
-	// 				}
-	// 				yield return new WaitForSeconds(0.2f);
-	// 		}
-	// }
 
-	// void Absorb(GameObject obj)
-	// {
-	// 	// var rb = obj.GetComponent<Rigidbody>();
-	// 	// var col = obj.GetComponent<Collider>();
-	// 	// if (rb != null) rb.isKinematic = true;
-	// 	// if (col != null) col.enabled = false;
-	// 	obj.SetActive(false);
-	// 	Debug.Log("SetActive(false)");
-	// }
 
 	void Update()
 	{
@@ -92,7 +66,7 @@ public class BlackHoleController : MonoBehaviour
 
 	public int GetCurrentLevel(float[] scoreRequired)
 	{
-		for (int i = scoreRequired.Length - 1; i >= 0; i--)
+		for (int i = scoreRequired.Length - 2; i >= 0; i--)
 		{
 			if (YG2.saves.score >= scoreRequired[i])
 				return i;
@@ -130,8 +104,18 @@ public class BlackHoleController : MonoBehaviour
 	void UpdateSize()
 	{
 		currentLevel = GetCurrentLevel(scoreRequired);
+		if (currentLevel == 10)
+		{
+			border.fillAmount = 1f;
+		}
+		else
+		{
+			float prev = scoreRequired[currentLevel];
+			float next = scoreRequired[currentLevel+1];
+			border.fillAmount = (float)((YG2.saves.score - prev) / (next - prev));
+		}
 		float scale = levelScales[currentLevel];
-		targetScale  = new Vector3(scale, scale * 4.508031f, scale);
+		targetScale = new Vector3(scale, scale * 4.508031f, scale);
 		size = GetVisualSizeOfHole();
 	}
 }
