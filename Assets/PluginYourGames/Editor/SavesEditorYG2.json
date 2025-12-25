@@ -7,10 +7,10 @@
         false,
         false
     ],
-    "idSave": 35,
+    "idSave": 92,
     "isFirst": false,
     "langRu": true,
-    "score": 0,
+    "score": 5,
     "equipedMaterial": 0,
     "massiveOfObtaining": [
         1,
@@ -27,7 +27,7 @@
     "nickName": "",
     "selectedMapID": 0,
     "diamonds": 3,
-    "isGaming": false,
+    "isGaming": true,
     "soundValue": 0.5,
     "musicValue": 0.5,
     "done": true
