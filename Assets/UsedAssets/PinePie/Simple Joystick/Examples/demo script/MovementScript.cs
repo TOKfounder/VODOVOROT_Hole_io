@@ -39,8 +39,6 @@ namespace PinePie.SimpleJoystick.Examples.DemoScript
 			if (YG2.envir.isDesktop)
 			{
 				holding = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
-				// boostButton.transition = Selectable.Transition.ColorTint;
-				// ColorBlock colors = boostButton.colors;
 				if (holding)
 					boostButton.image.color = new Color32(0x38, 0xc8, 0x07, 0xFF);
 				else
@@ -72,7 +70,4 @@ namespace PinePie.SimpleJoystick.Examples.DemoScript
 			rb.MovePosition(newPosition);
 		}
 	}
-
-
-	
 }

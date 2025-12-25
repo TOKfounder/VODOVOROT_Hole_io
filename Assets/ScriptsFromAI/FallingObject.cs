@@ -14,6 +14,7 @@ public class FallingObject : MonoBehaviour
 	private Rigidbody rb;
 	private Renderer rend;
 	private Collider col;
+	private GameObject triggeredObj;
 
 	void Awake()
 	{
@@ -91,7 +92,6 @@ public class FallingObject : MonoBehaviour
 			rb.isKinematic = true;
 			col.enabled = false;
 			rend.enabled = false;
-			// BlackHoleController.Instance.EnqueueForAbsorption(gameObject);
 			enabled = false;
 		}
 		else
@@ -104,31 +104,6 @@ public class FallingObject : MonoBehaviour
 		
 	}
 }
-
-	// void Update()
-	// {
-	// 	// if (transform.position.y <= (BlackHoleController.Instance.currentLevel - 1) * 0.15f)
-	// 	if (GetComponent<Renderer>().bounds.center.y <= 0f)
-	// 	{
-	// 		if (IsInHole(BlackHoleController.Instance.transform))
-	// 		{
-	// 			BlackHoleController.Instance.AddScore(value);
-	// 			Debug.Log("Destroy");
-	// 			// Destroy(gameObject);
-	// 			rb.isKinematic = true;
-	// 			col.enabled = false;
-	// 			gameObject.SetActive(false);
-	// 		}
-	// 		else
-	// 		{
-	// 			transform.position = startPosition;
-	// 			transform.rotation = startRotation;
-	// 			rb.isKinematic = true;
-	// 			isTriggered = false;
-	// 			// Physics.IgnoreLayerCollision(7, 0, false);
-	// 		}
-	// 	}
-	// }
 
 	private bool IsInHole(Transform hole)
 	{
@@ -143,11 +118,24 @@ public class FallingObject : MonoBehaviour
 		if (isTriggered) return;
 		if (other.CompareTag("Player"))
 		{
-			if (CanFit2D(size, BlackHoleController.Instance.size))
-			{
-				isTriggered = true;
-				rb.isKinematic = false;
-			}
+			// if (other.GetComponent<BlackHoleController>())
+			// {
+				triggeredObj = other.gameObject;
+				if (CanFit2D(size, BlackHoleController.Instance.size))
+				{
+					isTriggered = true;
+					rb.isKinematic = false;
+				}
+			// }
+			// else if(other.GetComponent<EnemyController>())
+			// {
+			// 	triggeredObj = other.gameObject;
+			// 	if (CanFit2D(size, other.GetComponent<EnemyController>().size))
+			// 	{
+			// 		isTriggered = true;
+			// 		rb.isKinematic = false;
+			// 	}
+			// }
 		}
 	}
 

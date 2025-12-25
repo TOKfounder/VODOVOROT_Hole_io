@@ -135,6 +135,7 @@
     <Compile Include="Assets\ScriptsFromAI\Tool.cs" />
     <Compile Include="Assets\PluginYourGames\Modules\Storage\Scripts\Storage_info.cs" />
     <Compile Include="Assets\PluginYourGames\Scripts\Platform\ProjectSettings.cs" />
+    <Compile Include="Assets\ScriptsFromAI\EnemyController.cs" />
     <Compile Include="Assets\ScriptsFromAI\HorizontalLayout3D.cs" />
     <Compile Include="Assets\ScriptsFromAI\PointsScript.cs" />
     <Compile Include="Assets\PluginYourGames\Scripts\Platform\PlatformSettings.cs" />
@@ -248,7 +249,6 @@
     <None Include="Assets\PluginYourGames\Modules\Storage\Version.txt" />
     <None Include="Assets\PluginYourGames\Version.txt" />
     <None Include="Assets\PluginYourGames\Example\Content\Font\LICENSE.txt" />
-    <None Include="Assets\scene\NewUnlitShader.shader" />
     <None Include="Assets\OutlineShader.shader" />
     <None Include="Assets\PluginYourGames\Modules\Leaderboards\Version.txt" />
     <None Include="Assets\PluginYourGames\Modules\PlayerStats\Version.txt" />
