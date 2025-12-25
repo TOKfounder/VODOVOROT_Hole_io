@@ -7,10 +7,10 @@
         false,
         false
     ],
-    "idSave": 31035,
+    "idSave": 35,
     "isFirst": false,
     "langRu": true,
-    "score": 1542,
+    "score": 0,
     "equipedMaterial": 0,
     "massiveOfObtaining": [
         1,
@@ -24,10 +24,10 @@
     "goldCoins": 0,
     "chosenMode": 0,
     "isNickGiven": false,
-    "nickName": "Игрок",
+    "nickName": "",
     "selectedMapID": 0,
-    "diamonds": 6,
-    "isGaming": true,
+    "diamonds": 3,
+    "isGaming": false,
     "soundValue": 0.5,
     "musicValue": 0.5,
     "done": true

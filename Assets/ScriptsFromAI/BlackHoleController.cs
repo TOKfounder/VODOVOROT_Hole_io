@@ -53,6 +53,10 @@ public class BlackHoleController : MonoBehaviour
 		mainCanvas = GameController.Instance.currentCanvas;
 		if (YG2.saves.nickName != "")
 			nickname.text = YG2.saves.nickName;
+		else
+		{
+			nickname.text = YG2.saves.langRu? "Легенда" : "Legend";
+		}
 		YG2.SaveProgress();
 	}
 
