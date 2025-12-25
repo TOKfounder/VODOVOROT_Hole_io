@@ -187,6 +187,7 @@
     <Compile Include="Assets\PluginYourGames\Modules\InterstitialAdv\Scripts\InterAdv_yg.cs" />
     <Compile Include="Assets\PluginYourGames\Modules\RewardedAdv\Scripts\RewardedAdv_callingSimulation.cs" />
     <Compile Include="Assets\PluginYourGames\Scripts\Basic\OptionalPlatform.cs" />
+    <Compile Include="Assets\ScriptsFromAI\IamImposter.cs" />
     <Compile Include="Assets\PluginYourGames\Modules\InterstitialAdv\Scripts\InterstitialAdv_projectSettings.cs" />
     <Compile Include="Assets\PluginYourGames\Modules\Payments\Scripts\Payments_yg.cs" />
     <Compile Include="Assets\PluginYourGames\Scripts\Server\ModuleJson.cs" />
