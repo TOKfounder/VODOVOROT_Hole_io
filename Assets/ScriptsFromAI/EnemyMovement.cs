@@ -7,24 +7,25 @@ public class EnemyMovement : MonoBehaviour
 	public float rotationSpeed = 5f;
 	// public float[] levelSpeeds = {6f, 6.89f, 7.78f, 8.67f, 9.56f, 10.44f, 13.83f, 15.22f, 20f, 25f};
 	public float moveSpeed = 3f;
-	public float detectionRadius = 200f;
-	public float searchInterval = 0.5f;
+	public float detectionRadius = 500f;
+	public float searchInterval = 0.3f;
 	public LayerMask fallableObjects;
-	[HideInInspector] public bool haveGoal;
 
 	private Transform currentTarget;
 	private Rigidbody rb;
 	private Vector3 lastPosition;
 	private float stuckTimer;
-
 	private Transform ignoredTarget;
+	private float ignoreCooldown = 0f;
+
+	private EnemyController enemyController;
 
 	void Start()
 	{
-		haveGoal = false;
-		StartCoroutine(SearchRoutine());
 		rb = GetComponent<Rigidbody>();
+		enemyController = GetComponentInParent<EnemyController>();
 		lastPosition = transform.position;
+		StartCoroutine(SearchRoutine());
 	}
 
 	IEnumerator SearchRoutine()
@@ -33,14 +34,13 @@ public class EnemyMovement : MonoBehaviour
 		{
 			if (currentTarget == null)
 			{
-				haveGoal = false;
 				FindClosestObject();
 			}
 			yield return new WaitForSeconds(searchInterval);
 		}
 	}
 
-	void Update()
+	void FixedUpdate()
 	{
 		if (currentTarget != null)
 		{
@@ -49,9 +49,18 @@ public class EnemyMovement : MonoBehaviour
 		}
 		else
 		{
-			Wander();
+			FindClosestObject();
+			SmallWander();
 		}
-		
+		if (ignoredTarget != null)
+		{
+			ignoreCooldown += Time.fixedDeltaTime;
+			if (ignoreCooldown > 6f)
+			{
+				ignoredTarget = null;
+				ignoreCooldown = 0f;
+			}
+		}
 	}
 
 	void FindClosestObject()
@@ -63,9 +72,11 @@ public class EnemyMovement : MonoBehaviour
 		foreach (var hit in hitColliders)
 		{
 			if (hit.transform == ignoredTarget) continue;
-			Vector3 fallingSize = hit.GetComponentInParent<FallingObject>().size;
-			Vector3 holeSize = GetComponentInParent<EnemyController>().size;
-			if (Tool.CanFit2D(fallingSize, holeSize))
+
+			var fo = hit.GetComponentInParent<FallingObject>();
+			if (fo == null) continue;
+
+			if (Tool.CanFit2D(fo.size, enemyController.size))
 			{
 				float dist = Vector3.Distance(transform.position, hit.transform.position);
 				if (closestDist > dist)
@@ -76,53 +87,56 @@ public class EnemyMovement : MonoBehaviour
 			}
 		}
 		currentTarget = bestTarget;
-		if (currentTarget != null) ignoredTarget = null;
 	}
 
 	void MoveToTarget()
 	{
-		Vector3 dir = (currentTarget.position - transform.position);
+		Vector3 dir = currentTarget.position - transform.position;
 		dir.y = 0;
-		if (dir.magnitude < 0.6f){
+		if (dir.magnitude < transform.localScale.x * 0.5f){
 			currentTarget = null;
 			return;
 		}
-		dir = dir.normalized;
+		Vector3 moveDir = dir.normalized;
 
-		Quaternion targetRotation = Quaternion.LookRotation(dir);
+		Quaternion targetRotation = Quaternion.LookRotation(moveDir);
 		withoutCamera.transform.rotation = Quaternion.Slerp(withoutCamera.transform.rotation, 
-		targetRotation, rotationSpeed * Time.deltaTime);
+		targetRotation, rotationSpeed * Time.fixedDeltaTime);
 
-		Vector3 newPosition = rb.position + dir * moveSpeed * Time.deltaTime;
-
+		Vector3 newPosition = rb.position + moveDir * moveSpeed * Time.fixedDeltaTime;
+		newPosition.x = Mathf.Clamp(newPosition.x, GamingManager.Instance.minX, GamingManager.Instance.maxX);
+		newPosition.z = Mathf.Clamp(newPosition.z, GamingManager.Instance.minZ, GamingManager.Instance.maxZ);
 		rb.MovePosition(newPosition);
+	}
+
+	void SmallWander()
+	{
+		// withoutCamera.transform.Rotate(0, -20f * Time.fixedDeltaTime, 0);
+		rb.MovePosition(rb.position + withoutCamera.transform.forward * moveSpeed * 0.5f * Time.fixedDeltaTime);
 	}
 
 	void CheckStuckStatus()
 	{
-		if (Vector3.Distance(transform.position, lastPosition) < 0.02f)
+		if (Vector3.Distance(transform.position, lastPosition) < (moveSpeed * Time.fixedDeltaTime * 0.5f))
 		{
-			stuckTimer += Time.deltaTime;
+			stuckTimer += Time.fixedDeltaTime;
 		}
 		else
 		{
 			stuckTimer = 0;
 		}
 
-		if (stuckTimer > 0.6f)
+		if (stuckTimer > 1f)
 		{
 			ignoredTarget = currentTarget;
+			ignoreCooldown = 0;
 			currentTarget = null;
 			stuckTimer = 0;
+			Debug.Log("ignoredTarget");
 
-			rb.MovePosition(rb.position - transform.forward * 1f);
+			// rb.MovePosition(rb.position + transform.forward * 1f);
+			rb.AddForce(withoutCamera.transform.forward * 5f, ForceMode.Impulse);
 		}
 		lastPosition = transform.position;
-	}
-
-	void Wander()
-	{
-		withoutCamera.transform.Rotate(0, 30f * Time.deltaTime, 0);
-		rb.MovePosition(rb.position + withoutCamera.transform.forward * moveSpeed * 0.5f * Time.deltaTime);
 	}
 }
