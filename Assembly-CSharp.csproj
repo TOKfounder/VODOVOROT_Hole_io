@@ -64,6 +64,7 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f2\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ScriptsFromAI\EnemyMovement.cs" />
     <Compile Include="Assets\UsedAssets\Fries and Seagull\City 03\Scene Props\Scripts\Setup\FriesManagerBRP.cs" />
     <Compile Include="Assets\UsedAssets\Fries and Seagull\City 03\Scene Props\Scripts\Inspector\KiiValuePair.cs" />
     <Compile Include="Assets\PluginYourGames\Scripts\Other\PlatformEventsYG2.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="Assets\PluginYourGames\Modules\InterstitialAdv\Scripts\InterstitialAdv_callingSimulation.cs" />
     <Compile Include="Assets\PluginYourGames\Scripts\InfoYG\InfoYG.cs" />
     <Compile Include="Assets\PluginYourGames\Scripts\Basic\GamePause.cs" />
+    <Compile Include="Assets\ScriptsFromAI\HoleParent.cs" />
     <Compile Include="Assets\PluginYourGames\Modules\EnvirData\Scripts\EnvirData_yandexPlatform.cs" />
     <Compile Include="Assets\PluginYourGames\Modules\RewardedAdv\Scripts\RewardedAdvLockTimer.cs" />
     <Compile Include="Assets\PluginYourGames\Modules\PlayerStats\Example\Scripts\PlayerStatsExample.cs" />
@@ -188,7 +190,6 @@
     <Compile Include="Assets\PluginYourGames\Modules\InterstitialAdv\Scripts\InterAdv_yg.cs" />
     <Compile Include="Assets\PluginYourGames\Modules\RewardedAdv\Scripts\RewardedAdv_callingSimulation.cs" />
     <Compile Include="Assets\PluginYourGames\Scripts\Basic\OptionalPlatform.cs" />
-    <Compile Include="Assets\ScriptsFromAI\IamImposter.cs" />
     <Compile Include="Assets\PluginYourGames\Modules\InterstitialAdv\Scripts\InterstitialAdv_projectSettings.cs" />
     <Compile Include="Assets\PluginYourGames\Modules\Payments\Scripts\Payments_yg.cs" />
     <Compile Include="Assets\PluginYourGames\Scripts\Server\ModuleJson.cs" />

@@ -20,7 +20,6 @@ public class GamingManager : MonoBehaviour
 	public Image Dflazhok;
 	public Text Mpercent;
 	public Text Dpercent;
-	public int score;
 
 [Header("Mobile UI")]
 	public Text BoostText;
@@ -52,7 +51,6 @@ public class GamingManager : MonoBehaviour
 		once = true;
 		YG2.saves.isGaming = true;
 		Time.timeScale = 1f;
-		YG2.saves.score = 0;
 		YG2.SaveProgress();
 		timer = 0f;
 		timerGo = true;
@@ -65,8 +63,8 @@ public class GamingManager : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		score = YG2.saves.score;
-		perc = (float)YG2.saves.score / (AllValues - 20);
+		YG2.saves.score = BlackHoleController.Instance.score;
+		perc = (float)YG2.saves.score / (AllValues - 10);
 		if (once && (int)(perc * 100) >= 100)
 		{
 			if (YG2.envir.isMobile)

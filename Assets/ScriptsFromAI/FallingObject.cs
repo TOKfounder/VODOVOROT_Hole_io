@@ -14,7 +14,7 @@ public class FallingObject : MonoBehaviour
 	private Rigidbody rb;
 	private Renderer rend;
 	private Collider col;
-	private GameObject triggeredObj;
+	private HoleParent holeParent;
 
 	void Awake()
 	{
@@ -44,7 +44,6 @@ public class FallingObject : MonoBehaviour
 
 	void Start()
 	{
-		// hole = BlackHoleController.Instance;
 		gameObject.layer = 7;
 		size = GetVisualSize();
 		V3 = size.x * size.y * size.z;
@@ -83,33 +82,33 @@ public class FallingObject : MonoBehaviour
 	}
 
 	void Update()
-{
-	if (rend.bounds.center.y <= 0f)
 	{
-		if (IsInHole(BlackHoleController.Instance.transform))
+		if (rend.bounds.center.y <= 0f)
 		{
-			BlackHoleController.Instance.AddScore(value);
-			rb.isKinematic = true;
-			col.enabled = false;
-			rend.enabled = false;
-			enabled = false;
+			if (IsInHole(holeParent.transform))
+			{
+				holeParent.AddScore(value);
+				rb.isKinematic = true;
+				col.enabled = false;
+				rend.enabled = false;
+				enabled = false;
+			}
+			else
+			{
+				transform.position = startPosition;
+				transform.rotation = startRotation;
+				rb.isKinematic = true;
+				isTriggered = false;
+			}
+			
 		}
-		else
-		{
-			transform.position = startPosition;
-			transform.rotation = startRotation;
-			rb.isKinematic = true;
-			isTriggered = false;
-		}
-		
 	}
-}
 
 	private bool IsInHole(Transform hole)
 	{
 		float dx = hole.transform.position.x - transform.position.x;
 		float dy = hole.transform.position.z - transform.position.z;
-		float radius = Mathf.Max(BlackHoleController.Instance.size.x, BlackHoleController.Instance.size.z);
+		float radius = Mathf.Max(holeParent.size.x, holeParent.size.z);
 		return dx * dx + dy * dy <= radius * radius;
 	}
 
@@ -118,31 +117,13 @@ public class FallingObject : MonoBehaviour
 		if (isTriggered) return;
 		if (other.CompareTag("Player"))
 		{
-			// if (other.GetComponent<BlackHoleController>())
-			// {
-				triggeredObj = other.gameObject;
-				if (CanFit2D(size, BlackHoleController.Instance.size))
-				{
-					isTriggered = true;
-					rb.isKinematic = false;
-				}
-			// }
-			// else if(other.GetComponent<EnemyController>())
-			// {
-			// 	triggeredObj = other.gameObject;
-			// 	if (CanFit2D(size, other.GetComponent<EnemyController>().size))
-			// 	{
-			// 		isTriggered = true;
-			// 		rb.isKinematic = false;
-			// 	}
-			// }
+			holeParent = other.GetComponentInParent<HoleParent>();
+			if (Tool.CanFit2D(size, holeParent.size))
+			{
+				isTriggered = true;
+				rb.isKinematic = false;
+			}
 		}
-	}
-
-	public bool CanFit2D(Vector3 sizeA, Vector3 sizeB)
-	{
-		return (sizeA.x <= sizeB.x && sizeA.z <= sizeB.z) || (sizeA.x <= sizeB.x && sizeA.y <= sizeB.z) 
-		|| (sizeA.y <= sizeB.x && sizeA.z <= sizeB.z);
 	}
 	
 	public Vector3 GetVisualSize()
