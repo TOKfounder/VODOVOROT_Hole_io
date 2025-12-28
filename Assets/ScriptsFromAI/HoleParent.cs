@@ -7,6 +7,8 @@ using YG;
 public class HoleParent : MonoBehaviour
 {
 	public static HoleParent Instance;
+	public static List<HoleParent> holeList = new List<HoleParent>();
+	public static HoleParent[] holes => holeList.ToArray();
 
 	public Text nickname;
 	public Image border;
@@ -43,6 +45,7 @@ public class HoleParent : MonoBehaviour
 
 	public virtual void Start()
 	{
+		holeList.Add(this);
 		score = 0;
 		UpdateSize();
 		size *= 5;

@@ -10,7 +10,6 @@ public class FallingObject : MonoBehaviour
 	private Vector3 startPosition;
 	private Quaternion startRotation;
 	private bool isTriggered = false;
-	// private BlackHoleController hole;
 	private Rigidbody rb;
 	private Renderer rend;
 	private Collider col;
@@ -21,14 +20,8 @@ public class FallingObject : MonoBehaviour
 		col = GetComponent<Collider>();
 		if (col == null)
 		{
-			// col = gameObject.AddComponent<MeshCollider>();
 			col = gameObject.AddComponent<BoxCollider>();
 		}
-		// MeshCollider meshCol = col as MeshCollider;
-		// if (meshCol != null && !meshCol.convex)
-		// {
-		// 	meshCol.convex = true;
-		// }
 		rb = GetComponent<Rigidbody>();
 		if (rb == null)
 		{
@@ -49,7 +42,6 @@ public class FallingObject : MonoBehaviour
 		V3 = size.x * size.y * size.z;
 		startPosition = GetComponent<Transform>().position;
 		startRotation = GetComponent<Transform>().rotation;
-		// Physics.IgnoreLayerCollision(7, 7, true);
 		Physics.IgnoreLayerCollision(7, 0, true);
 		if (V3 <= 1.69f)
 		{
@@ -114,10 +106,23 @@ public class FallingObject : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (isTriggered) return;
 		if (other.CompareTag("Player"))
 		{
-			holeParent = other.GetComponentInParent<HoleParent>();
+			if (isTriggered)
+			{
+				var otherHole = other.GetComponentInParent<HoleParent>();
+				if (otherHole.nickname != holeParent.nickname)
+				{
+					print("Debug!!!");
+					isTriggered = false;
+					holeParent = otherHole;
+				}
+				else
+					return;
+			}
+			else
+				holeParent = other.GetComponentInParent<HoleParent>();
+
 			if (Tool.CanFit2D(size, holeParent.size))
 			{
 				isTriggered = true;

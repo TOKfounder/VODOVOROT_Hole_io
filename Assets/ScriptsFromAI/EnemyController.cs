@@ -7,18 +7,12 @@ using System.Linq;
 
 public class EnemyController : HoleParent
 {
-	public static List<EnemyController> enemyList = new List<EnemyController>();
-	public static EnemyController[] enemies => enemyList.ToArray();
+	public static int count = 0;
 
 	public override void Start()
 	{
 		base.Start();
-		enemyList.Add(this);
-		nickname.text = $"Enemy{enemies.Length}";
+		count += 1;
+		nickname.text = $"Enemy{count}";
 	}
-
-	// public override void AddScore(int amount){
-	// 	base.AddScore(amount);
-	// 	GetComponentInParent<EnemyMovement>().haveGoal = false;
-	// }
 }

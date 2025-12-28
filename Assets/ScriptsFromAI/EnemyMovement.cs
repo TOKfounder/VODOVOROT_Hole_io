@@ -1,17 +1,17 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UIElements;
 
 public class EnemyMovement : MonoBehaviour
 {
 	public GameObject withoutCamera;
 	public float rotationSpeed = 5f;
-	// public float[] levelSpeeds = {6f, 6.89f, 7.78f, 8.67f, 9.56f, 10.44f, 13.83f, 15.22f, 20f, 25f};
-	public float moveSpeed = 3f;
 	public float detectionRadius = 500f;
 	public float searchInterval = 0.3f;
 	public LayerMask fallableObjects;
 
 	private Transform currentTarget;
+	private float[] levelSpeeds = {6f, 6.89f, 7.78f, 8.67f, 9.56f, 10.44f, 13.83f, 15.22f, 20f, 25f};
 	private Rigidbody rb;
 	private Vector3 lastPosition;
 	private float stuckTimer;
@@ -103,7 +103,7 @@ public class EnemyMovement : MonoBehaviour
 		withoutCamera.transform.rotation = Quaternion.Slerp(withoutCamera.transform.rotation, 
 		targetRotation, rotationSpeed * Time.fixedDeltaTime);
 
-		Vector3 newPosition = rb.position + moveDir * moveSpeed * Time.fixedDeltaTime;
+		Vector3 newPosition = rb.position + moveDir * levelSpeeds[GetComponentInParent<HoleParent>().currentLevel] * 0.35f * Time.fixedDeltaTime;
 		newPosition.x = Mathf.Clamp(newPosition.x, GamingManager.Instance.minX, GamingManager.Instance.maxX);
 		newPosition.z = Mathf.Clamp(newPosition.z, GamingManager.Instance.minZ, GamingManager.Instance.maxZ);
 		rb.MovePosition(newPosition);
@@ -112,27 +112,29 @@ public class EnemyMovement : MonoBehaviour
 	void SmallWander()
 	{
 		// withoutCamera.transform.Rotate(0, -20f * Time.fixedDeltaTime, 0);
-		rb.MovePosition(rb.position + withoutCamera.transform.forward * moveSpeed * 0.5f * Time.fixedDeltaTime);
+		rb.MovePosition(rb.position + withoutCamera.transform.forward * levelSpeeds[GetComponentInParent<HoleParent>().currentLevel] * 0.5f * 0.35f * Time.fixedDeltaTime);
 	}
 
 	void CheckStuckStatus()
 	{
-		if (Vector3.Distance(transform.position, lastPosition) < (moveSpeed * Time.fixedDeltaTime * 0.5f))
+		if (Vector3.Distance(transform.position, lastPosition) < transform.localScale.x * 0.2)
 		{
+			// print(Vector3.Distance(transform.position, lastPosition) + " and " + transform.localScale.x * 0.2);
 			stuckTimer += Time.fixedDeltaTime;
+			// print("StuckTimer is going");
 		}
 		else
 		{
 			stuckTimer = 0;
 		}
 
-		if (stuckTimer > 1f)
+		if (stuckTimer > 3f)
 		{
 			ignoredTarget = currentTarget;
 			ignoreCooldown = 0;
 			currentTarget = null;
 			stuckTimer = 0;
-			Debug.Log("ignoredTarget");
+			// Debug.Log("ignoredTarget", ignoredTarget);
 
 			// rb.MovePosition(rb.position + transform.forward * 1f);
 			rb.AddForce(withoutCamera.transform.forward * 5f, ForceMode.Impulse);
