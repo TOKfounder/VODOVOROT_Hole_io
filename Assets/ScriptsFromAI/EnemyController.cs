@@ -7,7 +7,7 @@ using System.Linq;
 
 public class EnemyController : HoleParent
 {
-	public static int count = 0;
+	public static int count;
 
 	public override void Start()
 	{

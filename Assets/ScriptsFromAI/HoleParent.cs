@@ -7,8 +7,8 @@ using YG;
 public class HoleParent : MonoBehaviour
 {
 	public static HoleParent Instance;
-	public static List<HoleParent> holeList = new List<HoleParent>();
-	public static HoleParent[] holes => holeList.ToArray();
+	// public static List<HoleParent> holeList = new List<HoleParent>();
+	// public static HoleParent[] holes => holeList.ToArray();
 
 	public Text nickname;
 	public Image border;
@@ -19,6 +19,14 @@ public class HoleParent : MonoBehaviour
 	public float baseRadius = 0.2f;
 	public int currentLevel;
 	public Canvas mainCanvas;
+
+	[SerializeField] float detectionRadius = 25f;
+	[SerializeField] LayerMask fallingObjectsLayer = 7;
+	[SerializeField] float updateNearbyInterval = 1f;
+
+	List<FallingObject> nearbyFallingObjects = new List<FallingObject>(2056);
+	Collider[] overlapBuffer;
+	Coroutine updateNearbyCoroutine;
 
 	protected float[] scoreRequired = {
 			0,       // Level 0
@@ -41,27 +49,86 @@ public class HoleParent : MonoBehaviour
 	protected void Awake()
 	{
 		Instance = this;
+		overlapBuffer = new Collider[512];
 	}
 
 	public virtual void Start()
 	{
-		holeList.Add(this);
+		updateNearbyCoroutine = StartCoroutine(UpdateNearbyObjectsRoutine());
+		// holeList.Add(this);
 		score = 0;
 		UpdateSize();
 		size *= 5;
 		if (YG2.envir.isMobile)
 			Camera.main.transform.localPosition = new Vector3(0, 2.21199989f, -5.85099983f);
 		mainCanvas = GameController.Instance.currentCanvas;
-		// if (YG2.saves.nickName != "")
-		// 	nickname.text = YG2.saves.nickName;
-		// else
-		// {
-		// 	nickname.text = YG2.saves.langRu? "Легенда" : "Legend";
-		// }
 	}
 
-	protected void Update()
+	void OnDrawGizmos()
 	{
+		Gizmos.DrawWireSphere(transform.position, detectionRadius);
+	}
+
+	IEnumerator UpdateNearbyObjectsRoutine()
+	{
+		while (true)
+		{
+			UpdateNearbyObjectsOnce();
+			yield return new WaitForSeconds(updateNearbyInterval);
+		}
+	}
+
+	void UpdateNearbyObjectsOnce()
+	{
+		Vector3 center = transform.position;
+		int hitCount = Physics.OverlapSphereNonAlloc(center, detectionRadius, overlapBuffer, fallingObjectsLayer);
+
+		nearbyFallingObjects.Clear();
+		for (int i = 0; i < hitCount; i++)
+		{
+			Collider col = overlapBuffer[i];
+			FallingObject obj = col.GetComponent<FallingObject>();
+			if (obj != null && Tool.CanFit2D(size, obj.size))
+			{
+				nearbyFallingObjects.Add(obj);
+			}
+		}
+	}
+
+	void OnDestroy()
+	{
+		if (updateNearbyCoroutine != null)
+		{
+			StopCoroutine(updateNearbyCoroutine);
+		}
+	}
+
+	void Update()
+	{
+		for (int i = nearbyFallingObjects.Count - 1; i >= 0; i--)
+		{
+			FallingObject obj = nearbyFallingObjects[i];
+			// if (obj == null || obj.CurrentHole != this)
+			// {
+			// 	nearbyFallingObjects.RemoveAt(i);
+			// 	continue;
+			// }
+
+				print(obj.rend.bounds.center.y);
+			if (obj.rend.bounds.center.y <= 0f)
+			{
+				if (IsInHole(obj.transform.position))
+				{
+					obj.OnScored();
+				}
+				else
+				{
+					obj.ResetToStart();
+				}
+				// nearbyFallingObjects.RemoveAt(i);
+			}
+		}
+
 		transform.localScale = Vector3.Lerp(transform.localScale, targetScale, scaleLerpSpeed * Time.deltaTime);
 	}
 
@@ -83,7 +150,7 @@ public class HoleParent : MonoBehaviour
 		UpdateSize();
 	}
 
-	protected void PointEffect(int amount)
+	private void PointEffect(int amount)
 	{
 		Vector3 worldPos = hole.transform.position;
 		Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPos);
@@ -102,7 +169,7 @@ public class HoleParent : MonoBehaviour
 		return totalBound.size;
 	}
 	
-	protected void UpdateSize()
+	private void UpdateSize()
 	{
 		currentLevel = GetCurrentLevel(scoreRequired);
 		if (currentLevel == 10)
@@ -118,5 +185,13 @@ public class HoleParent : MonoBehaviour
 		float scale = levelScales[currentLevel];
 		targetScale = new Vector3(scale, scale * 4.508031f, scale);
 		size = GetVisualSizeOfHole();
+	}
+
+	public bool IsInHole(Vector3 objPos)
+	{
+		float dx = objPos.x - transform.position.x;
+		float dy = objPos.z - transform.position.z;
+		float radius = Mathf.Max(size.x, size.z);
+		return dx * dx + dy * dy <= radius * radius;
 	}
 }

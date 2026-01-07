@@ -9,11 +9,12 @@ public class FallingObject : MonoBehaviour
 
 	private Vector3 startPosition;
 	private Quaternion startRotation;
-	private bool isTriggered = false;
 	private Rigidbody rb;
-	private Renderer rend;
 	private Collider col;
-	private HoleParent holeParent;
+	public Renderer rend;
+
+	public bool isTriggered = false;
+	public HoleParent CurrentHole {get; set; }
 
 	void Awake()
 	{
@@ -70,38 +71,7 @@ public class FallingObject : MonoBehaviour
 		rb.mass = V3 * 50;
 		rb.drag = 4;
 		rb.angularDrag = 4;
-		GamingManager.Instance.AllValues += value;
-	}
-
-	void Update()
-	{
-		if (rend.bounds.center.y <= 0f)
-		{
-			if (IsInHole(holeParent.transform))
-			{
-				holeParent.AddScore(value);
-				rb.isKinematic = true;
-				col.enabled = false;
-				rend.enabled = false;
-				enabled = false;
-			}
-			else
-			{
-				transform.position = startPosition;
-				transform.rotation = startRotation;
-				rb.isKinematic = true;
-				isTriggered = false;
-			}
-			
-		}
-	}
-
-	private bool IsInHole(Transform hole)
-	{
-		float dx = hole.transform.position.x - transform.position.x;
-		float dy = hole.transform.position.z - transform.position.z;
-		float radius = Mathf.Max(holeParent.size.x, holeParent.size.z);
-		return dx * dx + dy * dy <= radius * radius;
+		GamingManager.Instance.AllValues += value; //!!!
 	}
 
 	private void OnTriggerEnter(Collider other)
@@ -111,19 +81,18 @@ public class FallingObject : MonoBehaviour
 			if (isTriggered)
 			{
 				var otherHole = other.GetComponentInParent<HoleParent>();
-				if (otherHole.nickname != holeParent.nickname)
+				if (otherHole.nickname != CurrentHole.nickname)
 				{
-					print("Debug!!!");
 					isTriggered = false;
-					holeParent = otherHole;
+					CurrentHole = otherHole;
 				}
 				else
 					return;
 			}
 			else
-				holeParent = other.GetComponentInParent<HoleParent>();
+				CurrentHole = other.GetComponentInParent<HoleParent>();
 
-			if (Tool.CanFit2D(size, holeParent.size))
+			if (Tool.CanFit2D(size, CurrentHole.size))
 			{
 				isTriggered = true;
 				rb.isKinematic = false;
@@ -131,7 +100,7 @@ public class FallingObject : MonoBehaviour
 		}
 	}
 	
-	public Vector3 GetVisualSize()
+	private Vector3 GetVisualSize()
 	{
 		Bounds totalBounds = new Bounds(transform.position, Vector3.zero);
 		Collider collider = GetComponent<Collider>();
@@ -146,5 +115,28 @@ public class FallingObject : MonoBehaviour
 			totalBounds.Encapsulate(renderer.bounds);
 		}
 		return totalBounds.size;
+	}
+
+
+	public void ResetToStart()
+	{
+		print("ResetToStart");
+		transform.position = startPosition;
+		transform.rotation = startRotation;
+		rb.isKinematic = true;
+		isTriggered = false;
+		col.enabled = true;
+		rend.enabled = true;
+		CurrentHole = null;
+	}
+
+	public void OnScored()
+	{
+		print("OnScored");
+		CurrentHole.AddScore(value);
+		rb.isKinematic = true;
+		col.enabled = false;
+		rend.enabled = false;
+		CurrentHole = null;
 	}
 }
