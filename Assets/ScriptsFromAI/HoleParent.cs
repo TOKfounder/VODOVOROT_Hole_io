@@ -22,9 +22,9 @@ public class HoleParent : MonoBehaviour
 
 	[SerializeField] float detectionRadius = 25f;
 	[SerializeField] LayerMask fallingObjectsLayer = 7;
-	[SerializeField] float updateNearbyInterval = 1f;
+	[SerializeField] float updateNearbyInterval = 0.1f;
 
-	List<FallingObject> nearbyFallingObjects = new List<FallingObject>(2056);
+	List<FallingObject> nearbyFallingObjects = new List<FallingObject>(256);
 	Collider[] overlapBuffer;
 	Coroutine updateNearbyCoroutine;
 
@@ -58,7 +58,7 @@ public class HoleParent : MonoBehaviour
 		// holeList.Add(this);
 		score = 0;
 		UpdateSize();
-		size *= 5;
+		// size *= 5;
 		if (YG2.envir.isMobile)
 			Camera.main.transform.localPosition = new Vector3(0, 2.21199989f, -5.85099983f);
 		mainCanvas = GameController.Instance.currentCanvas;
@@ -67,6 +67,7 @@ public class HoleParent : MonoBehaviour
 	void OnDrawGizmos()
 	{
 		Gizmos.DrawWireSphere(transform.position, detectionRadius);
+		Gizmos.DrawSphere(transform.position, Mathf.Max(size.x, size.z) * 1.5f);
 	}
 
 	IEnumerator UpdateNearbyObjectsRoutine()
@@ -88,7 +89,7 @@ public class HoleParent : MonoBehaviour
 		{
 			Collider col = overlapBuffer[i];
 			FallingObject obj = col.GetComponent<FallingObject>();
-			if (obj != null && Tool.CanFit2D(size, obj.size))
+			if (obj != null && obj.isTriggered)
 			{
 				nearbyFallingObjects.Add(obj);
 			}
@@ -108,15 +109,16 @@ public class HoleParent : MonoBehaviour
 		for (int i = nearbyFallingObjects.Count - 1; i >= 0; i--)
 		{
 			FallingObject obj = nearbyFallingObjects[i];
-			// if (obj == null || obj.CurrentHole != this)
-			// {
-			// 	nearbyFallingObjects.RemoveAt(i);
-			// 	continue;
-			// }
+			if (obj == null || obj.CurrentHole != this || !obj.isTriggered)
+			{
+				nearbyFallingObjects.RemoveAt(i);
+				continue;
+			}
 
-				print(obj.rend.bounds.center.y);
+			// print(obj.rend.bounds.center.y);
 			if (obj.rend.bounds.center.y <= 0f)
 			{
+				print("isUnderground");
 				if (IsInHole(obj.transform.position))
 				{
 					obj.OnScored();
@@ -125,7 +127,7 @@ public class HoleParent : MonoBehaviour
 				{
 					obj.ResetToStart();
 				}
-				// nearbyFallingObjects.RemoveAt(i);
+				nearbyFallingObjects.RemoveAt(i);
 			}
 		}
 
@@ -191,7 +193,7 @@ public class HoleParent : MonoBehaviour
 	{
 		float dx = objPos.x - transform.position.x;
 		float dy = objPos.z - transform.position.z;
-		float radius = Mathf.Max(size.x, size.z);
+		float radius = Mathf.Max(size.x, size.z) * 1.5f;
 		return dx * dx + dy * dy <= radius * radius;
 	}
 }

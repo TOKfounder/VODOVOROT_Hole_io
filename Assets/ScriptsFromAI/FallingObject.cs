@@ -125,8 +125,8 @@ public class FallingObject : MonoBehaviour
 		transform.rotation = startRotation;
 		rb.isKinematic = true;
 		isTriggered = false;
-		col.enabled = true;
-		rend.enabled = true;
+		// col.enabled = true;
+		// rend.enabled = true;
 		CurrentHole = null;
 	}
 
