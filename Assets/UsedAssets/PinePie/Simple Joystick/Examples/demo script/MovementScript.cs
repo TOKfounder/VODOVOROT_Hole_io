@@ -27,9 +27,8 @@ namespace PinePie.SimpleJoystick.Examples.DemoScript
 			rb = GetComponent<Rigidbody>();
 		}
 
-		void Update()
+		void FixedUpdate()
 		{
-			float pointOfBoost = YG2.envir.isMobile ? 50f : 75f;
 			if (GamingManager.Instance.perc * 100f >= 75f)
 			{
 				boostButton.gameObject.SetActive(true);
@@ -45,8 +44,8 @@ namespace PinePie.SimpleJoystick.Examples.DemoScript
 					boostButton.image.color = new Color32(0x48, 0xFF, 0x09, 0xFF);
 			}
 
-			float moveX = Input.GetAxis("Horizontal");
-			float moveY = Input.GetAxis("Vertical");
+			float moveX = Input.GetAxisRaw("Horizontal");
+			float moveY = Input.GetAxisRaw("Vertical");
 			movement = new Vector3(moveX, 0f, moveY);
 			if (joystickController.isPressed)
 			{
@@ -64,7 +63,7 @@ namespace PinePie.SimpleJoystick.Examples.DemoScript
 			float k = 1f;
 			if (holding || boostButton.GetComponent<BoostButton>().isHolding)
 				k = 2f;
-			Vector3 newPosition = rb.position + k * movement * levelSpeeds[BlackHoleController.Instance.currentLevel] * Time.deltaTime;
+			Vector3 newPosition = rb.position + 0.5f * k * movement * levelSpeeds[BlackHoleController.Instance.currentLevel] * Time.fixedDeltaTime;
 			newPosition.x = Mathf.Clamp(newPosition.x, GamingManager.Instance.minX, GamingManager.Instance.maxX);
 			newPosition.z = Mathf.Clamp(newPosition.z, GamingManager.Instance.minZ, GamingManager.Instance.maxZ);
 			rb.MovePosition(newPosition);

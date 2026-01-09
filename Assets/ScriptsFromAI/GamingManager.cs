@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
@@ -5,6 +6,7 @@ using YG;
 public class GamingManager : MonoBehaviour
 {
 	public static GamingManager Instance;
+	public static List<Collider> allPlatforms = new List<Collider>();
 	public GameObject MobpanelOfEnd;
 	public GameObject DeskpanelOfEnd;
 	public float perc = 0f;

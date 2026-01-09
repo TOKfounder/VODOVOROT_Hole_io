@@ -7,10 +7,10 @@ using YG;
 public class HoleParent : MonoBehaviour
 {
 	public static HoleParent Instance;
-	// public static List<HoleParent> holeList = new List<HoleParent>();
-	// public static HoleParent[] holes => holeList.ToArray();
+	public static List<HoleParent> holeList = new List<HoleParent>();
 
 	public Text nickname;
+	public bool isEnemy = true;
 	public Image border;
 	public GameObject pointsPref;
 	public GameObject WithoutCamera;
@@ -19,12 +19,9 @@ public class HoleParent : MonoBehaviour
 	public float baseRadius = 0.2f;
 	public int currentLevel;
 	public Canvas mainCanvas;
+	public Collider platform;
 
-	[SerializeField] float detectionRadius = 25f;
-	[SerializeField] LayerMask fallingObjectsLayer = 7;
-	[SerializeField] float updateNearbyInterval = 0.1f;
-
-	List<FallingObject> nearbyFallingObjects = new List<FallingObject>(256);
+	public List<FallingObject> nearbyFallingObjects = new List<FallingObject>(1000);
 	Collider[] overlapBuffer;
 	Coroutine updateNearbyCoroutine;
 
@@ -45,55 +42,23 @@ public class HoleParent : MonoBehaviour
 	public int score;
 	protected Vector3 targetScale;   // Куда хотим прийти
 	protected float scaleLerpSpeed = 2f; // Насколько быстро "растёт" (чем больше, тем быстрее)
+	private float radius;
 
 	protected void Awake()
 	{
 		Instance = this;
 		overlapBuffer = new Collider[512];
+		GamingManager.allPlatforms.Add(platform);
 	}
 
 	public virtual void Start()
 	{
-		updateNearbyCoroutine = StartCoroutine(UpdateNearbyObjectsRoutine());
-		// holeList.Add(this);
+		holeList.Add(this);
 		score = 0;
 		UpdateSize();
-		// size *= 5;
 		if (YG2.envir.isMobile)
 			Camera.main.transform.localPosition = new Vector3(0, 2.21199989f, -5.85099983f);
 		mainCanvas = GameController.Instance.currentCanvas;
-	}
-
-	void OnDrawGizmos()
-	{
-		Gizmos.DrawWireSphere(transform.position, detectionRadius);
-		Gizmos.DrawSphere(transform.position, Mathf.Max(size.x, size.z) * 1.5f);
-	}
-
-	IEnumerator UpdateNearbyObjectsRoutine()
-	{
-		while (true)
-		{
-			UpdateNearbyObjectsOnce();
-			yield return new WaitForSeconds(updateNearbyInterval);
-		}
-	}
-
-	void UpdateNearbyObjectsOnce()
-	{
-		Vector3 center = transform.position;
-		int hitCount = Physics.OverlapSphereNonAlloc(center, detectionRadius, overlapBuffer, fallingObjectsLayer);
-
-		nearbyFallingObjects.Clear();
-		for (int i = 0; i < hitCount; i++)
-		{
-			Collider col = overlapBuffer[i];
-			FallingObject obj = col.GetComponent<FallingObject>();
-			if (obj != null && obj.isTriggered)
-			{
-				nearbyFallingObjects.Add(obj);
-			}
-		}
 	}
 
 	void OnDestroy()
@@ -109,19 +74,18 @@ public class HoleParent : MonoBehaviour
 		for (int i = nearbyFallingObjects.Count - 1; i >= 0; i--)
 		{
 			FallingObject obj = nearbyFallingObjects[i];
-			if (obj == null || obj.CurrentHole != this || !obj.isTriggered)
+			if (obj == null || !obj.isTriggered)
 			{
 				nearbyFallingObjects.RemoveAt(i);
 				continue;
 			}
 
-			// print(obj.rend.bounds.center.y);
 			if (obj.rend.bounds.center.y <= 0f)
 			{
 				print("isUnderground");
 				if (IsInHole(obj.transform.position))
 				{
-					obj.OnScored();
+					obj.OnScored(this);
 				}
 				else
 				{
@@ -187,13 +151,13 @@ public class HoleParent : MonoBehaviour
 		float scale = levelScales[currentLevel];
 		targetScale = new Vector3(scale, scale * 4.508031f, scale);
 		size = GetVisualSizeOfHole();
+		radius = Mathf.Max(size.x, size.z) * 1.5f;
 	}
 
 	public bool IsInHole(Vector3 objPos)
 	{
 		float dx = objPos.x - transform.position.x;
 		float dy = objPos.z - transform.position.z;
-		float radius = Mathf.Max(size.x, size.z) * 1.5f;
 		return dx * dx + dy * dy <= radius * radius;
 	}
 }

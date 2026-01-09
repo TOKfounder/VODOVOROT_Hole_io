@@ -13,10 +13,9 @@ public class EnemyMovement : MonoBehaviour
 	private Transform currentTarget;
 	private float[] levelSpeeds = {6f, 6.89f, 7.78f, 8.67f, 9.56f, 10.44f, 13.83f, 15.22f, 20f, 25f};
 	private Rigidbody rb;
-	private Vector3 lastPosition;
 	private float stuckTimer;
 	private Transform ignoredTarget;
-	private float ignoreCooldown = 0f;
+	private float ignoreCooldown;
 
 	private EnemyController enemyController;
 
@@ -24,7 +23,7 @@ public class EnemyMovement : MonoBehaviour
 	{
 		rb = GetComponent<Rigidbody>();
 		enemyController = GetComponentInParent<EnemyController>();
-		lastPosition = transform.position;
+		// lastPosition = transform.position;
 		StartCoroutine(SearchRoutine());
 	}
 
@@ -32,10 +31,7 @@ public class EnemyMovement : MonoBehaviour
 	{
 		while (true)
 		{
-			if (currentTarget == null)
-			{
-				FindClosestObject();
-			}
+			FindClosestObject();
 			yield return new WaitForSeconds(searchInterval);
 		}
 	}
@@ -45,13 +41,12 @@ public class EnemyMovement : MonoBehaviour
 		if (currentTarget != null)
 		{
 			MoveToTarget();
-			CheckStuckStatus();
 		}
 		else
 		{
-			FindClosestObject();
 			SmallWander();
 		}
+
 		if (ignoredTarget != null)
 		{
 			ignoreCooldown += Time.fixedDeltaTime;
@@ -76,7 +71,7 @@ public class EnemyMovement : MonoBehaviour
 			var fo = hit.GetComponentInParent<FallingObject>();
 			if (fo == null) continue;
 
-			if (Tool.CanFit2D(fo.size, enemyController.size))
+			if (Tool.CanFitForEnemies(fo.size, enemyController.size))
 			{
 				float dist = Vector3.Distance(transform.position, hit.transform.position);
 				if (closestDist > dist)
@@ -86,7 +81,13 @@ public class EnemyMovement : MonoBehaviour
 				}
 			}
 		}
-		currentTarget = bestTarget;
+		if (currentTarget == bestTarget)
+		{
+			CheckStuckStatus();
+		} else {
+			currentTarget = bestTarget;
+			stuckTimer = 0f;
+		}
 	}
 
 	void MoveToTarget()
@@ -103,7 +104,7 @@ public class EnemyMovement : MonoBehaviour
 		withoutCamera.transform.rotation = Quaternion.Slerp(withoutCamera.transform.rotation, 
 		targetRotation, rotationSpeed * Time.fixedDeltaTime);
 
-		Vector3 newPosition = rb.position + moveDir * levelSpeeds[GetComponentInParent<HoleParent>().currentLevel] * 0.35f * Time.fixedDeltaTime;
+		Vector3 newPosition = rb.position + moveDir * levelSpeeds[GetComponentInParent<HoleParent>().currentLevel] * 0.25f * Time.fixedDeltaTime;
 		newPosition.x = Mathf.Clamp(newPosition.x, GamingManager.Instance.minX, GamingManager.Instance.maxX);
 		newPosition.z = Mathf.Clamp(newPosition.z, GamingManager.Instance.minZ, GamingManager.Instance.maxZ);
 		rb.MovePosition(newPosition);
@@ -111,34 +112,20 @@ public class EnemyMovement : MonoBehaviour
 
 	void SmallWander()
 	{
-		// withoutCamera.transform.Rotate(0, -20f * Time.fixedDeltaTime, 0);
-		rb.MovePosition(rb.position + withoutCamera.transform.forward * levelSpeeds[GetComponentInParent<HoleParent>().currentLevel] * 0.5f * 0.35f * Time.fixedDeltaTime);
+		rb.MovePosition(rb.position + withoutCamera.transform.forward * levelSpeeds[GetComponentInParent<HoleParent>().currentLevel] * 0.25f * Time.fixedDeltaTime);
 	}
 
 	void CheckStuckStatus()
 	{
-		if (Vector3.Distance(transform.position, lastPosition) < transform.localScale.x * 0.2)
-		{
-			// print(Vector3.Distance(transform.position, lastPosition) + " and " + transform.localScale.x * 0.2);
-			stuckTimer += Time.fixedDeltaTime;
-			// print("StuckTimer is going");
-		}
-		else
-		{
-			stuckTimer = 0;
-		}
+		stuckTimer += searchInterval;
 
-		if (stuckTimer > 3f)
+		if (stuckTimer > 2f)
 		{
 			ignoredTarget = currentTarget;
 			ignoreCooldown = 0;
 			currentTarget = null;
 			stuckTimer = 0;
-			// Debug.Log("ignoredTarget", ignoredTarget);
-
-			// rb.MovePosition(rb.position + transform.forward * 1f);
-			rb.AddForce(withoutCamera.transform.forward * 5f, ForceMode.Impulse);
+			// rb.AddForce(withoutCamera.transform.forward * 5f, ForceMode.Impulse);
 		}
-		lastPosition = transform.position;
 	}
 }
