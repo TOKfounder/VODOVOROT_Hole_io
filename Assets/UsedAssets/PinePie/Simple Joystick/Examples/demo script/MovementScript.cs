@@ -29,7 +29,7 @@ namespace PinePie.SimpleJoystick.Examples.DemoScript
 
 		void FixedUpdate()
 		{
-			if (GamingManager.Instance.perc * 100f >= 75f)
+			if (GamingManager.Instance.perc * 100f >= 70f)
 			{
 				boostButton.gameObject.SetActive(true);
 			} else {
@@ -44,9 +44,9 @@ namespace PinePie.SimpleJoystick.Examples.DemoScript
 					boostButton.image.color = new Color32(0x48, 0xFF, 0x09, 0xFF);
 			}
 
-			float moveX = Input.GetAxisRaw("Horizontal");
-			float moveY = Input.GetAxisRaw("Vertical");
-			movement = new Vector3(moveX, 0f, moveY);
+			// float moveX = Input.GetAxisRaw("Horizontal");
+			// float moveY = Input.GetAxisRaw("Vertical");
+			movement = Vector3.zero;
 			if (joystickController.isPressed)
 			{
 				Vector2 joysticInput = joystickController.InputDirection;

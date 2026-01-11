@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4561964727787582}
   - component: {fileID: 33763529961662090}
   - component: {fileID: 23105119379756468}
-  - component: {fileID: 64375586858561320}
   - component: {fileID: 7429251382551941878}
+  - component: {fileID: 4629754425261258881}
   m_Layer: 0
   m_Name: stone 3
   m_TagString: Untagged
@@ -85,7 +85,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64375586858561320
+--- !u!114 &7429251382551941878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616702537201082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+--- !u!64 &4629754425261258881
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -104,24 +121,9 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: f3559f5b8197ad54e917b105496b2d62, type: 3}
---- !u!114 &7429251382551941878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1616702537201082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value: 0
-  size: {x: 0, y: 0, z: 0}
-  V3: 0
 --- !u!1 &1713973710326492
 GameObject:
   m_ObjectHideFlags: 0

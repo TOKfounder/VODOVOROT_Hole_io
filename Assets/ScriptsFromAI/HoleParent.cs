@@ -8,6 +8,7 @@ public class HoleParent : MonoBehaviour
 {
 	public static HoleParent Instance;
 	public static List<HoleParent> holeList = new List<HoleParent>();
+	public static int totalScore;
 
 	public Text nickname;
 	public bool isEnemy = true;
@@ -22,7 +23,6 @@ public class HoleParent : MonoBehaviour
 	public Collider platform;
 
 	public List<FallingObject> nearbyFallingObjects = new List<FallingObject>(1000);
-	Collider[] overlapBuffer;
 	Coroutine updateNearbyCoroutine;
 
 	protected float[] scoreRequired = {
@@ -47,7 +47,6 @@ public class HoleParent : MonoBehaviour
 	protected void Awake()
 	{
 		Instance = this;
-		overlapBuffer = new Collider[512];
 		GamingManager.allPlatforms.Add(platform);
 	}
 
@@ -56,6 +55,7 @@ public class HoleParent : MonoBehaviour
 		holeList.Add(this);
 		score = 0;
 		UpdateSize();
+		radius = (size.x + size.z) /2f;
 		if (YG2.envir.isMobile)
 			Camera.main.transform.localPosition = new Vector3(0, 2.21199989f, -5.85099983f);
 		mainCanvas = GameController.Instance.currentCanvas;
@@ -68,6 +68,11 @@ public class HoleParent : MonoBehaviour
 			StopCoroutine(updateNearbyCoroutine);
 		}
 	}
+
+	// void OnDrawGizmos()
+	// {
+	// 	Gizmos.DrawSphere(transform.position, radius);
+	// }
 
 	void Update()
 	{
@@ -82,7 +87,6 @@ public class HoleParent : MonoBehaviour
 
 			if (obj.rend.bounds.center.y <= 0f)
 			{
-				print("isUnderground");
 				if (IsInHole(obj.transform.position))
 				{
 					obj.OnScored(this);
@@ -110,7 +114,9 @@ public class HoleParent : MonoBehaviour
 
 	public void AddScore(int amount)
 	{
+		if (amount <= 0) return;
 		score += amount;
+		totalScore += amount;
 		PointEffect(amount);
 		YG2.SaveProgress();
 		UpdateSize();
@@ -120,7 +126,8 @@ public class HoleParent : MonoBehaviour
 	{
 		Vector3 worldPos = hole.transform.position;
 		Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPos);
-		var points = Instantiate(pointsPref, mainCanvas.transform);
+		GameObject points = Instantiate(pointsPref, mainCanvas.transform);
+		// transform.parent.position = points;
 		points.GetComponent<RectTransform>().position = screenPos;
 		points.GetComponent<Text>().text = $"+{amount}";
 	}
@@ -151,7 +158,7 @@ public class HoleParent : MonoBehaviour
 		float scale = levelScales[currentLevel];
 		targetScale = new Vector3(scale, scale * 4.508031f, scale);
 		size = GetVisualSizeOfHole();
-		radius = Mathf.Max(size.x, size.z) * 1.5f;
+		radius = (size.x + size.z) /2f;
 	}
 
 	public bool IsInHole(Vector3 objPos)

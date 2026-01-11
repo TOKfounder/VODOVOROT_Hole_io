@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
@@ -59,14 +60,24 @@ public class GamingManager : MonoBehaviour
 		// UpdateUI();
 		// if (!YG2.saves.langRu)
 		// LanguageManager.Instance.Onclick();
+		StartCoroutine(UpdateFlag());
 	}
 
 	public void HandleTimer(bool b) => timerGo = b;
 
+	IEnumerator UpdateFlag()
+	{
+		while (true)
+		{
+			YG2.saves.score = HoleParent.totalScore;
+			perc = (float)YG2.saves.score / (AllValues - 15);
+			yield return new WaitForSeconds(1f);
+		}
+	}
+
 	void FixedUpdate()
 	{
-		YG2.saves.score = BlackHoleController.Instance.score;
-		perc = (float)YG2.saves.score / (AllValues - 10);
+		
 		if (once && (int)(perc * 100) >= 100)
 		{
 			if (YG2.envir.isMobile)

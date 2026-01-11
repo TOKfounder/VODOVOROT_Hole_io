@@ -76,7 +76,7 @@ public class FallingObject : MonoBehaviour
 		rb.mass = V3 * 50;
 		rb.drag = 4;
 		rb.angularDrag = 4;
-		GamingManager.Instance.AllValues += value; //!!!
+		GamingManager.Instance.AllValues += value;
 	}
 
 	IEnumerator DelayForUpdateCurrentHole()
@@ -116,7 +116,6 @@ public class FallingObject : MonoBehaviour
 				if (Tool.CanFitForEnemies(size, CurrentHole.size))
 				{
 					isTriggered = true;
-					Physics.IgnoreCollision(CurrentHole.platform, col, true);
 					rb.isKinematic = false;
 					CurrentHole.nearbyFallingObjects.Add(this);
 				}
@@ -152,7 +151,6 @@ public class FallingObject : MonoBehaviour
 
 	public void ResetToStart()
 	{
-		print("ResetToStart");
 		transform.position = startPosition;
 		transform.rotation = startRotation;
 		rb.isKinematic = true;
@@ -169,7 +167,10 @@ public class FallingObject : MonoBehaviour
 
 	public void OnScored(HoleParent hole)
 	{
+		
 		hole.AddScore(value);
+		value = 0;
+		
 		rb.isKinematic = true;
 		col.enabled = false;
 		rend.enabled = false;

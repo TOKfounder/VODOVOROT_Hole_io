@@ -5,9 +5,9 @@ using UnityEngine.UIElements;
 public class EnemyMovement : MonoBehaviour
 {
 	public GameObject withoutCamera;
-	public float rotationSpeed = 5f;
+	public float rotationSpeed = 0.1f;
 	public float detectionRadius = 500f;
-	public float searchInterval = 0.3f;
+	public float searchInterval = 0.5f;
 	public LayerMask fallableObjects;
 
 	private Transform currentTarget;
@@ -119,7 +119,7 @@ public class EnemyMovement : MonoBehaviour
 	{
 		stuckTimer += searchInterval;
 
-		if (stuckTimer > 2f)
+		if (stuckTimer >= 2f)
 		{
 			ignoredTarget = currentTarget;
 			ignoreCooldown = 0;
