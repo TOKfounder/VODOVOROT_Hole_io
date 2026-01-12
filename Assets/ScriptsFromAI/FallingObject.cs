@@ -49,29 +49,41 @@ public class FallingObject : MonoBehaviour
 		startPosition = GetComponent<Transform>().position;
 		startRotation = GetComponent<Transform>().rotation;
 		// Physics.IgnoreLayerCollision(7, 0, true);
-		if (V3 <= 1.69f)
+		if (V3 <= 0.087f)
 		{
 			value = 1;
 		}
-		else if (V3 <= 19.63f)
+		else if (V3 <= 0.51f)
 		{
 			value = 2;
 		}
-		else if (V3 <= 42.7f)
+		else if (V3 <= 10.63f)
 		{
 			value = 3;
 		}
-		else if (V3 <= 250f)
+		else if (V3 <= 20f)
+		{
+			value = 5;
+		}
+		else if (V3 <= 60f)
 		{
 			value = 10;
 		}
+		else if (V3 <= 100f)
+		{
+			value = 25;
+		}
+		else if (V3 <= 250f)
+		{
+			value = 40;
+		}
 		else if (V3 <= 860f)
 		{
-			value = 20;
+			value = 60;
 		}
 		else
 		{
-			value = 50;
+			value = 100;
 		}
 		rb.mass = V3 * 50;
 		rb.drag = 4;
@@ -151,6 +163,7 @@ public class FallingObject : MonoBehaviour
 
 	public void ResetToStart()
 	{
+		print("ResetToStart");
 		transform.position = startPosition;
 		transform.rotation = startRotation;
 		rb.isKinematic = true;

@@ -61,6 +61,11 @@ public class EnemyMovement : MonoBehaviour
 	void FindClosestObject()
 	{
 		Collider[] hitColliders = Physics.OverlapSphere(transform.position, detectionRadius, fallableObjects);
+		if (hitColliders.Length == 0)
+		{
+			hitColliders = Physics.OverlapSphere(transform.position, detectionRadius * 100, fallableObjects);
+			if (hitColliders.Length == 0) return;
+		}
 
 		float closestDist = Mathf.Infinity;
 		Transform bestTarget = null;
