@@ -156,6 +156,7 @@
     <Compile Include="Assets\PluginYourGames\Modules\Payments\Scripts\PurchaseYG.cs" />
     <Compile Include="Assets\PluginYourGames\Modules\PlayerStats\Scripts\PlayerStats_yg.cs" />
     <Compile Include="Assets\PluginYourGames\Modules\Leaderboards\Scripts\LB_yg.cs" />
+    <Compile Include="Assets\ScriptsFromAI\ModeManager.cs" />
     <Compile Include="Assets\UsedAssets\Fries and Seagull\City 03\Scene Props\Scripts\GlowLight.cs" />
     <Compile Include="Assets\PluginYourGames\Scripts\EditorScr\PrefsList.cs" />
     <Compile Include="Assets\PluginYourGames\Scripts\InfoYG\InfoYGReferences.cs" />

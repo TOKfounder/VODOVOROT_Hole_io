@@ -24,6 +24,7 @@ public class HoleParent : MonoBehaviour
 
 	public List<FallingObject> nearbyFallingObjects = new List<FallingObject>(1000);
 	Coroutine updateNearbyCoroutine;
+	bool isUpdated = false;
 
 	protected float[] scoreRequired = {
 			0,       // Level 0
@@ -40,8 +41,8 @@ public class HoleParent : MonoBehaviour
 	};
 	protected float[] levelScales = { 0.41f, 0.81f, 1.61f, 2.41f, 4.1f, 6f, 8f, 10f, 12f, 13.5f, 67f }; // scale на каждом уровне
 	public int score;
-	protected Vector3 targetScale;   // Куда хотим прийти
-	protected float scaleLerpSpeed = 2f; // Насколько быстро "растёт" (чем больше, тем быстрее)
+	protected Vector3 targetScale;
+	protected float scaleLerpSpeed = 2f;
 	private float radius;
 
 	protected void Awake()
@@ -54,8 +55,6 @@ public class HoleParent : MonoBehaviour
 	{
 		holeList.Add(this);
 		score = 0;
-		UpdateSize();
-		radius = (size.x + size.z) /2f;
 		if (YG2.envir.isMobile)
 			Camera.main.transform.localPosition = new Vector3(0, 2.21199989f, -5.85099983f);
 		mainCanvas = GameController.Instance.currentCanvas;
@@ -100,6 +99,10 @@ public class HoleParent : MonoBehaviour
 		}
 
 		transform.localScale = Vector3.Lerp(transform.localScale, targetScale, scaleLerpSpeed * Time.deltaTime);
+		if (!isUpdated)
+		{
+			UpdateSize();
+		}
 	}
 
 	public int GetCurrentLevel(float[] scoreRequired)
@@ -119,15 +122,16 @@ public class HoleParent : MonoBehaviour
 		totalScore += amount;
 		PointEffect(amount);
 		YG2.SaveProgress();
-		UpdateSize();
+		isUpdated = false;
 	}
 
 	private void PointEffect(int amount)
 	{
 		Vector3 worldPos = hole.transform.position;
 		Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPos);
+
 		GameObject points = Instantiate(pointsPref, mainCanvas.transform);
-		// transform.parent.position = points;
+
 		points.GetComponent<RectTransform>().position = screenPos;
 		points.GetComponent<Text>().text = $"+{amount}";
 	}
@@ -144,6 +148,7 @@ public class HoleParent : MonoBehaviour
 	
 	private void UpdateSize()
 	{
+		isUpdated = true;
 		currentLevel = GetCurrentLevel(scoreRequired);
 		if (currentLevel == 10)
 		{

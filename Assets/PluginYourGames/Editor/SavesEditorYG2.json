@@ -7,10 +7,10 @@
         false,
         false
     ],
-    "idSave": 152426,
+    "idSave": 189832,
     "isFirst": false,
     "langRu": true,
-    "score": 8863,
+    "score": 0,
     "equipedMaterial": 0,
     "massiveOfObtaining": [
         1,
@@ -22,7 +22,6 @@
     "exp": 50,
     "levelOfProgress": 0,
     "goldCoins": 20,
-    "chosenMode": 0,
     "isNickGiven": false,
     "nickName": "",
     "selectedMapID": 0,
@@ -30,5 +29,6 @@
     "isGaming": true,
     "soundValue": 0.5,
     "musicValue": 0.5,
-    "done": true
+    "done": true,
+    "chosenMode": 0
 }

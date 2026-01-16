@@ -50,7 +50,7 @@ public class EnemyMovement : MonoBehaviour
 		if (ignoredTarget != null)
 		{
 			ignoreCooldown += Time.fixedDeltaTime;
-			if (ignoreCooldown > 6f)
+			if (ignoreCooldown > 10f)
 			{
 				ignoredTarget = null;
 				ignoreCooldown = 0f;
@@ -124,13 +124,12 @@ public class EnemyMovement : MonoBehaviour
 	{
 		stuckTimer += searchInterval;
 
-		if (stuckTimer >= 2f)
+		if (stuckTimer >= 3.5f)
 		{
 			ignoredTarget = currentTarget;
 			ignoreCooldown = 0;
 			currentTarget = null;
 			stuckTimer = 0;
-			// rb.AddForce(withoutCamera.transform.forward * 5f, ForceMode.Impulse);
 		}
 	}
 }

@@ -163,7 +163,6 @@ public class FallingObject : MonoBehaviour
 
 	public void ResetToStart()
 	{
-		print("ResetToStart");
 		transform.position = startPosition;
 		transform.rotation = startRotation;
 		rb.isKinematic = true;

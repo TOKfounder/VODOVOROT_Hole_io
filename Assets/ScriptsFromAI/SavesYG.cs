@@ -10,7 +10,6 @@ namespace YG
 		public int exp = 0;
 		public int levelOfProgress = 0;
 		public int goldCoins = 0;
-		public int chosenMode = 0;
 		public bool isNickGiven = false;
 		public string nickName = "";
 		public int selectedMapID = 1;
@@ -19,5 +18,6 @@ namespace YG
 		public float soundValue = 0.5f;
 		public float musicValue = 0.5f;
 		public bool done = false;
+		public int chosenMode = 0;
 	}
 }
