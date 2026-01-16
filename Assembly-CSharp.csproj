@@ -118,6 +118,7 @@
     <Compile Include="Assets\PluginYourGames\Modules\Leaderboards\Scripts\LB_lang.cs" />
     <Compile Include="Assets\PluginYourGames\Scripts\EditorScr\Attributes\NestedYGAttribute.cs" />
     <Compile Include="Assets\PluginYourGames\Modules\InterstitialAdv\Scripts\AdNotification\AdNotificationYG.cs" />
+    <Compile Include="Assets\ScriptsFromAI\HelperController.cs" />
     <Compile Include="Assets\PluginYourGames\Modules\Flags\Scripts\Flags_yndexPlatform.cs" />
     <Compile Include="Assets\PluginYourGames\Scripts\Other\ImageLoadYG.cs" />
     <Compile Include="Assets\PluginYourGames\Scripts\Other\AdvCallingSimulation.cs" />
@@ -206,6 +207,7 @@
     <Compile Include="Assets\ScriptsFromAI\MainMenuController.cs" />
     <Compile Include="Assets\PluginYourGames\Modules\Localization\Example\Scripts\LanguageExample.cs" />
     <Compile Include="Assets\PluginYourGames\Modules\Leaderboards\Scripts\LB_yandexPlatform.cs" />
+    <Compile Include="Assets\ScriptsFromAI\SpawnerOfHelpers.cs" />
     <Compile Include="Assets\PluginYourGames\Modules\InterstitialAdv\Scripts\TimerBeforeAds\TimerBeforeAdsYG.cs" />
     <Compile Include="Assets\PluginYourGames\Modules\EnvirData\Example\Scripts\GetEnvirData.cs" />
     <Compile Include="Assets\PluginYourGames\Scripts\Utils\JsonYG.cs" />

@@ -11,7 +11,11 @@ public class HoleParent : MonoBehaviour
 	public static int totalScore;
 
 	public Text nickname;
-	public bool isEnemy = true;
+	public enum TypeOfHole
+	{
+		player, enemy, playerHelper, enemyHelper
+	}
+	public static TypeOfHole holeType;
 	public Image border;
 	public GameObject pointsPref;
 	public GameObject WithoutCamera;
@@ -68,11 +72,6 @@ public class HoleParent : MonoBehaviour
 		}
 	}
 
-	// void OnDrawGizmos()
-	// {
-	// 	Gizmos.DrawSphere(transform.position, radius);
-	// }
-
 	void Update()
 	{
 		for (int i = nearbyFallingObjects.Count - 1; i >= 0; i--)
@@ -84,7 +83,7 @@ public class HoleParent : MonoBehaviour
 				continue;
 			}
 
-			if (obj.rend.bounds.center.y <= 0f)
+			if (!obj.isColon && obj.rend.bounds.center.y <= 0f || obj.isColon && obj.rend.bounds.max.y <= 0f)
 			{
 				if (IsInHole(obj.transform.position))
 				{

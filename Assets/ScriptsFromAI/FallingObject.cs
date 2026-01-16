@@ -7,6 +7,8 @@ public class FallingObject : MonoBehaviour
 	public Vector3 size;
 	public float V3;
 	public Renderer rend;
+	public bool isTriggered = false;
+	public bool isColon = false;
 
 	private Vector3 startPosition;
 	private Quaternion startRotation;
@@ -14,8 +16,7 @@ public class FallingObject : MonoBehaviour
 	private Collider col;
 	private Coroutine myCoroutine;
 
-	public bool isTriggered = false;
-	public HoleParent CurrentHole {get; set; }
+	public HoleParent CurrentHole { get; set; }
 
 	void Awake()
 	{
@@ -120,10 +121,14 @@ public class FallingObject : MonoBehaviour
 				CurrentHole = other.GetComponentInParent<HoleParent>();
 				Physics.IgnoreCollision(CurrentHole.platform, col, false);
 			}
-			if (myCoroutine != null) StopCoroutine(myCoroutine);
-			myCoroutine = StartCoroutine(DelayForUpdateCurrentHole());
+
+			if (!isColon)
+			{
+				if (myCoroutine != null) StopCoroutine(myCoroutine);
+				myCoroutine = StartCoroutine(DelayForUpdateCurrentHole());
+			}
 				
-			if (CurrentHole.isEnemy)
+			if (HoleParent.holeType == HoleParent.TypeOfHole.enemy)
 			{
 				if (Tool.CanFitForEnemies(size, CurrentHole.size))
 				{
@@ -188,5 +193,7 @@ public class FallingObject : MonoBehaviour
 		rend.enabled = false;
 		CurrentHole = null;
 		if (myCoroutine != null) StopCoroutine(myCoroutine);
+
+		if (isColon) print("Helper is Alife!");
 	}
 }
