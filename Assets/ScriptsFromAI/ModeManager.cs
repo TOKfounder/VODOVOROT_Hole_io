@@ -11,7 +11,7 @@ public class ModeManager : MonoBehaviour
 		Boss, TotalCleaning, Hunting, TeamMode
 	}
 	[SerializeField] private GameObject enemyPrefab;
-	[SerializeField] private GameObject playerPrefab;
+	[SerializeField] private GameObject mainPlayer;
 
 	void Awake()
 	{
@@ -36,18 +36,16 @@ public class ModeManager : MonoBehaviour
 
 	public void StartBossMode()
 	{
-		GameObject bossEnemy = (GameObject) Instantiate(enemyPrefab);
-		bossEnemy.transform.position = new Vector3(-2.23f, 0.164f, 92.22f);
-		bossEnemy.transform.Rotate(new Vector3(0, 180, 0), Space.Self);
-		HoleParent bossHole = bossEnemy.GetComponent<HoleParent>();
-		bossHole.GetComponent<Renderer>().material = GameController.Instance.materials[2];
-		
-		GameObject player = (GameObject) Instantiate(playerPrefab);
-		player.transform.position = new Vector3(-23.7f, 0.164f, -80.2f);
+		Instantiate(enemyPrefab, new Vector3(-2.23f, 0.164f, 92.22f), 
+		Quaternion.Euler(0, 180, 0), transform);
+		mainPlayer.transform.position = new Vector3(-23.7f, 0.164f, -80.2f);
+
+		// Можно добавить красивую анимацию с передвижением камеры
+		// Только после этого вновь запустить воспроизведение
 	}
 	public void StartCleaningMode()
 	{
-		return;	
+		mainPlayer.transform.position = new Vector3(-23.7f, 0.164f, -80.2f);
 	}
 	public void StartHuntingMode()
 	{
