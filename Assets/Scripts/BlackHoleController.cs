@@ -11,7 +11,6 @@ public class BlackHoleController : HoleParent
 	public override void Start()
 	{
 		base.Start();
-		score = 1779;
 		holeType = TypeOfHole.player;
 		if (YG2.saves.nickName != "")
 			nickname.text = YG2.saves.nickName;

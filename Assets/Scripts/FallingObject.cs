@@ -87,8 +87,8 @@ public class FallingObject : MonoBehaviour
 			value = 100;
 		}
 		rb.mass = V3 * 50;
-		rb.drag = 4;
-		rb.angularDrag = 4;
+		rb.linearDamping = 4;
+		rb.angularDamping = 4;
 		GamingManager.Instance.AllValues += value;
 	}
 
