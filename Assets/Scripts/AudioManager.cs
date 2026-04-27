@@ -5,8 +5,6 @@ using YG;
 
 public class AudioManager : MonoBehaviour
 {
-	public static AudioManager Instance;
-
 	public AudioSource musicSource;
 	public AudioMixer mixer;
 
@@ -23,9 +21,11 @@ public class AudioManager : MonoBehaviour
 	public GameObject Dkrest2;
 	public Slider DSoundSlider;
 	public Slider DMusicSlider;
+	
 	void Awake()
 	{
-		Instance = this;
+		if (VodovorotGameManager.Instance != null)
+    		VodovorotGameManager.Instance.AudioManager = this;
 	}
 
 	void Start()

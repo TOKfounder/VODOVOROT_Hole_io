@@ -5,7 +5,7 @@ using YG;
 
 public class ModeManager : MonoBehaviour
 {
-	public static Mode currentMode = Mode.Boss;
+	public Mode currentMode = Mode.Boss;
 	public enum Mode
 	{
 		Boss, TotalCleaning, Hunting, TeamMode
@@ -15,6 +15,9 @@ public class ModeManager : MonoBehaviour
 
 	void Awake()
 	{
+		if (VodovorotGameManager.Instance != null)
+    		VodovorotGameManager.Instance.ModeManager = this;
+			
 		currentMode = (Mode)YG2.saves.chosenMode;
 		if (currentMode == Mode.Boss)
 		{
@@ -36,6 +39,8 @@ public class ModeManager : MonoBehaviour
 
 	public void StartBossMode()
 	{
+		if (enemyPrefab == null) return;
+		
 		Instantiate(enemyPrefab, new Vector3(-2.23f, 0.164f, 92.22f), 
 		Quaternion.Euler(0, 180, 0), transform);
 		mainPlayer.transform.position = new Vector3(-23.7f, 0.164f, -80.2f);

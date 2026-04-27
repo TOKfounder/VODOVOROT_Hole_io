@@ -5,7 +5,6 @@ using YG;
 
 public class GameController : MonoBehaviour
 {
-	public static GameController Instance;
 	public Material[] materials;
 
 	public GameObject mainToilet;
@@ -22,8 +21,11 @@ public class GameController : MonoBehaviour
 
 	void Awake()
 	{
+		if (VodovorotGameManager.Instance != null)
+			VodovorotGameManager.Instance.GameController = this;
+
 		YG2.StickyAdActivity(true);
-		Instance = this;
+
 		if (CanvasForDesktop == null)
 			CanvasForDesktop = GameObject.Find("CanvasForDesktop");
 		if (CanvasForMobile == null)
@@ -41,14 +43,12 @@ public class GameController : MonoBehaviour
 			currentCanvas = CanvasForDesktop.GetComponent<Canvas>();
 		}
 	}
-	
 
 	void Start()
 	{
-		// YG2.saves.isFirst = true;
-		// if (!YG2.saves.isGaming)
 		YG2.InterstitialAdvShow();
 		Time.timeScale = 1f;
+
 		if (YG2.saves.isFirst)
 		{
 			YG2.saves.soundValue = 0.5f;
@@ -64,18 +64,21 @@ public class GameController : MonoBehaviour
 			YG2.saves.chosenMode = 0;
 			YG2.saves.diamonds = 3;
 			YG2.saves.selectedMapID = 0;
+
 			YG2.GetLeaderboard("BestPlayers");
 			YG2.SetLeaderboard("BestPlayers", YG2.saves.exp);
 		}
-		if( YG2.saves.massiveOfObtaining.Length < 5)	
+
+		if (YG2.saves.massiveOfObtaining.Length < 5)
 		{
 			int[] newArray = new int[5];
-			for(int i = 0; i < YG2.saves.massiveOfObtaining.Length; i++)
+			for (int i = 0; i < YG2.saves.massiveOfObtaining.Length; i++)
 			{
 				newArray[i] = YG2.saves.massiveOfObtaining[i];
 			}
 			YG2.saves.massiveOfObtaining = newArray;
 		}
+
 		YG2.SaveProgress();
 		ChangeMain(YG2.saves.equipedMaterial);
 		// SaveScreenshot();
@@ -112,16 +115,18 @@ public class GameController : MonoBehaviour
 	//---------------------------------------------------------------------------------------------------
 	public void StartGame()
 	{
-		YG2.saves.isGaming = true;
-		YG2.SaveProgress();
-		SceneManager.LoadScene(YG2.saves.selectedMapID + 1);
+		// YG2.saves.isGaming = true;
+		// YG2.SaveProgress();
+		// SceneManager.LoadScene(YG2.saves.selectedMapID + 1);
+		VodovorotGameManager.Instance.StartGame();
 	}
 
 	public void ReturnToMenu()
 	{
-		YG2.saves.isGaming = false;
-		YG2.SaveProgress();
-		SceneManager.LoadScene(0);
+		// YG2.saves.isGaming = false;
+		// YG2.SaveProgress();
+		// SceneManager.LoadScene(0);
+		VodovorotGameManager.Instance.ReturnToMenu();
 	}
 
 	public void ChangeMain(int chosenObj)
@@ -147,34 +152,38 @@ public class GameController : MonoBehaviour
 		YG2.saves.chosenMode = id;
 		YG2.SaveProgress();
 	}
-
+	
 	public void UpdateAllUI()
 	{
 		Debug.Log("UpdateUI");
-		if (LanguageManager.Instance.Adecvat)
-		{
-			YG2.SwitchLanguage(YG2.envir.language);
-			YG2.saves.langRu = YG2.envir.language == "ru" ? true : false;
-		}
-		else
-		{
-			YG2.SwitchLanguage(YG2.envir.language == "ru" ? "en" : "ru");
-			YG2.saves.langRu = YG2.envir.language == "ru" ? false : true;
-		}
 
+		var lm = VodovorotGameManager.Instance.LanguageManager;
+		if (lm != null)
+		{
+			if (lm.Adecvat)
+			{
+				YG2.SwitchLanguage(YG2.envir.language);
+				YG2.saves.langRu = YG2.envir.language == "ru" ? true : false;
+			}
+			else
+			{
+				YG2.SwitchLanguage(YG2.envir.language == "ru" ? "en" : "ru");
+				YG2.saves.langRu = YG2.envir.language == "ru" ? false : true;
+			}
+
+			lm.Mimage.sprite = YG2.saves.langRu ? lm.isRus : lm.isEng;
+			lm.Dimage.sprite = YG2.saves.langRu ? lm.isRus : lm.isEng;
+		}
 
 		if (!YG2.saves.isGaming)
 		{
-			MainMenuController.Instance.UpdateMainMenu();
+			if (VodovorotGameManager.Instance.MainMenuController != null)
+				VodovorotGameManager.Instance.MainMenuController.UpdateMainMenu();
 		}
 		else
 		{
-			GamingManager.Instance.UpdateUI();
+			if (VodovorotGameManager.Instance.GamingManager != null)
+				VodovorotGameManager.Instance.GamingManager.UpdateUI();
 		}
-			// Переключение иконки языка
-			LanguageManager.Instance.Mimage.sprite = YG2.saves.langRu ?
-			LanguageManager.Instance.isRus : LanguageManager.Instance.isEng;
-			LanguageManager.Instance.Dimage.sprite = YG2.saves.langRu ?
-			LanguageManager.Instance.isRus : LanguageManager.Instance.isEng;
 	}
 }

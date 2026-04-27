@@ -4,7 +4,6 @@ using YG;
 
 public class LanguageManager : MonoBehaviour
 {
-	public static LanguageManager Instance;
 	public static bool done = false;
 	public Sprite isRus;
 	public Sprite isEng;
@@ -16,10 +15,12 @@ public class LanguageManager : MonoBehaviour
 
 	private void Awake()
 	{
-		Instance = this;
+		if (VodovorotGameManager.Instance != null)
+    		VodovorotGameManager.Instance.LanguageManager = this;
+		
 		Mflag.onClick.AddListener(Onclick);
 		Dflag.onClick.AddListener(Onclick);
-    // DontDestroyOnLoad(gameObject);
+    	// DontDestroyOnLoad(gameObject);
 	}
 
 	void Start()
@@ -40,7 +41,7 @@ public class LanguageManager : MonoBehaviour
 	public void Onclick()
 	{
 		Adecvat = !Adecvat;
-		GameController.Instance.UpdateAllUI();
+		VodovorotGameManager.Instance.GameController.UpdateAllUI();
 		YG2.SaveProgress();
 	}
 }

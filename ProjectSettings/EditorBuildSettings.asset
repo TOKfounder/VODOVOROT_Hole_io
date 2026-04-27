@@ -6,12 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/scene/MainMenu.unity
+    path: Assets/Scenes/MainMenu.unity
     guid: 7375ccb4939762041a007bc843c277f5
   - enabled: 1
-    path: Assets/scene/Low Poly City.unity
+    path: Assets/Scenes/Low Poly City.unity
     guid: 7e6d3f4e5d896154ab4438845532ac3e
   - enabled: 1
-    path: Assets/scene/Garden.unity
+    path: Assets/Scenes/Garden.unity
     guid: 7759de288f5d4ee449a0ca5e2244944a
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0

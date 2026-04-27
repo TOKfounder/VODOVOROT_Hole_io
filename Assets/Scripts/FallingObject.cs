@@ -15,8 +15,11 @@ public class FallingObject : MonoBehaviour
 	private Rigidbody rb;
 	private Collider col;
 	private Coroutine myCoroutine;
+	private float lastHoleChangeTime = 0f;
 
 	public HoleParent CurrentHole { get; set; }
+
+	private float lastPlatformUpdateTime = 0f;
 
 	void Awake()
 	{
@@ -41,7 +44,7 @@ public class FallingObject : MonoBehaviour
 	void Start()
 	{
 		gameObject.layer = 7;
-		foreach (var plat in GamingManager.allPlatforms)
+		foreach (var plat in VodovorotGameManager.allPlatforms)
 		{
 			Physics.IgnoreCollision(plat, col, true);
 		}
@@ -89,7 +92,7 @@ public class FallingObject : MonoBehaviour
 		rb.mass = V3 * 50;
 		rb.linearDamping = 4;
 		rb.angularDamping = 4;
-		GamingManager.Instance.AllValues += value;
+		VodovorotGameManager.Instance.GamingManager.AllValues += value;
 	}
 
 	IEnumerator DelayForUpdateCurrentHole()
@@ -99,55 +102,49 @@ public class FallingObject : MonoBehaviour
 			ResetToStart();
 	}
 
-	private void OnTriggerEnter(Collider other)
-	{
-		if (other.CompareTag("Player"))
-		{
-			if (isTriggered)
-			{
-				var otherHole = other.GetComponentInParent<HoleParent>();
-				if (otherHole.nickname != CurrentHole.nickname)
-				{
-					Physics.IgnoreCollision(CurrentHole.platform, col, true);
-					isTriggered = false;
-					CurrentHole = otherHole;
-					Physics.IgnoreCollision(CurrentHole.platform, col, false);
-				}
-				else
-					return;
-			}
-			else
-			{
-				CurrentHole = other.GetComponentInParent<HoleParent>();
-				Physics.IgnoreCollision(CurrentHole.platform, col, false);
-			}
+private void OnTriggerEnter(Collider other)
+{
+    if (!other.CompareTag("Player")) return;
 
-			if (!isColon)
-			{
-				if (myCoroutine != null) StopCoroutine(myCoroutine);
-				myCoroutine = StartCoroutine(DelayForUpdateCurrentHole());
-			}
-				
-			if (HoleParent.holeType == HoleParent.TypeOfHole.enemy)
-			{
-				if (Tool.CanFitForEnemies(size, CurrentHole.size))
-				{
-					isTriggered = true;
-					rb.isKinematic = false;
-					CurrentHole.nearbyFallingObjects.Add(this);
-				}
-			} else {
-				if (Tool.CanFit2D(size, CurrentHole.size))
-				{
-					isTriggered = true;
-					rb.isKinematic = false;
-					CurrentHole.nearbyFallingObjects.Add(this);
-				}
-			}
-			
-		}
-	}
-	
+    HoleParent newHole = other.GetComponentInParent<HoleParent>();
+    if (newHole == null) return;
+
+    // Жёсткая защита от слишком частой смены
+    if (Time.time - lastPlatformUpdateTime < 0.25f) return;
+
+    Debug.Log($"[FallingObject] Триггер с дырой: {newHole.name} | CurrentHole = {(CurrentHole ? CurrentHole.name : "null")}");
+
+    // Смена дыры
+    if (CurrentHole != null)
+        Physics.IgnoreCollision(CurrentHole.platform, col, true);
+
+    CurrentHole = newHole;
+    lastPlatformUpdateTime = Time.time;
+
+    // Жёсткое обновление коллизий
+    ForceUpdatePlatformCollisions();
+
+    // Перезапускаем таймер падения
+    if (!isColon)
+    {
+        if (myCoroutine != null) StopCoroutine(myCoroutine);
+        myCoroutine = StartCoroutine(DelayForUpdateCurrentHole());
+    }
+
+    // Активируем падение
+    bool canBeEaten = (CurrentHole.holeType == HoleParent.TypeOfHole.enemy)
+        ? Tool.CanFitForEnemies(size, CurrentHole.size)
+        : Tool.CanFit2D(size, CurrentHole.size);
+
+    if (canBeEaten)
+    {
+        isTriggered = true;
+        rb.isKinematic = false;
+        CurrentHole.nearbyFallingObjects.Add(this);
+        Debug.Log($"[FallingObject] Активировано падение в {CurrentHole.name}");
+    }
+}
+
 	private Vector3 GetVisualSize()
 	{
 		Bounds totalBounds = new Bounds(transform.position, Vector3.zero);
@@ -175,25 +172,56 @@ public class FallingObject : MonoBehaviour
 		col.enabled = true;
 		rend.enabled = true;
 		CurrentHole = null;
-		foreach (var plat in GamingManager.allPlatforms)
+		foreach (var plat in VodovorotGameManager.allPlatforms)
 		{
 			Physics.IgnoreCollision(plat, col, true);
 		}
 		if (myCoroutine != null) StopCoroutine(myCoroutine);
+
+		ForceUpdatePlatformCollisions();
 	}
 
 	public void OnScored(HoleParent hole)
 	{
-		
 		hole.AddScore(value);
 		value = 0;
-		
+
 		rb.isKinematic = true;
 		col.enabled = false;
 		rend.enabled = false;
 		CurrentHole = null;
+
 		if (myCoroutine != null) StopCoroutine(myCoroutine);
 
-		if (isColon) print("Helper is Alife!");
+		// Если это колón и его съел игрок — спавним Helper
+		if (isColon && hole is BlackHoleController playerHole)
+		{
+			playerHole.OnColonAbsorbed(transform);
+		}
 	}
+
+    /// <summary>
+    /// ЖЁСТКОЕ обновление коллизий — вызывается каждый раз при смене дыры
+    /// </summary>
+    private void ForceUpdatePlatformCollisions()
+    {
+        if (CurrentHole == null || CurrentHole.platform == null)
+        {
+            Debug.LogWarning("[FallingObject] CurrentHole или platform == null");
+            return;
+        }
+
+        // Игнорируем ВСЕ платформы
+        foreach (var plat in VodovorotGameManager.allPlatforms)
+        {
+            if (plat == null) continue;
+            Physics.IgnoreCollision(plat, col, true);
+        }
+
+        // Включаем коллизию только с нужной платформой
+        Physics.IgnoreCollision(CurrentHole.platform, col, false);
+
+        Debug.Log($"[FallingObject] ЖЁСТКОЕ обновление: Игнорируем все платформы кроме {CurrentHole.platform.name}");
+    }
+
 }

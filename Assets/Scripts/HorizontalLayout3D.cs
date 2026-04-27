@@ -4,208 +4,229 @@ using YG;
 
 public class HorizontalLayout3D : MonoBehaviour
 {
-	public static HorizontalLayout3D Instance;
-	public float radius = 120f; // радиус круга
-	public float startAngle = 50f;
-	public Camera targetCamera;
-	public GameObject[] captions;
-	public Text feature;
-	public GameObject buttonOfBuying;
-	public GameObject buttonOfEquiping;
-	public Text necessaryLevel;
-	public Text costForCoins;
-	public Text costForDonate;
-	public Button donateButton;
-	public Image currencyImage;
+    [Header("Настройки карусели")]
+    public float radius = 120f;
+    public float startAngle = 50f;
+    public Camera targetCamera;
 
-	private string[] toiletIDs = {"obodok", "white", "gold", "scrag", "lord" };
-	private float initialAngle;
-	private float targetAngle;
-	private float timeElapsed;
-	private bool isRotating = false;
+    [Header("UI элементы")]
+    public GameObject[] captions;
+    public Text featureText;
+    public GameObject buttonOfBuying;
+    public GameObject buttonOfEquiping;
+    public Text necessaryLevelText;
+    public Text costForCoinsText;
+    public Text costForDonateText;
+    public Button donateButton;
+    public Image currencyImage;
 
-	private int chosenObj = 0;
-	private string[] features = { "Этот красный тазик – для тех, кто любит жить на скорости! Бросай вызов привычному, залетай в тазик!",
-	 "Этот унитаз готов поддержать тебя в любой трудной и странной ситуации!",
-	 "Блеск роскоши для истинных чемпионов! Стань королём туалетных побед.",
-	 "Сиди с комфортом и властвуй! Злые силы не пройдут через эту дыру...",
-	 "На этом троне даже проблемы исчезают! Почувствуй себя властелином стока." };
-	private string[] featuresEn = { "This red basin is for those who like to live at speed! Challenge the familiar, fly into the basin!",
-	 "This toilet bowl is ready to support you in any difficult and strange situation!",
-	 "The splendor of luxury for true champions! Become the king of toilet victories.",
-	 "Sit comfortably and rule! Evil forces will not pass through this hole...",
-	 "On this throne, even problems disappear! Feel like the lord of the drain." };
+    [Header("Данные скинов")]
+    [SerializeField] private string[] toiletIDs = { "obodok", "white", "gold", "scrag", "lord" };
 
-	private int[] necessaryLevels = {0, 1, 4, 7, 10 };
-	private int[] costsForCoins = { 0, 20, 270, 800, 2400 };
-	private int[] costsForDonate = { 0, 10000, 10, 40, 100 };
+    private readonly string[] featuresRu = 
+    {
+        "Этот красный тазик – для тех, кто любит жить на скорости! Бросай вызов привычному, залетай в тазик!",
+        "Этот унитаз готов поддержать тебя в любой трудной и странной ситуации!",
+        "Блеск роскоши для истинных чемпионов! Стань королём туалетных побед.",
+        "Сиди с комфортом и властвуй! Злые силы не пройдут через эту дыру...",
+        "На этом троне даже проблемы исчезают! Почувствуй себя властелином стока."
+    };
 
-	void Awake()
-	{
-		Instance = this;
-	}
+    private readonly string[] featuresEn = 
+    {
+        "This red basin is for those who like to live at speed! Challenge the familiar, fly into the basin!",
+        "This toilet bowl is ready to support you in any difficult and strange situation!",
+        "The splendor of luxury for true champions! Become the king of toilet victories.",
+        "Sit comfortably and rule! Evil forces will not pass through this hole...",
+        "On this throne, even problems disappear! Feel like the lord of the drain."
+    };
 
-	void Start()
-	{
-		targetCamera = Camera.main;
-		ArrangeChildren();
-		UpdateForChosen();
-		donateButton.onClick.AddListener(BuyCurrentItem);
-	}
+    private readonly int[] necessaryLevels = { 0, 1, 4, 7, 10 };
+    private readonly int[] costsForCoins = { 0, 20, 270, 800, 2400 };
+    private readonly int[] costsForDonate = { 0, 10000, 10, 40, 100 };
 
-	void OnEnable()
-	{
-		UpdateForChosen();
-	}
-	
-	void BuyCurrentItem()
-	{
-		YG2.BuyPayments(toiletIDs[chosenObj]);
-	}
+    // Внутренние переменные
+    private float initialAngle;
+    private float targetAngle;
+    private float timeElapsed;
+    private bool isRotating = false;
+    private int chosenObj = 0;
 
-	public void ArrangeChildren()
-	{
-		int count = transform.childCount;
-		float angleStep = 360f / count; // угол между объектами
+    private void Awake()
+    {
+        if (VodovorotGameManager.Instance != null)
+            VodovorotGameManager.Instance.HorizontalLayout3D = this;
+    }
 
-		for (int i = 0; i < count; i++)
-		{
-			float angle = startAngle + i * angleStep;
-			float rad = angle * Mathf.Deg2Rad;
-			Vector3 pos = new Vector3(Mathf.Cos(rad), 0f, Mathf.Sin(rad)) * radius;
-			Transform child = transform.GetChild(i);
-			child.localPosition = pos;
-			// Повернуть child лицом к камере
-			Vector3 lookPos = targetCamera.transform.position;
-			lookPos.y = child.position.y; // чтобы не крутились по высоте
-			lookPos.y = 37.7f;
-			child.LookAt(lookPos);
-		}
-		foreach (var caption in captions)
-		{
-			Vector3 direction = caption.transform.position - targetCamera.transform.position;
-			caption.transform.rotation = Quaternion.LookRotation(direction);
+    private void Start()
+    {
+        if (targetCamera == null)
+            targetCamera = Camera.main;
 
-			// Vector3 euler = caption.transform.eulerAngles;
-			// euler.z = 0f;
-			// caption.transform.eulerAngles = euler;
-		}
-	}
+        ArrangeChildren();
+        UpdateForChosen();
+        donateButton.onClick.AddListener(BuyCurrentItem);
+    }
 
-	public void RotateOnDeg(bool right)
-	{
-		if (isRotating) return;
-		initialAngle = startAngle;
-		// int count = transform.childCount;
-		int count = 5;
-		float val = 360f / count;
-		float angle = right ? -val : val;
-		chosenObj = right ? chosenObj + 1 : chosenObj + count - 1;
-		chosenObj %= count;
-		targetAngle = startAngle + angle;
-		timeElapsed = 0f;
-		isRotating = true;
-	}
+    private void OnEnable() => UpdateForChosen();
 
-	void Update()
-	{
-		if (isRotating)
-		{
-			timeElapsed += Time.deltaTime;
-			float t = Mathf.Clamp01(timeElapsed / 1f);
-			startAngle = Mathf.LerpAngle(initialAngle, targetAngle, t);
-			ArrangeChildren();
+    public void ArrangeChildren()
+    {
+        int count = transform.childCount;
+        float angleStep = 360f / count;
 
-			if (t >= 1f)
-			{
-				isRotating = false;
-				startAngle = (targetAngle + 360) % 360;
-				UpdateForChosen();
-			}
-		}
-	}
-	public void UpdateForChosen()
-	{
-		Debug.Log(chosenObj);
-		if (YG2.saves.massiveOfObtaining[chosenObj] == 0)
-		{
-			buttonOfBuying.SetActive(true);
-			buttonOfEquiping.SetActive(false);
-			necessaryLevel.text = YG2.saves.langRu ? $"{necessaryLevels[chosenObj]} уровень" : $"{necessaryLevels[chosenObj]} level";
-			costForCoins.text = $"{costsForCoins[chosenObj]}";
-			if (chosenObj == 1)
-			{
-				costForDonate.text = "";
-				donateButton.interactable = false;
-				currencyImage.color = new Color(1, 1, 1, 0);
-			}
-			else
-			{
-				costForDonate.text = $"{costsForDonate[chosenObj]}";
-				donateButton.interactable = true;
-				currencyImage.color = new Color(1, 1, 1, 1);
-			}
-		}
-		else
-		{
-			buttonOfBuying.SetActive(false);
-			buttonOfEquiping.SetActive(true);
-			if (chosenObj == YG2.saves.equipedMaterial)
-			{
-				buttonOfEquiping.GetComponent<Image>().color = new Color32(50, 101, 182, 255);
-				buttonOfEquiping.GetComponentInChildren<Text>().text = YG2.saves.langRu ? "Надето" : "equipped";
-			}
-			else
-			{
-				buttonOfEquiping.GetComponent<Image>().color = new Color32(120, 182, 50, 255);
-				buttonOfEquiping.GetComponentInChildren<Text>().text = YG2.saves.langRu ? "Одеть" : "equip";
-			}
-		}
-		feature.text = YG2.saves.langRu ? features[chosenObj] : featuresEn[chosenObj];
-	}
+        for (int i = 0; i < count; i++)
+        {
+            float angle = startAngle + i * angleStep;
+            float rad = angle * Mathf.Deg2Rad;
+            Vector3 pos = new Vector3(Mathf.Cos(rad), 0f, Mathf.Sin(rad)) * radius;
 
-	public void BuyForSomething(int id)
-	{
-		bool isBought = false;
-		if (id == 1)
-		{
-			//проверка уровня
-			if (YG2.saves.levelOfProgress >= necessaryLevels[chosenObj])
-			{
-				isBought = true;
-				MainMenuController.Instance.dzyn.Play();
-			}
-			else
-				MainMenuController.Instance.fart.Play();
-		}
-		else if (id == 2)
-		{
-			//проверка ресурсов
-			if (YG2.saves.goldCoins >= costsForCoins[chosenObj])
-			{
-				isBought = true;
-				YG2.saves.goldCoins -= costsForCoins[chosenObj];
-				MainMenuController.Instance.dzyn.Play();
-			}
-			else
-				MainMenuController.Instance.fart.Play();
-		}
-		else if (id == 3)
-		{
-			//покупка за яны
-			Debug.Log("Сработала обработка Инапа");
-			isBought = true;
-		}
-		if (isBought)
-			YG2.saves.massiveOfObtaining[chosenObj] = 1;
-		YG2.SaveProgress();
-		UpdateForChosen();
-		MainMenuController.Instance.UpdateTriggers();
-	}
-	
-	public void EquipMaterial()
-	{
-		GameController.Instance.ChangeMain(chosenObj);
-		UpdateForChosen();
-	}
+            Transform child = transform.GetChild(i);
+            child.localPosition = pos;
+
+            Vector3 lookPos = targetCamera.transform.position;
+            lookPos.y = 37.7f;
+            child.LookAt(lookPos);
+        }
+
+        // Поворот подписей
+        foreach (var caption in captions)
+        {
+            Vector3 direction = caption.transform.position - targetCamera.transform.position;
+            caption.transform.rotation = Quaternion.LookRotation(direction);
+        }
+    }
+
+    public void RotateOnDeg(bool right)
+    {
+        if (isRotating) return;
+
+        initialAngle = startAngle;
+        int count = 5;
+        float val = 360f / count;
+        float angle = right ? -val : val;
+
+        chosenObj = right ? chosenObj + 1 : chosenObj + count - 1;
+        chosenObj %= count;
+
+        targetAngle = startAngle + angle;
+        timeElapsed = 0f;
+        isRotating = true;
+    }
+
+    private void Update()
+    {
+        if (!isRotating) return;
+
+        timeElapsed += Time.deltaTime;
+        float t = Mathf.Clamp01(timeElapsed / 1f);
+
+        startAngle = Mathf.LerpAngle(initialAngle, targetAngle, t);
+        ArrangeChildren();
+
+        if (t >= 1f)
+        {
+            isRotating = false;
+            startAngle = (targetAngle + 360) % 360;
+            UpdateForChosen();
+        }
+    }
+
+    public void UpdateForChosen()
+    {
+        if (YG2.saves.massiveOfObtaining[chosenObj] == 0)
+        {
+            // Не куплено
+            buttonOfBuying.SetActive(true);
+            buttonOfEquiping.SetActive(false);
+
+            necessaryLevelText.text = YG2.saves.langRu 
+                ? $"{necessaryLevels[chosenObj]} уровень" 
+                : $"{necessaryLevels[chosenObj]} level";
+
+            costForCoinsText.text = costsForCoins[chosenObj].ToString();
+
+            if (chosenObj == 1)
+            {
+                costForDonateText.text = "";
+                donateButton.interactable = false;
+                currencyImage.color = new Color(1, 1, 1, 0);
+            }
+            else
+            {
+                costForDonateText.text = costsForDonate[chosenObj].ToString();
+                donateButton.interactable = true;
+                currencyImage.color = Color.white;
+            }
+        }
+        else
+        {
+            // Уже куплено
+            buttonOfBuying.SetActive(false);
+            buttonOfEquiping.SetActive(true);
+
+            bool isEquipped = chosenObj == YG2.saves.equipedMaterial;
+
+            buttonOfEquiping.GetComponent<Image>().color = isEquipped 
+                ? new Color32(50, 101, 182, 255) 
+                : new Color32(120, 182, 50, 255);
+
+            buttonOfEquiping.GetComponentInChildren<Text>().text = isEquipped 
+                ? (YG2.saves.langRu ? "Надето" : "equipped") 
+                : (YG2.saves.langRu ? "Одеть" : "equip");
+        }
+
+        featureText.text = YG2.saves.langRu ? featuresRu[chosenObj] : featuresEn[chosenObj];
+    }
+
+    private void BuyCurrentItem()
+    {
+        YG2.BuyPayments(toiletIDs[chosenObj]);
+    }
+
+    public void BuyForSomething(int id)
+    {
+        bool isBought = false;
+
+        if (id == 1) // за уровень
+        {
+            if (YG2.saves.levelOfProgress >= necessaryLevels[chosenObj])
+            {
+                isBought = true;
+                VodovorotGameManager.Instance.MainMenuController.dzyn.Play();
+            }
+            else
+                VodovorotGameManager.Instance.MainMenuController.fart.Play();
+        }
+        else if (id == 2) // за монеты
+        {
+            if (YG2.saves.goldCoins >= costsForCoins[chosenObj])
+            {
+                isBought = true;
+                YG2.saves.goldCoins -= costsForCoins[chosenObj];
+                VodovorotGameManager.Instance.MainMenuController.dzyn.Play();
+            }
+            else
+                VodovorotGameManager.Instance.MainMenuController.fart.Play();
+        }
+        else if (id == 3) // за донат
+        {
+            Debug.Log("Сработала обработка InApp покупки");
+            isBought = true;
+        }
+
+        if (isBought)
+        {
+            YG2.saves.massiveOfObtaining[chosenObj] = 1;
+            VodovorotGameManager.Instance.SaveProgress();
+            UpdateForChosen();
+            VodovorotGameManager.Instance.MainMenuController.UpdateTriggers();
+        }
+    }
+
+    public void EquipMaterial()
+    {
+        VodovorotGameManager.Instance.GameController.ChangeMain(chosenObj);
+        UpdateForChosen();
+    }
 }

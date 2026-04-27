@@ -1,146 +1,189 @@
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
 
 public class GamingManager : MonoBehaviour
 {
-	public static GamingManager Instance;
-	public static List<Collider> allPlatforms = new List<Collider>();
-	public GameObject MobpanelOfEnd;
-	public GameObject DeskpanelOfEnd;
-	public float perc = 0f;
-	public float minX;
-	public float maxX;
-	public float minZ;
-	public float maxZ;
-	public GameObject[] walls;
+    [Header("Core")]
+    public GameObject MobpanelOfEnd;
+    public GameObject DeskpanelOfEnd;
 
-	public float timer;
-	public int AllValues;
-	public Image Mflazhok;
-	public Image Dflazhok;
-	public Text Mpercent;
-	public Text Dpercent;
+    [Header("Progress UI")]
+    public Image Mflazhok;
+    public Image Dflazhok;
+    public Text Mpercent;
+    public Text Dpercent;
 
-[Header("Mobile UI")]
-	public Text BoostText;
-	public Text[] MobilePanelOfSettings;
-	public Text[] PanelOfEnd;
-[Header("Desktop UI")]
-	public Text DBoostText;
-	public Text[] DesktopPanelOfSettings;
-	public Text[] DPanelOfEnd;
+    [Header("Mobile UI")]
+    public Text BoostText;
+    public Text[] MobilePanelOfSettings;
+    public Text[] PanelOfEnd;
 
-	private bool timerGo;
-	private bool once;
+    [Header("Desktop UI")]
+    public Text DBoostText;
+    public Text[] DesktopPanelOfSettings;
+    public Text[] DPanelOfEnd;
 
-	void Awake()
-	{
-		Instance = this;
-		maxX = walls[0].GetComponent<Collider>().bounds.min.x;
-		minX = walls[1].GetComponent<Collider>().bounds.max.x;
-		minZ = walls[2].GetComponent<Collider>().bounds.max.z;
-		maxZ = walls[3].GetComponent<Collider>().bounds.min.z;
-	}
+    [Header("World Bounds")]
+    public GameObject[] walls;
+    public float minX, maxX, minZ, maxZ;
 
-	void Start()
-	{
-		foreach (var renderer in FindObjectsOfType<MeshRenderer>()) {
-			renderer.receiveShadows = false;
-			renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-		}
-		once = true;
-		YG2.saves.isGaming = true;
-		Time.timeScale = 1f;
-		YG2.SaveProgress();
-		timer = 0f;
-		timerGo = true;
-		// UpdateUI();
-		// if (!YG2.saves.langRu)
-		// LanguageManager.Instance.Onclick();
-		StartCoroutine(UpdateFlag());
-	}
+    // Публичные данные
+    public float perc = 0f;
+    public float timer;
+    public int AllValues;
 
-	public void HandleTimer(bool b) => timerGo = b;
+    private bool timerGo = true;
+    private bool once = true;
 
-	IEnumerator UpdateFlag()
-	{
-		while (true)
-		{
-			YG2.saves.score = HoleParent.totalScore;
-			perc = (float)YG2.saves.score / (AllValues - 15);
-			yield return new WaitForSeconds(1f);
-		}
-	}
+    private void Awake()
+    {
+        if (VodovorotGameManager.Instance != null)
+            VodovorotGameManager.Instance.GamingManager = this;
 
-	void FixedUpdate()
-	{
-		
-		if (once && (int)(perc * 100) >= 100)
-		{
-			if (YG2.envir.isMobile)
-				MobpanelOfEnd.SetActive(true);
-			else
-				DeskpanelOfEnd.SetActive(true);
-		}
-		if (YG2.envir.isMobile)
-		{
-			Mflazhok.fillAmount = perc;
-			Mpercent.text = $"{(int)(perc * 100)}%";
-		} else {
-			Dflazhok.fillAmount = perc;
-			Dpercent.text = $"{(int)(perc * 100)}%";
-		}
-		if (timerGo)
-			timer += Time.fixedDeltaTime;
-	}
+        // Расчёт границ карты
+        if (walls.Length >= 4)
+        {
+            maxX = walls[0].GetComponent<Collider>().bounds.min.x;
+            minX = walls[1].GetComponent<Collider>().bounds.max.x;
+            minZ = walls[2].GetComponent<Collider>().bounds.max.z;
+            maxZ = walls[3].GetComponent<Collider>().bounds.min.z;
+        }
+    }
 
-	public void EndOfGame()
-	{
-		timerGo = false;
-		once = false;
-		Time.timeScale = 0;
-		Invoke(nameof(timeScalingBitLater), 7f);
-	}
+    void Start()
+    {
+        // Отключаем тени на всех мешах (оптимизация)
+        foreach (var renderer in FindObjectsByType<MeshRenderer>(FindObjectsInactive.Exclude, FindObjectsSortMode.None))
+        {
+            renderer.receiveShadows = false;
+            renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        }
 
-	void timeScalingBitLater()
-	{
-		Time.timeScale = 0f;
-	} 
+        once = true;
+        YG2.saves.isGaming = true;
+        Time.timeScale = 1f;
+        timer = 0f;
+        timerGo = true;
 
-	public void UpdateUI()
-	{
-		BoostText.text = YG2.saves.langRu ? "Буст Скорости" : "Speed Boost";
-		MobilePanelOfSettings[0].text = YG2.saves.langRu ? "Настройки" : "Settings";
-		MobilePanelOfSettings[1].text = YG2.saves.langRu ? "Язык" : "Language";
-		MobilePanelOfSettings[2].text = YG2.saves.langRu ? "Звуки" : "Sounds";
-		MobilePanelOfSettings[3].text = YG2.saves.langRu ? "Музыка" : "Music";
-		MobilePanelOfSettings[4].text = YG2.saves.langRu ? "Завершить игру" : "End the game";
+        VodovorotGameManager.Instance.SaveProgress();
 
-		DBoostText.text = YG2.saves.langRu ? "Буст Скорости" : "Speed Boost";
-		PanelOfEnd[0].text = YG2.saves.langRu ? "Опыт:" : "Experience:";
-		PanelOfEnd[1].text = YG2.saves.langRu ? "Итог" : "Result";
-		PanelOfEnd[2].text = YG2.saves.langRu ? "Монеты:" : "Coins:";
-		PanelOfEnd[3].text = YG2.saves.langRu ? "Бриллианты:" : "Brilliants:";
-		PanelOfEnd[4].text = YG2.saves.langRu ? "Продолжить" : "Continue";
-		PanelOfEnd[5].text = YG2.saves.langRu ? "x3 Монеты\n(короткая реклама)" : "x3 Coins\n(short ad)";
+        StartCoroutine(UpdateProgressRoutine());
+        UpdateUI();
+    }
 
+    // Корутина вместо Update — обновляем прогресс реже (каждые 0.2 сек)
+    private IEnumerator UpdateProgressRoutine()
+    {
+        while (true)
+        {
+            YG2.saves.score = HoleParent.totalScore;
+            perc = AllValues > 15 ? (float)YG2.saves.score / (AllValues - 15) : 0f;
 
-		//----------------------------------------------------------------------------------------------------------------------------
+            // Обновляем UI прогресса
+            UpdateProgressUI();
 
-		DesktopPanelOfSettings[0].text = YG2.saves.langRu ? "Настройки" : "Settings";
-		DesktopPanelOfSettings[1].text = YG2.saves.langRu ? "Язык" : "Language";
-		DesktopPanelOfSettings[2].text = YG2.saves.langRu ? "Звуки" : "Sounds";
-		DesktopPanelOfSettings[3].text = YG2.saves.langRu ? "Музыка" : "Music";
-		DesktopPanelOfSettings[4].text = YG2.saves.langRu ? "Завершить игру" : "End the game";
+            // Проверка победы
+            if (once && perc >= 1f)
+            {
+                once = false;
+                EndOfGame();
+            }
 
-		DPanelOfEnd[0].text = YG2.saves.langRu ? "Опыт:" : "Experience:";
-		DPanelOfEnd[1].text = YG2.saves.langRu ? "Итог" : "Result";
-		DPanelOfEnd[2].text = YG2.saves.langRu ? "Монеты:" : "Coins:";
-		DPanelOfEnd[3].text = YG2.saves.langRu ? "Бриллианты:" : "Brilliants:";
-		DPanelOfEnd[4].text = YG2.saves.langRu ? "Продолжить" : "Continue";
-		DPanelOfEnd[5].text = YG2.saves.langRu ? "x3 Монеты\n(короткая реклама)" : "x3 Coins\n(short ad)";
-	}
+            yield return new WaitForSeconds(0.2f);   // достаточно 5 раз в секунду
+        }
+    }
+
+    private void UpdateProgressUI()
+    {
+        float fill = Mathf.Clamp01(perc);
+
+        if (YG2.envir.isMobile)
+        {
+            if (Mflazhok != null) Mflazhok.fillAmount = fill;
+            if (Mpercent != null) Mpercent.text = $"{(int)(fill * 100)}%";
+        }
+        else
+        {
+            if (Dflazhok != null) Dflazhok.fillAmount = fill;
+            if (Dpercent != null) Dpercent.text = $"{(int)(fill * 100)}%";
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (timerGo)
+            timer += Time.fixedDeltaTime;
+    }
+
+    public void HandleTimer(bool b) => timerGo = b;
+
+    public void EndOfGame()
+    {
+        timerGo = false;
+        once = false;
+        Time.timeScale = 0;
+
+        if (YG2.envir.isMobile)
+            MobpanelOfEnd?.SetActive(true);
+        else
+            DeskpanelOfEnd?.SetActive(true);
+
+        // Даём небольшую задержку перед полной остановкой времени
+        Invoke(nameof(FullTimeStop), 7f);
+    }
+
+    private void FullTimeStop()
+    {
+        Time.timeScale = 0f;
+    }
+
+    // ====================== ЛОКАЛИЗАЦИЯ ======================
+    public void UpdateUI()
+    {
+        bool ru = YG2.saves.langRu;
+
+        // Boost
+        BoostText.text = DBoostText.text = ru ? "Буст Скорости" : "Speed Boost";
+
+        // Settings in game
+        SetPair(MobilePanelOfSettings[0], DesktopPanelOfSettings[0], ru, "Настройки", "Settings");
+        SetPair(MobilePanelOfSettings[1], DesktopPanelOfSettings[1], ru, "Язык", "Language");
+        SetPair(MobilePanelOfSettings[2], DesktopPanelOfSettings[2], ru, "Звуки", "Sounds");
+        SetPair(MobilePanelOfSettings[3], DesktopPanelOfSettings[3], ru, "Музыка", "Music");
+        SetPair(MobilePanelOfSettings[4], DesktopPanelOfSettings[4], ru, "Завершить игру", "End the game");
+
+        // End panel
+        SetPair(PanelOfEnd[0], DPanelOfEnd[0], ru, "Опыт:", "Experience:");
+        SetPair(PanelOfEnd[1], DPanelOfEnd[1], ru, "Итог", "Result");
+        SetPair(PanelOfEnd[2], DPanelOfEnd[2], ru, "Монеты:", "Coins:");
+        SetPair(PanelOfEnd[3], DPanelOfEnd[3], ru, "Бриллианты:", "Brilliants:");
+        SetPair(PanelOfEnd[4], DPanelOfEnd[4], ru, "Продолжить", "Continue");
+        SetPair(PanelOfEnd[5], DPanelOfEnd[5], ru, "x3 Монеты\n(короткая реклама)", "x3 Coins\n(short ad)");
+    }
+
+    private void SetPair(Text mobile, Text desktop, bool ru, string russian, string english)
+    {
+        if (mobile != null) mobile.text = ru ? russian : english;
+        if (desktop != null) desktop.text = ru ? russian : english;
+    }
+
+    // ====================== Вспомогательные методы ======================
+    public void StartGameplay()
+    {
+        // Можно добавить сюда дополнительную логику запуска уровня
+        Debug.Log("[GamingManager] Gameplay started");
+    }
+
+    public void ResetForNewGame()
+    {
+        perc = 0f;
+        timer = 0f;
+        timerGo = true;
+        once = true;
+        AllValues = 0;
+        HoleParent.totalScore = 0;
+    }
 }

@@ -5,439 +5,348 @@ using YG.Utils.LB;
 
 public class MainMenuController : MonoBehaviour
 {
-	public static MainMenuController Instance;
-	public InputField nameInput;
-	public InputField DnameInput;
-	public Image levelImage;
-	public Text levelText;
-	public Text pointText;
-	public Image DlevelImage;
-	public Text DlevelText;
-	public Text DpointText;
-	public Sprite[] maps;
-	public Image mapField;
+    [Header("Input Fields")]
+    public InputField nameInput;
+    public InputField DnameInput;
 
-	public Text cntOfDiamonds;
-	public Button exchangeBut;
-	public Text DcntOfDiamonds;
-	public Button DexchangeBut;
+    [Header("Level & Points")]
+    public Image levelImage;
+    public Text levelText;
+    public Text pointText;
+    public Image DlevelImage;
+    public Text DlevelText;
+    public Text DpointText;
 
-	
-	public AudioSource dzyn;
-	public AudioSource fart;
+    [Header("Maps")]
+    public Sprite[] maps;
+    public Image mapField;
 
+    [Header("Diamonds & Exchange")]
+    public Text cntOfDiamonds;
+    public Button exchangeBut;
+    public Text DcntOfDiamonds;
+    public Button DexchangeBut;
 
-	[Header("Mobile UI")]
-	public Text rank;
+    [Header("Audio")]
+    public AudioSource dzyn;
+    public AudioSource fart;
 
-	public GameObject triggerForDaimonds;
-	public GameObject triggerForNewSkin;
+    [Header("Mobile UI")]
+    public Text rank;
+    public GameObject triggerForDaimonds;
+    public GameObject triggerForNewSkin;
 
-	public Button couple;
-	public Button hand;
-	public Button bag;
-	public Button box;
+    public Button couple, hand, bag, box;
+    public Text Tcouple, Thand, Tbag, Tbox;
+    public Text scoreText;
 
-	public Text Tcouple;
-	public Text Thand;
-	public Text Tbag;
-	public Text Tbox;
-	public Text scoreText;
+    [Header("Desktop UI")]
+    public Text Drank;
+    public GameObject DtriggerForDaimonds;
+    public GameObject DtriggerForNewSkin;
 
-	public Text[] MainMenu;
-	public Text[] PanelOfSkins;
-	public Text PanelOfLeaders;
-	public Text[] MobilePanelOfSettings;
-	public Text[] PanelOfMaps;
-	public Text[] PanelOfModes;
-	public Text[] PanelOfProgress;
-	public Text[] PanelOfValute;
+    public Button Dcouple, Dhand, Dbag, Dbox;
+    public Text DTcouple, DThand, DTbag, DTbox;
+    public Text DscoreText;
 
-[Header("Desktop UI")]
-	public Text Drank;
+    [Header("Text Arrays for Localization")]
+    public Text[] MainMenu;
+    public Text[] PanelOfSkins;
+    public Text PanelOfLeaders;
+    public Text[] MobilePanelOfSettings;
+    public Text[] PanelOfMaps;
+    public Text[] PanelOfModes;
+    public Text[] PanelOfProgress;
+    public Text[] PanelOfValute;
 
-	public GameObject DtriggerForDaimonds;
-	public GameObject DtriggerForNewSkin;
+    public Text[] DMainMenu;
+    public Text[] DPanelOfSkins;
+    public Text DPanelOfLeaders;
+    public Text[] DesktopPanelOfSettings;
+    public Text[] DPanelOfMaps;
+    public Text[] DPanelOfModes;
+    public Text[] DPanelOfProgress;
+    public Text[] DPanelOfValute;
 
-	public Button Dcouple;
-	public Button Dhand;
-	public Button Dbag;
-	public Button Dbox;
+    // Счётчики для rewarded рекламы
+    private int CntHand = 2;
+    private int CntBag = 5;
+    private int CntBox = 10;
 
-	public Text DTcouple;
-	public Text DThand;
-	public Text DTbag;
-	public Text DTbox;
-	public Text DscoreText;
+    private void Awake()
+    {
+        if (VodovorotGameManager.Instance != null)
+            VodovorotGameManager.Instance.MainMenuController = this;
 
-	public Text[] DMainMenu;
-	public Text[] DPanelOfSkins;
-	public Text DPanelOfLeaders;
-	public Text[] DesktopPanelOfSettings;
-	public Text[] DPanelOfMaps;
-	public Text[] DPanelOfModes;
-	public Text[] DPanelOfProgress;
-	public Text[] DPanelOfValute;
+        YG2.saves.isGaming = false;
+    }
 
+    private void OnEnable()
+    {
+        YG2.onPurchaseSuccess += SuccessPurchased;
+        YG2.onPurchaseFailed += FailedPurchased;
+        YG2.onRewardAdv += UpgradeForAdv;
+        YG2.onGetLeaderboard += onUpdateLB;
+        YG2.GetLeaderboard("BestPlayers");
+    }
 
-	private int CntHand = 2;
-	private int CntBag = 5;
-	private int CntBox = 10;
+    private void OnDisable()
+    {
+        YG2.onPurchaseSuccess -= SuccessPurchased;
+        YG2.onPurchaseFailed -= FailedPurchased;
+        YG2.onRewardAdv -= UpgradeForAdv;
+        YG2.onGetLeaderboard -= onUpdateLB;
+    }
 
+    void Start()
+    {
+        nameInput.onEndEdit.AddListener(SaveNick);
+        DnameInput.onEndEdit.AddListener(SaveNick);
 
+        exchangeBut.onClick.AddListener(ExchangeButton);
+        DexchangeBut.onClick.AddListener(ExchangeButton);
 
+        couple.onClick.AddListener(() => ShowRewardedAdv("couple"));
+        hand.onClick.AddListener(() => ShowRewardedAdv("hand"));
+        bag.onClick.AddListener(() => ShowRewardedAdv("bag"));
+        box.onClick.AddListener(() => ShowRewardedAdv("box"));
 
-	void Awake()
-	{
-		Instance = this;
-		YG2.saves.isGaming = false;
-	}
+        Dcouple.onClick.AddListener(() => ShowRewardedAdv("couple"));
+        Dhand.onClick.AddListener(() => ShowRewardedAdv("hand"));
+        Dbag.onClick.AddListener(() => ShowRewardedAdv("bag"));
+        Dbox.onClick.AddListener(() => ShowRewardedAdv("box"));
 
-	void OnEnable()
-	{
-		YG2.onPurchaseSuccess += SuccessPurchased;
-		YG2.onPurchaseFailed += FailedPurchased;
-		YG2.onRewardAdv += UpgradeForAdv;
-		YG2.onGetLeaderboard += onUpdateLB;
-		YG2.GetLeaderboard("BestPlayers");
-	}
-	private void OnDisable()
-	{
-		YG2.onPurchaseSuccess -= SuccessPurchased;
-		YG2.onPurchaseFailed -= FailedPurchased;
-		YG2.onRewardAdv -= UpgradeForAdv;
-		YG2.onGetLeaderboard -= onUpdateLB;
-	}
-	void Start()
-	{
-		// UpdateMainMenu();
-		// LanguageManager.Instance.Onclick();
-		// LanguageManager.Instance.Onclick();
-		// AudioManager.Instance.StartMusic();
-		nameInput.onEndEdit.AddListener(SaveNick);
-		DnameInput.onEndEdit.AddListener(SaveNick);
-		exchangeBut.onClick.AddListener(ExchangeButton);
-		DexchangeBut.onClick.AddListener(ExchangeButton);
-		YG2.SaveProgress();
-		couple.onClick.AddListener(() => ShowRewardedAdv("couple"));
-		hand.onClick.AddListener(() => ShowRewardedAdv("hand"));
-		bag.onClick.AddListener(() => ShowRewardedAdv("bag"));
-		box.onClick.AddListener(() => ShowRewardedAdv("box"));
-		Dcouple.onClick.AddListener(() => ShowRewardedAdv("couple"));
-		Dhand.onClick.AddListener(() => ShowRewardedAdv("hand"));
-		Dbag.onClick.AddListener(() => ShowRewardedAdv("bag"));
-		Dbox.onClick.AddListener(() => ShowRewardedAdv("box"));
-		UpdateTriggers();
-	}
+        UpdateMainMenu();
+        UpdateTriggers();
+    }
 
-	public void UpdateTriggers()
-	{
-		Debug.Log("Проверка Триггеров");
-		triggerForNewSkin.SetActive(CheckForNewSkin());
-		triggerForDaimonds.SetActive(CheckForDaimonds());
-		DtriggerForNewSkin.SetActive(CheckForNewSkin());
-		DtriggerForDaimonds.SetActive(CheckForDaimonds());
-		
-	}
-	public bool CheckForNewSkin()
-	{
-		Debug.Log("Проверка Магазина");
-		int[] necessaryLevels = {0, 1, 4, 7, 10 };
-		int[] costsForCoins = {0, 20, 270, 800, 2400 };
-		for (int i = 0; i < YG2.saves.massiveOfObtaining.Length; i++)
-		{
-			if (YG2.saves.massiveOfObtaining[i] == 1)
-				continue;
-			if (necessaryLevels[i] <= YG2.saves.levelOfProgress)
-				return true;
-			if (costsForCoins[i] <= YG2.saves.goldCoins)
-				return true;
-		}
-		return false;
-	}
-	private void ShowRewardedAdv(string rewardID) => YG2.RewardedAdvShow(rewardID);
+    // ====================== ЛОКАЛИЗАЦИЯ ======================
+    private void UpdateAllTexts()
+    {
+        bool ru = YG2.saves.langRu;
 
-	private void UpgradeForAdv(string id)
-	{
-		if (id == "couple")
-		{
-			YG2.saves.diamonds += 5;
-		}
-		else if (id == "hand")
-		{
-			CntHand -= 1;
-			if (CntHand <= 0)
-			{
-				YG2.saves.diamonds += 20;
-				CntHand = 2;
-			}
-		}
-		else if (id == "bag")
-		{
-			CntBag -= 1;
-			if (CntBag <= 0)
-			{
-				YG2.saves.diamonds += 100;
-				CntBag = 5;
-			}
-		}
-		else if (id == "box")
-		{
-			CntBox -= 1;
-			if (CntBox <= 0)
-			{
-				YG2.saves.diamonds += 300;
-				CntBox = 10;
-			}
-		}
-		YG2.SaveProgress();
-		UpdatePanelOfValute();
-	}
+        // Main Menu
+        SetPair(MainMenu[0], DMainMenu[0], ru, "ВОДОВОРОТ Дыра.ио", "WHIRLPOOL Hole");
+        SetPair(MainMenu[1], DMainMenu[1], ru, "Введите ваш ник", "Enter your nickname");
+        SetPair(MainMenu[2], DMainMenu[2], ru, "Уровень", "Level");
+        SetPair(MainMenu[3], DMainMenu[3], ru, "Магазин\nСкинов", "Skin\nStore");
+        SetPair(MainMenu[4], DMainMenu[4], ru, "КАРТЫ", "MAPS");
+        SetPair(MainMenu[5], DMainMenu[5], ru, "РЕЖИМЫ", "MODES");
+        SetPair(MainMenu[6], DMainMenu[8], ru, "ИГРАТЬ", "PLAY");     // порядок в массивах немного отличается
+        SetPair(MainMenu[7], DMainMenu[6], ru, "ЛИДЕРЫ", "LEADERS");
+        SetPair(MainMenu[8], DMainMenu[7], ru, "НАСТРОЙКИ", "SETTINGS");
 
-	private void SuccessPurchased(string id)
-	{
-		if (id == "hand")
-			YG2.saves.diamonds += 20;
-		else if (id == "bag")
-			YG2.saves.diamonds += 100;
-		else if (id == "box")
-			YG2.saves.diamonds += 300;
-		else if (id == "chest")
-			YG2.saves.diamonds += 600;
-		else if (id == "gold")
-			YG2.saves.massiveOfObtaining[2] = 1;
-		else if (id == "scrag")
-			YG2.saves.massiveOfObtaining[3] = 1;
-		else if (id == "lord")
-			YG2.saves.massiveOfObtaining[4] = 1;
-		YG2.SaveProgress();
-    YG2.ConsumePurchaseByID(id);
-		Debug.Log($"Покупка {id} сохранена и обработана");
-		HorizontalLayout3D.Instance?.UpdateForChosen();
-		UpdatePanelOfValute();
-	}
+        // Skins
+        SetPair(PanelOfSkins[0], DPanelOfSkins[0], ru, "Описание", "Description");
+        SetPair(PanelOfSkins[1], DPanelOfSkins[1], ru, "Белый\nДруг", "White\nFriend");
+        SetPair(PanelOfSkins[2], DPanelOfSkins[2], ru, "Золотой\nунитаз", "Golden\nbowl");
+        SetPair(PanelOfSkins[3], DPanelOfSkins[3], ru, "Трон\nКощея", "Scrag's\nThrone");
+        SetPair(PanelOfSkins[4], DPanelOfSkins[4], ru, "Туалет\nБога", "God's\nToilet");
+        SetPair(PanelOfSkins[5], DPanelOfSkins[5], ru, "Красный\nТазик", "Red\nbasin");
+        SetPair(PanelOfSkins[6], DPanelOfSkins[6], ru, "Особенности", "Features");
 
-	private void ExchangeButton()
-	{
-		if (YG2.saves.diamonds == 0)
-		{
-			fart.Play();
-			return;
-		}
-		YG2.saves.goldCoins += YG2.saves.diamonds * 5;
-		YG2.saves.diamonds = 0;
-		YG2.SaveProgress();
-		UpdatePanelOfValute();
-		UpdateTriggers();
-	}
+        // Leaders
+        PanelOfLeaders.text = DPanelOfLeaders.text = ru ? "Легенды" : "Legends";
 
-	private void FailedPurchased(string id)
-	{
-		Debug.Log($"Покупка {id} была совершена");
-	}
-	void SaveNick(string wroteName)
-	{
-		YG2.saves.isNickGiven = true;
-		YG2.saves.nickName = wroteName;
-		YG2.SaveProgress();
-	}
+        // Settings
+        SetPair(MobilePanelOfSettings[0], DesktopPanelOfSettings[0], ru, "Настройки", "Settings");
+        SetPair(MobilePanelOfSettings[1], DesktopPanelOfSettings[1], ru, "Язык", "Language");
+        SetPair(MobilePanelOfSettings[2], DesktopPanelOfSettings[2], ru, "Звуки", "Sounds");
+        SetPair(MobilePanelOfSettings[3], DesktopPanelOfSettings[3], ru, "Музыка", "Music");
 
-	public void UpdateMainMenu()
-	{
-		UpdateMapOnBackground(YG2.saves.selectedMapID);
-		YG2.saves.levelOfProgress = (int)(YG2.saves.exp / 100f);
-		levelText.text = $"{(int)(YG2.saves.exp / 100f)}";
-		pointText.text = $"{Tool.ConvertText(YG2.saves.goldCoins)}";
-		levelImage.fillAmount = YG2.saves.exp % 100 / 100f;
-		DlevelText.text = $"{(int)(YG2.saves.exp / 100f)}";
-		DpointText.text = $"{Tool.ConvertText(YG2.saves.goldCoins)}";
-		DlevelImage.fillAmount = YG2.saves.exp % 100 / 100f;
-		if (YG2.saves.isNickGiven)
-		{
-			nameInput.text = YG2.saves.nickName;
-			DnameInput.text = YG2.saves.nickName;
-		}
-		OnOpenLeaderboard();
-		UpdateUI();
-		UpdatePanelOfValute();
-		UpdateTriggers();
-	}
+        // Maps
+        SetPair(PanelOfMaps[0], DPanelOfMaps[0], ru, "Доступные Локации", "Available Locations");
+        SetPair(PanelOfMaps[1], DPanelOfMaps[1], ru, "Городской Вайб", "City Vibe");
+        SetPair(PanelOfMaps[2], DPanelOfMaps[2], ru, "Садовый Парк", "Garden Park");
+        SetPair(PanelOfMaps[3], DPanelOfMaps[3], ru, "Новые карты скоро...", "New maps are coming soon...");
 
-	private void onUpdateLB(LBData lbData)
-	{
-		rank.text = "";
-		Drank.text = "";
-		if (lbData.technoName == "BestPlayers")
-		{
-			rank.text = $"{lbData.currentPlayer.rank}";
-			Drank.text = $"{lbData.currentPlayer.rank}";
-		}
-	}
+        // Modes
+        SetPair(PanelOfModes[0], DPanelOfModes[0], ru, "Доступные Режимы", "Available Modes");
+        SetPair(PanelOfModes[1], DPanelOfModes[1], ru, "Тотальная Зачистка", "Total Cleaning");
+        SetPair(PanelOfModes[2], DPanelOfModes[2], ru,
+            "Задача поглотить абсолютно все объекты на карте на 100%",
+            "The task is to absorb absolutely all objects on the map by 100%");
+        SetPair(PanelOfModes[3], DPanelOfModes[3], ru, "Босс Туалетов", "The Toilet Boss");
+        SetPair(PanelOfModes[4], DPanelOfModes[4], ru,
+            "Задача перегнать Босса по уровню и победить поглотив его",
+            "The task is to overtake the Boss by level and defeat him by absorbing him");
+        SetPair(PanelOfModes[5], DPanelOfModes[5], ru, "Охота", "Hunting");
+        SetPair(PanelOfModes[6], DPanelOfModes[6], ru,
+            "Появляется 6 врагов-туалетов. Твоя задача - поглотить всех",
+            "6 toilet enemies appear. Your task is to consume everyone");
+        SetPair(PanelOfModes[7], DPanelOfModes[7], ru, "Командный", "Teamwork");
+        SetPair(PanelOfModes[8], DPanelOfModes[8], ru,
+            "3 Красных Vs 3 Синих. Задача задавить вражескую команду",
+            "3 Red Vs 3 Blue. The task is to crush the enemy team");
+        SetPair(PanelOfModes[9], DPanelOfModes[9], ru, "Скоро в игре", "Coming soon in the game");
+        SetPair(PanelOfModes[10], DPanelOfModes[10], ru, "Скоро в игре", "Coming soon in the game");
+        SetPair(PanelOfModes[11], DPanelOfModes[11], ru, "Скоро в игре", "Coming soon in the game");
 
-	public void UpdateMapOnBackground(int id)
-	{
-		mapField.sprite = maps[id];
-		YG2.saves.selectedMapID = id;
-		YG2.SaveProgress();
-	}
+        // Progress
+        SetPair(PanelOfProgress[0], DPanelOfProgress[0], ru, "Прогресс", "Progress");
+        SetPair(PanelOfProgress[1], DPanelOfProgress[1], ru, "Красный\nТазик", "Red\nbasin");
+        SetPair(PanelOfProgress[2], DPanelOfProgress[2], ru, "Белый\nДруг", "White\nFriend");
+        SetPair(PanelOfProgress[3], DPanelOfProgress[3], ru, "Золотой\nунитаз", "Golden\nbowl");
+        SetPair(PanelOfProgress[4], DPanelOfProgress[4], ru, "Трон\nКощея", "Scrag's\nThrone");
+        SetPair(PanelOfProgress[5], DPanelOfProgress[5], ru, "Туалет\nБога", "God's\nToilet");
 
-	public bool CheckForDaimonds() => YG2.saves.diamonds != 0;
+        // Valute
+        SetPair(PanelOfValute[0], DPanelOfValute[0], ru, "Магазин Валюты", "Currency Store");
+        SetPair(PanelOfValute[1], DPanelOfValute[1], ru, "Баланс:", "Balance:");
+        SetPair(PanelOfValute[2], DPanelOfValute[2], ru, "пара\nбриллиантов", "couple\ndiamonds");
+        SetPair(PanelOfValute[3], DPanelOfValute[3], ru, "Горсть\nбриллиантов", "Bunch\ndiamonds");
+        SetPair(PanelOfValute[4], DPanelOfValute[4], ru, "Мешок\nбриллиантов", "Bag\ndiamonds");
+        SetPair(PanelOfValute[5], DPanelOfValute[5], ru, "Бочка\nбриллиантов", "Barrel\ndiamonds");
+        SetPair(PanelOfValute[6], DPanelOfValute[6], ru, "Сундук\nбриллиантов", "Chest\ndiamonds");
+        SetPair(PanelOfValute[7], DPanelOfValute[7], ru, "Обменять", "Exchange");
+    }
 
-	public void UpdatePanelOfValute()
-	{
-		cntOfDiamonds.text = $"{YG2.saves.diamonds}";
-		DcntOfDiamonds.text = $"{YG2.saves.diamonds}";
-		Tcouple.text = YG2.saves.langRu ? $"1 рекл" : $"1 ad";
-		Thand.text = YG2.saves.langRu ? $"{CntHand} рекл" : $"{CntHand} ad";
-		Tbag.text = YG2.saves.langRu ? $"{CntBag} рекл" : $"{CntBag} ad";
-		Tbox.text = YG2.saves.langRu ? $"{CntBox} рекл" : $"{CntBox} ad";
-		DTcouple.text = YG2.saves.langRu ? $"1 рекл" : $"1 ad";
-		DThand.text = YG2.saves.langRu ? $"{CntHand} рекл" : $"{CntHand} ad";
-		DTbag.text = YG2.saves.langRu ? $"{CntBag} рекл" : $"{CntBag} ad";
-		DTbox.text = YG2.saves.langRu ? $"{CntBox} рекл" : $"{CntBox} ad";
-	}
+    private void SetPair(Text mobile, Text desktop, bool ru, string russian, string english)
+    {
+        if (mobile != null) mobile.text = ru ? russian : english;
+        if (desktop != null) desktop.text = ru ? russian : english;
+    }
 
-	public void OnOpenLeaderboard()
-	{
-		YG2.GetLeaderboard("BestPlayers");
-	}
+    // ====================== ОБНОВЛЕНИЕ UI ======================
+    public void UpdateMainMenu()
+    {
+        UpdateMapOnBackground(YG2.saves.selectedMapID);
 
-	public void UpdateUI()
-	{
-		scoreText.text = YG2.saves.exp.ToString();
+        YG2.saves.levelOfProgress = (int)(YG2.saves.exp / 100f);
 
-		MainMenu[0].text = YG2.saves.langRu ? "ВОДОВОРОТ Дыра.ио" : "WHIRLPOOL Hole";
-		MainMenu[1].text = YG2.saves.langRu ? "Введите ваш ник" : "Enter your nickname";
-		MainMenu[2].text = YG2.saves.langRu ? "Уровень" : "Level";
-		MainMenu[3].text = YG2.saves.langRu ? "Магазин\nСкинов" : "Skin\nStore";
-		MainMenu[4].text = YG2.saves.langRu ? "КАРТЫ" : "MAPS";
-		MainMenu[5].text = YG2.saves.langRu ? "РЕЖИМЫ" : "MODES";
-		MainMenu[6].text = YG2.saves.langRu ? "ИГРАТЬ" : "PLAY";
-		MainMenu[7].text = YG2.saves.langRu ? "ЛИДЕРЫ" : "LEADERS";
-		MainMenu[8].text = YG2.saves.langRu ? "НАСТРОЙКИ" : "SETTINGS";
+        levelText.text = YG2.saves.levelOfProgress.ToString();
+        pointText.text = Tool.ConvertText(YG2.saves.goldCoins);
+        levelImage.fillAmount = (YG2.saves.exp % 100f) / 100f;
 
-		PanelOfSkins[0].text = YG2.saves.langRu ? "Описание" : "Description";
-		PanelOfSkins[1].text = YG2.saves.langRu ? "Белый\nДруг" : "White\nFriend";
-		PanelOfSkins[2].text = YG2.saves.langRu ? "Золотой\nунитаз" : "Golden\nbowl";
-		PanelOfSkins[3].text = YG2.saves.langRu ? "Трон\nКощея" : "Scrag's\nThrone";
-		PanelOfSkins[4].text = YG2.saves.langRu ? "Туалет\nБога" : "God's\nToilet";
-		PanelOfSkins[5].text = YG2.saves.langRu ? "Красный\nТазик" : "Red\nbasin";
-		PanelOfSkins[6].text = YG2.saves.langRu ? "Особенности" : "Features";
+        DlevelText.text = YG2.saves.levelOfProgress.ToString();
+        DpointText.text = Tool.ConvertText(YG2.saves.goldCoins);
+        DlevelImage.fillAmount = (YG2.saves.exp % 100f) / 100f;
 
-		PanelOfLeaders.text = YG2.saves.langRu ? "Легенды" : "Legends";
+        if (YG2.saves.isNickGiven)
+        {
+            nameInput.text = YG2.saves.nickName;
+            DnameInput.text = YG2.saves.nickName;
+        }
 
-		MobilePanelOfSettings[0].text = YG2.saves.langRu ? "Настройки" : "Settings";
-		MobilePanelOfSettings[1].text = YG2.saves.langRu ? "Язык" : "Language";
-		MobilePanelOfSettings[2].text = YG2.saves.langRu ? "Звуки" : "Sounds";
-		MobilePanelOfSettings[3].text = YG2.saves.langRu ? "Музыка" : "Music";
+        UpdateAllTexts();
+        UpdatePanelOfValute();
+        UpdateTriggers();
+        OnOpenLeaderboard();
+    }
 
-		PanelOfMaps[1].text = YG2.saves.langRu ? "Городской Вайб" : "City Vibe";
-		PanelOfMaps[0].text = YG2.saves.langRu ? "Доступные Локации" : "Available Locations";
-		PanelOfMaps[2].text = YG2.saves.langRu ? "Садовый Парк" : "Garden Park";
-		PanelOfMaps[3].text = YG2.saves.langRu ? "Новые карты скоро..." : "New maps are coming soon...";
+    public void UpdatePanelOfValute()
+    {
+        bool ru = YG2.saves.langRu;
 
-		PanelOfModes[0].text = YG2.saves.langRu ? "Доступные Режимы" : "Available Modes";
-		PanelOfModes[1].text = YG2.saves.langRu ? "Тотальная Зачистка" : "Total Cleaning";
-		PanelOfModes[2].text = YG2.saves.langRu ? "Задача поглотить абсолютно все объекты на карте на 100%" : 
-		"The task is to absorb absolutely all objects on the map by 100%";
-		PanelOfModes[3].text = YG2.saves.langRu ? "Босс Туалетов" : "The Toilet Boss";
-		PanelOfModes[4].text = YG2.saves.langRu ? "Задача перегнать Босса по уровню и победить поглотив его" : 
-		"The task is to overtake the Boss by level and defeat him by absorbing him";
-		PanelOfModes[5].text = YG2.saves.langRu ? "Охота" : "Hunting";
-		PanelOfModes[6].text = YG2.saves.langRu ? "Появляется 6 врагов-туалетов. Твоя задача - поглотить всех" : 
-		"6 toilet enemies appear. Your task is to consume everyone";
-		PanelOfModes[7].text = YG2.saves.langRu ? "Командный" : "Teamwork";
-		PanelOfModes[8].text = YG2.saves.langRu ? "3 Красных Vs 3 Синих. Задача задавить вражескую команду" : 
-		"3 Red Vs 3 Blue. The task is to crush the enemy team";
-		PanelOfModes[9].text = YG2.saves.langRu ? "Скоро в игре" : "Coming soon in the game";
-		PanelOfModes[10].text = YG2.saves.langRu ? "Скоро в игре" : "Coming soon in the game";
-		PanelOfModes[11].text = YG2.saves.langRu ? "Скоро в игре" : "Coming soon in the game";
+        cntOfDiamonds.text = DcntOfDiamonds.text = YG2.saves.diamonds.ToString();
 
-		PanelOfProgress[0].text = YG2.saves.langRu ? "Прогресс" : "Progress";
-		PanelOfProgress[1].text = YG2.saves.langRu ? "Красный\nТазик" : "Red\nbasin";
-		PanelOfProgress[2].text = YG2.saves.langRu ? "Белый\nДруг" : "White\nFriend";
-		PanelOfProgress[3].text = YG2.saves.langRu ? "Золотой\nунитаз" : "Golden\nbowl";
-		PanelOfProgress[4].text = YG2.saves.langRu ? "Трон\nКощея" : "Scrag's\nThrone";
-		PanelOfProgress[5].text = YG2.saves.langRu ? "Туалет\nБога" : "God's\nToilet";
+        Tcouple.text = DTcouple.text = ru ? "1 рекл" : "1 ad";
+        Thand.text = DThand.text = ru ? $"{CntHand} рекл" : $"{CntHand} ad";
+        Tbag.text = DTbag.text = ru ? $"{CntBag} рекл" : $"{CntBag} ad";
+        Tbox.text = DTbox.text = ru ? $"{CntBox} рекл" : $"{CntBox} ad";
+    }
 
-		PanelOfValute[0].text = YG2.saves.langRu ? "Магазин Валюты" : "Currency Store";
-		PanelOfValute[1].text = YG2.saves.langRu ? "Баланс:" : "Balance:";
-		PanelOfValute[2].text = YG2.saves.langRu ? "пара\nбриллиантов" : "couple\ndiamonds";
-		PanelOfValute[3].text = YG2.saves.langRu ? "Горсть\nбриллиантов" : "Bunch\ndiamonds";
-		PanelOfValute[4].text = YG2.saves.langRu ? "Мешок\nбриллиантов" : "Bag\ndiamonds";
-		PanelOfValute[5].text = YG2.saves.langRu ? "Бочка\nбриллиантов" : "Barrel\ndiamonds";
-		PanelOfValute[6].text = YG2.saves.langRu ? "Сундук\nбриллиантов" : "Chest\ndiamonds";
-		PanelOfValute[7].text = YG2.saves.langRu ? "Обменять" : "Exchange";
+    public void UpdateTriggers()
+    {
+        bool hasNew = CheckForNewSkin();
+        bool hasDia = CheckForDaimonds();
 
+        triggerForNewSkin.SetActive(hasNew);
+        triggerForDaimonds.SetActive(hasDia);
+        DtriggerForNewSkin.SetActive(hasNew);
+        DtriggerForDaimonds.SetActive(hasDia);
+    }
 
-		//--------------------------------------------------------------------------------------------------------------------------
+    public bool CheckForNewSkin()
+    {
+        int[] levels = { 0, 1, 4, 7, 10 };
+        int[] costs = { 0, 20, 270, 800, 2400 };
 
-		DscoreText.text = YG2.saves.exp.ToString();
+        for (int i = 0; i < YG2.saves.massiveOfObtaining.Length; i++)
+        {
+            if (YG2.saves.massiveOfObtaining[i] == 1) continue;
+            if (levels[i] <= YG2.saves.levelOfProgress || costs[i] <= YG2.saves.goldCoins)
+                return true;
+        }
+        return false;
+    }
 
-		DMainMenu[0].text = YG2.saves.langRu ? "ВОДОВОРОТ Дыра.ио" : "WHIRLPOOL Hole";
-		DMainMenu[1].text = YG2.saves.langRu ? "Введите ваш ник" : "Enter your nickname";
-		DMainMenu[2].text = YG2.saves.langRu ? "Уровень" : "Level";
-		DMainMenu[3].text = YG2.saves.langRu ? "Магазин\nСкинов" : "Skin\nStore";
-		DMainMenu[4].text = YG2.saves.langRu ? "КАРТЫ" : "MAPS";
-		DMainMenu[5].text = YG2.saves.langRu ? "РЕЖИМЫ" : "MODES";
-		DMainMenu[6].text = YG2.saves.langRu ? "ЛИДЕРЫ" : "LEADERS";
-		DMainMenu[7].text = YG2.saves.langRu ? "НАСТРОЙКИ" : "SETTINGS";
-		DMainMenu[8].text = YG2.saves.langRu ? "ИГРАТЬ" : "PLAY";
+    public bool CheckForDaimonds() => YG2.saves.diamonds != 0;
 
-		DPanelOfSkins[0].text = YG2.saves.langRu ? "Описание" : "Description";
-		DPanelOfSkins[1].text = YG2.saves.langRu ? "Белый\nДруг" : "White\nFriend";
-		DPanelOfSkins[2].text = YG2.saves.langRu ? "Золотой\nунитаз" : "Golden\nbowl";
-		DPanelOfSkins[3].text = YG2.saves.langRu ? "Трон\nКощея" : "Scrag's\nThrone";
-		DPanelOfSkins[4].text = YG2.saves.langRu ? "Туалет\nБога" : "God's\nToilet";
-		DPanelOfSkins[5].text = YG2.saves.langRu ? "Красный\nТазик" : "Red\nbasin";
-		DPanelOfSkins[6].text = YG2.saves.langRu ? "Особенности" : "Features";
+    private void ShowRewardedAdv(string id) => YG2.RewardedAdvShow(id);
 
-		DPanelOfLeaders.text = YG2.saves.langRu ? "Легенды" : "Legends";
+    private void UpgradeForAdv(string id)
+    {
+        if (id == "couple") YG2.saves.diamonds += 5;
+        else if (id == "hand") { CntHand = Mathf.Max(0, CntHand - 1); if (CntHand == 0) { YG2.saves.diamonds += 20; CntHand = 2; } }
+        else if (id == "bag") { CntBag = Mathf.Max(0, CntBag - 1); if (CntBag == 0) { YG2.saves.diamonds += 100; CntBag = 5; } }
+        else if (id == "box") { CntBox = Mathf.Max(0, CntBox - 1); if (CntBox == 0) { YG2.saves.diamonds += 300; CntBox = 10; } }
 
-		DesktopPanelOfSettings[0].text = YG2.saves.langRu ? "Настройки" : "Settings";
-		DesktopPanelOfSettings[1].text = YG2.saves.langRu ? "Язык" : "Language";
-		DesktopPanelOfSettings[2].text = YG2.saves.langRu ? "Звуки" : "Sounds";
-		DesktopPanelOfSettings[3].text = YG2.saves.langRu ? "Музыка" : "Music";
+        VodovorotGameManager.Instance.SaveProgress();
+        UpdatePanelOfValute();
+    }
 
-		DPanelOfMaps[0].text = YG2.saves.langRu ? "Доступные Локации" : "Available Locations";
-		DPanelOfMaps[1].text = YG2.saves.langRu ? "Городской Вайб" : "City Vibe";
-		DPanelOfMaps[2].text = YG2.saves.langRu ? "Садовый Парк" : "Garden Park";
-		DPanelOfMaps[3].text = YG2.saves.langRu ? "Новые карты скоро..." : "New maps are coming soon...";
+    private void SuccessPurchased(string id)
+    {
+        switch (id)
+        {
+            case "hand": YG2.saves.diamonds += 20; break;
+            case "bag": YG2.saves.diamonds += 100; break;
+            case "box": YG2.saves.diamonds += 300; break;
+            case "chest": YG2.saves.diamonds += 600; break;
+            case "gold": YG2.saves.massiveOfObtaining[2] = 1; break;
+            case "scrag": YG2.saves.massiveOfObtaining[3] = 1; break;
+            case "lord": YG2.saves.massiveOfObtaining[4] = 1; break;
+        }
 
-		DPanelOfModes[0].text = YG2.saves.langRu ? "Доступные Режимы" : "Available Modes";
-		DPanelOfModes[1].text = YG2.saves.langRu ? "Тотальная Зачистка" : "Total Cleaning";
-		DPanelOfModes[2].text = YG2.saves.langRu ? "Задача поглотить абсолютно все объекты на карте на 100%" : 
-		"The task is to absorb absolutely all objects on the map by 100%";
-		DPanelOfModes[3].text = YG2.saves.langRu ? "Босс Туалетов" : "The Toilet Boss";
-		DPanelOfModes[4].text = YG2.saves.langRu ? "Задача перегнать Босса по уровню и победить поглотив его" : 
-		"The task is to overtake the Boss by level and defeat him by absorbing him";
-		DPanelOfModes[5].text = YG2.saves.langRu ? "Охота" : "Hunting";
-		DPanelOfModes[6].text = YG2.saves.langRu ? "Появляется 6 врагов-туалетов. Твоя задача - поглотить всех" : 
-		"6 toilet enemies appear. Your task is to consume everyone";
-		DPanelOfModes[7].text = YG2.saves.langRu ? "Командный" : "Teamwork";
-		DPanelOfModes[8].text = YG2.saves.langRu ? "3 Красных Vs 3 Синих. Задача задавить вражескую команду" : 
-		"3 Red Vs 3 Blue. The task is to crush the enemy team";
-		DPanelOfModes[9].text = YG2.saves.langRu ? "Скоро в игре" : "Coming soon in the game";
-		DPanelOfModes[10].text = YG2.saves.langRu ? "Скоро в игре" : "Coming soon in the game";
-		DPanelOfModes[11].text = YG2.saves.langRu ? "Скоро в игре" : "Coming soon in the game";
+        VodovorotGameManager.Instance.SaveProgress();
+        YG2.ConsumePurchaseByID(id);
 
-		DPanelOfProgress[0].text = YG2.saves.langRu ? "Прогресс" : "Progress";
-		DPanelOfProgress[1].text = YG2.saves.langRu ? "Красный\nТазик" : "Red\nbasin";
-		DPanelOfProgress[2].text = YG2.saves.langRu ? "Белый\nДруг" : "White\nFriend";
-		DPanelOfProgress[3].text = YG2.saves.langRu ? "Золотой\nунитаз" : "Golden\nbowl";
-		DPanelOfProgress[4].text = YG2.saves.langRu ? "Трон\nКощея" : "Scrag's\nThrone";
-		DPanelOfProgress[5].text = YG2.saves.langRu ? "Туалет\nБога" : "God's\nToilet";
+        VodovorotGameManager.Instance.HorizontalLayout3D?.UpdateForChosen();
+        UpdatePanelOfValute();
+        UpdateTriggers();
+    }
 
-		DPanelOfValute[0].text = YG2.saves.langRu ? "Магазин Валюты" : "Currency Store";
-		DPanelOfValute[1].text = YG2.saves.langRu ? "Баланс:" : "Balance:";
-		DPanelOfValute[2].text = YG2.saves.langRu ? "пара\nбриллиантов" : "couple\ndiamonds";
-		DPanelOfValute[3].text = YG2.saves.langRu ? "Горсть\nбриллиантов" : "Bunch\ndiamonds";
-		DPanelOfValute[4].text = YG2.saves.langRu ? "Мешок\nбриллиантов" : "Bag\ndiamonds";
-		DPanelOfValute[5].text = YG2.saves.langRu ? "Бочка\nбриллиантов" : "Barrel\ndiamonds";
-		DPanelOfValute[6].text = YG2.saves.langRu ? "Сундук\nбриллиантов" : "Chest\ndiamonds";
-		DPanelOfValute[7].text = YG2.saves.langRu ? "Обменять" : "Exchange";
+    private void FailedPurchased(string id) => Debug.Log($"Покупка {id} была совершена");
 
-	}
+    private void SaveNick(string name)
+    {
+        YG2.saves.isNickGiven = true;
+        YG2.saves.nickName = name;
+        VodovorotGameManager.Instance.SaveProgress();
+    }
 
+    private void ExchangeButton()
+    {
+        if (YG2.saves.diamonds == 0)
+        {
+            fart.Play();
+            return;
+        }
 
+        YG2.saves.goldCoins += YG2.saves.diamonds * 5;
+        YG2.saves.diamonds = 0;
+
+        VodovorotGameManager.Instance.SaveProgress();
+        UpdatePanelOfValute();
+        UpdateTriggers();
+    }
+
+    private void onUpdateLB(LBData data)
+    {
+        if (data.technoName == "BestPlayers")
+        {
+            rank.text = Drank.text = data.currentPlayer.rank.ToString();
+        }
+    }
+
+    public void UpdateMapOnBackground(int id)
+    {
+        if (id < 0 || id >= maps.Length) return;
+        mapField.sprite = maps[id];
+        YG2.saves.selectedMapID = id;
+        VodovorotGameManager.Instance.SaveProgress();
+    }
+
+    public void OnOpenLeaderboard() => YG2.GetLeaderboard("BestPlayers");
 }
