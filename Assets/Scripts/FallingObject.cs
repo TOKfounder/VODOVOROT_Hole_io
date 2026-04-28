@@ -15,11 +15,12 @@ public class FallingObject : MonoBehaviour
 	private Rigidbody rb;
 	private Collider col;
 	private Coroutine myCoroutine;
-	private float lastHoleChangeTime = 0f;
+	private readonly System.Collections.Generic.List<HoleParent> candidateHoles =
+		new System.Collections.Generic.List<HoleParent>(4);
+
+	private const float SwitchImprovementFactorSqr = 0.8464f; // 0.92 * 0.92 => новая дыра ближе хотя бы на 8%
 
 	public HoleParent CurrentHole { get; set; }
-
-	private float lastPlatformUpdateTime = 0f;
 
 	void Awake()
 	{
@@ -39,7 +40,7 @@ public class FallingObject : MonoBehaviour
 		{
 			Destroy(GetComponent<FallingObject>());
 		}
-	}
+}
 
 	void Start()
 	{
@@ -95,6 +96,15 @@ public class FallingObject : MonoBehaviour
 		VodovorotGameManager.Instance.GamingManager.AllValues += value;
 	}
 
+	void FixedUpdate()
+	{
+		if (!rb.isKinematic)
+			return;
+
+		CleanupCandidateHoles();
+		EvaluateBestHole();
+	}
+
 	IEnumerator DelayForUpdateCurrentHole()
 	{
 		yield return new WaitForSeconds(4f);
@@ -102,48 +112,27 @@ public class FallingObject : MonoBehaviour
 			ResetToStart();
 	}
 
-private void OnTriggerEnter(Collider other)
-{
-    if (!other.CompareTag("Player")) return;
+	private void OnTriggerEnter(Collider other)
+	{
+		RegisterCandidateHole(other);
+	}
 
-    HoleParent newHole = other.GetComponentInParent<HoleParent>();
-    if (newHole == null) return;
+	private void OnTriggerStay(Collider other)
+	{
+		RegisterCandidateHole(other);
+	}
 
-    // Жёсткая защита от слишком частой смены
-    if (Time.time - lastPlatformUpdateTime < 0.25f) return;
+	private void OnTriggerExit(Collider other)
+	{
+		if (!other.CompareTag("Player"))
+			return;
 
-    Debug.Log($"[FallingObject] Триггер с дырой: {newHole.name} | CurrentHole = {(CurrentHole ? CurrentHole.name : "null")}");
+		HoleParent hole = other.GetComponentInParent<HoleParent>();
+		if (hole == null)
+			return;
 
-    // Смена дыры
-    if (CurrentHole != null)
-        Physics.IgnoreCollision(CurrentHole.platform, col, true);
-
-    CurrentHole = newHole;
-    lastPlatformUpdateTime = Time.time;
-
-    // Жёсткое обновление коллизий
-    ForceUpdatePlatformCollisions();
-
-    // Перезапускаем таймер падения
-    if (!isColon)
-    {
-        if (myCoroutine != null) StopCoroutine(myCoroutine);
-        myCoroutine = StartCoroutine(DelayForUpdateCurrentHole());
-    }
-
-    // Активируем падение
-    bool canBeEaten = (CurrentHole.holeType == HoleParent.TypeOfHole.enemy)
-        ? Tool.CanFitForEnemies(size, CurrentHole.size)
-        : Tool.CanFit2D(size, CurrentHole.size);
-
-    if (canBeEaten)
-    {
-        isTriggered = true;
-        rb.isKinematic = false;
-        CurrentHole.nearbyFallingObjects.Add(this);
-        Debug.Log($"[FallingObject] Активировано падение в {CurrentHole.name}");
-    }
-}
+		candidateHoles.Remove(hole);
+	}
 
 	private Vector3 GetVisualSize()
 	{
@@ -171,14 +160,10 @@ private void OnTriggerEnter(Collider other)
 		isTriggered = false;
 		col.enabled = true;
 		rend.enabled = true;
-		CurrentHole = null;
-		foreach (var plat in VodovorotGameManager.allPlatforms)
-		{
-			Physics.IgnoreCollision(plat, col, true);
-		}
+		candidateHoles.Clear();
 		if (myCoroutine != null) StopCoroutine(myCoroutine);
 
-		ForceUpdatePlatformCollisions();
+		SetCurrentHole(null);
 	}
 
 	public void OnScored(HoleParent hole)
@@ -189,7 +174,8 @@ private void OnTriggerEnter(Collider other)
 		rb.isKinematic = true;
 		col.enabled = false;
 		rend.enabled = false;
-		CurrentHole = null;
+		candidateHoles.Clear();
+		SetCurrentHole(null);
 
 		if (myCoroutine != null) StopCoroutine(myCoroutine);
 
@@ -200,28 +186,143 @@ private void OnTriggerEnter(Collider other)
 		}
 	}
 
-    /// <summary>
-    /// ЖЁСТКОЕ обновление коллизий — вызывается каждый раз при смене дыры
-    /// </summary>
-    private void ForceUpdatePlatformCollisions()
-    {
-        if (CurrentHole == null || CurrentHole.platform == null)
-        {
-            Debug.LogWarning("[FallingObject] CurrentHole или platform == null");
-            return;
-        }
+	private void RegisterCandidateHole(Collider other)
+	{
+		if (!other.CompareTag("Player"))
+			return;
 
-        // Игнорируем ВСЕ платформы
-        foreach (var plat in VodovorotGameManager.allPlatforms)
-        {
-            if (plat == null) continue;
-            Physics.IgnoreCollision(plat, col, true);
-        }
+		HoleParent hole = other.GetComponentInParent<HoleParent>();
+		if (hole == null || candidateHoles.Contains(hole))
+			return;
 
-        // Включаем коллизию только с нужной платформой
-        Physics.IgnoreCollision(CurrentHole.platform, col, false);
+		candidateHoles.Add(hole);
+	}
 
-        Debug.Log($"[FallingObject] ЖЁСТКОЕ обновление: Игнорируем все платформы кроме {CurrentHole.platform.name}");
-    }
+	private void CleanupCandidateHoles()
+	{
+		for (int i = candidateHoles.Count - 1; i >= 0; i--)
+		{
+			if (candidateHoles[i] == null)
+				candidateHoles.RemoveAt(i);
+		}
+	}
 
+	private void EvaluateBestHole()
+	{
+		HoleParent bestHole = null;
+		float bestDistanceSqr = float.PositiveInfinity;
+
+		for (int i = 0; i < candidateHoles.Count; i++)
+		{
+			HoleParent hole = candidateHoles[i];
+			if (!CanBeEatenBy(hole))
+				continue;
+
+			float distanceSqr = GetDistanceToHoleCenterSqr(hole);
+			if (distanceSqr < bestDistanceSqr)
+			{
+				bestDistanceSqr = distanceSqr;
+				bestHole = hole;
+			}
+		}
+
+		if (bestHole == null)
+		{
+			if (!isTriggered)
+				SetCurrentHole(null);
+			return;
+		}
+
+		if (ShouldSwitchTo(bestHole, bestDistanceSqr))
+			SetCurrentHole(bestHole);
+
+		TryActivateCurrentHole();
+	}
+
+	private bool ShouldSwitchTo(HoleParent bestHole, float bestDistanceSqr)
+	{
+		if (bestHole == CurrentHole)
+			return false;
+
+		if (CurrentHole == null)
+			return true;
+
+		if (!candidateHoles.Contains(CurrentHole))
+			return true;
+
+		if (!CanBeEatenBy(CurrentHole))
+			return true;
+
+		float currentDistanceSqr = GetDistanceToHoleCenterSqr(CurrentHole);
+		return bestDistanceSqr <= currentDistanceSqr * SwitchImprovementFactorSqr;
+	}
+
+	private void SetCurrentHole(HoleParent newHole)
+	{
+		if (CurrentHole == newHole)
+			return;
+
+		if (CurrentHole != null)
+			CurrentHole.nearbyFallingObjects.Remove(this);
+
+		CurrentHole = newHole;
+		UpdatePlatformCollisions();
+	}
+
+	private void TryActivateCurrentHole()
+	{
+		if (CurrentHole == null || isTriggered || !rb.isKinematic)
+			return;
+
+		isTriggered = true;
+		rb.isKinematic = false;
+
+		if (!CurrentHole.nearbyFallingObjects.Contains(this))
+			CurrentHole.nearbyFallingObjects.Add(this);
+
+		if (!isColon)
+		{
+			if (myCoroutine != null) StopCoroutine(myCoroutine);
+			myCoroutine = StartCoroutine(DelayForUpdateCurrentHole());
+		}
+
+		Debug.Log($"[FallingObject] Активировано падение в {CurrentHole.name}");
+	}
+
+	private bool CanBeEatenBy(HoleParent hole)
+	{
+		if (hole == null)
+			return false;
+
+		return hole.holeType == HoleParent.TypeOfHole.enemy
+			? Tool.CanFitForEnemies(size, hole.size)
+			: Tool.CanFit2D(size, hole.size);
+	}
+
+	private float GetDistanceToHoleCenterSqr(HoleParent hole)
+	{
+		Vector3 delta = transform.position - hole.transform.position;
+		delta.y = 0f;
+		return delta.sqrMagnitude;
+	}
+
+	/// <summary>
+	/// Обновляет коллизии так, чтобы объект взаимодействовал только с платформой текущей дыры
+	/// </summary>
+	private void UpdatePlatformCollisions()
+	{
+		foreach (var plat in VodovorotGameManager.allPlatforms)
+		{
+			if (plat == null)
+				continue;
+
+			Physics.IgnoreCollision(plat, col, true);
+		}
+
+		if (CurrentHole != null && CurrentHole.platform != null)
+		{
+			Physics.IgnoreCollision(CurrentHole.platform, col, false);
+			Debug.Log($"[FallingObject] Выбрана дыра {CurrentHole.name}, коллизия включена с {CurrentHole.platform.name}");
+		}
+	}
 }

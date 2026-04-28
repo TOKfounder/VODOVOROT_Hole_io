@@ -7,7 +7,6 @@ using UnityEngine.Pool;
 
 public class HoleParent : MonoBehaviour
 {
-    public static HoleParent Instance;
     public static List<HoleParent> holeList = new List<HoleParent>();
     public static int totalScore;
 
@@ -92,7 +91,7 @@ public class HoleParent : MonoBehaviour
     }
 
     // ВСЯ ЛОГИКА ОБРАБОТКИ ОБЪЕКТОВ ПЕРЕНЕСЕНА СЮДА
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (!isInitialized) return;
 
@@ -119,7 +118,12 @@ public class HoleParent : MonoBehaviour
                 {
                     obj.ResetToStart();
                 }
-                nearbyFallingObjects.RemoveAt(i);
+
+                // Объект может уже сам удалиться из списка внутри FallingObject.SetCurrentHole(null)
+                if (i < nearbyFallingObjects.Count && nearbyFallingObjects[i] == obj)
+                    nearbyFallingObjects.RemoveAt(i);
+                else
+                    nearbyFallingObjects.Remove(obj);
             }
         }
 
@@ -158,7 +162,7 @@ public class HoleParent : MonoBehaviour
         // Сначала вызываем OnSpawn с нужным количеством
         PointsScript ps = points.GetComponent<PointsScript>();
         if (ps != null)
-            ps.OnSpawn(amount);           // ← теперь передаём amount
+            ps.OnSpawn(this, amount);
         else
             Debug.LogError("PointsScript не найден на префабе +очков!");
     }

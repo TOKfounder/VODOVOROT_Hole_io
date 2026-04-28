@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: c783eba2f4d7b4834b587d8308ef0dad, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: 795dcc6017c75434a8deb35712212f78, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 6396e3f3c98748446861aa99c61de5c3, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -1272,6 +1272,18 @@ MonoBehaviour:
   Tbag: {fileID: 1980489671}
   Tbox: {fileID: 1457053012}
   scoreText: {fileID: 693636804}
+  Drank: {fileID: 412339859}
+  DtriggerForDaimonds: {fileID: 852138337}
+  DtriggerForNewSkin: {fileID: 441182673}
+  Dcouple: {fileID: 856584965}
+  Dhand: {fileID: 1491537965}
+  Dbag: {fileID: 803788930}
+  Dbox: {fileID: 199069629}
+  DTcouple: {fileID: 1783644976}
+  DThand: {fileID: 1315502955}
+  DTbag: {fileID: 2063956811}
+  DTbox: {fileID: 1106000995}
+  DscoreText: {fileID: 1591870773}
   MainMenu:
   - {fileID: 1312807677}
   - {fileID: 2106192098}
@@ -1330,18 +1342,6 @@ MonoBehaviour:
   - {fileID: 1966506070}
   - {fileID: 1536651884}
   - {fileID: 830305710}
-  Drank: {fileID: 412339859}
-  DtriggerForDaimonds: {fileID: 852138337}
-  DtriggerForNewSkin: {fileID: 441182673}
-  Dcouple: {fileID: 856584965}
-  Dhand: {fileID: 1491537965}
-  Dbag: {fileID: 803788930}
-  Dbox: {fileID: 199069629}
-  DTcouple: {fileID: 1783644976}
-  DThand: {fileID: 1315502955}
-  DTbag: {fileID: 2063956811}
-  DTbox: {fileID: 1106000995}
-  DscoreText: {fileID: 1591870773}
   DMainMenu:
   - {fileID: 1132698555}
   - {fileID: 1707242944}
@@ -37795,14 +37795,20 @@ MonoBehaviour:
   - {fileID: 3165773835708950568}
   - {fileID: 838164050119758053}
   - {fileID: 7704123862603973117}
-  feature: {fileID: 3408974870657637859}
+  featureText: {fileID: 0}
   buttonOfBuying: {fileID: 3303430579871072793}
   buttonOfEquiping: {fileID: 4514337090985493011}
-  necessaryLevel: {fileID: 6307472806283903349}
-  costForCoins: {fileID: 4573420508301518770}
-  costForDonate: {fileID: 7324114430492809676}
+  necessaryLevelText: {fileID: 0}
+  costForCoinsText: {fileID: 0}
+  costForDonateText: {fileID: 0}
   donateButton: {fileID: 7816335281364157203}
   currencyImage: {fileID: 6463069385058133118}
+  toiletIDs:
+  - obodok
+  - white
+  - gold
+  - scrag
+  - lord
 --- !u!1 &252624085122342025
 GameObject:
   m_ObjectHideFlags: 0
@@ -54624,14 +54630,20 @@ MonoBehaviour:
   - {fileID: 1436703377782474981}
   - {fileID: 6770082309072652884}
   - {fileID: 1974286073917663548}
-  feature: {fileID: 2133753336}
+  featureText: {fileID: 0}
   buttonOfBuying: {fileID: 1936415505}
   buttonOfEquiping: {fileID: 247892394}
-  necessaryLevel: {fileID: 146379950}
-  costForCoins: {fileID: 955137573}
-  costForDonate: {fileID: 333652097}
+  necessaryLevelText: {fileID: 0}
+  costForCoinsText: {fileID: 0}
+  costForDonateText: {fileID: 0}
   donateButton: {fileID: 3420345252218550352}
   currencyImage: {fileID: 7456531140028314797}
+  toiletIDs:
+  - obodok
+  - white
+  - gold
+  - scrag
+  - lord
 --- !u!4 &8455732260917422523
 Transform:
   m_ObjectHideFlags: 0

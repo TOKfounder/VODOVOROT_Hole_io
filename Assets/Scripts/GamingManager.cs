@@ -185,5 +185,6 @@ public class GamingManager : MonoBehaviour
         once = true;
         AllValues = 0;
         HoleParent.totalScore = 0;
+        EnemyController.count = 0;
     }
 }

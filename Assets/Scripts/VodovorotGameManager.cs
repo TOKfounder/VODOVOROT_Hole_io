@@ -106,8 +106,19 @@ public class VodovorotGameManager : MonoBehaviour
     {
         InitializeAllSystems();
 
+        if (IsInGame)
+            ResetGameplayRuntimeState();
+
         // Даём YG2 один кадр на инициализацию
         StartCoroutine(DelayedMenuUpdate());
+    }
+
+    private void ResetGameplayRuntimeState()
+    {
+        HoleParent.totalScore = 0;
+        HoleParent.holeList.Clear();
+        EnemyController.count = 0;
+        GamingManager?.ResetForNewGame();
     }
 
     private IEnumerator DelayedMenuUpdate()

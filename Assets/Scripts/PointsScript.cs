@@ -10,6 +10,7 @@ public class PointsScript : MonoBehaviour
     private Text txt;
     private Color startColor;
     private float time;
+    private HoleParent ownerHole;
 
     private void Awake()
     {
@@ -21,11 +22,12 @@ public class PointsScript : MonoBehaviour
     /// <summary>
     /// Вызывается из HoleParent при получении объекта из пула
     /// </summary>
-    public void OnSpawn(int amount)
+    public void OnSpawn(HoleParent owner, int amount)
     {
         if (txt == null)
             txt = GetComponent<Text>();
 
+        ownerHole = owner;
         time = 0f;
         gameObject.SetActive(true);
 
@@ -52,8 +54,8 @@ public class PointsScript : MonoBehaviour
         else
         {
             // Возвращаем в пул вместо Destroy
-            if (HoleParent.Instance != null)
-                HoleParent.Instance.ReturnPointsToPool(gameObject);
+            if (ownerHole != null)
+                ownerHole.ReturnPointsToPool(gameObject);
             else
                 gameObject.SetActive(false);
         }

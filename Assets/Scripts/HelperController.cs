@@ -22,8 +22,10 @@ public class HelperController : HoleParent
         if (nickname != null) nickname.gameObject.SetActive(false);
     }
 
-    private void FixedUpdate()
+    protected override void FixedUpdate()
     {
+        base.FixedUpdate();
+
         if (player == null) return;
 
         Vector3 direction = player.transform.position - transform.position;

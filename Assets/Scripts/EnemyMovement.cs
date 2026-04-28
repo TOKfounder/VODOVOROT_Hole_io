@@ -65,8 +65,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void FindClosestObject()
     {
-        // Один OverlapSphere вместо двух
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, detectionRadius * 100, fallableObjects);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, detectionRadius, fallableObjects);
 
         float closestDist = Mathf.Infinity;
         Transform bestTarget = null;
@@ -141,7 +140,15 @@ public class EnemyMovement : MonoBehaviour
         int level = enemyController.currentLevel;
         float speed = (level < levelSpeeds.Length) ? levelSpeeds[level] : levelSpeeds[^1];
 
-		rb.MovePosition(rb.position + withoutCamera.transform.forward * speed * 0.15f * Time.fixedDeltaTime);
+        Vector3 newPosition = rb.position + withoutCamera.transform.forward * speed * 0.15f * Time.fixedDeltaTime;
+        newPosition.x = Mathf.Clamp(newPosition.x,
+            VodovorotGameManager.Instance.GamingManager.minX,
+            VodovorotGameManager.Instance.GamingManager.maxX);
+        newPosition.z = Mathf.Clamp(newPosition.z,
+            VodovorotGameManager.Instance.GamingManager.minZ,
+            VodovorotGameManager.Instance.GamingManager.maxZ);
+
+		rb.MovePosition(newPosition);
     }
 
     private void CheckStuckStatus()
