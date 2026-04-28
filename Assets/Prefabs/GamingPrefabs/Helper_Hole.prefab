@@ -1143,9 +1143,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6687789161432433321}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8c538782fbfcef42a12853034139283, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d3db1747a6e4de7bf01b8198cc02dc1, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
+  m_EditorClassIdentifier: Assembly-CSharp::HelperMovement
   withoutCamera: {fileID: 4554613436065531620}
   rotationSpeed: 30
   detectionRadius: 500
@@ -1164,6 +1164,7 @@ MonoBehaviour:
   - 15.22
   - 20
   - 25
+  minDistanceToOwner: 3
 --- !u!114 &678284438751163385
 MonoBehaviour:
   m_ObjectHideFlags: 0

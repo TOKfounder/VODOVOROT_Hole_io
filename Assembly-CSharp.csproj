@@ -80,6 +80,7 @@
     <Compile Include="Assets/PluginYourGames/Modules/Storage/Scripts/Storage_info.cs" />
     <Compile Include="Assets/Scripts/EnemyMovement.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Platform/PlatformSettings.cs" />
+    <Compile Include="Assets/Scripts/HelperMovement.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Payments/Scripts/Payments_callingSimulation.cs" />
     <Compile Include="Assets/UsedAssets/Fries and Seagull/City 03/Scene Props/Scripts/Inspector/AButtonAttribute.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Server/ServerJson.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="Assets/PluginYourGames/Modules/Authorization/Scripts/Auth_yandexPlatform.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Authorization/Scripts/Auth_interface.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Utils/LocalStorage_yg.cs" />
+    <Compile Include="Assets/Scripts/HoleCollectorMovement.cs" />
     <Compile Include="Assets/PluginYourGames/Example/Scripts/Scenes/DemoSceneLoadButton.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Flags/Scripts/Flags_yg.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Localization/Example/Scripts/EnvirLangExample.cs" />

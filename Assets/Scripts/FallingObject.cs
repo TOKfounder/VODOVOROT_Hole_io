@@ -14,6 +14,7 @@ public class FallingObject : MonoBehaviour
 	private Quaternion startRotation;
 	private Rigidbody rb;
 	private Collider col;
+	private Collider[] objectColliders;
 	private Coroutine myCoroutine;
 	private readonly System.Collections.Generic.List<HoleParent> candidateHoles =
 		new System.Collections.Generic.List<HoleParent>(4);
@@ -40,15 +41,14 @@ public class FallingObject : MonoBehaviour
 		{
 			Destroy(GetComponent<FallingObject>());
 		}
-}
+
+		CacheObjectColliders();
+	}
 
 	void Start()
 	{
 		gameObject.layer = 7;
-		foreach (var plat in VodovorotGameManager.allPlatforms)
-		{
-			Physics.IgnoreCollision(plat, col, true);
-		}
+		IgnoreAllRegisteredPlatforms();
 		size = GetVisualSize();
 		V3 = size.x * size.y * size.z;
 		startPosition = GetComponent<Transform>().position;
@@ -301,7 +301,7 @@ public class FallingObject : MonoBehaviour
 
 	private float GetDistanceToHoleCenterSqr(HoleParent hole)
 	{
-		Vector3 delta = transform.position - hole.transform.position;
+		Vector3 delta = transform.position - GetHoleReferencePoint(hole);
 		delta.y = 0f;
 		return delta.sqrMagnitude;
 	}
@@ -311,18 +311,69 @@ public class FallingObject : MonoBehaviour
 	/// </summary>
 	private void UpdatePlatformCollisions()
 	{
-		foreach (var plat in VodovorotGameManager.allPlatforms)
-		{
-			if (plat == null)
-				continue;
-
-			Physics.IgnoreCollision(plat, col, true);
-		}
+		IgnoreAllRegisteredPlatforms();
+		SetHolePlatformCollisions(CurrentHole, false);
 
 		if (CurrentHole != null && CurrentHole.platform != null)
 		{
-			Physics.IgnoreCollision(CurrentHole.platform, col, false);
 			Debug.Log($"[FallingObject] Выбрана дыра {CurrentHole.name}, коллизия включена с {CurrentHole.platform.name}");
 		}
+	}
+
+	private void CacheObjectColliders()
+	{
+		objectColliders = GetComponentsInChildren<Collider>();
+	}
+
+	private void IgnoreAllRegisteredPlatforms()
+	{
+		foreach (var plat in VodovorotGameManager.allPlatforms)
+		{
+			SetCollisionWithCollider(plat, true);
+		}
+
+		for (int i = 0; i < HoleParent.holeList.Count; i++)
+		{
+			SetHolePlatformCollisions(HoleParent.holeList[i], true);
+		}
+	}
+
+	private void SetHolePlatformCollisions(HoleParent hole, bool ignore)
+	{
+		if (hole == null)
+			return;
+
+		Collider[] holeColliders = hole.GetComponentsInChildren<Collider>();
+		for (int i = 0; i < holeColliders.Length; i++)
+		{
+			Collider holeCollider = holeColliders[i];
+			if (holeCollider == null || holeCollider.isTrigger)
+				continue;
+
+			SetCollisionWithCollider(holeCollider, ignore);
+		}
+	}
+
+	private void SetCollisionWithCollider(Collider targetCollider, bool ignore)
+	{
+		if (targetCollider == null || objectColliders == null)
+			return;
+
+		for (int i = 0; i < objectColliders.Length; i++)
+		{
+			Collider objectCollider = objectColliders[i];
+			if (objectCollider == null || objectCollider == targetCollider)
+				continue;
+
+			Physics.IgnoreCollision(targetCollider, objectCollider, ignore);
+		}
+	}
+
+	private Vector3 GetHoleReferencePoint(HoleParent hole)
+	{
+		if (hole != null && hole.platform != null)
+			return hole.platform.bounds.center;
+
+		return hole != null ? hole.transform.position : transform.position;
 	}
 }

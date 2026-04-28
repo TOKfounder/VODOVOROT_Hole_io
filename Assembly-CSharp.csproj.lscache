@@ -229,6 +229,8 @@ Assets/Scripts/
  GameController.cs
  GamingManager.cs
  HelperController.cs
+ HelperMovement.cs
+ HoleCollectorMovement.cs
  HoleParent.cs
  HorizontalLayout3D.cs
  LanguageManager.cs

@@ -62,13 +62,15 @@ public class SpawnerOfHelpers : MonoBehaviour
     /// <summary>
     /// Вызывается из BlackHoleController, когда нужно заспавнить хелпера рядом с колоном
     /// </summary>
-    public void SpawnHelper(Transform colonTransform)
+    public void SpawnHelper(Transform colonTransform, BlackHoleController owner, int startingScore)
     {
         GameObject helper = helperPool.Get();
         helper.transform.position = colonTransform.position + Vector3.up * 0.5f;
         helper.transform.rotation = Quaternion.identity;
 
-        // Можно добавить логику хелпера позже (HelperController)
+        HelperController helperController = helper.GetComponent<HelperController>();
+        if (helperController != null)
+            helperController.Initialize(owner, startingScore);
     }
 
     // Если понадобится вернуть объекты в пул вручную
