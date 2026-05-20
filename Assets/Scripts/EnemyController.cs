@@ -12,8 +12,8 @@ public class EnemyController : HoleParent
 
 	public override void Start()
 	{
-		base.Start();
 		holeType = TypeOfHole.enemy;
+		base.Start();
 		// if (ModeManager.currentMode == ModeManager.Mode.Boss)
 		// {
 		// 	score = bossScore;

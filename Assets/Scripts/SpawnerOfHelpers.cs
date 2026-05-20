@@ -54,9 +54,9 @@ public class SpawnerOfHelpers : MonoBehaviour
         colon.transform.position = new Vector3(randomX, 0f, randomZ);
         colon.transform.rotation = Quaternion.identity;
 
-        // Добавляем FallingObject с флагом isColon = true
-        FallingObject fo = colon.GetComponent<FallingObject>();
-        if (fo != null) fo.isColon = true;
+        FallingObject fo = colon.GetComponentInChildren<FallingObject>();
+        if (fo != null)
+            fo.PrepareForSpawn(true);
     }
 
     /// <summary>
@@ -67,6 +67,10 @@ public class SpawnerOfHelpers : MonoBehaviour
         GameObject helper = helperPool.Get();
         helper.transform.position = colonTransform.position + Vector3.up * 0.5f;
         helper.transform.rotation = Quaternion.identity;
+
+        FallingObject helperFallingObject = helper.GetComponentInChildren<FallingObject>(true);
+        if (helperFallingObject != null)
+            helperFallingObject.PrepareForSpawn(false);
 
         HelperController helperController = helper.GetComponent<HelperController>();
         if (helperController != null)

@@ -154,15 +154,9 @@ public class FallingObject : MonoBehaviour
 
 	public void ResetToStart()
 	{
+		ResetRuntimeState();
 		transform.position = startPosition;
 		transform.rotation = startRotation;
-		rb.isKinematic = true;
-		isTriggered = false;
-		col.enabled = true;
-		rend.enabled = true;
-		candidateHoles.Clear();
-		if (myCoroutine != null) StopCoroutine(myCoroutine);
-
 		SetCurrentHole(null);
 	}
 
@@ -171,13 +165,10 @@ public class FallingObject : MonoBehaviour
 		hole.AddScore(value);
 		value = 0;
 
-		rb.isKinematic = true;
+		ResetRuntimeState();
 		col.enabled = false;
 		rend.enabled = false;
-		candidateHoles.Clear();
 		SetCurrentHole(null);
-
-		if (myCoroutine != null) StopCoroutine(myCoroutine);
 
 		// Если это колón и его съел игрок — спавним Helper
 		if (isColon && hole is BlackHoleController playerHole)
@@ -285,14 +276,15 @@ public class FallingObject : MonoBehaviour
 			if (myCoroutine != null) StopCoroutine(myCoroutine);
 			myCoroutine = StartCoroutine(DelayForUpdateCurrentHole());
 		}
-
-		Debug.Log($"[FallingObject] Активировано падение в {CurrentHole.name}");
 	}
 
 	private bool CanBeEatenBy(HoleParent hole)
 	{
 		if (hole == null)
 			return false;
+
+		if (isColon)
+			return hole.holeType == HoleParent.TypeOfHole.player;
 
 		return hole.holeType == HoleParent.TypeOfHole.enemy
 			? Tool.CanFitForEnemies(size, hole.size)
@@ -313,11 +305,6 @@ public class FallingObject : MonoBehaviour
 	{
 		IgnoreAllRegisteredPlatforms();
 		SetHolePlatformCollisions(CurrentHole, false);
-
-		if (CurrentHole != null && CurrentHole.platform != null)
-		{
-			Debug.Log($"[FallingObject] Выбрана дыра {CurrentHole.name}, коллизия включена с {CurrentHole.platform.name}");
-		}
 	}
 
 	private void CacheObjectColliders()
@@ -366,6 +353,37 @@ public class FallingObject : MonoBehaviour
 				continue;
 
 			Physics.IgnoreCollision(targetCollider, objectCollider, ignore);
+		}
+	}
+
+	public void PrepareForSpawn(bool colon)
+	{
+		isColon = colon;
+		ResetRuntimeState();
+		SetCurrentHole(null);
+	}
+
+	private void ResetRuntimeState()
+	{
+		if (rb != null && !rb.isKinematic)
+		{
+			rb.linearVelocity = Vector3.zero;
+			rb.angularVelocity = Vector3.zero;
+		}
+
+		rb.isKinematic = true;
+		rb.useGravity = true;
+		rb.detectCollisions = true;
+		rb.Sleep();
+		isTriggered = false;
+		col.enabled = true;
+		rend.enabled = true;
+		candidateHoles.Clear();
+
+		if (myCoroutine != null)
+		{
+			StopCoroutine(myCoroutine);
+			myCoroutine = null;
 		}
 	}
 
