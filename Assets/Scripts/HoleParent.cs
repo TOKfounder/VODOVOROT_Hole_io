@@ -33,13 +33,14 @@ public class HoleParent : MonoBehaviour
     protected float[] scoreRequired = { 0, 26, 163, 795, 1779, 3703, 5127, 8751, 11375, 13000, 15000 };
     protected float[] levelScales = { 0.41f, 0.81f, 1.61f, 2.41f, 4.1f, 6f, 8f, 10f, 12f, 13.5f, 67f };
 
-    public int score { get; set; }           // сделано property для удобства
+    public int score;
 
     protected Vector3 targetScale;
     protected float scaleLerpSpeed = 8f;             // увеличил скорость сглаживания
     private float radius;
 
     private bool isInitialized = false;
+    private bool keepScoreOnStart = false;
 
     protected virtual void Awake()
     {
@@ -64,7 +65,9 @@ public class HoleParent : MonoBehaviour
     public virtual void Start()
     {
         holeList.Add(this);
-        score = 0;
+        if (!keepScoreOnStart)
+            score = 0;
+        keepScoreOnStart = false;
         isInitialized = true;
 
         if (YG2.envir.isMobile)
@@ -132,19 +135,37 @@ public class HoleParent : MonoBehaviour
     }
 
     // Вызывается только когда score реально изменился
-    public void AddScore(int amount)
+    public virtual void AddScore(int amount)
     {
-        if (amount <= 0) return;
+        ApplyScoreChange(amount, true, true, true);
+    }
+
+    protected void ApplyScoreChange(int amount, bool addToWorldProgress, bool showPointEffect, bool saveProgress)
+    {
+        if (amount <= 0)
+            return;
 
         score += amount;
-        totalScore += amount;
 
-        CreatePointEffect(amount);   // используем пул
+        if (addToWorldProgress)
+            totalScore += amount;
 
-        // Обновляем уровень и размер только при изменении счёта
+        if (showPointEffect)
+            CreatePointEffect(amount);
+
         UpdateSize();
+        OnScoreChanged();
 
-        VodovorotGameManager.Instance.SaveProgress();
+        if (saveProgress && VodovorotGameManager.Instance != null)
+            VodovorotGameManager.Instance.SaveProgress();
+    }
+
+    public void InitializeScore(int initialScore, bool snapScale = true)
+    {
+        score = Mathf.Max(0, initialScore);
+        keepScoreOnStart = true;
+        UpdateSize(snapScale);
+        OnScoreChanged();
     }
 
     private void CreatePointEffect(int amount)
@@ -167,7 +188,7 @@ public class HoleParent : MonoBehaviour
             Debug.LogError("PointsScript не найден на префабе +очков!");
     }
 
-    private void UpdateSize()
+    protected void UpdateSize(bool snapScale = false)
     {
         currentLevel = GetCurrentLevel(scoreRequired);
 
@@ -184,6 +205,9 @@ public class HoleParent : MonoBehaviour
 
         float scale = levelScales[currentLevel];
         targetScale = new Vector3(scale, scale * 4.508031f, scale);
+
+        if (snapScale)
+            transform.localScale = targetScale;
 
         size = GetVisualSizeOfHole();
         radius = (size.x + size.z) / 2f;

@@ -1143,9 +1143,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6687789161432433321}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8c538782fbfcef42a12853034139283, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f93522c3c784251b95954118c7d92f6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
+  m_EditorClassIdentifier: Assembly-CSharp::HelperMovement
   withoutCamera: {fileID: 4554613436065531620}
   rotationSpeed: 30
   detectionRadius: 500
@@ -1153,6 +1153,8 @@ MonoBehaviour:
   fallableObjects:
     serializedVersion: 2
     m_Bits: 128
+  followSpeed: 8
+  minDistanceToOwner: 3
   levelSpeeds:
   - 6
   - 6.89

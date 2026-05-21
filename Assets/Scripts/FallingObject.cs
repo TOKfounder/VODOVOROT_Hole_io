@@ -14,6 +14,7 @@ public class FallingObject : MonoBehaviour
 	private Quaternion startRotation;
 	private Rigidbody rb;
 	private Collider col;
+	private Collider[] objectColliders;
 	private Coroutine myCoroutine;
 	private readonly System.Collections.Generic.List<HoleParent> candidateHoles =
 		new System.Collections.Generic.List<HoleParent>(4);
@@ -40,59 +41,15 @@ public class FallingObject : MonoBehaviour
 		{
 			Destroy(GetComponent<FallingObject>());
 		}
+
+		CacheObjectColliders();
 }
 
 	void Start()
 	{
 		gameObject.layer = 7;
-		foreach (var plat in VodovorotGameManager.allPlatforms)
-		{
-			Physics.IgnoreCollision(plat, col, true);
-		}
-		size = GetVisualSize();
-		V3 = size.x * size.y * size.z;
-		startPosition = GetComponent<Transform>().position;
-		startRotation = GetComponent<Transform>().rotation;
-		// Physics.IgnoreLayerCollision(7, 0, true);
-		if (V3 <= 0.087f)
-		{
-			value = 1;
-		}
-		else if (V3 <= 0.51f)
-		{
-			value = 2;
-		}
-		else if (V3 <= 10.63f)
-		{
-			value = 3;
-		}
-		else if (V3 <= 20f)
-		{
-			value = 5;
-		}
-		else if (V3 <= 60f)
-		{
-			value = 10;
-		}
-		else if (V3 <= 100f)
-		{
-			value = 25;
-		}
-		else if (V3 <= 250f)
-		{
-			value = 40;
-		}
-		else if (V3 <= 860f)
-		{
-			value = 60;
-		}
-		else
-		{
-			value = 100;
-		}
-		rb.mass = V3 * 50;
-		rb.linearDamping = 4;
-		rb.angularDamping = 4;
+		IgnoreAllRegisteredPlatforms();
+		RefreshSpawnStats();
 		VodovorotGameManager.Instance.GamingManager.AllValues += value;
 	}
 
@@ -134,6 +91,14 @@ public class FallingObject : MonoBehaviour
 		candidateHoles.Remove(hole);
 	}
 
+	public void PrepareForSpawn(bool colon)
+	{
+		isColon = colon;
+		ResetRuntimeState();
+		RefreshSpawnStats();
+		SetCurrentHole(null);
+	}
+
 	private Vector3 GetVisualSize()
 	{
 		Bounds totalBounds = new Bounds(transform.position, Vector3.zero);
@@ -149,6 +114,74 @@ public class FallingObject : MonoBehaviour
 			totalBounds.Encapsulate(renderer.bounds);
 		}
 		return totalBounds.size;
+	}
+
+	private void ResetRuntimeState()
+	{
+		rb.isKinematic = true;
+		rb.useGravity = true;
+		rb.detectCollisions = true;
+		rb.linearVelocity = Vector3.zero;
+		rb.angularVelocity = Vector3.zero;
+		isTriggered = false;
+		col.enabled = true;
+		rend.enabled = true;
+		candidateHoles.Clear();
+
+		if (myCoroutine != null)
+		{
+			StopCoroutine(myCoroutine);
+			myCoroutine = null;
+		}
+	}
+
+	private void RefreshSpawnStats()
+	{
+		size = GetVisualSize();
+		V3 = size.x * size.y * size.z;
+		startPosition = transform.position;
+		startRotation = transform.rotation;
+
+		if (V3 <= 0.087f)
+		{
+			value = 1;
+		}
+		else if (V3 <= 0.51f)
+		{
+			value = 2;
+		}
+		else if (V3 <= 10.63f)
+		{
+			value = 3;
+		}
+		else if (V3 <= 20f)
+		{
+			value = 5;
+		}
+		else if (V3 <= 60f)
+		{
+			value = 10;
+		}
+		else if (V3 <= 100f)
+		{
+			value = 25;
+		}
+		else if (V3 <= 250f)
+		{
+			value = 40;
+		}
+		else if (V3 <= 860f)
+		{
+			value = 60;
+		}
+		else
+		{
+			value = 100;
+		}
+
+		rb.mass = V3 * 50;
+		rb.linearDamping = 4;
+		rb.angularDamping = 4;
 	}
 
 
@@ -196,6 +229,55 @@ public class FallingObject : MonoBehaviour
 			return;
 
 		candidateHoles.Add(hole);
+	}
+
+	private void CacheObjectColliders()
+	{
+		objectColliders = GetComponentsInChildren<Collider>(true);
+	}
+
+	private void IgnoreAllRegisteredPlatforms()
+	{
+		foreach (var plat in VodovorotGameManager.allPlatforms)
+		{
+			SetCollisionWithCollider(plat, true);
+		}
+
+		for (int i = 0; i < HoleParent.holeList.Count; i++)
+		{
+			SetHolePlatformCollisions(HoleParent.holeList[i], true);
+		}
+	}
+
+	private void SetHolePlatformCollisions(HoleParent hole, bool ignore)
+	{
+		if (hole == null)
+			return;
+
+		Collider[] holeColliders = hole.GetComponentsInChildren<Collider>(true);
+		for (int i = 0; i < holeColliders.Length; i++)
+		{
+			Collider holeCollider = holeColliders[i];
+			if (holeCollider == null || holeCollider.isTrigger)
+				continue;
+
+			SetCollisionWithCollider(holeCollider, ignore);
+		}
+	}
+
+	private void SetCollisionWithCollider(Collider targetCollider, bool ignore)
+	{
+		if (targetCollider == null || objectColliders == null)
+			return;
+
+		for (int i = 0; i < objectColliders.Length; i++)
+		{
+			Collider objectCollider = objectColliders[i];
+			if (objectCollider == null || objectCollider == targetCollider)
+				continue;
+
+			Physics.IgnoreCollision(targetCollider, objectCollider, ignore);
+		}
 	}
 
 	private void CleanupCandidateHoles()
@@ -285,14 +367,15 @@ public class FallingObject : MonoBehaviour
 			if (myCoroutine != null) StopCoroutine(myCoroutine);
 			myCoroutine = StartCoroutine(DelayForUpdateCurrentHole());
 		}
-
-		Debug.Log($"[FallingObject] Активировано падение в {CurrentHole.name}");
 	}
 
 	private bool CanBeEatenBy(HoleParent hole)
 	{
 		if (hole == null)
 			return false;
+
+		if (isColon)
+			return hole.holeType == HoleParent.TypeOfHole.player;
 
 		return hole.holeType == HoleParent.TypeOfHole.enemy
 			? Tool.CanFitForEnemies(size, hole.size)
@@ -301,7 +384,7 @@ public class FallingObject : MonoBehaviour
 
 	private float GetDistanceToHoleCenterSqr(HoleParent hole)
 	{
-		Vector3 delta = transform.position - hole.transform.position;
+		Vector3 delta = transform.position - GetHoleReferencePoint(hole);
 		delta.y = 0f;
 		return delta.sqrMagnitude;
 	}
@@ -311,18 +394,15 @@ public class FallingObject : MonoBehaviour
 	/// </summary>
 	private void UpdatePlatformCollisions()
 	{
-		foreach (var plat in VodovorotGameManager.allPlatforms)
-		{
-			if (plat == null)
-				continue;
+		IgnoreAllRegisteredPlatforms();
+		SetHolePlatformCollisions(CurrentHole, false);
+	}
 
-			Physics.IgnoreCollision(plat, col, true);
-		}
+	private Vector3 GetHoleReferencePoint(HoleParent hole)
+	{
+		if (hole != null && hole.platform != null)
+			return hole.platform.bounds.center;
 
-		if (CurrentHole != null && CurrentHole.platform != null)
-		{
-			Physics.IgnoreCollision(CurrentHole.platform, col, false);
-			Debug.Log($"[FallingObject] Выбрана дыра {CurrentHole.name}, коллизия включена с {CurrentHole.platform.name}");
-		}
+		return hole != null ? hole.transform.position : transform.position;
 	}
 }

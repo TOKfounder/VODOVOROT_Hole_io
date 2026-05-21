@@ -23,6 +23,11 @@ public class BlackHoleController : HoleParent
     // Вызывается из FallingObject, когда колón поглощён игроком
     public void OnColonAbsorbed(Transform colonTransform)
     {
-        spawnerOfHelpers?.SpawnHelper(colonTransform);
+        spawnerOfHelpers?.SpawnHelper(colonTransform, this, score);
+    }
+
+    public void ReceiveHelperScore(int amount, bool saveProgress = true)
+    {
+        ApplyScoreChange(amount, false, true, saveProgress);
     }
 }

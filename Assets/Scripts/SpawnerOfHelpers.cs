@@ -26,8 +26,13 @@ public class SpawnerOfHelpers : MonoBehaviour
             false, 30, 60);
 
         helperPool = new ObjectPool<GameObject>(
-            () => Instantiate(helperPrefab, transform),
-            obj => obj.SetActive(true),
+            () =>
+            {
+                GameObject obj = Instantiate(helperPrefab, transform);
+                obj.SetActive(false);
+                return obj;
+            },
+            obj => obj.SetActive(false),
             obj => obj.SetActive(false),
             obj => Destroy(obj),
             false, 10, 30);
@@ -55,20 +60,29 @@ public class SpawnerOfHelpers : MonoBehaviour
         colon.transform.rotation = Quaternion.identity;
 
         // Добавляем FallingObject с флагом isColon = true
-        FallingObject fo = colon.GetComponent<FallingObject>();
-        if (fo != null) fo.isColon = true;
+        FallingObject fo = colon.GetComponentInChildren<FallingObject>(true);
+        if (fo != null)
+            fo.PrepareForSpawn(true);
     }
 
     /// <summary>
     /// Вызывается из BlackHoleController, когда нужно заспавнить хелпера рядом с колоном
     /// </summary>
-    public void SpawnHelper(Transform colonTransform)
+    public void SpawnHelper(Transform colonTransform, BlackHoleController owner, int startingScore)
     {
         GameObject helper = helperPool.Get();
-        helper.transform.position = colonTransform.position + Vector3.up * 0.5f;
+        helper.transform.position = new Vector3(colonTransform.position.x, 0.164f, colonTransform.position.z);
         helper.transform.rotation = Quaternion.identity;
 
-        // Можно добавить логику хелпера позже (HelperController)
+        FallingObject helperFallingObject = helper.GetComponentInChildren<FallingObject>(true);
+        if (helperFallingObject != null)
+            helperFallingObject.PrepareForSpawn(false);
+
+        HelperController helperController = helper.GetComponent<HelperController>();
+        if (helperController != null)
+            helperController.Initialize(owner, startingScore);
+
+        helper.SetActive(true);
     }
 
     // Если понадобится вернуть объекты в пул вручную
