@@ -77,7 +77,7 @@ public class EnemyMovement : MonoBehaviour
             var fo = hit.GetComponentInParent<FallingObject>();
             if (fo == null) continue;
 
-            if (Tool.CanFitForEnemies(fo.size, enemyController.size))
+            if (Tool.CanFitForHelperAndEnemies(fo.size, enemyController.GetFitSize()))
             {
                 float dist = Vector3.Distance(transform.position, hit.transform.position);
                 if (dist < closestDist)

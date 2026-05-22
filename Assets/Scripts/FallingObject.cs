@@ -378,8 +378,8 @@ public class FallingObject : MonoBehaviour
 			return hole.holeType == HoleParent.TypeOfHole.player;
 
 		return hole.holeType == HoleParent.TypeOfHole.enemy
-			? Tool.CanFitForEnemies(size, hole.size)
-			: Tool.CanFit2D(size, hole.size);
+			? Tool.CanFitForHelperAndEnemies(size, hole.GetFitSize())
+			: Tool.CanFit2D(size, hole.GetFitSize());
 	}
 
 	private float GetDistanceToHoleCenterSqr(HoleParent hole)

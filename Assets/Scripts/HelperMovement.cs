@@ -14,7 +14,9 @@ public class HelperMovement : MonoBehaviour
 
     [Header("Follow Settings")]
     public float followSpeed = 8f;
-    public float minDistanceToOwner = 3f;
+
+    [Header("Target Switching")]
+    public float targetHoldTimeout = 4f;
 
     [Header("Speeds")]
     public float[] levelSpeeds = { 6f, 6.89f, 7.78f, 8.67f, 9.56f, 10.44f, 13.83f, 15.22f, 20f, 25f };
@@ -22,7 +24,6 @@ public class HelperMovement : MonoBehaviour
     private Transform currentTarget;
     private Rigidbody rb;
     private HelperController helperController;
-    private Transform ownerTransform;
 
     private Transform ignoredTarget;
     private float ignoreCooldown;
@@ -32,9 +33,6 @@ public class HelperMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         helperController = GetComponentInParent<HelperController>();
-        ownerTransform = helperController != null && helperController.Owner != null
-            ? helperController.Owner.transform
-            : null;
 
         rb.angularDamping = 3f;
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
@@ -53,13 +51,8 @@ public class HelperMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (ownerTransform == null && helperController != null && helperController.Owner != null)
-            ownerTransform = helperController.Owner.transform;
-
         if (currentTarget != null)
             MoveToTarget();
-        else
-            FollowOwner();
 
         if (ignoredTarget != null)
         {
@@ -109,7 +102,7 @@ public class HelperMovement : MonoBehaviour
 
     private bool CanCollectTarget(FallingObject target)
     {
-        return helperController != null && Tool.CanFit2D(target.size, helperController.size);
+        return helperController != null && Tool.CanFitForHelperAndEnemies(target.size, helperController.GetFitSize());
     }
 
     private void MoveToTarget()
@@ -141,30 +134,6 @@ public class HelperMovement : MonoBehaviour
         rb.MovePosition(newPosition);
     }
 
-    private void FollowOwner()
-    {
-        if (ownerTransform == null)
-            return;
-
-        Vector3 direction = ownerTransform.position - transform.position;
-        direction.y = 0f;
-
-        if (direction.magnitude <= minDistanceToOwner)
-            return;
-
-        Vector3 moveDir = direction.normalized;
-        Quaternion targetRotation = Quaternion.LookRotation(moveDir);
-        if (withoutCamera != null)
-        {
-            withoutCamera.transform.rotation = Quaternion.Slerp(
-                withoutCamera.transform.rotation,
-                targetRotation,
-                rotationSpeed * Time.fixedDeltaTime);
-        }
-
-        rb.MovePosition(rb.position + moveDir * followSpeed * Time.fixedDeltaTime);
-    }
-
     private void ClampToBounds(ref Vector3 newPosition)
     {
         if (VodovorotGameManager.Instance == null || VodovorotGameManager.Instance.GamingManager == null)
@@ -182,7 +151,7 @@ public class HelperMovement : MonoBehaviour
     {
         stuckTimer += searchInterval;
 
-        if (stuckTimer >= 3.5f)
+        if (stuckTimer >= targetHoldTimeout)
         {
             ignoredTarget = currentTarget;
             ignoreCooldown = 0f;

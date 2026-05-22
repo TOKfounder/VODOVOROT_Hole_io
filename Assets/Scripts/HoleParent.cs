@@ -44,6 +44,9 @@ public class HoleParent : MonoBehaviour
 
     protected virtual void Awake()
     {
+        if (border == null)
+            border = GetComponentInChildren<Image>(true);
+
 		if (VodovorotGameManager.Instance != null)
 		    // можно добавить ссылку, если нужно
 		
@@ -65,8 +68,6 @@ public class HoleParent : MonoBehaviour
     public virtual void Start()
     {
         holeList.Add(this);
-        if (!keepScoreOnStart)
-            score = 0;
         keepScoreOnStart = false;
         isInitialized = true;
 
@@ -82,6 +83,15 @@ public class HoleParent : MonoBehaviour
 
         if (pointsContainer == null && mainCanvas != null)
             pointsContainer = mainCanvas.transform.Find("PointsContainer");
+    }
+
+    private void OnValidate()
+    {
+        if (Application.isPlaying)
+            return;
+
+        if (hole != null)
+            UpdateSize(true);
     }
 
     private void OnDestroy()
@@ -137,7 +147,7 @@ public class HoleParent : MonoBehaviour
     // Вызывается только когда score реально изменился
     public virtual void AddScore(int amount)
     {
-        ApplyScoreChange(amount, true, true, true);
+        ApplyScoreChange(amount, true, ShouldShowPointEffect(), true);
     }
 
     protected void ApplyScoreChange(int amount, bool addToWorldProgress, bool showPointEffect, bool saveProgress)
@@ -192,15 +202,18 @@ public class HoleParent : MonoBehaviour
     {
         currentLevel = GetCurrentLevel(scoreRequired);
 
-        if (currentLevel == 10)
+        if (border != null)
         {
-            border.fillAmount = 1f;
-        }
-        else
-        {
-            float prev = scoreRequired[currentLevel];
-            float next = scoreRequired[currentLevel + 1];
-            border.fillAmount = (score - prev) / (next - prev);
+            if (currentLevel == 10)
+            {
+                border.fillAmount = 1f;
+            }
+            else
+            {
+                float prev = scoreRequired[currentLevel];
+                float next = scoreRequired[currentLevel + 1];
+                border.fillAmount = (score - prev) / (next - prev);
+            }
         }
 
         float scale = levelScales[currentLevel];
@@ -231,6 +244,14 @@ public class HoleParent : MonoBehaviour
         return totalBound.size;
     }
 
+    public Vector3 GetFitSize()
+    {
+        if (holeType == TypeOfHole.player)
+            return size;
+
+        return size * 0.9f;
+    }
+
     public bool IsInHole(Vector3 objPos)
     {
         float dx = objPos.x - transform.position.x;
@@ -240,6 +261,11 @@ public class HoleParent : MonoBehaviour
 
     // Для дочерних классов (BlackHoleController, EnemyController)
     protected virtual void OnScoreChanged() { }
+
+    protected virtual bool ShouldShowPointEffect()
+    {
+        return holeType == TypeOfHole.player || holeType == TypeOfHole.playerHelper;
+    }
 
     public void ReturnPointsToPool(GameObject pointsObject)
     {

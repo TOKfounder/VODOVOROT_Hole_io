@@ -15,16 +15,18 @@ public class HelperController : HoleParent
     {
         base.Start();
         holeType = TypeOfHole.playerHelper;
-
-        // Helpers не должны иметь бордер и nickname
-        if (border != null) border.gameObject.SetActive(false);
     }
 
     public void Initialize(BlackHoleController owner, int startingScore)
     {
         Owner = owner;
         holeType = TypeOfHole.playerHelper;
-        InitializeScore(startingScore);
+        if (border == null)
+            border = GetComponentInChildren<UnityEngine.UI.Image>(true);
+        if (border != null)
+            border.gameObject.SetActive(true);
+        int spawnScore = startingScore > 0 ? startingScore : score;
+        InitializeScore(spawnScore);
         transform.localScale = targetScale;
 
         if (nickname != null)
@@ -42,7 +44,7 @@ public class HelperController : HoleParent
         if (amount <= 0)
             return;
 
-        ApplyScoreChange(amount, true, true, false);
+        ApplyScoreChange(amount, true, ShouldShowPointEffect(), false);
         Owner?.ReceiveHelperScore(amount, false);
 
         if (VodovorotGameManager.Instance != null)
