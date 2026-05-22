@@ -293,6 +293,7 @@ public class FallingObject : MonoBehaviour
 	{
 		HoleParent bestHole = null;
 		float bestDistanceSqr = float.PositiveInfinity;
+		int bestPriority = int.MaxValue;
 
 		for (int i = 0; i < candidateHoles.Count; i++)
 		{
@@ -300,9 +301,11 @@ public class FallingObject : MonoBehaviour
 			if (!CanBeEatenBy(hole))
 				continue;
 
+			int holePriority = GetHolePriority(hole);
 			float distanceSqr = GetDistanceToHoleCenterSqr(hole);
-			if (distanceSqr < bestDistanceSqr)
+			if (holePriority < bestPriority || (holePriority == bestPriority && distanceSqr < bestDistanceSqr))
 			{
+				bestPriority = holePriority;
 				bestDistanceSqr = distanceSqr;
 				bestHole = hole;
 			}
@@ -335,8 +338,23 @@ public class FallingObject : MonoBehaviour
 		if (!CanBeEatenBy(CurrentHole))
 			return true;
 
+		int bestPriority = GetHolePriority(bestHole);
+		int currentPriority = GetHolePriority(CurrentHole);
+		if (bestPriority < currentPriority)
+			return true;
+		if (bestPriority > currentPriority)
+			return false;
+
 		float currentDistanceSqr = GetDistanceToHoleCenterSqr(CurrentHole);
 		return bestDistanceSqr <= currentDistanceSqr * SwitchImprovementFactorSqr;
+	}
+
+	private int GetHolePriority(HoleParent hole)
+	{
+		if (hole == null)
+			return int.MaxValue;
+
+		return hole.holeType == HoleParent.TypeOfHole.player ? 0 : 1;
 	}
 
 	private void SetCurrentHole(HoleParent newHole)

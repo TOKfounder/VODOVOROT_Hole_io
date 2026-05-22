@@ -22,6 +22,7 @@ public class HelperMovement : MonoBehaviour
     public float[] levelSpeeds = { 6f, 6.89f, 7.78f, 8.67f, 9.56f, 10.44f, 13.83f, 15.22f, 20f, 25f };
 
     private Transform currentTarget;
+    private FallingObject currentTargetObject;
     private Rigidbody rb;
     private HelperController helperController;
 
@@ -71,21 +72,23 @@ public class HelperMovement : MonoBehaviour
 
         float closestDist = Mathf.Infinity;
         Transform bestTarget = null;
+        FallingObject bestTargetObject = null;
 
         foreach (var hit in hitColliders)
         {
-            if (hit.transform == ignoredTarget) continue;
-
             var fo = hit.GetComponentInParent<FallingObject>();
             if (fo == null) continue;
 
+            if (fo.transform == ignoredTarget) continue;
+
             if (!CanCollectTarget(fo)) continue;
 
-            float dist = Vector3.Distance(transform.position, hit.transform.position);
+            float dist = Vector3.Distance(transform.position, GetTargetCenter(fo));
             if (dist < closestDist)
             {
                 closestDist = dist;
-                bestTarget = hit.transform;
+                bestTarget = fo.transform;
+                bestTargetObject = fo;
             }
         }
 
@@ -96,6 +99,7 @@ public class HelperMovement : MonoBehaviour
         else
         {
             currentTarget = bestTarget;
+            currentTargetObject = bestTargetObject;
             stuckTimer = 0f;
         }
     }
@@ -107,12 +111,13 @@ public class HelperMovement : MonoBehaviour
 
     private void MoveToTarget()
     {
-        Vector3 dir = currentTarget.position - transform.position;
+        Vector3 dir = GetTargetCenter(currentTargetObject) - transform.position;
         dir.y = 0;
 
-        if (dir.magnitude < transform.localScale.x * 0.5f)
+        if (dir.magnitude <= transform.localScale.x * 0.5f)
         {
             currentTarget = null;
+            currentTargetObject = null;
             return;
         }
 
@@ -156,7 +161,27 @@ public class HelperMovement : MonoBehaviour
             ignoredTarget = currentTarget;
             ignoreCooldown = 0f;
             currentTarget = null;
+            currentTargetObject = null;
             stuckTimer = 0f;
         }
+    }
+
+    private Vector3 GetTargetCenter(FallingObject target)
+    {
+        if (target != null && target.rend != null)
+            return target.rend.bounds.center;
+
+        return target != null ? target.transform.position : transform.position;
+    }
+
+    private float GetContactRadius(FallingObject target)
+    {
+        if (helperController == null || target == null)
+            return transform.localScale.x * 0.5f;
+
+        Vector3 helperSize = helperController.GetFitSize();
+        float helperRadius = Mathf.Max(helperSize.x, helperSize.z) * 0.5f;
+        float targetRadius = Mathf.Max(target.size.x, target.size.z) * 0.5f;
+        return helperRadius + targetRadius;
     }
 }
