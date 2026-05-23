@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Pool;
+using YG;
 
 public class SpawnerOfHelpers : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class SpawnerOfHelpers : MonoBehaviour
     // Пулы
     private ObjectPool<GameObject> colonPool;
     private ObjectPool<GameObject> helperPool;
+    private int helperSpawnCount;
 
     private void Awake()
     {
@@ -40,6 +42,8 @@ public class SpawnerOfHelpers : MonoBehaviour
 
     private void Start()
     {
+        helperSpawnCount = 0;
+
         // Предспавним колоны при старте уровня
         for (int i = 0; i < countOfColon; i++)
         {
@@ -70,6 +74,7 @@ public class SpawnerOfHelpers : MonoBehaviour
     /// </summary>
     public void SpawnHelper(Transform colonTransform, BlackHoleController owner, int startingScore)
     {
+        helperSpawnCount++;
         GameObject helper = helperPool.Get();
         helper.transform.position = new Vector3(colonTransform.position.x, 0.164f, colonTransform.position.z);
         helper.transform.rotation = Quaternion.identity;
@@ -80,7 +85,12 @@ public class SpawnerOfHelpers : MonoBehaviour
 
         HelperController helperController = helper.GetComponent<HelperController>();
         if (helperController != null)
-            helperController.Initialize(owner, startingScore);
+        {
+            string helperName = YG2.saves.langRu
+                ? $"Помощник {helperSpawnCount}"
+                : $"Helper {helperSpawnCount}";
+            helperController.Initialize(owner, startingScore, helperName);
+        }
 
         helper.SetActive(true);
     }

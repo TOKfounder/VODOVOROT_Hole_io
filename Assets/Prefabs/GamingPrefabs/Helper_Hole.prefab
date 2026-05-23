@@ -1013,6 +1013,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   followSpeed: 8
+  targetHoldTimeout: 4
+  targetOvershootFactor: 0.75
+  visualTurnSpeed: 100
   levelSpeeds:
   - 6
   - 6.89

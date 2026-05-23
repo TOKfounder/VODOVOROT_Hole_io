@@ -17,7 +17,7 @@ public class HelperController : HoleParent
         holeType = TypeOfHole.playerHelper;
     }
 
-    public void Initialize(BlackHoleController owner, int startingScore)
+    public void Initialize(BlackHoleController owner, int startingScore, string helperName)
     {
         Owner = owner;
         holeType = TypeOfHole.playerHelper;
@@ -25,18 +25,29 @@ public class HelperController : HoleParent
             border = GetComponentInChildren<UnityEngine.UI.Image>(true);
         if (border != null)
             border.gameObject.SetActive(true);
-        int spawnScore = startingScore > 0 ? startingScore : score;
+        int spawnScore = GetSpawnScore(owner, startingScore);
         InitializeScore(spawnScore);
         transform.localScale = targetScale;
 
         if (nickname != null)
         {
             nickname.gameObject.SetActive(true);
-            if (Owner != null && Owner.nickname != null)
-                nickname.text = Owner.nickname.text;
+            nickname.text = helperName;
         }
 
         SetVisualsEnabled(true);
+    }
+
+    private int GetSpawnScore(BlackHoleController owner, int fallbackScore)
+    {
+        if (owner == null)
+            return Mathf.Max(0, fallbackScore);
+
+        int spawnLevel = Mathf.Max(0, owner.currentLevel - 1);
+        if (spawnLevel < scoreRequired.Length)
+            return Mathf.RoundToInt(scoreRequired[spawnLevel]);
+
+        return Mathf.Max(0, fallbackScore);
     }
 
     public override void AddScore(int amount)

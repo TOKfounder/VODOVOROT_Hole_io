@@ -27,7 +27,7 @@ public static class Tool
 	}
 	public static bool CanFitForHelperAndEnemies(Vector3 sizeA, Vector3 sizeB)
 	{
-		return (sizeA.x <= sizeB.x && sizeA.z <= sizeB.z) && (sizeA.x <= sizeB.x && sizeA.y <= sizeB.z) 
-		&& (sizeA.y <= sizeB.x && sizeA.z <= sizeB.z);
+		return sizeA.x <= sizeB.x && sizeA.z <= sizeB.z && sizeA.x <= sizeB.x && sizeA.y <= sizeB.z 
+		&& sizeA.y <= sizeB.x && sizeA.z <= sizeB.z;
 	}
 }

@@ -18,6 +18,10 @@ public class HelperMovement : MonoBehaviour
     [Header("Target Switching")]
     public float targetHoldTimeout = 4f;
 
+    [Header("Aim Settings")]
+    public float targetOvershootFactor = 0.75f;
+    public float visualTurnSpeed = 240f;
+
     [Header("Speeds")]
     public float[] levelSpeeds = { 6f, 6.89f, 7.78f, 8.67f, 9.56f, 10.44f, 13.83f, 15.22f, 20f, 25f };
 
@@ -54,6 +58,8 @@ public class HelperMovement : MonoBehaviour
     {
         if (currentTarget != null)
             MoveToTarget();
+        else
+            currentTargetObject = null;
 
         if (ignoredTarget != null)
         {
@@ -111,10 +117,11 @@ public class HelperMovement : MonoBehaviour
 
     private void MoveToTarget()
     {
-        Vector3 dir = GetTargetCenter(currentTargetObject) - transform.position;
+        Vector3 targetPoint = GetOvershootPoint(currentTargetObject);
+        Vector3 dir = targetPoint - transform.position;
         dir.y = 0;
 
-        if (dir.magnitude <= transform.localScale.x * 0.5f)
+        if (dir.magnitude <= GetStopDistance(currentTargetObject))
         {
             currentTarget = null;
             currentTargetObject = null;
@@ -122,14 +129,7 @@ public class HelperMovement : MonoBehaviour
         }
 
         Vector3 moveDir = dir.normalized;
-        Quaternion targetRotation = Quaternion.LookRotation(moveDir);
-        if (withoutCamera != null)
-        {
-            withoutCamera.transform.rotation = Quaternion.Slerp(
-                withoutCamera.transform.rotation,
-                targetRotation,
-                rotationSpeed * Time.fixedDeltaTime);
-        }
+        SmoothVisualRotation(moveDir);
 
         int level = helperController != null ? helperController.currentLevel : 0;
         float speed = (level < levelSpeeds.Length) ? levelSpeeds[level] : levelSpeeds[^1];
@@ -174,14 +174,45 @@ public class HelperMovement : MonoBehaviour
         return target != null ? target.transform.position : transform.position;
     }
 
-    private float GetContactRadius(FallingObject target)
+    private Vector3 GetOvershootPoint(FallingObject target)
     {
+        Vector3 center = GetTargetCenter(target);
         if (helperController == null || target == null)
-            return transform.localScale.x * 0.5f;
+            return center;
 
         Vector3 helperSize = helperController.GetFitSize();
         float helperRadius = Mathf.Max(helperSize.x, helperSize.z) * 0.5f;
         float targetRadius = Mathf.Max(target.size.x, target.size.z) * 0.5f;
-        return helperRadius + targetRadius;
+        Vector3 moveDir = (center - transform.position);
+        moveDir.y = 0f;
+        if (moveDir.sqrMagnitude <= Mathf.Epsilon)
+            return center;
+
+        return center + moveDir.normalized * Mathf.Max(targetRadius, helperRadius) * targetOvershootFactor;
+    }
+
+    private float GetStopDistance(FallingObject target)
+    {
+        if (helperController == null || target == null)
+            return transform.localScale.x * 0.25f;
+
+        Vector3 helperSize = helperController.GetFitSize();
+        float helperRadius = Mathf.Max(helperSize.x, helperSize.z) * 0.5f;
+        return helperRadius * 0.35f;
+    }
+
+    private void SmoothVisualRotation(Vector3 moveDir)
+    {
+        if (withoutCamera == null)
+            return;
+
+        if (moveDir.sqrMagnitude <= Mathf.Epsilon)
+            return;
+
+        Quaternion targetRotation = Quaternion.LookRotation(moveDir.normalized);
+        withoutCamera.transform.rotation = Quaternion.RotateTowards(
+            withoutCamera.transform.rotation,
+            targetRotation,
+            visualTurnSpeed * Time.fixedDeltaTime);
     }
 }

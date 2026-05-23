@@ -12,10 +12,15 @@ public class EnemyMovement : MonoBehaviour
     public float searchInterval = 0.5f;
     public LayerMask fallableObjects;
 
+    [Header("Aim Settings")]
+    public float targetOvershootFactor = 0.75f;
+    public float visualTurnSpeed = 240f;
+
     [Header("Speeds")]
     public float[] levelSpeeds = { 6f, 6.89f, 7.78f, 8.67f, 9.56f, 10.44f, 13.83f, 15.22f, 20f, 25f };
 
     private Transform currentTarget;
+    private FallingObject currentTargetObject;
     private Rigidbody rb;
     private EnemyController enemyController;
 
@@ -69,21 +74,23 @@ public class EnemyMovement : MonoBehaviour
 
         float closestDist = Mathf.Infinity;
         Transform bestTarget = null;
+        FallingObject bestTargetObject = null;
 
         foreach (var hit in hitColliders)
         {
-            if (hit.transform == ignoredTarget) continue;
-
             var fo = hit.GetComponentInParent<FallingObject>();
             if (fo == null) continue;
 
+            if (fo.transform == ignoredTarget) continue;
+
             if (Tool.CanFitForHelperAndEnemies(fo.size, enemyController.GetFitSize()))
             {
-                float dist = Vector3.Distance(transform.position, hit.transform.position);
+                float dist = Vector3.Distance(transform.position, GetTargetCenter(fo));
                 if (dist < closestDist)
                 {
                     closestDist = dist;
-                    bestTarget = hit.transform;
+                    bestTarget = fo.transform;
+                    bestTargetObject = fo;
                 }
             }
         }
@@ -95,18 +102,21 @@ public class EnemyMovement : MonoBehaviour
         else
         {
             currentTarget = bestTarget;
+            currentTargetObject = bestTargetObject;
             stuckTimer = 0f;
         }
     }
 
 	private void MoveToTarget()
 	{
-		Vector3 dir = currentTarget.position - transform.position;
+		Vector3 targetPoint = GetOvershootPoint(currentTargetObject);
+		Vector3 dir = targetPoint - transform.position;
 		dir.y = 0;
 
-		if (dir.magnitude < transform.localScale.x * 0.5f)
+		if (dir.magnitude <= GetStopDistance(currentTargetObject))
 		{
 			currentTarget = null;
+			currentTargetObject = null;
 			return;
 		}
 
@@ -160,7 +170,56 @@ public class EnemyMovement : MonoBehaviour
             ignoredTarget = currentTarget;
             ignoreCooldown = 0f;
             currentTarget = null;
+            currentTargetObject = null;
             stuckTimer = 0f;
         }
+    }
+
+    private Vector3 GetTargetCenter(FallingObject target)
+    {
+        if (target != null && target.rend != null)
+            return target.rend.bounds.center;
+
+        return target != null ? target.transform.position : transform.position;
+    }
+
+    private Vector3 GetOvershootPoint(FallingObject target)
+    {
+        Vector3 center = GetTargetCenter(target);
+        if (target == null)
+            return center;
+
+        Vector3 moveDir = center - transform.position;
+        moveDir.y = 0f;
+        if (moveDir.sqrMagnitude <= Mathf.Epsilon)
+            return center;
+
+        float targetRadius = Mathf.Max(target.size.x, target.size.z) * 0.5f;
+        float helperRadius = Mathf.Max(enemyController.GetFitSize().x, enemyController.GetFitSize().z) * 0.5f;
+        return center + moveDir.normalized * Mathf.Max(targetRadius, helperRadius) * targetOvershootFactor;
+    }
+
+    private float GetStopDistance(FallingObject target)
+    {
+        if (target == null)
+            return transform.localScale.x * 0.25f;
+
+        float helperRadius = Mathf.Max(enemyController.GetFitSize().x, enemyController.GetFitSize().z) * 0.5f;
+        return helperRadius * 0.35f;
+    }
+
+    private void SmoothVisualRotation(Vector3 moveDir)
+    {
+        if (withoutCamera == null)
+            return;
+
+        if (moveDir.sqrMagnitude <= Mathf.Epsilon)
+            return;
+
+        Quaternion targetRotation = Quaternion.LookRotation(moveDir.normalized);
+        withoutCamera.transform.rotation = Quaternion.RotateTowards(
+            withoutCamera.transform.rotation,
+            targetRotation,
+            visualTurnSpeed * Time.fixedDeltaTime);
     }
 }
