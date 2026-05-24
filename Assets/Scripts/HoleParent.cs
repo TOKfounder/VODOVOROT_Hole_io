@@ -181,11 +181,11 @@ public class HoleParent : MonoBehaviour
     private void CreatePointEffect(int amount)
     {
         GameObject points = pointsPool.Get();// === НОВАЯ ЛОГИКА: появление в центре экрана ===
-        Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2.8f, 0f);
+        Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2.5f, 0f);
         
         // Небольшая рандомизация, чтобы цифры не накладывались друг на друга
-        screenCenter.x += Random.Range(-60f, 60f);
-        screenCenter.y += Random.Range(-30f, 40f);
+        screenCenter.x += Random.Range(-90f, 90f);
+        screenCenter.y += Random.Range(-45f, 60f);
 
         RectTransform rect = points.GetComponent<RectTransform>();
         rect.position = screenCenter;
@@ -246,8 +246,8 @@ public class HoleParent : MonoBehaviour
 
     public Vector3 GetFitSize()
     {
-        if (holeType == TypeOfHole.player)
-            return size;
+        // if (holeType == TypeOfHole.player)
+        //     return size;
 
         return size * 0.9f;
     }
