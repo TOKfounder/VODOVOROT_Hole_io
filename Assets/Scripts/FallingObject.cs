@@ -64,7 +64,7 @@ public class FallingObject : MonoBehaviour
 
 	IEnumerator DelayForUpdateCurrentHole()
 	{
-		yield return new WaitForSeconds(4f);
+		yield return new WaitForSeconds(3.5f);
 		if (!rb.isKinematic)
 			ResetToStart();
 	}
@@ -380,11 +380,8 @@ public class FallingObject : MonoBehaviour
 		if (!CurrentHole.nearbyFallingObjects.Contains(this))
 			CurrentHole.nearbyFallingObjects.Add(this);
 
-		if (!isColon)
-		{
-			if (myCoroutine != null) StopCoroutine(myCoroutine);
-			myCoroutine = StartCoroutine(DelayForUpdateCurrentHole());
-		}
+		if (myCoroutine != null) StopCoroutine(myCoroutine);
+		myCoroutine = StartCoroutine(DelayForUpdateCurrentHole());
 	}
 
 	private bool CanBeEatenBy(HoleParent hole)

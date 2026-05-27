@@ -27,6 +27,7 @@ public class HoleParent : MonoBehaviour
 
     // Новый пул для эффектов очков (чтобы не плодить Instantiate)
     private ObjectPool<GameObject> pointsPool;
+    private readonly List<GameObject> activePointEffects = new List<GameObject>(64);
 
     public List<FallingObject> nearbyFallingObjects = new List<FallingObject>(500);
 
@@ -181,6 +182,9 @@ public class HoleParent : MonoBehaviour
     private void CreatePointEffect(int amount)
     {
         GameObject points = pointsPool.Get();// === НОВАЯ ЛОГИКА: появление в центре экрана ===
+        if (!activePointEffects.Contains(points))
+            activePointEffects.Add(points);
+
         Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2.5f, 0f);
         
         // Небольшая рандомизация, чтобы цифры не накладывались друг на друга
@@ -270,6 +274,31 @@ public class HoleParent : MonoBehaviour
     public void ReturnPointsToPool(GameObject pointsObject)
     {
         if (pointsPool != null)
+        {
+            activePointEffects.Remove(pointsObject);
             pointsPool.Release(pointsObject);
+        }
+    }
+
+    public void ClearActivePointEffects()
+    {
+        for (int i = activePointEffects.Count - 1; i >= 0; i--)
+        {
+            GameObject points = activePointEffects[i];
+            if (points != null && pointsPool != null)
+                pointsPool.Release(points);
+        }
+
+        activePointEffects.Clear();
+    }
+
+    public static void ClearAllPointEffects()
+    {
+        for (int i = holeList.Count - 1; i >= 0; i--)
+        {
+            HoleParent hole = holeList[i];
+            if (hole != null)
+                hole.ClearActivePointEffects();
+        }
     }
 }

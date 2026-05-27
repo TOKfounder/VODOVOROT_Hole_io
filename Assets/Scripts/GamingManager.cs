@@ -37,6 +37,7 @@ public class GamingManager : MonoBehaviour
 
     private bool timerGo = true;
     private bool once = true;
+    private bool settingsPaused = false;
 
     private void Awake()
     {
@@ -118,12 +119,54 @@ public class GamingManager : MonoBehaviour
             timer += Time.fixedDeltaTime;
     }
 
-    public void HandleTimer(bool b) => timerGo = b;
+    // public void HandleTimer(bool b) => timerGo = b;
+
+    public void PauseGameplay()
+    {
+        if (settingsPaused)
+            return;
+
+        settingsPaused = true;
+        timerGo = false;
+        Time.timeScale = 0f;
+        AudioListener.pause = true;
+    }
+
+    public void ResumeGameplay()
+    {
+        if (!settingsPaused)
+            return;
+
+        settingsPaused = false;
+        AudioListener.pause = false;
+        Time.timeScale = 1f;
+        timerGo = true;
+    }
+
+    private void SetSettingsPanelVisible(bool visible)
+    {
+        if (visible)
+            PauseGameplay();
+        else
+            ResumeGameplay();
+    }
+
+    public void OpenSettings()
+    {
+        HoleParent.ClearAllPointEffects();
+        SetSettingsPanelVisible(true);
+    }
+
+    public void CloseSettings()
+    {
+        SetSettingsPanelVisible(false);
+    }
 
     public void EndOfGame()
     {
         timerGo = false;
         once = false;
+        HoleParent.ClearAllPointEffects();
         Time.timeScale = 0;
 
         if (YG2.envir.isMobile)
