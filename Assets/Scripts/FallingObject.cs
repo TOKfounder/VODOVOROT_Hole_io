@@ -18,6 +18,7 @@ public class FallingObject : MonoBehaviour
 	private Coroutine myCoroutine;
 	private readonly System.Collections.Generic.List<HoleParent> candidateHoles =
 		new System.Collections.Generic.List<HoleParent>(4);
+	private HelperMovement reservedByHelper;
 
 	private const float SwitchImprovementFactorSqr = 0.8464f; // 0.92 * 0.92 => новая дыра ближе хотя бы на 8%
 
@@ -118,6 +119,7 @@ public class FallingObject : MonoBehaviour
 
 	private void ResetRuntimeState()
 	{
+		ClearHelperReservation();
 		rb.isKinematic = true;
 		rb.useGravity = true;
 		rb.detectCollisions = true;
@@ -187,6 +189,7 @@ public class FallingObject : MonoBehaviour
 
 	public void ResetToStart()
 	{
+		ClearHelperReservation();
 		transform.position = startPosition;
 		transform.rotation = startRotation;
 		rb.isKinematic = true;
@@ -203,6 +206,7 @@ public class FallingObject : MonoBehaviour
 	{
 		hole.AddScore(value);
 		value = 0;
+		ClearHelperReservation();
 
 		rb.isKinematic = true;
 		col.enabled = false;
@@ -395,6 +399,39 @@ public class FallingObject : MonoBehaviour
 		return hole.holeType == HoleParent.TypeOfHole.enemy
 			? Tool.CanFitForHelperAndEnemies(size, hole.GetFitSize())
 			: Tool.CanFit2D(size, hole.GetFitSize());
+	}
+
+	public bool HasHelperReservation(HelperMovement helper)
+	{
+		return reservedByHelper == helper;
+	}
+
+	public bool IsReservedByAnotherHelper(HelperMovement helper)
+	{
+		return reservedByHelper != null && reservedByHelper != helper;
+	}
+
+	public bool TryReserveForHelper(HelperMovement helper)
+	{
+		if (helper == null)
+			return false;
+
+		if (reservedByHelper != null && reservedByHelper != helper)
+			return false;
+
+		reservedByHelper = helper;
+		return true;
+	}
+
+	public void ReleaseHelperReservation(HelperMovement helper)
+	{
+		if (reservedByHelper == helper)
+			reservedByHelper = null;
+	}
+
+	private void ClearHelperReservation()
+	{
+		reservedByHelper = null;
 	}
 
 	private float GetDistanceToHoleCenterSqr(HoleParent hole)

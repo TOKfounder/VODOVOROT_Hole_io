@@ -12,14 +12,10 @@ public class HelperMovement : MonoBehaviour
     public float searchInterval = 0.5f;
     public LayerMask fallableObjects;
 
-    [Header("Follow Settings")]
-    public float followSpeed = 8f;
-
     [Header("Target Switching")]
     public float targetHoldTimeout = 4f;
 
     [Header("Aim Settings")]
-    public float targetOvershootFactor = 0.75f;
     public float visualTurnSpeed = 240f;
 
     [Header("Speeds")]
@@ -56,6 +52,11 @@ public class HelperMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (currentTargetObject != null && !currentTargetObject.HasHelperReservation(this))
+        {
+            ReleaseCurrentTarget();
+        }
+
         if (currentTarget != null)
             MoveToTarget();
         else
@@ -88,6 +89,8 @@ public class HelperMovement : MonoBehaviour
             if (fo.transform == ignoredTarget) continue;
 
             if (!CanCollectTarget(fo)) continue;
+            if (fo.IsReservedByAnotherHelper(this))
+                continue;
 
             float dist = Vector3.Distance(transform.position, GetTargetCenter(fo));
             if (dist < closestDist)
@@ -104,10 +107,25 @@ public class HelperMovement : MonoBehaviour
         }
         else
         {
-            currentTarget = bestTarget;
-            currentTargetObject = bestTargetObject;
-            stuckTimer = 0f;
+            SwitchTarget(bestTarget, bestTargetObject);
         }
+    }
+
+    private void SwitchTarget(Transform newTarget, FallingObject newTargetObject)
+    {
+        if (newTargetObject == currentTargetObject)
+            return;
+
+        if (newTargetObject != null && newTargetObject.TryReserveForHelper(this))
+        {
+            ReleaseCurrentTarget();
+            currentTarget = newTarget;
+            currentTargetObject = newTargetObject;
+            stuckTimer = 0f;
+            return;
+        }
+
+        stuckTimer = 0f;
     }
 
     private bool CanCollectTarget(FallingObject target)
@@ -121,7 +139,8 @@ public class HelperMovement : MonoBehaviour
         Vector3 dir = targetPoint - transform.position;
         dir.y = 0;
 
-        if (dir.magnitude <= GetStopDistance(currentTargetObject))
+        float distanceToWaypoint = dir.magnitude;
+        if (distanceToWaypoint <= Mathf.Epsilon)
         {
             currentTarget = null;
             currentTargetObject = null;
@@ -133,8 +152,9 @@ public class HelperMovement : MonoBehaviour
 
         int level = helperController != null ? helperController.currentLevel : 0;
         float speed = (level < levelSpeeds.Length) ? levelSpeeds[level] : levelSpeeds[^1];
+        float stepDistance = Mathf.Min(speed * 0.15f * Time.fixedDeltaTime, distanceToWaypoint);
 
-        Vector3 newPosition = rb.position + moveDir * speed * 0.15f * Time.fixedDeltaTime;
+        Vector3 newPosition = rb.position + moveDir * stepDistance;
         ClampToBounds(ref newPosition);
         rb.MovePosition(newPosition);
     }
@@ -160,10 +180,18 @@ public class HelperMovement : MonoBehaviour
         {
             ignoredTarget = currentTarget;
             ignoreCooldown = 0f;
-            currentTarget = null;
-            currentTargetObject = null;
+            ReleaseCurrentTarget();
             stuckTimer = 0f;
         }
+    }
+
+    private void ReleaseCurrentTarget()
+    {
+        if (currentTargetObject != null)
+            currentTargetObject.ReleaseHelperReservation(this);
+
+        currentTarget = null;
+        currentTargetObject = null;
     }
 
     private Vector3 GetTargetCenter(FallingObject target)
@@ -181,24 +209,18 @@ public class HelperMovement : MonoBehaviour
             return center;
 
         Vector3 helperSize = helperController.GetFitSize();
-        float helperRadius = Mathf.Max(helperSize.x, helperSize.z) * 0.5f;
-        float targetRadius = Mathf.Max(target.size.x, target.size.z) * 0.5f;
+        float helperDiameter = Mathf.Max(helperSize.x, helperSize.z);
+        float waypointDistance = helperDiameter * 0.2f;
         Vector3 moveDir = (center - transform.position);
         moveDir.y = 0f;
         if (moveDir.sqrMagnitude <= Mathf.Epsilon)
             return center;
 
-        return center + moveDir.normalized * Mathf.Max(targetRadius, helperRadius) * targetOvershootFactor;
-    }
+        float distanceToCenter = moveDir.magnitude;
+        if (distanceToCenter <= waypointDistance)
+            return center;
 
-    private float GetStopDistance(FallingObject target)
-    {
-        if (helperController == null || target == null)
-            return transform.localScale.x * 0.25f;
-
-        Vector3 helperSize = helperController.GetFitSize();
-        float helperRadius = Mathf.Max(helperSize.x, helperSize.z) * 0.5f;
-        return helperRadius * 0.35f;
+        return transform.position + moveDir.normalized * waypointDistance;
     }
 
     private void SmoothVisualRotation(Vector3 moveDir)
@@ -214,5 +236,15 @@ public class HelperMovement : MonoBehaviour
             withoutCamera.transform.rotation,
             targetRotation,
             visualTurnSpeed * Time.fixedDeltaTime);
+    }
+
+    private void OnDisable()
+    {
+        ReleaseCurrentTarget();
+    }
+
+    private void OnDestroy()
+    {
+        ReleaseCurrentTarget();
     }
 }
