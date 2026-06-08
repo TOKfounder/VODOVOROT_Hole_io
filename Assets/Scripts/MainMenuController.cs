@@ -164,8 +164,8 @@ public class MainMenuController : MonoBehaviour
         SetPair(PanelOfModes[0], DPanelOfModes[0], ru, "Доступные Режимы", "Available Modes");
         SetPair(PanelOfModes[1], DPanelOfModes[1], ru, "Тотальная Зачистка", "Total Cleaning");
         SetPair(PanelOfModes[2], DPanelOfModes[2], ru,
-            "Задача поглотить абсолютно все объекты на карте на 100%",
-            "The task is to absorb absolutely all objects on the map by 100%");
+            "Задача поглотить максимум объектов за 3 минуты",
+            "The task is to consume as many objects as possible in 3 minutes.");
         SetPair(PanelOfModes[3], DPanelOfModes[3], ru, "Босс Туалетов", "The Toilet Boss");
         SetPair(PanelOfModes[4], DPanelOfModes[4], ru,
             "Задача перегнать Босса по уровню и победить поглотив его",

@@ -2,10 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using YG;
 
 public class GamingManager : MonoBehaviour
 {
+    private const string TotalCleaningTimerName = "TimerText";
+
+    public struct MatchRewardData
+    {
+        public int exp;
+        public int coins;
+        public int diamonds;
+        public int resultSpriteIndex;
+    }
+
     [Header("Core")]
     public GameObject MobpanelOfEnd;
     public GameObject DeskpanelOfEnd;
@@ -15,6 +26,7 @@ public class GamingManager : MonoBehaviour
     public Image Dflazhok;
     public Text Mpercent;
     public Text Dpercent;
+    public Text totalCleaningTimerText;
 
     [Header("Mobile UI")]
     public Text BoostText;
@@ -30,13 +42,23 @@ public class GamingManager : MonoBehaviour
     public GameObject[] walls;
     public float minX, maxX, minZ, maxZ;
 
+    [Header("Total Cleaning Mode")]
+    public float totalCleaningDuration = 180f;
+
     // Публичные данные
     public float perc = 0f;
     public float timer;
     public int AllValues;
 
+    private bool isTotalCleaningMode = false;
     private bool timerGo = true;
     private bool once = true;
+    private bool rewardApplied = false;
+    private bool endSequenceStarted = false;
+
+    public bool IsTotalCleaningMode => isTotalCleaningMode;
+    public bool HasRewardBeenApplied => rewardApplied;
+    public float RemainingTime => Mathf.Max(0f, totalCleaningDuration - timer);
 
     private void Awake()
     {
@@ -63,15 +85,30 @@ public class GamingManager : MonoBehaviour
         }
 
         once = true;
+        rewardApplied = false;
+        endSequenceStarted = false;
         YG2.saves.isGaming = true;
         Time.timeScale = 1f;
         timer = 0f;
         timerGo = true;
 
+        isTotalCleaningMode = VodovorotGameManager.Instance?.ModeManager != null &&
+            VodovorotGameManager.Instance.ModeManager.currentMode == ModeManager.Mode.TotalCleaning;
+        if (!isTotalCleaningMode)
+            isTotalCleaningMode = YG2.saves.chosenMode == (int)ModeManager.Mode.TotalCleaning;
+
+        if (totalCleaningTimerText != null)
+        {
+            totalCleaningTimerText.gameObject.SetActive(isTotalCleaningMode);
+            if (isTotalCleaningMode)
+                totalCleaningTimerText.text = FormatTime(RemainingTime);
+        }
+
         VodovorotGameManager.Instance.SaveProgress();
 
         StartCoroutine(UpdateProgressRoutine());
         UpdateUI();
+        UpdateProgressUI();
     }
 
     // Корутина вместо Update — обновляем прогресс реже (каждые 0.2 сек)
@@ -80,16 +117,24 @@ public class GamingManager : MonoBehaviour
         while (true)
         {
             YG2.saves.score = HoleParent.totalScore;
-            perc = AllValues > 15 ? (float)YG2.saves.score / (AllValues - 15) : 0f;
+            perc = GetCapturePercent();
 
             // Обновляем UI прогресса
             UpdateProgressUI();
 
             // Проверка победы
-            if (once && perc >= 1f)
+            if (once)
             {
-                once = false;
-                EndOfGame();
+                if (isTotalCleaningMode && (perc >= 1f || timer >= totalCleaningDuration - 0.01f))
+                {
+                    once = false;
+                    EndOfGame();
+                }
+                else if (!isTotalCleaningMode && perc >= 1f)
+                {
+                    once = false;
+                    EndOfGame();
+                }
             }
 
             yield return new WaitForSeconds(0.2f);   // достаточно 5 раз в секунду
@@ -99,16 +144,67 @@ public class GamingManager : MonoBehaviour
     private void UpdateProgressUI()
     {
         float fill = Mathf.Clamp01(perc);
+        string percentText = $"{(int)(fill * 100)}%";
+
+        if (isTotalCleaningMode)
+        {
+            ResolveTotalCleaningTimerText();
+            UpdateTotalCleaningTimerUI();
+        }
 
         if (YG2.envir.isMobile)
         {
             if (Mflazhok != null) Mflazhok.fillAmount = fill;
-            if (Mpercent != null) Mpercent.text = $"{(int)(fill * 100)}%";
+            if (Mpercent != null)
+            {
+                Mpercent.text = percentText;
+            }
         }
         else
         {
             if (Dflazhok != null) Dflazhok.fillAmount = fill;
-            if (Dpercent != null) Dpercent.text = $"{(int)(fill * 100)}%";
+            if (Dpercent != null)
+            {
+                Dpercent.text = percentText;
+            }
+        }
+    }
+
+    private void UpdateTotalCleaningTimerUI()
+    {
+        if (totalCleaningTimerText == null)
+            return;
+
+        totalCleaningTimerText.text = FormatTime(RemainingTime);
+    }
+
+    private void ResolveTotalCleaningTimerText()
+    {
+        Canvas currentCanvas = VodovorotGameManager.Instance?.GameController != null
+            ? VodovorotGameManager.Instance.GameController.currentCanvas
+            : FindAnyObjectByType<Canvas>();
+
+        if (currentCanvas == null)
+            return;
+
+        if (totalCleaningTimerText != null && totalCleaningTimerText.transform.IsChildOf(currentCanvas.transform))
+        {
+            totalCleaningTimerText.gameObject.SetActive(isTotalCleaningMode);
+            return;
+        }
+
+        Text[] texts = currentCanvas.GetComponentsInChildren<Text>(true);
+        for (int i = 0; i < texts.Length; i++)
+        {
+            Text text = texts[i];
+            if (text == null || text.name != TotalCleaningTimerName)
+                continue;
+
+            totalCleaningTimerText = text;
+            totalCleaningTimerText.gameObject.SetActive(isTotalCleaningMode);
+            if (isTotalCleaningMode)
+                totalCleaningTimerText.text = FormatTime(RemainingTime);
+            break;
         }
     }
 
@@ -116,12 +212,22 @@ public class GamingManager : MonoBehaviour
     {
         if (timerGo)
             timer += Time.fixedDeltaTime;
+
+        if (isTotalCleaningMode && once && timer >= totalCleaningDuration - 0.01f)
+        {
+            once = false;
+            EndOfGame();
+        }
     }
 
     public void HandleTimer(bool b) => timerGo = b;
 
     public void EndOfGame()
     {
+        if (endSequenceStarted)
+            return;
+
+        endSequenceStarted = true;
         timerGo = false;
         once = false;
         Time.timeScale = 0;
@@ -130,14 +236,104 @@ public class GamingManager : MonoBehaviour
             MobpanelOfEnd?.SetActive(true);
         else
             DeskpanelOfEnd?.SetActive(true);
-
-        // Даём небольшую задержку перед полной остановкой времени
-        Invoke(nameof(FullTimeStop), 7f);
     }
 
-    private void FullTimeStop()
+    public float GetCapturePercent()
     {
-        Time.timeScale = 0f;
+        if (isTotalCleaningMode)
+        {
+            if (AllValues <= 0)
+                return 0f;
+
+            return Mathf.Clamp01((float)HoleParent.totalScore / AllValues);
+        }
+
+        return AllValues > 15 ? (float)YG2.saves.score / (AllValues - 15) : 0f;
+    }
+
+    public MatchRewardData GetTotalCleaningReward(float progress)
+    {
+        progress = Mathf.Clamp01(progress);
+
+        if (progress < 0.5f)
+        {
+            int coins = Mathf.RoundToInt(15f * (progress / 0.5f));
+            int exp = Mathf.RoundToInt(25f * (progress / 0.5f));
+            int diamonds = coins / 5;
+
+            return new MatchRewardData
+            {
+                exp = exp,
+                coins = coins,
+                diamonds = diamonds,
+                resultSpriteIndex = 2
+            };
+        }
+
+        if (progress < 0.6f)
+        {
+            return new MatchRewardData
+            {
+                exp = 25,
+                coins = 15,
+                diamonds = 3,
+                resultSpriteIndex = 2
+            };
+        }
+
+        if (progress < 0.7f)
+        {
+            return new MatchRewardData
+            {
+                exp = 35,
+                coins = 20,
+                diamonds = 4,
+                resultSpriteIndex = 1
+            };
+        }
+
+        return new MatchRewardData
+        {
+            exp = 50,
+            coins = 25,
+            diamonds = 5,
+            resultSpriteIndex = 0
+        };
+    }
+
+    public MatchRewardData GetCurrentTotalCleaningReward() => GetTotalCleaningReward(GetCapturePercent());
+
+    public void ApplyMatchReward(MatchRewardData reward)
+    {
+        YG2.saves.score = HoleParent.totalScore;
+        YG2.saves.exp += reward.exp;
+        YG2.saves.goldCoins += reward.coins;
+        YG2.saves.diamonds += reward.diamonds;
+
+        YG2.SetLeaderboard("BestPlayers", YG2.saves.exp);
+        VodovorotGameManager.Instance?.SaveProgress();
+        rewardApplied = true;
+    }
+
+    public void ApplyCurrentTotalCleaningRewardIfNeeded()
+    {
+        if (!isTotalCleaningMode || rewardApplied)
+            return;
+
+        ApplyMatchReward(GetCurrentTotalCleaningReward());
+    }
+
+    public void FinalizeInterruptedMatchIfNeeded()
+    {
+        ApplyCurrentTotalCleaningRewardIfNeeded();
+    }
+
+    private string FormatTime(float seconds)
+    {
+        int totalSeconds = Mathf.CeilToInt(Mathf.Max(0f, seconds));
+        int minutes = totalSeconds / 60;
+        int secs = totalSeconds % 60;
+        return $"{minutes:00}:{secs:00}";
     }
 
     // ====================== ЛОКАЛИЗАЦИЯ ======================
@@ -186,5 +382,8 @@ public class GamingManager : MonoBehaviour
         AllValues = 0;
         HoleParent.totalScore = 0;
         EnemyController.count = 0;
+        rewardApplied = false;
+        endSequenceStarted = false;
+        isTotalCleaningMode = false;
     }
 }

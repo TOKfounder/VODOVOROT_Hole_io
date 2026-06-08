@@ -35,10 +35,23 @@ public class EndGameController : MonoBehaviour
 
     private void Start()
     {
-        VodovorotGameManager.Instance.GamingManager.EndOfGame();
+        GamingManager gamingManager = VodovorotGameManager.Instance != null
+            ? VodovorotGameManager.Instance.GamingManager
+            : null;
+
+        if (gamingManager == null)
+            return;
+
+        gamingManager.EndOfGame();
+
+        if (gamingManager.IsTotalCleaningMode)
+        {
+            HandleTotalCleaningGame(gamingManager);
+            return;
+        }
 
         int score = YG2.saves.score;
-        int allValues = VodovorotGameManager.Instance.GamingManager.AllValues;
+        int allValues = gamingManager.AllValues;
         float progress = allValues > 20 ? (float)score / (allValues - 20) : 0f;
 
         if ((int)(progress * 100) < 100)
@@ -103,6 +116,32 @@ public class EndGameController : MonoBehaviour
         YG2.SetLeaderboard("BestPlayers", YG2.saves.exp);
         VodovorotGameManager.Instance.SaveProgress();
         VodovorotGameManager.Instance.GamingManager.UpdateUI();
+    }
+
+    private void HandleTotalCleaningGame(GamingManager gamingManager)
+    {
+        GamingManager.MatchRewardData reward = gamingManager.GetCurrentTotalCleaningReward();
+
+        SetTotalCleaningResultSprite(reward.resultSpriteIndex);
+        SetResultTexts(reward.exp, reward.coins, reward.diamonds);
+
+        currentCoinIncome = reward.coins;
+        brillCount = reward.diamonds;
+
+        if (!gamingManager.HasRewardBeenApplied)
+            gamingManager.ApplyMatchReward(reward);
+
+        gamingManager.UpdateUI();
+    }
+
+    private void SetTotalCleaningResultSprite(int spriteIndex)
+    {
+        if (spritesOfResult == null || spritesOfResult.Length == 0 || resultImage == null)
+            return;
+
+        int safeIndex = Mathf.Clamp(spriteIndex, 0, spritesOfResult.Length - 1);
+        resultImage.sprite = spritesOfResult[safeIndex];
+        resultImage.color = Color.white;
     }
 
     private void SetResultTexts(int exp, int coins, int diamonds)

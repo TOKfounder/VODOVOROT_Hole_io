@@ -249,7 +249,7 @@ public class HoleParent : MonoBehaviour
         // if (holeType == TypeOfHole.player)
         //     return size;
 
-        return size * 0.9f;
+        return size * 0.8f;
     }
 
     public bool IsInHole(Vector3 objPos)

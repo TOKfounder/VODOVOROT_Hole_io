@@ -97,6 +97,9 @@ public class VodovorotGameManager : MonoBehaviour
 
     public void ReturnToMenu()
     {
+        if (IsInGame && GamingManager != null)
+            GamingManager.FinalizeInterruptedMatchIfNeeded();
+
         YG2.saves.isGaming = false;
         SaveProgress();
         SceneManager.LoadScene(0);
