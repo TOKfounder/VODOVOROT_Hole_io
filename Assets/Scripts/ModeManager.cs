@@ -8,7 +8,7 @@ public class ModeManager : MonoBehaviour
 	public Mode currentMode = Mode.Boss;
 	public enum Mode
 	{
-		Boss, TotalCleaning, Hunting, TeamMode
+		TotalCleaning, Boss, Hunting, TeamMode
 	}
 	[SerializeField] private GameObject enemyPrefab;
 	[SerializeField] private GameObject mainPlayer;
