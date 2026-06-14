@@ -36,6 +36,12 @@ public class ModeManager : MonoBehaviour
 			print("Not Valid Mode number");
 		}
 	}
+	
+	public void StartCleaningMode()
+	{
+		if (YG2.saves.selectedMapID == 1)
+			mainPlayer.transform.position = new Vector3(-23.7f, 0.164f, -80.2f);
+	}
 
 	public void StartBossMode()
 	{
@@ -47,10 +53,6 @@ public class ModeManager : MonoBehaviour
 
 		// Можно добавить красивую анимацию с передвижением камеры
 		// Только после этого вновь запустить воспроизведение
-	}
-	public void StartCleaningMode()
-	{
-		mainPlayer.transform.position = new Vector3(-23.7f, 0.164f, -80.2f);
 	}
 	public void StartHuntingMode()
 	{
