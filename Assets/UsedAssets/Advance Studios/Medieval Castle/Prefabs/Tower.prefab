@@ -267,7 +267,8 @@ GameObject:
   - component: {fileID: 759692968709420779}
   - component: {fileID: 7233439924363719886}
   - component: {fileID: 3909579838101805099}
-  - component: {fileID: 7618010979048710370}
+  - component: {fileID: 1533344096144525255}
+  - component: {fileID: 7714686704264553101}
   m_Layer: 0
   m_Name: Tower_visual
   m_TagString: Untagged
@@ -349,8 +350,8 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7618010979048710370
-MeshCollider:
+--- !u!65 &1533344096144525255
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -367,7 +368,24 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1277366460620338370, guid: d8d157ebfb23cdf4ba94e99d8458f7d2, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 1.0642538, y: 5.3, z: 1.0642543}
+  m_Center: {x: -0.0020976067, y: -2.0585122, z: -0.0020940304}
+--- !u!114 &7714686704264553101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8425751649090715930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
