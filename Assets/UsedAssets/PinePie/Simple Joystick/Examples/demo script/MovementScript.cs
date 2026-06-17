@@ -48,15 +48,11 @@ namespace PinePie.SimpleJoystick.Examples.DemoScript
 
         private void HandleBoostUI()
         {
-            // Показываем кнопку буста после 70%
-            bool shouldShowBoost = VodovorotGameManager.Instance.GamingManager.perc * 100f >= 70f;
-            boostButton.gameObject.SetActive(shouldShowBoost);
-
             if (YG2.envir.isDesktop)
             {
                 isBoosting = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
-                boostButton.image.color = isBoosting 
-                    ? new Color32(0x38, 0xC8, 0x07, 0xFF) 
+                boostButton.image.color = isBoosting
+                    ? new Color32(0x38, 0xC8, 0x07, 0xFF)
                     : new Color32(0x48, 0xFF, 0x09, 0xFF);
             }
         }
