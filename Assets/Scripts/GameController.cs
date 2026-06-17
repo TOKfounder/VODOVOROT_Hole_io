@@ -15,9 +15,8 @@ public class GameController : MonoBehaviour
 
 [HideInInspector]
 	public Canvas currentCanvas;
-	//Сделать его YG2
-	// public Camera renderCamra;           // Камера с Render Texture
-	// public RenderTexture renderTexture;   // Твой Render Texturee
+	public Camera renderCamera;
+	public RenderTexture renderTexture;
 
 	void Awake()
 	{
@@ -85,33 +84,27 @@ public class GameController : MonoBehaviour
 	}
 	//---------------------------------------------------------------------------------------------------
 
-	// public void SaveScreenshot(string path = "Assets/ScreenShot.png")
-	// {
-	//     // Назначить Render Texture камере
-	//     renderCamera.targetTexture = renderTexture;
+	public void SaveScreenshot(string path = "Assets/ScreenShot.png")
+	{
+	    renderCamera.targetTexture = renderTexture;
 
-	//     // Включить Render Texture как активный
-	//     RenderTexture currentRT = RenderTexture.active;
-	//     RenderTexture.active = renderTexture;
+	    RenderTexture currentRT = RenderTexture.active;
+	    RenderTexture.active = renderTexture;
 
-	//     // Снять фото внутри Render Texture
-	//     renderCamera.Render();
-	//     Texture2D image = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.RGB24, false);
-	//     image.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
-	//     image.Apply();
+	    renderCamera.Render();
+	    Texture2D image = new(renderTexture.width, renderTexture.height, TextureFormat.RGB24, false);
+	    image.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
+	    image.Apply();
 
-	//     // Вернуть targetTexture и RenderTexture.active обратно
-	//     renderCamera.targetTexture = null;
-	//     RenderTexture.active = currentRT;
+	    renderCamera.targetTexture = null;
+	    RenderTexture.active = currentRT;
 
-	//     // Сохранить файл
-	//     System.IO.File.WriteAllBytes(path, image.EncodeToPNG());
+	    System.IO.File.WriteAllBytes(path, image.EncodeToPNG());
 
-	//     // Не забудь очистить!
-	//     DestroyImmediate(image);
+	    DestroyImmediate(image);
 
-	//     UnityEngine.Debug.Log("Скриншот сохранился по адресу " + path);
-	// }
+	    Debug.Log("Скриншот сохранился по адресу " + path);
+	}
 	//---------------------------------------------------------------------------------------------------
 	public void StartGame()
 	{

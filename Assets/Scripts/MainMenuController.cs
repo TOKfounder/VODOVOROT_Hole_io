@@ -158,7 +158,8 @@ public class MainMenuController : MonoBehaviour
         SetPair(PanelOfMaps[0], DPanelOfMaps[0], ru, "Доступные Локации", "Available Locations");
         SetPair(PanelOfMaps[1], DPanelOfMaps[1], ru, "Городской Вайб", "City Vibe");
         SetPair(PanelOfMaps[2], DPanelOfMaps[2], ru, "Садовый Парк", "Garden Park");
-        SetPair(PanelOfMaps[3], DPanelOfMaps[3], ru, "Новые карты скоро...", "New maps are coming soon...");
+        SetPair(PanelOfMaps[3], DPanelOfMaps[3], ru, "Средневековый Вайб", "Medieval Vibe");
+        SetPair(PanelOfMaps[4], DPanelOfMaps[4], ru, "Новые карты скоро...", "New maps coming soon...");
 
         // Modes
         SetPair(PanelOfModes[0], DPanelOfModes[0], ru, "Доступные Режимы", "Available Modes");
@@ -342,8 +343,9 @@ public class MainMenuController : MonoBehaviour
 
     public void UpdateMapOnBackground(int id)
     {
-        if (id < 0 || id >= maps.Length) return;
-        mapField.sprite = maps[id];
+        if (id < 0) return;
+        if (id < maps.Length)
+            mapField.sprite = maps[id];
         YG2.saves.selectedMapID = id;
         VodovorotGameManager.Instance.SaveProgress();
     }

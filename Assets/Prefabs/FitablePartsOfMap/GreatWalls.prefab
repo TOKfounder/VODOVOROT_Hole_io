@@ -171,16 +171,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (51)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4592408864811857003}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
 --- !u!4 &5267506821878967267 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
   m_PrefabInstance: {fileID: 29590911451268429}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6420108346573218762 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 29590911451268429}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4592408864811857003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6420108346573218762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!1001 &368463320817337911
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -245,16 +272,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: TowerB (10)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6356887770412218171, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9084275281703877156, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6380897358066302006}
   m_SourcePrefab: {fileID: 100100000, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
 --- !u!4 &6884583653195990506 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6527966746742178781, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
   m_PrefabInstance: {fileID: 368463320817337911}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8866707287415602195 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9084275281703877156, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
+  m_PrefabInstance: {fileID: 368463320817337911}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6380897358066302006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8866707287415602195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!1001 &685207852712510424
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -319,16 +373,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (26)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5423943522372182793}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
 --- !u!4 &4679954301829000566 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
   m_PrefabInstance: {fileID: 685207852712510424}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5833206780390974815 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 685207852712510424}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5423943522372182793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5833206780390974815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!1001 &804973662573194826
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -393,16 +474,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (55)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1556457046517487035}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
 --- !u!4 &4781422072701157604 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
   m_PrefabInstance: {fileID: 804973662573194826}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5934118164053756109 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 804973662573194826}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1556457046517487035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5934118164053756109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!1001 &1019905194431017885
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -467,16 +575,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (43)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2931201701464516898}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
 --- !u!4 &5140787591700421939 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
   m_PrefabInstance: {fileID: 1019905194431017885}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6293358398822192410 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 1019905194431017885}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2931201701464516898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6293358398822192410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!1001 &1383231466660199571
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -541,11 +676,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (36)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4920814547056432051}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+--- !u!1 &5351358211943963156 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 1383231466660199571}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4920814547056432051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5351358211943963156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!4 &6504016987545702973 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
@@ -615,11 +777,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (49)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2779573971905073128}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+--- !u!1 &5479638057220617508 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 1547685243970835363}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2779573971905073128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5479638057220617508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!4 &6632301188926029069 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
@@ -689,11 +878,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (48)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3178769165474922889}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+--- !u!1 &4739697370248160076 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 1780936042901718475}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3178769165474922889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4739697370248160076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!4 &5892949839178640229 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
@@ -763,16 +979,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: TowerB (15)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6356887770412218171, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9084275281703877156, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6570347561763199013}
   m_SourcePrefab: {fileID: 100100000, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
 --- !u!4 &5172738150281346278 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6527966746742178781, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
   m_PrefabInstance: {fileID: 2116338725377031995}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7156055875051980063 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9084275281703877156, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
+  m_PrefabInstance: {fileID: 2116338725377031995}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6570347561763199013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7156055875051980063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!1001 &2643878635718735202
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -837,16 +1080,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (41)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1963093557944997192}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
 --- !u!4 &7908357028771961804 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
   m_PrefabInstance: {fileID: 2643878635718735202}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &9061558955601564645 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 2643878635718735202}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1963093557944997192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9061558955601564645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!1001 &2689820015305490542
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -911,16 +1181,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (28)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3725582149142851072}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
 --- !u!4 &7792626210188422848 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
   m_PrefabInstance: {fileID: 2689820015305490542}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8945775369016010473 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 2689820015305490542}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3725582149142851072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8945775369016010473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!1001 &2870838701960407866
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -985,16 +1282,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (50)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3459943626946804389}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
 --- !u!4 &7973506437179753876 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
   m_PrefabInstance: {fileID: 2870838701960407866}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &9126169533452471741 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 2870838701960407866}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3459943626946804389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9126169533452471741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!1001 &2883179560186139384
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1059,16 +1383,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (45)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5279909969415260937}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
 --- !u!4 &7022182494206639190 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
   m_PrefabInstance: {fileID: 2883179560186139384}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8174863216991122559 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 2883179560186139384}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5279909969415260937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8174863216991122559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!1001 &3237887073275522755
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1133,11 +1484,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: TowerB (17)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6356887770412218171, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9084275281703877156, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9000100300758448995}
   m_SourcePrefab: {fileID: 100100000, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
+--- !u!1 &5980390114595476711 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9084275281703877156, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
+  m_PrefabInstance: {fileID: 3237887073275522755}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9000100300758448995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5980390114595476711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!4 &8536773240168377630 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6527966746742178781, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
@@ -1207,11 +1585,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: TowerB (16)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6356887770412218171, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9084275281703877156, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3667789799783058614}
   m_SourcePrefab: {fileID: 100100000, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
+--- !u!1 &5769171337892489956 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9084275281703877156, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
+  m_PrefabInstance: {fileID: 3315180385643548864}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3667789799783058614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5769171337892489956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!4 &8400934952912360221 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6527966746742178781, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
@@ -1281,11 +1686,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (31)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6880382607168282043}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+--- !u!1 &7968518355349285141 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 4027400565727186834}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6880382607168282043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7968518355349285141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!4 &9121163861650088252 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
@@ -1355,11 +1787,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (33)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4905963513440485806}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+--- !u!1 &7004253299843352518 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 4054916438163661121}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4905963513440485806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7004253299843352518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!4 &8157466198100660207 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
@@ -1429,11 +1888,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (39)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5509764788745285853}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+--- !u!1 &7202902427037078876 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 4216556552514859995}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5509764788745285853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7202902427037078876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!4 &8355556736846175605 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
@@ -1503,11 +1989,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (27)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7529531787315637240}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+--- !u!1 &7286760456077735729 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 4354462177256935862}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7529531787315637240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7286760456077735729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!4 &8439456574173282072 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
@@ -1577,11 +2090,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (56)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7507626172917036160}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+--- !u!1 &7385121560089472126 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 4543242167200533241}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7507626172917036160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7385121560089472126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!4 &8537707665918829655 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
@@ -1651,16 +2191,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (37)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8503672907626255748}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
 --- !u!4 &814229596111473377 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
   m_PrefabInstance: {fileID: 4772804938247791695}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1967376554843112136 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 4772804938247791695}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8503672907626255748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967376554843112136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!1001 &4926879141767116935
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1725,16 +2292,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: TowerB (19)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6356887770412218171, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9084275281703877156, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5757584725538355889}
   m_SourcePrefab: {fileID: 100100000, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
 --- !u!4 &2218081445693242202 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6527966746742178781, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
   m_PrefabInstance: {fileID: 4926879141767116935}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4201328785152098979 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9084275281703877156, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
+  m_PrefabInstance: {fileID: 4926879141767116935}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5757584725538355889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4201328785152098979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!1001 &4976099267185550531
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1799,16 +2393,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: TowerB (14)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6356887770412218171, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9084275281703877156, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6126680095286158604}
   m_SourcePrefab: {fileID: 100100000, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
 --- !u!4 &2276948668916197150 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6527966746742178781, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
   m_PrefabInstance: {fileID: 4976099267185550531}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4260251142799171303 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9084275281703877156, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
+  m_PrefabInstance: {fileID: 4976099267185550531}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6126680095286158604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4260251142799171303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!1001 &5013589235004513549
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1873,16 +2494,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (54)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3139760934452155602}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
 --- !u!4 &928596486500021155 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
   m_PrefabInstance: {fileID: 5013589235004513549}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2081286007592647562 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 5013589235004513549}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3139760934452155602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2081286007592647562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!1001 &5139504179431436036
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1947,16 +2595,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: TowerB (11)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6356887770412218171, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9084275281703877156, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8409494625160389719}
   m_SourcePrefab: {fileID: 100100000, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
 --- !u!4 &2145069091701140697 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6527966746742178781, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
   m_PrefabInstance: {fileID: 5139504179431436036}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4126137211994723616 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9084275281703877156, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
+  m_PrefabInstance: {fileID: 5139504179431436036}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8409494625160389719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4126137211994723616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!1001 &5161813786100517708
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2021,16 +2696,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (52)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4534041560002908654}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
 --- !u!4 &1068095312143623650 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
   m_PrefabInstance: {fileID: 5161813786100517708}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2221290609624886731 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 5161813786100517708}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4534041560002908654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2221290609624886731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!1001 &5219130055685850724
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2095,16 +2797,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (42)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7363952020434397365}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
 --- !u!4 &80715625639487690 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
   m_PrefabInstance: {fileID: 5219130055685850724}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1233983422169227491 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 5219130055685850724}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7363952020434397365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233983422169227491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!1001 &5412769484472724400
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2169,16 +2898,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (57)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1825697656757351524}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
 --- !u!4 &175310971051099422 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
   m_PrefabInstance: {fileID: 5412769484472724400}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1328539261396602167 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 5412769484472724400}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1825697656757351524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328539261396602167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!1001 &5512471403965664878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2243,16 +2999,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (38)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1442444140367371381}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
 --- !u!4 &428100092746506432 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
   m_PrefabInstance: {fileID: 5512471403965664878}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1581280004648020201 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 5512471403965664878}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1442444140367371381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581280004648020201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!1001 &5940071841470273475
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2317,11 +3100,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (40)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1553871391309631615}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+--- !u!1 &801273077752443204 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 5940071841470273475}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1553871391309631615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801273077752443204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!4 &1954437525523806573 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
@@ -2391,16 +3201,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: TowerB (23)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6356887770412218171, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9084275281703877156, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6643801974173096701}
   m_SourcePrefab: {fileID: 100100000, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
 --- !u!4 &587403125068935223 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6527966746742178781, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
   m_PrefabInstance: {fileID: 5958578059393201130}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3215793404114061774 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9084275281703877156, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
+  m_PrefabInstance: {fileID: 5958578059393201130}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6643801974173096701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3215793404114061774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!1001 &6344096214047392034
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2465,11 +3302,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (29)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 265862153849574093}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+--- !u!1 &106731400674437029 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 6344096214047392034}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &265862153849574093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106731400674437029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!4 &1259337367405916044 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
@@ -2539,11 +3403,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (44)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2454136496002701911}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+--- !u!1 &260352984296168240 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 6551923719186021815}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2454136496002701911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260352984296168240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!4 &1413508670400041753 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
@@ -2613,16 +3504,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: TowerB (12)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6356887770412218171, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9084275281703877156, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6990403238567436065}
   m_SourcePrefab: {fileID: 100100000, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
 --- !u!4 &460997951066880290 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6527966746742178781, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
   m_PrefabInstance: {fileID: 6697472885594225407}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2514099471780233435 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9084275281703877156, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
+  m_PrefabInstance: {fileID: 6697472885594225407}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6990403238567436065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2514099471780233435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!1001 &7809416481510657465
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2687,11 +3605,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: TowerB (22)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6356887770412218171, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9084275281703877156, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8168883137561502480}
   m_SourcePrefab: {fileID: 100100000, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
+--- !u!1 &1328925643812124573 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9084275281703877156, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
+  m_PrefabInstance: {fileID: 7809416481510657465}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8168883137561502480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328925643812124573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!4 &3960741885674737252 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6527966746742178781, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
@@ -2761,16 +3706,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (46)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 838359409855807122}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
 --- !u!4 &2721904073785164844 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
   m_PrefabInstance: {fileID: 7833716986999712386}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3875094969998494725 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 7833716986999712386}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &838359409855807122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3875094969998494725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!1001 &8100930907789751915
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2835,11 +3807,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (30)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 103859158732316246}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+--- !u!1 &2962708835626389740 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 8100930907789751915}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &103859158732316246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2962708835626389740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!4 &4115332317334116549 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
@@ -2909,11 +3908,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (53)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2814984276424489389}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+--- !u!1 &3272953086608522777 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 8366055597320689822}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2814984276424489389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3272953086608522777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!4 &4425598557443012144 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
@@ -2983,11 +4009,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: TowerB (18)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6356887770412218171, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9084275281703877156, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3647368824379365749}
   m_SourcePrefab: {fileID: 100100000, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
+--- !u!1 &736181785217271146 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9084275281703877156, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
+  m_PrefabInstance: {fileID: 8369558729425633102}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3647368824379365749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736181785217271146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!4 &3364569874357451923 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6527966746742178781, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
@@ -3057,11 +4110,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: TowerB (13)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6356887770412218171, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9084275281703877156, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5152567014868889382}
   m_SourcePrefab: {fileID: 100100000, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
+--- !u!1 &845231291294206423 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9084275281703877156, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
+  m_PrefabInstance: {fileID: 8478881020126491635}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5152567014868889382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845231291294206423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!4 &3403866405124288558 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6527966746742178781, guid: 9ef95eb74fbef4145bc387e83b897495, type: 3}
@@ -3131,11 +4211,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (47)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8908625587908416955}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+--- !u!1 &2353682999043455777 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 8779794376218516902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8908625587908416955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2353682999043455777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!4 &3506273565094900488 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
@@ -3205,11 +4312,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (35)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4692680424770938863}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+--- !u!1 &2571681519096028955 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 8845523727828498844}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4692680424770938863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2571681519096028955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!4 &3724843829114263346 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
@@ -3279,11 +4413,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (32)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3421718423655815943}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+--- !u!1 &2704943269330686676 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 9004962651304653907}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3421718423655815943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2704943269330686676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!4 &3857575656586255101 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
@@ -3353,11 +4514,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (34)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8181415232639624259, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6882603377748500890}
   m_SourcePrefab: {fileID: 100100000, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+--- !u!1 &2880276377761528243 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445194501943617159, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
+  m_PrefabInstance: {fileID: 9117856693547097908}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6882603377748500890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2880276377761528243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929fcd897d30f4db726a05321586dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObject
+  value: 0
+  size: {x: 0, y: 0, z: 0}
+  V3: 0
+  rend: {fileID: 0}
+  isTriggered: 0
+  isColon: 0
 --- !u!4 &4033522223752032666 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5291959691871055534, guid: 4f6122b02aea27540b60ee221b7415e5, type: 3}
