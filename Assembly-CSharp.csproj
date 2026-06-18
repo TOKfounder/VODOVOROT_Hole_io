@@ -190,6 +190,7 @@
     <Compile Include="Assets/UsedAssets/Fries and Seagull/City 03/Scene Props/Scripts/Setup/SetupScriptURP.cs" />
     <Compile Include="Assets/UsedAssets/PinePie/Simple Joystick/Examples/demo script/MovementScript.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Storage/Scripts/Storage_yg.cs" />
+    <Compile Include="Assets/Scripts/TutorialController.cs" />
     <Compile Include="Assets/Scripts/VodovorotGameManager.cs" />
     <Compile Include="Assets/Scripts/FallingObject.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Flags/Example/Scripts/FlagsExample.cs" />

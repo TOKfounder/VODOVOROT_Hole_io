@@ -7,10 +7,10 @@
         false,
         false
     ],
-    "idSave": 326080,
+    "idSave": 40,
     "isFirst": false,
-    "langRu": true,
-    "score": 682,
+    "langRu": false,
+    "score": 0,
     "equipedMaterial": 0,
     "massiveOfObtaining": [
         1,
@@ -19,16 +19,17 @@
         0,
         0
     ],
-    "exp": 319,
-    "levelOfProgress": 3,
-    "goldCoins": 299,
+    "exp": 0,
+    "levelOfProgress": 0,
+    "goldCoins": 0,
     "isNickGiven": false,
     "nickName": "",
     "selectedMapID": 0,
-    "diamonds": 5,
+    "diamonds": 3,
     "isGaming": true,
     "soundValue": 0.5,
     "musicValue": 0.5,
     "done": true,
-    "chosenMode": 0
+    "chosenMode": 0,
+    "tutorialDone": false
 }

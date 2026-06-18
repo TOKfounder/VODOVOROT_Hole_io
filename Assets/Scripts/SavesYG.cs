@@ -19,5 +19,6 @@ namespace YG
 		public float musicValue = 0.5f;
 		public bool done = false;
 		public int chosenMode = 0;
+		public bool tutorialDone = false;
 	}
 }
