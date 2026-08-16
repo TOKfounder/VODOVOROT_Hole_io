@@ -31,14 +31,20 @@ public class GameController : MonoBehaviour
 		if (YG2.envir.isMobile)
 		{
 			CanvasForDesktop?.SetActive(false);
-			CanvasForMobile.SetActive(true);
-			currentCanvas = CanvasForMobile.GetComponent<Canvas>();
+			if (CanvasForMobile != null)
+			{
+				CanvasForMobile.SetActive(true);
+				currentCanvas = CanvasForMobile.GetComponent<Canvas>();
+			}
 		}
 		else
 		{
-			CanvasForDesktop.SetActive(true);
+			if (CanvasForDesktop != null)
+			{
+				CanvasForDesktop.SetActive(true);
+				currentCanvas = CanvasForDesktop.GetComponent<Canvas>();
+			}
 			CanvasForMobile?.SetActive(false);
-			currentCanvas = CanvasForDesktop.GetComponent<Canvas>();
 		}
 	}
 	
@@ -144,6 +150,13 @@ public class GameController : MonoBehaviour
 
 	public void ChangeMode(int id)
 	{
+		// Hunting=2, Team=3 — ещё не готовы
+		if (id == (int)ModeManager.Mode.Hunting || id == (int)ModeManager.Mode.TeamMode)
+		{
+			Debug.Log("Режим скоро будет доступен");
+			return;
+		}
+
 		YG2.saves.chosenMode = id;
 		YG2.SaveProgress();
 	}
@@ -151,30 +164,36 @@ public class GameController : MonoBehaviour
 	public void UpdateAllUI()
 	{
 		Debug.Log("UpdateUI");
-		if (LanguageManager.Instance.Adecvat)
+		if (LanguageManager.Instance != null)
 		{
-			YG2.SwitchLanguage(YG2.envir.language);
-			YG2.saves.langRu = YG2.envir.language == "ru" ? true : false;
-		}
-		else
-		{
-			YG2.SwitchLanguage(YG2.envir.language == "ru" ? "en" : "ru");
-			YG2.saves.langRu = YG2.envir.language == "ru" ? false : true;
-		}
+			if (LanguageManager.Instance.Adecvat)
+			{
+				YG2.SwitchLanguage(YG2.envir.language);
+				YG2.saves.langRu = YG2.envir.language == "ru" ? true : false;
+			}
+			else
+			{
+				YG2.SwitchLanguage(YG2.envir.language == "ru" ? "en" : "ru");
+				YG2.saves.langRu = YG2.envir.language == "ru" ? false : true;
+			}
 
+			if (LanguageManager.Instance.Mimage != null)
+				LanguageManager.Instance.Mimage.sprite = YG2.saves.langRu ?
+					LanguageManager.Instance.isRus : LanguageManager.Instance.isEng;
+			if (LanguageManager.Instance.Dimage != null)
+				LanguageManager.Instance.Dimage.sprite = YG2.saves.langRu ?
+					LanguageManager.Instance.isRus : LanguageManager.Instance.isEng;
+		}
 
 		if (!YG2.saves.isGaming)
 		{
-			MainMenuController.Instance.UpdateMainMenu();
+			if (MainMenuController.Instance != null)
+				MainMenuController.Instance.UpdateMainMenu();
 		}
 		else
 		{
-			GamingManager.Instance.UpdateUI();
+			if (GamingManager.Instance != null)
+				GamingManager.Instance.UpdateUI();
 		}
-			// Переключение иконки языка
-			LanguageManager.Instance.Mimage.sprite = YG2.saves.langRu ?
-			LanguageManager.Instance.isRus : LanguageManager.Instance.isEng;
-			LanguageManager.Instance.Dimage.sprite = YG2.saves.langRu ?
-			LanguageManager.Instance.isRus : LanguageManager.Instance.isEng;
 	}
 }

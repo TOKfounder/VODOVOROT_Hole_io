@@ -233,7 +233,7 @@ public class MainMenuController : MonoBehaviour
 
 	private void FailedPurchased(string id)
 	{
-		Debug.Log($"Покупка {id} была совершена");
+		Debug.Log($"Покупка {id} не удалась");
 	}
 	void SaveNick(string wroteName)
 	{

@@ -19,68 +19,73 @@ public class EndGameController : MonoBehaviour
 
 	private int currentCoinIncome;
 	private int brillCount;
+	private bool x3Claimed;
+
 	void Awake()
 	{
 		Instance = this;
 	}
 
-	public void ShowRewardedAdv(string rewardID) => YG2.RewardedAdvShow(rewardID);
+	public void ShowRewardedAdv(string rewardID)
+	{
+		if (x3Claimed)
+			return;
+		YG2.RewardedAdvShow(rewardID);
+	}
 
 	void Start()
 	{
-		GamingManager.Instance.EndOfGame();
-		if ((int)((float)YG2.saves.score / (GamingManager.Instance.AllValues - 20) * 100) < 100)
+		GamingManager gamingManager = GamingManager.Instance;
+		if (gamingManager == null)
+			return;
+
+		gamingManager.EndOfGame();
+
+		GamingManager.MatchRewardData reward = gamingManager.GetCurrentClassicReward();
+		currentCoinIncome = reward.coins;
+		brillCount = reward.diamonds;
+		x3Claimed = false;
+
+		ApplyResultSprite(reward.resultSpriteIndex);
+		SetResultTexts(reward.exp, reward.coins, reward.diamonds);
+
+		if (!gamingManager.HasRewardBeenApplied)
+			gamingManager.ApplyMatchReward(reward);
+
+		gamingManager.UpdateUI();
+	}
+
+	private void ApplyResultSprite(int spriteIndex)
+	{
+		if (resultImage == null)
+			return;
+
+		if (spriteIndex < 0 || spritesOfResult == null || spritesOfResult.Length == 0)
 		{
 			resultImage.sprite = null;
 			resultImage.color = new Color(1, 1, 1, 0);
-			float koef = (float)YG2.saves.score / (GamingManager.Instance.AllValues - 20);
-			int exp = (int)(50 * koef);
-			currentCoinIncome = (int)(13 * koef);
-			brillCount = (int)(4 * koef);
-			MexpText.text = $"+{exp}";
-			expText.text = $"+{exp}";
-			YG2.saves.exp += exp;
-			YG2.saves.goldCoins += currentCoinIncome;
-			McoinText.text = $"+{currentCoinIncome}";
-			coinText.text = $"+{currentCoinIncome}";
-			brillText.text = $"+{brillCount}";
-			MbrillText.text = $"+{brillCount}";
-			YG2.saves.diamonds += brillCount;
-			YG2.SetLeaderboard("BestPlayers", YG2.saves.exp);
-			YG2.SaveProgress();
-			GamingManager.Instance.UpdateUI();
 			return;
 		}
-		if (GamingManager.Instance.timer <= 360f)
-		{
-			resultImage.sprite = spritesOfResult[0];
-			currentCoinIncome = 30;
-			brillCount = 5;
-		}
-		else if (GamingManager.Instance.timer <= 600f)
-		{
-			resultImage.sprite = spritesOfResult[1];
-			currentCoinIncome = 20;
-			brillCount = 4;
-		}
-		else
-		{
-			resultImage.sprite = spritesOfResult[2];
-			currentCoinIncome = 15;
-			brillCount = 3;
-		}
-		YG2.saves.goldCoins += currentCoinIncome;
-		MexpText.text = "+50";
-		expText.text = "+50";
-		McoinText.text = $"+{currentCoinIncome}";
-		coinText.text = $"+{currentCoinIncome}";
-		brillText.text = $"+{brillCount}";
-		MbrillText.text = $"+{brillCount}";
-		YG2.saves.diamonds += brillCount;
-		YG2.saves.exp += 50;
-		YG2.SetLeaderboard("BestPlayers", YG2.saves.exp);
-		GamingManager.Instance.UpdateUI();
+
+		int safeIndex = Mathf.Clamp(spriteIndex, 0, spritesOfResult.Length - 1);
+		resultImage.sprite = spritesOfResult[safeIndex];
+		resultImage.color = Color.white;
 	}
+
+	private void SetResultTexts(int exp, int coins, int diamonds)
+	{
+		string expStr = $"+{exp}";
+		string coinStr = $"+{coins}";
+		string diaStr = $"+{diamonds}";
+
+		if (MexpText != null) MexpText.text = expStr;
+		if (expText != null) expText.text = expStr;
+		if (McoinText != null) McoinText.text = coinStr;
+		if (coinText != null) coinText.text = coinStr;
+		if (MbrillText != null) MbrillText.text = diaStr;
+		if (brillText != null) brillText.text = diaStr;
+	}
+
 	private void OnEnable()
 	{
 		YG2.onRewardAdv += X3ToCoinsForRewarded;
@@ -90,16 +95,17 @@ public class EndGameController : MonoBehaviour
 	{
 		YG2.onRewardAdv -= X3ToCoinsForRewarded;
 	}
+
 	public void X3ToCoinsForRewarded(string id)
 	{
-		//Показать рекламу
-		if (id == "1")
-		{
-			YG2.saves.goldCoins += 2 * currentCoinIncome;
-			McoinText.text = $"+{3 * currentCoinIncome}";
-			coinText.text = $"+{3 * currentCoinIncome}";
-			YG2.SaveProgress();
-		}
-	}
+		if (id != "1" || x3Claimed)
+			return;
 
+		x3Claimed = true;
+		YG2.saves.goldCoins += 2 * currentCoinIncome;
+		string tripleStr = $"+{3 * currentCoinIncome}";
+		if (McoinText != null) McoinText.text = tripleStr;
+		if (coinText != null) coinText.text = tripleStr;
+		YG2.SaveProgress();
+	}
 }

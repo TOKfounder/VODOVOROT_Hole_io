@@ -3,30 +3,59 @@ using UnityEngine.UI;
 
 public class PointsScript : MonoBehaviour
 {
-	private float moveSpeed = 50f;
+	[SerializeField] private float moveSpeed = 50f;
+	[SerializeField] private float duration = 1f;
+
 	private float time;
-	private float duration = 1f;
 	private Text txt;
 	private Color startColor;
+	private HoleParent ownerHole;
 
-	void Start()
+	void Awake()
 	{
-		time = 0f;
 		txt = GetComponent<Text>();
-		// startColor = txt.color;
+		if (txt != null)
+			startColor = txt.color;
 	}
-	
+
+	public void BindPool(HoleParent owner)
+	{
+		ownerHole = owner;
+	}
+
+	public void OnSpawn(int amount)
+	{
+		if (txt == null)
+			txt = GetComponent<Text>();
+
+		time = 0f;
+		gameObject.SetActive(true);
+
+		if (txt != null)
+		{
+			txt.text = $"+{amount}";
+			txt.color = startColor;
+		}
+	}
+
 	void Update()
 	{
+		if (txt == null)
+			return;
+
 		if (time < duration)
 		{
 			transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
 			time += Time.deltaTime;
-			txt.color = new Color(txt.color.r, txt.color.b, txt.color.b, 1f - time);
+			float alpha = 1f - time / duration;
+			txt.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
 		}
 		else
 		{
-			Destroy(gameObject);
+			if (ownerHole != null)
+				ownerHole.ReturnPointsToPool(gameObject);
+			else
+				Destroy(gameObject);
 		}
 	}
 }

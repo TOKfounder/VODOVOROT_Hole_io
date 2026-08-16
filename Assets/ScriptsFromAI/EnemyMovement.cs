@@ -1,12 +1,11 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.UIElements;
 
 public class EnemyMovement : MonoBehaviour
 {
 	public GameObject withoutCamera;
 	public float rotationSpeed = 0.1f;
-	public float detectionRadius = 500f;
+	public float detectionRadius = 80f;
 	public float searchInterval = 0.5f;
 	public LayerMask fallableObjects;
 
@@ -23,7 +22,6 @@ public class EnemyMovement : MonoBehaviour
 	{
 		rb = GetComponent<Rigidbody>();
 		enemyController = GetComponentInParent<EnemyController>();
-		// lastPosition = transform.position;
 		StartCoroutine(SearchRoutine());
 	}
 
@@ -38,14 +36,13 @@ public class EnemyMovement : MonoBehaviour
 
 	void FixedUpdate()
 	{
+		if (enemyController == null)
+			return;
+
 		if (currentTarget != null)
-		{
 			MoveToTarget();
-		}
 		else
-		{
 			SmallWander();
-		}
 
 		if (ignoredTarget != null)
 		{
@@ -60,12 +57,12 @@ public class EnemyMovement : MonoBehaviour
 
 	void FindClosestObject()
 	{
+		if (enemyController == null)
+			return;
+
 		Collider[] hitColliders = Physics.OverlapSphere(transform.position, detectionRadius, fallableObjects);
 		if (hitColliders.Length == 0)
-		{
-			hitColliders = Physics.OverlapSphere(transform.position, detectionRadius * 100, fallableObjects);
-			if (hitColliders.Length == 0) return;
-		}
+			return;
 
 		float closestDist = Mathf.Infinity;
 		Transform bestTarget = null;
@@ -89,7 +86,9 @@ public class EnemyMovement : MonoBehaviour
 		if (currentTarget == bestTarget)
 		{
 			CheckStuckStatus();
-		} else {
+		}
+		else
+		{
 			currentTarget = bestTarget;
 			stuckTimer = 0f;
 		}
@@ -97,27 +96,48 @@ public class EnemyMovement : MonoBehaviour
 
 	void MoveToTarget()
 	{
+		if (withoutCamera == null || currentTarget == null)
+			return;
+
 		Vector3 dir = currentTarget.position - transform.position;
 		dir.y = 0;
-		if (dir.magnitude < transform.localScale.x * 0.5f){
+		if (dir.magnitude < transform.localScale.x * 0.5f)
+		{
 			currentTarget = null;
 			return;
 		}
 		Vector3 moveDir = dir.normalized;
 
 		Quaternion targetRotation = Quaternion.LookRotation(moveDir);
-		withoutCamera.transform.rotation = Quaternion.Slerp(withoutCamera.transform.rotation, 
-		targetRotation, rotationSpeed * Time.fixedDeltaTime);
+		withoutCamera.transform.rotation = Quaternion.Slerp(withoutCamera.transform.rotation,
+			targetRotation, rotationSpeed * Time.fixedDeltaTime);
 
-		Vector3 newPosition = rb.position + moveDir * levelSpeeds[GetComponentInParent<HoleParent>().currentLevel] * 0.25f * Time.fixedDeltaTime;
-		newPosition.x = Mathf.Clamp(newPosition.x, GamingManager.Instance.minX, GamingManager.Instance.maxX);
-		newPosition.z = Mathf.Clamp(newPosition.z, GamingManager.Instance.minZ, GamingManager.Instance.maxZ);
+		int level = enemyController.currentLevel;
+		float speed = (level >= 0 && level < levelSpeeds.Length) ? levelSpeeds[level] : levelSpeeds[^1];
+		Vector3 newPosition = rb.position + moveDir * speed * 0.25f * Time.fixedDeltaTime;
+		ClampToBounds(ref newPosition);
 		rb.MovePosition(newPosition);
 	}
 
 	void SmallWander()
 	{
-		rb.MovePosition(rb.position + withoutCamera.transform.forward * levelSpeeds[GetComponentInParent<HoleParent>().currentLevel] * 0.25f * Time.fixedDeltaTime);
+		if (withoutCamera == null)
+			return;
+
+		int level = enemyController.currentLevel;
+		float speed = (level >= 0 && level < levelSpeeds.Length) ? levelSpeeds[level] : levelSpeeds[^1];
+		Vector3 newPosition = rb.position + withoutCamera.transform.forward * speed * 0.25f * Time.fixedDeltaTime;
+		ClampToBounds(ref newPosition);
+		rb.MovePosition(newPosition);
+	}
+
+	void ClampToBounds(ref Vector3 newPosition)
+	{
+		if (GamingManager.Instance == null)
+			return;
+
+		newPosition.x = Mathf.Clamp(newPosition.x, GamingManager.Instance.minX, GamingManager.Instance.maxX);
+		newPosition.z = Mathf.Clamp(newPosition.z, GamingManager.Instance.minZ, GamingManager.Instance.maxZ);
 	}
 
 	void CheckStuckStatus()

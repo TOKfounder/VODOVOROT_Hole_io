@@ -29,25 +29,24 @@ namespace PinePie.SimpleJoystick.Examples.DemoScript
 
 		void FixedUpdate()
 		{
-			if (GamingManager.Instance.perc * 100f >= 70f)
+			if (GamingManager.Instance == null || BlackHoleController.Player == null)
+				return;
+
+			if (boostButton != null)
 			{
-				boostButton.gameObject.SetActive(true);
-			} else {
-				boostButton.gameObject.SetActive(false);
-			}
-			if (YG2.envir.isDesktop)
-			{
-				holding = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
-				if (holding)
-					boostButton.image.color = new Color32(0x38, 0xc8, 0x07, 0xFF);
-				else
-					boostButton.image.color = new Color32(0x48, 0xFF, 0x09, 0xFF);
+				bool showBoost = GamingManager.Instance.perc * 100f >= 70f;
+				boostButton.gameObject.SetActive(showBoost);
+				if (YG2.envir.isDesktop)
+				{
+					holding = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+					boostButton.image.color = holding
+						? new Color32(0x38, 0xc8, 0x07, 0xFF)
+						: new Color32(0x48, 0xFF, 0x09, 0xFF);
+				}
 			}
 
-			// float moveX = Input.GetAxisRaw("Horizontal");
-			// float moveY = Input.GetAxisRaw("Vertical");
 			movement = Vector3.zero;
-			if (joystickController.isPressed)
+			if (joystickController != null && joystickController.isPressed)
 			{
 				Vector2 joysticInput = joystickController.InputDirection;
 				movement = new Vector3(joysticInput.x, 0f, joysticInput.y);
@@ -55,15 +54,21 @@ namespace PinePie.SimpleJoystick.Examples.DemoScript
 
 			if (movement.magnitude > 1f)
 				movement = movement.normalized;
-			if (movement.magnitude > 0.01f)
+			if (movement.magnitude > 0.01f && WithoutCamera != null)
 			{
 				Quaternion targetRotation = Quaternion.LookRotation(movement);
 				WithoutCamera.transform.rotation = Quaternion.Slerp(WithoutCamera.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 			}
 			float k = 1f;
-			if (holding || boostButton.GetComponent<BoostButton>().isHolding)
+			BoostButton boost = boostButton != null ? boostButton.GetComponent<BoostButton>() : null;
+			if (holding || (boost != null && boost.isHolding))
 				k = 2f;
-			Vector3 newPosition = rb.position + 0.5f * k * movement * levelSpeeds[BlackHoleController.Instance.currentLevel] * Time.fixedDeltaTime;
+
+			int level = BlackHoleController.Player != null
+				? BlackHoleController.Player.currentLevel
+				: 0;
+			float speed = (level >= 0 && level < levelSpeeds.Length) ? levelSpeeds[level] : levelSpeeds[^1];
+			Vector3 newPosition = rb.position + 0.5f * k * movement * speed * Time.fixedDeltaTime;
 			newPosition.x = Mathf.Clamp(newPosition.x, GamingManager.Instance.minX, GamingManager.Instance.maxX);
 			newPosition.z = Mathf.Clamp(newPosition.z, GamingManager.Instance.minZ, GamingManager.Instance.maxZ);
 			rb.MovePosition(newPosition);

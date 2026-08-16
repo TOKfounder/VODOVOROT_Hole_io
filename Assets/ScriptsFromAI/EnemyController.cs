@@ -1,9 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
-using YG;
-using System.Linq;
 
 public class EnemyController : HoleParent
 {
@@ -17,8 +12,10 @@ public class EnemyController : HoleParent
 		if (ModeManager.currentMode == ModeManager.Mode.Boss)
 		{
 			score = bossScore;
+			RefreshSizeFromScore();
 		}
 		count += 1;
-		nickname.text = $"Enemy{count}";
+		if (nickname != null)
+			nickname.text = $"Enemy{count}";
 	}
 }

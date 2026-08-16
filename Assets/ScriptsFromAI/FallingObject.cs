@@ -43,13 +43,13 @@ public class FallingObject : MonoBehaviour
 		gameObject.layer = 7;
 		foreach (var plat in GamingManager.allPlatforms)
 		{
+			if (plat == null || col == null) continue;
 			Physics.IgnoreCollision(plat, col, true);
 		}
 		size = GetVisualSize();
 		V3 = size.x * size.y * size.z;
 		startPosition = GetComponent<Transform>().position;
 		startRotation = GetComponent<Transform>().rotation;
-		// Physics.IgnoreLayerCollision(7, 0, true);
 		if (V3 <= 0.087f)
 		{
 			value = 1;
@@ -87,9 +87,10 @@ public class FallingObject : MonoBehaviour
 			value = 100;
 		}
 		rb.mass = V3 * 50;
-		rb.drag = 4;
-		rb.angularDrag = 4;
-		GamingManager.Instance.AllValues += value;
+		rb.linearDamping = 4;
+		rb.angularDamping = 4;
+		if (GamingManager.Instance != null)
+			GamingManager.Instance.AllValues += value;
 	}
 
 	IEnumerator DelayForUpdateCurrentHole()
@@ -101,50 +102,60 @@ public class FallingObject : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.CompareTag("Player"))
+		if (!other.CompareTag("Player"))
+			return;
+
+		HoleParent otherHole = other.GetComponentInParent<HoleParent>();
+		if (otherHole == null)
+			return;
+
+		if (isTriggered)
 		{
-			if (isTriggered)
+			if (CurrentHole == null || otherHole != CurrentHole)
 			{
-				var otherHole = other.GetComponentInParent<HoleParent>();
-				if (otherHole.nickname != CurrentHole.nickname)
-				{
+				if (CurrentHole != null && CurrentHole.platform != null && col != null)
 					Physics.IgnoreCollision(CurrentHole.platform, col, true);
-					isTriggered = false;
-					CurrentHole = otherHole;
+				isTriggered = false;
+				CurrentHole = otherHole;
+				if (CurrentHole.platform != null && col != null)
 					Physics.IgnoreCollision(CurrentHole.platform, col, false);
-				}
-				else
-					return;
 			}
 			else
-			{
-				CurrentHole = other.GetComponentInParent<HoleParent>();
+				return;
+		}
+		else
+		{
+			CurrentHole = otherHole;
+			if (CurrentHole.platform != null && col != null)
 				Physics.IgnoreCollision(CurrentHole.platform, col, false);
-			}
+		}
 
-			if (!isColon)
+		if (!isColon)
+		{
+			if (myCoroutine != null) StopCoroutine(myCoroutine);
+			myCoroutine = StartCoroutine(DelayForUpdateCurrentHole());
+		}
+
+		if (CurrentHole.holeType == HoleParent.TypeOfHole.enemy
+			|| CurrentHole.holeType == HoleParent.TypeOfHole.enemyHelper)
+		{
+			if (Tool.CanFitForEnemies(size, CurrentHole.size))
 			{
-				if (myCoroutine != null) StopCoroutine(myCoroutine);
-				myCoroutine = StartCoroutine(DelayForUpdateCurrentHole());
+				isTriggered = true;
+				rb.isKinematic = false;
+				if (!CurrentHole.nearbyFallingObjects.Contains(this))
+					CurrentHole.nearbyFallingObjects.Add(this);
 			}
-				
-			if (HoleParent.holeType == HoleParent.TypeOfHole.enemy)
+		}
+		else
+		{
+			if (Tool.CanFit2D(size, CurrentHole.size))
 			{
-				if (Tool.CanFitForEnemies(size, CurrentHole.size))
-				{
-					isTriggered = true;
-					rb.isKinematic = false;
+				isTriggered = true;
+				rb.isKinematic = false;
+				if (!CurrentHole.nearbyFallingObjects.Contains(this))
 					CurrentHole.nearbyFallingObjects.Add(this);
-				}
-			} else {
-				if (Tool.CanFit2D(size, CurrentHole.size))
-				{
-					isTriggered = true;
-					rb.isKinematic = false;
-					CurrentHole.nearbyFallingObjects.Add(this);
-				}
 			}
-			
 		}
 	}
 	
@@ -177,6 +188,7 @@ public class FallingObject : MonoBehaviour
 		CurrentHole = null;
 		foreach (var plat in GamingManager.allPlatforms)
 		{
+			if (plat == null || col == null) continue;
 			Physics.IgnoreCollision(plat, col, true);
 		}
 		if (myCoroutine != null) StopCoroutine(myCoroutine);
@@ -184,16 +196,19 @@ public class FallingObject : MonoBehaviour
 
 	public void OnScored(HoleParent hole)
 	{
-		
 		hole.AddScore(value);
 		value = 0;
-		
+
 		rb.isKinematic = true;
 		col.enabled = false;
 		rend.enabled = false;
 		CurrentHole = null;
 		if (myCoroutine != null) StopCoroutine(myCoroutine);
 
-		if (isColon) print("Helper is Alife!");
+		if (isColon && hole is BlackHoleController)
+		{
+			SpawnerOfHelpers spawner = FindAnyObjectByType<SpawnerOfHelpers>();
+			spawner?.TrySpawnHelper(transform);
+		}
 	}
 }

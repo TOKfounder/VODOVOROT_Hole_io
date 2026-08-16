@@ -1,13 +1,23 @@
+using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
-using UnityEngine;
 using UnityEngine.UI;
 using YG;
 
+[DefaultExecutionOrder(-100)]
 public class GamingManager : MonoBehaviour
 {
 	public static GamingManager Instance;
 	public static List<Collider> allPlatforms = new List<Collider>();
+
+	public struct MatchRewardData
+	{
+		public int exp;
+		public int coins;
+		public int diamonds;
+		public int resultSpriteIndex; // -1 = без спрайта (неполное прохождение)
+	}
+
 	public GameObject MobpanelOfEnd;
 	public GameObject DeskpanelOfEnd;
 	public float perc = 0f;
@@ -24,6 +34,10 @@ public class GamingManager : MonoBehaviour
 	public Text Mpercent;
 	public Text Dpercent;
 
+	[Header("Total Cleaning")]
+	public float totalCleaningDuration = 180f;
+	public Text totalCleaningTimerText;
+
 [Header("Mobile UI")]
 	public Text BoostText;
 	public Text[] MobilePanelOfSettings;
@@ -35,31 +49,59 @@ public class GamingManager : MonoBehaviour
 
 	private bool timerGo;
 	private bool once;
+	private bool rewardApplied;
+	private bool endSequenceStarted;
+	private bool isTotalCleaningMode;
+
+	public bool HasRewardBeenApplied => rewardApplied;
+	public bool IsTotalCleaningMode => isTotalCleaningMode;
+	public float RemainingTime => Mathf.Max(0f, totalCleaningDuration - timer);
 
 	void Awake()
 	{
 		Instance = this;
-		maxX = walls[0].GetComponent<Collider>().bounds.min.x;
-		minX = walls[1].GetComponent<Collider>().bounds.max.x;
-		minZ = walls[2].GetComponent<Collider>().bounds.max.z;
-		maxZ = walls[3].GetComponent<Collider>().bounds.min.z;
+		ResetMatchState();
+
+		if (walls != null && walls.Length >= 4)
+		{
+			maxX = walls[0].GetComponent<Collider>().bounds.min.x;
+			minX = walls[1].GetComponent<Collider>().bounds.max.x;
+			minZ = walls[2].GetComponent<Collider>().bounds.max.z;
+			maxZ = walls[3].GetComponent<Collider>().bounds.min.z;
+		}
+	}
+
+	public static void ResetMatchState()
+	{
+		allPlatforms.Clear();
+		HoleParent.ResetStaticMatchState();
+		EnemyController.count = 0;
 	}
 
 	void Start()
 	{
-		foreach (var renderer in FindObjectsOfType<MeshRenderer>()) {
-			renderer.receiveShadows = false;
-			renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-		}
+		// WebGL: отключаем тени глобально вместо обхода всех MeshRenderer на огромной карте
+		QualitySettings.shadows = ShadowQuality.Disable;
+
 		once = true;
+		rewardApplied = false;
+		endSequenceStarted = false;
+		isTotalCleaningMode = ModeManager.currentMode == ModeManager.Mode.TotalCleaning
+			|| YG2.saves.chosenMode == (int)ModeManager.Mode.TotalCleaning;
+
+		ResolveTotalCleaningTimerText();
+		if (totalCleaningTimerText != null)
+		{
+			totalCleaningTimerText.gameObject.SetActive(isTotalCleaningMode);
+			if (isTotalCleaningMode)
+				totalCleaningTimerText.text = FormatTime(RemainingTime);
+		}
+
 		YG2.saves.isGaming = true;
 		Time.timeScale = 1f;
 		YG2.SaveProgress();
 		timer = 0f;
 		timerGo = true;
-		// UpdateUI();
-		// if (!YG2.saves.langRu)
-		// LanguageManager.Instance.Onclick();
 		StartCoroutine(UpdateFlag());
 	}
 
@@ -70,77 +112,265 @@ public class GamingManager : MonoBehaviour
 		while (true)
 		{
 			YG2.saves.score = HoleParent.totalScore;
-			perc = (float)YG2.saves.score / (AllValues - 15);
-			yield return new WaitForSeconds(1f);
+			perc = GetCapturePercent();
+			yield return new WaitForSeconds(0.25f);
 		}
 	}
 
 	void FixedUpdate()
 	{
-		
-		if (once && (int)(perc * 100) >= 100)
-		{
-			if (YG2.envir.isMobile)
-				MobpanelOfEnd.SetActive(true);
-			else
-				DeskpanelOfEnd.SetActive(true);
-		}
-		if (YG2.envir.isMobile)
-		{
-			Mflazhok.fillAmount = perc;
-			Mpercent.text = $"{(int)(perc * 100)}%";
-		} else {
-			Dflazhok.fillAmount = perc;
-			Dpercent.text = $"{(int)(perc * 100)}%";
-		}
 		if (timerGo)
 			timer += Time.fixedDeltaTime;
+
+		bool shouldEnd = once && (
+			GetCapturePercent() >= 1f
+			|| (isTotalCleaningMode && timer >= totalCleaningDuration - 0.01f)
+		);
+
+		if (shouldEnd)
+		{
+			once = false;
+			ShowEndPanel();
+		}
+
+		float fill = Mathf.Clamp01(perc);
+		string percentText = $"{(int)(fill * 100)}%";
+		if (YG2.envir.isMobile)
+		{
+			if (Mflazhok != null) Mflazhok.fillAmount = fill;
+			if (Mpercent != null) Mpercent.text = percentText;
+		}
+		else
+		{
+			if (Dflazhok != null) Dflazhok.fillAmount = fill;
+			if (Dpercent != null) Dpercent.text = percentText;
+		}
+
+		if (isTotalCleaningMode)
+		{
+			ResolveTotalCleaningTimerText();
+			if (totalCleaningTimerText != null)
+				totalCleaningTimerText.text = FormatTime(RemainingTime);
+		}
+	}
+
+	private const string TotalCleaningTimerName = "TimerText";
+
+	private void ResolveTotalCleaningTimerText()
+	{
+		if (totalCleaningTimerText != null)
+			return;
+
+		Canvas canvas = GameController.Instance != null
+			? GameController.Instance.currentCanvas
+			: FindAnyObjectByType<Canvas>();
+		if (canvas == null)
+			return;
+
+		Text[] texts = canvas.GetComponentsInChildren<Text>(true);
+		for (int i = 0; i < texts.Length; i++)
+		{
+			if (texts[i] != null && texts[i].name == TotalCleaningTimerName)
+			{
+				totalCleaningTimerText = texts[i];
+				break;
+			}
+		}
+
+		if (totalCleaningTimerText != null || !isTotalCleaningMode)
+			return;
+
+		// Автосоздание UI-таймера, если в сцене нет объекта TimerText
+		GameObject go = new GameObject(TotalCleaningTimerName, typeof(RectTransform), typeof(Text));
+		go.transform.SetParent(canvas.transform, false);
+		RectTransform rt = go.GetComponent<RectTransform>();
+		rt.anchorMin = new Vector2(0.5f, 1f);
+		rt.anchorMax = new Vector2(0.5f, 1f);
+		rt.pivot = new Vector2(0.5f, 1f);
+		rt.anchoredPosition = new Vector2(0f, -40f);
+		rt.sizeDelta = new Vector2(240f, 60f);
+		totalCleaningTimerText = go.GetComponent<Text>();
+		totalCleaningTimerText.alignment = TextAnchor.MiddleCenter;
+		totalCleaningTimerText.fontSize = 36;
+		totalCleaningTimerText.color = Color.white;
+		totalCleaningTimerText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+		if (totalCleaningTimerText.font == null)
+			totalCleaningTimerText.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+	}
+
+	private void ShowEndPanel()
+	{
+		if (YG2.envir.isMobile)
+			MobpanelOfEnd?.SetActive(true);
+		else
+			DeskpanelOfEnd?.SetActive(true);
+	}
+
+	public float GetCapturePercent()
+	{
+		// Балансный запас: ~15 очков «недостижимого» хвоста, чтобы 100% было достижимо раньше last object
+		const int ProgressSlack = 15;
+		if (AllValues <= ProgressSlack)
+			return 0f;
+
+		int score = HoleParent.totalScore > 0 ? HoleParent.totalScore : YG2.saves.score;
+		return Mathf.Clamp01((float)score / (AllValues - ProgressSlack));
+	}
+
+	public MatchRewardData GetClassicReward(float progress)
+	{
+		progress = Mathf.Clamp01(progress);
+
+		if (isTotalCleaningMode)
+			return GetTotalCleaningReward(progress);
+
+		if (progress < 1f)
+		{
+			return new MatchRewardData
+			{
+				exp = (int)(50 * progress),
+				coins = (int)(13 * progress),
+				diamonds = (int)(4 * progress),
+				resultSpriteIndex = -1
+			};
+		}
+
+		if (timer <= 360f)
+		{
+			return new MatchRewardData
+			{
+				exp = 50,
+				coins = 30,
+				diamonds = 5,
+				resultSpriteIndex = 0
+			};
+		}
+
+		if (timer <= 600f)
+		{
+			return new MatchRewardData
+			{
+				exp = 50,
+				coins = 20,
+				diamonds = 4,
+				resultSpriteIndex = 1
+			};
+		}
+
+		return new MatchRewardData
+		{
+			exp = 50,
+			coins = 15,
+			diamonds = 3,
+			resultSpriteIndex = 2
+		};
+	}
+
+	public MatchRewardData GetTotalCleaningReward(float progress)
+	{
+		progress = Mathf.Clamp01(progress);
+
+		if (progress < 0.5f)
+		{
+			int coins = Mathf.RoundToInt(15f * (progress / 0.5f));
+			int exp = Mathf.RoundToInt(25f * (progress / 0.5f));
+			return new MatchRewardData
+			{
+				exp = exp,
+				coins = coins,
+				diamonds = coins / 5,
+				resultSpriteIndex = 2
+			};
+		}
+
+		if (progress < 0.7f)
+		{
+			return new MatchRewardData
+			{
+				exp = 35,
+				coins = 20,
+				diamonds = 4,
+				resultSpriteIndex = 1
+			};
+		}
+
+		return new MatchRewardData
+		{
+			exp = 50,
+			coins = 25,
+			diamonds = 5,
+			resultSpriteIndex = 0
+		};
+	}
+
+	public MatchRewardData GetCurrentClassicReward() => GetClassicReward(GetCapturePercent());
+
+	public void ApplyMatchReward(MatchRewardData reward)
+	{
+		if (rewardApplied)
+			return;
+
+		YG2.saves.score = HoleParent.totalScore;
+		YG2.saves.exp += reward.exp;
+		YG2.saves.goldCoins += reward.coins;
+		YG2.saves.diamonds += reward.diamonds;
+		YG2.SetLeaderboard("BestPlayers", YG2.saves.exp);
+		YG2.SaveProgress();
+		rewardApplied = true;
 	}
 
 	public void EndOfGame()
 	{
+		if (endSequenceStarted)
+			return;
+
+		endSequenceStarted = true;
 		timerGo = false;
 		once = false;
-		Time.timeScale = 0;
-		Invoke(nameof(timeScalingBitLater), 7f);
+		Time.timeScale = 0f;
 	}
 
-	void timeScalingBitLater()
+	private string FormatTime(float seconds)
 	{
-		Time.timeScale = 0f;
-	} 
+		int totalSeconds = Mathf.CeilToInt(Mathf.Max(0f, seconds));
+		int minutes = totalSeconds / 60;
+		int secs = totalSeconds % 60;
+		return $"{minutes:00}:{secs:00}";
+	}
 
 	public void UpdateUI()
 	{
-		BoostText.text = YG2.saves.langRu ? "Буст Скорости" : "Speed Boost";
-		MobilePanelOfSettings[0].text = YG2.saves.langRu ? "Настройки" : "Settings";
-		MobilePanelOfSettings[1].text = YG2.saves.langRu ? "Язык" : "Language";
-		MobilePanelOfSettings[2].text = YG2.saves.langRu ? "Звуки" : "Sounds";
-		MobilePanelOfSettings[3].text = YG2.saves.langRu ? "Музыка" : "Music";
-		MobilePanelOfSettings[4].text = YG2.saves.langRu ? "Завершить игру" : "End the game";
+		if (BoostText != null)
+			BoostText.text = YG2.saves.langRu ? "Буст Скорости" : "Speed Boost";
+		if (DBoostText != null)
+			DBoostText.text = YG2.saves.langRu ? "Буст Скорости" : "Speed Boost";
 
-		DBoostText.text = YG2.saves.langRu ? "Буст Скорости" : "Speed Boost";
-		PanelOfEnd[0].text = YG2.saves.langRu ? "Опыт:" : "Experience:";
-		PanelOfEnd[1].text = YG2.saves.langRu ? "Итог" : "Result";
-		PanelOfEnd[2].text = YG2.saves.langRu ? "Монеты:" : "Coins:";
-		PanelOfEnd[3].text = YG2.saves.langRu ? "Бриллианты:" : "Brilliants:";
-		PanelOfEnd[4].text = YG2.saves.langRu ? "Продолжить" : "Continue";
-		PanelOfEnd[5].text = YG2.saves.langRu ? "x3 Монеты\n(короткая реклама)" : "x3 Coins\n(short ad)";
+		SetSettingsTexts(MobilePanelOfSettings);
+		SetSettingsTexts(DesktopPanelOfSettings);
+		SetEndPanelTexts(PanelOfEnd);
+		SetEndPanelTexts(DPanelOfEnd);
+	}
 
+	private void SetSettingsTexts(Text[] panel)
+	{
+		if (panel == null || panel.Length < 5) return;
+		bool ru = YG2.saves.langRu;
+		if (panel[0] != null) panel[0].text = ru ? "Настройки" : "Settings";
+		if (panel[1] != null) panel[1].text = ru ? "Язык" : "Language";
+		if (panel[2] != null) panel[2].text = ru ? "Звуки" : "Sounds";
+		if (panel[3] != null) panel[3].text = ru ? "Музыка" : "Music";
+		if (panel[4] != null) panel[4].text = ru ? "Завершить игру" : "End the game";
+	}
 
-		//----------------------------------------------------------------------------------------------------------------------------
-
-		DesktopPanelOfSettings[0].text = YG2.saves.langRu ? "Настройки" : "Settings";
-		DesktopPanelOfSettings[1].text = YG2.saves.langRu ? "Язык" : "Language";
-		DesktopPanelOfSettings[2].text = YG2.saves.langRu ? "Звуки" : "Sounds";
-		DesktopPanelOfSettings[3].text = YG2.saves.langRu ? "Музыка" : "Music";
-		DesktopPanelOfSettings[4].text = YG2.saves.langRu ? "Завершить игру" : "End the game";
-
-		DPanelOfEnd[0].text = YG2.saves.langRu ? "Опыт:" : "Experience:";
-		DPanelOfEnd[1].text = YG2.saves.langRu ? "Итог" : "Result";
-		DPanelOfEnd[2].text = YG2.saves.langRu ? "Монеты:" : "Coins:";
-		DPanelOfEnd[3].text = YG2.saves.langRu ? "Бриллианты:" : "Brilliants:";
-		DPanelOfEnd[4].text = YG2.saves.langRu ? "Продолжить" : "Continue";
-		DPanelOfEnd[5].text = YG2.saves.langRu ? "x3 Монеты\n(короткая реклама)" : "x3 Coins\n(short ad)";
+	private void SetEndPanelTexts(Text[] panel)
+	{
+		if (panel == null || panel.Length < 6) return;
+		bool ru = YG2.saves.langRu;
+		if (panel[0] != null) panel[0].text = ru ? "Опыт:" : "Experience:";
+		if (panel[1] != null) panel[1].text = ru ? "Итог" : "Result";
+		if (panel[2] != null) panel[2].text = ru ? "Монеты:" : "Coins:";
+		if (panel[3] != null) panel[3].text = ru ? "Бриллианты:" : "Brilliants:";
+		if (panel[4] != null) panel[4].text = ru ? "Продолжить" : "Continue";
+		if (panel[5] != null) panel[5].text = ru ? "x3 Монеты\n(короткая реклама)" : "x3 Coins\n(short ad)";
 	}
 }

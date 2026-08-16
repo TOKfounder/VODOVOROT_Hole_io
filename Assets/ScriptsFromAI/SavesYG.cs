@@ -12,7 +12,7 @@ namespace YG
 		public int goldCoins = 0;
 		public bool isNickGiven = false;
 		public string nickName = "";
-		public int selectedMapID = 1;
+		public int selectedMapID = 0;
 		public int diamonds = 3;
 		public bool isGaming;
 		public float soundValue = 0.5f;

@@ -1,23 +1,36 @@
 using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
 using YG;
-using System.Data.Common;
 
 public class BlackHoleController : HoleParent
 {
+	public static BlackHoleController Player { get; private set; }
+
+	// Совместимость со старым кодом MovementScript
+	public static BlackHoleController Instance => Player;
+
+	protected override void Awake()
+	{
+		base.Awake();
+		Player = this;
+	}
+
+	protected override void OnDestroy()
+	{
+		if (Player == this)
+			Player = null;
+		base.OnDestroy();
+	}
 
 	public override void Start()
 	{
 		base.Start();
-		score = 1779;
 		holeType = TypeOfHole.player;
-		if (YG2.saves.nickName != "")
+		if (nickname == null)
+			return;
+
+		if (!string.IsNullOrEmpty(YG2.saves.nickName))
 			nickname.text = YG2.saves.nickName;
 		else
-		{
-			nickname.text = YG2.saves.langRu? "Легенда" : "Legend";
-		}
+			nickname.text = YG2.saves.langRu ? "Легенда" : "Legend";
 	}
 }

@@ -31,16 +31,19 @@ public class LanguageManager : MonoBehaviour
 			YG2.saves.done = true;
 			YG2.SaveProgress();
 		}
-		Onclick();
-		Onclick();
-		// if (YG2.saves.langRu)
-		// 	Onclick();
-		// flag.onClick.Invoke();
+		RefreshUI();
 	}
+
 	public void Onclick()
 	{
 		Adecvat = !Adecvat;
-		GameController.Instance.UpdateAllUI();
+		RefreshUI();
 		YG2.SaveProgress();
+	}
+
+	public void RefreshUI()
+	{
+		if (GameController.Instance != null)
+			GameController.Instance.UpdateAllUI();
 	}
 }
