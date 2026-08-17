@@ -11,6 +11,8 @@ public class ModeManager : MonoBehaviour
 
 	private const int GardenMapId = 1;
 
+	public static bool IsGardenMap() => YG2.saves.selectedMapID == GardenMapId;
+
 	[SerializeField] private GameObject enemyPrefab;
 	[SerializeField] private GameObject mainPlayer;
 	[SerializeField] private Transform bossSpawnPoint;
@@ -24,6 +26,14 @@ public class ModeManager : MonoBehaviour
 		// Hunting / Team пока не реализованы — откат на Boss
 		if (currentMode == Mode.Hunting || currentMode == Mode.TeamMode)
 		{
+			currentMode = Mode.Boss;
+			YG2.saves.chosenMode = (int)Mode.Boss;
+		}
+
+		// Total Cleaning только на карте Garden
+		if (currentMode == Mode.TotalCleaning && !IsGardenMap())
+		{
+			Debug.Log("Total Cleaning доступен только на карте Сад — выбран режим Boss");
 			currentMode = Mode.Boss;
 			YG2.saves.chosenMode = (int)Mode.Boss;
 		}
@@ -87,6 +97,4 @@ public class ModeManager : MonoBehaviour
 	public void StartHuntingMode() { }
 
 	public void StartTeamModeMode() { }
-
-	private static bool IsGardenMap() => YG2.saves.selectedMapID == GardenMapId;
 }

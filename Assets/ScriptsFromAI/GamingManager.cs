@@ -52,8 +52,10 @@ public class GamingManager : MonoBehaviour
 	private bool rewardApplied;
 	private bool endSequenceStarted;
 	private bool isTotalCleaningMode;
+	private bool bossDefeated;
 
 	public bool HasRewardBeenApplied => rewardApplied;
+	public bool BossDefeated => bossDefeated;
 	public bool IsTotalCleaningMode => isTotalCleaningMode;
 	public float RemainingTime => Mathf.Max(0f, totalCleaningDuration - timer);
 
@@ -86,6 +88,7 @@ public class GamingManager : MonoBehaviour
 		once = true;
 		rewardApplied = false;
 		endSequenceStarted = false;
+		bossDefeated = false;
 		isTotalCleaningMode = ModeManager.currentMode == ModeManager.Mode.TotalCleaning
 			|| YG2.saves.chosenMode == (int)ModeManager.Mode.TotalCleaning;
 
@@ -111,7 +114,7 @@ public class GamingManager : MonoBehaviour
 	{
 		while (true)
 		{
-			YG2.saves.score = HoleParent.totalScore;
+			YG2.saves.score = GetPlayerScore();
 			perc = GetCapturePercent();
 			yield return new WaitForSeconds(0.25f);
 		}
@@ -122,9 +125,9 @@ public class GamingManager : MonoBehaviour
 		if (timerGo)
 			timer += Time.fixedDeltaTime;
 
-		bool shouldEnd = once && (
+		bool shouldEnd = once && isTotalCleaningMode && (
 			GetCapturePercent() >= 1f
-			|| (isTotalCleaningMode && timer >= totalCleaningDuration - 0.01f)
+			|| timer >= totalCleaningDuration - 0.01f
 		);
 
 		if (shouldEnd)
@@ -198,12 +201,29 @@ public class GamingManager : MonoBehaviour
 			totalCleaningTimerText.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
 	}
 
+	public void OnBossDefeated()
+	{
+		if (bossDefeated || ModeManager.currentMode != ModeManager.Mode.Boss)
+			return;
+
+		bossDefeated = true;
+		once = false;
+		ShowEndPanel();
+	}
+
 	private void ShowEndPanel()
 	{
 		if (YG2.envir.isMobile)
 			MobpanelOfEnd?.SetActive(true);
 		else
 			DeskpanelOfEnd?.SetActive(true);
+	}
+
+	private static int GetPlayerScore()
+	{
+		return BlackHoleController.Player != null
+			? BlackHoleController.Player.score
+			: HoleParent.totalScore;
 	}
 
 	public float GetCapturePercent()
@@ -213,7 +233,9 @@ public class GamingManager : MonoBehaviour
 		if (AllValues <= ProgressSlack)
 			return 0f;
 
-		int score = HoleParent.totalScore > 0 ? HoleParent.totalScore : YG2.saves.score;
+		int score = GetPlayerScore();
+		if (score <= 0)
+			score = YG2.saves.score;
 		return Mathf.Clamp01((float)score / (AllValues - ProgressSlack));
 	}
 
@@ -303,14 +325,20 @@ public class GamingManager : MonoBehaviour
 		};
 	}
 
-	public MatchRewardData GetCurrentClassicReward() => GetClassicReward(GetCapturePercent());
+	public MatchRewardData GetCurrentClassicReward()
+	{
+		float progress = GetCapturePercent();
+		if (ModeManager.currentMode == ModeManager.Mode.Boss && bossDefeated)
+			progress = 1f;
+		return GetClassicReward(progress);
+	}
 
 	public void ApplyMatchReward(MatchRewardData reward)
 	{
 		if (rewardApplied)
 			return;
 
-		YG2.saves.score = HoleParent.totalScore;
+		YG2.saves.score = GetPlayerScore();
 		YG2.saves.exp += reward.exp;
 		YG2.saves.goldCoins += reward.coins;
 		YG2.saves.diamonds += reward.diamonds;

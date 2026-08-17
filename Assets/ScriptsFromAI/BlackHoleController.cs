@@ -33,4 +33,60 @@ public class BlackHoleController : HoleParent
 		else
 			nickname.text = YG2.saves.langRu ? "Легенда" : "Legend";
 	}
+
+	protected override void FixedUpdate()
+	{
+		base.FixedUpdate();
+
+		if (ModeManager.currentMode != ModeManager.Mode.Boss)
+			return;
+
+		TryAbsorbEnemyHoles();
+	}
+
+	private void TryAbsorbEnemyHoles()
+	{
+		for (int i = holeList.Count - 1; i >= 0; i--)
+		{
+			HoleParent candidate = holeList[i];
+			if (candidate == null || candidate == this || candidate.holeType != TypeOfHole.enemy)
+				continue;
+
+			if (!CanAbsorbHole(candidate))
+				continue;
+
+			if (!IsInHole(candidate.transform.position))
+				continue;
+
+			AbsorbEnemy(candidate as EnemyController);
+			break;
+		}
+	}
+
+	private bool CanAbsorbHole(HoleParent enemy)
+	{
+		if (enemy == null || enemy.size == Vector3.zero || size == Vector3.zero)
+			return false;
+
+		if (!Tool.CanFit2D(enemy.size, size))
+			return false;
+
+		if (currentLevel > enemy.currentLevel)
+			return true;
+
+		return currentLevel == enemy.currentLevel && score > enemy.score;
+	}
+
+	private void AbsorbEnemy(EnemyController enemy)
+	{
+		if (enemy == null)
+			return;
+
+		int absorbedScore = enemy.score;
+		if (absorbedScore > 0)
+			AddScore(absorbedScore);
+
+		enemy.OnAbsorbedByPlayer();
+		GamingManager.Instance?.OnBossDefeated();
+	}
 }

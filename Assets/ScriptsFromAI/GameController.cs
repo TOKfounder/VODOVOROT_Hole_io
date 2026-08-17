@@ -157,6 +157,12 @@ public class GameController : MonoBehaviour
 			return;
 		}
 
+		if (id == (int)ModeManager.Mode.TotalCleaning && !ModeManager.IsGardenMap())
+		{
+			Debug.Log("Total Cleaning доступен только на карте Сад");
+			return;
+		}
+
 		YG2.saves.chosenMode = id;
 		YG2.SaveProgress();
 	}

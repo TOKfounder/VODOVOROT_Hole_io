@@ -18,4 +18,13 @@ public class EnemyController : HoleParent
 		if (nickname != null)
 			nickname.text = $"Enemy{count}";
 	}
+
+	public void OnAbsorbedByPlayer()
+	{
+		EnemyMovement movement = GetComponentInChildren<EnemyMovement>();
+		if (movement != null)
+			movement.enabled = false;
+
+		Destroy(gameObject);
+	}
 }

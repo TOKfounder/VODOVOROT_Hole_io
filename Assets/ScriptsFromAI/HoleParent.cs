@@ -77,7 +77,7 @@ public class HoleParent : MonoBehaviour
 		pointsPool?.Clear();
 	}
 
-	void FixedUpdate()
+	protected virtual void FixedUpdate()
 	{
 		for (int i = nearbyFallingObjects.Count - 1; i >= 0; i--)
 		{
