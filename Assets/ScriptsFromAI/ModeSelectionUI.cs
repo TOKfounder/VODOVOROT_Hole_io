@@ -9,8 +9,17 @@ public class ModeSelectionUI : MonoBehaviour
 
 	private Button mobileBossButton;
 	private Button mobileTotalButton;
+	private Button mobileHuntingButton;
+	private Button mobileTeamButton;
+	private Button mobileCityButton;
+	private Button mobileGardenButton;
+
 	private Button desktopBossButton;
 	private Button desktopTotalButton;
+	private Button desktopHuntingButton;
+	private Button desktopTeamButton;
+	private Button desktopCityButton;
+	private Button desktopGardenButton;
 
 	void Awake()
 	{
@@ -27,35 +36,60 @@ public class ModeSelectionUI : MonoBehaviour
 	{
 		mobileBossButton = null;
 		mobileTotalButton = null;
+		mobileHuntingButton = null;
+		mobileTeamButton = null;
+		mobileCityButton = null;
+		mobileGardenButton = null;
 		desktopBossButton = null;
 		desktopTotalButton = null;
+		desktopHuntingButton = null;
+		desktopTeamButton = null;
+		desktopCityButton = null;
+		desktopGardenButton = null;
 
 		Button[] allButtons = FindObjectsByType<Button>(FindObjectsInactive.Include, FindObjectsSortMode.None);
 		for (int i = 0; i < allButtons.Length; i++)
 		{
 			Button button = allButtons[i];
 			string name = button.gameObject.name;
-			if (name != "BossOfToilet" && name != "TotalCleaning")
-				continue;
+			bool isMobile = IsMobileButton(button);
 
-			Canvas parentCanvas = button.GetComponentInParent<Canvas>();
-			bool isMobile = parentCanvas != null && parentCanvas.name.Contains("Mobile");
-
-			if (name == "BossOfToilet")
+			switch (name)
 			{
-				if (isMobile)
-					mobileBossButton = button;
-				else
-					desktopBossButton = button;
-			}
-			else
-			{
-				if (isMobile)
-					mobileTotalButton = button;
-				else
-					desktopTotalButton = button;
+				case "BossOfToilet":
+					Assign(ref mobileBossButton, ref desktopBossButton, button, isMobile);
+					break;
+				case "TotalCleaning":
+					Assign(ref mobileTotalButton, ref desktopTotalButton, button, isMobile);
+					break;
+				case "Hunting":
+					Assign(ref mobileHuntingButton, ref desktopHuntingButton, button, isMobile);
+					break;
+				case "TeamPlay":
+					Assign(ref mobileTeamButton, ref desktopTeamButton, button, isMobile);
+					break;
+				case "City":
+					Assign(ref mobileCityButton, ref desktopCityButton, button, isMobile);
+					break;
+				case "Garden":
+					Assign(ref mobileGardenButton, ref desktopGardenButton, button, isMobile);
+					break;
 			}
 		}
+	}
+
+	private static bool IsMobileButton(Button button)
+	{
+		Canvas parentCanvas = button.GetComponentInParent<Canvas>();
+		return parentCanvas != null && parentCanvas.name.Contains("Mobile");
+	}
+
+	private static void Assign(ref Button mobile, ref Button desktop, Button button, bool isMobile)
+	{
+		if (isMobile)
+			mobile = button;
+		else
+			desktop = button;
 	}
 
 	public void WireButtons()
@@ -64,6 +98,18 @@ public class ModeSelectionUI : MonoBehaviour
 		BindModeButton(desktopBossButton, ModeManager.Mode.Boss);
 		BindModeButton(mobileTotalButton, ModeManager.Mode.TotalCleaning);
 		BindModeButton(desktopTotalButton, ModeManager.Mode.TotalCleaning);
+		BindModeButton(mobileHuntingButton, ModeManager.Mode.Hunting);
+		BindModeButton(desktopHuntingButton, ModeManager.Mode.Hunting);
+		BindModeButton(mobileTeamButton, ModeManager.Mode.TeamMode);
+		BindModeButton(desktopTeamButton, ModeManager.Mode.TeamMode);
+		HideComingSoonOverlay(mobileHuntingButton);
+		HideComingSoonOverlay(desktopHuntingButton);
+		HideComingSoonOverlay(mobileTeamButton);
+		HideComingSoonOverlay(desktopTeamButton);
+		BindMapButton(mobileCityButton, 0);
+		BindMapButton(desktopCityButton, 0);
+		BindMapButton(mobileGardenButton, 1);
+		BindMapButton(desktopGardenButton, 1);
 	}
 
 	private void BindModeButton(Button button, ModeManager.Mode mode)
@@ -73,9 +119,77 @@ public class ModeSelectionUI : MonoBehaviour
 
 		button.enabled = true;
 		button.interactable = true;
-		button.onClick.RemoveAllListeners();
-		button.onClick.AddListener(() => OnModeButtonClicked(mode));
+		button.onClick = new Button.ButtonClickedEvent();
+		button.onClick.AddListener(() =>
+		{
+			OnModeButtonClicked(mode);
+			CloseNamedPanel(button, "PanelOfModes");
+		});
 		DisableChildRaycasts(button);
+	}
+
+	private void BindMapButton(Button button, int mapId)
+	{
+		if (button == null)
+			return;
+
+		button.enabled = true;
+		button.interactable = true;
+		button.onClick = new Button.ButtonClickedEvent();
+		button.onClick.AddListener(() =>
+		{
+			if (MainMenuController.Instance != null)
+				MainMenuController.Instance.UpdateMapOnBackground(mapId);
+			CloseNamedPanel(button, "PanelOfMaps");
+		});
+		DisableChildRaycasts(button);
+	}
+
+	private static void HideComingSoonOverlay(Button button)
+	{
+		if (button == null)
+			return;
+
+		Text[] texts = button.GetComponentsInChildren<Text>(true);
+		for (int i = 0; i < texts.Length; i++)
+		{
+			if (texts[i] == null)
+				continue;
+
+			string value = texts[i].text ?? "";
+			if (value.IndexOf("Скоро", System.StringComparison.OrdinalIgnoreCase) >= 0
+				|| value.IndexOf("Coming soon", System.StringComparison.OrdinalIgnoreCase) >= 0)
+			{
+				texts[i].gameObject.SetActive(false);
+			}
+		}
+
+		Image[] images = button.GetComponentsInChildren<Image>(true);
+		Graphic targetGraphic = button.targetGraphic;
+		for (int i = 0; i < images.Length; i++)
+		{
+			Image image = images[i];
+			if (image == null || image == targetGraphic)
+				continue;
+
+			Color color = image.color;
+			if (color.a >= 0.4f && color.r <= 0.2f && color.g <= 0.2f && color.b <= 0.2f)
+				image.gameObject.SetActive(false);
+		}
+	}
+
+	private static void CloseNamedPanel(Button button, string panelName)
+	{
+		Transform current = button.transform;
+		while (current != null)
+		{
+			if (current.name == panelName)
+			{
+				current.gameObject.SetActive(false);
+				return;
+			}
+			current = current.parent;
+		}
 	}
 
 	private static void DisableChildRaycasts(Button button)
@@ -100,12 +214,21 @@ public class ModeSelectionUI : MonoBehaviour
 
 	public void Refresh()
 	{
-		bool isBoss = YG2.saves.chosenMode == (int)ModeManager.Mode.Boss;
+		int chosenMode = YG2.saves.chosenMode;
+		int selectedMap = YG2.saves.selectedMapID;
 
-		ApplyButtonState(mobileBossButton, isBoss);
-		ApplyButtonState(desktopBossButton, isBoss);
-		ApplyButtonState(mobileTotalButton, !isBoss);
-		ApplyButtonState(desktopTotalButton, !isBoss);
+		ApplyButtonState(mobileBossButton, chosenMode == (int)ModeManager.Mode.Boss);
+		ApplyButtonState(desktopBossButton, chosenMode == (int)ModeManager.Mode.Boss);
+		ApplyButtonState(mobileTotalButton, chosenMode == (int)ModeManager.Mode.TotalCleaning);
+		ApplyButtonState(desktopTotalButton, chosenMode == (int)ModeManager.Mode.TotalCleaning);
+		ApplyButtonState(mobileHuntingButton, chosenMode == (int)ModeManager.Mode.Hunting);
+		ApplyButtonState(desktopHuntingButton, chosenMode == (int)ModeManager.Mode.Hunting);
+		ApplyButtonState(mobileTeamButton, chosenMode == (int)ModeManager.Mode.TeamMode);
+		ApplyButtonState(desktopTeamButton, chosenMode == (int)ModeManager.Mode.TeamMode);
+		ApplyButtonState(mobileCityButton, selectedMap == 0);
+		ApplyButtonState(desktopCityButton, selectedMap == 0);
+		ApplyButtonState(mobileGardenButton, selectedMap == 1);
+		ApplyButtonState(desktopGardenButton, selectedMap == 1);
 	}
 
 	private void ApplyButtonState(Button button, bool selected)

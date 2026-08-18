@@ -60,9 +60,8 @@ public class GameController : MonoBehaviour
 
 	void Start()
 	{
-		// YG2.saves.isFirst = true;
-		// if (!YG2.saves.isGaming)
-		YG2.InterstitialAdvShow();
+		if (SceneManager.GetActiveScene().buildIndex == 0 && !YG2.saves.isGaming)
+			YG2.InterstitialAdvShow();
 		Time.timeScale = 1f;
 		if (YG2.saves.isFirst)
 		{
@@ -97,7 +96,7 @@ public class GameController : MonoBehaviour
 		if (!YG2.saves.isGaming)
 			RefreshModeSelectionUI();
 		else
-			ScorePopupZone.EnsureZone(currentCanvas);
+			ScorePopupZone.EnsureZone(ActiveCanvas.Get());
 		// SaveScreenshot();
 	}
 	//---------------------------------------------------------------------------------------------------
@@ -166,12 +165,6 @@ public class GameController : MonoBehaviour
 
 	public void ChangeMode(int id)
 	{
-		if (id == (int)ModeManager.Mode.Hunting || id == (int)ModeManager.Mode.TeamMode)
-		{
-			Debug.Log("Режим скоро будет доступен");
-			return;
-		}
-
 		YG2.saves.chosenMode = id;
 		ModeManager.currentMode = (ModeManager.Mode)id;
 		YG2.SaveProgress();
@@ -181,8 +174,7 @@ public class GameController : MonoBehaviour
 	public static void NormalizeChosenMode()
 	{
 		int mode = YG2.saves.chosenMode;
-
-		if (mode == (int)ModeManager.Mode.Hunting || mode == (int)ModeManager.Mode.TeamMode)
+		if (mode < 0 || mode > (int)ModeManager.Mode.TeamMode)
 			mode = (int)ModeManager.Mode.Boss;
 
 		YG2.saves.chosenMode = mode;

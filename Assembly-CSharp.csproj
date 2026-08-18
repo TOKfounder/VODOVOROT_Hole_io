@@ -112,6 +112,7 @@
     <Compile Include="Assets/PluginYourGames/Scripts/Basic/CallAction.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/InterstitialAdv/Example/Scripts/DebugInterstitialAdv.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Payments/Scripts/Payments_interface.cs" />
+    <Compile Include="Assets/ScriptsFromAI/MatchHud.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/StickyAdv/Scripts/StickyAdv_yg.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Platform/PlatformSettingsAttributes.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/EditorScr/Attributes/LabelYGAttribute.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="Assets/PluginYourGames/Modules/InterstitialAdv/Scripts/InterstitialAdv_optionalPlatform.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Localization/Scripts/Lang_yg.cs" />
     <Compile Include="Assets/ScriptsFromAI/EndGameController.cs" />
+    <Compile Include="Assets/ScriptsFromAI/ActiveCanvas.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Leaderboards/Example/Scripts/CustomLBExample.cs" />
     <Compile Include="Assets/PluginYourGames/Example/Scripts/DemoTextTranslateRU.cs" />
     <Compile Include="Assets/ScriptsFromAI/Tool.cs" />

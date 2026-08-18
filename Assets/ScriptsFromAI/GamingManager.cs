@@ -40,6 +40,12 @@ public class GamingManager : MonoBehaviour
 	[Header("Boss Mode")]
 	[SerializeField] private float bossModeDuration = 300f;
 
+	[Header("Hunting")]
+	[SerializeField] private float huntingModeDuration = 180f;
+
+	[Header("Team Mode")]
+	[SerializeField] private float teamModeDuration = 180f;
+
 	public Text totalCleaningTimerText;
 
 [Header("Mobile UI")]
@@ -56,15 +62,27 @@ public class GamingManager : MonoBehaviour
 	private bool rewardApplied;
 	private bool endSequenceStarted;
 	private bool isTotalCleaningMode;
+	private bool isHuntingMode;
+	private bool isTeamMode;
 	private bool bossDefeated;
+	private bool huntingComplete;
+	private bool teamVictory;
+	private bool playerEliminated;
 
 	public bool HasRewardBeenApplied => rewardApplied;
 	public bool BossDefeated => bossDefeated;
+	public bool HuntingComplete => huntingComplete;
+	public bool TeamVictory => teamVictory;
+	public bool PlayerEliminated => playerEliminated;
 	public bool IsTotalCleaningMode => isTotalCleaningMode;
 	public float RemainingTime => Mathf.Max(0f, totalCleaningDuration - timer);
 	public float RemainingBossTime => Mathf.Max(0f, bossModeDuration - timer);
+	public float RemainingHuntingTime => Mathf.Max(0f, huntingModeDuration - timer);
+	public float RemainingTeamTime => Mathf.Max(0f, teamModeDuration - timer);
 
 	private bool IsBossMode => ModeManager.currentMode == ModeManager.Mode.Boss;
+	private bool IsHuntingMode => ModeManager.currentMode == ModeManager.Mode.Hunting;
+	private bool UsesModeTimer => isTotalCleaningMode || IsBossMode || isHuntingMode || isTeamMode;
 
 	void Awake()
 	{
@@ -97,10 +115,19 @@ public class GamingManager : MonoBehaviour
 		rewardApplied = false;
 		endSequenceStarted = false;
 		bossDefeated = false;
+		huntingComplete = false;
+		teamVictory = false;
+		playerEliminated = false;
 		isTotalCleaningMode = ModeManager.currentMode == ModeManager.Mode.TotalCleaning;
+		isHuntingMode = ModeManager.currentMode == ModeManager.Mode.Hunting;
+		isTeamMode = ModeManager.currentMode == ModeManager.Mode.TeamMode;
+
+		ScorePopupZone.EnsureZone(ActiveCanvas.Get());
+		if (IsBossMode || isHuntingMode || isTeamMode)
+			MatchHud.Ensure();
 
 		ResolveModeTimerText();
-		bool showModeTimer = isTotalCleaningMode || IsBossMode;
+		bool showModeTimer = UsesModeTimer;
 		if (totalCleaningTimerText != null)
 		{
 			totalCleaningTimerText.gameObject.SetActive(showModeTimer);
@@ -123,7 +150,7 @@ public class GamingManager : MonoBehaviour
 		while (true)
 		{
 			YG2.saves.score = GetPlayerScore();
-			perc = GetCapturePercent();
+			perc = GetMatchProgress();
 			yield return new WaitForSeconds(0.25f);
 		}
 	}
@@ -138,10 +165,14 @@ public class GamingManager : MonoBehaviour
 				GetCapturePercent() >= 1f
 				|| timer >= totalCleaningDuration - 0.01f))
 			|| (IsBossMode && timer >= bossModeDuration - 0.01f)
+			|| (isHuntingMode && timer >= huntingModeDuration - 0.01f)
+			|| (isTeamMode && timer >= teamModeDuration - 0.01f)
 		);
 
 		if (shouldEnd)
 		{
+			if (isTeamMode)
+				ResolveTeamTimeout();
 			once = false;
 			ShowEndPanel();
 		}
@@ -159,7 +190,7 @@ public class GamingManager : MonoBehaviour
 			if (Dpercent != null) Dpercent.text = percentText;
 		}
 
-		if (isTotalCleaningMode || IsBossMode)
+		if (UsesModeTimer)
 		{
 			ResolveModeTimerText();
 			if (totalCleaningTimerText != null)
@@ -173,6 +204,10 @@ public class GamingManager : MonoBehaviour
 			return RemainingTime;
 		if (IsBossMode)
 			return RemainingBossTime;
+		if (isHuntingMode)
+			return RemainingHuntingTime;
+		if (isTeamMode)
+			return RemainingTeamTime;
 		return 0f;
 	}
 
@@ -180,43 +215,91 @@ public class GamingManager : MonoBehaviour
 
 	private void ResolveModeTimerText()
 	{
+		MatchHud hud = FindAnyObjectByType<MatchHud>();
+		if (hud != null && hud.TimerText != null)
+		{
+			if (totalCleaningTimerText != null && totalCleaningTimerText != hud.TimerText)
+				totalCleaningTimerText.gameObject.SetActive(false);
+			totalCleaningTimerText = hud.TimerText;
+			HideDuplicateTimerTexts(totalCleaningTimerText);
+			return;
+		}
+
 		if (totalCleaningTimerText != null)
 			return;
 
-		Canvas canvas = GameController.Instance != null
-			? GameController.Instance.currentCanvas
-			: FindAnyObjectByType<Canvas>();
+		Canvas canvas = ActiveCanvas.Get();
 		if (canvas == null)
+			return;
+
+		Transform parent = hud != null ? hud.transform : canvas.transform;
+		Transform existing = parent.Find(ModeTimerName);
+		if (existing != null)
+		{
+			totalCleaningTimerText = existing.GetComponent<Text>();
+			if (totalCleaningTimerText != null)
+				return;
+		}
+
+		if (!UsesModeTimer)
+			return;
+
+		totalCleaningTimerText = ActiveCanvas.CreateText(parent, ModeTimerName, new Vector2(0f, -36f), new Vector2(240f, 52f));
+		if (totalCleaningTimerText != null)
+			totalCleaningTimerText.fontSize = 36;
+	}
+
+	private static void HideDuplicateTimerTexts(Text keep)
+	{
+		Canvas canvas = ActiveCanvas.Get();
+		if (canvas == null || keep == null)
 			return;
 
 		Text[] texts = canvas.GetComponentsInChildren<Text>(true);
 		for (int i = 0; i < texts.Length; i++)
 		{
-			if (texts[i] != null && texts[i].name == ModeTimerName)
-			{
-				totalCleaningTimerText = texts[i];
-				break;
-			}
+			if (texts[i] == null || texts[i] == keep || texts[i].name != ModeTimerName)
+				continue;
+			texts[i].gameObject.SetActive(false);
 		}
+	}
 
-		if (totalCleaningTimerText != null || (!isTotalCleaningMode && !IsBossMode))
+	public void OnHuntingComplete()
+	{
+		if (huntingComplete || ModeManager.currentMode != ModeManager.Mode.Hunting)
 			return;
 
-		GameObject go = new GameObject(ModeTimerName, typeof(RectTransform), typeof(Text));
-		go.transform.SetParent(canvas.transform, false);
-		RectTransform rt = go.GetComponent<RectTransform>();
-		rt.anchorMin = new Vector2(0.5f, 1f);
-		rt.anchorMax = new Vector2(0.5f, 1f);
-		rt.pivot = new Vector2(0.5f, 1f);
-		rt.anchoredPosition = new Vector2(0f, -40f);
-		rt.sizeDelta = new Vector2(240f, 60f);
-		totalCleaningTimerText = go.GetComponent<Text>();
-		totalCleaningTimerText.alignment = TextAnchor.MiddleCenter;
-		totalCleaningTimerText.fontSize = 36;
-		totalCleaningTimerText.color = Color.white;
-		totalCleaningTimerText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-		if (totalCleaningTimerText.font == null)
-			totalCleaningTimerText.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+		huntingComplete = true;
+		once = false;
+		ShowEndPanel();
+	}
+
+	public void OnTeamVictory()
+	{
+		if (teamVictory || playerEliminated || ModeManager.currentMode != ModeManager.Mode.TeamMode)
+			return;
+
+		teamVictory = true;
+		once = false;
+		ShowEndPanel();
+	}
+
+	public void OnPlayerEliminated()
+	{
+		if (playerEliminated || teamVictory || ModeManager.currentMode != ModeManager.Mode.TeamMode)
+			return;
+
+		playerEliminated = true;
+		once = false;
+		ShowEndPanel();
+	}
+
+	private void ResolveTeamTimeout()
+	{
+		if (teamVictory || playerEliminated)
+			return;
+
+		teamVictory = ModeManager.GetTeamScore(ModeManager.TeamBlue) > ModeManager.GetTeamScore(ModeManager.TeamRed);
 	}
 
 	public void OnBossDefeated()
@@ -262,6 +345,12 @@ public class GamingManager : MonoBehaviour
 		progress = Mathf.Clamp01(progress);
 
 		if (isTotalCleaningMode)
+			return GetTotalCleaningReward(progress);
+
+		if (isHuntingMode)
+			return GetTotalCleaningReward(progress);
+
+		if (isTeamMode)
 			return GetTotalCleaningReward(progress);
 
 		if (progress < 1f)
@@ -345,10 +434,29 @@ public class GamingManager : MonoBehaviour
 
 	public MatchRewardData GetCurrentClassicReward()
 	{
+		return GetClassicReward(GetMatchProgress());
+	}
+
+	public float GetMatchProgress()
+	{
 		float progress = GetCapturePercent();
 		if (ModeManager.currentMode == ModeManager.Mode.Boss && bossDefeated)
 			progress = 1f;
-		return GetClassicReward(progress);
+		if (ModeManager.currentMode == ModeManager.Mode.Hunting)
+		{
+			if (huntingComplete)
+				progress = 1f;
+			else if (ModeManager.HuntingSpawned > 0)
+				progress = 1f - ModeManager.RemainingHunters / (float)ModeManager.HuntingSpawned;
+		}
+		if (ModeManager.currentMode == ModeManager.Mode.TeamMode)
+		{
+			if (teamVictory)
+				progress = 1f;
+			else if (ModeManager.TeamEnemySpawned > 0)
+				progress = 1f - ModeManager.RemainingTeamEnemies / (float)ModeManager.TeamEnemySpawned;
+		}
+		return Mathf.Clamp01(progress);
 	}
 
 	public void ApplyMatchReward(MatchRewardData reward)

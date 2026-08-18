@@ -44,6 +44,22 @@ public class AudioManager : MonoBehaviour
 		BindSaveOnPointerUp(MusicSlider);
 		BindSaveOnPointerUp(DSoundSlider);
 		BindSaveOnPointerUp(DMusicSlider);
+		StartMusic();
+	}
+
+	public void StartMusic()
+	{
+		if (musicSource == null || musicSource.clip == null)
+			return;
+		if (!musicSource.isPlaying)
+			musicSource.Play();
+	}
+
+	public void StopMusic()
+	{
+		if (musicSource == null)
+			return;
+		musicSource.Stop();
 	}
 
 	private void BindSaveOnPointerUp(Slider slider)

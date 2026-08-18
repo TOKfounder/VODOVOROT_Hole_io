@@ -4,6 +4,7 @@ public class EnemyController : HoleParent
 {
 	private int bossScore = 1779;
 	public static int count;
+	private bool absorptionHandled;
 
 	public override void Start()
 	{
@@ -21,7 +22,12 @@ public class EnemyController : HoleParent
 
 	public void OnAbsorbedByPlayer()
 	{
-		ModeManager.ClearActiveBoss();
+		if (absorptionHandled)
+			return;
+
+		absorptionHandled = true;
+		MarkConsumed();
+		ModeManager.NotifyEnemyAbsorbed(this);
 
 		EnemyMovement movement = GetComponentInChildren<EnemyMovement>();
 		if (movement != null)

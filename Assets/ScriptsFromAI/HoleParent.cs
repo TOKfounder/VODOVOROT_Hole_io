@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine.Pool;
-using YG;
 
 public class HoleParent : MonoBehaviour
 {
@@ -25,6 +24,8 @@ public class HoleParent : MonoBehaviour
 	public int currentLevel;
 	public Canvas mainCanvas;
 	public Collider platform;
+	public int TeamId { get; private set; } = -1;
+	public bool IsConsumed { get; private set; }
 
 	public List<FallingObject> nearbyFallingObjects = new List<FallingObject>(1000);
 	bool isUpdated = false;
@@ -60,8 +61,6 @@ public class HoleParent : MonoBehaviour
 	{
 		holeList.Add(this);
 		score = 0;
-		if (YG2.envir.isMobile && Camera.main != null)
-			Camera.main.transform.localPosition = new Vector3(0, 2.21199989f, -5.85099983f);
 		if (GameController.Instance != null)
 			mainCanvas = GameController.Instance.currentCanvas;
 
@@ -110,6 +109,44 @@ public class HoleParent : MonoBehaviour
 			UpdateSize();
 		else
 			RefreshHoleMetrics();
+
+		TryAbsorbOppositeTeamHoles();
+	}
+
+	public bool IsOpponent(HoleParent other)
+	{
+		return other != null && TeamId >= 0 && other.TeamId >= 0 && TeamId != other.TeamId;
+	}
+
+	public void ApplyTeamVisuals(int teamId, Color color, string nickOverride)
+	{
+		TeamId = teamId;
+		if (nickname != null)
+		{
+			if (!string.IsNullOrEmpty(nickOverride))
+				nickname.text = nickOverride;
+			nickname.color = color;
+		}
+
+		if (border != null)
+			border.color = color;
+
+		if (hole == null)
+			return;
+
+		Renderer rend = hole.GetComponent<Renderer>();
+		if (rend == null)
+			return;
+
+		Material mat = rend.material;
+		Color tint = color;
+		tint.a = mat.color.a;
+		mat.color = tint;
+	}
+
+	public void MarkConsumed()
+	{
+		IsConsumed = true;
 	}
 
 	public int GetCurrentLevel(float[] required)
@@ -127,7 +164,8 @@ public class HoleParent : MonoBehaviour
 		if (amount <= 0) return;
 		score += amount;
 		totalScore += amount;
-		PointEffect(amount);
+		if (this is BlackHoleController)
+			PointEffect(amount);
 		isUpdated = false;
 	}
 
@@ -164,7 +202,10 @@ public class HoleParent : MonoBehaviour
 		GameObject points = pointsPool.Get();
 		Vector3 screenPos;
 		if (ScorePopupZone.Instance != null)
+		{
 			screenPos = ScorePopupZone.Instance.GetRandomScreenPosition();
+			ScorePopupZone.Instance.Pulse();
+		}
 		else
 			screenPos = Camera.main.WorldToScreenPoint(hole.transform.position);
 
@@ -255,7 +296,10 @@ public class HoleParent : MonoBehaviour
 
 	public bool CanAbsorbOtherHole(HoleParent other)
 	{
-		if (other == null || other.size == Vector3.zero || size == Vector3.zero)
+		if (other == null || other.IsConsumed || IsConsumed || other.size == Vector3.zero || size == Vector3.zero)
+			return false;
+
+		if (ModeManager.currentMode == ModeManager.Mode.TeamMode && !IsOpponent(other))
 			return false;
 
 		if (!Tool.CanAbsorbHoleSize(other.size, size))
@@ -281,5 +325,45 @@ public class HoleParent : MonoBehaviour
 	{
 		totalScore = 0;
 		holeList.Clear();
+	}
+
+	private void TryAbsorbOppositeTeamHoles()
+	{
+		if (ModeManager.currentMode != ModeManager.Mode.TeamMode || TeamId < 0 || IsConsumed)
+			return;
+
+		for (int i = 0; i < holeList.Count; i++)
+		{
+			HoleParent other = holeList[i];
+			if (other == null || other == this || !other.isActiveAndEnabled || other.IsConsumed)
+				continue;
+			if (!CanAbsorbOtherHole(other) || !IsOtherHoleFullyInside(other))
+				continue;
+
+			AbsorbOtherHole(other);
+			return;
+		}
+	}
+
+	private void AbsorbOtherHole(HoleParent other)
+	{
+		if (other == null || other.IsConsumed)
+			return;
+
+		other.MarkConsumed();
+		int absorbedScore = other.score;
+		if (absorbedScore > 0)
+			AddScore(absorbedScore);
+
+		EnemyController enemy = other as EnemyController;
+		if (enemy != null)
+		{
+			enemy.OnAbsorbedByPlayer();
+			return;
+		}
+
+		BlackHoleController player = other as BlackHoleController;
+		if (player != null)
+			player.Eliminate();
 	}
 }

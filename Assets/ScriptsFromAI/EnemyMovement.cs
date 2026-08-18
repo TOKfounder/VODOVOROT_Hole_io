@@ -22,6 +22,8 @@ public class EnemyMovement : MonoBehaviour
 	{
 		rb = GetComponent<Rigidbody>();
 		enemyController = GetComponentInParent<EnemyController>();
+		if (withoutCamera == null && enemyController != null)
+			withoutCamera = enemyController.WithoutCamera;
 		StartCoroutine(SearchRoutine());
 	}
 
@@ -38,6 +40,9 @@ public class EnemyMovement : MonoBehaviour
 	{
 		if (enemyController == null)
 			return;
+
+		if (!IsCurrentTargetValid())
+			currentTarget = null;
 
 		if (currentTarget != null)
 			MoveToTarget();
@@ -59,6 +64,13 @@ public class EnemyMovement : MonoBehaviour
 	{
 		if (enemyController == null)
 			return;
+
+		Transform holeTarget = FindClosestOpponentHole();
+		if (holeTarget != null)
+		{
+			SetTarget(holeTarget);
+			return;
+		}
 
 		Collider[] hitColliders = Physics.OverlapSphere(transform.position, detectionRadius, fallableObjects);
 		if (hitColliders.Length == 0)
@@ -83,9 +95,42 @@ public class EnemyMovement : MonoBehaviour
 				}
 			}
 		}
+		SetTarget(bestTarget);
+	}
+
+	private Transform FindClosestOpponentHole()
+	{
+		if (ModeManager.currentMode != ModeManager.Mode.TeamMode)
+			return null;
+
+		float closestDist = Mathf.Infinity;
+		Transform bestTarget = null;
+		for (int i = 0; i < HoleParent.holeList.Count; i++)
+		{
+			HoleParent other = HoleParent.holeList[i];
+			if (other == null || other == enemyController || other.IsConsumed)
+				continue;
+			if (other.transform == ignoredTarget)
+				continue;
+			if (!enemyController.IsOpponent(other) || !enemyController.CanAbsorbOtherHole(other))
+				continue;
+
+			float dist = Vector3.Distance(transform.position, other.transform.position);
+			if (dist >= closestDist)
+				continue;
+
+			closestDist = dist;
+			bestTarget = other.transform;
+		}
+		return bestTarget;
+	}
+
+	private void SetTarget(Transform bestTarget)
+	{
 		if (currentTarget == bestTarget)
 		{
-			CheckStuckStatus();
+			if (!IsHoleTarget(currentTarget))
+				CheckStuckStatus();
 		}
 		else
 		{
@@ -101,11 +146,16 @@ public class EnemyMovement : MonoBehaviour
 
 		Vector3 dir = currentTarget.position - transform.position;
 		dir.y = 0;
-		if (dir.magnitude < transform.localScale.x * 0.5f)
+		HoleParent holeTarget = currentTarget.GetComponentInParent<HoleParent>();
+		if (holeTarget == null && dir.magnitude < transform.localScale.x * 0.5f)
 		{
 			currentTarget = null;
 			return;
 		}
+
+		if (dir.sqrMagnitude < 0.0001f)
+			return;
+
 		Vector3 moveDir = dir.normalized;
 
 		Quaternion targetRotation = Quaternion.LookRotation(moveDir);
@@ -151,5 +201,24 @@ public class EnemyMovement : MonoBehaviour
 			currentTarget = null;
 			stuckTimer = 0;
 		}
+	}
+
+	private bool IsCurrentTargetValid()
+	{
+		if (currentTarget == null)
+			return false;
+
+		HoleParent holeTarget = currentTarget.GetComponentInParent<HoleParent>();
+		if (holeTarget == null)
+			return true;
+
+		return !holeTarget.IsConsumed
+			&& enemyController.IsOpponent(holeTarget)
+			&& enemyController.CanAbsorbOtherHole(holeTarget);
+	}
+
+	private static bool IsHoleTarget(Transform target)
+	{
+		return target != null && target.GetComponentInParent<HoleParent>() != null;
 	}
 }

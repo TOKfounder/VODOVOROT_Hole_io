@@ -29,7 +29,7 @@ namespace PinePie.SimpleJoystick.Examples.DemoScript
 
 		void FixedUpdate()
 		{
-			if (GamingManager.Instance == null || BlackHoleController.Player == null)
+			if (GamingManager.Instance == null || BlackHoleController.Player == null || BlackHoleController.Player.IsConsumed)
 				return;
 
 			if (boostButton != null)

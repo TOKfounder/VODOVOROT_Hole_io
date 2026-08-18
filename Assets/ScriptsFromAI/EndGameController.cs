@@ -7,10 +7,12 @@ public class EndGameController : MonoBehaviour
 	public static EndGameController Instance;
 	public Image resultImage;
 [Header("Mobile UI")]
+	public Image MresultImage;
 	public Text MexpText;
 	public Text McoinText;
 	public Text MbrillText;
 [Header("Desktop UI")]
+	public Image DresultImage;
 	public Text expText;
 	public Text coinText;
 	public Text brillText;
@@ -57,19 +59,43 @@ public class EndGameController : MonoBehaviour
 
 	private void ApplyResultSprite(int spriteIndex)
 	{
-		if (resultImage == null)
+		ApplyResultSpriteTo(resultImage, spriteIndex);
+		ApplyResultSpriteTo(MresultImage, spriteIndex);
+		ApplyResultSpriteTo(DresultImage, spriteIndex);
+
+		GamingManager gamingManager = GamingManager.Instance;
+		ApplyResultSpriteToPanel(gamingManager != null ? gamingManager.MobpanelOfEnd : null, spriteIndex);
+		ApplyResultSpriteToPanel(gamingManager != null ? gamingManager.DeskpanelOfEnd : null, spriteIndex);
+	}
+
+	private void ApplyResultSpriteToPanel(GameObject panel, int spriteIndex)
+	{
+		if (panel == null)
+			return;
+
+		Image[] images = panel.GetComponentsInChildren<Image>(true);
+		for (int i = 0; i < images.Length; i++)
+		{
+			if (images[i] != null && images[i].name.Contains("Result"))
+				ApplyResultSpriteTo(images[i], spriteIndex);
+		}
+	}
+
+	private void ApplyResultSpriteTo(Image image, int spriteIndex)
+	{
+		if (image == null)
 			return;
 
 		if (spriteIndex < 0 || spritesOfResult == null || spritesOfResult.Length == 0)
 		{
-			resultImage.sprite = null;
-			resultImage.color = new Color(1, 1, 1, 0);
+			image.sprite = null;
+			image.color = new Color(1, 1, 1, 0);
 			return;
 		}
 
 		int safeIndex = Mathf.Clamp(spriteIndex, 0, spritesOfResult.Length - 1);
-		resultImage.sprite = spritesOfResult[safeIndex];
-		resultImage.color = Color.white;
+		image.sprite = spritesOfResult[safeIndex];
+		image.color = Color.white;
 	}
 
 	private void SetResultTexts(int exp, int coins, int diamonds)

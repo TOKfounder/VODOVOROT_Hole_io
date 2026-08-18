@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 using YG;
 
 public class BlackHoleController : HoleParent
@@ -6,6 +7,7 @@ public class BlackHoleController : HoleParent
 	public static BlackHoleController Player { get; private set; }
 
 	public static BlackHoleController Instance => Player;
+	private bool eliminatedReported;
 
 	protected override void Awake()
 	{
@@ -24,6 +26,7 @@ public class BlackHoleController : HoleParent
 	{
 		base.Start();
 		holeType = TypeOfHole.player;
+		HoleCameraFollow.Ensure(this);
 		if (nickname == null)
 			return;
 
@@ -37,37 +40,68 @@ public class BlackHoleController : HoleParent
 	{
 		base.FixedUpdate();
 
-		if (ModeManager.currentMode != ModeManager.Mode.Boss)
+		if (ModeManager.currentMode == ModeManager.Mode.Boss)
+			TryAbsorbActiveBoss();
+		else if (ModeManager.currentMode == ModeManager.Mode.Hunting)
+			TryAbsorbHuntingEnemies();
+	}
+
+	public void Eliminate()
+	{
+		if (eliminatedReported)
 			return;
 
-		TryAbsorbActiveBoss();
+		eliminatedReported = true;
+		MarkConsumed();
+		enabled = false;
+		PinePie.SimpleJoystick.Examples.DemoScript.MovementScript movement =
+			GetComponent<PinePie.SimpleJoystick.Examples.DemoScript.MovementScript>();
+		if (movement != null)
+			movement.enabled = false;
+
+		GamingManager.Instance?.OnPlayerEliminated();
 	}
 
 	private void TryAbsorbActiveBoss()
 	{
-		EnemyController enemy = ModeManager.ActiveBoss;
-		if (enemy == null || !enemy.isActiveAndEnabled)
-			return;
+		TryAbsorbEnemy(ModeManager.ActiveBoss);
+	}
+
+	private void TryAbsorbHuntingEnemies()
+	{
+		List<EnemyController> enemies = ModeManager.HuntingEnemies;
+		for (int i = 0; i < enemies.Count; i++)
+		{
+			if (TryAbsorbEnemy(enemies[i]))
+				return;
+		}
+	}
+
+	private bool TryAbsorbEnemy(EnemyController enemy)
+	{
+		if (enemy == null || !enemy.isActiveAndEnabled || enemy.IsConsumed)
+			return false;
 
 		if (!CanAbsorbOtherHole(enemy))
-			return;
+			return false;
 
 		if (!IsOtherHoleFullyInside(enemy))
-			return;
+			return false;
 
 		AbsorbEnemy(enemy);
+		return true;
 	}
 
 	private void AbsorbEnemy(EnemyController enemy)
 	{
-		if (enemy == null)
+		if (enemy == null || enemy.IsConsumed)
 			return;
 
+		enemy.MarkConsumed();
 		int absorbedScore = enemy.score;
 		if (absorbedScore > 0)
 			AddScore(absorbedScore);
 
 		enemy.OnAbsorbedByPlayer();
-		GamingManager.Instance?.OnBossDefeated();
 	}
 }

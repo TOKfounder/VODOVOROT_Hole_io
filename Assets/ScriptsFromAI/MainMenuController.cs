@@ -113,7 +113,8 @@ public class MainMenuController : MonoBehaviour
 		// UpdateMainMenu();
 		// LanguageManager.Instance.Onclick();
 		// LanguageManager.Instance.Onclick();
-		// AudioManager.Instance.StartMusic();
+		if (AudioManager.Instance != null)
+			AudioManager.Instance.StartMusic();
 		nameInput.onEndEdit.AddListener(SaveNick);
 		DnameInput.onEndEdit.AddListener(SaveNick);
 		exchangeBut.onClick.AddListener(ExchangeButton);
@@ -311,139 +312,141 @@ public class MainMenuController : MonoBehaviour
 
 	public void UpdateUI()
 	{
-		scoreText.text = YG2.saves.exp.ToString();
+		bool ru = YG2.saves.langRu;
 
-		MainMenu[0].text = YG2.saves.langRu ? "ВОДОВОРОТ Дыра.ио" : "WHIRLPOOL Hole";
-		MainMenu[1].text = YG2.saves.langRu ? "Введите ваш ник" : "Enter your nickname";
-		MainMenu[2].text = YG2.saves.langRu ? "Уровень" : "Level";
-		MainMenu[3].text = YG2.saves.langRu ? "Магазин\nСкинов" : "Skin\nStore";
-		MainMenu[4].text = YG2.saves.langRu ? "КАРТЫ" : "MAPS";
-		MainMenu[5].text = YG2.saves.langRu ? "РЕЖИМЫ" : "MODES";
-		MainMenu[6].text = YG2.saves.langRu ? "ИГРАТЬ" : "PLAY";
-		MainMenu[7].text = YG2.saves.langRu ? "ЛИДЕРЫ" : "LEADERS";
-		MainMenu[8].text = YG2.saves.langRu ? "НАСТРОЙКИ" : "SETTINGS";
+		SetText(scoreText, YG2.saves.exp.ToString());
+		SetTexts(MainMenu,
+			ru ? "ВОДОВОРОТ Дыра.ио" : "WHIRLPOOL Hole",
+			ru ? "Введите ваш ник" : "Enter your nickname",
+			ru ? "Уровень" : "Level",
+			ru ? "Магазин\nСкинов" : "Skin\nStore",
+			ru ? "КАРТЫ" : "MAPS",
+			ru ? "РЕЖИМЫ" : "MODES",
+			ru ? "ИГРАТЬ" : "PLAY",
+			ru ? "ЛИДЕРЫ" : "LEADERS",
+			ru ? "НАСТРОЙКИ" : "SETTINGS");
 
-		PanelOfSkins[0].text = YG2.saves.langRu ? "Описание" : "Description";
-		PanelOfSkins[1].text = YG2.saves.langRu ? "Белый\nДруг" : "White\nFriend";
-		PanelOfSkins[2].text = YG2.saves.langRu ? "Золотой\nунитаз" : "Golden\nbowl";
-		PanelOfSkins[3].text = YG2.saves.langRu ? "Трон\nКощея" : "Scrag's\nThrone";
-		PanelOfSkins[4].text = YG2.saves.langRu ? "Туалет\nБога" : "God's\nToilet";
-		PanelOfSkins[5].text = YG2.saves.langRu ? "Красный\nТазик" : "Red\nbasin";
-		PanelOfSkins[6].text = YG2.saves.langRu ? "Особенности" : "Features";
+		SetTexts(PanelOfSkins,
+			ru ? "Описание" : "Description",
+			ru ? "Белый\nДруг" : "White\nFriend",
+			ru ? "Золотой\nунитаз" : "Golden\nbowl",
+			ru ? "Трон\nКощея" : "Scrag's\nThrone",
+			ru ? "Туалет\nБога" : "God's\nToilet",
+			ru ? "Красный\nТазик" : "Red\nbasin",
+			ru ? "Особенности" : "Features");
 
-		PanelOfLeaders.text = YG2.saves.langRu ? "Легенды" : "Legends";
+		SetText(PanelOfLeaders, ru ? "Легенды" : "Legends");
+		SetTexts(MobilePanelOfSettings,
+			ru ? "Настройки" : "Settings",
+			ru ? "Язык" : "Language",
+			ru ? "Звуки" : "Sounds",
+			ru ? "Музыка" : "Music");
+		SetTexts(PanelOfMaps,
+			ru ? "Доступные Локации" : "Available Locations",
+			ru ? "Городской Вайб" : "City Vibe",
+			ru ? "Садовый Парк" : "Garden Park",
+			ru ? "Новые карты скоро..." : "New maps are coming soon...");
 
-		MobilePanelOfSettings[0].text = YG2.saves.langRu ? "Настройки" : "Settings";
-		MobilePanelOfSettings[1].text = YG2.saves.langRu ? "Язык" : "Language";
-		MobilePanelOfSettings[2].text = YG2.saves.langRu ? "Звуки" : "Sounds";
-		MobilePanelOfSettings[3].text = YG2.saves.langRu ? "Музыка" : "Music";
+		SetModePanelTexts(PanelOfModes, ru);
 
-		PanelOfMaps[1].text = YG2.saves.langRu ? "Городской Вайб" : "City Vibe";
-		PanelOfMaps[0].text = YG2.saves.langRu ? "Доступные Локации" : "Available Locations";
-		PanelOfMaps[2].text = YG2.saves.langRu ? "Садовый Парк" : "Garden Park";
-		PanelOfMaps[3].text = YG2.saves.langRu ? "Новые карты скоро..." : "New maps are coming soon...";
+		SetTexts(PanelOfProgress,
+			ru ? "Прогресс" : "Progress",
+			ru ? "Красный\nТазик" : "Red\nbasin",
+			ru ? "Белый\nДруг" : "White\nFriend",
+			ru ? "Золотой\nунитаз" : "Golden\nbowl",
+			ru ? "Трон\nКощея" : "Scrag's\nThrone",
+			ru ? "Туалет\nБога" : "God's\nToilet");
+		SetTexts(PanelOfValute,
+			ru ? "Магазин Валюты" : "Currency Store",
+			ru ? "Баланс:" : "Balance:",
+			ru ? "пара\nбриллиантов" : "couple\ndiamonds",
+			ru ? "Горсть\nбриллиантов" : "Bunch\ndiamonds",
+			ru ? "Мешок\nбриллиантов" : "Bag\ndiamonds",
+			ru ? "Бочка\nбриллиантов" : "Barrel\ndiamonds",
+			ru ? "Сундук\nбриллиантов" : "Chest\ndiamonds",
+			ru ? "Обменять" : "Exchange");
 
-		PanelOfModes[0].text = YG2.saves.langRu ? "Доступные Режимы" : "Available Modes";
-		PanelOfModes[1].text = YG2.saves.langRu ? "Тотальная Зачистка" : "Total Cleaning";
-		PanelOfModes[2].text = YG2.saves.langRu ? "Задача поглотить абсолютно все объекты на карте на 100%" : 
-		"The task is to absorb absolutely all objects on the map by 100%";
-		PanelOfModes[3].text = YG2.saves.langRu ? "Босс Туалетов" : "The Toilet Boss";
-		PanelOfModes[4].text = YG2.saves.langRu ? "Задача перегнать Босса по уровню и победить поглотив его" : 
-		"The task is to overtake the Boss by level and defeat him by absorbing him";
-		PanelOfModes[5].text = YG2.saves.langRu ? "Охота" : "Hunting";
-		PanelOfModes[6].text = YG2.saves.langRu ? "Появляется 6 врагов-туалетов. Твоя задача - поглотить всех" : 
-		"6 toilet enemies appear. Your task is to consume everyone";
-		PanelOfModes[7].text = YG2.saves.langRu ? "Командный" : "Teamwork";
-		PanelOfModes[8].text = YG2.saves.langRu ? "3 Красных Vs 3 Синих. Задача задавить вражескую команду" : 
-		"3 Red Vs 3 Blue. The task is to crush the enemy team";
-		PanelOfModes[9].text = YG2.saves.langRu ? "Скоро в игре" : "Coming soon in the game";
-		PanelOfModes[10].text = YG2.saves.langRu ? "Скоро в игре" : "Coming soon in the game";
-		PanelOfModes[11].text = YG2.saves.langRu ? "Скоро в игре" : "Coming soon in the game";
+		SetText(DscoreText, YG2.saves.exp.ToString());
+		SetTexts(DMainMenu,
+			ru ? "ВОДОВОРОТ Дыра.ио" : "WHIRLPOOL Hole",
+			ru ? "Введите ваш ник" : "Enter your nickname",
+			ru ? "Уровень" : "Level",
+			ru ? "Магазин\nСкинов" : "Skin\nStore",
+			ru ? "КАРТЫ" : "MAPS",
+			ru ? "РЕЖИМЫ" : "MODES",
+			ru ? "ЛИДЕРЫ" : "LEADERS",
+			ru ? "НАСТРОЙКИ" : "SETTINGS",
+			ru ? "ИГРАТЬ" : "PLAY");
+		SetTexts(DPanelOfSkins,
+			ru ? "Описание" : "Description",
+			ru ? "Белый\nДруг" : "White\nFriend",
+			ru ? "Золотой\nунитаз" : "Golden\nbowl",
+			ru ? "Трон\nКощея" : "Scrag's\nThrone",
+			ru ? "Туалет\nБога" : "God's\nToilet",
+			ru ? "Красный\nТазик" : "Red\nbasin",
+			ru ? "Особенности" : "Features");
+		SetText(DPanelOfLeaders, ru ? "Легенды" : "Legends");
+		SetTexts(DesktopPanelOfSettings,
+			ru ? "Настройки" : "Settings",
+			ru ? "Язык" : "Language",
+			ru ? "Звуки" : "Sounds",
+			ru ? "Музыка" : "Music");
+		SetTexts(DPanelOfMaps,
+			ru ? "Доступные Локации" : "Available Locations",
+			ru ? "Городской Вайб" : "City Vibe",
+			ru ? "Садовый Парк" : "Garden Park",
+			ru ? "Новые карты скоро..." : "New maps are coming soon...");
+		SetModePanelTexts(DPanelOfModes, ru);
+		SetTexts(DPanelOfProgress,
+			ru ? "Прогресс" : "Progress",
+			ru ? "Красный\nТазик" : "Red\nbasin",
+			ru ? "Белый\nДруг" : "White\nFriend",
+			ru ? "Золотой\nунитаз" : "Golden\nbowl",
+			ru ? "Трон\nКощея" : "Scrag's\nThrone",
+			ru ? "Туалет\nБога" : "God's\nToilet");
+		SetTexts(DPanelOfValute,
+			ru ? "Магазин Валюты" : "Currency Store",
+			ru ? "Баланс:" : "Balance:",
+			ru ? "пара\nбриллиантов" : "couple\ndiamonds",
+			ru ? "Горсть\nбриллиантов" : "Bunch\ndiamonds",
+			ru ? "Мешок\nбриллиантов" : "Bag\ndiamonds",
+			ru ? "Бочка\nбриллиантов" : "Barrel\ndiamonds",
+			ru ? "Сундук\nбриллиантов" : "Chest\ndiamonds",
+			ru ? "Обменять" : "Exchange");
+	}
 
-		PanelOfProgress[0].text = YG2.saves.langRu ? "Прогресс" : "Progress";
-		PanelOfProgress[1].text = YG2.saves.langRu ? "Красный\nТазик" : "Red\nbasin";
-		PanelOfProgress[2].text = YG2.saves.langRu ? "Белый\nДруг" : "White\nFriend";
-		PanelOfProgress[3].text = YG2.saves.langRu ? "Золотой\nунитаз" : "Golden\nbowl";
-		PanelOfProgress[4].text = YG2.saves.langRu ? "Трон\nКощея" : "Scrag's\nThrone";
-		PanelOfProgress[5].text = YG2.saves.langRu ? "Туалет\nБога" : "God's\nToilet";
+	private static void SetModePanelTexts(Text[] panel, bool ru)
+	{
+		SetTexts(panel,
+			ru ? "Доступные Режимы" : "Available Modes",
+			ru ? "Тотальная Зачистка" : "Total Cleaning",
+			ru ? "Задача поглотить абсолютно все объекты на карте на 100%" :
+				"The task is to absorb absolutely all objects on the map by 100%",
+			ru ? "Босс Туалетов" : "The Toilet Boss",
+			ru ? "Задача перегнать Босса по уровню и победить поглотив его" :
+				"The task is to overtake the Boss by level and defeat him by absorbing him",
+			ru ? "Охота" : "Hunting",
+			ru ? "Появляется 6 врагов-туалетов. Твоя задача - поглотить всех" :
+				"6 toilet enemies appear. Your task is to consume everyone",
+			ru ? "Командный" : "Teamwork",
+			ru ? "3 Красных Vs 3 Синих. Задача задавить вражескую команду" :
+				"3 Red Vs 3 Blue. The task is to crush the enemy team");
+	}
 
-		PanelOfValute[0].text = YG2.saves.langRu ? "Магазин Валюты" : "Currency Store";
-		PanelOfValute[1].text = YG2.saves.langRu ? "Баланс:" : "Balance:";
-		PanelOfValute[2].text = YG2.saves.langRu ? "пара\nбриллиантов" : "couple\ndiamonds";
-		PanelOfValute[3].text = YG2.saves.langRu ? "Горсть\nбриллиантов" : "Bunch\ndiamonds";
-		PanelOfValute[4].text = YG2.saves.langRu ? "Мешок\nбриллиантов" : "Bag\ndiamonds";
-		PanelOfValute[5].text = YG2.saves.langRu ? "Бочка\nбриллиантов" : "Barrel\ndiamonds";
-		PanelOfValute[6].text = YG2.saves.langRu ? "Сундук\nбриллиантов" : "Chest\ndiamonds";
-		PanelOfValute[7].text = YG2.saves.langRu ? "Обменять" : "Exchange";
+	private static void SetText(Text target, string value)
+	{
+		if (target != null)
+			target.text = value;
+	}
 
+	private static void SetTexts(Text[] panel, params string[] values)
+	{
+		if (panel == null || values == null)
+			return;
 
-		//--------------------------------------------------------------------------------------------------------------------------
-
-		DscoreText.text = YG2.saves.exp.ToString();
-
-		DMainMenu[0].text = YG2.saves.langRu ? "ВОДОВОРОТ Дыра.ио" : "WHIRLPOOL Hole";
-		DMainMenu[1].text = YG2.saves.langRu ? "Введите ваш ник" : "Enter your nickname";
-		DMainMenu[2].text = YG2.saves.langRu ? "Уровень" : "Level";
-		DMainMenu[3].text = YG2.saves.langRu ? "Магазин\nСкинов" : "Skin\nStore";
-		DMainMenu[4].text = YG2.saves.langRu ? "КАРТЫ" : "MAPS";
-		DMainMenu[5].text = YG2.saves.langRu ? "РЕЖИМЫ" : "MODES";
-		DMainMenu[6].text = YG2.saves.langRu ? "ЛИДЕРЫ" : "LEADERS";
-		DMainMenu[7].text = YG2.saves.langRu ? "НАСТРОЙКИ" : "SETTINGS";
-		DMainMenu[8].text = YG2.saves.langRu ? "ИГРАТЬ" : "PLAY";
-
-		DPanelOfSkins[0].text = YG2.saves.langRu ? "Описание" : "Description";
-		DPanelOfSkins[1].text = YG2.saves.langRu ? "Белый\nДруг" : "White\nFriend";
-		DPanelOfSkins[2].text = YG2.saves.langRu ? "Золотой\nунитаз" : "Golden\nbowl";
-		DPanelOfSkins[3].text = YG2.saves.langRu ? "Трон\nКощея" : "Scrag's\nThrone";
-		DPanelOfSkins[4].text = YG2.saves.langRu ? "Туалет\nБога" : "God's\nToilet";
-		DPanelOfSkins[5].text = YG2.saves.langRu ? "Красный\nТазик" : "Red\nbasin";
-		DPanelOfSkins[6].text = YG2.saves.langRu ? "Особенности" : "Features";
-
-		DPanelOfLeaders.text = YG2.saves.langRu ? "Легенды" : "Legends";
-
-		DesktopPanelOfSettings[0].text = YG2.saves.langRu ? "Настройки" : "Settings";
-		DesktopPanelOfSettings[1].text = YG2.saves.langRu ? "Язык" : "Language";
-		DesktopPanelOfSettings[2].text = YG2.saves.langRu ? "Звуки" : "Sounds";
-		DesktopPanelOfSettings[3].text = YG2.saves.langRu ? "Музыка" : "Music";
-
-		DPanelOfMaps[0].text = YG2.saves.langRu ? "Доступные Локации" : "Available Locations";
-		DPanelOfMaps[1].text = YG2.saves.langRu ? "Городской Вайб" : "City Vibe";
-		DPanelOfMaps[2].text = YG2.saves.langRu ? "Садовый Парк" : "Garden Park";
-		DPanelOfMaps[3].text = YG2.saves.langRu ? "Новые карты скоро..." : "New maps are coming soon...";
-
-		DPanelOfModes[0].text = YG2.saves.langRu ? "Доступные Режимы" : "Available Modes";
-		DPanelOfModes[1].text = YG2.saves.langRu ? "Тотальная Зачистка" : "Total Cleaning";
-		DPanelOfModes[2].text = YG2.saves.langRu ? "Задача поглотить абсолютно все объекты на карте на 100%" : 
-		"The task is to absorb absolutely all objects on the map by 100%";
-		DPanelOfModes[3].text = YG2.saves.langRu ? "Босс Туалетов" : "The Toilet Boss";
-		DPanelOfModes[4].text = YG2.saves.langRu ? "Задача перегнать Босса по уровню и победить поглотив его" : 
-		"The task is to overtake the Boss by level and defeat him by absorbing him";
-		DPanelOfModes[5].text = YG2.saves.langRu ? "Охота" : "Hunting";
-		DPanelOfModes[6].text = YG2.saves.langRu ? "Появляется 6 врагов-туалетов. Твоя задача - поглотить всех" : 
-		"6 toilet enemies appear. Your task is to consume everyone";
-		DPanelOfModes[7].text = YG2.saves.langRu ? "Командный" : "Teamwork";
-		DPanelOfModes[8].text = YG2.saves.langRu ? "3 Красных Vs 3 Синих. Задача задавить вражескую команду" : 
-		"3 Red Vs 3 Blue. The task is to crush the enemy team";
-		DPanelOfModes[9].text = YG2.saves.langRu ? "Скоро в игре" : "Coming soon in the game";
-		DPanelOfModes[10].text = YG2.saves.langRu ? "Скоро в игре" : "Coming soon in the game";
-		DPanelOfModes[11].text = YG2.saves.langRu ? "Скоро в игре" : "Coming soon in the game";
-
-		DPanelOfProgress[0].text = YG2.saves.langRu ? "Прогресс" : "Progress";
-		DPanelOfProgress[1].text = YG2.saves.langRu ? "Красный\nТазик" : "Red\nbasin";
-		DPanelOfProgress[2].text = YG2.saves.langRu ? "Белый\nДруг" : "White\nFriend";
-		DPanelOfProgress[3].text = YG2.saves.langRu ? "Золотой\nунитаз" : "Golden\nbowl";
-		DPanelOfProgress[4].text = YG2.saves.langRu ? "Трон\nКощея" : "Scrag's\nThrone";
-		DPanelOfProgress[5].text = YG2.saves.langRu ? "Туалет\nБога" : "God's\nToilet";
-
-		DPanelOfValute[0].text = YG2.saves.langRu ? "Магазин Валюты" : "Currency Store";
-		DPanelOfValute[1].text = YG2.saves.langRu ? "Баланс:" : "Balance:";
-		DPanelOfValute[2].text = YG2.saves.langRu ? "пара\nбриллиантов" : "couple\ndiamonds";
-		DPanelOfValute[3].text = YG2.saves.langRu ? "Горсть\nбриллиантов" : "Bunch\ndiamonds";
-		DPanelOfValute[4].text = YG2.saves.langRu ? "Мешок\nбриллиантов" : "Bag\ndiamonds";
-		DPanelOfValute[5].text = YG2.saves.langRu ? "Бочка\nбриллиантов" : "Barrel\ndiamonds";
-		DPanelOfValute[6].text = YG2.saves.langRu ? "Сундук\nбриллиантов" : "Chest\ndiamonds";
-		DPanelOfValute[7].text = YG2.saves.langRu ? "Обменять" : "Exchange";
-
+		int count = Mathf.Min(panel.Length, values.Length);
+		for (int i = 0; i < count; i++)
+			SetText(panel[i], values[i]);
 	}
 
 
