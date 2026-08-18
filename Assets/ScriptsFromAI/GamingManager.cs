@@ -36,6 +36,10 @@ public class GamingManager : MonoBehaviour
 
 	[Header("Total Cleaning")]
 	public float totalCleaningDuration = 180f;
+
+	[Header("Boss Mode")]
+	[SerializeField] private float bossModeDuration = 300f;
+
 	public Text totalCleaningTimerText;
 
 [Header("Mobile UI")]
@@ -58,6 +62,9 @@ public class GamingManager : MonoBehaviour
 	public bool BossDefeated => bossDefeated;
 	public bool IsTotalCleaningMode => isTotalCleaningMode;
 	public float RemainingTime => Mathf.Max(0f, totalCleaningDuration - timer);
+	public float RemainingBossTime => Mathf.Max(0f, bossModeDuration - timer);
+
+	private bool IsBossMode => ModeManager.currentMode == ModeManager.Mode.Boss;
 
 	void Awake()
 	{
@@ -78,6 +85,7 @@ public class GamingManager : MonoBehaviour
 		allPlatforms.Clear();
 		HoleParent.ResetStaticMatchState();
 		EnemyController.count = 0;
+		ModeManager.ResetModeState();
 	}
 
 	void Start()
@@ -89,15 +97,15 @@ public class GamingManager : MonoBehaviour
 		rewardApplied = false;
 		endSequenceStarted = false;
 		bossDefeated = false;
-		isTotalCleaningMode = ModeManager.currentMode == ModeManager.Mode.TotalCleaning
-			|| YG2.saves.chosenMode == (int)ModeManager.Mode.TotalCleaning;
+		isTotalCleaningMode = ModeManager.currentMode == ModeManager.Mode.TotalCleaning;
 
-		ResolveTotalCleaningTimerText();
+		ResolveModeTimerText();
+		bool showModeTimer = isTotalCleaningMode || IsBossMode;
 		if (totalCleaningTimerText != null)
 		{
-			totalCleaningTimerText.gameObject.SetActive(isTotalCleaningMode);
-			if (isTotalCleaningMode)
-				totalCleaningTimerText.text = FormatTime(RemainingTime);
+			totalCleaningTimerText.gameObject.SetActive(showModeTimer);
+			if (showModeTimer)
+				totalCleaningTimerText.text = FormatTime(GetModeRemainingTime());
 		}
 
 		YG2.saves.isGaming = true;
@@ -125,9 +133,11 @@ public class GamingManager : MonoBehaviour
 		if (timerGo)
 			timer += Time.fixedDeltaTime;
 
-		bool shouldEnd = once && isTotalCleaningMode && (
-			GetCapturePercent() >= 1f
-			|| timer >= totalCleaningDuration - 0.01f
+		bool shouldEnd = once && (
+			(isTotalCleaningMode && (
+				GetCapturePercent() >= 1f
+				|| timer >= totalCleaningDuration - 0.01f))
+			|| (IsBossMode && timer >= bossModeDuration - 0.01f)
 		);
 
 		if (shouldEnd)
@@ -149,17 +159,26 @@ public class GamingManager : MonoBehaviour
 			if (Dpercent != null) Dpercent.text = percentText;
 		}
 
-		if (isTotalCleaningMode)
+		if (isTotalCleaningMode || IsBossMode)
 		{
-			ResolveTotalCleaningTimerText();
+			ResolveModeTimerText();
 			if (totalCleaningTimerText != null)
-				totalCleaningTimerText.text = FormatTime(RemainingTime);
+				totalCleaningTimerText.text = FormatTime(GetModeRemainingTime());
 		}
 	}
 
-	private const string TotalCleaningTimerName = "TimerText";
+	private float GetModeRemainingTime()
+	{
+		if (isTotalCleaningMode)
+			return RemainingTime;
+		if (IsBossMode)
+			return RemainingBossTime;
+		return 0f;
+	}
 
-	private void ResolveTotalCleaningTimerText()
+	private const string ModeTimerName = "TimerText";
+
+	private void ResolveModeTimerText()
 	{
 		if (totalCleaningTimerText != null)
 			return;
@@ -173,18 +192,17 @@ public class GamingManager : MonoBehaviour
 		Text[] texts = canvas.GetComponentsInChildren<Text>(true);
 		for (int i = 0; i < texts.Length; i++)
 		{
-			if (texts[i] != null && texts[i].name == TotalCleaningTimerName)
+			if (texts[i] != null && texts[i].name == ModeTimerName)
 			{
 				totalCleaningTimerText = texts[i];
 				break;
 			}
 		}
 
-		if (totalCleaningTimerText != null || !isTotalCleaningMode)
+		if (totalCleaningTimerText != null || (!isTotalCleaningMode && !IsBossMode))
 			return;
 
-		// Автосоздание UI-таймера, если в сцене нет объекта TimerText
-		GameObject go = new GameObject(TotalCleaningTimerName, typeof(RectTransform), typeof(Text));
+		GameObject go = new GameObject(ModeTimerName, typeof(RectTransform), typeof(Text));
 		go.transform.SetParent(canvas.transform, false);
 		RectTransform rt = go.GetComponent<RectTransform>();
 		rt.anchorMin = new Vector2(0.5f, 1f);

@@ -108,6 +108,8 @@ public class HoleParent : MonoBehaviour
 		transform.localScale = Vector3.Lerp(transform.localScale, targetScale, scaleLerpSpeed * Time.fixedDeltaTime);
 		if (!isUpdated)
 			UpdateSize();
+		else
+			RefreshHoleMetrics();
 	}
 
 	public int GetCurrentLevel(float[] required)
@@ -160,7 +162,12 @@ public class HoleParent : MonoBehaviour
 			return;
 
 		GameObject points = pointsPool.Get();
-		Vector3 screenPos = Camera.main.WorldToScreenPoint(hole.transform.position);
+		Vector3 screenPos;
+		if (ScorePopupZone.Instance != null)
+			screenPos = ScorePopupZone.Instance.GetRandomScreenPosition();
+		else
+			screenPos = Camera.main.WorldToScreenPoint(hole.transform.position);
+
 		RectTransform rect = points.GetComponent<RectTransform>();
 		if (rect != null)
 			rect.position = screenPos;
@@ -224,7 +231,16 @@ public class HoleParent : MonoBehaviour
 
 		float scale = levelScales[currentLevel];
 		targetScale = new Vector3(scale, scale * 4.508031f, scale);
-		size = GetVisualSizeOfHole();
+		RefreshHoleMetrics();
+	}
+
+	private void RefreshHoleMetrics()
+	{
+		Vector3 refreshedSize = GetVisualSizeOfHole();
+		if (refreshedSize == Vector3.zero)
+			return;
+
+		size = refreshedSize;
 		radius = (size.x + size.z) / 2f;
 	}
 
@@ -233,6 +249,32 @@ public class HoleParent : MonoBehaviour
 		float dx = objPos.x - transform.position.x;
 		float dz = objPos.z - transform.position.z;
 		return dx * dx + dz * dz <= radius * radius;
+	}
+
+	public float GetHoleRadius() => radius;
+
+	public bool CanAbsorbOtherHole(HoleParent other)
+	{
+		if (other == null || other.size == Vector3.zero || size == Vector3.zero)
+			return false;
+
+		if (!Tool.CanAbsorbHoleSize(other.size, size))
+			return false;
+
+		if (currentLevel > other.currentLevel)
+			return true;
+
+		return currentLevel == other.currentLevel && score > other.score;
+	}
+
+	public bool IsOtherHoleFullyInside(HoleParent other)
+	{
+		if (other == null)
+			return false;
+
+		Vector2 myCenter = new Vector2(transform.position.x, transform.position.z);
+		Vector2 otherCenter = new Vector2(other.transform.position.x, other.transform.position.z);
+		return Tool.IsCircleFullyInside(myCenter, radius, otherCenter, other.GetHoleRadius());
 	}
 
 	public static void ResetStaticMatchState()

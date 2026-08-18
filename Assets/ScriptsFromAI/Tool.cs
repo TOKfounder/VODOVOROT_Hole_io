@@ -25,6 +25,18 @@ public static class Tool
 		return (sizeA.x <= sizeB.x && sizeA.z <= sizeB.z) || (sizeA.x <= sizeB.x && sizeA.y <= sizeB.z) 
 		|| (sizeA.y <= sizeB.x && sizeA.z <= sizeB.z);
 	}
+	public static bool CanAbsorbHoleSize(Vector3 smallerHole, Vector3 playerHole)
+	{
+		return smallerHole.x <= playerHole.x && smallerHole.z <= playerHole.z;
+	}
+
+	public static bool IsCircleFullyInside(Vector2 centerA, float radiusA, Vector2 centerB, float radiusB)
+	{
+		float dx = centerB.x - centerA.x;
+		float dz = centerB.y - centerA.y;
+		return dx * dx + dz * dz + radiusB * radiusB <= radiusA * radiusA + 0.01f;
+	}
+
 	public static bool CanFitForEnemies(Vector3 sizeA, Vector3 sizeB)
 	{
 		return (sizeA.x <= sizeB.x && sizeA.z <= sizeB.z) && (sizeA.x <= sizeB.x && sizeA.y <= sizeB.z) 

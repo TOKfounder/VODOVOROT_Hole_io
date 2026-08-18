@@ -46,6 +46,15 @@ public class GameController : MonoBehaviour
 			}
 			CanvasForMobile?.SetActive(false);
 		}
+
+		if (SceneManager.GetActiveScene().buildIndex == 0)
+			EnsureModeSelectionUI();
+	}
+
+	private void EnsureModeSelectionUI()
+	{
+		if (GetComponent<ModeSelectionUI>() == null)
+			gameObject.AddComponent<ModeSelectionUI>();
 	}
 	
 
@@ -82,8 +91,13 @@ public class GameController : MonoBehaviour
 			}
 			YG2.saves.massiveOfObtaining = newArray;
 		}
+		NormalizeChosenMode();
 		YG2.SaveProgress();
 		ChangeMain(YG2.saves.equipedMaterial);
+		if (!YG2.saves.isGaming)
+			RefreshModeSelectionUI();
+		else
+			ScorePopupZone.EnsureZone(currentCanvas);
 		// SaveScreenshot();
 	}
 	//---------------------------------------------------------------------------------------------------
@@ -118,6 +132,8 @@ public class GameController : MonoBehaviour
 	//---------------------------------------------------------------------------------------------------
 	public void StartGame()
 	{
+		NormalizeChosenMode();
+		ModeManager.currentMode = (ModeManager.Mode)YG2.saves.chosenMode;
 		YG2.saves.isGaming = true;
 		YG2.SaveProgress();
 		SceneManager.LoadScene(YG2.saves.selectedMapID + 1);
@@ -150,21 +166,37 @@ public class GameController : MonoBehaviour
 
 	public void ChangeMode(int id)
 	{
-		// Hunting=2, Team=3 — ещё не готовы
 		if (id == (int)ModeManager.Mode.Hunting || id == (int)ModeManager.Mode.TeamMode)
 		{
 			Debug.Log("Режим скоро будет доступен");
 			return;
 		}
 
-		if (id == (int)ModeManager.Mode.TotalCleaning && !ModeManager.IsGardenMap())
-		{
-			Debug.Log("Total Cleaning доступен только на карте Сад");
-			return;
-		}
-
 		YG2.saves.chosenMode = id;
+		ModeManager.currentMode = (ModeManager.Mode)id;
 		YG2.SaveProgress();
+		RefreshModeSelectionUI();
+	}
+
+	public static void NormalizeChosenMode()
+	{
+		int mode = YG2.saves.chosenMode;
+
+		if (mode == (int)ModeManager.Mode.Hunting || mode == (int)ModeManager.Mode.TeamMode)
+			mode = (int)ModeManager.Mode.Boss;
+
+		YG2.saves.chosenMode = mode;
+		ModeManager.currentMode = (ModeManager.Mode)mode;
+	}
+
+	public void RefreshModeSelectionUI()
+	{
+		ModeSelectionUI ui = GetComponent<ModeSelectionUI>();
+		if (ui == null)
+			ui = gameObject.AddComponent<ModeSelectionUI>();
+		ui.FindButtons();
+		ui.WireButtons();
+		ui.Refresh();
 	}
 
 	public void UpdateAllUI()

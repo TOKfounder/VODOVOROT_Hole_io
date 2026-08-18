@@ -128,6 +128,8 @@ public class MainMenuController : MonoBehaviour
 		Dbag.onClick.AddListener(() => ShowRewardedAdv("bag"));
 		Dbox.onClick.AddListener(() => ShowRewardedAdv("box"));
 		UpdateTriggers();
+		if (GameController.Instance != null)
+			GameController.Instance.RefreshModeSelectionUI();
 	}
 
 	public void UpdateTriggers()
@@ -261,6 +263,8 @@ public class MainMenuController : MonoBehaviour
 		UpdateUI();
 		UpdatePanelOfValute();
 		UpdateTriggers();
+		if (GameController.Instance != null)
+			GameController.Instance.RefreshModeSelectionUI();
 	}
 
 	private void onUpdateLB(LBData lbData)
@@ -278,7 +282,10 @@ public class MainMenuController : MonoBehaviour
 	{
 		mapField.sprite = maps[id];
 		YG2.saves.selectedMapID = id;
+		GameController.NormalizeChosenMode();
 		YG2.SaveProgress();
+		if (GameController.Instance != null)
+			GameController.Instance.RefreshModeSelectionUI();
 	}
 
 	public bool CheckForDaimonds() => YG2.saves.diamonds != 0;

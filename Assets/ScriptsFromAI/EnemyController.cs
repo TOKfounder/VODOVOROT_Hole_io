@@ -21,6 +21,8 @@ public class EnemyController : HoleParent
 
 	public void OnAbsorbedByPlayer()
 	{
+		ModeManager.ClearActiveBoss();
+
 		EnemyMovement movement = GetComponentInChildren<EnemyMovement>();
 		if (movement != null)
 			movement.enabled = false;

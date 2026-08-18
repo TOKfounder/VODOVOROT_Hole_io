@@ -139,6 +139,7 @@
     <Compile Include="Assets/PluginYourGames/Modules/Storage/Scripts/Storage_info.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Platform/ProjectSettings.cs" />
     <Compile Include="Assets/ScriptsFromAI/EnemyController.cs" />
+    <Compile Include="Assets/ScriptsFromAI/ScorePopupZone.cs" />
     <Compile Include="Assets/ScriptsFromAI/HorizontalLayout3D.cs" />
     <Compile Include="Assets/ScriptsFromAI/PointsScript.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Platform/PlatformSettings.cs" />
@@ -226,6 +227,7 @@
     <Compile Include="Assets/ScriptsFromAI/DynamicCellSize.cs" />
     <Compile Include="Assets/PluginYourGames/Example/Scripts/Scenes/DemoSceneLoadButton.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Flags/Scripts/Flags_interface.cs" />
+    <Compile Include="Assets/ScriptsFromAI/ModeSelectionUI.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Localization/Scripts/Lang_yandexPlatform.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Flags/Scripts/Flags_yg.cs" />
     <Compile Include="Assets/PluginYourGames/Example/Scripts/DebugViewing.cs" />
@@ -254,7 +256,6 @@
     <None Include="Assets/PluginYourGames/Version.txt" />
     <None Include="Assets/PluginYourGames/Example/Content/Font/LICENSE.txt" />
     <None Include="Assets/OutlineShader.shader" />
-    <None Include="Assets/PluginYourGames/Platforms/YandexGames/YandexGames.txt" />
     <None Include="Assets/PluginYourGames/Modules/Leaderboards/Version.txt" />
     <None Include="Assets/PluginYourGames/Modules/PlayerStats/Version.txt" />
     <None Include="Assets/PluginYourGames/LICENSE.txt" />

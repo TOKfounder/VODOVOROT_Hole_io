@@ -5,7 +5,6 @@ public class BlackHoleController : HoleParent
 {
 	public static BlackHoleController Player { get; private set; }
 
-	// Совместимость со старым кодом MovementScript
 	public static BlackHoleController Instance => Player;
 
 	protected override void Awake()
@@ -41,40 +40,22 @@ public class BlackHoleController : HoleParent
 		if (ModeManager.currentMode != ModeManager.Mode.Boss)
 			return;
 
-		TryAbsorbEnemyHoles();
+		TryAbsorbActiveBoss();
 	}
 
-	private void TryAbsorbEnemyHoles()
+	private void TryAbsorbActiveBoss()
 	{
-		for (int i = holeList.Count - 1; i >= 0; i--)
-		{
-			HoleParent candidate = holeList[i];
-			if (candidate == null || candidate == this || candidate.holeType != TypeOfHole.enemy)
-				continue;
+		EnemyController enemy = ModeManager.ActiveBoss;
+		if (enemy == null || !enemy.isActiveAndEnabled)
+			return;
 
-			if (!CanAbsorbHole(candidate))
-				continue;
+		if (!CanAbsorbOtherHole(enemy))
+			return;
 
-			if (!IsInHole(candidate.transform.position))
-				continue;
+		if (!IsOtherHoleFullyInside(enemy))
+			return;
 
-			AbsorbEnemy(candidate as EnemyController);
-			break;
-		}
-	}
-
-	private bool CanAbsorbHole(HoleParent enemy)
-	{
-		if (enemy == null || enemy.size == Vector3.zero || size == Vector3.zero)
-			return false;
-
-		if (!Tool.CanFit2D(enemy.size, size))
-			return false;
-
-		if (currentLevel > enemy.currentLevel)
-			return true;
-
-		return currentLevel == enemy.currentLevel && score > enemy.score;
+		AbsorbEnemy(enemy);
 	}
 
 	private void AbsorbEnemy(EnemyController enemy)

@@ -1,83 +1,68 @@
 using UnityEngine;
 using YG;
 
+[DefaultExecutionOrder(-150)]
 public class ModeManager : MonoBehaviour
 {
 	public static Mode currentMode = Mode.Boss;
+
 	public enum Mode
 	{
 		Boss, TotalCleaning, Hunting, TeamMode
 	}
 
+	private const int CityMapId = 0;
 	private const int GardenMapId = 1;
 
 	public static bool IsGardenMap() => YG2.saves.selectedMapID == GardenMapId;
+	public static bool IsCityMap() => YG2.saves.selectedMapID == CityMapId;
+
+	public static EnemyController ActiveBoss { get; private set; }
+
+	public static void ResetModeState() => ActiveBoss = null;
+	public static void ClearActiveBoss() => ActiveBoss = null;
 
 	[SerializeField] private GameObject enemyPrefab;
 	[SerializeField] private GameObject mainPlayer;
 	[SerializeField] private Transform bossSpawnPoint;
 	[SerializeField] private Transform playerSpawnPoint;
-	[SerializeField] private float nonGardenBossOffset = 40f;
+
+	[Header("Bounds Spawn")]
+	[SerializeField] private float playerEdgeInset = 12f;
+	[SerializeField] private float bossEdgeInset = 12f;
+	[SerializeField] private float citySpawnHeight = 0.2f;
+	[SerializeField] private float gardenSpawnHeight = 0.164f;
+	[SerializeField] private float spawnYaw = 0f;
 
 	void Awake()
 	{
+		GameController.NormalizeChosenMode();
 		currentMode = (Mode)YG2.saves.chosenMode;
 
-		// Hunting / Team пока не реализованы — откат на Boss
-		if (currentMode == Mode.Hunting || currentMode == Mode.TeamMode)
-		{
-			currentMode = Mode.Boss;
-			YG2.saves.chosenMode = (int)Mode.Boss;
-		}
+		if (mainPlayer == null)
+			mainPlayer = GameObject.FindGameObjectWithTag("Player");
+	}
 
-		// Total Cleaning только на карте Garden
-		if (currentMode == Mode.TotalCleaning && !IsGardenMap())
-		{
-			Debug.Log("Total Cleaning доступен только на карте Сад — выбран режим Boss");
-			currentMode = Mode.Boss;
-			YG2.saves.chosenMode = (int)Mode.Boss;
-		}
-
+	void Start()
+	{
 		if (currentMode == Mode.Boss)
 			StartBossMode();
 		else if (currentMode == Mode.TotalCleaning)
 			StartCleaningMode();
 		else
-			print("Not Valid Mode number");
+			Debug.LogWarning($"Not valid mode: {currentMode}");
 	}
 
 	public void StartBossMode()
 	{
 		if (enemyPrefab == null || mainPlayer == null)
-			return;
-
-		if (IsGardenMap())
 		{
-			Vector3 enemyPos = bossSpawnPoint != null
-				? bossSpawnPoint.position
-				: new Vector3(-2.23f, 0.164f, 92.22f);
-			Quaternion enemyRot = bossSpawnPoint != null
-				? bossSpawnPoint.rotation
-				: Quaternion.Euler(0, 180, 0);
-			Instantiate(enemyPrefab, enemyPos, enemyRot, transform);
-
-			Vector3 playerPos = playerSpawnPoint != null
-				? playerSpawnPoint.position
-				: new Vector3(-23.7f, 0.164f, -80.2f);
-			mainPlayer.transform.position = playerPos;
+			Debug.LogWarning("ModeManager: enemyPrefab or mainPlayer is not assigned");
 			return;
 		}
 
-		Vector3 origin = mainPlayer.transform.position;
-		Vector3 forward = mainPlayer.transform.forward;
-		forward.y = 0f;
-		if (forward.sqrMagnitude < 0.001f)
-			forward = Vector3.forward;
-		forward.Normalize();
-
-		Vector3 spawnPos = origin + forward * nonGardenBossOffset;
-		spawnPos.y = origin.y;
-		Instantiate(enemyPrefab, spawnPos, Quaternion.LookRotation(origin - spawnPos), transform);
+		PlacePlayer();
+		SpawnBoss();
 	}
 
 	public void StartCleaningMode()
@@ -85,13 +70,92 @@ public class ModeManager : MonoBehaviour
 		if (mainPlayer == null)
 			return;
 
-		if (!IsGardenMap())
+		PlacePlayer();
+	}
+
+	private void PlacePlayer()
+	{
+		if (playerSpawnPoint != null)
+		{
+			ApplySpawnTransform(mainPlayer.transform, playerSpawnPoint.position, playerSpawnPoint.eulerAngles.y);
+			return;
+		}
+
+		if (TryGetBoundsSpawn(out Vector3 playerPos, out Vector3 bossPos))
+		{
+			ApplySpawnTransform(mainPlayer.transform, playerPos, spawnYaw);
+			return;
+		}
+
+		Debug.LogWarning("ModeManager: could not resolve player spawn position");
+	}
+
+	private void SpawnBoss()
+	{
+		Vector3 bossPos;
+		float bossYaw;
+
+		if (bossSpawnPoint != null)
+		{
+			bossPos = bossSpawnPoint.position;
+			bossYaw = bossSpawnPoint.eulerAngles.y;
+		}
+		else if (TryGetBoundsSpawn(out Vector3 playerPos, out bossPos))
+		{
+			bossYaw = spawnYaw;
+		}
+		else
+		{
+			Debug.LogWarning("ModeManager: could not resolve boss spawn position");
+			return;
+		}
+
+		Quaternion bossRot = Quaternion.Euler(0f, bossYaw, 0f);
+		RegisterBoss(Instantiate(enemyPrefab, bossPos, bossRot, transform));
+	}
+
+	private bool TryGetBoundsSpawn(out Vector3 playerPos, out Vector3 bossPos)
+	{
+		playerPos = Vector3.zero;
+		bossPos = Vector3.zero;
+
+		if (GamingManager.Instance == null)
+			return false;
+
+		float minX = GamingManager.Instance.minX;
+		float maxX = GamingManager.Instance.maxX;
+		float minZ = GamingManager.Instance.minZ;
+		float maxZ = GamingManager.Instance.maxZ;
+
+		if (minX >= maxX || minZ >= maxZ)
+			return false;
+
+		float centerX = (minX + maxX) * 0.5f;
+		float playerZ = minZ + playerEdgeInset;
+		float bossZ = maxZ - bossEdgeInset;
+		float spawnHeight = IsGardenMap() ? gardenSpawnHeight : citySpawnHeight;
+
+		playerPos = new Vector3(centerX, spawnHeight, playerZ);
+		bossPos = new Vector3(centerX, spawnHeight, bossZ);
+		return true;
+	}
+
+	private static void ApplySpawnTransform(Transform target, Vector3 position, float yaw)
+	{
+		if (target == null)
 			return;
 
-		Vector3 playerPos = playerSpawnPoint != null
-			? playerSpawnPoint.position
-			: new Vector3(-23.7f, 0.164f, -80.2f);
-		mainPlayer.transform.position = playerPos;
+		target.position = position;
+		target.rotation = Quaternion.Euler(0f, yaw, 0f);
+
+		HoleParent hole = target.GetComponent<HoleParent>();
+		if (hole != null && hole.WithoutCamera != null)
+			hole.WithoutCamera.transform.rotation = Quaternion.Euler(0f, yaw, 0f);
+	}
+
+	private void RegisterBoss(GameObject bossObject)
+	{
+		ActiveBoss = bossObject != null ? bossObject.GetComponent<EnemyController>() : null;
 	}
 
 	public void StartHuntingMode() { }
