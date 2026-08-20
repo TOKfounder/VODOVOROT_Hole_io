@@ -123,6 +123,13 @@ public class MatchHud : MonoBehaviour
 
 		if (ModeManager.currentMode == ModeManager.Mode.TeamMode)
 		{
+			if (GamingManager.Instance != null && GamingManager.Instance.PlayerEliminated)
+			{
+				statusText.gameObject.SetActive(true);
+				statusText.text = ru ? "Вы поглощены!" : "Eliminated!";
+				return;
+			}
+
 			int blue = ModeManager.GetTeamScore(ModeManager.TeamBlue);
 			int red = ModeManager.GetTeamScore(ModeManager.TeamRed);
 			statusText.gameObject.SetActive(true);

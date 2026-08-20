@@ -83,6 +83,9 @@ public class GamingManager : MonoBehaviour
 	private bool IsBossMode => ModeManager.currentMode == ModeManager.Mode.Boss;
 	private bool IsHuntingMode => ModeManager.currentMode == ModeManager.Mode.Hunting;
 	private bool UsesModeTimer => isTotalCleaningMode || IsBossMode || isHuntingMode || isTeamMode;
+	private Vector3 timerBaseScale = Vector3.one;
+	private bool timerScaleCached;
+	private bool timerTextResolved;
 
 	void Awake()
 	{
@@ -132,7 +135,11 @@ public class GamingManager : MonoBehaviour
 		{
 			totalCleaningTimerText.gameObject.SetActive(showModeTimer);
 			if (showModeTimer)
-				totalCleaningTimerText.text = FormatTime(GetModeRemainingTime());
+			{
+				float remaining = GetModeRemainingTime();
+				totalCleaningTimerText.text = FormatTime(remaining);
+				ApplyTimerUrgency(totalCleaningTimerText, remaining);
+			}
 		}
 
 		YG2.saves.isGaming = true;
@@ -190,11 +197,11 @@ public class GamingManager : MonoBehaviour
 			if (Dpercent != null) Dpercent.text = percentText;
 		}
 
-		if (UsesModeTimer)
+		if (UsesModeTimer && totalCleaningTimerText != null)
 		{
-			ResolveModeTimerText();
-			if (totalCleaningTimerText != null)
-				totalCleaningTimerText.text = FormatTime(GetModeRemainingTime());
+			float remaining = GetModeRemainingTime();
+			totalCleaningTimerText.text = FormatTime(remaining);
+			ApplyTimerUrgency(totalCleaningTimerText, remaining);
 		}
 	}
 
@@ -215,6 +222,9 @@ public class GamingManager : MonoBehaviour
 
 	private void ResolveModeTimerText()
 	{
+		if (timerTextResolved && totalCleaningTimerText != null)
+			return;
+
 		MatchHud hud = FindAnyObjectByType<MatchHud>();
 		if (hud != null && hud.TimerText != null)
 		{
@@ -222,11 +232,15 @@ public class GamingManager : MonoBehaviour
 				totalCleaningTimerText.gameObject.SetActive(false);
 			totalCleaningTimerText = hud.TimerText;
 			HideDuplicateTimerTexts(totalCleaningTimerText);
+			timerTextResolved = true;
 			return;
 		}
 
 		if (totalCleaningTimerText != null)
+		{
+			timerTextResolved = true;
 			return;
+		}
 
 		Canvas canvas = ActiveCanvas.Get();
 		if (canvas == null)
@@ -238,7 +252,10 @@ public class GamingManager : MonoBehaviour
 		{
 			totalCleaningTimerText = existing.GetComponent<Text>();
 			if (totalCleaningTimerText != null)
+			{
+				timerTextResolved = true;
 				return;
+			}
 		}
 
 		if (!UsesModeTimer)
@@ -246,7 +263,10 @@ public class GamingManager : MonoBehaviour
 
 		totalCleaningTimerText = ActiveCanvas.CreateText(parent, ModeTimerName, new Vector2(0f, -36f), new Vector2(240f, 52f));
 		if (totalCleaningTimerText != null)
+		{
 			totalCleaningTimerText.fontSize = 36;
+			timerTextResolved = true;
+		}
 	}
 
 	private static void HideDuplicateTimerTexts(Text keep)
@@ -314,6 +334,7 @@ public class GamingManager : MonoBehaviour
 
 	private void ShowEndPanel()
 	{
+		HoleFeedback.ForPlayer?.SetMatchActive(false);
 		if (YG2.envir.isMobile)
 			MobpanelOfEnd?.SetActive(true);
 		else
@@ -351,7 +372,12 @@ public class GamingManager : MonoBehaviour
 			return GetTotalCleaningReward(progress);
 
 		if (isTeamMode)
+		{
+			progress = GetMatchProgress();
+			if (!teamVictory)
+				return GetPartialDefeatReward(progress);
 			return GetTotalCleaningReward(progress);
+		}
 
 		if (progress < 1f)
 		{
@@ -432,6 +458,18 @@ public class GamingManager : MonoBehaviour
 		};
 	}
 
+	private MatchRewardData GetPartialDefeatReward(float progress)
+	{
+		progress = Mathf.Clamp01(progress);
+		return new MatchRewardData
+		{
+			exp = Mathf.Max(5, (int)(25f * progress)),
+			coins = Mathf.Max(3, (int)(12f * progress)),
+			diamonds = Mathf.Max(0, (int)(3f * progress)),
+			resultSpriteIndex = -1
+		};
+	}
+
 	public MatchRewardData GetCurrentClassicReward()
 	{
 		return GetClassicReward(GetMatchProgress());
@@ -453,8 +491,8 @@ public class GamingManager : MonoBehaviour
 		{
 			if (teamVictory)
 				progress = 1f;
-			else if (ModeManager.TeamEnemySpawned > 0)
-				progress = 1f - ModeManager.RemainingTeamEnemies / (float)ModeManager.TeamEnemySpawned;
+			else if (playerEliminated || ModeManager.TeamEnemySpawned > 0)
+				progress = 1f - ModeManager.RemainingTeamEnemies / (float)Mathf.Max(1, ModeManager.TeamEnemySpawned);
 		}
 		return Mathf.Clamp01(progress);
 	}
@@ -481,6 +519,7 @@ public class GamingManager : MonoBehaviour
 		endSequenceStarted = true;
 		timerGo = false;
 		once = false;
+		HoleFeedback.ForPlayer?.SetMatchActive(false);
 		Time.timeScale = 0f;
 	}
 
@@ -490,6 +529,32 @@ public class GamingManager : MonoBehaviour
 		int minutes = totalSeconds / 60;
 		int secs = totalSeconds % 60;
 		return $"{minutes:00}:{secs:00}";
+	}
+
+	private void ApplyTimerUrgency(Text timer, float remaining)
+	{
+		if (timer == null)
+			return;
+
+		Color color = Color.white;
+		float pulse = 1f;
+		if (remaining <= 10f)
+		{
+			color = new Color(1f, 0.25f, 0.2f, 1f);
+			pulse = 1f + 0.08f * Mathf.Sin(Time.unscaledTime * 8f);
+		}
+		else if (remaining <= 30f)
+		{
+			color = new Color(1f, 0.55f, 0.15f, 1f);
+		}
+
+		timer.color = color;
+		if (!timerScaleCached)
+		{
+			timerBaseScale = timer.transform.localScale;
+			timerScaleCached = true;
+		}
+		timer.transform.localScale = timerBaseScale * pulse;
 	}
 
 	public void UpdateUI()

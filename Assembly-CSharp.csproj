@@ -81,6 +81,7 @@
     <Compile Include="Assets/PluginYourGames/Scripts/Other/PauseGameYG.cs" />
     <Compile Include="Assets/UsedAssets/Fries and Seagull/City 03/Scene Props/Scripts/Inspector/MaterialHider.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/RewardedAdv/Example/Scripts/ExampleRewardedAd.cs" />
+    <Compile Include="Assets/ScriptsFromAI/HoleCameraFollow.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Server/ServerInfo.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Storage/Scripts/Storage_yandexPlatform.cs" />
     <Compile Include="Assets/UsedAssets/Fries and Seagull/City 03/Scene Props/Scripts/RotatableObject.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="Assets/PluginYourGames/Scripts/Platform/PlatformSettingsAttributes.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/EditorScr/Attributes/LabelYGAttribute.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Leaderboards/Scripts/LB_lang.cs" />
+    <Compile Include="Assets/ScriptsFromAI/HoleFeedback.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/EditorScr/Attributes/NestedYGAttribute.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/InterstitialAdv/Scripts/AdNotification/AdNotificationYG.cs" />
     <Compile Include="Assets/ScriptsFromAI/HelperController.cs" />
@@ -169,6 +171,7 @@
     <Compile Include="Assets/PluginYourGames/Scripts/Basic/GameReadyAPI.cs" />
     <Compile Include="Assets/UsedAssets/PinePie/Simple Joystick/Examples/demo script/MovementScript.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Storage/Scripts/Storage_yg.cs" />
+    <Compile Include="Assets/ScriptsFromAI/NickBillboard.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Payments/Scripts/Payments_lang.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Flags/Example/Scripts/FlagsExample.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/InfoYG/InfoYG_lang.cs" />

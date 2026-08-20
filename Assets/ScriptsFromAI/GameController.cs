@@ -165,6 +165,9 @@ public class GameController : MonoBehaviour
 
 	public void ChangeMode(int id)
 	{
+		if (id == (int)ModeManager.Mode.TotalCleaning && ModeManager.IsCityMap())
+			id = (int)ModeManager.Mode.Boss;
+
 		YG2.saves.chosenMode = id;
 		ModeManager.currentMode = (ModeManager.Mode)id;
 		YG2.SaveProgress();
@@ -175,6 +178,9 @@ public class GameController : MonoBehaviour
 	{
 		int mode = YG2.saves.chosenMode;
 		if (mode < 0 || mode > (int)ModeManager.Mode.TeamMode)
+			mode = (int)ModeManager.Mode.Boss;
+
+		if (mode == (int)ModeManager.Mode.TotalCleaning && ModeManager.IsCityMap())
 			mode = (int)ModeManager.Mode.Boss;
 
 		YG2.saves.chosenMode = mode;
@@ -193,7 +199,6 @@ public class GameController : MonoBehaviour
 
 	public void UpdateAllUI()
 	{
-		Debug.Log("UpdateUI");
 		if (LanguageManager.Instance != null)
 		{
 			if (LanguageManager.Instance.Adecvat)

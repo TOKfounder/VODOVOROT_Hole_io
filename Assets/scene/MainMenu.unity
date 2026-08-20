@@ -2294,7 +2294,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &143466615
 RectTransform:
   m_ObjectHideFlags: 0
@@ -29068,7 +29068,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedColor: {r: 0.35, g: 0.85, b: 0.45, a: 1}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  lockedColor: {r: 0.45, g: 0.45, b: 0.45, a: 1}
 --- !u!1 &1740338398
 GameObject:
   m_ObjectHideFlags: 0
@@ -54237,6 +54236,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 2321781587177728711}
   mixer: {fileID: 24100000, guid: 23d00a097bb18be4082f8405e62225c4, type: 2}
+  sfxSource: {fileID: 0}
+  gulpClip: {fileID: 8300000, guid: 5f1f8b3e0f4444ae388135c7427fcd22, type: 3}
+  levelUpClip: {fileID: 8300000, guid: 58ad3c414432d46908352738f327ad93, type: 3}
+  absorbClip: {fileID: 8300000, guid: ec5bd6d9e04f547cdabcc9071ac0927b, type: 3}
   dbValSound: 0
   dbValMusic: 0
   krest1: {fileID: 1422509233751939475}

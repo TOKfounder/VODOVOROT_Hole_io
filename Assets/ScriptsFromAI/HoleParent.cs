@@ -66,6 +66,8 @@ public class HoleParent : MonoBehaviour
 
 		InitPointsPool();
 		UpdateSize();
+		if (nickname != null && nickname.GetComponent<NickBillboard>() == null)
+			nickname.gameObject.AddComponent<NickBillboard>();
 	}
 
 	protected virtual void OnDestroy()
@@ -130,18 +132,6 @@ public class HoleParent : MonoBehaviour
 
 		if (border != null)
 			border.color = color;
-
-		if (hole == null)
-			return;
-
-		Renderer rend = hole.GetComponent<Renderer>();
-		if (rend == null)
-			return;
-
-		Material mat = rend.material;
-		Color tint = color;
-		tint.a = mat.color.a;
-		mat.color = tint;
 	}
 
 	public void MarkConsumed()
@@ -161,11 +151,27 @@ public class HoleParent : MonoBehaviour
 
 	public void AddScore(int amount)
 	{
+		AddScoreInternal(amount, PointsScript.GoldPopup, false);
+	}
+
+	public void AddScoreFromHole(int amount, Color popupColor)
+	{
+		AddScoreInternal(amount, popupColor, true);
+	}
+
+	private void AddScoreInternal(int amount, Color popupColor, bool fromHole)
+	{
 		if (amount <= 0) return;
 		score += amount;
 		totalScore += amount;
 		if (this is BlackHoleController)
-			PointEffect(amount);
+		{
+			PointEffect(amount, popupColor);
+			if (fromHole)
+				HoleFeedback.ForPlayer?.PlayAbsorb(popupColor);
+			else
+				HoleFeedback.ForPlayer?.PlayGulp();
+		}
 		isUpdated = false;
 	}
 
@@ -189,7 +195,7 @@ public class HoleParent : MonoBehaviour
 			false, 20, 40);
 	}
 
-	private void PointEffect(int amount)
+	private void PointEffect(int amount, Color popupColor)
 	{
 		if (hole == null || mainCanvas == null || Camera.main == null)
 			return;
@@ -215,12 +221,15 @@ public class HoleParent : MonoBehaviour
 
 		PointsScript ps = points.GetComponent<PointsScript>();
 		if (ps != null)
-			ps.OnSpawn(amount);
+			ps.OnSpawn(amount, popupColor);
 		else
 		{
 			Text pointsText = points.GetComponent<Text>();
 			if (pointsText != null)
+			{
 				pointsText.text = $"+{amount}";
+				pointsText.color = popupColor;
+			}
 		}
 	}
 
@@ -353,7 +362,7 @@ public class HoleParent : MonoBehaviour
 		other.MarkConsumed();
 		int absorbedScore = other.score;
 		if (absorbedScore > 0)
-			AddScore(absorbedScore);
+			AddScoreFromHole(absorbedScore, PopupColorForHole(other));
 
 		EnemyController enemy = other as EnemyController;
 		if (enemy != null)
@@ -365,5 +374,12 @@ public class HoleParent : MonoBehaviour
 		BlackHoleController player = other as BlackHoleController;
 		if (player != null)
 			player.Eliminate();
+	}
+
+	private static Color PopupColorForHole(HoleParent other)
+	{
+		if (other != null && other.TeamId == ModeManager.TeamBlue)
+			return PointsScript.CyanPopup;
+		return PointsScript.RedPopup;
 	}
 }

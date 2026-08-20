@@ -5136,6 +5136,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 6749669956196775733}
   mixer: {fileID: 24100000, guid: 23d00a097bb18be4082f8405e62225c4, type: 2}
+  sfxSource: {fileID: 0}
+  gulpClip: {fileID: 8300000, guid: 5f1f8b3e0f4444ae388135c7427fcd22, type: 3}
+  levelUpClip: {fileID: 8300000, guid: 58ad3c414432d46908352738f327ad93, type: 3}
+  absorbClip: {fileID: 8300000, guid: ec5bd6d9e04f547cdabcc9071ac0927b, type: 3}
   dbValSound: 0
   dbValMusic: 0
   krest1: {fileID: 2344737412619954060}

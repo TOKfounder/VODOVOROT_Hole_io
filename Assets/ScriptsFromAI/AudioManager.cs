@@ -11,6 +11,12 @@ public class AudioManager : MonoBehaviour
 	public AudioSource musicSource;
 	public AudioMixer mixer;
 
+	[Header("Match SFX")]
+	[SerializeField] private AudioSource sfxSource;
+	[SerializeField] private AudioClip gulpClip;
+	[SerializeField] private AudioClip levelUpClip;
+	[SerializeField] private AudioClip absorbClip;
+
 	public float dbValSound;
 	public float dbValMusic;
 
@@ -28,6 +34,44 @@ public class AudioManager : MonoBehaviour
 	void Awake()
 	{
 		Instance = this;
+		if (sfxSource == null)
+		{
+			sfxSource = gameObject.AddComponent<AudioSource>();
+			sfxSource.playOnAwake = false;
+		}
+
+		sfxSource.spatialBlend = 0f;
+		sfxSource.dopplerLevel = 0f;
+		sfxSource.spread = 0f;
+		sfxSource.rolloffMode = AudioRolloffMode.Linear;
+
+		if (mixer != null && sfxSource.outputAudioMixerGroup == null)
+		{
+			AudioMixerGroup[] groups = mixer.FindMatchingGroups("SFX");
+			if (groups != null && groups.Length > 0)
+				sfxSource.outputAudioMixerGroup = groups[0];
+		}
+
+		EnsureMatchClips();
+	}
+
+	private void EnsureMatchClips()
+	{
+		if (gulpClip == null)
+			gulpClip = LoadMatchClip("151233__owlstorm__gulp-2");
+		if (levelUpClip == null)
+			levelUpClip = LoadMatchClip("320655__rhodesmas__level-up-01");
+		if (absorbClip == null)
+			absorbClip = LoadMatchClip("vacuum");
+	}
+
+	private static AudioClip LoadMatchClip(string fileName)
+	{
+#if UNITY_EDITOR
+		return UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>($"Assets/SoundsAndMelodies/{fileName}.wav");
+#else
+		return null;
+#endif
 	}
 
 	void Start()
@@ -60,6 +104,33 @@ public class AudioManager : MonoBehaviour
 		if (musicSource == null)
 			return;
 		musicSource.Stop();
+	}
+
+	public static void PlayGulp()
+	{
+		if (Instance != null)
+			Instance.PlaySfx(Instance.gulpClip, 0.12f);
+	}
+
+	public static void PlayLevelUp()
+	{
+		if (Instance != null)
+			Instance.PlaySfx(Instance.levelUpClip, 0.05f);
+	}
+
+	public static void PlayAbsorb()
+	{
+		if (Instance != null)
+			Instance.PlaySfx(Instance.absorbClip, 0.06f);
+	}
+
+	public void PlaySfx(AudioClip clip, float pitchVariance = 0.08f)
+	{
+		if (clip == null || sfxSource == null)
+			return;
+
+		sfxSource.pitch = 1f + Random.Range(-pitchVariance, pitchVariance);
+		sfxSource.PlayOneShot(clip);
 	}
 
 	private void BindSaveOnPointerUp(Slider slider)

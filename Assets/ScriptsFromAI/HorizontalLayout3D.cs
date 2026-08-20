@@ -126,7 +126,6 @@ public class HorizontalLayout3D : MonoBehaviour
 	}
 	public void UpdateForChosen()
 	{
-		Debug.Log(chosenObj);
 		if (YG2.saves.massiveOfObtaining[chosenObj] == 0)
 		{
 			buttonOfBuying.SetActive(true);
@@ -192,8 +191,6 @@ public class HorizontalLayout3D : MonoBehaviour
 		}
 		else if (id == 3)
 		{
-			//покупка за яны
-			Debug.Log("Сработала обработка Инапа");
 			isBought = true;
 		}
 		if (isBought)

@@ -8,6 +8,13 @@ public class SpawnerOfHelpers : MonoBehaviour
 	[Tooltip("Фича хелперов ещё сырая — по умолчанию выключена")]
 	[SerializeField] private bool enableColonHelpers = false;
 
+	public static bool ColonEnabled { get; private set; }
+
+	void Awake()
+	{
+		ColonEnabled = enableColonHelpers;
+	}
+
 	void Start()
 	{
 		if (!enableColonHelpers || colonPrefab == null || GamingManager.Instance == null)

@@ -6,6 +6,7 @@ public class ModeSelectionUI : MonoBehaviour
 {
 	[SerializeField] private Color selectedColor = new Color(0.35f, 0.85f, 0.45f, 1f);
 	[SerializeField] private Color normalColor = Color.white;
+	[SerializeField] private Color disabledColor = new Color(0.55f, 0.55f, 0.55f, 0.65f);
 
 	private Button mobileBossButton;
 	private Button mobileTotalButton;
@@ -208,19 +209,24 @@ public class ModeSelectionUI : MonoBehaviour
 
 	private static void OnModeButtonClicked(ModeManager.Mode mode)
 	{
+		if (mode == ModeManager.Mode.TotalCleaning && ModeManager.IsCityMap())
+			return;
+
 		if (GameController.Instance != null)
 			GameController.Instance.ChangeMode((int)mode);
 	}
 
 	public void Refresh()
 	{
+		GameController.NormalizeChosenMode();
 		int chosenMode = YG2.saves.chosenMode;
 		int selectedMap = YG2.saves.selectedMapID;
+		bool totalCleaningAllowed = ModeManager.IsGardenMap();
 
 		ApplyButtonState(mobileBossButton, chosenMode == (int)ModeManager.Mode.Boss);
 		ApplyButtonState(desktopBossButton, chosenMode == (int)ModeManager.Mode.Boss);
-		ApplyButtonState(mobileTotalButton, chosenMode == (int)ModeManager.Mode.TotalCleaning);
-		ApplyButtonState(desktopTotalButton, chosenMode == (int)ModeManager.Mode.TotalCleaning);
+		ApplyButtonState(mobileTotalButton, chosenMode == (int)ModeManager.Mode.TotalCleaning, totalCleaningAllowed);
+		ApplyButtonState(desktopTotalButton, chosenMode == (int)ModeManager.Mode.TotalCleaning, totalCleaningAllowed);
 		ApplyButtonState(mobileHuntingButton, chosenMode == (int)ModeManager.Mode.Hunting);
 		ApplyButtonState(desktopHuntingButton, chosenMode == (int)ModeManager.Mode.Hunting);
 		ApplyButtonState(mobileTeamButton, chosenMode == (int)ModeManager.Mode.TeamMode);
@@ -231,15 +237,15 @@ public class ModeSelectionUI : MonoBehaviour
 		ApplyButtonState(desktopGardenButton, selectedMap == 1);
 	}
 
-	private void ApplyButtonState(Button button, bool selected)
+	private void ApplyButtonState(Button button, bool selected, bool interactable = true)
 	{
 		if (button == null)
 			return;
 
-		button.interactable = true;
+		button.interactable = interactable;
 		button.enabled = true;
 		Image image = button.GetComponent<Image>();
 		if (image != null)
-			image.color = selected ? selectedColor : normalColor;
+			image.color = !interactable ? disabledColor : (selected ? selectedColor : normalColor);
 	}
 }

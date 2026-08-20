@@ -205,7 +205,7 @@ public class FallingObject : MonoBehaviour
 		CurrentHole = null;
 		if (myCoroutine != null) StopCoroutine(myCoroutine);
 
-		if (isColon && hole is BlackHoleController)
+		if (isColon && SpawnerOfHelpers.ColonEnabled && hole is BlackHoleController)
 		{
 			SpawnerOfHelpers spawner = FindAnyObjectByType<SpawnerOfHelpers>();
 			spawner?.TrySpawnHelper(transform);

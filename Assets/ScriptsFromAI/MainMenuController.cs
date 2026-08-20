@@ -135,7 +135,6 @@ public class MainMenuController : MonoBehaviour
 
 	public void UpdateTriggers()
 	{
-		Debug.Log("Проверка Триггеров");
 		triggerForNewSkin.SetActive(CheckForNewSkin());
 		triggerForDaimonds.SetActive(CheckForDaimonds());
 		DtriggerForNewSkin.SetActive(CheckForNewSkin());
@@ -144,7 +143,6 @@ public class MainMenuController : MonoBehaviour
 	}
 	public bool CheckForNewSkin()
 	{
-		Debug.Log("Проверка Магазина");
 		int[] necessaryLevels = {0, 1, 4, 7, 10 };
 		int[] costsForCoins = {0, 20, 270, 800, 2400 };
 		for (int i = 0; i < YG2.saves.massiveOfObtaining.Length; i++)
@@ -215,7 +213,6 @@ public class MainMenuController : MonoBehaviour
 			YG2.saves.massiveOfObtaining[4] = 1;
 		YG2.SaveProgress();
     YG2.ConsumePurchaseByID(id);
-		Debug.Log($"Покупка {id} сохранена и обработана");
 		HorizontalLayout3D.Instance?.UpdateForChosen();
 		UpdatePanelOfValute();
 	}
@@ -236,7 +233,6 @@ public class MainMenuController : MonoBehaviour
 
 	private void FailedPurchased(string id)
 	{
-		Debug.Log($"Покупка {id} не удалась");
 	}
 	void SaveNick(string wroteName)
 	{

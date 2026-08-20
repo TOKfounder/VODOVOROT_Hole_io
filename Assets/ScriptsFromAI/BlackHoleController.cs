@@ -27,6 +27,7 @@ public class BlackHoleController : HoleParent
 		base.Start();
 		holeType = TypeOfHole.player;
 		HoleCameraFollow.Ensure(this);
+		HoleFeedback.Ensure(this);
 		if (nickname == null)
 			return;
 
@@ -100,7 +101,7 @@ public class BlackHoleController : HoleParent
 		enemy.MarkConsumed();
 		int absorbedScore = enemy.score;
 		if (absorbedScore > 0)
-			AddScore(absorbedScore);
+			AddScoreFromHole(absorbedScore, PointsScript.RedPopup);
 
 		enemy.OnAbsorbedByPlayer();
 	}
