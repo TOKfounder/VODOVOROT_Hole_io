@@ -20,9 +20,12 @@ public class GameController : MonoBehaviour
 	// public Camera renderCamra;           // Камера с Render Texture
 	// public RenderTexture renderTexture;   // Твой Render Texturee
 
+	private static bool skipNextMenuInterstitial;
+
 	void Awake()
 	{
-		YG2.StickyAdActivity(true);
+		bool inMenu = SceneManager.GetActiveScene().buildIndex == 0;
+		YG2.StickyAdActivity(inMenu);
 		Instance = this;
 		if (CanvasForDesktop == null)
 			CanvasForDesktop = GameObject.Find("CanvasForDesktop");
@@ -61,7 +64,11 @@ public class GameController : MonoBehaviour
 	void Start()
 	{
 		if (SceneManager.GetActiveScene().buildIndex == 0 && !YG2.saves.isGaming)
-			YG2.InterstitialAdvShow();
+		{
+			if (!skipNextMenuInterstitial)
+				YG2.InterstitialAdvShow();
+			skipNextMenuInterstitial = false;
+		}
 		Time.timeScale = 1f;
 		if (YG2.saves.isFirst)
 		{
@@ -141,8 +148,19 @@ public class GameController : MonoBehaviour
 	public void ReturnToMenu()
 	{
 		YG2.saves.isGaming = false;
+		YG2.StickyAdActivity(true);
 		YG2.SaveProgress();
+		skipNextMenuInterstitial = true;
+		YG2.InterstitialAdvShow();
 		SceneManager.LoadScene(0);
+	}
+
+	public void ChangeMode(int id)
+	{
+		YG2.saves.chosenMode = id;
+		ModeManager.currentMode = (ModeManager.Mode)id;
+		YG2.SaveProgress();
+		RefreshModeSelectionUI();
 	}
 
 	public void ChangeMain(int chosenObj)
@@ -163,24 +181,10 @@ public class GameController : MonoBehaviour
 		YG2.SaveProgress();
 	}
 
-	public void ChangeMode(int id)
-	{
-		if (id == (int)ModeManager.Mode.TotalCleaning && ModeManager.IsCityMap())
-			id = (int)ModeManager.Mode.Boss;
-
-		YG2.saves.chosenMode = id;
-		ModeManager.currentMode = (ModeManager.Mode)id;
-		YG2.SaveProgress();
-		RefreshModeSelectionUI();
-	}
-
 	public static void NormalizeChosenMode()
 	{
 		int mode = YG2.saves.chosenMode;
 		if (mode < 0 || mode > (int)ModeManager.Mode.TeamMode)
-			mode = (int)ModeManager.Mode.Boss;
-
-		if (mode == (int)ModeManager.Mode.TotalCleaning && ModeManager.IsCityMap())
 			mode = (int)ModeManager.Mode.Boss;
 
 		YG2.saves.chosenMode = mode;

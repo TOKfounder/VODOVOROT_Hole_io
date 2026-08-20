@@ -181,6 +181,9 @@ public class ModeManager : MonoBehaviour
 			EnemyController enemy = enemyObject != null ? enemyObject.GetComponent<EnemyController>() : null;
 			if (enemy != null)
 			{
+				bool ru = YG2.saves.langRu;
+				int index = HuntingSpawned + 1;
+				enemy.SetNickname(ru ? $"Враг {index}" : $"Enemy {index}");
 				HuntingEnemies.Add(enemy);
 				HuntingSpawned++;
 			}
@@ -267,11 +270,12 @@ public class ModeManager : MonoBehaviour
 		if (playerHole != null)
 			playerHole.ApplyTeamVisuals(TeamBlue, allyTeamColor, null);
 
-		SpawnTeamHole(new Vector3(leftX, height, southZ), southYaw, TeamBlue, allyTeamColor, "Ally", TeamAllies);
-		SpawnTeamHole(new Vector3(rightX, height, southZ), southYaw, TeamBlue, allyTeamColor, "Ally", TeamAllies);
-		SpawnTeamHole(new Vector3(leftX, height, northZ), northYaw, TeamRed, enemyTeamColor, "Enemy", TeamEnemies);
-		SpawnTeamHole(new Vector3(centerX, height, northZ), northYaw, TeamRed, enemyTeamColor, "Enemy", TeamEnemies);
-		SpawnTeamHole(new Vector3(rightX, height, northZ), northYaw, TeamRed, enemyTeamColor, "Enemy", TeamEnemies);
+		bool ru = YG2.saves.langRu;
+		SpawnTeamHole(new Vector3(leftX, height, southZ), southYaw, TeamBlue, allyTeamColor, ru ? "Союзник 1" : "Ally 1", TeamAllies);
+		SpawnTeamHole(new Vector3(rightX, height, southZ), southYaw, TeamBlue, allyTeamColor, ru ? "Союзник 2" : "Ally 2", TeamAllies);
+		SpawnTeamHole(new Vector3(leftX, height, northZ), northYaw, TeamRed, enemyTeamColor, ru ? "Враг 1" : "Enemy 1", TeamEnemies);
+		SpawnTeamHole(new Vector3(centerX, height, northZ), northYaw, TeamRed, enemyTeamColor, ru ? "Враг 2" : "Enemy 2", TeamEnemies);
+		SpawnTeamHole(new Vector3(rightX, height, northZ), northYaw, TeamRed, enemyTeamColor, ru ? "Враг 3" : "Enemy 3", TeamEnemies);
 		TeamEnemySpawned = RemainingTeamEnemies;
 	}
 
@@ -333,6 +337,11 @@ public class ModeManager : MonoBehaviour
 
 		Quaternion bossRot = Quaternion.Euler(0f, bossYaw, 0f);
 		RegisterBoss(Instantiate(enemyPrefab, bossPos, bossRot, transform));
+		if (ActiveBoss != null)
+		{
+			bool ru = YG2.saves.langRu;
+			ActiveBoss.SetNickname(ru ? "Босс" : "Boss");
+		}
 	}
 
 	private bool TryGetBoundsSpawn(out Vector3 playerPos, out Vector3 bossPos)

@@ -8,6 +8,7 @@ public class MatchHud : MonoBehaviour
 	private const int MaxArrows = 6;
 	private const float ArrowDistance = 120f;
 	private const float AllyArrowScale = 0.62f;
+	private const float ArrowHideDiameters = 3f;
 	private static readonly Color BossArrowColor = new Color(1f, 0.85f, 0.2f, 0.9f);
 	private static readonly Color EnemyArrowColor = new Color(1f, 0.35f, 0.25f, 0.9f);
 	private static readonly Color AllyArrowColor = new Color(0.3f, 0.9f, 1f, 0.85f);
@@ -130,6 +131,13 @@ public class MatchHud : MonoBehaviour
 				return;
 			}
 
+			if (GamingManager.Instance != null && GamingManager.Instance.TeamDraw)
+			{
+				statusText.gameObject.SetActive(true);
+				statusText.text = ru ? "Ничья" : "Draw";
+				return;
+			}
+
 			int blue = ModeManager.GetTeamScore(ModeManager.TeamBlue);
 			int red = ModeManager.GetTeamScore(ModeManager.TeamRed);
 			statusText.gameObject.SetActive(true);
@@ -198,7 +206,7 @@ public class MatchHud : MonoBehaviour
 		int count = 0;
 		for (int i = 0; i < list.Count; i++)
 		{
-			if (list[i] != null && !list[i].IsConsumed && !IsOnScreen(list[i].transform.position))
+			if (list[i] != null && !list[i].IsConsumed && !IsWithinHideRadius(list[i].transform.position))
 				count++;
 		}
 		return count;
@@ -209,13 +217,13 @@ public class MatchHud : MonoBehaviour
 		if (index < 0 || index >= arrows.Count || arrows[index] == null || target == null)
 			return false;
 
-		Vector3 targetScreen = Camera.main.WorldToScreenPoint(target.position);
-		if (IsOnScreen(target.position))
+		if (IsWithinHideRadius(target.position))
 		{
 			arrows[index].gameObject.SetActive(false);
 			return false;
 		}
 
+		Vector3 targetScreen = Camera.main.WorldToScreenPoint(target.position);
 		Vector3 playerScreen = Camera.main.WorldToScreenPoint(BlackHoleController.Player.transform.position);
 		Vector2 dir = (Vector2)(targetScreen - playerScreen);
 		if (dir.sqrMagnitude < 0.001f)
@@ -245,12 +253,17 @@ public class MatchHud : MonoBehaviour
 		return true;
 	}
 
-	private static bool IsOnScreen(Vector3 worldPos)
+	private bool IsWithinHideRadius(Vector3 worldPos)
 	{
-		Vector3 screen = Camera.main.WorldToScreenPoint(worldPos);
-		return screen.z > 0f
-			&& screen.x > 0f && screen.x < Screen.width
-			&& screen.y > 0f && screen.y < Screen.height;
+		HoleParent player = BlackHoleController.Player;
+		if (player == null)
+			return true;
+
+		float holeRadius = player.GetHoleRadius();
+		float hideRadius = holeRadius * 2f * ArrowHideDiameters;
+		float dx = worldPos.x - player.transform.position.x;
+		float dz = worldPos.z - player.transform.position.z;
+		return dx * dx + dz * dz <= hideRadius * hideRadius;
 	}
 
 	private void HideUnusedArrows(int usedCount)

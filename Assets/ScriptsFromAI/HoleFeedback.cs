@@ -5,8 +5,10 @@ public class HoleFeedback : MonoBehaviour
 {
 	public static HoleFeedback ForPlayer { get; private set; }
 
-	private static readonly Color Water = new Color(0.45f, 0.85f, 0.95f, 0.85f);
-	private static readonly Color Porcelain = new Color(1f, 1f, 1f, 0.9f);
+	private static readonly Color Water = new Color(0.25f, 0.78f, 0.92f, 0.85f);
+	private static readonly Color VoidShadow = new Color(0.12f, 0.14f, 0.18f, 0.85f);
+	private static readonly Color Gold = new Color(1f, 0.82f, 0.22f, 0.9f);
+	private static readonly Color ParticleTint = new Color(0.55f, 0.58f, 0.62f, 0.45f);
 
 	[SerializeField] private bool debugEmitOnStart;
 
@@ -132,7 +134,7 @@ public class HoleFeedback : MonoBehaviour
 		float radius = GetEffectRadius();
 		Vector3 pos = GetHoleWorldPos();
 		EmitBurst(gulp, 24, pos, Water, radius * 0.15f, 1.6f);
-		EmitBurst(gulp, 16, pos, Porcelain, radius * 0.1f, 2.1f);
+		EmitBurst(gulp, 16, pos, VoidShadow, radius * 0.1f, 2.1f);
 		HoleCameraFollow.Punch(0.28f);
 		AudioManager.PlayGulp();
 	}
@@ -140,7 +142,7 @@ public class HoleFeedback : MonoBehaviour
 	public void PlayLevelUp()
 	{
 		float radius = GetEffectRadius();
-		EmitRing(radius, Porcelain, 40);
+		EmitRing(radius, Gold, 40);
 		FlashBorder();
 		HoleCameraFollow.Punch(0.7f);
 		AudioManager.PlayLevelUp();
@@ -257,7 +259,7 @@ public class HoleFeedback : MonoBehaviour
 			main.startLifetime = 0.45f;
 			main.startSpeed = new ParticleSystem.MinMaxCurve(1.2f, 2.4f);
 			main.startSize = 0.15f;
-			main.startColor = Porcelain;
+			main.startColor = VoidShadow;
 			main.gravityModifier = 0.8f;
 			var emission = gulp.emission;
 			emission.rateOverTime = 0f;
@@ -274,7 +276,7 @@ public class HoleFeedback : MonoBehaviour
 			main.startLifetime = 0.55f;
 			main.startSpeed = 1.8f;
 			main.startSize = 0.18f;
-			main.startColor = Porcelain;
+			main.startColor = VoidShadow;
 			main.gravityModifier = 0f;
 			var emission = ring.emission;
 			emission.rateOverTime = 0f;
@@ -378,7 +380,7 @@ public class HoleFeedback : MonoBehaviour
 		if (texture != null)
 			mat.mainTexture = texture;
 		if (mat.HasProperty("_TintColor"))
-			mat.SetColor("_TintColor", Color.white);
+			mat.SetColor("_TintColor", ParticleTint);
 		return mat;
 	}
 
@@ -396,7 +398,7 @@ public class HoleFeedback : MonoBehaviour
 
 		Material mat = new Material(shader);
 		if (mat.HasProperty("_TintColor"))
-			mat.SetColor("_TintColor", Color.white);
+			mat.SetColor("_TintColor", ParticleTint);
 		return mat;
 	}
 

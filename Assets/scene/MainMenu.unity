@@ -1247,8 +1247,8 @@ MonoBehaviour:
   DlevelText: {fileID: 353092855}
   DpointText: {fileID: 1104462818}
   maps:
-  - {fileID: 21300000, guid: c4e5c23acb2b85a46bd189fb402a2bb5, type: 3}
   - {fileID: 21300000, guid: 2129ecdaca24d644fb31cf7a81438d0d, type: 3}
+  - {fileID: 21300000, guid: c4e5c23acb2b85a46bd189fb402a2bb5, type: 3}
   mapField: {fileID: 1925776244}
   cntOfDiamonds: {fileID: 1627806285}
   exchangeBut: {fileID: 991285808}
