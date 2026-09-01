@@ -7,7 +7,7 @@
         false,
         false
     ],
-    "idSave": 204785,
+    "idSave": 204924,
     "isFirst": false,
     "langRu": true,
     "score": 0,
@@ -19,16 +19,16 @@
         0,
         1
     ],
-    "exp": 400,
+    "exp": 451,
     "levelOfProgress": 4,
-    "goldCoins": 1830,
+    "goldCoins": 1858,
     "isNickGiven": false,
     "nickName": "",
     "selectedMapID": 1,
-    "diamonds": 30,
+    "diamonds": 36,
     "isGaming": true,
     "soundValue": 0.5,
     "musicValue": 0.5,
     "done": true,
-    "chosenMode": 1
+    "chosenMode": 2
 }

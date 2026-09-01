@@ -12,6 +12,9 @@ public class MatchHud : MonoBehaviour
 	private static readonly Color EnemyArrowColor = new Color(1f, 0.35f, 0.25f, 0.9f);
 	private static readonly Color AllyArrowColor = new Color(0.3f, 0.9f, 1f, 0.85f);
 
+	[SerializeField] [Tooltip("Стрелка гаснет, когда цель ближе этого радиуса по XZ")]
+	[Min(1f)] private float arrowHideRadius = 20f;
+
 	private Text timerText;
 	private Text statusText;
 	private readonly List<RectTransform> arrows = new List<RectTransform>(MaxArrows);
@@ -177,14 +180,14 @@ public class MatchHud : MonoBehaviour
 	private int PlaceListArrows(List<EnemyController> list, int startIndex, Color color, float scale)
 	{
 		int shown = startIndex;
-		int totalOffscreen = CountOffscreen(list);
+		int totalFar = CountFar(list);
 		int spreadIndex = 0;
 		for (int i = 0; i < list.Count && shown < MaxArrows; i++)
 		{
 			EnemyController enemy = list[i];
 			if (enemy == null || enemy.IsConsumed)
 				continue;
-			if (PlaceArrow(shown, enemy.transform, spreadIndex, totalOffscreen, color, scale))
+			if (PlaceArrow(shown, enemy.transform, spreadIndex, totalFar, color, scale))
 			{
 				shown++;
 				spreadIndex++;
@@ -193,12 +196,12 @@ public class MatchHud : MonoBehaviour
 		return shown;
 	}
 
-	private int CountOffscreen(List<EnemyController> list)
+	private int CountFar(List<EnemyController> list)
 	{
 		int count = 0;
 		for (int i = 0; i < list.Count; i++)
 		{
-			if (list[i] != null && !list[i].IsConsumed && !IsOnScreen(list[i].transform.position))
+			if (list[i] != null && !list[i].IsConsumed && IsFarFromPlayer(list[i].transform.position))
 				count++;
 		}
 		return count;
@@ -209,13 +212,13 @@ public class MatchHud : MonoBehaviour
 		if (index < 0 || index >= arrows.Count || arrows[index] == null || target == null)
 			return false;
 
-		Vector3 targetScreen = Camera.main.WorldToScreenPoint(target.position);
-		if (IsOnScreen(target.position))
+		if (!IsFarFromPlayer(target.position))
 		{
 			arrows[index].gameObject.SetActive(false);
 			return false;
 		}
 
+		Vector3 targetScreen = Camera.main.WorldToScreenPoint(target.position);
 		Vector3 playerScreen = Camera.main.WorldToScreenPoint(BlackHoleController.Player.transform.position);
 		Vector2 dir = (Vector2)(targetScreen - playerScreen);
 		if (dir.sqrMagnitude < 0.001f)
@@ -245,12 +248,14 @@ public class MatchHud : MonoBehaviour
 		return true;
 	}
 
-	private static bool IsOnScreen(Vector3 worldPos)
+	private bool IsFarFromPlayer(Vector3 worldPos)
 	{
-		Vector3 screen = Camera.main.WorldToScreenPoint(worldPos);
-		return screen.z > 0f
-			&& screen.x > 0f && screen.x < Screen.width
-			&& screen.y > 0f && screen.y < Screen.height;
+		if (BlackHoleController.Player == null)
+			return false;
+
+		Vector3 delta = worldPos - BlackHoleController.Player.transform.position;
+		delta.y = 0f;
+		return delta.sqrMagnitude > arrowHideRadius * arrowHideRadius;
 	}
 
 	private void HideUnusedArrows(int usedCount)

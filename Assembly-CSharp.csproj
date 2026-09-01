@@ -93,6 +93,7 @@
     <Compile Include="Assets/PluginYourGames/Scripts/EditorScr/PluginPrefs.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Leaderboards/Scripts/LB_interface.cs" />
     <Compile Include="Assets/ScriptsFromAI/ProgressController.cs" />
+    <Compile Include="Assets/ScriptsFromAI/ScoreOrb.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/RewardedAdv/Scripts/RewardedAdv_interface.cs" />
     <Compile Include="Assets/UsedAssets/Fries and Seagull/City 03/Scene Props/Scripts/ArrayArrangement.cs" />
     <Compile Include="Assets/ScriptsFromAI/BoostButton.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="Assets/PluginYourGames/Modules/Payments/Scripts/Payments_interface.cs" />
     <Compile Include="Assets/ScriptsFromAI/MatchHud.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/StickyAdv/Scripts/StickyAdv_yg.cs" />
+    <Compile Include="Assets/ScriptsFromAI/ScoreOrbSpawner.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Platform/PlatformSettingsAttributes.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/EditorScr/Attributes/LabelYGAttribute.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Leaderboards/Scripts/LB_lang.cs" />

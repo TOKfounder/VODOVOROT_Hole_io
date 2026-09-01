@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
@@ -5,7 +6,7 @@ using YG;
 public class ModeSelectionUI : MonoBehaviour
 {
 	[SerializeField] private Color selectedColor = new Color(0.35f, 0.85f, 0.45f, 1f);
-	[SerializeField] private Color normalColor = Color.white;
+	[SerializeField] private Color normalColor = new Color(0.223f, 0.223f, 0.223f, 1f);
 	[SerializeField] private Color disabledColor = new Color(0.55f, 0.55f, 0.55f, 0.65f);
 
 	private Button mobileBossButton;
@@ -30,6 +31,18 @@ public class ModeSelectionUI : MonoBehaviour
 
 	void Start()
 	{
+		Refresh();
+	}
+
+	public void RefreshNextFrame()
+	{
+		StopAllCoroutines();
+		StartCoroutine(RefreshAtEndOfFrame());
+	}
+
+	private IEnumerator RefreshAtEndOfFrame()
+	{
+		yield return new WaitForEndOfFrame();
 		Refresh();
 	}
 
@@ -81,7 +94,7 @@ public class ModeSelectionUI : MonoBehaviour
 
 	private static bool IsMobileButton(Button button)
 	{
-		Canvas parentCanvas = button.GetComponentInParent<Canvas>();
+		Canvas parentCanvas = button.GetComponentInParent<Canvas>(true);
 		return parentCanvas != null && parentCanvas.name.Contains("Mobile");
 	}
 
@@ -111,6 +124,10 @@ public class ModeSelectionUI : MonoBehaviour
 		BindMapButton(desktopCityButton, 0);
 		BindMapButton(mobileGardenButton, 1);
 		BindMapButton(desktopGardenButton, 1);
+		HookModePanel(mobileBossButton);
+		HookModePanel(desktopBossButton);
+		HookModePanel(mobileTotalButton);
+		HookModePanel(desktopTotalButton);
 	}
 
 	private void BindModeButton(Button button, ModeManager.Mode mode)
@@ -123,6 +140,7 @@ public class ModeSelectionUI : MonoBehaviour
 		button.onClick = new Button.ButtonClickedEvent();
 		button.onClick.AddListener(() =>
 		{
+			PlayMenuClick();
 			OnModeButtonClicked(mode);
 			CloseNamedPanel(button, "PanelOfModes");
 		});
@@ -139,6 +157,7 @@ public class ModeSelectionUI : MonoBehaviour
 		button.onClick = new Button.ButtonClickedEvent();
 		button.onClick.AddListener(() =>
 		{
+			PlayMenuClick();
 			if (MainMenuController.Instance != null)
 				MainMenuController.Instance.UpdateMapOnBackground(mapId);
 			CloseNamedPanel(button, "PanelOfMaps");
@@ -209,9 +228,6 @@ public class ModeSelectionUI : MonoBehaviour
 
 	private static void OnModeButtonClicked(ModeManager.Mode mode)
 	{
-		if (mode == ModeManager.Mode.TotalCleaning && ModeManager.IsCityMap())
-			return;
-
 		if (GameController.Instance != null)
 			GameController.Instance.ChangeMode((int)mode);
 	}
@@ -220,32 +236,71 @@ public class ModeSelectionUI : MonoBehaviour
 	{
 		GameController.NormalizeChosenMode();
 		int chosenMode = YG2.saves.chosenMode;
-		int selectedMap = YG2.saves.selectedMapID;
-		bool totalCleaningAllowed = ModeManager.IsGardenMap();
 
-		ApplyButtonState(mobileBossButton, chosenMode == (int)ModeManager.Mode.Boss);
-		ApplyButtonState(desktopBossButton, chosenMode == (int)ModeManager.Mode.Boss);
-		ApplyButtonState(mobileTotalButton, chosenMode == (int)ModeManager.Mode.TotalCleaning, totalCleaningAllowed);
-		ApplyButtonState(desktopTotalButton, chosenMode == (int)ModeManager.Mode.TotalCleaning, totalCleaningAllowed);
-		ApplyButtonState(mobileHuntingButton, chosenMode == (int)ModeManager.Mode.Hunting);
-		ApplyButtonState(desktopHuntingButton, chosenMode == (int)ModeManager.Mode.Hunting);
-		ApplyButtonState(mobileTeamButton, chosenMode == (int)ModeManager.Mode.TeamMode);
-		ApplyButtonState(desktopTeamButton, chosenMode == (int)ModeManager.Mode.TeamMode);
-		ApplyButtonState(mobileCityButton, selectedMap == 0);
-		ApplyButtonState(desktopCityButton, selectedMap == 0);
-		ApplyButtonState(mobileGardenButton, selectedMap == 1);
-		ApplyButtonState(desktopGardenButton, selectedMap == 1);
+		ApplyModeCard(mobileBossButton, chosenMode == (int)ModeManager.Mode.Boss);
+		ApplyModeCard(desktopBossButton, chosenMode == (int)ModeManager.Mode.Boss);
+		ApplyModeCard(mobileTotalButton, chosenMode == (int)ModeManager.Mode.TotalCleaning);
+		ApplyModeCard(desktopTotalButton, chosenMode == (int)ModeManager.Mode.TotalCleaning);
+		ApplyModeCard(mobileHuntingButton, chosenMode == (int)ModeManager.Mode.Hunting);
+		ApplyModeCard(desktopHuntingButton, chosenMode == (int)ModeManager.Mode.Hunting);
+		ApplyModeCard(mobileTeamButton, chosenMode == (int)ModeManager.Mode.TeamMode);
+		ApplyModeCard(desktopTeamButton, chosenMode == (int)ModeManager.Mode.TeamMode);
 	}
 
-	private void ApplyButtonState(Button button, bool selected, bool interactable = true)
+	private void ApplyModeCard(Button button, bool selected)
 	{
 		if (button == null)
 			return;
 
-		button.interactable = interactable;
+		button.interactable = true;
 		button.enabled = true;
+		button.transition = Selectable.Transition.None;
+		Color face = selected ? selectedColor : normalColor;
 		Image image = button.GetComponent<Image>();
 		if (image != null)
-			image.color = !interactable ? disabledColor : (selected ? selectedColor : normalColor);
+			image.color = face;
+
+		ColorBlock colors = button.colors;
+		colors.normalColor = face;
+		colors.highlightedColor = face;
+		colors.pressedColor = face;
+		colors.selectedColor = face;
+		colors.disabledColor = normalColor;
+		button.colors = colors;
+	}
+
+	private void HookModePanel(Button button)
+	{
+		Transform current = button != null ? button.transform : null;
+		while (current != null)
+		{
+			if (current.name == "PanelOfModes")
+			{
+				ModePanelRefreshHook hook = current.GetComponent<ModePanelRefreshHook>();
+				if (hook == null)
+					hook = current.gameObject.AddComponent<ModePanelRefreshHook>();
+				hook.owner = this;
+				RefreshNextFrame();
+				return;
+			}
+			current = current.parent;
+		}
+	}
+
+	private static void PlayMenuClick()
+	{
+		if (MainMenuController.Instance != null && MainMenuController.Instance.dzyn != null)
+			MainMenuController.Instance.dzyn.Play();
+	}
+}
+
+public class ModePanelRefreshHook : MonoBehaviour
+{
+	public ModeSelectionUI owner;
+
+	void OnEnable()
+	{
+		if (owner != null)
+			owner.RefreshNextFrame();
 	}
 }

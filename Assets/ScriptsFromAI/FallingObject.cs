@@ -12,11 +12,17 @@ public class FallingObject : MonoBehaviour
 
 	private Vector3 startPosition;
 	private Quaternion startRotation;
-	private Rigidbody rb;
-	private Collider col;
+	protected Rigidbody rb;
+	protected Collider col;
 	private Coroutine myCoroutine;
 
 	public HoleParent CurrentHole { get; set; }
+
+	protected virtual bool AssignValueFromVolume => true;
+	protected virtual bool CountsTowardMapTotal => true;
+	protected virtual bool ResetsIfNotScored => true;
+	protected virtual bool IgnoresMapOnStart => true;
+	protected virtual int ObjectLayer => 7;
 
 	void Awake()
 	{
@@ -40,56 +46,19 @@ public class FallingObject : MonoBehaviour
 
 	void Start()
 	{
-		gameObject.layer = 7;
-		foreach (var plat in GamingManager.allPlatforms)
-		{
-			if (plat == null || col == null) continue;
-			Physics.IgnoreCollision(plat, col, true);
-		}
+		gameObject.layer = ObjectLayer;
+		if (IgnoresMapOnStart)
+			IgnoreMapPlatforms();
 		size = GetVisualSize();
 		V3 = size.x * size.y * size.z;
-		startPosition = GetComponent<Transform>().position;
-		startRotation = GetComponent<Transform>().rotation;
-		if (V3 <= 0.087f)
-		{
-			value = 1;
-		}
-		else if (V3 <= 0.51f)
-		{
-			value = 2;
-		}
-		else if (V3 <= 10.63f)
-		{
-			value = 3;
-		}
-		else if (V3 <= 20f)
-		{
-			value = 5;
-		}
-		else if (V3 <= 60f)
-		{
-			value = 10;
-		}
-		else if (V3 <= 100f)
-		{
-			value = 25;
-		}
-		else if (V3 <= 250f)
-		{
-			value = 40;
-		}
-		else if (V3 <= 860f)
-		{
-			value = 60;
-		}
-		else
-		{
-			value = 100;
-		}
-		rb.mass = V3 * 50;
+		startPosition = transform.position;
+		startRotation = transform.rotation;
+		if (AssignValueFromVolume)
+			AssignDefaultValue();
+		rb.mass = Mathf.Max(0.1f, V3 * 50f);
 		rb.drag = 4;
 		rb.angularDrag = 4;
-		if (GamingManager.Instance != null)
+		if (CountsTowardMapTotal && GamingManager.Instance != null)
 			GamingManager.Instance.AllValues += value;
 	}
 
@@ -100,7 +69,12 @@ public class FallingObject : MonoBehaviour
 			ResetToStart();
 	}
 
-	private void OnTriggerEnter(Collider other)
+	protected virtual void OnTriggerEnter(Collider other)
+	{
+		TryBeginFall(other);
+	}
+
+	protected void TryBeginFall(Collider other)
 	{
 		if (!other.CompareTag("Player"))
 			return;
@@ -130,7 +104,7 @@ public class FallingObject : MonoBehaviour
 				Physics.IgnoreCollision(CurrentHole.platform, col, false);
 		}
 
-		if (!isColon)
+		if (!isColon && ResetsIfNotScored)
 		{
 			if (myCoroutine != null) StopCoroutine(myCoroutine);
 			myCoroutine = StartCoroutine(DelayForUpdateCurrentHole());
@@ -177,7 +151,39 @@ public class FallingObject : MonoBehaviour
 	}
 
 
-	public void ResetToStart()
+	private void AssignDefaultValue()
+	{
+		if (V3 <= 0.087f)
+			value = 1;
+		else if (V3 <= 0.51f)
+			value = 2;
+		else if (V3 <= 10.63f)
+			value = 3;
+		else if (V3 <= 20f)
+			value = 5;
+		else if (V3 <= 60f)
+			value = 10;
+		else if (V3 <= 100f)
+			value = 25;
+		else if (V3 <= 250f)
+			value = 40;
+		else if (V3 <= 860f)
+			value = 60;
+		else
+			value = 100;
+	}
+
+	protected void IgnoreMapPlatforms()
+	{
+		foreach (var plat in GamingManager.allPlatforms)
+		{
+			if (plat == null || col == null)
+				continue;
+			Physics.IgnoreCollision(plat, col, true);
+		}
+	}
+
+	public virtual void ResetToStart()
 	{
 		transform.position = startPosition;
 		transform.rotation = startRotation;
@@ -186,15 +192,11 @@ public class FallingObject : MonoBehaviour
 		col.enabled = true;
 		rend.enabled = true;
 		CurrentHole = null;
-		foreach (var plat in GamingManager.allPlatforms)
-		{
-			if (plat == null || col == null) continue;
-			Physics.IgnoreCollision(plat, col, true);
-		}
+		IgnoreMapPlatforms();
 		if (myCoroutine != null) StopCoroutine(myCoroutine);
 	}
 
-	public void OnScored(HoleParent hole)
+	public virtual void OnScored(HoleParent hole)
 	{
 		hole.AddScore(value);
 		value = 0;

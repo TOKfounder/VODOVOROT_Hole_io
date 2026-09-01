@@ -32,9 +32,13 @@ public static class Tool
 
 	public static bool IsCircleFullyInside(Vector2 centerA, float radiusA, Vector2 centerB, float radiusB)
 	{
+		if (radiusB >= radiusA)
+			return false;
+
 		float dx = centerB.x - centerA.x;
 		float dz = centerB.y - centerA.y;
-		return dx * dx + dz * dz + radiusB * radiusB <= radiusA * radiusA + 0.01f;
+		float maxDist = radiusA - radiusB;
+		return dx * dx + dz * dz <= maxDist * maxDist;
 	}
 
 	public static bool CanFitForEnemies(Vector3 sizeA, Vector3 sizeB)

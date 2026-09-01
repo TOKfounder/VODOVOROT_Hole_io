@@ -4,26 +4,26 @@ using YG;
 public class HoleCameraFollow : MonoBehaviour
 {
 	[Header("Mobile")]
-	[SerializeField] private float mobileBaseHeight = 1.48f;
-	[SerializeField] private float mobileBaseBack = 3.9f;
-	[SerializeField] private float mobileHeightPerRadius = 0.77f;
-	[SerializeField] private float mobileBackPerRadius = 1.6f;
+	[SerializeField] private float mobileBaseHeight = 0.99f;
+	[SerializeField] private float mobileBaseBack = 2.6f;
+	[SerializeField] private float mobileHeightPerRadius = 0f;
+	[SerializeField] private float mobileBackPerRadius = 0f;
 	[SerializeField] private float mobileMaxHeight = 12f;
 	[SerializeField] private float mobileMaxBack = 21.5f;
 
 	[Header("Desktop")]
-	[SerializeField] private float desktopBaseHeight = 2.14f;
-	[SerializeField] private float desktopBaseBack = 4.8f;
-	[SerializeField] private float desktopHeightPerRadius = 0.9f;
-	[SerializeField] private float desktopBackPerRadius = 1.87f;
+	[SerializeField] private float desktopBaseHeight = 1.43f;
+	[SerializeField] private float desktopBaseBack = 3.2f;
+	[SerializeField] private float desktopHeightPerRadius = 0f;
+	[SerializeField] private float desktopBackPerRadius = 0f;
 	[SerializeField] private float desktopMaxHeight = 14.7f;
 	[SerializeField] private float desktopMaxBack = 25.5f;
 
 	[Header("Tuning")]
 	[SerializeField] [Range(0.5f, 1.5f)] private float distanceScale = 1f;
 	[SerializeField] private float smoothSpeed = 4f;
-	[SerializeField] private float minHeight = 1.07f;
-	[SerializeField] private float minBack = 3f;
+	[SerializeField] private float minHeight = 0.72f;
+	[SerializeField] private float minBack = 2f;
 	[SerializeField] private float punchDuration = 0.12f;
 
 	private HoleParent target;

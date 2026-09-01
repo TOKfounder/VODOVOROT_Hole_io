@@ -360,13 +360,12 @@ public class HoleParent : MonoBehaviour
 			return;
 
 		other.MarkConsumed();
-		int absorbedScore = other.score;
-		if (absorbedScore > 0)
-			AddScoreFromHole(absorbedScore, PopupColorForHole(other));
 
 		EnemyController enemy = other as EnemyController;
 		if (enemy != null)
 		{
+			if (this is BlackHoleController)
+				HoleFeedback.ForPlayer?.PlayAbsorb(PopupColorForHole(other));
 			enemy.OnAbsorbedByPlayer();
 			return;
 		}

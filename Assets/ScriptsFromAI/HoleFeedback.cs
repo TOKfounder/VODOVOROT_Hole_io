@@ -5,8 +5,9 @@ public class HoleFeedback : MonoBehaviour
 {
 	public static HoleFeedback ForPlayer { get; private set; }
 
-	private static readonly Color Water = new Color(0.45f, 0.85f, 0.95f, 0.85f);
-	private static readonly Color Porcelain = new Color(1f, 1f, 1f, 0.9f);
+	private static readonly Color InkVoid = new Color(0.10f, 0.08f, 0.12f, 0.82f);
+	private static readonly Color AbyssMist = new Color(0.16f, 0.22f, 0.26f, 0.70f);
+	private static readonly Color VoidRing = new Color(0.18f, 0.12f, 0.28f, 0.88f);
 
 	[SerializeField] private bool debugEmitOnStart;
 
@@ -131,8 +132,8 @@ public class HoleFeedback : MonoBehaviour
 	{
 		float radius = GetEffectRadius();
 		Vector3 pos = GetHoleWorldPos();
-		EmitBurst(gulp, 24, pos, Water, radius * 0.15f, 1.6f);
-		EmitBurst(gulp, 16, pos, Porcelain, radius * 0.1f, 2.1f);
+		EmitBurst(gulp, 24, pos, InkVoid, radius * 0.15f, 1.6f);
+		EmitBurst(gulp, 16, pos, AbyssMist, radius * 0.1f, 2.1f);
 		HoleCameraFollow.Punch(0.28f);
 		AudioManager.PlayGulp();
 	}
@@ -140,7 +141,7 @@ public class HoleFeedback : MonoBehaviour
 	public void PlayLevelUp()
 	{
 		float radius = GetEffectRadius();
-		EmitRing(radius, Porcelain, 40);
+		EmitRing(radius, VoidRing, 40);
 		FlashBorder();
 		HoleCameraFollow.Punch(0.7f);
 		AudioManager.PlayLevelUp();
@@ -148,11 +149,19 @@ public class HoleFeedback : MonoBehaviour
 
 	public void PlayAbsorb(Color burstColor)
 	{
+		Color inkBurst = DarkenTowardInk(burstColor);
 		float radius = GetEffectRadius();
-		EmitBurst(gulp, 40, GetHoleWorldPos(), burstColor, radius * 0.2f, 2.4f);
-		EmitRing(radius * 1.15f, burstColor, 48);
+		EmitBurst(gulp, 40, GetHoleWorldPos(), inkBurst, radius * 0.2f, 2.4f);
+		EmitRing(radius * 1.15f, inkBurst, 48);
 		HoleCameraFollow.Punch(1.15f);
 		AudioManager.PlayAbsorb();
+	}
+
+	private static Color DarkenTowardInk(Color color)
+	{
+		Color result = Color.Lerp(color, InkVoid, 0.45f);
+		result.a = Mathf.Clamp01(Mathf.Max(color.a, 0.75f));
+		return result;
 	}
 
 	private float GetEffectRadius()
@@ -174,6 +183,7 @@ public class HoleFeedback : MonoBehaviour
 
 		var main = suction.main;
 		main.startSize = radius * 0.1f;
+		main.startColor = InkVoid;
 
 		int falling = target.nearbyFallingObjects != null ? target.nearbyFallingObjects.Count : 0;
 		var emission = suction.emission;
@@ -209,9 +219,13 @@ public class HoleFeedback : MonoBehaviour
 		if (billboardTexture == null)
 			billboardTexture = CreateSoftCircleTexture();
 		if (billboardMat == null)
-			billboardMat = CreateBillboardMaterial(billboardTexture);
+			billboardMat = CreateParticleMaterial(billboardTexture, "Sprites/Default");
+		else
+			ApplyParticleMaterial(billboardMat, billboardTexture);
 		if (meshMat == null)
-			meshMat = CreateMeshMaterial();
+			meshMat = CreateParticleMaterial(null, "Unlit/Color");
+		else
+			ApplyParticleMaterial(meshMat, null);
 		if (sphereMesh == null)
 			sphereMesh = CreateSphereMesh(out ownsSphereMesh);
 	}
@@ -232,60 +246,79 @@ public class HoleFeedback : MonoBehaviour
 		}
 
 		if (suction == null)
-		{
 			suction = CreateSystem("SuctionDust", true, 96, false);
-			var main = suction.main;
-			main.startLifetime = 0.55f;
-			main.startSpeed = new ParticleSystem.MinMaxCurve(0.4f, 1.1f);
-			main.startSize = 0.12f;
-			main.startColor = Water;
-			main.gravityModifier = 0.15f;
-			var shape = suction.shape;
-			shape.shapeType = ParticleSystemShapeType.Circle;
-			shape.radius = 0.4f;
-			var vel = suction.velocityOverLifetime;
-			vel.enabled = true;
-			vel.radial = new ParticleSystem.MinMaxCurve(-1.8f);
-			ConfigureBillboardRenderer(suction.GetComponent<ParticleSystemRenderer>());
-			suction.Play();
-		}
+		ConfigureSuction();
 
 		if (gulp == null)
-		{
 			gulp = CreateSystem("GulpBurst", false, 80, true);
-			var main = gulp.main;
-			main.startLifetime = 0.45f;
-			main.startSpeed = new ParticleSystem.MinMaxCurve(1.2f, 2.4f);
-			main.startSize = 0.15f;
-			main.startColor = Porcelain;
-			main.gravityModifier = 0.8f;
-			var emission = gulp.emission;
-			emission.rateOverTime = 0f;
-			var shape = gulp.shape;
-			shape.shapeType = ParticleSystemShapeType.Hemisphere;
-			shape.radius = 0.15f;
-			ConfigureMeshRenderer(gulp.GetComponent<ParticleSystemRenderer>());
-		}
+		ConfigureGulp();
 
 		if (ring == null)
-		{
 			ring = CreateSystem("LevelRing", false, 96, true);
-			var main = ring.main;
-			main.startLifetime = 0.55f;
-			main.startSpeed = 1.8f;
-			main.startSize = 0.18f;
-			main.startColor = Porcelain;
-			main.gravityModifier = 0f;
-			var emission = ring.emission;
-			emission.rateOverTime = 0f;
-			var shape = ring.shape;
-			shape.shapeType = ParticleSystemShapeType.Circle;
-			shape.radius = 0.5f;
-			var vel = ring.velocityOverLifetime;
-			vel.enabled = true;
-			vel.radial = new ParticleSystem.MinMaxCurve(1.4f);
-			ConfigureMeshRenderer(ring.GetComponent<ParticleSystemRenderer>());
-		}
+		ConfigureRing();
+	}
+
+	private void ConfigureSuction()
+	{
+		if (suction == null)
+			return;
+
+		var main = suction.main;
+		main.startLifetime = 0.55f;
+		main.startSpeed = new ParticleSystem.MinMaxCurve(0.4f, 1.1f);
+		main.startSize = 0.12f;
+		main.startColor = InkVoid;
+		main.gravityModifier = 0.15f;
+		var shape = suction.shape;
+		shape.shapeType = ParticleSystemShapeType.Circle;
+		shape.radius = 0.4f;
+		var vel = suction.velocityOverLifetime;
+		vel.enabled = true;
+		vel.radial = new ParticleSystem.MinMaxCurve(-1.8f);
+		ConfigureBillboardRenderer(suction.GetComponent<ParticleSystemRenderer>());
+		if (!suction.isPlaying)
+			suction.Play();
+	}
+
+	private void ConfigureGulp()
+	{
+		if (gulp == null)
+			return;
+
+		var main = gulp.main;
+		main.startLifetime = 0.45f;
+		main.startSpeed = new ParticleSystem.MinMaxCurve(1.2f, 2.4f);
+		main.startSize = 0.15f;
+		main.startColor = InkVoid;
+		main.gravityModifier = 0.8f;
+		var emission = gulp.emission;
+		emission.rateOverTime = 0f;
+		var shape = gulp.shape;
+		shape.shapeType = ParticleSystemShapeType.Hemisphere;
+		shape.radius = 0.15f;
+		ConfigureMeshRenderer(gulp.GetComponent<ParticleSystemRenderer>());
+	}
+
+	private void ConfigureRing()
+	{
+		if (ring == null)
+			return;
+
+		var main = ring.main;
+		main.startLifetime = 0.55f;
+		main.startSpeed = 1.8f;
+		main.startSize = 0.18f;
+		main.startColor = VoidRing;
+		main.gravityModifier = 0f;
+		var emission = ring.emission;
+		emission.rateOverTime = 0f;
+		var shape = ring.shape;
+		shape.shapeType = ParticleSystemShapeType.Circle;
+		shape.radius = 0.5f;
+		var vel = ring.velocityOverLifetime;
+		vel.enabled = true;
+		vel.radial = new ParticleSystem.MinMaxCurve(1.4f);
+		ConfigureMeshRenderer(ring.GetComponent<ParticleSystemRenderer>());
 	}
 
 	private ParticleSystem CreateSystem(string name, bool loop, int maxParticles, bool useMesh)
@@ -362,42 +395,43 @@ public class HoleFeedback : MonoBehaviour
 		ring.Emit(count);
 	}
 
-	private static Material CreateBillboardMaterial(Texture2D texture)
+	private static Shader FindParticleShader()
 	{
-		Shader shader = Shader.Find("Legacy Shaders/Particles/Additive");
+		Shader shader = Shader.Find("Legacy Shaders/Particles/Alpha Blended");
 		if (shader == null)
-			shader = Shader.Find("Mobile/Particles/Additive");
+			shader = Shader.Find("Mobile/Particles/Alpha Blended");
 		if (shader == null)
 			shader = Shader.Find("Particles/Standard Unlit");
+		return shader;
+	}
+
+	private static Material CreateParticleMaterial(Texture2D texture, string fallbackShader)
+	{
+		Shader shader = FindParticleShader();
 		if (shader == null)
-			shader = Shader.Find("Sprites/Default");
+			shader = Shader.Find(fallbackShader);
 		if (shader == null)
 			return null;
 
 		Material mat = new Material(shader);
-		if (texture != null)
-			mat.mainTexture = texture;
-		if (mat.HasProperty("_TintColor"))
-			mat.SetColor("_TintColor", Color.white);
+		ApplyParticleMaterial(mat, texture);
 		return mat;
 	}
 
-	private static Material CreateMeshMaterial()
+	private static void ApplyParticleMaterial(Material mat, Texture2D texture)
 	{
-		Shader shader = Shader.Find("Legacy Shaders/Particles/Additive");
-		if (shader == null)
-			shader = Shader.Find("Mobile/Particles/Additive");
-		if (shader == null)
-			shader = Shader.Find("Particles/Standard Unlit");
-		if (shader == null)
-			shader = Shader.Find("Unlit/Color");
-		if (shader == null)
-			return null;
+		if (mat == null)
+			return;
 
-		Material mat = new Material(shader);
+		Shader shader = FindParticleShader();
+		if (shader != null)
+			mat.shader = shader;
+		if (texture != null)
+			mat.mainTexture = texture;
 		if (mat.HasProperty("_TintColor"))
-			mat.SetColor("_TintColor", Color.white);
-		return mat;
+			mat.SetColor("_TintColor", InkVoid);
+		if (mat.HasProperty("_Color"))
+			mat.SetColor("_Color", InkVoid);
 	}
 
 	private static Mesh CreateSphereMesh(out bool ownsMesh)

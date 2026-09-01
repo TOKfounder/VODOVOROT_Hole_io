@@ -99,10 +99,7 @@ public class BlackHoleController : HoleParent
 			return;
 
 		enemy.MarkConsumed();
-		int absorbedScore = enemy.score;
-		if (absorbedScore > 0)
-			AddScoreFromHole(absorbedScore, PointsScript.RedPopup);
-
+		HoleFeedback.ForPlayer?.PlayAbsorb(PointsScript.RedPopup);
 		enemy.OnAbsorbedByPlayer();
 	}
 }
