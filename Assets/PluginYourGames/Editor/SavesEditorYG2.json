@@ -7,18 +7,23 @@
         false,
         false
     ],
+<<<<<<< HEAD
     "idSave": 204924,
+=======
+    "idSave": 204885,
+>>>>>>> 8c32c0b9df5e1c070928d51c9e3ccb4473a547e9
     "isFirst": false,
     "langRu": true,
-    "score": 0,
-    "equipedMaterial": 0,
+    "score": 9468,
+    "equipedMaterial": 3,
     "massiveOfObtaining": [
         1,
         0,
         0,
-        0,
+        1,
         1
     ],
+<<<<<<< HEAD
     "exp": 451,
     "levelOfProgress": 4,
     "goldCoins": 1858,
@@ -31,4 +36,18 @@
     "musicValue": 0.5,
     "done": true,
     "chosenMode": 2
+=======
+    "exp": 450,
+    "levelOfProgress": 4,
+    "goldCoins": 1060,
+    "isNickGiven": true,
+    "nickName": "Qasmar Live",
+    "selectedMapID": 1,
+    "diamonds": 35,
+    "isGaming": false,
+    "soundValue": 0.5,
+    "musicValue": 0.5,
+    "done": true,
+    "chosenMode": 0
+>>>>>>> 8c32c0b9df5e1c070928d51c9e3ccb4473a547e9
 }

@@ -8,6 +8,7 @@ public class MatchHud : MonoBehaviour
 	private const int MaxArrows = 6;
 	private const float ArrowDistance = 120f;
 	private const float AllyArrowScale = 0.62f;
+	private const float ArrowHideDiameters = 3f;
 	private static readonly Color BossArrowColor = new Color(1f, 0.85f, 0.2f, 0.9f);
 	private static readonly Color EnemyArrowColor = new Color(1f, 0.35f, 0.25f, 0.9f);
 	private static readonly Color AllyArrowColor = new Color(0.3f, 0.9f, 1f, 0.85f);
@@ -133,6 +134,13 @@ public class MatchHud : MonoBehaviour
 				return;
 			}
 
+			if (GamingManager.Instance != null && GamingManager.Instance.TeamDraw)
+			{
+				statusText.gameObject.SetActive(true);
+				statusText.text = ru ? "Ничья" : "Draw";
+				return;
+			}
+
 			int blue = ModeManager.GetTeamScore(ModeManager.TeamBlue);
 			int red = ModeManager.GetTeamScore(ModeManager.TeamRed);
 			statusText.gameObject.SetActive(true);
@@ -201,7 +209,11 @@ public class MatchHud : MonoBehaviour
 		int count = 0;
 		for (int i = 0; i < list.Count; i++)
 		{
+<<<<<<< HEAD
 			if (list[i] != null && !list[i].IsConsumed && IsFarFromPlayer(list[i].transform.position))
+=======
+			if (list[i] != null && !list[i].IsConsumed && !IsWithinHideRadius(list[i].transform.position))
+>>>>>>> 8c32c0b9df5e1c070928d51c9e3ccb4473a547e9
 				count++;
 		}
 		return count;
@@ -212,7 +224,11 @@ public class MatchHud : MonoBehaviour
 		if (index < 0 || index >= arrows.Count || arrows[index] == null || target == null)
 			return false;
 
+<<<<<<< HEAD
 		if (!IsFarFromPlayer(target.position))
+=======
+		if (IsWithinHideRadius(target.position))
+>>>>>>> 8c32c0b9df5e1c070928d51c9e3ccb4473a547e9
 		{
 			arrows[index].gameObject.SetActive(false);
 			return false;
@@ -248,6 +264,7 @@ public class MatchHud : MonoBehaviour
 		return true;
 	}
 
+<<<<<<< HEAD
 	private bool IsFarFromPlayer(Vector3 worldPos)
 	{
 		if (BlackHoleController.Player == null)
@@ -256,6 +273,19 @@ public class MatchHud : MonoBehaviour
 		Vector3 delta = worldPos - BlackHoleController.Player.transform.position;
 		delta.y = 0f;
 		return delta.sqrMagnitude > arrowHideRadius * arrowHideRadius;
+=======
+	private bool IsWithinHideRadius(Vector3 worldPos)
+	{
+		HoleParent player = BlackHoleController.Player;
+		if (player == null)
+			return true;
+
+		float holeRadius = player.GetHoleRadius();
+		float hideRadius = holeRadius * 2f * ArrowHideDiameters;
+		float dx = worldPos.x - player.transform.position.x;
+		float dz = worldPos.z - player.transform.position.z;
+		return dx * dx + dz * dz <= hideRadius * hideRadius;
+>>>>>>> 8c32c0b9df5e1c070928d51c9e3ccb4473a547e9
 	}
 
 	private void HideUnusedArrows(int usedCount)

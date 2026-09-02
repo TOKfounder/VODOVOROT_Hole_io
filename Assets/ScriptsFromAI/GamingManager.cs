@@ -69,6 +69,8 @@ public class GamingManager : MonoBehaviour
 	private bool teamVictory;
 	private bool playerEliminated;
 
+	public bool TeamDraw { get; private set; }
+
 	public bool HasRewardBeenApplied => rewardApplied;
 	public bool BossDefeated => bossDefeated;
 	public bool HuntingComplete => huntingComplete;
@@ -121,6 +123,7 @@ public class GamingManager : MonoBehaviour
 		huntingComplete = false;
 		teamVictory = false;
 		playerEliminated = false;
+		TeamDraw = false;
 		isTotalCleaningMode = ModeManager.currentMode == ModeManager.Mode.TotalCleaning;
 		isHuntingMode = ModeManager.currentMode == ModeManager.Mode.Hunting;
 		isTeamMode = ModeManager.currentMode == ModeManager.Mode.TeamMode;
@@ -128,6 +131,16 @@ public class GamingManager : MonoBehaviour
 		ScorePopupZone.EnsureZone(ActiveCanvas.Get());
 		if (IsBossMode || isHuntingMode || isTeamMode)
 			MatchHud.Ensure();
+
+		bool showCaptureBar = isTotalCleaningMode;
+		if (Mflazhok != null)
+			Mflazhok.gameObject.SetActive(showCaptureBar);
+		if (Dflazhok != null)
+			Dflazhok.gameObject.SetActive(showCaptureBar);
+		if (Mpercent != null)
+			Mpercent.gameObject.SetActive(showCaptureBar);
+		if (Dpercent != null)
+			Dpercent.gameObject.SetActive(showCaptureBar);
 
 		ResolveModeTimerText();
 		bool showModeTimer = UsesModeTimer;
@@ -147,6 +160,8 @@ public class GamingManager : MonoBehaviour
 		YG2.SaveProgress();
 		timer = 0f;
 		timerGo = true;
+		if (!YG2.nowAdsShow)
+			YG2.GameplayStart();
 		StartCoroutine(UpdateFlag());
 	}
 
@@ -185,16 +200,19 @@ public class GamingManager : MonoBehaviour
 		}
 
 		float fill = Mathf.Clamp01(perc);
-		string percentText = $"{(int)(fill * 100)}%";
-		if (YG2.envir.isMobile)
+		if (isTotalCleaningMode)
 		{
-			if (Mflazhok != null) Mflazhok.fillAmount = fill;
-			if (Mpercent != null) Mpercent.text = percentText;
-		}
-		else
-		{
-			if (Dflazhok != null) Dflazhok.fillAmount = fill;
-			if (Dpercent != null) Dpercent.text = percentText;
+			string percentText = $"{(int)(fill * 100)}%";
+			if (YG2.envir.isMobile)
+			{
+				if (Mflazhok != null) Mflazhok.fillAmount = fill;
+				if (Mpercent != null) Mpercent.text = percentText;
+			}
+			else
+			{
+				if (Dflazhok != null) Dflazhok.fillAmount = fill;
+				if (Dpercent != null) Dpercent.text = percentText;
+			}
 		}
 
 		if (UsesModeTimer && totalCleaningTimerText != null)
@@ -319,7 +337,12 @@ public class GamingManager : MonoBehaviour
 		if (teamVictory || playerEliminated)
 			return;
 
-		teamVictory = ModeManager.GetTeamScore(ModeManager.TeamBlue) > ModeManager.GetTeamScore(ModeManager.TeamRed);
+		int blue = ModeManager.GetTeamScore(ModeManager.TeamBlue);
+		int red = ModeManager.GetTeamScore(ModeManager.TeamRed);
+		if (blue > red)
+			teamVictory = true;
+		else if (blue == red)
+			TeamDraw = true;
 	}
 
 	public void OnBossDefeated()
@@ -357,7 +380,7 @@ public class GamingManager : MonoBehaviour
 
 		int score = GetPlayerScore();
 		if (score <= 0)
-			score = YG2.saves.score;
+			return 0f;
 		return Mathf.Clamp01((float)score / (AllValues - ProgressSlack));
 	}
 
@@ -369,27 +392,31 @@ public class GamingManager : MonoBehaviour
 			return GetTotalCleaningReward(progress);
 
 		if (isHuntingMode)
-			return GetTotalCleaningReward(progress);
+		{
+			if (huntingComplete)
+				return GetTotalCleaningReward(1f);
+			return GetPartialDefeatReward(GetMatchProgress());
+		}
 
 		if (isTeamMode)
 		{
-			progress = GetMatchProgress();
-			if (!teamVictory)
-				return GetPartialDefeatReward(progress);
-			return GetTotalCleaningReward(progress);
+			if (teamVictory)
+				return GetTotalCleaningReward(1f);
+			return GetPartialDefeatReward(GetMatchProgress());
 		}
 
-		if (progress < 1f)
+		if (IsBossMode)
 		{
-			return new MatchRewardData
-			{
-				exp = (int)(50 * progress),
-				coins = (int)(13 * progress),
-				diamonds = (int)(4 * progress),
-				resultSpriteIndex = -1
-			};
+			if (bossDefeated)
+				return GetClassicRewardForBossWin();
+			return GetPartialDefeatReward(0f);
 		}
 
+		return GetPartialDefeatReward(progress);
+	}
+
+	private MatchRewardData GetClassicRewardForBossWin()
+	{
 		if (timer <= 360f)
 		{
 			return new MatchRewardData
@@ -477,7 +504,9 @@ public class GamingManager : MonoBehaviour
 
 	public float GetMatchProgress()
 	{
-		float progress = GetCapturePercent();
+		float progress = 0f;
+		if (isTotalCleaningMode)
+			progress = GetCapturePercent();
 		if (ModeManager.currentMode == ModeManager.Mode.Boss && bossDefeated)
 			progress = 1f;
 		if (ModeManager.currentMode == ModeManager.Mode.Hunting)
@@ -520,6 +549,8 @@ public class GamingManager : MonoBehaviour
 		timerGo = false;
 		once = false;
 		HoleFeedback.ForPlayer?.SetMatchActive(false);
+		if (!YG2.nowAdsShow)
+			YG2.GameplayStop();
 		Time.timeScale = 0f;
 	}
 

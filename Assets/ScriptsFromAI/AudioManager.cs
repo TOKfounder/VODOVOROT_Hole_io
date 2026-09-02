@@ -124,6 +124,18 @@ public class AudioManager : MonoBehaviour
 			Instance.PlaySfx(Instance.absorbClip, 0.06f);
 	}
 
+	public static void PlayUiClick()
+	{
+		if (MainMenuController.Instance != null && MainMenuController.Instance.dzyn != null)
+		{
+			MainMenuController.Instance.dzyn.Play();
+			return;
+		}
+
+		if (Instance != null && Instance.sfxSource != null && Instance.sfxSource.clip != null)
+			Instance.sfxSource.PlayOneShot(Instance.sfxSource.clip);
+	}
+
 	public void PlaySfx(AudioClip clip, float pitchVariance = 0.08f)
 	{
 		if (clip == null || sfxSource == null)

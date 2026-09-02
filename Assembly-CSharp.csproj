@@ -188,6 +188,7 @@
     <Compile Include="Assets/PluginYourGames/Modules/Payments/Scripts/ConsumePurchasesYG.cs" />
     <Compile Include="Assets/ScriptsFromAI/SavesYG.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Leaderboards/Scripts/LBPlayerDataYG.cs" />
+    <Compile Include="Assets/ScriptsFromAI/ModePanelRefreshTrigger.cs" />
     <Compile Include="Assets/PluginYourGames/Example/Scripts/Scenes/DemoScenePartial.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Basic/WindowGame.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Basic/IPlatformsYG2.cs" />

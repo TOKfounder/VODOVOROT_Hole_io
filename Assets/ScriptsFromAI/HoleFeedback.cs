@@ -5,9 +5,16 @@ public class HoleFeedback : MonoBehaviour
 {
 	public static HoleFeedback ForPlayer { get; private set; }
 
+<<<<<<< HEAD
 	private static readonly Color InkVoid = new Color(0.10f, 0.08f, 0.12f, 0.82f);
 	private static readonly Color AbyssMist = new Color(0.16f, 0.22f, 0.26f, 0.70f);
 	private static readonly Color VoidRing = new Color(0.18f, 0.12f, 0.28f, 0.88f);
+=======
+	private static readonly Color Water = new Color(0.25f, 0.78f, 0.92f, 0.85f);
+	private static readonly Color VoidShadow = new Color(0.12f, 0.14f, 0.18f, 0.85f);
+	private static readonly Color Gold = new Color(1f, 0.82f, 0.22f, 0.9f);
+	private static readonly Color ParticleTint = new Color(0.55f, 0.58f, 0.62f, 0.45f);
+>>>>>>> 8c32c0b9df5e1c070928d51c9e3ccb4473a547e9
 
 	[SerializeField] private bool debugEmitOnStart;
 
@@ -132,8 +139,13 @@ public class HoleFeedback : MonoBehaviour
 	{
 		float radius = GetEffectRadius();
 		Vector3 pos = GetHoleWorldPos();
+<<<<<<< HEAD
 		EmitBurst(gulp, 24, pos, InkVoid, radius * 0.15f, 1.6f);
 		EmitBurst(gulp, 16, pos, AbyssMist, radius * 0.1f, 2.1f);
+=======
+		EmitBurst(gulp, 24, pos, Water, radius * 0.15f, 1.6f);
+		EmitBurst(gulp, 16, pos, VoidShadow, radius * 0.1f, 2.1f);
+>>>>>>> 8c32c0b9df5e1c070928d51c9e3ccb4473a547e9
 		HoleCameraFollow.Punch(0.28f);
 		AudioManager.PlayGulp();
 	}
@@ -141,7 +153,11 @@ public class HoleFeedback : MonoBehaviour
 	public void PlayLevelUp()
 	{
 		float radius = GetEffectRadius();
+<<<<<<< HEAD
 		EmitRing(radius, VoidRing, 40);
+=======
+		EmitRing(radius, Gold, 40);
+>>>>>>> 8c32c0b9df5e1c070928d51c9e3ccb4473a547e9
 		FlashBorder();
 		HoleCameraFollow.Punch(0.7f);
 		AudioManager.PlayLevelUp();
@@ -251,10 +267,27 @@ public class HoleFeedback : MonoBehaviour
 
 		if (gulp == null)
 			gulp = CreateSystem("GulpBurst", false, 80, true);
+<<<<<<< HEAD
 		ConfigureGulp();
+=======
+			var main = gulp.main;
+			main.startLifetime = 0.45f;
+			main.startSpeed = new ParticleSystem.MinMaxCurve(1.2f, 2.4f);
+			main.startSize = 0.15f;
+			main.startColor = VoidShadow;
+			main.gravityModifier = 0.8f;
+			var emission = gulp.emission;
+			emission.rateOverTime = 0f;
+			var shape = gulp.shape;
+			shape.shapeType = ParticleSystemShapeType.Hemisphere;
+			shape.radius = 0.15f;
+			ConfigureMeshRenderer(gulp.GetComponent<ParticleSystemRenderer>());
+		}
+>>>>>>> 8c32c0b9df5e1c070928d51c9e3ccb4473a547e9
 
 		if (ring == null)
 			ring = CreateSystem("LevelRing", false, 96, true);
+<<<<<<< HEAD
 		ConfigureRing();
 	}
 
@@ -319,6 +352,24 @@ public class HoleFeedback : MonoBehaviour
 		vel.enabled = true;
 		vel.radial = new ParticleSystem.MinMaxCurve(1.4f);
 		ConfigureMeshRenderer(ring.GetComponent<ParticleSystemRenderer>());
+=======
+			var main = ring.main;
+			main.startLifetime = 0.55f;
+			main.startSpeed = 1.8f;
+			main.startSize = 0.18f;
+			main.startColor = VoidShadow;
+			main.gravityModifier = 0f;
+			var emission = ring.emission;
+			emission.rateOverTime = 0f;
+			var shape = ring.shape;
+			shape.shapeType = ParticleSystemShapeType.Circle;
+			shape.radius = 0.5f;
+			var vel = ring.velocityOverLifetime;
+			vel.enabled = true;
+			vel.radial = new ParticleSystem.MinMaxCurve(1.4f);
+			ConfigureMeshRenderer(ring.GetComponent<ParticleSystemRenderer>());
+		}
+>>>>>>> 8c32c0b9df5e1c070928d51c9e3ccb4473a547e9
 	}
 
 	private ParticleSystem CreateSystem(string name, bool loop, int maxParticles, bool useMesh)
@@ -414,7 +465,14 @@ public class HoleFeedback : MonoBehaviour
 			return null;
 
 		Material mat = new Material(shader);
+<<<<<<< HEAD
 		ApplyParticleMaterial(mat, texture);
+=======
+		if (texture != null)
+			mat.mainTexture = texture;
+		if (mat.HasProperty("_TintColor"))
+			mat.SetColor("_TintColor", ParticleTint);
+>>>>>>> 8c32c0b9df5e1c070928d51c9e3ccb4473a547e9
 		return mat;
 	}
 
@@ -429,9 +487,14 @@ public class HoleFeedback : MonoBehaviour
 		if (texture != null)
 			mat.mainTexture = texture;
 		if (mat.HasProperty("_TintColor"))
+<<<<<<< HEAD
 			mat.SetColor("_TintColor", InkVoid);
 		if (mat.HasProperty("_Color"))
 			mat.SetColor("_Color", InkVoid);
+=======
+			mat.SetColor("_TintColor", ParticleTint);
+		return mat;
+>>>>>>> 8c32c0b9df5e1c070928d51c9e3ccb4473a547e9
 	}
 
 	private static Mesh CreateSphereMesh(out bool ownsMesh)

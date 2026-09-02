@@ -20,9 +20,12 @@ public class GameController : MonoBehaviour
 	// public Camera renderCamra;           // Камера с Render Texture
 	// public RenderTexture renderTexture;   // Твой Render Texturee
 
+	private static bool skipNextMenuInterstitial;
+
 	void Awake()
 	{
-		YG2.StickyAdActivity(true);
+		bool inMenu = SceneManager.GetActiveScene().buildIndex == 0;
+		YG2.StickyAdActivity(inMenu);
 		Instance = this;
 		if (CanvasForDesktop == null)
 			CanvasForDesktop = GameObject.Find("CanvasForDesktop");
@@ -61,7 +64,11 @@ public class GameController : MonoBehaviour
 	void Start()
 	{
 		if (SceneManager.GetActiveScene().buildIndex == 0 && !YG2.saves.isGaming)
-			YG2.InterstitialAdvShow();
+		{
+			if (!skipNextMenuInterstitial)
+				YG2.InterstitialAdvShow();
+			skipNextMenuInterstitial = false;
+		}
 		Time.timeScale = 1f;
 		if (YG2.saves.isFirst)
 		{
@@ -141,8 +148,19 @@ public class GameController : MonoBehaviour
 	public void ReturnToMenu()
 	{
 		YG2.saves.isGaming = false;
+		YG2.StickyAdActivity(true);
 		YG2.SaveProgress();
+		skipNextMenuInterstitial = true;
+		YG2.InterstitialAdvShow();
 		SceneManager.LoadScene(0);
+	}
+
+	public void ChangeMode(int id)
+	{
+		YG2.saves.chosenMode = id;
+		ModeManager.currentMode = (ModeManager.Mode)id;
+		YG2.SaveProgress();
+		RefreshModeSelectionUI();
 	}
 
 	public void ChangeMain(int chosenObj)
@@ -163,6 +181,7 @@ public class GameController : MonoBehaviour
 		YG2.SaveProgress();
 	}
 
+<<<<<<< HEAD
 	public void ChangeMode(int id)
 	{
 		YG2.saves.chosenMode = id;
@@ -171,6 +190,8 @@ public class GameController : MonoBehaviour
 		RefreshModeSelectionUI();
 	}
 
+=======
+>>>>>>> 8c32c0b9df5e1c070928d51c9e3ccb4473a547e9
 	public static void NormalizeChosenMode()
 	{
 		int mode = YG2.saves.chosenMode;

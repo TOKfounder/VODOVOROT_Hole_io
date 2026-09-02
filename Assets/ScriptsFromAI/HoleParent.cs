@@ -26,6 +26,7 @@ public class HoleParent : MonoBehaviour
 	public Collider platform;
 	public int TeamId { get; private set; } = -1;
 	public bool IsConsumed { get; private set; }
+	public bool NickAssigned { get; private set; }
 
 	public List<FallingObject> nearbyFallingObjects = new List<FallingObject>(1000);
 	bool isUpdated = false;
@@ -126,12 +127,24 @@ public class HoleParent : MonoBehaviour
 		if (nickname != null)
 		{
 			if (!string.IsNullOrEmpty(nickOverride))
+			{
 				nickname.text = nickOverride;
+				NickAssigned = true;
+			}
 			nickname.color = color;
 		}
 
 		if (border != null)
 			border.color = color;
+	}
+
+	public void SetNickname(string nick)
+	{
+		if (nickname == null || string.IsNullOrEmpty(nick))
+			return;
+
+		nickname.text = nick;
+		NickAssigned = true;
 	}
 
 	public void MarkConsumed()

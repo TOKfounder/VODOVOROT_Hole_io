@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using YG;
 
 public class EnemyController : HoleParent
 {
@@ -20,8 +21,20 @@ public class EnemyController : HoleParent
 			RefreshSizeFromScore();
 		}
 		count += 1;
-		if (nickname != null)
-			nickname.text = $"Enemy{count}";
+		if (!NickAssigned)
+			ApplyDefaultNick();
+	}
+
+	private void ApplyDefaultNick()
+	{
+		if (nickname == null)
+			return;
+
+		bool ru = YG2.saves.langRu;
+		if (ModeManager.currentMode == ModeManager.Mode.Boss)
+			SetNickname(ru ? "Босс" : "Boss");
+		else
+			SetNickname(ru ? $"Враг {count}" : $"Enemy {count}");
 	}
 
 	public void OnAbsorbedByPlayer()
