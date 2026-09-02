@@ -74,7 +74,7 @@ public class FallingObject : MonoBehaviour
 		TryBeginFall(other);
 	}
 
-	protected void TryBeginFall(Collider other)
+	protected virtual void TryBeginFall(Collider other)
 	{
 		if (!other.CompareTag("Player"))
 			return;
@@ -104,6 +104,8 @@ public class FallingObject : MonoBehaviour
 				Physics.IgnoreCollision(CurrentHole.platform, col, false);
 		}
 
+		bool beganSuction = false;
+
 		if (!isColon && ResetsIfNotScored)
 		{
 			if (myCoroutine != null) StopCoroutine(myCoroutine);
@@ -116,6 +118,7 @@ public class FallingObject : MonoBehaviour
 			if (Tool.CanFitForEnemies(size, CurrentHole.size))
 			{
 				isTriggered = true;
+				beganSuction = true;
 				rb.isKinematic = false;
 				if (!CurrentHole.nearbyFallingObjects.Contains(this))
 					CurrentHole.nearbyFallingObjects.Add(this);
@@ -126,11 +129,19 @@ public class FallingObject : MonoBehaviour
 			if (Tool.CanFit2D(size, CurrentHole.size))
 			{
 				isTriggered = true;
+				beganSuction = true;
 				rb.isKinematic = false;
 				if (!CurrentHole.nearbyFallingObjects.Contains(this))
 					CurrentHole.nearbyFallingObjects.Add(this);
 			}
 		}
+
+		if (beganSuction)
+			OnSuctionBegan(CurrentHole);
+	}
+
+	protected virtual void OnSuctionBegan(HoleParent hole)
+	{
 	}
 	
 	private Vector3 GetVisualSize()

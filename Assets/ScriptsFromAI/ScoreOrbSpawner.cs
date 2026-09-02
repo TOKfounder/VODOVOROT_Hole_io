@@ -5,13 +5,14 @@ public class ScoreOrbSpawner : MonoBehaviour
 {
 	private static readonly int[] Denoms = { 100, 50, 25, 10, 5, 1 };
 	private static readonly Color GoldBright = new Color(1f, 0.86f, 0.28f, 1f);
-	private static readonly Color GoldDim = new Color(0.45f, 0.32f, 0.12f, 1f);
+	private static readonly Color OrbWhite = new Color(0.96f, 0.97f, 1f, 1f);
 
 	[SerializeField] private int poolSize = 32;
 	[SerializeField] private float burstSpeed = 3.2f;
 	[SerializeField] private float burstUp = 2.8f;
 	[SerializeField] private float ringPadding = 2.8f;
-	[SerializeField] private float spawnHeight = 0.35f;
+	[SerializeField] private float groundOffset = 0.18f;
+	[SerializeField] private float hopHeight = 0.55f;
 
 	private readonly List<ScoreOrb> pool = new List<ScoreOrb>(32);
 	private Material orbMaterial;
@@ -76,7 +77,7 @@ public class ScoreOrbSpawner : MonoBehaviour
 			return;
 
 		float ring = Mathf.Max(1.5f, holeRadius + ringPadding);
-		holeCenter.y = spawnHeight;
+		float groundY = holeCenter.y;
 
 		for (int i = 0; i < count; i++)
 		{
@@ -86,37 +87,39 @@ public class ScoreOrbSpawner : MonoBehaviour
 
 			float angle = (i + 0.5f) / count * Mathf.PI * 2f;
 			Vector3 dir = new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
-			Vector3 origin = holeCenter + dir * ring;
-			origin.y = spawnHeight;
+			Vector3 rest = holeCenter + dir * ring;
+			rest.y = groundY + groundOffset;
+			Vector3 origin = rest + Vector3.up * hopHeight;
 			Vector3 impulse = dir * burstSpeed;
 			impulse.y = burstUp;
 			orb.gameObject.SetActive(true);
-			orb.Launch(this, parts[i], ColorForValue(parts[i], tint), origin, impulse, ScaleForValue(parts[i]));
+			Color orbColor = ColorForValue(parts[i]);
+			float orbScale = ScaleForValue(parts[i]);
+			orb.Launch(this, parts[i], orbColor, origin, rest, impulse, orbScale);
 		}
 	}
 
 	private static float ScaleForValue(int value)
 	{
 		if (value >= 100)
-			return 0.5f;
+			return 0.85f;
 		if (value >= 50)
-			return 0.4f;
+			return 0.68f;
 		if (value >= 25)
-			return 0.32f;
+			return 0.55f;
 		if (value >= 10)
-			return 0.26f;
+			return 0.44f;
 		if (value >= 5)
-			return 0.22f;
-		return 0.18f;
+			return 0.36f;
+		return 0.28f;
 	}
 
-	private static Color ColorForValue(int value, Color tint)
+	private static Color ColorForValue(int value)
 	{
 		float t = Mathf.InverseLerp(1f, 100f, value);
-		Color gold = Color.Lerp(GoldDim, GoldBright, t);
-		if (tint.a > 0.01f)
-			gold = Color.Lerp(gold, tint, 0.22f);
-		return gold;
+		Color color = Color.Lerp(OrbWhite, GoldBright, t);
+		color.a = 1f;
+		return color;
 	}
 
 	private ScoreOrb GetOrb()
@@ -151,12 +154,14 @@ public class ScoreOrbSpawner : MonoBehaviour
 		EnsureAssets();
 		GameObject go = new GameObject("ScoreOrb");
 		go.transform.SetParent(transform, false);
-		go.layer = 0;
+		go.layer = 7;
 
 		MeshFilter filter = go.AddComponent<MeshFilter>();
 		filter.sharedMesh = sphereMesh;
 		MeshRenderer renderer = go.AddComponent<MeshRenderer>();
-		renderer.sharedMaterial = orbMaterial;
+		Material orbInstanceMaterial = new Material(orbMaterial);
+		orbInstanceMaterial.color = OrbWhite;
+		renderer.sharedMaterial = orbInstanceMaterial;
 		SphereCollider sphere = go.AddComponent<SphereCollider>();
 		sphere.radius = 0.5f;
 		Rigidbody body = go.AddComponent<Rigidbody>();
@@ -185,7 +190,7 @@ public class ScoreOrbSpawner : MonoBehaviour
 			if (shader == null)
 				shader = Shader.Find("Standard");
 			orbMaterial = new Material(shader);
-			orbMaterial.color = GoldBright;
+			orbMaterial.color = Color.white;
 		}
 	}
 

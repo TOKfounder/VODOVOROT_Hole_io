@@ -44,7 +44,6 @@ public class EnemyController : HoleParent
 
 		absorptionHandled = true;
 		MarkConsumed();
-		ModeManager.NotifyEnemyAbsorbed(this);
 
 		EnemyMovement movement = GetComponentInChildren<EnemyMovement>();
 		if (movement != null)
@@ -61,12 +60,14 @@ public class EnemyController : HoleParent
 		}
 
 		int loot = score;
+		float burstRadius = GetHoleRadius();
+		Vector3 burstCenter = transform.position;
 		score = 0;
 		Color tint = PopupTint();
-		StartCoroutine(SinkThenBurst(loot, tint));
+		StartCoroutine(SinkThenBurst(loot, tint, burstCenter, burstRadius));
 	}
 
-	private IEnumerator SinkThenBurst(int loot, Color tint)
+	private IEnumerator SinkThenBurst(int loot, Color tint, Vector3 burstCenter, float burstRadius)
 	{
 		Collider[] colliders = GetComponentsInChildren<Collider>();
 		for (int i = 0; i < colliders.Length; i++)
@@ -87,15 +88,8 @@ public class EnemyController : HoleParent
 			yield return null;
 		}
 
-		Vector3 burstCenter = start;
-		float burstRadius = 1f;
-		HoleParent player = BlackHoleController.Player;
-		if (player != null)
-		{
-			burstCenter = player.transform.position;
-			burstRadius = player.GetHoleRadius();
-		}
 		ScoreOrbSpawner.Burst(burstCenter, burstRadius, loot, tint);
+		ModeManager.NotifyEnemyAbsorbed(this);
 		Destroy(gameObject);
 	}
 
