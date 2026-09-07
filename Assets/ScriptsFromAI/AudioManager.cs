@@ -16,6 +16,11 @@ public class AudioManager : MonoBehaviour
 	[SerializeField] private AudioClip gulpClip;
 	[SerializeField] private AudioClip levelUpClip;
 	[SerializeField] private AudioClip absorbClip;
+	[SerializeField] private float gulpCooldown = 0.1f;
+	[SerializeField] private float absorbCooldown = 0.15f;
+
+	private float nextGulpTime;
+	private float nextAbsorbTime;
 
 	public float dbValSound;
 	public float dbValMusic;
@@ -108,8 +113,11 @@ public class AudioManager : MonoBehaviour
 
 	public static void PlayGulp()
 	{
-		if (Instance != null)
-			Instance.PlaySfx(Instance.gulpClip, 0.12f);
+		if (Instance == null || Time.unscaledTime < Instance.nextGulpTime)
+			return;
+
+		Instance.nextGulpTime = Time.unscaledTime + Instance.gulpCooldown;
+		Instance.PlaySfx(Instance.gulpClip, 0.12f);
 	}
 
 	public static void PlayLevelUp()
@@ -120,8 +128,11 @@ public class AudioManager : MonoBehaviour
 
 	public static void PlayAbsorb()
 	{
-		if (Instance != null)
-			Instance.PlaySfx(Instance.absorbClip, 0.06f);
+		if (Instance == null || Time.unscaledTime < Instance.nextAbsorbTime)
+			return;
+
+		Instance.nextAbsorbTime = Time.unscaledTime + Instance.absorbCooldown;
+		Instance.PlaySfx(Instance.absorbClip, 0.06f);
 	}
 
 	public static void PlayUiClick()

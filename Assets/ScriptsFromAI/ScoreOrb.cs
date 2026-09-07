@@ -5,8 +5,9 @@ public class ScoreOrb : FallingObject
 {
 	private static readonly int ColorId = Shader.PropertyToID("_Color");
 
-	[SerializeField] private float collectDelay = 0.45f;
-	[SerializeField] private float hopDuration = 0.35f;
+	[SerializeField] private float collectDelay = 0.9f;
+	[SerializeField] private float hopDuration = 0.42f;
+	[SerializeField] private float risePhaseRatio = 0.35f;
 
 	private ScoreOrbSpawner owner;
 	private float spawnTime;
@@ -41,7 +42,7 @@ public class ScoreOrb : FallingObject
 
 	private bool CanCollect => settled && Time.time - spawnTime >= collectDelay;
 
-	public void Launch(ScoreOrbSpawner spawner, int orbValue, Color tint, Vector3 origin, Vector3 rest, Vector3 impulse, float scale)
+	public void Launch(ScoreOrbSpawner spawner, int orbValue, Color tint, Vector3 holeOrigin, Vector3 rest, float popHeight, float scale)
 	{
 		owner = spawner;
 		value = Mathf.Max(1, orbValue);
@@ -57,7 +58,7 @@ public class ScoreOrb : FallingObject
 
 		restPosition = rest;
 		gameObject.layer = ObjectLayer;
-		transform.position = origin;
+		transform.position = new Vector3(rest.x, holeOrigin.y, rest.z);
 		transform.rotation = Quaternion.identity;
 		transform.localScale = Vector3.one * Mathf.Max(0.12f, scale);
 		if (col != null)
@@ -78,40 +79,49 @@ public class ScoreOrb : FallingObject
 			rb.isKinematic = true;
 		}
 
-		hopRoutine = StartCoroutine(HopToRest(rest, impulse));
+		hopRoutine = StartCoroutine(PopFromHole(holeOrigin, rest, popHeight));
 	}
 
-	private IEnumerator HopToRest(Vector3 rest, Vector3 impulse)
+	private IEnumerator PopFromHole(Vector3 holeOrigin, Vector3 rest, float popHeight)
 	{
-		Vector3 start = transform.position;
+		Vector3 start = new Vector3(rest.x, holeOrigin.y, rest.z);
+		Vector3 apex = new Vector3(rest.x, holeOrigin.y + popHeight, rest.z);
+		float totalDuration = Mathf.Max(0.2f, hopDuration);
+		float riseDuration = totalDuration * risePhaseRatio;
+		float fallDuration = totalDuration - riseDuration;
+
 		float elapsed = 0f;
-		float duration = Mathf.Max(0.12f, hopDuration);
-		while (elapsed < duration)
+		while (elapsed < riseDuration)
 		{
 			elapsed += Time.deltaTime;
-			float t = Mathf.Clamp01(elapsed / duration);
-			float arc = Mathf.Sin(t * Mathf.PI);
-			Vector3 linear = Vector3.Lerp(start, rest, t);
-			linear.y += arc * hopHeightFromImpulse(impulse);
-			if (rb != null)
-				rb.MovePosition(linear);
-			else
-				transform.position = linear;
+			float t = Mathf.Clamp01(elapsed / riseDuration);
+			float eased = 1f - (1f - t) * (1f - t);
+			MoveTo(Vector3.Lerp(start, apex, eased));
 			yield return null;
 		}
 
-		if (rb != null)
-			rb.MovePosition(rest);
-		else
-			transform.position = rest;
+		elapsed = 0f;
+		while (elapsed < fallDuration)
+		{
+			elapsed += Time.deltaTime;
+			float t = Mathf.Clamp01(elapsed / fallDuration);
+			float eased = t * t;
+			MoveTo(Vector3.Lerp(apex, rest, eased));
+			yield return null;
+		}
+
+		MoveTo(rest);
 		Physics.SyncTransforms();
 		settled = true;
 		hopRoutine = null;
 	}
 
-	private static float hopHeightFromImpulse(Vector3 impulse)
+	private void MoveTo(Vector3 position)
 	{
-		return Mathf.Clamp(impulse.y * 0.18f, 0.15f, 0.65f);
+		if (rb != null)
+			rb.MovePosition(position);
+		else
+			transform.position = position;
 	}
 
 	protected override void OnSuctionBegan(HoleParent hole)

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using YG;
 
@@ -8,14 +9,34 @@ public class HoleFeedback : MonoBehaviour
 	private static readonly Color InkVoid = new Color(0.10f, 0.08f, 0.12f, 0.82f);
 	private static readonly Color AbyssMist = new Color(0.16f, 0.22f, 0.26f, 0.70f);
 	private static readonly Color VoidRing = new Color(0.18f, 0.12f, 0.28f, 0.88f);
+	private static readonly Color[] RibbonColors =
+	{
+		new Color(0.25f, 0.95f, 1f, 0.95f),
+		new Color(1f, 0.35f, 0.95f, 0.95f),
+		new Color(1f, 0.85f, 0.2f, 0.95f),
+		new Color(0.45f, 1f, 0.35f, 0.95f),
+		new Color(1f, 0.45f, 0.25f, 0.95f),
+		new Color(0.55f, 0.55f, 1f, 0.95f),
+		new Color(1f, 0.65f, 0.85f, 0.95f),
+	};
 
 	[SerializeField] private bool debugEmitOnStart;
+	[Header("Suction Ribbons")]
+	[SerializeField] private int ribbonCount = 7;
+	[SerializeField] private float ribbonOrbitSpeed = 2.4f;
+	[SerializeField] private float ribbonInwardSpeed = 1.15f;
+	[SerializeField] private float ribbonTrailTime = 0.32f;
+	[SerializeField] private float ribbonWidth = 0.1f;
+	[SerializeField] private float ribbonOuterMul = 1.15f;
+	[SerializeField] private float ribbonRespawnRadius = 0.12f;
 
 	private HoleParent target;
 	private Transform vfxRoot;
 	private ParticleSystem suction;
 	private ParticleSystem gulp;
 	private ParticleSystem ring;
+	private readonly List<Ribbon> ribbons = new List<Ribbon>(8);
+	private Material ribbonMat;
 	private int lastLevel;
 	private Color borderRest = Color.white;
 	private float borderFlashTimer;
@@ -26,6 +47,14 @@ public class HoleFeedback : MonoBehaviour
 	private bool ownsSphereMesh;
 	private bool matchEnded;
 	private bool ygPaused;
+
+	private struct Ribbon
+	{
+		public Transform transform;
+		public TrailRenderer trail;
+		public float angle;
+		public float radiusNorm;
+	}
 
 	public static HoleFeedback Ensure(HoleParent player)
 	{
@@ -88,6 +117,7 @@ public class HoleFeedback : MonoBehaviour
 		{
 			if (!suction.isPlaying)
 				suction.Play();
+			SetRibbonsActive(true);
 		}
 		else
 		{
@@ -96,6 +126,7 @@ public class HoleFeedback : MonoBehaviour
 				gulp.Clear(true);
 			if (ring != null)
 				ring.Clear(true);
+			SetRibbonsActive(false);
 		}
 	}
 
@@ -107,6 +138,8 @@ public class HoleFeedback : MonoBehaviour
 			Destroy(billboardMat);
 		if (meshMat != null)
 			Destroy(meshMat);
+		if (ribbonMat != null)
+			Destroy(ribbonMat);
 		if (billboardTexture != null)
 			Destroy(billboardTexture);
 		if (ownsSphereMesh && sphereMesh != null)
@@ -119,6 +152,7 @@ public class HoleFeedback : MonoBehaviour
 			return;
 
 		UpdateSuction();
+		UpdateRibbons();
 		UpdateBorderFlash();
 
 		while (target.currentLevel > lastLevel)
@@ -187,7 +221,131 @@ public class HoleFeedback : MonoBehaviour
 
 		int falling = target.nearbyFallingObjects != null ? target.nearbyFallingObjects.Count : 0;
 		var emission = suction.emission;
-		emission.rateOverTime = falling > 0 ? 56f : 20f;
+		emission.rateOverTime = falling > 0 ? 28f : 10f;
+	}
+
+	private void EnsureRibbons()
+	{
+		if (vfxRoot == null)
+			return;
+
+		if (ribbonMat == null)
+		{
+			Shader shader = Shader.Find("Sprites/Default");
+			if (shader == null)
+				shader = FindParticleShader();
+			if (shader != null)
+			{
+				ribbonMat = new Material(shader);
+				ribbonMat.color = Color.white;
+			}
+		}
+
+		int count = Mathf.Clamp(ribbonCount, 3, 12);
+		while (ribbons.Count < count)
+		{
+			int index = ribbons.Count;
+			GameObject go = new GameObject("SuctionRibbon_" + index);
+			go.transform.SetParent(vfxRoot, false);
+			TrailRenderer trail = go.AddComponent<TrailRenderer>();
+			trail.time = ribbonTrailTime;
+			trail.minVertexDistance = 0.02f;
+			trail.emitting = true;
+			trail.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+			trail.receiveShadows = false;
+			trail.numCapVertices = 2;
+			trail.numCornerVertices = 2;
+			trail.alignment = LineAlignment.View;
+			trail.textureMode = LineTextureMode.Stretch;
+			if (ribbonMat != null)
+				trail.material = ribbonMat;
+
+			Color color = RibbonColors[index % RibbonColors.Length];
+			Gradient gradient = new Gradient();
+			gradient.SetKeys(
+				new[]
+				{
+					new GradientColorKey(color, 0f),
+					new GradientColorKey(color, 1f)
+				},
+				new[]
+				{
+					new GradientAlphaKey(0.95f, 0f),
+					new GradientAlphaKey(0f, 1f)
+				});
+			trail.colorGradient = gradient;
+			trail.widthCurve = new AnimationCurve(
+				new Keyframe(0f, ribbonWidth),
+				new Keyframe(1f, 0f));
+
+			ribbons.Add(new Ribbon
+			{
+				transform = go.transform,
+				trail = trail,
+				angle = (Mathf.PI * 2f * index) / count,
+				radiusNorm = 0.55f + (index % 3) * 0.15f
+			});
+		}
+
+		for (int i = 0; i < ribbons.Count; i++)
+		{
+			Ribbon ribbon = ribbons[i];
+			if (ribbon.trail == null)
+				continue;
+			ribbon.trail.time = ribbonTrailTime;
+			ribbon.trail.widthCurve = new AnimationCurve(
+				new Keyframe(0f, ribbonWidth),
+				new Keyframe(1f, 0f));
+			ribbons[i] = ribbon;
+		}
+	}
+
+	private void UpdateRibbons()
+	{
+		if (ribbons.Count == 0)
+			return;
+
+		Vector3 center = GetHoleWorldPos() + Vector3.up * 0.08f;
+		float outer = GetEffectRadius() * ribbonOuterMul;
+		float dt = Time.deltaTime;
+
+		for (int i = 0; i < ribbons.Count; i++)
+		{
+			Ribbon ribbon = ribbons[i];
+			if (ribbon.transform == null)
+				continue;
+
+			ribbon.angle += ribbonOrbitSpeed * dt * (i % 2 == 0 ? 1f : -1f);
+			ribbon.radiusNorm -= (ribbonInwardSpeed / Mathf.Max(0.35f, outer)) * dt;
+			if (ribbon.radiusNorm <= ribbonRespawnRadius)
+			{
+				ribbon.radiusNorm = 1f;
+				if (ribbon.trail != null)
+					ribbon.trail.Clear();
+			}
+
+			float r = outer * Mathf.Clamp01(ribbon.radiusNorm);
+			Vector3 pos = center + new Vector3(Mathf.Cos(ribbon.angle), 0f, Mathf.Sin(ribbon.angle)) * r;
+			ribbon.transform.position = pos;
+			ribbons[i] = ribbon;
+		}
+	}
+
+	private void SetRibbonsActive(bool active)
+	{
+		for (int i = 0; i < ribbons.Count; i++)
+		{
+			Ribbon ribbon = ribbons[i];
+			if (ribbon.transform == null)
+				continue;
+			if (ribbon.trail != null)
+			{
+				ribbon.trail.emitting = active;
+				if (!active)
+					ribbon.trail.Clear();
+			}
+			ribbon.transform.gameObject.SetActive(active);
+		}
 	}
 
 	private void UpdateBorderFlash()
@@ -256,6 +414,7 @@ public class HoleFeedback : MonoBehaviour
 		if (ring == null)
 			ring = CreateSystem("LevelRing", false, 96, true);
 		ConfigureRing();
+		EnsureRibbons();
 	}
 
 	private void ConfigureSuction()

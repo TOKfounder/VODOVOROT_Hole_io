@@ -22,6 +22,11 @@ public class MatchHud : MonoBehaviour
 
 	public Text TimerText => timerText;
 
+	public void SetVisible(bool visible)
+	{
+		gameObject.SetActive(visible);
+	}
+
 	public static MatchHud Ensure()
 	{
 		MatchHud hud = FindAnyObjectByType<MatchHud>();

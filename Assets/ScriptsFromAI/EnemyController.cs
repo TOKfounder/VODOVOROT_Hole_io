@@ -8,7 +8,7 @@ public class EnemyController : HoleParent
 	public static int count;
 	private bool absorptionHandled;
 
-	[SerializeField] private float sinkDuration = 1.2f;
+	[SerializeField] private float sinkDuration = 0.65f;
 	[SerializeField] private float sinkDepth = 1.5f;
 
 	public override void Start()
@@ -37,7 +37,7 @@ public class EnemyController : HoleParent
 			SetNickname(ru ? $"Враг {count}" : $"Enemy {count}");
 	}
 
-	public void OnAbsorbedByPlayer()
+	public void OnAbsorbedByPlayer(HoleParent absorber)
 	{
 		if (absorptionHandled)
 			return;
@@ -60,14 +60,15 @@ public class EnemyController : HoleParent
 		}
 
 		int loot = score;
-		float burstRadius = GetHoleRadius();
-		Vector3 burstCenter = transform.position;
 		score = 0;
-		Color tint = PopupTint();
-		StartCoroutine(SinkThenBurst(loot, tint, burstCenter, burstRadius));
+		bool isBoss = this == ModeManager.ActiveBoss;
+		if (absorber != null && loot > 0)
+			ScoreOrbSpawner.Burst(absorber, loot, isBoss);
+
+		StartCoroutine(SinkThenDestroy());
 	}
 
-	private IEnumerator SinkThenBurst(int loot, Color tint, Vector3 burstCenter, float burstRadius)
+	private IEnumerator SinkThenDestroy()
 	{
 		Collider[] colliders = GetComponentsInChildren<Collider>();
 		for (int i = 0; i < colliders.Length; i++)
@@ -88,19 +89,7 @@ public class EnemyController : HoleParent
 			yield return null;
 		}
 
-		ScoreOrbSpawner.Burst(burstCenter, burstRadius, loot, tint);
 		ModeManager.NotifyEnemyAbsorbed(this);
 		Destroy(gameObject);
-	}
-
-	private Color PopupTint()
-	{
-		if (border != null)
-			return border.color;
-		if (TeamId == ModeManager.TeamBlue)
-			return PointsScript.CyanPopup;
-		if (TeamId == ModeManager.TeamRed)
-			return PointsScript.RedPopup;
-		return PointsScript.GoldPopup;
 	}
 }

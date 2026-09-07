@@ -2042,7 +2042,7 @@ GameObject:
   - component: {fileID: 132094756}
   - component: {fileID: 132094755}
   m_Layer: 5
-  m_Name: Garden
+  m_Name: City1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18576,7 +18576,7 @@ GameObject:
   - component: {fileID: 1116180594}
   - component: {fileID: 1116180593}
   m_Layer: 5
-  m_Name: City
+  m_Name: Garden2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29068,6 +29068,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedColor: {r: 0.35, g: 0.85, b: 0.45, a: 1}
   normalColor: {r: 0.223, g: 0.223, b: 0.223, a: 1}
+  disabledColor: {r: 0.55, g: 0.55, b: 0.55, a: 0.65}
 --- !u!1 &1740338398
 GameObject:
   m_ObjectHideFlags: 0
@@ -54240,6 +54241,8 @@ MonoBehaviour:
   gulpClip: {fileID: 8300000, guid: 5f1f8b3e0f4444ae388135c7427fcd22, type: 3}
   levelUpClip: {fileID: 8300000, guid: 58ad3c414432d46908352738f327ad93, type: 3}
   absorbClip: {fileID: 8300000, guid: ec5bd6d9e04f547cdabcc9071ac0927b, type: 3}
+  gulpCooldown: 0.1
+  absorbCooldown: 0.15
   dbValSound: 0
   dbValMusic: 0
   krest1: {fileID: 1422509233751939475}
