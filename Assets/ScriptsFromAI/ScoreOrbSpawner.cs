@@ -3,28 +3,29 @@ using UnityEngine;
 
 public class ScoreOrbSpawner : MonoBehaviour
 {
-	private static readonly int[] Denoms = { 100, 50, 25, 10, 5, 1 };
-	private static readonly Color GoldBright = new Color(1f, 0.86f, 0.28f, 1f);
-	private static readonly Color OrbWhite = new Color(0.96f, 0.97f, 1f, 1f);
+	private static readonly Color TierGreen = new Color(0.2f, 0.95f, 0.35f, 1f);
+	private static readonly Color TierBlue = new Color(0.25f, 0.55f, 1f, 1f);
+	private static readonly Color TierYellow = new Color(1f, 0.92f, 0.15f, 1f);
+	private static readonly Color TierOrange = new Color(1f, 0.45f, 0.1f, 1f);
+	private static readonly Color TierRed = new Color(1f, 0.25f, 0.2f, 1f);
+	private static readonly Color TierGold = new Color(1f, 0.85f, 0.2f, 1f);
 
-	[SerializeField] private int poolSize = 32;
-	[SerializeField] private float burstSpeed = 3.2f;
-	[SerializeField] private float burstUp = 2.8f;
-	[SerializeField] private float ringPadding = 2.8f;
+	[SerializeField] private int poolSize = 64;
+	[SerializeField] private float popHeight = 1.4f;
+	[SerializeField] private float ringPadding = 2.24f;
 	[SerializeField] private float groundOffset = 0.18f;
-	[SerializeField] private float hopHeight = 0.55f;
 
-	private readonly List<ScoreOrb> pool = new List<ScoreOrb>(32);
+	private readonly List<ScoreOrb> pool = new List<ScoreOrb>(64);
 	private Material orbMaterial;
 	private Mesh sphereMesh;
 	private static ScoreOrbSpawner instance;
 
-	public static void Burst(Vector3 holeCenter, float holeRadius, int totalScore, Color tint)
+	public static void Burst(HoleParent absorber, int totalScore, bool isBoss)
 	{
-		if (totalScore <= 0)
+		if (totalScore <= 0 || absorber == null)
 			return;
 
-		Ensure().SpawnBurst(holeCenter, holeRadius, totalScore, tint);
+		Ensure().SpawnBurst(absorber, totalScore, isBoss);
 	}
 
 	public static ScoreOrbSpawner Ensure()
@@ -69,15 +70,19 @@ public class ScoreOrbSpawner : MonoBehaviour
 			pool.Add(orb);
 	}
 
-	private void SpawnBurst(Vector3 holeCenter, float holeRadius, int totalScore, Color tint)
+	private void SpawnBurst(HoleParent absorber, int totalScore, bool isBoss)
 	{
-		List<int> parts = SplitScore(totalScore);
+		List<int> parts = SplitScoreRandom(totalScore, isBoss);
 		int count = parts.Count;
 		if (count == 0)
 			return;
 
-		float ring = Mathf.Max(1.5f, holeRadius + ringPadding);
+		Vector3 holeCenter = absorber.transform.position;
+		float holeRadius = absorber.GetHoleRadius();
+		float ring = Mathf.Max(1.2f, holeRadius + ringPadding);
 		float groundY = holeCenter.y;
+		Vector3 holeOrigin = holeCenter;
+		holeOrigin.y = groundY + groundOffset * 0.5f;
 
 		for (int i = 0; i < count; i++)
 		{
@@ -89,13 +94,10 @@ public class ScoreOrbSpawner : MonoBehaviour
 			Vector3 dir = new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
 			Vector3 rest = holeCenter + dir * ring;
 			rest.y = groundY + groundOffset;
-			Vector3 origin = rest + Vector3.up * hopHeight;
-			Vector3 impulse = dir * burstSpeed;
-			impulse.y = burstUp;
 			orb.gameObject.SetActive(true);
 			Color orbColor = ColorForValue(parts[i]);
 			float orbScale = ScaleForValue(parts[i]);
-			orb.Launch(this, parts[i], orbColor, origin, rest, impulse, orbScale);
+			orb.Launch(this, parts[i], orbColor, holeOrigin, rest, popHeight, orbScale);
 		}
 	}
 
@@ -104,11 +106,11 @@ public class ScoreOrbSpawner : MonoBehaviour
 		if (value >= 100)
 			return 0.85f;
 		if (value >= 50)
-			return 0.68f;
+			return 0.72f;
 		if (value >= 25)
-			return 0.55f;
+			return 0.58f;
 		if (value >= 10)
-			return 0.44f;
+			return 0.46f;
 		if (value >= 5)
 			return 0.36f;
 		return 0.28f;
@@ -116,10 +118,20 @@ public class ScoreOrbSpawner : MonoBehaviour
 
 	private static Color ColorForValue(int value)
 	{
-		float t = Mathf.InverseLerp(1f, 100f, value);
-		Color color = Color.Lerp(OrbWhite, GoldBright, t);
-		color.a = 1f;
-		return color;
+		if (value >= 100)
+		{
+			float t = Mathf.InverseLerp(100f, 200f, value);
+			return Color.Lerp(TierRed, TierGold, t);
+		}
+		if (value >= 50)
+			return Color.Lerp(TierOrange, TierRed, Mathf.InverseLerp(50f, 99f, value));
+		if (value >= 25)
+			return TierOrange;
+		if (value >= 10)
+			return TierYellow;
+		if (value >= 5)
+			return TierBlue;
+		return TierGreen;
 	}
 
 	private ScoreOrb GetOrb()
@@ -160,7 +172,7 @@ public class ScoreOrbSpawner : MonoBehaviour
 		filter.sharedMesh = sphereMesh;
 		MeshRenderer renderer = go.AddComponent<MeshRenderer>();
 		Material orbInstanceMaterial = new Material(orbMaterial);
-		orbInstanceMaterial.color = OrbWhite;
+		orbInstanceMaterial.color = TierGreen;
 		renderer.sharedMaterial = orbInstanceMaterial;
 		SphereCollider sphere = go.AddComponent<SphereCollider>();
 		sphere.radius = 0.5f;
@@ -190,32 +202,29 @@ public class ScoreOrbSpawner : MonoBehaviour
 			if (shader == null)
 				shader = Shader.Find("Standard");
 			orbMaterial = new Material(shader);
-			orbMaterial.color = Color.white;
+			orbMaterial.color = TierGreen;
 		}
 	}
 
-	private static List<int> SplitScore(int total)
+	private static List<int> SplitScoreRandom(int total, bool isBoss)
 	{
-		List<int> parts = new List<int>(16);
-		int remaining = Mathf.Max(0, total);
-		for (int d = 0; d < Denoms.Length && remaining > 0 && parts.Count < 16; d++)
-		{
-			int denom = Denoms[d];
-			while (remaining >= denom && parts.Count < 16)
-			{
-				parts.Add(denom);
-				remaining -= denom;
-			}
-		}
+		int targetMin = isBoss ? 20 : 10;
+		int targetMax = isBoss ? 50 : 30;
+		int count = Mathf.Min(total, Random.Range(targetMin, targetMax + 1));
+		if (count <= 0)
+			return new List<int>(0);
 
-		if (remaining > 0)
-		{
-			if (parts.Count < 16)
-				parts.Add(remaining);
-			else
-				parts[parts.Count - 1] += remaining;
-		}
+		int[] parts = new int[count];
+		for (int i = 0; i < count; i++)
+			parts[i] = 1;
 
-		return parts;
+		int remaining = total - count;
+		for (int r = 0; r < remaining; r++)
+			parts[Random.Range(0, count)]++;
+
+		List<int> result = new List<int>(count);
+		for (int i = 0; i < count; i++)
+			result.Add(parts[i]);
+		return result;
 	}
 }

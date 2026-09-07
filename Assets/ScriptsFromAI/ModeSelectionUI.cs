@@ -250,6 +250,11 @@ public class ModeSelectionUI : MonoBehaviour
 		ApplyModeCard(desktopHuntingButton, chosenMode == (int)ModeManager.Mode.Hunting);
 		ApplyModeCard(mobileTeamButton, chosenMode == (int)ModeManager.Mode.TeamMode);
 		ApplyModeCard(desktopTeamButton, chosenMode == (int)ModeManager.Mode.TeamMode);
+
+		ClearMapCardTint(mobileCityButton);
+		ClearMapCardTint(desktopCityButton);
+		ClearMapCardTint(mobileGardenButton);
+		ClearMapCardTint(desktopGardenButton);
 	}
 
 	private void ApplyModeCard(Button button, bool selected)
@@ -273,6 +278,26 @@ public class ModeSelectionUI : MonoBehaviour
 		colors.pressedColor = face;
 		colors.selectedColor = face;
 		colors.disabledColor = normalColor;
+		button.colors = colors;
+	}
+
+	private static void ClearMapCardTint(Button button)
+	{
+		if (button == null)
+			return;
+
+		Image image = button.targetGraphic as Image;
+		if (image == null)
+			image = button.GetComponent<Image>();
+		if (image != null)
+			image.color = Color.white;
+
+		ColorBlock colors = button.colors;
+		colors.normalColor = Color.white;
+		colors.highlightedColor = Color.white;
+		colors.pressedColor = Color.white;
+		colors.selectedColor = Color.white;
+		colors.disabledColor = Color.white;
 		button.colors = colors;
 	}
 

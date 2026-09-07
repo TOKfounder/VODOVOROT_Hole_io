@@ -99,7 +99,7 @@ public class BlackHoleController : HoleParent
 			return;
 
 		enemy.MarkConsumed();
-		HoleFeedback.ForPlayer?.PlayAbsorb(PointsScript.RedPopup);
-		enemy.OnAbsorbedByPlayer();
+		AudioManager.PlayAbsorb();
+		enemy.OnAbsorbedByPlayer(this);
 	}
 }

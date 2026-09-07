@@ -20,6 +20,8 @@ public class GamingManager : MonoBehaviour
 
 	public GameObject MobpanelOfEnd;
 	public GameObject DeskpanelOfEnd;
+	[SerializeField] private float endPanelYBoost = 120f;
+	private bool endPanelRaised;
 	public float perc = 0f;
 	public float minX;
 	public float maxX;
@@ -119,6 +121,7 @@ public class GamingManager : MonoBehaviour
 		once = true;
 		rewardApplied = false;
 		endSequenceStarted = false;
+		endPanelRaised = false;
 		bossDefeated = false;
 		huntingComplete = false;
 		teamVictory = false;
@@ -358,10 +361,32 @@ public class GamingManager : MonoBehaviour
 	private void ShowEndPanel()
 	{
 		HoleFeedback.ForPlayer?.SetMatchActive(false);
+		MatchHud hud = FindAnyObjectByType<MatchHud>();
+		if (hud != null)
+			hud.SetVisible(false);
+
+		RaiseEndPanel(MobpanelOfEnd);
+		RaiseEndPanel(DeskpanelOfEnd);
+		endPanelRaised = true;
+
 		if (YG2.envir.isMobile)
 			MobpanelOfEnd?.SetActive(true);
 		else
 			DeskpanelOfEnd?.SetActive(true);
+	}
+
+	private void RaiseEndPanel(GameObject panel)
+	{
+		if (endPanelRaised || panel == null)
+			return;
+
+		RectTransform rect = panel.GetComponent<RectTransform>();
+		if (rect == null)
+			return;
+
+		Vector2 pos = rect.anchoredPosition;
+		pos.y += endPanelYBoost;
+		rect.anchoredPosition = pos;
 	}
 
 	private static int GetPlayerScore()

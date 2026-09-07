@@ -181,9 +181,9 @@ public class HoleParent : MonoBehaviour
 		{
 			PointEffect(amount, popupColor);
 			if (fromHole)
-				HoleFeedback.ForPlayer?.PlayAbsorb(popupColor);
+				AudioManager.PlayAbsorb();
 			else
-				HoleFeedback.ForPlayer?.PlayGulp();
+				AudioManager.PlayGulp();
 		}
 		isUpdated = false;
 	}
@@ -378,8 +378,8 @@ public class HoleParent : MonoBehaviour
 		if (enemy != null)
 		{
 			if (this is BlackHoleController)
-				HoleFeedback.ForPlayer?.PlayAbsorb(PopupColorForHole(other));
-			enemy.OnAbsorbedByPlayer();
+				AudioManager.PlayAbsorb();
+			enemy.OnAbsorbedByPlayer(this);
 			return;
 		}
 
