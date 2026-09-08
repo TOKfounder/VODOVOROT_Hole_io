@@ -80,9 +80,9 @@ public class MainMenuController : MonoBehaviour
 	public Text[] DPanelOfValute;
 
 
-	private int CntHand = 2;
-	private int CntBag = 5;
-	private int CntBox = 10;
+	private int CntHand => YG2.saves.rewardedHandLeft;
+	private int CntBag => YG2.saves.rewardedBagLeft;
+	private int CntBox => YG2.saves.rewardedBoxLeft;
 
 
 
@@ -129,6 +129,7 @@ public class MainMenuController : MonoBehaviour
 		Dbag.onClick.AddListener(() => ShowRewardedAdv("bag"));
 		Dbox.onClick.AddListener(() => ShowRewardedAdv("box"));
 		UpdateTriggers();
+		ActiveCanvas.ApplyUiFontEverywhere();
 		if (GameController.Instance != null)
 			GameController.Instance.RefreshModeSelectionUI();
 	}
@@ -166,29 +167,29 @@ public class MainMenuController : MonoBehaviour
 		}
 		else if (id == "hand")
 		{
-			CntHand -= 1;
-			if (CntHand <= 0)
+			YG2.saves.rewardedHandLeft -= 1;
+			if (YG2.saves.rewardedHandLeft <= 0)
 			{
 				YG2.saves.diamonds += 20;
-				CntHand = 2;
+				YG2.saves.rewardedHandLeft = 2;
 			}
 		}
 		else if (id == "bag")
 		{
-			CntBag -= 1;
-			if (CntBag <= 0)
+			YG2.saves.rewardedBagLeft -= 1;
+			if (YG2.saves.rewardedBagLeft <= 0)
 			{
 				YG2.saves.diamonds += 100;
-				CntBag = 5;
+				YG2.saves.rewardedBagLeft = 5;
 			}
 		}
 		else if (id == "box")
 		{
-			CntBox -= 1;
-			if (CntBox <= 0)
+			YG2.saves.rewardedBoxLeft -= 1;
+			if (YG2.saves.rewardedBoxLeft <= 0)
 			{
 				YG2.saves.diamonds += 300;
-				CntBox = 10;
+				YG2.saves.rewardedBoxLeft = 10;
 			}
 		}
 		YG2.SaveProgress();
@@ -236,6 +237,8 @@ public class MainMenuController : MonoBehaviour
 	}
 	void SaveNick(string wroteName)
 	{
+		if (string.IsNullOrWhiteSpace(wroteName))
+			wroteName = GameTexts.LegendNick;
 		YG2.saves.isNickGiven = true;
 		YG2.saves.nickName = wroteName;
 		YG2.SaveProgress();
@@ -251,10 +254,16 @@ public class MainMenuController : MonoBehaviour
 		DlevelText.text = $"{(int)(YG2.saves.exp / 100f)}";
 		DpointText.text = $"{Tool.ConvertText(YG2.saves.goldCoins)}";
 		DlevelImage.fillAmount = YG2.saves.exp % 100 / 100f;
-		if (YG2.saves.isNickGiven)
+		if (YG2.saves.isNickGiven || !string.IsNullOrEmpty(YG2.saves.nickName))
 		{
-			nameInput.text = YG2.saves.nickName;
-			DnameInput.text = YG2.saves.nickName;
+			string nick = string.IsNullOrEmpty(YG2.saves.nickName) ? GameTexts.LegendNick : YG2.saves.nickName;
+			nameInput.text = nick;
+			DnameInput.text = nick;
+		}
+		else
+		{
+			nameInput.text = GameTexts.LegendNick;
+			DnameInput.text = GameTexts.LegendNick;
 		}
 		OnOpenLeaderboard();
 		UpdateUI();
@@ -312,9 +321,9 @@ public class MainMenuController : MonoBehaviour
 
 		SetText(scoreText, YG2.saves.exp.ToString());
 		SetTexts(MainMenu,
-			ru ? "ВОДОВОРОТ Дыра.ио" : "WHIRLPOOL Hole",
-			ru ? "Введите ваш ник" : "Enter your nickname",
-			ru ? "Уровень" : "Level",
+			GameTexts.Title,
+			GameTexts.EnterNick,
+			GameTexts.Level,
 			ru ? "Магазин\nСкинов" : "Skin\nStore",
 			ru ? "КАРТЫ" : "MAPS",
 			ru ? "РЕЖИМЫ" : "MODES",
@@ -333,10 +342,10 @@ public class MainMenuController : MonoBehaviour
 
 		SetText(PanelOfLeaders, ru ? "Легенды" : "Legends");
 		SetTexts(MobilePanelOfSettings,
-			ru ? "Настройки" : "Settings",
-			ru ? "Язык" : "Language",
-			ru ? "Звуки" : "Sounds",
-			ru ? "Музыка" : "Music");
+			GameTexts.Settings,
+			GameTexts.Language,
+			GameTexts.Sounds,
+			GameTexts.Music);
 		SetTexts(PanelOfMaps,
 			ru ? "Доступные Локации" : "Available Locations",
 			ru ? "Городской Вайб" : "City Vibe",
@@ -355,18 +364,18 @@ public class MainMenuController : MonoBehaviour
 		SetTexts(PanelOfValute,
 			ru ? "Магазин Валюты" : "Currency Store",
 			ru ? "Баланс:" : "Balance:",
-			ru ? "пара\nбриллиантов" : "couple\ndiamonds",
-			ru ? "Горсть\nбриллиантов" : "Bunch\ndiamonds",
-			ru ? "Мешок\nбриллиантов" : "Bag\ndiamonds",
-			ru ? "Бочка\nбриллиантов" : "Barrel\ndiamonds",
-			ru ? "Сундук\nбриллиантов" : "Chest\ndiamonds",
+			ru ? "пара\nалмазов" : "couple\nof diamonds",
+			ru ? "Горсть\nалмазов" : "Handful of\ndiamonds",
+			ru ? "Мешок\nалмазов" : "Bag of\ndiamonds",
+			ru ? "Бочка\nалмазов" : "Barrel of\ndiamonds",
+			ru ? "Сундук\nалмазов" : "Chest of\ndiamonds",
 			ru ? "Обменять" : "Exchange");
 
 		SetText(DscoreText, YG2.saves.exp.ToString());
 		SetTexts(DMainMenu,
-			ru ? "ВОДОВОРОТ Дыра.ио" : "WHIRLPOOL Hole",
-			ru ? "Введите ваш ник" : "Enter your nickname",
-			ru ? "Уровень" : "Level",
+			GameTexts.Title,
+			GameTexts.EnterNick,
+			GameTexts.Level,
 			ru ? "Магазин\nСкинов" : "Skin\nStore",
 			ru ? "КАРТЫ" : "MAPS",
 			ru ? "РЕЖИМЫ" : "MODES",
@@ -383,10 +392,10 @@ public class MainMenuController : MonoBehaviour
 			ru ? "Особенности" : "Features");
 		SetText(DPanelOfLeaders, ru ? "Легенды" : "Legends");
 		SetTexts(DesktopPanelOfSettings,
-			ru ? "Настройки" : "Settings",
-			ru ? "Язык" : "Language",
-			ru ? "Звуки" : "Sounds",
-			ru ? "Музыка" : "Music");
+			GameTexts.Settings,
+			GameTexts.Language,
+			GameTexts.Sounds,
+			GameTexts.Music);
 		SetTexts(DPanelOfMaps,
 			ru ? "Доступные Локации" : "Available Locations",
 			ru ? "Городской Вайб" : "City Vibe",
@@ -403,11 +412,11 @@ public class MainMenuController : MonoBehaviour
 		SetTexts(DPanelOfValute,
 			ru ? "Магазин Валюты" : "Currency Store",
 			ru ? "Баланс:" : "Balance:",
-			ru ? "пара\nбриллиантов" : "couple\ndiamonds",
-			ru ? "Горсть\nбриллиантов" : "Bunch\ndiamonds",
-			ru ? "Мешок\nбриллиантов" : "Bag\ndiamonds",
-			ru ? "Бочка\nбриллиантов" : "Barrel\ndiamonds",
-			ru ? "Сундук\nбриллиантов" : "Chest\ndiamonds",
+			ru ? "пара\nалмазов" : "couple\nof diamonds",
+			ru ? "Горсть\nалмазов" : "Handful of\ndiamonds",
+			ru ? "Мешок\nалмазов" : "Bag of\ndiamonds",
+			ru ? "Бочка\nалмазов" : "Barrel of\ndiamonds",
+			ru ? "Сундук\nалмазов" : "Chest of\ndiamonds",
 			ru ? "Обменять" : "Exchange");
 	}
 
@@ -416,17 +425,17 @@ public class MainMenuController : MonoBehaviour
 		SetTexts(panel,
 			ru ? "Доступные Режимы" : "Available Modes",
 			ru ? "Тотальная Зачистка" : "Total Cleaning",
-			ru ? "Задача поглотить абсолютно все объекты на карте на 100%" :
-				"The task is to absorb absolutely all objects on the map by 100%",
+			ru ? "Съешь крупные объекты за 3 минуты. Мелочь можно есть, но в 100% она не входит." :
+				"Eat the large objects in 3 minutes. Small props are optional and do not count toward 100%.",
 			ru ? "Босс Туалетов" : "The Toilet Boss",
 			ru ? "Задача перегнать Босса по уровню и победить поглотив его" :
 				"The task is to overtake the Boss by level and defeat him by absorbing him",
 			ru ? "Охота" : "Hunting",
-			ru ? "Появляется 6 врагов-туалетов. Твоя задача - поглотить всех" :
-				"6 toilet enemies appear. Your task is to consume everyone",
+			ru ? "Город — 5 врагов, сад — 4. Мелкие убегают, крупные идут в тебя. Награда за каждого, джекпот за всех." :
+				"City has 5 enemies, garden has 4. Small ones flee, big ones chase you. Reward per kill, jackpot for all.",
 			ru ? "Командный" : "Teamwork",
-			ru ? "3 Красных Vs 3 Синих. Задача задавить вражескую команду" :
-				"3 Red Vs 3 Blue. The task is to crush the enemy team");
+			ru ? "Победа по сумме поглощённого. На HUD — процент очков синих и красных." :
+				"Win by absorbed score. The HUD shows each team's point percent.");
 	}
 
 	private static void SetText(Text target, string value)

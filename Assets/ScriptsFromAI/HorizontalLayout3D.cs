@@ -25,12 +25,14 @@ public class HorizontalLayout3D : MonoBehaviour
 	private bool isRotating = false;
 
 	private int chosenObj = 0;
-	private string[] features = { "Этот красный тазик – для тех, кто любит жить на скорости! Бросай вызов привычному, залетай в тазик!",
+	private string[] features = {
+		"Простой красный тазик — старт без бонусов. Надёжная классика стока!",
 	 "Этот унитаз готов поддержать тебя в любой трудной и странной ситуации!",
 	 "Блеск роскоши для истинных чемпионов! Стань королём туалетных побед.",
 	 "Сиди с комфортом и властвуй! Злые силы не пройдут через эту дыру...",
 	 "На этом троне даже проблемы исчезают! Почувствуй себя властелином стока." };
-	private string[] featuresEn = { "This red basin is for those who like to live at speed! Challenge the familiar, fly into the basin!",
+	private string[] featuresEn = {
+		"A plain red basin — no stat bonuses. Reliable drain classic!",
 	 "This toilet bowl is ready to support you in any difficult and strange situation!",
 	 "The splendor of luxury for true champions! Become the king of toilet victories.",
 	 "Sit comfortably and rule! Evil forces will not pass through this hole...",
@@ -152,15 +154,17 @@ public class HorizontalLayout3D : MonoBehaviour
 			if (chosenObj == YG2.saves.equipedMaterial)
 			{
 				buttonOfEquiping.GetComponent<Image>().color = new Color32(50, 101, 182, 255);
-				buttonOfEquiping.GetComponentInChildren<Text>().text = YG2.saves.langRu ? "Надето" : "equipped";
+				buttonOfEquiping.GetComponentInChildren<Text>().text = GameTexts.Equipped;
 			}
 			else
 			{
 				buttonOfEquiping.GetComponent<Image>().color = new Color32(120, 182, 50, 255);
-				buttonOfEquiping.GetComponentInChildren<Text>().text = YG2.saves.langRu ? "Одеть" : "equip";
+				buttonOfEquiping.GetComponentInChildren<Text>().text = GameTexts.Equip;
 			}
 		}
-		feature.text = YG2.saves.langRu ? features[chosenObj] : featuresEn[chosenObj];
+		feature.text = chosenObj == 0
+			? GameTexts.RedBasinFeature
+			: (YG2.saves.langRu ? features[chosenObj] : featuresEn[chosenObj]);
 	}
 
 	public void BuyForSomething(int id)
@@ -179,7 +183,6 @@ public class HorizontalLayout3D : MonoBehaviour
 		}
 		else if (id == 2)
 		{
-			//проверка ресурсов
 			if (YG2.saves.goldCoins >= costsForCoins[chosenObj])
 			{
 				isBought = true;
@@ -188,10 +191,6 @@ public class HorizontalLayout3D : MonoBehaviour
 			}
 			else
 				MainMenuController.Instance.fart.Play();
-		}
-		else if (id == 3)
-		{
-			isBought = true;
 		}
 		if (isBought)
 			YG2.saves.massiveOfObtaining[chosenObj] = 1;

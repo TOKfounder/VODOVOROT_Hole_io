@@ -18,6 +18,14 @@ public class FallingObject : MonoBehaviour
 
 	public HoleParent CurrentHole { get; set; }
 
+	public static readonly System.Collections.Generic.List<FallingObject> LandmarkObjects =
+		new System.Collections.Generic.List<FallingObject>(256);
+
+	public static void ClearMatchCache()
+	{
+		LandmarkObjects.Clear();
+	}
+
 	protected virtual bool AssignValueFromVolume => true;
 	protected virtual bool CountsTowardMapTotal => true;
 	protected virtual bool ResetsIfNotScored => true;
@@ -58,8 +66,12 @@ public class FallingObject : MonoBehaviour
 		rb.mass = Mathf.Max(0.1f, V3 * 50f);
 		rb.drag = 4;
 		rb.angularDrag = 4;
-		if (CountsTowardMapTotal && GamingManager.Instance != null)
+		if (CountsTowardMapTotal && value > 1 && GamingManager.Instance != null)
+		{
 			GamingManager.Instance.AllValues += value;
+			if (!LandmarkObjects.Contains(this))
+				LandmarkObjects.Add(this);
+		}
 	}
 
 	IEnumerator DelayForUpdateCurrentHole()
@@ -207,21 +219,24 @@ public class FallingObject : MonoBehaviour
 		if (myCoroutine != null) StopCoroutine(myCoroutine);
 	}
 
+	void OnDestroy()
+	{
+		LandmarkObjects.Remove(this);
+	}
+
 	public virtual void OnScored(HoleParent hole)
 	{
-		hole.AddScore(value);
+		int gained = value;
+		hole.AddScore(gained);
+		if (gained > 1 && hole is BlackHoleController)
+			GamingManager.Instance?.AddProgressScore(gained);
 		value = 0;
+		LandmarkObjects.Remove(this);
 
 		rb.isKinematic = true;
 		col.enabled = false;
 		rend.enabled = false;
 		CurrentHole = null;
 		if (myCoroutine != null) StopCoroutine(myCoroutine);
-
-		if (isColon && SpawnerOfHelpers.ColonEnabled && hole is BlackHoleController)
-		{
-			SpawnerOfHelpers spawner = FindAnyObjectByType<SpawnerOfHelpers>();
-			spawner?.TrySpawnHelper(transform);
-		}
 	}
 }

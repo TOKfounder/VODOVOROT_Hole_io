@@ -19,6 +19,11 @@ public class MatchHud : MonoBehaviour
 	private Text statusText;
 	private readonly List<RectTransform> arrows = new List<RectTransform>(MaxArrows);
 	private readonly List<Text> arrowGlyphs = new List<Text>(MaxArrows);
+	private RectTransform minimapRoot;
+	private readonly List<RectTransform> minimapDots = new List<RectTransform>(12);
+	private readonly List<Image> minimapDotImages = new List<Image>(12);
+	private Sprite minimapSprite;
+	private static readonly Color LandmarkArrowColor = new Color(1f, 0.92f, 0.45f, 0.88f);
 
 	public Text TimerText => timerText;
 
@@ -56,6 +61,7 @@ public class MatchHud : MonoBehaviour
 	{
 		UpdateStatus();
 		UpdateArrows();
+		UpdateMinimap();
 	}
 
 	private void Build()
@@ -70,6 +76,8 @@ public class MatchHud : MonoBehaviour
 
 		for (int i = 0; i < MaxArrows; i++)
 			arrows.Add(CreateArrow("TargetArrow_" + i));
+
+		BuildMinimap();
 	}
 
 	private RectTransform CreateArrow(string name)
@@ -140,10 +148,23 @@ public class MatchHud : MonoBehaviour
 
 			int blue = ModeManager.GetTeamScore(ModeManager.TeamBlue);
 			int red = ModeManager.GetTeamScore(ModeManager.TeamRed);
+			int total = Mathf.Max(1, blue + red);
+			int bluePct = Mathf.RoundToInt(100f * blue / total);
+			int redPct = 100 - bluePct;
 			statusText.gameObject.SetActive(true);
 			statusText.text = ru
-				? $"Синие {blue}  /  Красные {red}   Враги: {ModeManager.RemainingTeamEnemies}"
-				: $"Blue {blue}  /  Red {red}   Enemies: {ModeManager.RemainingTeamEnemies}";
+				? $"Синие {bluePct}%  /  Красные {redPct}%"
+				: $"Blue {bluePct}%  /  Red {redPct}%";
+			return;
+		}
+
+		if (ModeManager.currentMode == ModeManager.Mode.TotalCleaning)
+		{
+			int percent = GamingManager.Instance != null
+				? Mathf.RoundToInt(GamingManager.Instance.GetCapturePercent() * 100f)
+				: 0;
+			statusText.gameObject.SetActive(true);
+			statusText.text = ru ? $"Зачистка {percent}%" : $"Clear {percent}%";
 			return;
 		}
 
@@ -179,7 +200,144 @@ public class MatchHud : MonoBehaviour
 			return;
 		}
 
+		if (ModeManager.currentMode == ModeManager.Mode.TotalCleaning)
+		{
+			int shown = PlaceLandmarkArrows();
+			HideUnusedArrows(shown);
+			return;
+		}
+
 		HideUnusedArrows(0);
+	}
+
+	private int PlaceLandmarkArrows()
+	{
+		int shown = 0;
+		int totalFar = 0;
+		List<FallingObject> landmarks = FallingObject.LandmarkObjects;
+		for (int i = 0; i < landmarks.Count; i++)
+		{
+			FallingObject fo = landmarks[i];
+			if (fo != null && fo.value > 1 && IsFarFromPlayer(fo.transform.position))
+				totalFar++;
+		}
+
+		int spreadIndex = 0;
+		for (int i = 0; i < landmarks.Count && shown < MaxArrows; i++)
+		{
+			FallingObject fo = landmarks[i];
+			if (fo == null || fo.value <= 1)
+				continue;
+			if (PlaceArrow(shown, fo.transform, spreadIndex, totalFar, LandmarkArrowColor, 0.85f))
+			{
+				shown++;
+				spreadIndex++;
+			}
+		}
+		return shown;
+	}
+
+	private void BuildMinimap()
+	{
+		minimapSprite = CreateWhiteSprite();
+		GameObject rootGo = new GameObject("Minimap", typeof(RectTransform), typeof(Image));
+		rootGo.transform.SetParent(transform, false);
+		minimapRoot = rootGo.GetComponent<RectTransform>();
+		minimapRoot.anchorMin = new Vector2(1f, 0f);
+		minimapRoot.anchorMax = new Vector2(1f, 0f);
+		minimapRoot.pivot = new Vector2(1f, 0f);
+		minimapRoot.anchoredPosition = new Vector2(-18f, 18f);
+		minimapRoot.sizeDelta = new Vector2(148f, 148f);
+
+		Image bg = rootGo.GetComponent<Image>();
+		bg.sprite = minimapSprite;
+		bg.color = new Color(0.05f, 0.07f, 0.1f, 0.62f);
+		bg.raycastTarget = false;
+
+		for (int i = 0; i < 10; i++)
+		{
+			GameObject dotGo = new GameObject("MinimapDot_" + i, typeof(RectTransform), typeof(Image));
+			dotGo.transform.SetParent(minimapRoot, false);
+			RectTransform rect = dotGo.GetComponent<RectTransform>();
+			rect.sizeDelta = new Vector2(10f, 10f);
+			Image image = dotGo.GetComponent<Image>();
+			image.sprite = minimapSprite;
+			image.raycastTarget = false;
+			dotGo.SetActive(false);
+			minimapDots.Add(rect);
+			minimapDotImages.Add(image);
+		}
+	}
+
+	private void UpdateMinimap()
+	{
+		if (minimapRoot == null || GamingManager.Instance == null)
+			return;
+
+		int used = 0;
+		used = PlaceMinimapDot(used, BlackHoleController.Player != null ? BlackHoleController.Player.transform : null, Color.white, 12f);
+		if (ModeManager.currentMode == ModeManager.Mode.Boss)
+			used = PlaceMinimapDot(used, ModeManager.ActiveBoss != null ? ModeManager.ActiveBoss.transform : null, BossArrowColor, 11f);
+		else if (ModeManager.currentMode == ModeManager.Mode.Hunting)
+			used = PlaceMinimapDots(used, ModeManager.HuntingEnemies, EnemyArrowColor, 9f);
+		else if (ModeManager.currentMode == ModeManager.Mode.TeamMode)
+		{
+			used = PlaceMinimapDots(used, ModeManager.TeamAllies, AllyArrowColor, 9f);
+			used = PlaceMinimapDots(used, ModeManager.TeamEnemies, EnemyArrowColor, 9f);
+		}
+
+		for (int i = used; i < minimapDots.Count; i++)
+		{
+			if (minimapDots[i] != null)
+				minimapDots[i].gameObject.SetActive(false);
+		}
+	}
+
+	private int PlaceMinimapDots(int start, List<EnemyController> list, Color color, float size)
+	{
+		int used = start;
+		for (int i = 0; i < list.Count && used < minimapDots.Count; i++)
+		{
+			EnemyController enemy = list[i];
+			if (enemy == null || enemy.IsConsumed)
+				continue;
+			used = PlaceMinimapDot(used, enemy.transform, color, size);
+		}
+		return used;
+	}
+
+	private int PlaceMinimapDot(int index, Transform target, Color color, float size)
+	{
+		if (index >= minimapDots.Count || target == null || GamingManager.Instance == null)
+			return index;
+
+		RectTransform rect = minimapDots[index];
+		rect.gameObject.SetActive(true);
+		rect.sizeDelta = new Vector2(size, size);
+		rect.anchoredPosition = WorldToMinimap(target.position);
+		if (index < minimapDotImages.Count && minimapDotImages[index] != null)
+			minimapDotImages[index].color = color;
+		return index + 1;
+	}
+
+	private Vector2 WorldToMinimap(Vector3 world)
+	{
+		float minX = GamingManager.Instance.minX;
+		float maxX = GamingManager.Instance.maxX;
+		float minZ = GamingManager.Instance.minZ;
+		float maxZ = GamingManager.Instance.maxZ;
+		float nx = Mathf.InverseLerp(minX, maxX, world.x);
+		float nz = Mathf.InverseLerp(minZ, maxZ, world.z);
+		float half = 64f;
+		return new Vector2((nx - 0.5f) * 2f * half, (nz - 0.5f) * 2f * half);
+	}
+
+	private static Sprite CreateWhiteSprite()
+	{
+		Texture2D tex = new Texture2D(2, 2, TextureFormat.RGBA32, false);
+		tex.SetPixels(new[] { Color.white, Color.white, Color.white, Color.white });
+		tex.Apply();
+		return Sprite.Create(tex, new Rect(0f, 0f, 2f, 2f), new Vector2(0.5f, 0.5f), 2f);
 	}
 
 	private int PlaceListArrows(List<EnemyController> list, int startIndex, Color color, float scale)

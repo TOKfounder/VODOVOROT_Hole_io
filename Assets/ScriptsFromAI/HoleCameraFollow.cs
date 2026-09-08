@@ -3,33 +3,19 @@ using YG;
 
 public class HoleCameraFollow : MonoBehaviour
 {
-	[Header("Mobile")]
-	[SerializeField] private float mobileBaseHeight = 0.99f;
-	[SerializeField] private float mobileBaseBack = 2.6f;
-	[SerializeField] private float mobileHeightPerRadius = 0f;
-	[SerializeField] private float mobileBackPerRadius = 0f;
-	[SerializeField] private float mobileMaxHeight = 12f;
-	[SerializeField] private float mobileMaxBack = 21.5f;
-
-	[Header("Desktop")]
-	[SerializeField] private float desktopBaseHeight = 1.43f;
-	[SerializeField] private float desktopBaseBack = 3.2f;
-	[SerializeField] private float desktopHeightPerRadius = 0f;
-	[SerializeField] private float desktopBackPerRadius = 0f;
-	[SerializeField] private float desktopMaxHeight = 14.7f;
-	[SerializeField] private float desktopMaxBack = 25.5f;
-
-	[Header("Tuning")]
+	[SerializeField] private float pitch = 55.682f;
+	[SerializeField] [Range(4f, 16f)] private float distancePerRadius = 8.2f;
 	[SerializeField] [Range(0.5f, 1.5f)] private float distanceScale = 1f;
-	[SerializeField] private float smoothSpeed = 4f;
-	[SerializeField] private float minHeight = 0.72f;
-	[SerializeField] private float minBack = 2f;
+	[SerializeField] private float smoothSpeed = 6f;
 	[SerializeField] private float punchDuration = 0.12f;
+	[SerializeField] private float lookHeight = 0.05f;
 
 	private HoleParent target;
 	private Transform camTransform;
 	private float punchTimer;
 	private float punchStrength;
+	private Vector3 currentOffset;
+	private bool offsetInitialized;
 	private static HoleCameraFollow instance;
 
 	public static HoleCameraFollow Ensure(HoleParent player)
@@ -52,7 +38,7 @@ public class HoleCameraFollow : MonoBehaviour
 		if (instance == null)
 			return;
 
-		instance.punchStrength = Mathf.Max(instance.punchStrength, strength);
+		instance.punchStrength = Mathf.Max(instance.punchStrength, strength * 0.45f);
 		instance.punchTimer = instance.punchDuration;
 	}
 
@@ -61,6 +47,10 @@ public class HoleCameraFollow : MonoBehaviour
 		target = player;
 		camTransform = transform;
 		instance = this;
+		if (camTransform.parent != null)
+			camTransform.SetParent(null, true);
+		offsetInitialized = false;
+		SnapNow();
 	}
 
 	void OnDestroy()
@@ -71,30 +61,52 @@ public class HoleCameraFollow : MonoBehaviour
 
 	void LateUpdate()
 	{
+		Follow(Time.deltaTime);
+	}
+
+	private void SnapNow()
+	{
+		Follow(1000f);
+	}
+
+	private void Follow(float dt)
+	{
 		if (target == null || camTransform == null)
 			return;
 
-		float radius = Mathf.Max(0.01f, target.GetHoleRadius());
-		bool mobile = YG2.envir.isMobile;
-		float height = mobile ? mobileBaseHeight : desktopBaseHeight;
-		float back = mobile ? mobileBaseBack : desktopBaseBack;
-		height += radius * (mobile ? mobileHeightPerRadius : desktopHeightPerRadius);
-		back += radius * (mobile ? mobileBackPerRadius : desktopBackPerRadius);
-		height = Mathf.Clamp(height, minHeight, mobile ? mobileMaxHeight : desktopMaxHeight);
-		back = Mathf.Clamp(back, minBack, mobile ? mobileMaxBack : desktopMaxBack);
-		height *= distanceScale;
-		back *= distanceScale;
-
+		float radius = Mathf.Max(0.08f, target.GetHoleRadius());
+		float distance = radius * distancePerRadius * distanceScale;
 		if (punchTimer > 0f)
 		{
-			punchTimer -= Time.deltaTime;
+			punchTimer -= dt;
 			float t = Mathf.Clamp01(punchTimer / punchDuration);
-			back += punchStrength * t;
+			distance += punchStrength * t;
 			if (punchTimer <= 0f)
 				punchStrength = 0f;
 		}
 
-		Vector3 desired = new Vector3(0f, height, -back);
-		camTransform.localPosition = Vector3.Lerp(camTransform.localPosition, desired, smoothSpeed * Time.deltaTime);
+		Quaternion rot = Quaternion.Euler(pitch, 0f, 0f);
+		Vector3 look = GetLookPoint();
+		Vector3 desiredOffset = rot * new Vector3(0f, 0f, -distance);
+		if (!offsetInitialized)
+		{
+			currentOffset = desiredOffset;
+			offsetInitialized = true;
+		}
+		else
+		{
+			float blend = 1f - Mathf.Exp(-smoothSpeed * Mathf.Max(0f, dt));
+			currentOffset = Vector3.Lerp(currentOffset, desiredOffset, blend);
+		}
+
+		camTransform.position = look + currentOffset;
+		camTransform.rotation = rot;
+	}
+
+	private Vector3 GetLookPoint()
+	{
+		if (target.hole != null)
+			return target.hole.transform.position + Vector3.up * lookHeight;
+		return target.transform.position + Vector3.up * lookHeight;
 	}
 }

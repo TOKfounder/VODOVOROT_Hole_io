@@ -69,6 +69,7 @@
     <Compile Include="Assets/UsedAssets/Fries and Seagull/City 03/Scene Props/Scripts/Inspector/KiiValuePair.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Other/PlatformEventsYG2.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/InfoYG/BasicSettings.cs" />
+    <Compile Include="Assets/ScriptsFromAI/SkinStats.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/RewardedAdv/Scripts/RewardedAdv_projectSettings.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/InterstitialAdv/Scripts/InterAdv_yandexPlatform.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/RewardedAdv/Scripts/RewardedAdv_info.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="Assets/UsedAssets/Fries and Seagull/City 03/Scene Props/Scripts/RotatableObject.cs" />
     <Compile Include="Assets/PluginYourGames/Example/Scripts/Scenes/AllDemoScenes.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Authorization/Scripts/GetPlayerYG.cs" />
+    <Compile Include="Assets/ScriptsFromAI/MatchPause.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Leaderboards/Scripts/UtilsLB.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Leaderboards/Example/Scripts/LBExample.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Storage/Example/Scripts/SavesDataExample.cs" />
@@ -123,7 +125,6 @@
     <Compile Include="Assets/ScriptsFromAI/HoleFeedback.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/EditorScr/Attributes/NestedYGAttribute.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/InterstitialAdv/Scripts/AdNotification/AdNotificationYG.cs" />
-    <Compile Include="Assets/ScriptsFromAI/HelperController.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Flags/Scripts/Flags_yndexPlatform.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Other/ImageLoadYG.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Other/AdvCallingSimulation.cs" />
@@ -184,6 +185,7 @@
     <Compile Include="Assets/ScriptsFromAI/GamingManager.cs" />
     <Compile Include="Assets/UsedAssets/Fries and Seagull/City 03/Scene Props/Scripts/Inspector/KeyValuePairPropertyDrawer.cs" />
     <Compile Include="Assets/UsedAssets/Fries and Seagull/City 03/Scene Props/Scripts/Setup/SetupScriptBRP.cs" />
+    <Compile Include="Assets/ScriptsFromAI/GameTexts.cs" />
     <Compile Include="Assets/PluginYourGames/Example/Scripts/BasicData.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Payments/Scripts/ConsumePurchasesYG.cs" />
     <Compile Include="Assets/ScriptsFromAI/SavesYG.cs" />
@@ -216,7 +218,6 @@
     <Compile Include="Assets/ScriptsFromAI/MainMenuController.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Localization/Example/Scripts/LanguageExample.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Leaderboards/Scripts/LB_yandexPlatform.cs" />
-    <Compile Include="Assets/ScriptsFromAI/SpawnerOfHelpers.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/InterstitialAdv/Scripts/TimerBeforeAds/TimerBeforeAdsYG.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/EnvirData/Example/Scripts/GetEnvirData.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Utils/JsonYG.cs" />

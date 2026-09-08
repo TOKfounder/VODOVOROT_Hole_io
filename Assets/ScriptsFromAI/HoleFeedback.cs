@@ -47,6 +47,8 @@ public class HoleFeedback : MonoBehaviour
 	private bool ownsSphereMesh;
 	private bool matchEnded;
 	private bool ygPaused;
+	private float nextGulpTime;
+	[SerializeField] private float gulpBatchInterval = 0.2f;
 
 	private struct Ribbon
 	{
@@ -164,10 +166,15 @@ public class HoleFeedback : MonoBehaviour
 
 	public void PlayGulp()
 	{
+		if (Time.unscaledTime < nextGulpTime)
+			return;
+		nextGulpTime = Time.unscaledTime + gulpBatchInterval;
+
 		float radius = GetEffectRadius();
+		float vfx = SkinStats.VfxMultiplier;
 		Vector3 pos = GetHoleWorldPos();
-		EmitBurst(gulp, 24, pos, InkVoid, radius * 0.15f, 1.6f);
-		EmitBurst(gulp, 16, pos, AbyssMist, radius * 0.1f, 2.1f);
+		EmitBurst(gulp, Mathf.RoundToInt(24 * vfx), pos, InkVoid, radius * 0.15f, 1.6f);
+		EmitBurst(gulp, Mathf.RoundToInt(16 * vfx), pos, AbyssMist, radius * 0.1f, 2.1f);
 		HoleCameraFollow.Punch(0.28f);
 		AudioManager.PlayGulp();
 	}
@@ -308,6 +315,8 @@ public class HoleFeedback : MonoBehaviour
 		Vector3 center = GetHoleWorldPos() + Vector3.up * 0.08f;
 		float outer = GetEffectRadius() * ribbonOuterMul;
 		float dt = Time.deltaTime;
+		int falling = target != null && target.nearbyFallingObjects != null ? target.nearbyFallingObjects.Count : 0;
+		float intensity = (falling > 0 ? 1.65f : 1f) * SkinStats.VfxMultiplier;
 
 		for (int i = 0; i < ribbons.Count; i++)
 		{
@@ -315,8 +324,8 @@ public class HoleFeedback : MonoBehaviour
 			if (ribbon.transform == null)
 				continue;
 
-			ribbon.angle += ribbonOrbitSpeed * dt * (i % 2 == 0 ? 1f : -1f);
-			ribbon.radiusNorm -= (ribbonInwardSpeed / Mathf.Max(0.35f, outer)) * dt;
+			ribbon.angle += ribbonOrbitSpeed * intensity * dt * (i % 2 == 0 ? 1f : -1f);
+			ribbon.radiusNorm -= (ribbonInwardSpeed * intensity / Mathf.Max(0.35f, outer)) * dt;
 			if (ribbon.radiusNorm <= ribbonRespawnRadius)
 			{
 				ribbon.radiusNorm = 1f;

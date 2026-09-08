@@ -4,9 +4,10 @@ using YG;
 
 public class EnemyController : HoleParent
 {
-	private int bossScore = 1779;
+	private int bossScore = 163;
 	public static int count;
 	private bool absorptionHandled;
+	private EnemyMovement cachedMovement;
 
 	[SerializeField] private float sinkDuration = 0.65f;
 	[SerializeField] private float sinkDepth = 1.5f;
@@ -15,14 +16,46 @@ public class EnemyController : HoleParent
 	{
 		base.Start();
 		holeType = TypeOfHole.enemy;
+		cachedMovement = GetComponentInChildren<EnemyMovement>();
 		if (ModeManager.currentMode == ModeManager.Mode.Boss)
 		{
-			score = bossScore;
+			score = ScoreRequiredForLevel(2);
+			if (score <= 0)
+				score = bossScore;
 			RefreshSizeFromScore();
 		}
 		count += 1;
 		if (!NickAssigned)
 			ApplyDefaultNick();
+	}
+
+	protected override void FixedUpdate()
+	{
+		base.FixedUpdate();
+		TryAbsorbPlayer();
+	}
+
+	private void TryAbsorbPlayer()
+	{
+		if (IsConsumed)
+			return;
+
+		BlackHoleController player = BlackHoleController.Player;
+		if (player == null || player.IsConsumed)
+			return;
+
+		if (ModeManager.currentMode == ModeManager.Mode.TeamMode)
+			return;
+
+		if (ModeManager.currentMode == ModeManager.Mode.Boss
+			&& cachedMovement != null
+			&& !cachedMovement.BossMayAbsorbPlayer)
+			return;
+
+		if (!CanAbsorbOtherHole(player) || !IsOtherHoleFullyInside(player))
+			return;
+
+		player.Eliminate();
 	}
 
 	private void ApplyDefaultNick()
@@ -45,7 +78,9 @@ public class EnemyController : HoleParent
 		absorptionHandled = true;
 		MarkConsumed();
 
-		EnemyMovement movement = GetComponentInChildren<EnemyMovement>();
+		EnemyMovement movement = cachedMovement;
+		if (movement == null)
+			movement = GetComponentInChildren<EnemyMovement>();
 		if (movement != null)
 			movement.enabled = false;
 

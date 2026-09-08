@@ -41,6 +41,7 @@ public class GamingManager : MonoBehaviour
 
 	[Header("Boss Mode")]
 	[SerializeField] private float bossModeDuration = 300f;
+	[SerializeField] private float bossOvertimeDuration = 20f;
 
 	[Header("Hunting")]
 	[SerializeField] private float huntingModeDuration = 180f;
@@ -67,11 +68,19 @@ public class GamingManager : MonoBehaviour
 	private bool isHuntingMode;
 	private bool isTeamMode;
 	private bool bossDefeated;
+	private bool bossTimeoutWin;
 	private bool huntingComplete;
 	private bool teamVictory;
 	private bool playerEliminated;
+	private bool bossOvertimeArmed;
+	private float bossEndTime;
+	private int progressScore;
 
 	public bool TeamDraw { get; private set; }
+	public bool BossDraw { get; private set; }
+	public bool HasEnded => endSequenceStarted || endPanelRaised;
+	public bool BossTimeoutWin => bossTimeoutWin;
+	public int ProgressScore => progressScore;
 
 	public bool HasRewardBeenApplied => rewardApplied;
 	public bool BossDefeated => bossDefeated;
@@ -80,7 +89,7 @@ public class GamingManager : MonoBehaviour
 	public bool PlayerEliminated => playerEliminated;
 	public bool IsTotalCleaningMode => isTotalCleaningMode;
 	public float RemainingTime => Mathf.Max(0f, totalCleaningDuration - timer);
-	public float RemainingBossTime => Mathf.Max(0f, bossModeDuration - timer);
+	public float RemainingBossTime => Mathf.Max(0f, bossEndTime - timer);
 	public float RemainingHuntingTime => Mathf.Max(0f, huntingModeDuration - timer);
 	public float RemainingTeamTime => Mathf.Max(0f, teamModeDuration - timer);
 
@@ -94,6 +103,8 @@ public class GamingManager : MonoBehaviour
 	void Awake()
 	{
 		Instance = this;
+		AllValues = 0;
+		progressScore = 0;
 		ResetMatchState();
 
 		if (walls != null && walls.Length >= 4)
@@ -123,17 +134,27 @@ public class GamingManager : MonoBehaviour
 		endSequenceStarted = false;
 		endPanelRaised = false;
 		bossDefeated = false;
+		bossTimeoutWin = false;
+		BossDraw = false;
 		huntingComplete = false;
 		teamVictory = false;
 		playerEliminated = false;
 		TeamDraw = false;
+		bossOvertimeArmed = false;
+		bossEndTime = bossModeDuration;
+		progressScore = 0;
+		AllValues = 0;
 		isTotalCleaningMode = ModeManager.currentMode == ModeManager.Mode.TotalCleaning;
 		isHuntingMode = ModeManager.currentMode == ModeManager.Mode.Hunting;
 		isTeamMode = ModeManager.currentMode == ModeManager.Mode.TeamMode;
 
+		MatchPause.ForceReset();
+		ActiveCanvas.ApplyUiFontEverywhere();
 		ScorePopupZone.EnsureZone(ActiveCanvas.Get());
-		if (IsBossMode || isHuntingMode || isTeamMode)
-			MatchHud.Ensure();
+		MatchHud.Ensure();
+		SettingsPauseHook.IgnoreEnable = true;
+		HookSettingsPause();
+		SettingsPauseHook.IgnoreEnable = false;
 
 		bool showCaptureBar = isTotalCleaningMode;
 		if (Mflazhok != null)
@@ -168,6 +189,30 @@ public class GamingManager : MonoBehaviour
 		StartCoroutine(UpdateFlag());
 	}
 
+	private void HookSettingsPause()
+	{
+		Canvas canvas = ActiveCanvas.Get();
+		if (canvas == null)
+			return;
+
+		Transform[] transforms = canvas.GetComponentsInChildren<Transform>(true);
+		for (int i = 0; i < transforms.Length; i++)
+		{
+			Transform t = transforms[i];
+			if (t == null || t.name != "Settings")
+				continue;
+			if (t.GetComponent<SettingsPauseHook>() == null)
+				t.gameObject.AddComponent<SettingsPauseHook>();
+		}
+	}
+
+	public void AddProgressScore(int amount)
+	{
+		if (amount <= 0)
+			return;
+		progressScore += amount;
+	}
+
 	public void HandleTimer(bool b) => timerGo = b;
 
 	IEnumerator UpdateFlag()
@@ -185,11 +230,13 @@ public class GamingManager : MonoBehaviour
 		if (timerGo)
 			timer += Time.fixedDeltaTime;
 
+		UpdateBossClock();
+
 		bool shouldEnd = once && (
 			(isTotalCleaningMode && (
 				GetCapturePercent() >= 1f
 				|| timer >= totalCleaningDuration - 0.01f))
-			|| (IsBossMode && timer >= bossModeDuration - 0.01f)
+			|| (IsBossMode && timer >= bossEndTime - 0.01f)
 			|| (isHuntingMode && timer >= huntingModeDuration - 0.01f)
 			|| (isTeamMode && timer >= teamModeDuration - 0.01f)
 		);
@@ -198,6 +245,8 @@ public class GamingManager : MonoBehaviour
 		{
 			if (isTeamMode)
 				ResolveTeamTimeout();
+			if (IsBossMode && !bossDefeated)
+				ResolveBossTimeout();
 			once = false;
 			ShowEndPanel();
 		}
@@ -327,7 +376,7 @@ public class GamingManager : MonoBehaviour
 
 	public void OnPlayerEliminated()
 	{
-		if (playerEliminated || teamVictory || ModeManager.currentMode != ModeManager.Mode.TeamMode)
+		if (playerEliminated)
 			return;
 
 		playerEliminated = true;
@@ -360,6 +409,7 @@ public class GamingManager : MonoBehaviour
 
 	private void ShowEndPanel()
 	{
+		MatchPause.ForceReset();
 		HoleFeedback.ForPlayer?.SetMatchActive(false);
 		MatchHud hud = FindAnyObjectByType<MatchHud>();
 		if (hud != null)
@@ -396,17 +446,49 @@ public class GamingManager : MonoBehaviour
 			: HoleParent.totalScore;
 	}
 
+	private void UpdateBossClock()
+	{
+		if (!IsBossMode || bossDefeated || bossOvertimeArmed || timer < bossModeDuration - 0.01f)
+			return;
+
+		bossOvertimeArmed = true;
+		if (CanStartBossOvertime())
+			bossEndTime = bossModeDuration + bossOvertimeDuration;
+		else
+			bossEndTime = timer;
+	}
+
+	private bool CanStartBossOvertime()
+	{
+		HoleParent player = BlackHoleController.Player;
+		EnemyController boss = ModeManager.ActiveBoss;
+		if (player == null || player.IsConsumed || boss == null || boss.IsConsumed)
+			return false;
+		return player.currentLevel >= boss.currentLevel;
+	}
+
+	private void ResolveBossTimeout()
+	{
+		if (bossDefeated || bossTimeoutWin || BossDraw)
+			return;
+
+		int playerScore = GetPlayerScore();
+		int bossScore = ModeManager.ActiveBoss != null && !ModeManager.ActiveBoss.IsConsumed
+			? ModeManager.ActiveBoss.score
+			: 0;
+		if (playerScore > bossScore)
+			bossTimeoutWin = true;
+		else if (playerScore == bossScore)
+			BossDraw = true;
+	}
+
 	public float GetCapturePercent()
 	{
-		// Балансный запас: ~15 очков «недостижимого» хвоста, чтобы 100% было достижимо раньше last object
-		const int ProgressSlack = 15;
-		if (AllValues <= ProgressSlack)
+		if (AllValues <= 0)
 			return 0f;
-
-		int score = GetPlayerScore();
-		if (score <= 0)
+		if (progressScore <= 0)
 			return 0f;
-		return Mathf.Clamp01((float)score / (AllValues - ProgressSlack));
+		return Mathf.Clamp01((float)progressScore / AllValues);
 	}
 
 	public MatchRewardData GetClassicReward(float progress)
@@ -417,59 +499,70 @@ public class GamingManager : MonoBehaviour
 			return GetTotalCleaningReward(progress);
 
 		if (isHuntingMode)
-		{
-			if (huntingComplete)
-				return GetTotalCleaningReward(1f);
-			return GetPartialDefeatReward(GetMatchProgress());
-		}
+			return GetHuntingReward();
 
 		if (isTeamMode)
 		{
+			if (playerEliminated)
+				return GetPartialDefeatReward(0f);
 			if (teamVictory)
 				return GetTotalCleaningReward(1f);
+			if (TeamDraw)
+				return GetPartialDefeatReward(0.5f);
 			return GetPartialDefeatReward(GetMatchProgress());
 		}
 
 		if (IsBossMode)
 		{
-			if (bossDefeated)
-				return GetClassicRewardForBossWin();
+			if (playerEliminated)
+				return GetPartialDefeatReward(0f);
+			if (bossDefeated || bossTimeoutWin)
+				return GetBossWinReward();
+			if (BossDraw)
+				return GetPartialDefeatReward(0.5f);
 			return GetPartialDefeatReward(0f);
 		}
 
 		return GetPartialDefeatReward(progress);
 	}
 
-	private MatchRewardData GetClassicRewardForBossWin()
+	private MatchRewardData GetBossWinReward()
 	{
-		if (timer <= 360f)
+		int leftover = Mathf.RoundToInt(RemainingBossTime / 20f);
+		return new MatchRewardData
+		{
+			exp = 50,
+			coins = 25 + leftover,
+			diamonds = 5,
+			resultSpriteIndex = leftover >= 8 ? 0 : leftover >= 3 ? 1 : 2
+		};
+	}
+
+	private MatchRewardData GetHuntingReward()
+	{
+		if (playerEliminated)
+			return GetPartialDefeatReward(0f);
+
+		int spawned = Mathf.Max(1, ModeManager.HuntingSpawned);
+		int killed = Mathf.Clamp(spawned - ModeManager.RemainingHunters, 0, spawned);
+		if (huntingComplete || killed >= spawned)
 		{
 			return new MatchRewardData
 			{
-				exp = 50,
-				coins = 30,
-				diamonds = 5,
+				exp = 60,
+				coins = 40,
+				diamonds = 8,
 				resultSpriteIndex = 0
 			};
 		}
 
-		if (timer <= 600f)
-		{
-			return new MatchRewardData
-			{
-				exp = 50,
-				coins = 20,
-				diamonds = 4,
-				resultSpriteIndex = 1
-			};
-		}
-
+		float progress = killed / (float)spawned;
 		return new MatchRewardData
 		{
-			exp = 50,
-			coins = 15,
-			diamonds = 3,
-			resultSpriteIndex = 2
+			exp = Mathf.Max(8, Mathf.RoundToInt(50f * progress)),
+			coins = Mathf.Max(5, Mathf.RoundToInt(30f * progress)),
+			diamonds = Mathf.Max(1, Mathf.RoundToInt(6f * progress)),
+			resultSpriteIndex = progress >= 0.7f ? 1 : -1
 		};
 	}
 
@@ -532,8 +625,13 @@ public class GamingManager : MonoBehaviour
 		float progress = 0f;
 		if (isTotalCleaningMode)
 			progress = GetCapturePercent();
-		if (ModeManager.currentMode == ModeManager.Mode.Boss && bossDefeated)
-			progress = 1f;
+		if (ModeManager.currentMode == ModeManager.Mode.Boss)
+		{
+			if (bossDefeated || bossTimeoutWin)
+				progress = 1f;
+			else if (BossDraw)
+				progress = 0.5f;
+		}
 		if (ModeManager.currentMode == ModeManager.Mode.Hunting)
 		{
 			if (huntingComplete)
@@ -543,10 +641,17 @@ public class GamingManager : MonoBehaviour
 		}
 		if (ModeManager.currentMode == ModeManager.Mode.TeamMode)
 		{
-			if (teamVictory)
+			if (playerEliminated)
+				progress = 0f;
+			else if (teamVictory)
 				progress = 1f;
-			else if (playerEliminated || ModeManager.TeamEnemySpawned > 0)
-				progress = 1f - ModeManager.RemainingTeamEnemies / (float)Mathf.Max(1, ModeManager.TeamEnemySpawned);
+			else
+			{
+				int blue = ModeManager.GetTeamScore(ModeManager.TeamBlue);
+				int red = ModeManager.GetTeamScore(ModeManager.TeamRed);
+				int total = blue + red;
+				progress = total > 0 ? blue / (float)total : 0.5f;
+			}
 		}
 		return Mathf.Clamp01(progress);
 	}
@@ -616,9 +721,9 @@ public class GamingManager : MonoBehaviour
 	public void UpdateUI()
 	{
 		if (BoostText != null)
-			BoostText.text = YG2.saves.langRu ? "Буст Скорости" : "Speed Boost";
+			BoostText.text = GameTexts.SpeedBoost;
 		if (DBoostText != null)
-			DBoostText.text = YG2.saves.langRu ? "Буст Скорости" : "Speed Boost";
+			DBoostText.text = GameTexts.SpeedBoost;
 
 		SetSettingsTexts(MobilePanelOfSettings);
 		SetSettingsTexts(DesktopPanelOfSettings);
@@ -629,23 +734,122 @@ public class GamingManager : MonoBehaviour
 	private void SetSettingsTexts(Text[] panel)
 	{
 		if (panel == null || panel.Length < 5) return;
-		bool ru = YG2.saves.langRu;
-		if (panel[0] != null) panel[0].text = ru ? "Настройки" : "Settings";
-		if (panel[1] != null) panel[1].text = ru ? "Язык" : "Language";
-		if (panel[2] != null) panel[2].text = ru ? "Звуки" : "Sounds";
-		if (panel[3] != null) panel[3].text = ru ? "Музыка" : "Music";
-		if (panel[4] != null) panel[4].text = ru ? "Завершить игру" : "End the game";
+		if (panel[0] != null) panel[0].text = GameTexts.Settings;
+		if (panel[1] != null) panel[1].text = GameTexts.Language;
+		if (panel[2] != null) panel[2].text = GameTexts.Sounds;
+		if (panel[3] != null) panel[3].text = GameTexts.Music;
+		if (panel[4] != null) panel[4].text = GameTexts.EndTheGame;
 	}
 
 	private void SetEndPanelTexts(Text[] panel)
 	{
 		if (panel == null || panel.Length < 6) return;
-		bool ru = YG2.saves.langRu;
-		if (panel[0] != null) panel[0].text = ru ? "Опыт:" : "Experience:";
-		if (panel[1] != null) panel[1].text = ru ? "Итог" : "Result";
-		if (panel[2] != null) panel[2].text = ru ? "Монеты:" : "Coins:";
-		if (panel[3] != null) panel[3].text = ru ? "Бриллианты:" : "Brilliants:";
-		if (panel[4] != null) panel[4].text = ru ? "Продолжить" : "Continue";
-		if (panel[5] != null) panel[5].text = ru ? "x3 Монеты\n(короткая реклама)" : "x3 Coins\n(short ad)";
+		if (panel[0] != null) panel[0].text = GameTexts.Experience;
+		if (panel[1] != null) panel[1].text = GameTexts.Result;
+		if (panel[2] != null) panel[2].text = GameTexts.Coins;
+		if (panel[3] != null) panel[3].text = GameTexts.Diamonds;
+		if (panel[4] != null) panel[4].text = GameTexts.Continue;
+		if (panel[5] != null) panel[5].text = GameTexts.X3Coins;
+	}
+
+	public void GetEndVerdict(out string title, out string reason, out Color color)
+	{
+		title = GameTexts.Defeat;
+		reason = "";
+		color = new Color(1f, 0.35f, 0.3f, 1f);
+
+		if (playerEliminated)
+		{
+			reason = GameTexts.ReasonEaten;
+			return;
+		}
+
+		if (isTotalCleaningMode)
+		{
+			int percent = Mathf.RoundToInt(GetCapturePercent() * 100f);
+			if (percent >= 100)
+			{
+				title = GameTexts.Victory;
+				reason = GameTexts.ReasonCleaningDone;
+				color = new Color(0.35f, 0.9f, 0.4f, 1f);
+			}
+			else
+			{
+				reason = GameTexts.ReasonCleaningTimeout(percent);
+			}
+			return;
+		}
+
+		if (IsBossMode)
+		{
+			if (bossDefeated)
+			{
+				title = GameTexts.Victory;
+				reason = GameTexts.ReasonBossAbsorbed;
+				color = new Color(0.35f, 0.9f, 0.4f, 1f);
+			}
+			else if (bossTimeoutWin)
+			{
+				title = GameTexts.Victory;
+				reason = GameTexts.ReasonBiggerWin;
+				color = new Color(0.35f, 0.9f, 0.4f, 1f);
+			}
+			else if (BossDraw)
+			{
+				title = GameTexts.Draw;
+				reason = GameTexts.ReasonBossDraw;
+				color = new Color(1f, 0.85f, 0.3f, 1f);
+			}
+			else
+			{
+				reason = GameTexts.ReasonBiggerLoss;
+			}
+			return;
+		}
+
+		if (isHuntingMode)
+		{
+			int spawned = Mathf.Max(0, ModeManager.HuntingSpawned);
+			int killed = Mathf.Clamp(spawned - ModeManager.RemainingHunters, 0, spawned);
+			if (huntingComplete || (spawned > 0 && killed >= spawned))
+			{
+				title = GameTexts.Victory;
+				reason = GameTexts.ReasonHuntingJackpot;
+				color = new Color(0.35f, 0.9f, 0.4f, 1f);
+			}
+			else if (killed > 0)
+			{
+				title = GameTexts.Result;
+				reason = GameTexts.ReasonHuntingKills(killed, spawned);
+				color = new Color(1f, 0.85f, 0.3f, 1f);
+			}
+			else
+			{
+				reason = GameTexts.ReasonHuntingKills(killed, spawned);
+			}
+			return;
+		}
+
+		if (isTeamMode)
+		{
+			if (teamVictory)
+			{
+				title = GameTexts.Victory;
+				reason = ModeManager.RemainingTeamEnemies == 0
+					? GameTexts.ReasonEnemiesCleared
+					: GameTexts.ReasonTeamWin;
+				color = new Color(0.35f, 0.9f, 0.4f, 1f);
+			}
+			else if (TeamDraw)
+			{
+				title = GameTexts.Draw;
+				reason = GameTexts.ReasonTeamDraw;
+				color = new Color(1f, 0.85f, 0.3f, 1f);
+			}
+			else
+			{
+				reason = GameTexts.ReasonTeamLose;
+			}
+		}
 	}
 }

@@ -9,14 +9,36 @@ public class EnemyMovement : MonoBehaviour
 	public float searchInterval = 0.5f;
 	public LayerMask fallableObjects;
 
+	private const float BossFarmSeconds = 30f;
+	private const float BossProbeSeconds = 120f;
+	private const float BossSpeedMul = 0.56f;
+	private const float EnemySpeedMul = 0.25f;
+
 	private Transform currentTarget;
-	private float[] levelSpeeds = {6f, 6.89f, 7.78f, 8.67f, 9.56f, 10.44f, 13.83f, 15.22f, 20f, 25f};
+	private float[] levelSpeeds = { 6f, 6.89f, 7.78f, 8.67f, 9.56f, 10.44f, 13.83f, 15.22f, 20f, 25f, 28f };
 	private Rigidbody rb;
 	private float stuckTimer;
 	private Transform ignoredTarget;
 	private float ignoreCooldown;
-
+	private bool fleeFromTarget;
 	private EnemyController enemyController;
+
+	public bool BossMayAbsorbPlayer
+	{
+		get
+		{
+			if (ModeManager.currentMode != ModeManager.Mode.Boss)
+				return true;
+			return GetBossPhase() != BossPhase.Farm;
+		}
+	}
+
+	private enum BossPhase
+	{
+		Farm,
+		Probe,
+		Hunt
+	}
 
 	void Start()
 	{
@@ -38,7 +60,7 @@ public class EnemyMovement : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		if (enemyController == null)
+		if (enemyController == null || MatchPause.IsPaused)
 			return;
 
 		if (!IsCurrentTargetValid())
@@ -65,16 +87,17 @@ public class EnemyMovement : MonoBehaviour
 		if (enemyController == null)
 			return;
 
-		Transform holeTarget = FindClosestOpponentHole();
-		if (holeTarget != null)
-		{
-			SetTarget(holeTarget);
+		fleeFromTarget = false;
+
+		if (TrySetModeTarget())
 			return;
-		}
 
 		Collider[] hitColliders = Physics.OverlapSphere(transform.position, detectionRadius, fallableObjects);
 		if (hitColliders.Length == 0)
+		{
+			SetTarget(null);
 			return;
+		}
 
 		float closestDist = Mathf.Infinity;
 		Transform bestTarget = null;
@@ -98,11 +121,62 @@ public class EnemyMovement : MonoBehaviour
 		SetTarget(bestTarget);
 	}
 
+	private bool TrySetModeTarget()
+	{
+		if (ModeManager.currentMode == ModeManager.Mode.TeamMode)
+		{
+			Transform holeTarget = FindClosestOpponentHole();
+			if (holeTarget != null)
+			{
+				SetTarget(holeTarget);
+				return true;
+			}
+			return false;
+		}
+
+		BlackHoleController player = BlackHoleController.Player;
+		if (player == null || player.IsConsumed)
+			return false;
+
+		if (ModeManager.currentMode == ModeManager.Mode.Boss && IsThisBoss())
+		{
+			BossPhase phase = GetBossPhase();
+			if (phase == BossPhase.Farm)
+				return false;
+
+			SetTarget(player.transform);
+			return true;
+		}
+
+		if (ModeManager.currentMode == ModeManager.Mode.Hunting)
+		{
+			bool playerIsBigger = player.currentLevel > enemyController.currentLevel
+				|| (player.currentLevel == enemyController.currentLevel && player.score >= enemyController.score);
+			SetTarget(player.transform);
+			fleeFromTarget = playerIsBigger;
+			return true;
+		}
+
+		return false;
+	}
+
+	private bool IsThisBoss()
+	{
+		return ModeManager.ActiveBoss == enemyController;
+	}
+
+	private static BossPhase GetBossPhase()
+	{
+		float timer = GamingManager.Instance != null ? GamingManager.Instance.timer : 0f;
+		if (timer < BossFarmSeconds)
+			return BossPhase.Farm;
+		if (timer < BossFarmSeconds + BossProbeSeconds)
+			return BossPhase.Probe;
+		return BossPhase.Hunt;
+	}
+
 	private Transform FindClosestOpponentHole()
 	{
-		if (ModeManager.currentMode != ModeManager.Mode.TeamMode)
-			return null;
-
 		float closestDist = Mathf.Infinity;
 		Transform bestTarget = null;
 		for (int i = 0; i < HoleParent.holeList.Count; i++)
@@ -146,6 +220,9 @@ public class EnemyMovement : MonoBehaviour
 
 		Vector3 dir = currentTarget.position - transform.position;
 		dir.y = 0;
+		if (fleeFromTarget)
+			dir = -dir;
+
 		HoleParent holeTarget = currentTarget.GetComponentInParent<HoleParent>();
 		if (holeTarget == null && dir.magnitude < transform.localScale.x * 0.5f)
 		{
@@ -162,11 +239,7 @@ public class EnemyMovement : MonoBehaviour
 		withoutCamera.transform.rotation = Quaternion.Slerp(withoutCamera.transform.rotation,
 			targetRotation, rotationSpeed * Time.fixedDeltaTime);
 
-		int level = enemyController.currentLevel;
-		float speed = (level >= 0 && level < levelSpeeds.Length) ? levelSpeeds[level] : levelSpeeds[^1];
-		Vector3 newPosition = rb.position + moveDir * speed * 0.25f * Time.fixedDeltaTime;
-		ClampToBounds(ref newPosition);
-		rb.MovePosition(newPosition);
+		ApplyMove(moveDir);
 	}
 
 	void SmallWander()
@@ -174,9 +247,15 @@ public class EnemyMovement : MonoBehaviour
 		if (withoutCamera == null)
 			return;
 
+		ApplyMove(withoutCamera.transform.forward);
+	}
+
+	void ApplyMove(Vector3 moveDir)
+	{
 		int level = enemyController.currentLevel;
 		float speed = (level >= 0 && level < levelSpeeds.Length) ? levelSpeeds[level] : levelSpeeds[^1];
-		Vector3 newPosition = rb.position + withoutCamera.transform.forward * speed * 0.25f * Time.fixedDeltaTime;
+		float mul = IsThisBoss() ? BossSpeedMul : EnemySpeedMul;
+		Vector3 newPosition = rb.position + moveDir * speed * mul * Time.fixedDeltaTime;
 		ClampToBounds(ref newPosition);
 		rb.MovePosition(newPosition);
 	}
@@ -212,8 +291,13 @@ public class EnemyMovement : MonoBehaviour
 		if (holeTarget == null)
 			return true;
 
-		return !holeTarget.IsConsumed
-			&& enemyController.IsOpponent(holeTarget)
+		if (holeTarget.IsConsumed)
+			return false;
+
+		if (holeTarget is BlackHoleController)
+			return true;
+
+		return enemyController.IsOpponent(holeTarget)
 			&& enemyController.CanAbsorbOtherHole(holeTarget);
 	}
 

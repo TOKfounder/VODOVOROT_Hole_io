@@ -22,6 +22,8 @@ public class BlackHoleController : HoleParent
 		base.OnDestroy();
 	}
 
+	protected override bool UseBirthIntro => true;
+
 	public override void Start()
 	{
 		base.Start();
@@ -31,10 +33,9 @@ public class BlackHoleController : HoleParent
 		if (nickname == null)
 			return;
 
-		if (!string.IsNullOrEmpty(YG2.saves.nickName))
-			nickname.text = YG2.saves.nickName;
-		else
-			nickname.text = YG2.saves.langRu ? "Легенда" : "Legend";
+		nickname.text = string.IsNullOrEmpty(YG2.saves.nickName)
+			? GameTexts.LegendNick
+			: YG2.saves.nickName;
 	}
 
 	protected override void FixedUpdate()
@@ -99,7 +100,7 @@ public class BlackHoleController : HoleParent
 			return;
 
 		enemy.MarkConsumed();
-		AudioManager.PlayAbsorb();
+		HoleFeedback.ForPlayer?.PlayAbsorb(PointsScript.GoldPopup);
 		enemy.OnAbsorbedByPlayer(this);
 	}
 }

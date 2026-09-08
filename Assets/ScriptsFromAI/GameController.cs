@@ -60,14 +60,13 @@ public class GameController : MonoBehaviour
 
 	void Start()
 	{
-		if (SceneManager.GetActiveScene().buildIndex == 0 && !YG2.saves.isGaming)
+		if (SceneManager.GetActiveScene().buildIndex == 0 && !YG2.saves.isGaming && YG2.saves.isFirst)
 			YG2.InterstitialAdvShow();
 		Time.timeScale = 1f;
 		if (YG2.saves.isFirst)
 		{
 			YG2.saves.soundValue = 0.5f;
 			YG2.saves.musicValue = 0.5f;
-			YG2.saves.langRu = true;
 			YG2.saves.score = 0;
 			YG2.saves.equipedMaterial = 0;
 			YG2.saves.massiveOfObtaining = new int[] { 1, 0, 0, 0, 0 };
@@ -78,6 +77,14 @@ public class GameController : MonoBehaviour
 			YG2.saves.chosenMode = 0;
 			YG2.saves.diamonds = 3;
 			YG2.saves.selectedMapID = 0;
+			YG2.saves.rewardedHandLeft = 2;
+			YG2.saves.rewardedBagLeft = 5;
+			YG2.saves.rewardedBoxLeft = 10;
+			if (string.IsNullOrEmpty(YG2.saves.nickName))
+			{
+				YG2.saves.nickName = GameTexts.LegendNick;
+				YG2.saves.isNickGiven = true;
+			}
 			YG2.GetLeaderboard("BestPlayers");
 			YG2.SetLeaderboard("BestPlayers", YG2.saves.exp);
 		}
@@ -142,6 +149,8 @@ public class GameController : MonoBehaviour
 	{
 		YG2.saves.isGaming = false;
 		YG2.SaveProgress();
+		if (!YG2.nowAdsShow)
+			YG2.InterstitialAdvShow();
 		SceneManager.LoadScene(0);
 	}
 
@@ -193,27 +202,6 @@ public class GameController : MonoBehaviour
 
 	public void UpdateAllUI()
 	{
-		if (LanguageManager.Instance != null)
-		{
-			if (LanguageManager.Instance.Adecvat)
-			{
-				YG2.SwitchLanguage(YG2.envir.language);
-				YG2.saves.langRu = YG2.envir.language == "ru" ? true : false;
-			}
-			else
-			{
-				YG2.SwitchLanguage(YG2.envir.language == "ru" ? "en" : "ru");
-				YG2.saves.langRu = YG2.envir.language == "ru" ? false : true;
-			}
-
-			if (LanguageManager.Instance.Mimage != null)
-				LanguageManager.Instance.Mimage.sprite = YG2.saves.langRu ?
-					LanguageManager.Instance.isRus : LanguageManager.Instance.isEng;
-			if (LanguageManager.Instance.Dimage != null)
-				LanguageManager.Instance.Dimage.sprite = YG2.saves.langRu ?
-					LanguageManager.Instance.isRus : LanguageManager.Instance.isEng;
-		}
-
 		if (!YG2.saves.isGaming)
 		{
 			if (MainMenuController.Instance != null)

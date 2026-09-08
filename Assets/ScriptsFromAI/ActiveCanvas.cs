@@ -17,12 +17,51 @@ public static class ActiveCanvas
 		if (cachedFont != null)
 			return cachedFont;
 
+		cachedFont = FindLoadedFont("Comic Sans");
+		if (cachedFont != null)
+			return cachedFont;
+
 		cachedFont = FindSceneFont("Comic Sans");
 		if (cachedFont != null)
 			return cachedFont;
 
+		Font osFont = Font.CreateDynamicFontFromOSFont("Comic Sans MS", 28);
+		if (osFont != null)
+		{
+			cachedFont = osFont;
+			return cachedFont;
+		}
+
 		cachedFont = FindSceneFont(null);
 		return cachedFont;
+	}
+
+	public static void ApplyUiFontEverywhere()
+	{
+		Font font = GetUiFont();
+		if (font == null)
+			return;
+
+		Text[] texts = Object.FindObjectsByType<Text>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+		for (int i = 0; i < texts.Length; i++)
+		{
+			if (texts[i] != null)
+				texts[i].font = font;
+		}
+	}
+
+	private static Font FindLoadedFont(string nameContains)
+	{
+		Font[] fonts = Resources.FindObjectsOfTypeAll<Font>();
+		for (int i = 0; i < fonts.Length; i++)
+		{
+			Font font = fonts[i];
+			if (font == null)
+				continue;
+			if (font.name.IndexOf(nameContains, System.StringComparison.OrdinalIgnoreCase) >= 0)
+				return font;
+		}
+		return null;
 	}
 
 	private static Font FindSceneFont(string nameContains)

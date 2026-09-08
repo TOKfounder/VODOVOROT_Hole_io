@@ -18,6 +18,10 @@ namespace YG
 		public float soundValue = 0.5f;
 		public float musicValue = 0.5f;
 		public bool done = false;
+		public bool languageChosenByPlayer = false;
 		public int chosenMode = 0;
+		public int rewardedHandLeft = 2;
+		public int rewardedBagLeft = 5;
+		public int rewardedBoxLeft = 10;
 	}
 }

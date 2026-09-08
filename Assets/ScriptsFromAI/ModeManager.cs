@@ -91,6 +91,12 @@ public class ModeManager : MonoBehaviour
 	[SerializeField] private GameObject mainPlayer;
 	[SerializeField] private Transform bossSpawnPoint;
 	[SerializeField] private Transform playerSpawnPoint;
+	[SerializeField] private Vector3 playerSpawnWorld;
+	[SerializeField] private float playerSpawnYaw;
+	[SerializeField] private Vector3 bossSpawnWorld;
+	[SerializeField] private float bossSpawnYaw = 180f;
+	[SerializeField] private Transform[] huntingSpawnPoints;
+	[SerializeField] private Transform[] teamSpawnPoints;
 
 	[Header("Bounds Spawn")]
 	[SerializeField] private float playerEdgeInset = 12f;
@@ -100,7 +106,8 @@ public class ModeManager : MonoBehaviour
 	[SerializeField] private float spawnYaw = 0f;
 
 	[Header("Hunting")]
-	[SerializeField] private int huntingEnemyCount = 6;
+	[SerializeField] private int cityHuntingEnemyCount = 5;
+	[SerializeField] private int gardenHuntingEnemyCount = 4;
 	[SerializeField] private float huntingSpawnInset = 18f;
 	[SerializeField] private float huntingMinPlayerDistance = 22f;
 
@@ -164,19 +171,13 @@ public class ModeManager : MonoBehaviour
 		HuntingEnemies.Clear();
 		HuntingSpawned = 0;
 
-		if (!TryGetMapBounds(out float minX, out float maxX, out float minZ, out float maxZ))
-			return;
-
-		float height = GetSpawnHeight();
-		Vector3 playerPos = mainPlayer.transform.position;
-		int count = Mathf.Max(1, huntingEnemyCount);
+		int count = GetHuntingCount();
 		for (int i = 0; i < count; i++)
 		{
-			float t = (i + 0.5f) / count * Mathf.PI * 2f;
-			float nx = 0.5f + Mathf.Cos(t) * 0.32f;
-			float nz = 0.5f + Mathf.Sin(t) * 0.32f;
-			Vector3 pos = ResolveHuntingSpawn(playerPos, height, minX, maxX, minZ, maxZ, nx, nz, t);
-			Quaternion rot = Quaternion.Euler(0f, spawnYaw, 0f);
+			if (!TryResolveHuntingSpawn(i, count, out Vector3 pos, out float yaw))
+				continue;
+
+			Quaternion rot = Quaternion.Euler(0f, yaw, 0f);
 			GameObject enemyObject = Instantiate(enemyPrefab, pos, rot, transform);
 			EnemyController enemy = enemyObject != null ? enemyObject.GetComponent<EnemyController>() : null;
 			if (enemy != null)
@@ -188,6 +189,35 @@ public class ModeManager : MonoBehaviour
 				HuntingSpawned++;
 			}
 		}
+	}
+
+	private int GetHuntingCount()
+	{
+		int assigned = CountAssigned(huntingSpawnPoints);
+		if (assigned > 0)
+			return assigned;
+		return IsGardenMap() ? gardenHuntingEnemyCount : cityHuntingEnemyCount;
+	}
+
+	private bool TryResolveHuntingSpawn(int index, int count, out Vector3 pos, out float yaw)
+	{
+		yaw = spawnYaw;
+		if (TryGetAssignedPoint(huntingSpawnPoints, index, out pos, out yaw))
+			return true;
+
+		if (!TryGetMapBounds(out float minX, out float maxX, out float minZ, out float maxZ))
+		{
+			pos = Vector3.zero;
+			return false;
+		}
+
+		float height = GetSpawnHeight();
+		Vector3 playerPos = mainPlayer.transform.position;
+		float t = (index + 0.5f) / count * Mathf.PI * 2f;
+		float nx = 0.5f + Mathf.Cos(t) * 0.32f;
+		float nz = 0.5f + Mathf.Sin(t) * 0.32f;
+		pos = ResolveHuntingSpawn(playerPos, height, minX, maxX, minZ, maxZ, nx, nz, t);
+		return true;
 	}
 
 	private Vector3 ResolveHuntingSpawn(
@@ -252,6 +282,27 @@ public class ModeManager : MonoBehaviour
 		TeamEnemies.Clear();
 		TeamEnemySpawned = 0;
 
+		bool ru = YG2.saves.langRu;
+		HoleParent playerHole = mainPlayer.GetComponent<HoleParent>();
+		if (playerHole != null)
+			playerHole.ApplyTeamVisuals(TeamBlue, allyTeamColor, null);
+
+		if (CountAssigned(teamSpawnPoints) >= 5)
+		{
+			TryGetAssignedPoint(teamSpawnPoints, 0, out Vector3 a1, out float a1y);
+			TryGetAssignedPoint(teamSpawnPoints, 1, out Vector3 a2, out float a2y);
+			TryGetAssignedPoint(teamSpawnPoints, 2, out Vector3 e1, out float e1y);
+			TryGetAssignedPoint(teamSpawnPoints, 3, out Vector3 e2, out float e2y);
+			TryGetAssignedPoint(teamSpawnPoints, 4, out Vector3 e3, out float e3y);
+			SpawnTeamHole(a1, a1y, TeamBlue, allyTeamColor, ru ? "Союзник 1" : "Ally 1", TeamAllies);
+			SpawnTeamHole(a2, a2y, TeamBlue, allyTeamColor, ru ? "Союзник 2" : "Ally 2", TeamAllies);
+			SpawnTeamHole(e1, e1y, TeamRed, enemyTeamColor, ru ? "Враг 1" : "Enemy 1", TeamEnemies);
+			SpawnTeamHole(e2, e2y, TeamRed, enemyTeamColor, ru ? "Враг 2" : "Enemy 2", TeamEnemies);
+			SpawnTeamHole(e3, e3y, TeamRed, enemyTeamColor, ru ? "Враг 3" : "Enemy 3", TeamEnemies);
+			TeamEnemySpawned = RemainingTeamEnemies;
+			return;
+		}
+
 		if (!TryGetMapBounds(out float minX, out float maxX, out float minZ, out float maxZ))
 			return;
 
@@ -264,13 +315,6 @@ public class ModeManager : MonoBehaviour
 		float southYaw = spawnYaw;
 		float northYaw = spawnYaw + 180f;
 
-		ApplySpawnTransform(mainPlayer.transform, new Vector3(centerX, height, southZ), southYaw);
-
-		HoleParent playerHole = mainPlayer.GetComponent<HoleParent>();
-		if (playerHole != null)
-			playerHole.ApplyTeamVisuals(TeamBlue, allyTeamColor, null);
-
-		bool ru = YG2.saves.langRu;
 		SpawnTeamHole(new Vector3(leftX, height, southZ), southYaw, TeamBlue, allyTeamColor, ru ? "Союзник 1" : "Ally 1", TeamAllies);
 		SpawnTeamHole(new Vector3(rightX, height, southZ), southYaw, TeamBlue, allyTeamColor, ru ? "Союзник 2" : "Ally 2", TeamAllies);
 		SpawnTeamHole(new Vector3(leftX, height, northZ), northYaw, TeamRed, enemyTeamColor, ru ? "Враг 1" : "Enemy 1", TeamEnemies);
@@ -300,15 +344,9 @@ public class ModeManager : MonoBehaviour
 
 	private void PlacePlayer()
 	{
-		if (playerSpawnPoint != null)
+		if (TryGetPlayerSpawn(out Vector3 playerPos, out float yaw))
 		{
-			ApplySpawnTransform(mainPlayer.transform, playerSpawnPoint.position, playerSpawnPoint.eulerAngles.y);
-			return;
-		}
-
-		if (TryGetBoundsSpawn(out Vector3 playerPos, out Vector3 bossPos))
-		{
-			ApplySpawnTransform(mainPlayer.transform, playerPos, spawnYaw);
+			ApplySpawnTransform(mainPlayer.transform, playerPos, yaw);
 			return;
 		}
 
@@ -317,31 +355,81 @@ public class ModeManager : MonoBehaviour
 
 	private void SpawnBoss()
 	{
-		Vector3 bossPos;
-		float bossYaw;
-
-		if (bossSpawnPoint != null)
-		{
-			bossPos = bossSpawnPoint.position;
-			bossYaw = bossSpawnPoint.eulerAngles.y;
-		}
-		else if (TryGetBoundsSpawn(out Vector3 playerPos, out bossPos))
-		{
-			bossYaw = spawnYaw;
-		}
-		else
+		if (!TryGetBossSpawn(out Vector3 bossPos, out float yaw))
 		{
 			Debug.LogWarning("ModeManager: could not resolve boss spawn position");
 			return;
 		}
 
-		Quaternion bossRot = Quaternion.Euler(0f, bossYaw, 0f);
+		Quaternion bossRot = Quaternion.Euler(0f, yaw, 0f);
 		RegisterBoss(Instantiate(enemyPrefab, bossPos, bossRot, transform));
 		if (ActiveBoss != null)
 		{
 			bool ru = YG2.saves.langRu;
 			ActiveBoss.SetNickname(ru ? "Босс" : "Boss");
 		}
+	}
+
+	private bool TryGetPlayerSpawn(out Vector3 pos, out float yaw)
+	{
+		if (TryGetAssignedPoint(new[] { playerSpawnPoint }, 0, out pos, out yaw))
+			return true;
+		if (playerSpawnWorld.sqrMagnitude > 0.01f)
+		{
+			pos = playerSpawnWorld;
+			yaw = playerSpawnYaw;
+			return true;
+		}
+		if (TryGetBoundsSpawn(out pos, out _))
+		{
+			yaw = spawnYaw;
+			return true;
+		}
+		yaw = spawnYaw;
+		return false;
+	}
+
+	private bool TryGetBossSpawn(out Vector3 pos, out float yaw)
+	{
+		if (TryGetAssignedPoint(new[] { bossSpawnPoint }, 0, out pos, out yaw))
+			return true;
+		if (bossSpawnWorld.sqrMagnitude > 0.01f)
+		{
+			pos = bossSpawnWorld;
+			yaw = bossSpawnYaw;
+			return true;
+		}
+		if (TryGetBoundsSpawn(out _, out pos))
+		{
+			yaw = spawnYaw;
+			return true;
+		}
+		yaw = spawnYaw;
+		return false;
+	}
+
+	private static int CountAssigned(Transform[] points)
+	{
+		if (points == null)
+			return 0;
+		int count = 0;
+		for (int i = 0; i < points.Length; i++)
+		{
+			if (points[i] != null)
+				count++;
+		}
+		return count;
+	}
+
+	private static bool TryGetAssignedPoint(Transform[] points, int index, out Vector3 pos, out float yaw)
+	{
+		pos = Vector3.zero;
+		yaw = 0f;
+		if (points == null || index < 0 || index >= points.Length || points[index] == null)
+			return false;
+		pos = points[index].position;
+		yaw = points[index].eulerAngles.y;
+		return true;
 	}
 
 	private bool TryGetBoundsSpawn(out Vector3 playerPos, out Vector3 bossPos)

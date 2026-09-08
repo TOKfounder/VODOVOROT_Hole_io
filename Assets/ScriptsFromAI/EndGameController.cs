@@ -55,6 +55,63 @@ public class EndGameController : MonoBehaviour
 			gamingManager.ApplyMatchReward(reward);
 
 		gamingManager.UpdateUI();
+		ApplyVerdict(gamingManager);
+	}
+
+	private void ApplyVerdict(GamingManager gamingManager)
+	{
+		gamingManager.GetEndVerdict(out string title, out string reason, out Color color);
+		ApplyVerdictToPanel(gamingManager.PanelOfEnd, title, color);
+		ApplyVerdictToPanel(gamingManager.DPanelOfEnd, title, color);
+		EnsureReasonText(gamingManager.MobpanelOfEnd, title, reason, color);
+		EnsureReasonText(gamingManager.DeskpanelOfEnd, title, reason, color);
+	}
+
+	private static void ApplyVerdictToPanel(Text[] panel, string title, Color color)
+	{
+		if (panel == null || panel.Length < 2 || panel[1] == null)
+			return;
+		panel[1].text = title;
+		panel[1].color = color;
+		panel[1].fontSize = Mathf.Max(panel[1].fontSize, 44);
+		panel[1].fontStyle = FontStyle.Bold;
+	}
+
+	private void EnsureReasonText(GameObject panel, string title, string reason, Color color)
+	{
+		if (panel == null)
+			return;
+
+		Transform titleTransform = panel.transform.Find("VerdictTitle");
+		Text titleText = titleTransform != null ? titleTransform.GetComponent<Text>() : null;
+		if (titleText == null)
+		{
+			titleText = ActiveCanvas.CreateText(panel.transform, "VerdictTitle", new Vector2(0f, 210f), new Vector2(720f, 72f));
+			if (titleText != null)
+			{
+				titleText.fontSize = 52;
+				titleText.fontStyle = FontStyle.Bold;
+			}
+		}
+		if (titleText != null)
+		{
+			titleText.text = title;
+			titleText.color = color;
+		}
+
+		Transform reasonTransform = panel.transform.Find("VerdictReason");
+		Text reasonText = reasonTransform != null ? reasonTransform.GetComponent<Text>() : null;
+		if (reasonText == null)
+		{
+			reasonText = ActiveCanvas.CreateText(panel.transform, "VerdictReason", new Vector2(0f, 150f), new Vector2(760f, 56f));
+			if (reasonText != null)
+				reasonText.fontSize = 28;
+		}
+		if (reasonText != null)
+		{
+			reasonText.text = reason;
+			reasonText.color = Color.white;
+		}
 	}
 
 	private void ApplyResultSprite(int spriteIndex)

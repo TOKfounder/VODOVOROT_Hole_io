@@ -5,12 +5,10 @@ using YG;
 public class LanguageManager : MonoBehaviour
 {
 	public static LanguageManager Instance;
-	public static bool done = false;
 	public Sprite isRus;
 	public Sprite isEng;
 	public Button Mflag;
 	public Button Dflag;
-	public bool Adecvat = true;
 	public Image Mimage;
 	public Image Dimage;
 
@@ -19,30 +17,40 @@ public class LanguageManager : MonoBehaviour
 		Instance = this;
 		Mflag.onClick.AddListener(Onclick);
 		Dflag.onClick.AddListener(Onclick);
-    // DontDestroyOnLoad(gameObject);
 	}
 
 	void Start()
 	{
-		if (!YG2.saves.done)
-		{
-			YG2.SwitchLanguage(YG2.envir.language);
-			YG2.saves.langRu = YG2.envir.language == "ru"? true : false;
-			YG2.saves.done = true;
-			YG2.SaveProgress();
-		}
+		if (!YG2.saves.languageChosenByPlayer)
+			ApplyEnvironmentLanguage();
+		else
+			YG2.SwitchLanguage(YG2.saves.langRu ? "ru" : "en");
 		RefreshUI();
+	}
+
+	public static void ApplyEnvironmentLanguage()
+	{
+		YG2.SwitchLanguage(YG2.envir.language);
+		YG2.saves.langRu = YG2.envir.language == "ru";
+		YG2.saves.done = true;
+		YG2.SaveProgress();
 	}
 
 	public void Onclick()
 	{
-		Adecvat = !Adecvat;
-		RefreshUI();
+		YG2.saves.langRu = !YG2.saves.langRu;
+		YG2.saves.languageChosenByPlayer = true;
+		YG2.SwitchLanguage(YG2.saves.langRu ? "ru" : "en");
 		YG2.SaveProgress();
+		RefreshUI();
 	}
 
 	public void RefreshUI()
 	{
+		if (Mimage != null)
+			Mimage.sprite = YG2.saves.langRu ? isRus : isEng;
+		if (Dimage != null)
+			Dimage.sprite = YG2.saves.langRu ? isRus : isEng;
 		if (GameController.Instance != null)
 			GameController.Instance.UpdateAllUI();
 	}

@@ -163,7 +163,7 @@ public class ScoreOrb : FallingObject
 			return;
 
 		HoleParent otherHole = other.GetComponentInParent<HoleParent>();
-		if (otherHole == null || otherHole.holeType != HoleParent.TypeOfHole.player)
+		if (!CanBlueCollect(otherHole))
 			return;
 
 		if (isTriggered)
@@ -277,8 +277,16 @@ public class ScoreOrb : FallingObject
 		if (pendingTrigger == null || !pendingTrigger.CompareTag("Player"))
 			return false;
 
-		HoleParent hole = pendingTrigger.GetComponentInParent<HoleParent>();
-		return hole != null && hole.holeType == HoleParent.TypeOfHole.player;
+		return CanBlueCollect(pendingTrigger.GetComponentInParent<HoleParent>());
+	}
+
+	private static bool CanBlueCollect(HoleParent hole)
+	{
+		if (hole == null || hole.IsConsumed)
+			return false;
+		if (hole.holeType == HoleParent.TypeOfHole.player)
+			return true;
+		return hole.TeamId == ModeManager.TeamBlue;
 	}
 
 	private void RefreshMetrics()

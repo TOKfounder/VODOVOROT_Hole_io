@@ -32,23 +32,35 @@ public class HoleParent : MonoBehaviour
 	bool isUpdated = false;
 
 	protected float[] scoreRequired = {
-			0,       // Level 0
-			26,       // Level 1
-			163,    // Level 2
-			795,    // Level 3
-			1779,    // Level 4
-			3703,    // Level 5
-			5127,    // Level 6
-			8751,    // Level 7
-			11375,   // Level 8
-			13000,    // Level 9
+			0,
+			26,
+			163,
+			795,
+			1779,
+			3703,
+			5127,
+			8751,
+			11375,
+			13000,
 			15000
 	};
-	protected float[] levelScales = { 0.41f, 0.81f, 1.61f, 2.41f, 4.1f, 6f, 8f, 10f, 12f, 13.5f, 67f };
+	protected float[] levelScales = { 0.41f, 0.7f, 1.1f, 1.65f, 2.4f, 3.4f, 4.8f, 6.6f, 8.8f, 11.5f, 15f };
 	public int score;
 	protected Vector3 targetScale;
 	protected float scaleLerpSpeed = 2f;
+	[SerializeField] private float birthLerpSpeed = 5f;
+	private bool birthIntro;
 	private float radius;
+
+	protected virtual bool UseBirthIntro => false;
+
+	public int ScoreRequiredForLevel(int level)
+	{
+		if (scoreRequired == null || scoreRequired.Length == 0)
+			return 0;
+		int index = Mathf.Clamp(level, 0, scoreRequired.Length - 1);
+		return (int)scoreRequired[index];
+	}
 
 	private ObjectPool<GameObject> pointsPool;
 
@@ -66,6 +78,11 @@ public class HoleParent : MonoBehaviour
 			mainCanvas = GameController.Instance.currentCanvas;
 
 		InitPointsPool();
+		if (UseBirthIntro)
+		{
+			birthIntro = true;
+			transform.localScale = Vector3.one * 0.02f;
+		}
 		UpdateSize();
 		if (nickname != null && nickname.GetComponent<NickBillboard>() == null)
 			nickname.gameObject.AddComponent<NickBillboard>();
@@ -107,7 +124,10 @@ public class HoleParent : MonoBehaviour
 				nearbyFallingObjects.Remove(obj);
 		}
 
-		transform.localScale = Vector3.Lerp(transform.localScale, targetScale, scaleLerpSpeed * Time.fixedDeltaTime);
+		float lerp = birthIntro ? birthLerpSpeed : scaleLerpSpeed;
+		transform.localScale = Vector3.Lerp(transform.localScale, targetScale, lerp * Time.fixedDeltaTime);
+		if (birthIntro && (transform.localScale - targetScale).sqrMagnitude < 0.0004f)
+			birthIntro = false;
 		if (!isUpdated)
 			UpdateSize();
 		else
@@ -154,7 +174,7 @@ public class HoleParent : MonoBehaviour
 
 	public int GetCurrentLevel(float[] required)
 	{
-		for (int i = required.Length - 2; i >= 0; i--)
+		for (int i = required.Length - 1; i >= 0; i--)
 		{
 			if (score >= required[i])
 				return i;
@@ -181,9 +201,9 @@ public class HoleParent : MonoBehaviour
 		{
 			PointEffect(amount, popupColor);
 			if (fromHole)
-				AudioManager.PlayAbsorb();
+				HoleFeedback.ForPlayer?.PlayAbsorb(popupColor);
 			else
-				AudioManager.PlayGulp();
+				HoleFeedback.ForPlayer?.PlayGulp();
 		}
 		isUpdated = false;
 	}
@@ -280,7 +300,8 @@ public class HoleParent : MonoBehaviour
 		currentLevel = GetCurrentLevel(scoreRequired);
 		if (border != null)
 		{
-			if (currentLevel == 10)
+			int maxLevel = scoreRequired.Length - 1;
+			if (currentLevel >= maxLevel)
 			{
 				border.fillAmount = 1f;
 			}
@@ -292,7 +313,10 @@ public class HoleParent : MonoBehaviour
 			}
 		}
 
-		float scale = levelScales[currentLevel];
+		int scaleIndex = Mathf.Clamp(currentLevel, 0, levelScales.Length - 1);
+		float scale = levelScales[scaleIndex];
+		if (this is BlackHoleController)
+			scale *= SkinStats.StartScaleMultiplier;
 		targetScale = new Vector3(scale, scale * 4.508031f, scale);
 		RefreshHoleMetrics();
 	}
@@ -347,6 +371,7 @@ public class HoleParent : MonoBehaviour
 	{
 		totalScore = 0;
 		holeList.Clear();
+		FallingObject.ClearMatchCache();
 	}
 
 	private void TryAbsorbOppositeTeamHoles()
@@ -378,7 +403,7 @@ public class HoleParent : MonoBehaviour
 		if (enemy != null)
 		{
 			if (this is BlackHoleController)
-				AudioManager.PlayAbsorb();
+				HoleFeedback.ForPlayer?.PlayAbsorb(PopupColorForHole(other));
 			enemy.OnAbsorbedByPlayer(this);
 			return;
 		}
