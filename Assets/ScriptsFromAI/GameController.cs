@@ -60,8 +60,6 @@ public class GameController : MonoBehaviour
 
 	void Start()
 	{
-		if (SceneManager.GetActiveScene().buildIndex == 0 && !YG2.saves.isGaming && YG2.saves.isFirst)
-			YG2.InterstitialAdvShow();
 		Time.timeScale = 1f;
 		if (YG2.saves.isFirst)
 		{
@@ -80,11 +78,6 @@ public class GameController : MonoBehaviour
 			YG2.saves.rewardedHandLeft = 2;
 			YG2.saves.rewardedBagLeft = 5;
 			YG2.saves.rewardedBoxLeft = 10;
-			if (string.IsNullOrEmpty(YG2.saves.nickName))
-			{
-				YG2.saves.nickName = GameTexts.LegendNick;
-				YG2.saves.isNickGiven = true;
-			}
 			YG2.GetLeaderboard("BestPlayers");
 			YG2.SetLeaderboard("BestPlayers", YG2.saves.exp);
 		}

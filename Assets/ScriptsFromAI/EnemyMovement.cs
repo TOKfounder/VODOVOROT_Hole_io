@@ -5,8 +5,8 @@ public class EnemyMovement : MonoBehaviour
 {
 	public GameObject withoutCamera;
 	public float rotationSpeed = 0.1f;
-	public float detectionRadius = 80f;
-	public float searchInterval = 0.5f;
+	public float detectionRadius = 50f;
+	public float searchInterval = 0.75f;
 	public LayerMask fallableObjects;
 
 	private const float BossFarmSeconds = 30f;

@@ -117,6 +117,7 @@
     <Compile Include="Assets/PluginYourGames/Modules/InterstitialAdv/Example/Scripts/DebugInterstitialAdv.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Payments/Scripts/Payments_interface.cs" />
     <Compile Include="Assets/ScriptsFromAI/MatchHud.cs" />
+    <Compile Include="Assets/ScriptsFromAI/TutorialController.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/StickyAdv/Scripts/StickyAdv_yg.cs" />
     <Compile Include="Assets/ScriptsFromAI/ScoreOrbSpawner.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Platform/PlatformSettingsAttributes.cs" />

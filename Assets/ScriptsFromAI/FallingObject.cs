@@ -30,26 +30,20 @@ public class FallingObject : MonoBehaviour
 	protected virtual bool CountsTowardMapTotal => true;
 	protected virtual bool ResetsIfNotScored => true;
 	protected virtual bool IgnoresMapOnStart => true;
+	protected virtual bool NeedsRigidbodyAtStart => false;
 	protected virtual int ObjectLayer => 7;
 
 	void Awake()
 	{
 		col = GetComponent<Collider>();
 		if (col == null)
-		{
 			col = gameObject.AddComponent<BoxCollider>();
-		}
 		rb = GetComponent<Rigidbody>();
-		if (rb == null)
-		{
-			rb = gameObject.AddComponent<Rigidbody>();
-		}
-		rb.isKinematic = true;
+		if (NeedsRigidbodyAtStart)
+			EnsureFallingBody(true);
 		rend = GetComponent<Renderer>();
 		if (rend == null)
-		{
 			Destroy(GetComponent<FallingObject>());
-		}
 	}
 
 	void Start()
@@ -63,9 +57,8 @@ public class FallingObject : MonoBehaviour
 		startRotation = transform.rotation;
 		if (AssignValueFromVolume)
 			AssignDefaultValue();
-		rb.mass = Mathf.Max(0.1f, V3 * 50f);
-		rb.drag = 4;
-		rb.angularDrag = 4;
+		if (rb != null)
+			ApplyBodyTuning();
 		if (CountsTowardMapTotal && value > 1 && GamingManager.Instance != null)
 		{
 			GamingManager.Instance.AllValues += value;
@@ -74,10 +67,44 @@ public class FallingObject : MonoBehaviour
 		}
 	}
 
+	protected void EnsureFallingBody(bool kinematic)
+	{
+		if (rb == null)
+			rb = GetComponent<Rigidbody>();
+		if (rb == null)
+			rb = gameObject.AddComponent<Rigidbody>();
+		ApplyBodyTuning();
+		rb.isKinematic = kinematic;
+	}
+
+	private void ApplyBodyTuning()
+	{
+		if (rb == null)
+			return;
+		rb.mass = Mathf.Max(0.1f, V3 > 0f ? V3 * 50f : 0.1f);
+		rb.drag = 4;
+		rb.angularDrag = 4;
+	}
+
+	private void ReleaseFallingBody()
+	{
+		if (NeedsRigidbodyAtStart)
+		{
+			if (rb != null)
+				rb.isKinematic = true;
+			return;
+		}
+
+		if (rb == null)
+			return;
+		Destroy(rb);
+		rb = null;
+	}
+
 	IEnumerator DelayForUpdateCurrentHole()
 	{
 		yield return new WaitForSeconds(4f);
-		if (!rb.isKinematic)
+		if (rb != null && !rb.isKinematic)
 			ResetToStart();
 	}
 
@@ -131,7 +158,7 @@ public class FallingObject : MonoBehaviour
 			{
 				isTriggered = true;
 				beganSuction = true;
-				rb.isKinematic = false;
+				EnsureFallingBody(false);
 				if (!CurrentHole.nearbyFallingObjects.Contains(this))
 					CurrentHole.nearbyFallingObjects.Add(this);
 			}
@@ -142,7 +169,7 @@ public class FallingObject : MonoBehaviour
 			{
 				isTriggered = true;
 				beganSuction = true;
-				rb.isKinematic = false;
+				EnsureFallingBody(false);
 				if (!CurrentHole.nearbyFallingObjects.Contains(this))
 					CurrentHole.nearbyFallingObjects.Add(this);
 			}
@@ -210,10 +237,12 @@ public class FallingObject : MonoBehaviour
 	{
 		transform.position = startPosition;
 		transform.rotation = startRotation;
-		rb.isKinematic = true;
+		ReleaseFallingBody();
 		isTriggered = false;
-		col.enabled = true;
-		rend.enabled = true;
+		if (col != null)
+			col.enabled = true;
+		if (rend != null)
+			rend.enabled = true;
 		CurrentHole = null;
 		IgnoreMapPlatforms();
 		if (myCoroutine != null) StopCoroutine(myCoroutine);
@@ -233,9 +262,12 @@ public class FallingObject : MonoBehaviour
 		value = 0;
 		LandmarkObjects.Remove(this);
 
-		rb.isKinematic = true;
-		col.enabled = false;
-		rend.enabled = false;
+		if (rb != null)
+			rb.isKinematic = true;
+		if (col != null)
+			col.enabled = false;
+		if (rend != null)
+			rend.enabled = false;
 		CurrentHole = null;
 		if (myCoroutine != null) StopCoroutine(myCoroutine);
 	}

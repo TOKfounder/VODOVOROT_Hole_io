@@ -23,5 +23,7 @@ namespace YG
 		public int rewardedHandLeft = 2;
 		public int rewardedBagLeft = 5;
 		public int rewardedBoxLeft = 10;
+		public bool tutorialMenuSeen = false;
+		public bool tutorialMatchSeen = false;
 	}
 }

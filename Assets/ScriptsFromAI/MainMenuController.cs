@@ -132,6 +132,7 @@ public class MainMenuController : MonoBehaviour
 		ActiveCanvas.ApplyUiFontEverywhere();
 		if (GameController.Instance != null)
 			GameController.Instance.RefreshModeSelectionUI();
+		TutorialController.EnsureMenu();
 	}
 
 	public void UpdateTriggers()
@@ -235,6 +236,15 @@ public class MainMenuController : MonoBehaviour
 	private void FailedPurchased(string id)
 	{
 	}
+	public void ApplyNick(string wroteName)
+	{
+		SaveNick(wroteName);
+		if (nameInput != null)
+			nameInput.text = wroteName;
+		if (DnameInput != null)
+			DnameInput.text = wroteName;
+	}
+
 	void SaveNick(string wroteName)
 	{
 		if (string.IsNullOrWhiteSpace(wroteName))
@@ -260,7 +270,7 @@ public class MainMenuController : MonoBehaviour
 			nameInput.text = nick;
 			DnameInput.text = nick;
 		}
-		else
+		else if (YG2.saves.tutorialMenuSeen)
 		{
 			nameInput.text = GameTexts.LegendNick;
 			DnameInput.text = GameTexts.LegendNick;

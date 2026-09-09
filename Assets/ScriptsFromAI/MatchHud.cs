@@ -6,9 +6,11 @@ using YG;
 public class MatchHud : MonoBehaviour
 {
 	private const int MaxArrows = 6;
+	private const int CleaningArrowCount = 3;
+	private const float CleaningHideRadius = 8f;
 	private const float ArrowDistance = 120f;
 	private const float AllyArrowScale = 0.62f;
-	private static readonly Color BossArrowColor = new Color(1f, 0.85f, 0.2f, 0.9f);
+	private static readonly Color BossDangerColor = new Color(0.08f, 0.08f, 0.1f, 0.95f);
 	private static readonly Color EnemyArrowColor = new Color(1f, 0.35f, 0.25f, 0.9f);
 	private static readonly Color AllyArrowColor = new Color(0.3f, 0.9f, 1f, 0.85f);
 
@@ -24,6 +26,7 @@ public class MatchHud : MonoBehaviour
 	private readonly List<Image> minimapDotImages = new List<Image>(12);
 	private Sprite minimapSprite;
 	private static readonly Color LandmarkArrowColor = new Color(1f, 0.92f, 0.45f, 0.88f);
+	private readonly List<FallingObject> cleaningScratch = new List<FallingObject>(32);
 
 	public Text TimerText => timerText;
 
@@ -101,7 +104,7 @@ public class MatchHud : MonoBehaviour
 		glyph.text = "▲";
 		glyph.alignment = TextAnchor.MiddleCenter;
 		glyph.fontSize = 48;
-		glyph.color = BossArrowColor;
+		glyph.color = EnemyArrowColor;
 		glyph.font = font;
 		glyph.raycastTarget = false;
 		arrowGo.SetActive(false);
@@ -180,14 +183,14 @@ public class MatchHud : MonoBehaviour
 
 		if (ModeManager.currentMode == ModeManager.Mode.Boss)
 		{
-			PlaceArrow(0, ModeManager.ActiveBoss != null ? ModeManager.ActiveBoss.transform : null, 0, 1, BossArrowColor, 1f);
+			PlaceArrow(0, ModeManager.ActiveBoss != null ? ModeManager.ActiveBoss.transform : null, 0, 1, BossDangerColor, 1f, arrowHideRadius);
 			HideUnusedArrows(1);
 			return;
 		}
 
 		if (ModeManager.currentMode == ModeManager.Mode.Hunting)
 		{
-			int shown = PlaceListArrows(ModeManager.HuntingEnemies, 0, BossArrowColor, 1f);
+			int shown = PlaceListArrows(ModeManager.HuntingEnemies, 0, EnemyArrowColor, 1f);
 			HideUnusedArrows(shown);
 			return;
 		}
@@ -212,29 +215,45 @@ public class MatchHud : MonoBehaviour
 
 	private int PlaceLandmarkArrows()
 	{
-		int shown = 0;
-		int totalFar = 0;
+		HoleParent player = BlackHoleController.Player;
+		if (player == null)
+			return 0;
+
+		cleaningScratch.Clear();
 		List<FallingObject> landmarks = FallingObject.LandmarkObjects;
+		Vector3 playerPos = player.transform.position;
 		for (int i = 0; i < landmarks.Count; i++)
 		{
 			FallingObject fo = landmarks[i];
-			if (fo != null && fo.value > 1 && IsFarFromPlayer(fo.transform.position))
-				totalFar++;
+			if (fo == null || fo.value <= 1 || fo.isTriggered)
+				continue;
+			if (!Tool.CanFit2D(fo.size, player.size))
+				continue;
+			cleaningScratch.Add(fo);
 		}
 
-		int spreadIndex = 0;
-		for (int i = 0; i < landmarks.Count && shown < MaxArrows; i++)
+		cleaningScratch.Sort((a, b) =>
 		{
-			FallingObject fo = landmarks[i];
-			if (fo == null || fo.value <= 1)
-				continue;
-			if (PlaceArrow(shown, fo.transform, spreadIndex, totalFar, LandmarkArrowColor, 0.85f))
-			{
+			float da = HorizontalSqr(playerPos, a.transform.position);
+			float db = HorizontalSqr(playerPos, b.transform.position);
+			return da.CompareTo(db);
+		});
+
+		int shown = 0;
+		int limit = Mathf.Min(CleaningArrowCount, cleaningScratch.Count);
+		for (int i = 0; i < limit && shown < MaxArrows; i++)
+		{
+			if (PlaceArrow(shown, cleaningScratch[i].transform, shown, limit, LandmarkArrowColor, 0.85f, CleaningHideRadius))
 				shown++;
-				spreadIndex++;
-			}
 		}
 		return shown;
+	}
+
+	private static float HorizontalSqr(Vector3 from, Vector3 to)
+	{
+		float dx = to.x - from.x;
+		float dz = to.z - from.z;
+		return dx * dx + dz * dz;
 	}
 
 	private void BuildMinimap()
@@ -274,10 +293,16 @@ public class MatchHud : MonoBehaviour
 		if (minimapRoot == null || GamingManager.Instance == null)
 			return;
 
+		bool showMap = ModeManager.currentMode != ModeManager.Mode.TotalCleaning;
+		if (minimapRoot.gameObject.activeSelf != showMap)
+			minimapRoot.gameObject.SetActive(showMap);
+		if (!showMap)
+			return;
+
 		int used = 0;
 		used = PlaceMinimapDot(used, BlackHoleController.Player != null ? BlackHoleController.Player.transform : null, Color.white, 12f);
 		if (ModeManager.currentMode == ModeManager.Mode.Boss)
-			used = PlaceMinimapDot(used, ModeManager.ActiveBoss != null ? ModeManager.ActiveBoss.transform : null, BossArrowColor, 11f);
+			used = PlaceMinimapDot(used, ModeManager.ActiveBoss != null ? ModeManager.ActiveBoss.transform : null, BossDangerColor, 11f);
 		else if (ModeManager.currentMode == ModeManager.Mode.Hunting)
 			used = PlaceMinimapDots(used, ModeManager.HuntingEnemies, EnemyArrowColor, 9f);
 		else if (ModeManager.currentMode == ModeManager.Mode.TeamMode)
@@ -350,7 +375,7 @@ public class MatchHud : MonoBehaviour
 			EnemyController enemy = list[i];
 			if (enemy == null || enemy.IsConsumed)
 				continue;
-			if (PlaceArrow(shown, enemy.transform, spreadIndex, totalFar, color, scale))
+			if (PlaceArrow(shown, enemy.transform, spreadIndex, totalFar, color, scale, arrowHideRadius))
 			{
 				shown++;
 				spreadIndex++;
@@ -364,18 +389,18 @@ public class MatchHud : MonoBehaviour
 		int count = 0;
 		for (int i = 0; i < list.Count; i++)
 		{
-			if (list[i] != null && !list[i].IsConsumed && IsFarFromPlayer(list[i].transform.position))
+			if (list[i] != null && !list[i].IsConsumed && IsFarFromPlayer(list[i].transform.position, arrowHideRadius))
 				count++;
 		}
 		return count;
 	}
 
-	private bool PlaceArrow(int index, Transform target, int spreadIndex, int spreadTotal, Color color, float scale)
+	private bool PlaceArrow(int index, Transform target, int spreadIndex, int spreadTotal, Color color, float scale, float hideRadius)
 	{
 		if (index < 0 || index >= arrows.Count || arrows[index] == null || target == null)
 			return false;
 
-		if (!IsFarFromPlayer(target.position))
+		if (!IsFarFromPlayer(target.position, hideRadius))
 		{
 			arrows[index].gameObject.SetActive(false);
 			return false;
@@ -411,14 +436,14 @@ public class MatchHud : MonoBehaviour
 		return true;
 	}
 
-	private bool IsFarFromPlayer(Vector3 worldPos)
+	private bool IsFarFromPlayer(Vector3 worldPos, float hideRadius)
 	{
 		if (BlackHoleController.Player == null)
 			return false;
 
 		Vector3 delta = worldPos - BlackHoleController.Player.transform.position;
 		delta.y = 0f;
-		return delta.sqrMagnitude > arrowHideRadius * arrowHideRadius;
+		return delta.sqrMagnitude > hideRadius * hideRadius;
 	}
 
 	private void HideUnusedArrows(int usedCount)

@@ -1,4 +1,3 @@
-using UnityEngine;
 using YG;
 
 public static class GameTexts
@@ -76,4 +75,47 @@ public static class GameTexts
 	public static string ReasonEnemiesCleared => Ru
 		? "Вражеская команда уничтожена"
 		: "The enemy team is gone";
+
+	public static string Tutorial => Ru ? "Обучение" : "Tutorial";
+	public static string TutorialNext => Ru ? "Далее" : "Next";
+	public static string TutorialSkip => Ru ? "Скип" : "Skip";
+	public static string TutorialOk => Ru ? "Ок!" : "OK!";
+	public static string TutorialFinger => "👉";
+
+	public static string TutorialNickTitle => Ru ? "Как тебя звать?" : "What's your name?";
+	public static string TutorialNickBody => Ru
+		? "Напиши ник. Пустым в водоворот не пускаем — даже унитаз знает, кого глотать."
+		: "Type a nickname. Empty names don't go down the drain.";
+	public static string TutorialNickNeed => Ru ? "Сначала введи ник" : "Enter a nickname first";
+
+	public static string TutorialMoveTitle => Ru ? "Куда катим" : "How to move";
+	public static string TutorialMoveBody => Ru
+		? "ПК: WASD или стрелки. Джойстик на экране — если трогаешь его, клавиатура молчит, и наоборот."
+		: "PC: WASD or arrows. On-screen stick and keyboard never mix: one at a time.";
+
+	public static string TutorialBoostTitle => Ru ? "Буст" : "Boost";
+	public static string TutorialBoostBody => Ru
+		? "Зажми кнопку буста. На ПК ещё Shift или Пробел. Отпустил — снова спокойный смыв."
+		: "Hold the boost button. On PC, Shift or Space also work. Release to cruise.";
+
+	public static string TutorialGrowTitle => Ru ? "Расти и сияй" : "Grow and glow";
+	public static string TutorialGrowBody => Ru
+		? "Ешь то, что меньше дыры — уровень растёт. Не-красный скин чуть быстрее и поярче. Красный тазик — честный сток без бонусов."
+		: "Eat what is smaller than you to level up. Non-red skins are a bit faster and flashier. The red basin is the honest no-bonus start.";
+
+	public static string TutorialEatTitle => Ru ? "Пора перекусить" : "Time to snack";
+	public static string TutorialEatBody => Ru
+		? "Заезжай на объект меньше дыры. Если не влез — он вернётся на место, не обижайся."
+		: "Drive over something smaller than the hole. Miss it, and it pops back. No hard feelings.";
+
+	public static string TutorialArrowsTitle => Ru ? "Куда смотреть" : "Where to look";
+	public static string TutorialArrowsBody => Ru
+		? "Стрелки и точки на карте — живые цели. Жёлтое было вчера: враги красные, босс чёрный, как пробка в трубе."
+		: "Arrows and map dots mark live targets. Enemies are red. The boss is black, like a clog in the pipe.";
+
+	public static string TutorialEatHint => Ru ? "Съешь что-нибудь поменьше 👉" : "Eat something smaller 👉";
+	public static string TutorialEatDoneTitle => Ru ? "Глоток засчитан" : "That's a gulp";
+	public static string TutorialEatDoneBody => Ru
+		? "Так и живём: меньше — в дыру, больше — объезжай. Дальше сам, легенда."
+		: "That's the loop: smaller goes in, bigger you skip. You're on your own now.";
 }

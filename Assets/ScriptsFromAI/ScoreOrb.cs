@@ -22,6 +22,7 @@ public class ScoreOrb : FallingObject
 	protected override bool CountsTowardMapTotal => false;
 	protected override bool ResetsIfNotScored => false;
 	protected override bool IgnoresMapOnStart => false;
+	protected override bool NeedsRigidbodyAtStart => true;
 	protected override int ObjectLayer => 7;
 
 	void Update()

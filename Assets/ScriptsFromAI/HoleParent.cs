@@ -50,6 +50,7 @@ public class HoleParent : MonoBehaviour
 	protected float scaleLerpSpeed = 2f;
 	[SerializeField] private float birthLerpSpeed = 5f;
 	private bool birthIntro;
+	public bool IsBirthIntro => birthIntro;
 	private float radius;
 
 	protected virtual bool UseBirthIntro => false;
@@ -204,6 +205,7 @@ public class HoleParent : MonoBehaviour
 				HoleFeedback.ForPlayer?.PlayAbsorb(popupColor);
 			else
 				HoleFeedback.ForPlayer?.PlayGulp();
+			TutorialController.NotifyPlayerScored();
 		}
 		isUpdated = false;
 	}

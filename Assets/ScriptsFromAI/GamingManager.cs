@@ -60,6 +60,8 @@ public class GamingManager : MonoBehaviour
 	public Text[] DesktopPanelOfSettings;
 	public Text[] DPanelOfEnd;
 
+	[SerializeField] private float boostLeftShift = 170f;
+
 	private bool timerGo;
 	private bool once;
 	private bool rewardApplied;
@@ -187,6 +189,29 @@ public class GamingManager : MonoBehaviour
 		if (!YG2.nowAdsShow)
 			YG2.GameplayStart();
 		StartCoroutine(UpdateFlag());
+		NudgeBoostButton();
+		TutorialController.EnsureMatch();
+	}
+
+	private void NudgeBoostButton()
+	{
+		Canvas canvas = ActiveCanvas.Get();
+		if (canvas == null)
+			return;
+
+		BoostButton[] buttons = canvas.GetComponentsInChildren<BoostButton>(true);
+		for (int i = 0; i < buttons.Length; i++)
+		{
+			if (buttons[i] == null || !buttons[i].gameObject.activeInHierarchy)
+				continue;
+			RectTransform rect = buttons[i].GetComponent<RectTransform>();
+			if (rect == null)
+				continue;
+			Vector2 pos = rect.anchoredPosition;
+			pos.x -= boostLeftShift;
+			rect.anchoredPosition = pos;
+			return;
+		}
 	}
 
 	private void HookSettingsPause()

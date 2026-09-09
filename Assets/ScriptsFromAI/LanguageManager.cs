@@ -53,5 +53,7 @@ public class LanguageManager : MonoBehaviour
 			Dimage.sprite = YG2.saves.langRu ? isRus : isEng;
 		if (GameController.Instance != null)
 			GameController.Instance.UpdateAllUI();
+		if (TutorialController.Instance != null)
+			TutorialController.Instance.RefreshTexts();
 	}
 }
