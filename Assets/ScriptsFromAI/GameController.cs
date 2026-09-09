@@ -49,6 +49,37 @@ public class GameController : MonoBehaviour
 
 		if (SceneManager.GetActiveScene().buildIndex == 0)
 			EnsureModeSelectionUI();
+		ApplyMenuCanvasSorting();
+	}
+
+	private void ApplyMenuCanvasSorting()
+	{
+		ApplyUiCanvasOrder(CanvasForDesktop, 20);
+		ApplyUiCanvasOrder(CanvasForMobile, 20);
+		if (SceneManager.GetActiveScene().buildIndex != 0)
+			return;
+
+		GameObject mapGo = GameObject.Find("CanvasOfMap");
+		if (mapGo == null)
+			return;
+
+		Canvas mapCanvas = mapGo.GetComponent<Canvas>();
+		if (mapCanvas == null)
+			return;
+
+		mapCanvas.overrideSorting = true;
+		mapCanvas.sortingOrder = -20;
+	}
+
+	private static void ApplyUiCanvasOrder(GameObject canvasGo, int order)
+	{
+		if (canvasGo == null)
+			return;
+		Canvas canvas = canvasGo.GetComponent<Canvas>();
+		if (canvas == null)
+			return;
+		canvas.overrideSorting = true;
+		canvas.sortingOrder = order;
 	}
 
 	private void EnsureModeSelectionUI()
@@ -91,8 +122,10 @@ public class GameController : MonoBehaviour
 			YG2.saves.massiveOfObtaining = newArray;
 		}
 		NormalizeChosenMode();
+		TutorialController.MigrateSaves();
 		YG2.SaveProgress();
 		ChangeMain(YG2.saves.equipedMaterial);
+		UiClickFeedback.EnsureOnScene();
 		if (!YG2.saves.isGaming)
 			RefreshModeSelectionUI();
 		else
@@ -131,18 +164,30 @@ public class GameController : MonoBehaviour
 	//---------------------------------------------------------------------------------------------------
 	public void StartGame()
 	{
+		if (!TutorialController.IsDone)
+		{
+			YG2.saves.chosenMode = (int)ModeManager.Mode.TotalCleaning;
+			YG2.saves.selectedMapID = 0;
+			TutorialController.NotifyPlayStarted();
+		}
 		NormalizeChosenMode();
 		ModeManager.currentMode = (ModeManager.Mode)YG2.saves.chosenMode;
 		YG2.saves.isGaming = true;
 		YG2.SaveProgress();
-		SceneManager.LoadScene(YG2.saves.selectedMapID + 1);
+		int sceneIndex = YG2.saves.selectedMapID + 1;
+		// #region agent log
+		try { System.IO.File.AppendAllText("/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/.cursor/debug-d61023.log", "{\"sessionId\":\"d61023\",\"runId\":\"map-align\",\"hypothesisId\":\"H3\",\"location\":\"GameController.StartGame\",\"message\":\"load-scene\",\"data\":{\"selectedMapID\":" + YG2.saves.selectedMapID + ",\"sceneIndex\":" + sceneIndex + ",\"tutorialDone\":" + (TutorialController.IsDone ? "true" : "false") + "},\"timestamp\":" + System.DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() + "}\n"); } catch {}
+		// #endregion
+		SceneManager.LoadScene(sceneIndex);
 	}
 
 	public void ReturnToMenu()
 	{
+		bool skipAds = !TutorialController.IsDone;
+		TutorialController.NotifyReturningToMenu();
 		YG2.saves.isGaming = false;
 		YG2.SaveProgress();
-		if (!YG2.nowAdsShow)
+		if (!skipAds && !YG2.nowAdsShow)
 			YG2.InterstitialAdvShow();
 		SceneManager.LoadScene(0);
 	}
@@ -217,10 +262,14 @@ public class GameController : MonoBehaviour
 	{
 		YG2.saves.tutorialMenuSeen = false;
 		YG2.saves.tutorialMatchSeen = false;
+		YG2.saves.tutorialStage = 0;
 		YG2.saves.isNickGiven = false;
 		YG2.saves.nickName = "";
 		YG2.saves.isGaming = false;
-		TutorialController.ReplayMatchTutorial = false;
+		YG2.saves.equipedMaterial = 0;
+		YG2.saves.massiveOfObtaining = new int[] { 1, 0, 0, 0, 0 };
+		YG2.saves.goldCoins = 0;
+		YG2.saves.diamonds = 3;
 		YG2.SaveProgress();
 		Time.timeScale = 1f;
 		SceneManager.LoadScene(0);

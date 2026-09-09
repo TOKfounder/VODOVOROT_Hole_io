@@ -26,6 +26,8 @@ public class HorizontalLayout3D : MonoBehaviour
 
 	private int chosenObj = 0;
 
+	public int ChosenIndex => chosenObj;
+
 	private int[] necessaryLevels = {0, 1, 4, 7, 10 };
 	private int[] costsForCoins = { 0, 20, 270, 800, 2400 };
 	private int[] costsForDonate = { 0, 10000, 10, 40, 100 };
@@ -162,7 +164,6 @@ public class HorizontalLayout3D : MonoBehaviour
 			if (YG2.saves.levelOfProgress >= necessaryLevels[chosenObj])
 			{
 				isBought = true;
-				MainMenuController.Instance.dzyn.Play();
 			}
 			else
 				MainMenuController.Instance.fart.Play();
@@ -173,7 +174,6 @@ public class HorizontalLayout3D : MonoBehaviour
 			{
 				isBought = true;
 				YG2.saves.goldCoins -= costsForCoins[chosenObj];
-				MainMenuController.Instance.dzyn.Play();
 			}
 			else
 				MainMenuController.Instance.fart.Play();

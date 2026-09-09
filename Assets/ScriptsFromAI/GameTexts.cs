@@ -124,6 +124,47 @@ public static class GameTexts
 		: "Enter a nickname to start.";
 	public static string TutorialNickNeed => Ru ? "Сначала введи ник." : "Enter a nickname first.";
 
+	public static string TutorialLegendNickTitle => Ru ? "История легенд" : "Legend history";
+	public static string TutorialLegendNickBody => Ru
+		? "Под каким именем внести вас в историю легенд?"
+		: "What name should we enter in the legend history?";
+
+	public static string TutorialModesTitle => Ru ? "Режимы" : "Modes";
+	public static string TutorialModesBody => Ru ? "Открой режимы игры." : "Open the game modes.";
+	public static string TutorialCleaningPickTitle => Ru ? "Зачистка" : "Cleaning";
+	public static string TutorialCleaningPickBody => Ru
+		? "Выбери тотальную зачистку."
+		: "Choose Total Cleaning.";
+	public static string TutorialReturnTitle => Ru ? "Готово" : "Done";
+	public static string TutorialReturnBody => Ru ? "Закрой панель режимов." : "Close the modes panel.";
+	public static string TutorialMapsTitle => Ru ? "Карты" : "Maps";
+	public static string TutorialMapsBody => Ru ? "Открой список карт." : "Open the maps list.";
+	public static string TutorialCityTitle => Ru ? "Город" : "City";
+	public static string TutorialCityBody => Ru ? "Выбери карту City." : "Choose the City map.";
+	public static string TutorialPlayTitle => Ru ? "Играть" : "Play";
+	public static string TutorialPlayBody => Ru ? "Нажми Играть." : "Tap Play.";
+	public static string TutorialContinueTitle => Ru ? "Продолжить" : "Continue";
+	public static string TutorialContinueBody => Ru ? "Нажми Продолжить." : "Tap Continue.";
+	public static string TutorialCurrencyTitle => Ru ? "Валюта" : "Currency";
+	public static string TutorialCurrencyBody => Ru ? "Открой магазин валюты." : "Open the currency shop.";
+	public static string TutorialExchangeTitle => Ru ? "Обмен" : "Exchange";
+	public static string TutorialExchangeBody => Ru ? "Обменяй алмазы на монеты." : "Exchange diamonds for coins.";
+	public static string TutorialSkinsTitle => Ru ? "Скины" : "Skins";
+	public static string TutorialSkinsBody => Ru ? "Открой магазин скинов." : "Open the skin shop.";
+	public static string TutorialRotateTitle => Ru ? "Белый друг" : "White Friend";
+	public static string TutorialRotateBody => Ru
+		? "Прокрути карусель до Белого друга."
+		: "Rotate the carousel to White Friend.";
+	public static string TutorialBuyTitle => Ru ? "Покупка" : "Buy";
+	public static string TutorialBuyBody => Ru ? "Купи Белого друга за монеты." : "Buy White Friend with coins.";
+	public static string TutorialEquipTitle => Ru ? "Экипировка" : "Equip";
+	public static string TutorialEquipBody => Ru ? "Надень Белого друга." : "Equip White Friend.";
+
+	public static string TutorialCleaningRulesTitle => Ru ? "Зачистка карты" : "Map cleaning";
+	public static string TutorialCleaningRulesBody => Ru
+		? "Таймер 3:00. Съешь крупные объекты — процент растёт. Дойди до 100% или дождись конца времени."
+		: "Timer 3:00. Eat the large objects to raise the percent. Reach 100% or wait until time runs out.";
+
 	public static string TutorialMoveTitle => Ru ? "Как двигаемся" : "How to move";
 	public static string TutorialMoveBody => Ru
 		? "Управляй джойстиком. На ПК — WASD."

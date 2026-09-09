@@ -25,5 +25,6 @@ namespace YG
 		public int rewardedBoxLeft = 10;
 		public bool tutorialMenuSeen = false;
 		public bool tutorialMatchSeen = false;
+		public int tutorialStage = 0;
 	}
 }

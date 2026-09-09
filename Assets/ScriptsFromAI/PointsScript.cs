@@ -68,4 +68,13 @@ public class PointsScript : MonoBehaviour
 				Destroy(gameObject);
 		}
 	}
+
+	public void HideNow()
+	{
+		time = duration;
+		if (ownerHole != null)
+			ownerHole.ReturnPointsToPool(gameObject);
+		else if (gameObject.activeSelf)
+			Destroy(gameObject);
+	}
 }

@@ -88,9 +88,11 @@ public class ModeSelectionUI : MonoBehaviour
 					Assign(ref mobileTeamButton, ref desktopTeamButton, button, isMobile);
 					break;
 				case "City":
+				case "City1":
 					Assign(ref mobileCityButton, ref desktopCityButton, button, isMobile);
 					break;
 				case "Garden":
+				case "Garden2":
 					Assign(ref mobileGardenButton, ref desktopGardenButton, button, isMobile);
 					break;
 			}
@@ -133,6 +135,8 @@ public class ModeSelectionUI : MonoBehaviour
 		HookModePanel(desktopBossButton);
 		HookModePanel(mobileTotalButton);
 		HookModePanel(desktopTotalButton);
+		if (TutorialController.Instance != null)
+			TutorialController.Instance.RefreshLock();
 	}
 
 	private void BindModeButton(Button button, ModeManager.Mode mode)
@@ -141,13 +145,14 @@ public class ModeSelectionUI : MonoBehaviour
 			return;
 
 		button.enabled = true;
-		button.interactable = true;
+		if (!TutorialController.IsLockingUi)
+			button.interactable = true;
 		button.onClick = new Button.ButtonClickedEvent();
 		button.onClick.AddListener(() =>
 		{
-			PlayMenuClick();
 			OnModeButtonClicked(mode);
-			CloseNamedPanel(button, "PanelOfModes");
+			if (!TutorialController.KeepModesPanelOpen)
+				CloseNamedPanel(button, "PanelOfModes");
 		});
 		DisableChildRaycasts(button);
 	}
@@ -158,11 +163,14 @@ public class ModeSelectionUI : MonoBehaviour
 			return;
 
 		button.enabled = true;
-		button.interactable = true;
+		if (!TutorialController.IsLockingUi)
+			button.interactable = true;
 		button.onClick = new Button.ButtonClickedEvent();
 		button.onClick.AddListener(() =>
 		{
-			PlayMenuClick();
+			// #region agent log
+			try { System.IO.File.AppendAllText("/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/.cursor/debug-d61023.log", "{\"sessionId\":\"d61023\",\"runId\":\"map-align\",\"hypothesisId\":\"H1\",\"location\":\"ModeSelectionUI.BindMapButton\",\"message\":\"map-click\",\"data\":{\"button\":\"" + button.gameObject.name + "\",\"mapId\":" + mapId + ",\"canvas\":\"" + (button.GetComponentInParent<Canvas>(true) != null ? button.GetComponentInParent<Canvas>(true).name : "null") + "\"},\"timestamp\":" + System.DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() + "}\n"); } catch {}
+			// #endregion
 			if (MainMenuController.Instance != null)
 				MainMenuController.Instance.UpdateMapOnBackground(mapId);
 			CloseNamedPanel(button, "PanelOfMaps");
@@ -255,6 +263,8 @@ public class ModeSelectionUI : MonoBehaviour
 		ClearMapCardTint(desktopCityButton);
 		ClearMapCardTint(mobileGardenButton);
 		ClearMapCardTint(desktopGardenButton);
+		if (TutorialController.Instance != null)
+			TutorialController.Instance.RefreshLock();
 	}
 
 	private void ApplyModeCard(Button button, bool selected)
@@ -262,7 +272,8 @@ public class ModeSelectionUI : MonoBehaviour
 		if (button == null)
 			return;
 
-		button.interactable = true;
+		if (!TutorialController.IsLockingUi)
+			button.interactable = true;
 		button.enabled = true;
 		button.transition = Selectable.Transition.None;
 		Color face = selected ? selectedColor : normalColor;
@@ -317,12 +328,6 @@ public class ModeSelectionUI : MonoBehaviour
 			}
 			current = current.parent;
 		}
-	}
-
-	private static void PlayMenuClick()
-	{
-		if (MainMenuController.Instance != null && MainMenuController.Instance.dzyn != null)
-			MainMenuController.Instance.dzyn.Play();
 	}
 }
 

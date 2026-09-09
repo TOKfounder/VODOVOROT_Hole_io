@@ -208,6 +208,12 @@ public class MatchHud : MonoBehaviour
 
 		if (ModeManager.currentMode == ModeManager.Mode.TotalCleaning)
 		{
+			if (!TutorialController.ShowCleaningLandmarks)
+			{
+				HideUnusedArrows(0);
+				return;
+			}
+
 			int shown = PlaceLandmarkArrows();
 			HideUnusedArrows(shown);
 			return;

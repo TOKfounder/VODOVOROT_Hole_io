@@ -33,18 +33,18 @@ public class HoleParent : MonoBehaviour
 
 	protected float[] scoreRequired = {
 			0,
-			10,
-			45,
-			120,
-			280,
-			580,
-			1100,
-			2000,
-			3400,
-			5400,
-			8000
+			22,
+			65,
+			150,
+			320,
+			620,
+			1150,
+			2050,
+			3500,
+			5500,
+			8200
 	};
-	protected float[] levelScales = { 0.41f, 0.94f, 2.37f, 4.36f, 6.77f, 9.21f, 11.52f, 13.77f, 15.8f, 17.59f, 18.7f };
+	protected float[] levelScales = { 0.41f, 0.72f, 1.35f, 2.5f, 4f, 5.8f, 7.8f, 10.2f, 13.5f, 17.59f, 18.7f };
 	public int score;
 	protected Vector3 targetScale;
 	protected float scaleLerpSpeed = 2f;
@@ -271,10 +271,23 @@ public class HoleParent : MonoBehaviour
 
 	public void ReturnPointsToPool(GameObject pointsObject)
 	{
-		if (pointsPool != null && pointsObject != null)
+		if (pointsObject == null || !pointsObject.activeSelf)
+			return;
+
+		if (pointsPool != null)
 			pointsPool.Release(pointsObject);
-		else if (pointsObject != null)
+		else
 			Destroy(pointsObject);
+	}
+
+	public static void ClearAllScorePopups()
+	{
+		PointsScript[] popups = Object.FindObjectsByType<PointsScript>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+		for (int i = 0; i < popups.Length; i++)
+		{
+			if (popups[i] != null)
+				popups[i].HideNow();
+		}
 	}
 
 	public Vector3 GetVisualSizeOfHole()

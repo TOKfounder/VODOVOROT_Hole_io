@@ -20,7 +20,6 @@ public class GamingManager : MonoBehaviour
 
 	public GameObject MobpanelOfEnd;
 	public GameObject DeskpanelOfEnd;
-	[SerializeField] private float endPanelYBoost = 120f;
 	private bool endPanelRaised;
 	public float perc = 0f;
 	public float minX;
@@ -192,6 +191,7 @@ public class GamingManager : MonoBehaviour
 			YG2.GameplayStart();
 		StartCoroutine(UpdateFlag());
 		NudgeBoostButton();
+		UiClickFeedback.EnsureOnScene();
 		TutorialController.EnsureMatch();
 	}
 
@@ -444,32 +444,19 @@ public class GamingManager : MonoBehaviour
 		MatchPause.ForceReset();
 		SetMatchClockFrozen(false);
 		HoleFeedback.ForPlayer?.SetMatchActive(false);
+		HoleParent.ClearAllScorePopups();
 		MatchHud hud = FindAnyObjectByType<MatchHud>();
 		if (hud != null)
 			hud.SetVisible(false);
 
-		RaiseEndPanel(MobpanelOfEnd);
-		RaiseEndPanel(DeskpanelOfEnd);
 		endPanelRaised = true;
 
 		if (YG2.envir.isMobile)
 			MobpanelOfEnd?.SetActive(true);
 		else
 			DeskpanelOfEnd?.SetActive(true);
-	}
 
-	private void RaiseEndPanel(GameObject panel)
-	{
-		if (endPanelRaised || panel == null)
-			return;
-
-		RectTransform rect = panel.GetComponent<RectTransform>();
-		if (rect == null)
-			return;
-
-		Vector2 pos = rect.anchoredPosition;
-		pos.y += endPanelYBoost;
-		rect.anchoredPosition = pos;
+		TutorialController.NotifyMatchEnded();
 	}
 
 	private static int GetPlayerScore()

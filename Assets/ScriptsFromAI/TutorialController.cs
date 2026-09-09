@@ -6,14 +6,57 @@ using YG;
 
 public class TutorialController : MonoBehaviour
 {
+	public const int StageNick = 0;
+	public const int StageModes = 1;
+	public const int StageCleaning = 2;
+	public const int StageModesReturn = 3;
+	public const int StageMaps = 4;
+	public const int StageCity = 5;
+	public const int StagePlay = 6;
+	public const int StageMatchCards = 7;
+	public const int StageMatchPlay = 8;
+	public const int StageEndContinue = 9;
+	public const int StageCurrency = 10;
+	public const int StageExchange = 11;
+	public const int StageSkins = 12;
+	public const int StageRotateWhite = 13;
+	public const int StageBuyWhite = 14;
+	public const int StageEquipWhite = 15;
+	public const int StageDone = 16;
+
 	private const int MatchCardCount = 4;
-	private const float ReplayLeft = 18f;
-	private const float ReplayTop = -18f;
+	private const int WhiteFriendIndex = 1;
+	private const int WhiteFriendCoinCost = 20;
 	private const float PointerOffset = 92f;
+	private const float OverlayLocalZ = -110f;
 	private static readonly Color PointerTint = new Color(1f, 0.85f, 0.2f, 1f);
 
 	public static TutorialController Instance { get; private set; }
-	public static bool ReplayMatchTutorial { get; set; }
+	public static bool ShowCleaningLandmarks { get; private set; }
+
+	public static bool IsDone => YG2.saves.tutorialStage >= StageDone;
+
+	public static bool IsLockingUi
+	{
+		get
+		{
+			int stage = YG2.saves.tutorialStage;
+			return stage < StageDone && stage != StageMatchPlay;
+		}
+	}
+
+	public static bool KeepModesPanelOpen
+	{
+		get
+		{
+			int stage = YG2.saves.tutorialStage;
+			return stage == StageCleaning || stage == StageModesReturn;
+		}
+	}
+
+	public static bool BlocksAutoLegendNick => YG2.saves.tutorialStage == StageNick;
+
+	public static bool IsExchangeStep => YG2.saves.tutorialStage == StageExchange;
 
 	private Canvas targetCanvas;
 	private RectTransform overlayRoot;
@@ -23,27 +66,31 @@ public class TutorialController : MonoBehaviour
 	private RectTransform pointerTarget;
 	private Text titleText;
 	private Text bodyText;
-	private Text hintText;
 	private Button nextButton;
-	private Button skipButton;
 	private Text nextLabel;
-	private Text skipLabel;
-	private Text replayLabel;
-	private GameObject replayButtonGo;
-	private Vector2 skipCardPos;
-	private bool menuFlow;
-	private bool waitingForEat;
-	private bool showingDone;
-	private int step;
+	private int matchCard;
 	private Coroutine matchRoutine;
-	private InputField promotedNick;
-	private Transform nickFieldHomeParent;
-	private int nickFieldHomeIndex = -1;
+	private bool visualsDirty;
+	private bool modesPanelWasOpen;
+	private bool mapsPanelWasOpen;
+	private InputField nickField;
+	private bool nickHooked;
 
 	public static void NotifyPlayerScored()
 	{
-		if (Instance != null)
-			Instance.OnPlayerScored();
+	}
+
+	public static void MigrateSaves()
+	{
+		if (YG2.saves.tutorialStage >= StageDone)
+		{
+			YG2.saves.tutorialMenuSeen = true;
+			YG2.saves.tutorialMatchSeen = true;
+			return;
+		}
+
+		if (YG2.saves.tutorialMenuSeen && YG2.saves.tutorialMatchSeen)
+			YG2.saves.tutorialStage = StageDone;
 	}
 
 	public static void EnsureMenu()
@@ -76,55 +123,132 @@ public class TutorialController : MonoBehaviour
 		controller.BindMatch(canvas);
 	}
 
+	public static void NotifyMatchEnded()
+	{
+		if (IsDone)
+			return;
+		int stage = YG2.saves.tutorialStage;
+		if (stage == StageMatchCards || stage == StageMatchPlay)
+			SetStage(StageEndContinue);
+		if (Instance != null)
+			Instance.ShowEndContinueGuide();
+	}
+
+	public static void NotifyReturningToMenu()
+	{
+		if (IsDone)
+			return;
+		int stage = YG2.saves.tutorialStage;
+		if (stage == StageEndContinue || stage == StageMatchPlay || stage == StageMatchCards)
+			SetStage(StageCurrency);
+	}
+
+	public static void NotifyPlayStarted()
+	{
+		if (IsDone)
+			return;
+		if (YG2.saves.tutorialStage <= StagePlay)
+			SetStage(StageMatchCards);
+	}
+
+	public static void NotifyExchanged()
+	{
+		if (!IsExchangeStep)
+			return;
+		EnsureWhiteFriendCoins();
+		SetStage(StageSkins);
+	}
+
+	public static void EnsureWhiteFriendCoins()
+	{
+		if (YG2.saves.goldCoins < WhiteFriendCoinCost)
+			YG2.saves.goldCoins = WhiteFriendCoinCost;
+	}
+
 	public void RefreshTexts()
 	{
-		if (replayLabel != null)
-			replayLabel.text = GameTexts.Tutorial;
 		if (overlayRoot == null || !overlayRoot.gameObject.activeSelf)
 			return;
-		ApplyCurrentCard();
+		ApplyStageVisuals();
+	}
+
+	public void RefreshLock()
+	{
+		ApplyLock();
 	}
 
 	private void BindMenu(Canvas canvas)
 	{
 		targetCanvas = canvas;
 		Instance = this;
+		ShowCleaningLandmarks = false;
+		UiClickFeedback.EnsureOnScene();
+		HideReplayButtons();
 		EnsureOverlay();
-		EnsureReplayButton(GameController.Instance != null ? GameController.Instance.CanvasForMobile : null);
-		EnsureReplayButton(GameController.Instance != null ? GameController.Instance.CanvasForDesktop : null);
-		EnsureReplayButton(canvas.gameObject);
-		SetReplayVisible(YG2.saves.tutorialMenuSeen);
-		if (!YG2.saves.tutorialMenuSeen)
-			StartCoroutine(OpenMenuNextFrame());
+		MigrateSaves();
+		RecoverMenuStage();
+		if (IsDone)
+		{
+			UnlockAll();
+			HideOverlay();
+			return;
+		}
+
+		if (YG2.saves.tutorialStage == StageNick)
+			ClearNickFieldsForFirstRun();
+		HookNickField();
+		ApplyStageVisuals();
+		ApplyLock();
 	}
 
 	private void BindMatch(Canvas canvas)
 	{
 		targetCanvas = canvas;
 		Instance = this;
+		ShowCleaningLandmarks = false;
+		UiClickFeedback.EnsureOnScene();
+		HideReplayButtons();
 		EnsureOverlay();
-		SetReplayVisible(false);
-		bool replay = ReplayMatchTutorial;
-		ReplayMatchTutorial = false;
-		if (replay || (YG2.saves.tutorialMenuSeen && !YG2.saves.tutorialMatchSeen))
+		MigrateSaves();
+		if (IsDone)
+		{
+			UnlockAll();
+			HideOverlay();
+			return;
+		}
+
+		if (YG2.saves.tutorialStage < StageMatchCards)
+			SetStage(StageMatchCards);
+
+		if (YG2.saves.tutorialStage == StageMatchCards)
 		{
 			if (matchRoutine != null)
 				StopCoroutine(matchRoutine);
-			matchRoutine = StartCoroutine(RunMatchTutorial());
+			matchRoutine = StartCoroutine(RunMatchCards());
+		}
+		else if (YG2.saves.tutorialStage == StageEndContinue)
+			ShowEndContinueGuide();
+		else
+		{
+			HideOverlay();
+			UnlockAll();
 		}
 	}
 
 	void OnDestroy()
 	{
-		RestoreNickField();
+		UnhookNickField();
 		if (Instance == this)
+		{
+			ShowCleaningLandmarks = false;
 			Instance = null;
+		}
 	}
 
 	private void ReleaseForCanvasSwitch()
 	{
-		RestoreNickField();
-		HideEatHint();
+		UnhookNickField();
+		ShowCleaningLandmarks = false;
 		if (overlayRoot != null)
 			overlayRoot.gameObject.SetActive(false);
 		if (Instance == this)
@@ -133,49 +257,136 @@ public class TutorialController : MonoBehaviour
 
 	void LateUpdate()
 	{
-		RefreshLivePointerTarget();
+		if (IsDone || targetCanvas == null)
+			return;
+
+		PollAdvances();
+		if (visualsDirty)
+		{
+			visualsDirty = false;
+			ApplyStageVisuals();
+		}
+		ApplyLock();
+		RectTransform live = ResolveTargetRect();
+		if (live != pointerTarget)
+			PointAt(live);
 		if (pointerRect != null && pointerRect.gameObject.activeSelf)
 			UpdatePointer();
+		if (overlayRoot != null && overlayRoot.gameObject.activeSelf)
+			BringOverlayForward();
 	}
 
-	private void RefreshLivePointerTarget()
+	private void RecoverMenuStage()
 	{
-		if (menuFlow || waitingForEat || showingDone || overlayRoot == null || !overlayRoot.gameObject.activeSelf)
+		int stage = YG2.saves.tutorialStage;
+		if (stage == StageMatchCards || stage == StageMatchPlay || stage == StageEndContinue)
+			SetStage(StageCurrency);
+		else if (stage == StageCleaning || stage == StageModesReturn)
+			SetStage(StageModes);
+		else if (stage == StageCity && !IsPanelActive("PanelOfMaps"))
+			SetStage(StageMaps);
+		else if (stage == StageExchange)
+			SetStage(StageCurrency);
+		else if (stage == StageRotateWhite || stage == StageBuyWhite || stage == StageEquipWhite)
+			SetStage(StageSkins);
+	}
+
+	private void PollAdvances()
+	{
+		switch (YG2.saves.tutorialStage)
+		{
+			case StageModes:
+				if (IsPanelActive("PanelOfModes"))
+				{
+					modesPanelWasOpen = true;
+					SetStage(StageCleaning);
+					ApplyStageVisuals();
+				}
+				break;
+			case StageCleaning:
+				if (YG2.saves.chosenMode == (int)ModeManager.Mode.TotalCleaning)
+				{
+					SetStage(StageModesReturn);
+					ApplyStageVisuals();
+				}
+				break;
+			case StageModesReturn:
+				if (modesPanelWasOpen && !IsPanelActive("PanelOfModes"))
+				{
+					SetStage(StageMaps);
+					ApplyStageVisuals();
+				}
+				break;
+			case StageMaps:
+				if (IsPanelActive("PanelOfMaps"))
+				{
+					mapsPanelWasOpen = true;
+					SetStage(StageCity);
+					ApplyStageVisuals();
+				}
+				break;
+			case StageCity:
+				if (mapsPanelWasOpen && !IsPanelActive("PanelOfMaps"))
+				{
+					SetStage(StagePlay);
+					ApplyStageVisuals();
+				}
+				break;
+			case StageCurrency:
+				if (IsPanelActive("PanelOfValute"))
+				{
+					SetStage(StageExchange);
+					ApplyStageVisuals();
+				}
+				break;
+			case StageSkins:
+				if (IsPanelActive("PanelOfSkins"))
+				{
+					SetStage(StageRotateWhite);
+					ApplyStageVisuals();
+				}
+				break;
+			case StageRotateWhite:
+				if (ReadChosenSkin() == WhiteFriendIndex)
+				{
+					SetStage(StageBuyWhite);
+					ApplyStageVisuals();
+				}
+				break;
+			case StageBuyWhite:
+				if (YG2.saves.massiveOfObtaining != null
+					&& YG2.saves.massiveOfObtaining.Length > WhiteFriendIndex
+					&& YG2.saves.massiveOfObtaining[WhiteFriendIndex] == 1)
+				{
+					SetStage(StageEquipWhite);
+					ApplyStageVisuals();
+				}
+				break;
+			case StageEquipWhite:
+				if (YG2.saves.equipedMaterial == WhiteFriendIndex)
+					CompleteTutorial();
+				break;
+		}
+	}
+
+	private void CompleteTutorial()
+	{
+		SetStage(StageDone);
+		YG2.saves.tutorialMenuSeen = true;
+		YG2.saves.tutorialMatchSeen = true;
+		YG2.SaveProgress();
+		UnlockAll();
+		HideOverlay();
+	}
+
+	private static void SetStage(int stage)
+	{
+		if (YG2.saves.tutorialStage == stage)
 			return;
-		if (step != 3 || cardRect == null || !cardRect.gameObject.activeSelf)
-			return;
-
-		MatchHud hud = Object.FindAnyObjectByType<MatchHud>();
-		if (hud == null)
-			return;
-		RectTransform target = IsCleaningMode() ? hud.FirstActiveArrow() : hud.MinimapRect;
-		if (target != pointerTarget)
-			PointAt(target);
-	}
-
-	private IEnumerator OpenMenuNextFrame()
-	{
-		yield return null;
-		OpenNickCard();
-	}
-
-	private void OpenNickCard()
-	{
-		menuFlow = true;
-		waitingForEat = false;
-		showingDone = false;
-		step = 0;
-		ClearNickFieldsForFirstRun();
-		SetReplayVisible(false);
-		ShowCardOverlay();
-		ApplyCurrentCard();
-	}
-
-	private void OnReplayClicked()
-	{
-		ReplayMatchTutorial = true;
-		if (GameController.Instance != null)
-			GameController.Instance.StartGame();
+		YG2.saves.tutorialStage = stage;
+		YG2.SaveProgress();
+		if (Instance != null)
+			Instance.visualsDirty = true;
 	}
 
 	private void EnsureOverlay()
@@ -191,44 +402,49 @@ public class TutorialController : MonoBehaviour
 		overlayRoot.anchorMax = Vector2.one;
 		overlayRoot.offsetMin = Vector2.zero;
 		overlayRoot.offsetMax = Vector2.zero;
+		BringOverlayForward();
 		dimImage = rootGo.GetComponent<Image>();
-		dimImage.color = new Color(0f, 0f, 0f, 0.62f);
-		dimImage.raycastTarget = true;
+		dimImage.color = new Color(0f, 0f, 0f, 0f);
+		dimImage.raycastTarget = false;
 
 		GameObject cardGo = new GameObject("TutorialCard", typeof(RectTransform), typeof(Image));
 		cardGo.transform.SetParent(overlayRoot, false);
 		cardRect = cardGo.GetComponent<RectTransform>();
-		cardRect.anchorMin = new Vector2(0.5f, 0.5f);
-		cardRect.anchorMax = new Vector2(0.5f, 0.5f);
-		cardRect.pivot = new Vector2(0.5f, 0.5f);
-		cardRect.sizeDelta = new Vector2(620f, 320f);
-		cardGo.GetComponent<Image>().color = new Color(0.12f, 0.1f, 0.14f, 0.96f);
-		cardGo.GetComponent<Image>().raycastTarget = true;
+		cardRect.anchorMin = new Vector2(0.5f, 1f);
+		cardRect.anchorMax = new Vector2(0.5f, 1f);
+		cardRect.pivot = new Vector2(0.5f, 1f);
+		cardRect.anchoredPosition = new Vector2(0f, -18f);
+		cardRect.sizeDelta = new Vector2(560f, 120f);
+		Image cardImage = cardGo.GetComponent<Image>();
+		cardImage.color = new Color(0.12f, 0.1f, 0.14f, 0.96f);
+		cardImage.raycastTarget = false;
 
-		titleText = CreateLabel(cardRect, "Title", new Vector2(0f, 92f), new Vector2(560f, 56f), 34);
-		bodyText = CreateLabel(cardRect, "Body", new Vector2(0f, 8f), new Vector2(560f, 140f), 22);
+		titleText = CreateLabel(cardRect, "Title", new Vector2(0f, -28f), new Vector2(520f, 36f), 26);
+		bodyText = CreateLabel(cardRect, "Body", new Vector2(0f, -78f), new Vector2(520f, 64f), 20);
 		if (titleText != null)
 			titleText.fontStyle = FontStyle.Bold;
 		if (bodyText != null)
 			bodyText.alignment = TextAnchor.UpperCenter;
 
-		nextButton = CreateButton(cardRect, "NextButton", new Vector2(130f, -110f), new Vector2(220f, 56f), new Color(0.28f, 0.72f, 0.32f, 1f), out nextLabel);
-		skipButton = CreateButton(cardRect, "SkipButton", new Vector2(-130f, -110f), new Vector2(220f, 56f), new Color(0.35f, 0.35f, 0.4f, 1f), out skipLabel);
-		skipCardPos = new Vector2(-130f, -110f);
-		nextButton.onClick.AddListener(OnNext);
-		skipButton.onClick.AddListener(OnSkip);
+		nextButton = CreateButton(cardRect, "NextButton", new Vector2(0f, -240f), new Vector2(220f, 56f), new Color(0.28f, 0.72f, 0.32f, 1f), out nextLabel);
+		nextButton.onClick.AddListener(OnMatchNext);
+		UiClickFeedback.EnsureOn(nextButton);
+		nextButton.gameObject.SetActive(false);
 
 		pointerRect = CreatePointer(overlayRoot);
-		hintText = ActiveCanvas.CreateText(targetCanvas.transform, "TutorialEatHint", new Vector2(0f, -150f), new Vector2(640f, 48f));
-		if (hintText != null)
-		{
-			hintText.fontSize = 26;
-			hintText.gameObject.SetActive(false);
-		}
-
 		overlayRoot.gameObject.SetActive(false);
 		if (font != null)
 			ActiveCanvas.ApplyUiFontEverywhere();
+	}
+
+	private void BringOverlayForward()
+	{
+		if (overlayRoot == null)
+			return;
+		overlayRoot.SetAsLastSibling();
+		Vector3 pos = overlayRoot.localPosition;
+		pos.z = OverlayLocalZ;
+		overlayRoot.localPosition = pos;
 	}
 
 	private static RectTransform CreatePointer(Transform parent)
@@ -249,61 +465,15 @@ public class TutorialController : MonoBehaviour
 		return rect;
 	}
 
-	private void EnsureReplayButton(GameObject canvasGo)
-	{
-		if (canvasGo == null)
-			return;
-
-		Transform existing = canvasGo.transform.Find("TutorialReplayButton");
-		GameObject buttonGo = existing != null ? existing.gameObject : null;
-		if (buttonGo == null)
-		{
-			Text label;
-			Button button = CreateButton(
-				canvasGo.transform,
-				"TutorialReplayButton",
-				new Vector2(ReplayLeft, ReplayTop),
-				new Vector2(200f, 52f),
-				new Color(0.2f, 0.22f, 0.28f, 0.92f),
-				out label);
-			RectTransform rect = button.GetComponent<RectTransform>();
-			rect.anchorMin = new Vector2(0f, 1f);
-			rect.anchorMax = new Vector2(0f, 1f);
-			rect.pivot = new Vector2(0f, 1f);
-			rect.anchoredPosition = new Vector2(ReplayLeft, ReplayTop);
-			buttonGo = button.gameObject;
-			if (canvasGo == targetCanvas.gameObject)
-				replayLabel = label;
-			else
-				label.text = GameTexts.Tutorial;
-		}
-
-		Button replayButton = buttonGo.GetComponent<Button>();
-		if (replayButton != null)
-		{
-			replayButton.onClick.RemoveAllListeners();
-			replayButton.onClick.AddListener(OnReplayClicked);
-		}
-
-		if (canvasGo == targetCanvas.gameObject)
-		{
-			replayButtonGo = buttonGo;
-			if (replayLabel == null)
-				replayLabel = buttonGo.GetComponentInChildren<Text>();
-			if (replayLabel != null)
-				replayLabel.text = GameTexts.Tutorial;
-		}
-	}
-
 	private static Text CreateLabel(Transform parent, string name, Vector2 pos, Vector2 size, int fontSize)
 	{
 		Text text = ActiveCanvas.CreateText(parent, name, pos, size);
 		if (text == null)
 			return null;
 		RectTransform rect = text.rectTransform;
-		rect.anchorMin = new Vector2(0.5f, 0.5f);
-		rect.anchorMax = new Vector2(0.5f, 0.5f);
-		rect.pivot = new Vector2(0.5f, 0.5f);
+		rect.anchorMin = new Vector2(0.5f, 1f);
+		rect.anchorMax = new Vector2(0.5f, 1f);
+		rect.pivot = new Vector2(0.5f, 1f);
 		rect.anchoredPosition = pos;
 		text.fontSize = fontSize;
 		text.raycastTarget = false;
@@ -322,8 +492,8 @@ public class TutorialController : MonoBehaviour
 		GameObject go = new GameObject(name, typeof(RectTransform), typeof(Image), typeof(Button));
 		go.transform.SetParent(parent, false);
 		RectTransform rect = go.GetComponent<RectTransform>();
-		rect.anchorMin = new Vector2(0.5f, 0.5f);
-		rect.anchorMax = new Vector2(0.5f, 0.5f);
+		rect.anchorMin = new Vector2(0.5f, 1f);
+		rect.anchorMax = new Vector2(0.5f, 1f);
 		rect.pivot = new Vector2(0.5f, 0.5f);
 		rect.anchoredPosition = pos;
 		rect.sizeDelta = size;
@@ -346,164 +516,210 @@ public class TutorialController : MonoBehaviour
 		return button;
 	}
 
-	private void ShowCardOverlay()
+	private void ApplyStageVisuals()
+	{
+		int stage = YG2.saves.tutorialStage;
+		if (stage >= StageDone)
+		{
+			HideOverlay();
+			return;
+		}
+
+		if (stage == StageMatchPlay)
+		{
+			HideOverlay();
+			return;
+		}
+
+		if (stage == StageMatchCards)
+		{
+			ShowMatchCard(matchCard);
+			return;
+		}
+
+		ShowGuidePlaque(GuideTitle(stage), GuideBody(stage), false);
+		PointAt(ResolveTargetRect());
+	}
+
+	private static string GuideTitle(int stage)
+	{
+		switch (stage)
+		{
+			case StageNick: return GameTexts.TutorialLegendNickTitle;
+			case StageModes: return GameTexts.TutorialModesTitle;
+			case StageCleaning: return GameTexts.TutorialCleaningPickTitle;
+			case StageModesReturn: return GameTexts.TutorialReturnTitle;
+			case StageMaps: return GameTexts.TutorialMapsTitle;
+			case StageCity: return GameTexts.TutorialCityTitle;
+			case StagePlay: return GameTexts.TutorialPlayTitle;
+			case StageEndContinue: return GameTexts.TutorialContinueTitle;
+			case StageCurrency: return GameTexts.TutorialCurrencyTitle;
+			case StageExchange: return GameTexts.TutorialExchangeTitle;
+			case StageSkins: return GameTexts.TutorialSkinsTitle;
+			case StageRotateWhite: return GameTexts.TutorialRotateTitle;
+			case StageBuyWhite: return GameTexts.TutorialBuyTitle;
+			case StageEquipWhite: return GameTexts.TutorialEquipTitle;
+			default: return "";
+		}
+	}
+
+	private static string GuideBody(int stage)
+	{
+		switch (stage)
+		{
+			case StageNick: return GameTexts.TutorialLegendNickBody;
+			case StageModes: return GameTexts.TutorialModesBody;
+			case StageCleaning: return GameTexts.TutorialCleaningPickBody;
+			case StageModesReturn: return GameTexts.TutorialReturnBody;
+			case StageMaps: return GameTexts.TutorialMapsBody;
+			case StageCity: return GameTexts.TutorialCityBody;
+			case StagePlay: return GameTexts.TutorialPlayBody;
+			case StageEndContinue: return GameTexts.TutorialContinueBody;
+			case StageCurrency: return GameTexts.TutorialCurrencyBody;
+			case StageExchange: return GameTexts.TutorialExchangeBody;
+			case StageSkins: return GameTexts.TutorialSkinsBody;
+			case StageRotateWhite: return GameTexts.TutorialRotateBody;
+			case StageBuyWhite: return GameTexts.TutorialBuyBody;
+			case StageEquipWhite: return GameTexts.TutorialEquipBody;
+			default: return "";
+		}
+	}
+
+	private void ShowGuidePlaque(string title, string body, bool dim)
 	{
 		if (overlayRoot == null)
 			return;
 		overlayRoot.gameObject.SetActive(true);
-		overlayRoot.SetAsLastSibling();
+		BringOverlayForward();
+		if (dimImage != null)
+		{
+			dimImage.color = dim ? new Color(0f, 0f, 0f, 0.62f) : new Color(0f, 0f, 0f, 0f);
+			dimImage.raycastTarget = dim;
+		}
+		if (cardRect != null)
+		{
+			cardRect.gameObject.SetActive(true);
+			LayoutPlaqueAwayFrom(ResolveTargetRect());
+			Image cardImage = cardRect.GetComponent<Image>();
+			if (cardImage != null)
+				cardImage.raycastTarget = dim;
+		}
+		if (nextButton != null)
+			nextButton.gameObject.SetActive(false);
+		if (titleText != null)
+			titleText.text = title;
+		if (bodyText != null)
+			bodyText.text = body;
+	}
+
+	private void ShowMatchCard(int card)
+	{
+		if (overlayRoot == null)
+			return;
+		overlayRoot.gameObject.SetActive(true);
+		BringOverlayForward();
 		if (dimImage != null)
 		{
 			dimImage.color = new Color(0f, 0f, 0f, 0.62f);
 			dimImage.raycastTarget = true;
 		}
 		if (cardRect != null)
+		{
 			cardRect.gameObject.SetActive(true);
+			cardRect.anchorMin = new Vector2(0.5f, 0.5f);
+			cardRect.anchorMax = new Vector2(0.5f, 0.5f);
+			cardRect.pivot = new Vector2(0.5f, 0.5f);
+			cardRect.anchoredPosition = Vector2.zero;
+			cardRect.sizeDelta = new Vector2(620f, 320f);
+			Image cardImage = cardRect.GetComponent<Image>();
+			if (cardImage != null)
+				cardImage.raycastTarget = true;
+		}
+		if (titleText != null)
+		{
+			titleText.rectTransform.anchoredPosition = new Vector2(0f, -36f);
+			titleText.rectTransform.sizeDelta = new Vector2(560f, 56f);
+		}
+		if (bodyText != null)
+		{
+			bodyText.rectTransform.anchoredPosition = new Vector2(0f, -120f);
+			bodyText.rectTransform.sizeDelta = new Vector2(560f, 140f);
+		}
 		if (nextButton != null)
+		{
 			nextButton.gameObject.SetActive(true);
-		PlaceSkipOnCard();
-		HideEatHint();
-	}
-
-	private void ShowPracticeHud()
-	{
-		if (overlayRoot == null)
-			return;
-		overlayRoot.gameObject.SetActive(true);
-		overlayRoot.SetAsLastSibling();
-		if (dimImage != null)
-		{
-			dimImage.color = new Color(0f, 0f, 0f, 0f);
-			dimImage.raycastTarget = false;
+			RectTransform nextRect = nextButton.GetComponent<RectTransform>();
+			nextRect.anchorMin = new Vector2(0.5f, 1f);
+			nextRect.anchorMax = new Vector2(0.5f, 1f);
+			nextRect.pivot = new Vector2(0.5f, 0.5f);
+			nextRect.anchoredPosition = new Vector2(0f, -270f);
+			nextButton.transform.SetAsLastSibling();
 		}
-		if (cardRect != null)
-			cardRect.gameObject.SetActive(false);
-		if (nextButton != null)
-			nextButton.gameObject.SetActive(false);
-		PlaceSkipForPractice();
-		HidePointer();
-		if (hintText != null)
-		{
-			hintText.text = GameTexts.TutorialEatHint;
-			hintText.gameObject.SetActive(true);
-			hintText.transform.SetAsLastSibling();
-		}
-	}
-
-	private void HideOverlay()
-	{
-		RestoreNickField();
-		HidePointer();
-		HideEatHint();
-		PlaceSkipOnCard();
-		if (overlayRoot != null)
-			overlayRoot.gameObject.SetActive(false);
-	}
-
-	private void PlaceSkipOnCard()
-	{
-		if (skipButton == null || cardRect == null)
-			return;
-		RectTransform rect = skipButton.GetComponent<RectTransform>();
-		rect.SetParent(cardRect, false);
-		rect.anchorMin = new Vector2(0.5f, 0.5f);
-		rect.anchorMax = new Vector2(0.5f, 0.5f);
-		rect.pivot = new Vector2(0.5f, 0.5f);
-		rect.anchoredPosition = skipCardPos;
-		skipButton.gameObject.SetActive(true);
-	}
-
-	private void PlaceSkipForPractice()
-	{
-		if (skipButton == null || overlayRoot == null)
-			return;
-		RectTransform rect = skipButton.GetComponent<RectTransform>();
-		rect.SetParent(overlayRoot, false);
-		rect.anchorMin = new Vector2(1f, 1f);
-		rect.anchorMax = new Vector2(1f, 1f);
-		rect.pivot = new Vector2(1f, 1f);
-		rect.anchoredPosition = new Vector2(-18f, -18f);
-		skipButton.gameObject.SetActive(true);
-	}
-
-	private void SetReplayVisible(bool visible)
-	{
-		if (GameController.Instance == null)
-		{
-			if (replayButtonGo != null)
-				replayButtonGo.SetActive(visible);
-			return;
-		}
-
-		SetReplayOnCanvas(GameController.Instance.CanvasForMobile, visible);
-		SetReplayOnCanvas(GameController.Instance.CanvasForDesktop, visible);
-	}
-
-	private static void SetReplayOnCanvas(GameObject canvasGo, bool visible)
-	{
-		if (canvasGo == null)
-			return;
-		Transform replay = canvasGo.transform.Find("TutorialReplayButton");
-		if (replay != null)
-			replay.gameObject.SetActive(visible);
-	}
-
-	private void ApplyCurrentCard()
-	{
 		if (nextLabel != null)
-			nextLabel.text = showingDone ? GameTexts.TutorialOk : GameTexts.TutorialNext;
-		if (skipLabel != null)
-			skipLabel.text = GameTexts.TutorialSkip;
+			nextLabel.text = GameTexts.TutorialNext;
+		ApplyMatchCardTexts(card);
+		PointAt(MatchCardPointer(card));
+	}
 
-		SetNickFieldOverOverlay(menuFlow);
-		if (promotedNick != null)
-			promotedNick.transform.SetAsLastSibling();
-
-		if (menuFlow)
-		{
-			SetCard(GameTexts.TutorialNickTitle, GameTexts.TutorialNickBody);
-			PointAt(ResolveNickField() != null ? ResolveNickField().GetComponent<RectTransform>() : null);
-			if (promotedNick != null)
-				promotedNick.transform.SetAsLastSibling();
+	private void LayoutPlaqueAwayFrom(RectTransform target)
+	{
+		if (cardRect == null)
 			return;
+
+		bool targetHigh = false;
+		if (target != null && targetCanvas != null)
+		{
+			Camera cam = targetCanvas.worldCamera;
+			Vector3[] corners = new Vector3[4];
+			target.GetWorldCorners(corners);
+			Vector3 mid = (corners[0] + corners[2]) * 0.5f;
+			Vector2 screen = RectTransformUtility.WorldToScreenPoint(cam, mid);
+			targetHigh = screen.y > Screen.height * 0.62f;
 		}
 
-		if (showingDone)
+		cardRect.anchorMin = new Vector2(0.5f, targetHigh ? 0f : 1f);
+		cardRect.anchorMax = cardRect.anchorMin;
+		cardRect.pivot = new Vector2(0.5f, targetHigh ? 0f : 1f);
+		cardRect.anchoredPosition = new Vector2(0f, targetHigh ? 24f : -18f);
+		cardRect.sizeDelta = new Vector2(560f, 120f);
+		if (titleText != null)
 		{
-			SetCard(GameTexts.TutorialEatDoneTitle, GameTexts.TutorialEatDoneBody);
-			HidePointer();
-			return;
+			titleText.rectTransform.anchoredPosition = new Vector2(0f, -28f);
+			titleText.rectTransform.sizeDelta = new Vector2(520f, 36f);
 		}
+		if (bodyText != null)
+		{
+			bodyText.rectTransform.anchoredPosition = new Vector2(0f, -78f);
+			bodyText.rectTransform.sizeDelta = new Vector2(520f, 64f);
+		}
+	}
 
-		switch (step)
+	private void ApplyMatchCardTexts(int card)
+	{
+		switch (card)
 		{
 			case 0:
 				SetCard(GameTexts.TutorialMoveTitle, GameTexts.TutorialMoveBody);
-				PointAt(FindJoystick());
 				break;
 			case 1:
 				SetCard(GameTexts.TutorialBoostTitle, GameTexts.TutorialBoostBody);
-				PointAt(FindBoost());
 				break;
 			case 2:
 				SetCard(GameTexts.TutorialEatTitle, GameTexts.TutorialEatBody);
-				HidePointer();
 				break;
 			default:
-				if (IsCleaningMode())
-				{
-					SetCard(GameTexts.TutorialArrowsTitle, GameTexts.TutorialArrowsBody);
-					MatchHud hud = Object.FindAnyObjectByType<MatchHud>();
-					PointAt(hud != null ? hud.FirstActiveArrow() : null);
-				}
-				else
-				{
-					SetCard(GameTexts.TutorialMapTitle, GameTexts.TutorialMapBody);
-					MatchHud hud = Object.FindAnyObjectByType<MatchHud>();
-					PointAt(hud != null ? hud.MinimapRect : null);
-				}
+				SetCard(GameTexts.TutorialCleaningRulesTitle, GameTexts.TutorialCleaningRulesBody);
 				break;
 		}
+	}
+
+	private RectTransform MatchCardPointer(int card)
+	{
+		if (card == 0)
+			return FindJoystick();
+		if (card == 1)
+			return FindBoost();
+		return null;
 	}
 
 	private void SetCard(string title, string body)
@@ -514,67 +730,340 @@ public class TutorialController : MonoBehaviour
 			bodyText.text = body;
 	}
 
-	private void OnNext()
+	private void HideOverlay()
 	{
-		if (menuFlow)
-		{
-			if (!TryCommitNick(false))
-			{
-				if (bodyText != null)
-					bodyText.text = GameTexts.TutorialNickNeed;
-				return;
-			}
-			FinishMenu(false);
-			return;
-		}
-
-		if (showingDone)
-		{
-			CloseMatchTutorial();
-			return;
-		}
-
-		step++;
-		if (step >= MatchCardCount)
-		{
-			BeginEatTask();
-			return;
-		}
-		ApplyCurrentCard();
+		HidePointer();
+		ShowCleaningLandmarks = false;
+		if (overlayRoot != null)
+			overlayRoot.gameObject.SetActive(false);
 	}
 
-	private void OnSkip()
+	private IEnumerator RunMatchCards()
 	{
-		if (menuFlow)
-		{
-			TryCommitNick(true);
-			FinishMenu(true);
-			return;
-		}
+		while (BlackHoleController.Player == null)
+			yield return null;
+		while (BlackHoleController.Player.IsBirthIntro)
+			yield return null;
+		if (GamingManager.Instance != null && GamingManager.Instance.HasEnded)
+			yield break;
 
-		CloseMatchTutorial();
+		matchCard = 0;
+		SetMatchClockFrozen(true);
+		MatchPause.Pause();
+		ShowMatchCard(matchCard);
+		ApplyLock();
 	}
 
-	private void FinishMenu(bool skipped)
+	private void OnMatchNext()
 	{
-		YG2.saves.tutorialMenuSeen = true;
-		if (skipped)
-			YG2.saves.tutorialMatchSeen = true;
-		YG2.SaveProgress();
+		if (YG2.saves.tutorialStage != StageMatchCards)
+			return;
+
+		matchCard++;
+		if (matchCard >= MatchCardCount)
+		{
+			BeginFreeMatch();
+			return;
+		}
+		ShowMatchCard(matchCard);
+	}
+
+	private void BeginFreeMatch()
+	{
+		SetStage(StageMatchPlay);
+		SetMatchClockFrozen(false);
 		HideOverlay();
-		SetReplayVisible(true);
+		UnlockAll();
+		MatchPause.Resume();
 	}
 
-	private bool TryCommitNick(bool allowLegend)
+	private void ShowEndContinueGuide()
 	{
-		string nick = ReadNickFields();
-		if (string.IsNullOrWhiteSpace(nick))
+		if (IsDone || YG2.saves.tutorialStage != StageEndContinue)
+			return;
+		ShowGuidePlaque(GameTexts.TutorialContinueTitle, GameTexts.TutorialContinueBody, false);
+		PointAt(ResolveTargetRect());
+		ApplyLock();
+	}
+
+	private static void SetMatchClockFrozen(bool frozen)
+	{
+		if (GamingManager.Instance != null)
+			GamingManager.Instance.SetMatchClockFrozen(frozen);
+	}
+
+	private void ApplyLock()
+	{
+		if (targetCanvas == null)
+			return;
+
+		bool lockUi = IsLockingUi;
+		Button allowed = ResolveTargetButton();
+		bool allowNext = YG2.saves.tutorialStage == StageMatchCards;
+		Button[] buttons = targetCanvas.GetComponentsInChildren<Button>(true);
+		for (int i = 0; i < buttons.Length; i++)
 		{
-			if (!allowLegend)
-				return false;
-			nick = GameTexts.LegendNick;
+			Button button = buttons[i];
+			if (button == null)
+				continue;
+			if (!lockUi)
+			{
+				button.interactable = true;
+				BoostButton boostOn = button.GetComponent<BoostButton>();
+				if (boostOn != null)
+					boostOn.enabled = true;
+				continue;
+			}
+			button.interactable = button == allowed || (allowNext && button == nextButton);
+			BoostButton boostOff = button.GetComponent<BoostButton>();
+			if (boostOff != null)
+				boostOff.enabled = false;
 		}
 
+		InputField allowedField = YG2.saves.tutorialStage == StageNick ? ResolveNickField() : null;
+		InputField[] fields = targetCanvas.GetComponentsInChildren<InputField>(true);
+		for (int i = 0; i < fields.Length; i++)
+		{
+			if (fields[i] == null)
+				continue;
+			fields[i].interactable = !lockUi || fields[i] == allowedField;
+		}
+	}
+
+	private void UnlockAll()
+	{
+		if (targetCanvas == null)
+			return;
+		Button[] buttons = targetCanvas.GetComponentsInChildren<Button>(true);
+		for (int i = 0; i < buttons.Length; i++)
+		{
+			if (buttons[i] == null)
+				continue;
+			buttons[i].interactable = true;
+			BoostButton boost = buttons[i].GetComponent<BoostButton>();
+			if (boost != null)
+				boost.enabled = true;
+		}
+		InputField[] fields = targetCanvas.GetComponentsInChildren<InputField>(true);
+		for (int i = 0; i < fields.Length; i++)
+		{
+			if (fields[i] != null)
+				fields[i].interactable = true;
+		}
+		if (HorizontalLayout3D.Instance != null)
+			HorizontalLayout3D.Instance.UpdateForChosen();
+	}
+
+	private Button ResolveTargetButton()
+	{
+		switch (YG2.saves.tutorialStage)
+		{
+			case StageModes: return FindButton("Modes");
+			case StageCleaning: return FindButton("TotalCleaning");
+			case StageModesReturn: return FindButton("Return", "PanelOfModes");
+			case StageMaps: return FindButton("Maps");
+			case StageCity: return FindButton("City") ?? FindButton("City1");
+			case StagePlay: return FindButton("PlayButton");
+			case StageMatchCards: return nextButton;
+			case StageEndContinue: return FindButton("ReturningToHome");
+			case StageCurrency: return FindActivator("PanelOfValute") ?? FindButton("Points");
+			case StageExchange: return FindButton("Exchange");
+			case StageSkins: return FindActivator("PanelOfSkins") ?? FindButton("SkinsShop");
+			case StageRotateWhite: return FindRotateNextButton();
+			case StageBuyWhite: return FindButton("InnerValute");
+			case StageEquipWhite: return FindButton("Equiping");
+			default: return null;
+		}
+	}
+
+	private RectTransform ResolveTargetRect()
+	{
+		if (YG2.saves.tutorialStage == StageNick)
+		{
+			InputField field = ResolveNickField();
+			return field != null ? field.GetComponent<RectTransform>() : null;
+		}
+		if (YG2.saves.tutorialStage == StageMatchCards)
+			return MatchCardPointer(matchCard);
+		Button button = ResolveTargetButton();
+		return button != null ? button.GetComponent<RectTransform>() : null;
+	}
+
+	private Button FindButton(string name, string ancestor = null)
+	{
+		if (targetCanvas == null)
+			return null;
+		Button[] buttons = targetCanvas.GetComponentsInChildren<Button>(true);
+		Button fallback = null;
+		for (int i = 0; i < buttons.Length; i++)
+		{
+			Button button = buttons[i];
+			if (button == null || button.gameObject.name != name)
+				continue;
+			if (ancestor != null && !HasAncestor(button.transform, ancestor))
+				continue;
+			if (button.gameObject.activeInHierarchy)
+				return button;
+			fallback = button;
+		}
+		return fallback;
+	}
+
+	private Button FindActivator(string targetName)
+	{
+		if (targetCanvas == null)
+			return null;
+		Button[] buttons = targetCanvas.GetComponentsInChildren<Button>(true);
+		Button fallback = null;
+		for (int i = 0; i < buttons.Length; i++)
+		{
+			Button button = buttons[i];
+			if (button == null)
+				continue;
+			int count = button.onClick.GetPersistentEventCount();
+			bool match = false;
+			for (int p = 0; p < count; p++)
+			{
+				if (button.onClick.GetPersistentMethodName(p) != "SetActive")
+					continue;
+				UnityEngine.Object persistentTarget = button.onClick.GetPersistentTarget(p);
+				if (persistentTarget != null && persistentTarget.name == targetName)
+				{
+					match = true;
+					break;
+				}
+			}
+			if (!match)
+				continue;
+			if (HasAncestor(button.transform, targetName))
+				continue;
+			if (button.gameObject.activeInHierarchy)
+				return button;
+			fallback = button;
+		}
+		return fallback;
+	}
+
+	private Button FindRotateNextButton()
+	{
+		if (targetCanvas == null)
+			return null;
+		Button[] buttons = targetCanvas.GetComponentsInChildren<Button>(true);
+		Button best = null;
+		float bestX = float.NegativeInfinity;
+		for (int i = 0; i < buttons.Length; i++)
+		{
+			Button button = buttons[i];
+			if (button == null || !HasPersistentMethod(button, "RotateOnDeg"))
+				continue;
+			if (!HasAncestor(button.transform, "PanelOfSkins"))
+				continue;
+			float x = button.transform.position.x;
+			if (x > bestX)
+			{
+				bestX = x;
+				best = button;
+			}
+		}
+		return best;
+	}
+
+	private static bool HasPersistentMethod(Button button, string methodName)
+	{
+		int count = button.onClick.GetPersistentEventCount();
+		for (int i = 0; i < count; i++)
+		{
+			if (button.onClick.GetPersistentMethodName(i) == methodName)
+				return true;
+		}
+		return false;
+	}
+
+	private static bool HasAncestor(Transform transform, string name)
+	{
+		Transform current = transform;
+		while (current != null)
+		{
+			if (current.name == name)
+				return true;
+			current = current.parent;
+		}
+		return false;
+	}
+
+	private bool IsPanelActive(string name)
+	{
+		GameObject panel = FindNamed(name);
+		return panel != null && panel.activeSelf;
+	}
+
+	private GameObject FindNamed(string name)
+	{
+		if (targetCanvas == null)
+			return null;
+		Transform[] transforms = targetCanvas.GetComponentsInChildren<Transform>(true);
+		for (int i = 0; i < transforms.Length; i++)
+		{
+			if (transforms[i] != null && transforms[i].name == name)
+				return transforms[i].gameObject;
+		}
+		return null;
+	}
+
+	private int ReadChosenSkin()
+	{
+		HorizontalLayout3D shop = ShopForActiveCanvas();
+		return shop != null ? shop.ChosenIndex : 0;
+	}
+
+	private HorizontalLayout3D ShopForActiveCanvas()
+	{
+		Button rotate = FindRotateNextButton();
+		if (rotate != null)
+		{
+			int count = rotate.onClick.GetPersistentEventCount();
+			for (int i = 0; i < count; i++)
+			{
+				if (rotate.onClick.GetPersistentMethodName(i) != "RotateOnDeg")
+					continue;
+				HorizontalLayout3D shop = rotate.onClick.GetPersistentTarget(i) as HorizontalLayout3D;
+				if (shop != null)
+					return shop;
+			}
+		}
+		return HorizontalLayout3D.Instance;
+	}
+
+	private void HookNickField()
+	{
+		UnhookNickField();
+		nickField = ResolveNickField();
+		if (nickField == null)
+			return;
+		nickField.onEndEdit.AddListener(OnNickEndEdit);
+		nickHooked = true;
+	}
+
+	private void UnhookNickField()
+	{
+		if (nickHooked && nickField != null)
+			nickField.onEndEdit.RemoveListener(OnNickEndEdit);
+		nickField = null;
+		nickHooked = false;
+	}
+
+	private void OnNickEndEdit(string value)
+	{
+		if (YG2.saves.tutorialStage != StageNick)
+			return;
+		if (string.IsNullOrWhiteSpace(value))
+		{
+			if (bodyText != null)
+				bodyText.text = GameTexts.TutorialNickNeed;
+			return;
+		}
+
+		string nick = value.Trim();
 		if (MainMenuController.Instance != null)
 			MainMenuController.Instance.ApplyNick(nick);
 		else
@@ -583,7 +1072,9 @@ public class TutorialController : MonoBehaviour
 			YG2.saves.isNickGiven = true;
 			YG2.SaveProgress();
 		}
-		return true;
+		SetStage(StageModes);
+		ApplyStageVisuals();
+		ApplyLock();
 	}
 
 	private static bool UseMobileNickField()
@@ -591,20 +1082,6 @@ public class TutorialController : MonoBehaviour
 		if (GameController.Instance != null)
 			return GameController.Instance.IsMobileCanvasActive();
 		return YG2.envir.isMobile;
-	}
-
-	private static string ReadNickFields()
-	{
-		if (MainMenuController.Instance == null)
-			return YG2.saves.nickName;
-
-		if (UseMobileNickField() && MainMenuController.Instance.nameInput != null)
-			return MainMenuController.Instance.nameInput.text;
-		if (MainMenuController.Instance.DnameInput != null)
-			return MainMenuController.Instance.DnameInput.text;
-		if (MainMenuController.Instance.nameInput != null)
-			return MainMenuController.Instance.nameInput.text;
-		return YG2.saves.nickName;
 	}
 
 	private static InputField ResolveNickField()
@@ -618,50 +1095,9 @@ public class TutorialController : MonoBehaviour
 		return MainMenuController.Instance.nameInput;
 	}
 
-	private void SetNickFieldOverOverlay(bool over)
-	{
-		if (!over)
-		{
-			RestoreNickField();
-			return;
-		}
-
-		InputField field = ResolveNickField();
-		if (field == null || overlayRoot == null)
-			return;
-		if (promotedNick == field)
-		{
-			field.transform.SetAsLastSibling();
-			return;
-		}
-
-		RestoreNickField();
-		promotedNick = field;
-		nickFieldHomeParent = field.transform.parent;
-		nickFieldHomeIndex = field.transform.GetSiblingIndex();
-		field.transform.SetParent(overlayRoot, true);
-		field.transform.SetAsLastSibling();
-	}
-
-	private void RestoreNickField()
-	{
-		if (promotedNick == null)
-			return;
-		if (nickFieldHomeParent != null)
-		{
-			promotedNick.transform.SetParent(nickFieldHomeParent, true);
-			int maxIndex = nickFieldHomeParent.childCount - 1;
-			if (nickFieldHomeIndex >= 0 && maxIndex >= 0)
-				promotedNick.transform.SetSiblingIndex(Mathf.Clamp(nickFieldHomeIndex, 0, maxIndex));
-		}
-		promotedNick = null;
-		nickFieldHomeParent = null;
-		nickFieldHomeIndex = -1;
-	}
-
 	private static void ClearNickFieldsForFirstRun()
 	{
-		if (YG2.saves.tutorialMenuSeen || MainMenuController.Instance == null)
+		if (YG2.saves.isNickGiven || MainMenuController.Instance == null)
 			return;
 		if (MainMenuController.Instance.nameInput != null)
 			MainMenuController.Instance.nameInput.text = "";
@@ -669,79 +1105,21 @@ public class TutorialController : MonoBehaviour
 			MainMenuController.Instance.DnameInput.text = "";
 	}
 
-	private IEnumerator RunMatchTutorial()
+	private static void HideReplayButtons()
 	{
-		while (BlackHoleController.Player == null)
-			yield return null;
-		while (BlackHoleController.Player.IsBirthIntro)
-			yield return null;
-		if (GamingManager.Instance != null && GamingManager.Instance.HasEnded)
-			yield break;
-
-		menuFlow = false;
-		waitingForEat = false;
-		showingDone = false;
-		step = 0;
-		SetMatchClockFrozen(true);
-		MatchPause.Pause();
-		ShowCardOverlay();
-		ApplyCurrentCard();
-	}
-
-	private static bool IsCleaningMode()
-	{
-		return ModeManager.currentMode == ModeManager.Mode.TotalCleaning;
-	}
-
-	private void BeginEatTask()
-	{
-		waitingForEat = true;
-		showingDone = false;
-		MatchPause.Resume();
-		SetMatchClockFrozen(true);
-		ShowPracticeHud();
-	}
-
-	private void OnPlayerScored()
-	{
-		if (!waitingForEat || showingDone)
+		if (GameController.Instance == null)
 			return;
-		if (GamingManager.Instance != null && GamingManager.Instance.HasEnded)
-		{
-			CloseMatchTutorial();
+		HideReplayOn(GameController.Instance.CanvasForMobile);
+		HideReplayOn(GameController.Instance.CanvasForDesktop);
+	}
+
+	private static void HideReplayOn(GameObject canvasGo)
+	{
+		if (canvasGo == null)
 			return;
-		}
-
-		waitingForEat = false;
-		showingDone = true;
-		HideEatHint();
-		SetMatchClockFrozen(true);
-		MatchPause.Pause();
-		ShowCardOverlay();
-		ApplyCurrentCard();
-	}
-
-	private void CloseMatchTutorial()
-	{
-		waitingForEat = false;
-		showingDone = false;
-		YG2.saves.tutorialMatchSeen = true;
-		YG2.SaveProgress();
-		SetMatchClockFrozen(false);
-		HideOverlay();
-		MatchPause.Resume();
-	}
-
-	private static void SetMatchClockFrozen(bool frozen)
-	{
-		if (GamingManager.Instance != null)
-			GamingManager.Instance.SetMatchClockFrozen(frozen);
-	}
-
-	private void HideEatHint()
-	{
-		if (hintText != null)
-			hintText.gameObject.SetActive(false);
+		Transform replay = canvasGo.transform.Find("TutorialReplayButton");
+		if (replay != null)
+			replay.gameObject.SetActive(false);
 	}
 
 	private void HidePointer()
@@ -788,7 +1166,7 @@ public class TutorialController : MonoBehaviour
 
 	private static RectTransform FindJoystick()
 	{
-		JoystickController[] sticks = Object.FindObjectsByType<JoystickController>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+		JoystickController[] sticks = UnityEngine.Object.FindObjectsByType<JoystickController>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
 		for (int i = 0; i < sticks.Length; i++)
 		{
 			if (sticks[i] != null && sticks[i].gameObject.activeInHierarchy)

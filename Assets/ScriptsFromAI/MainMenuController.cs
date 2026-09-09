@@ -130,6 +130,8 @@ public class MainMenuController : MonoBehaviour
 		Dbox.onClick.AddListener(() => ShowRewardedAdv("box"));
 		UpdateTriggers();
 		ActiveCanvas.ApplyUiFontEverywhere();
+		if (mapField != null)
+			mapField.raycastTarget = false;
 		if (GameController.Instance != null)
 			GameController.Instance.RefreshModeSelectionUI();
 		TutorialController.EnsureMenu();
@@ -221,13 +223,19 @@ public class MainMenuController : MonoBehaviour
 
 	private void ExchangeButton()
 	{
-		if (YG2.saves.diamonds == 0)
+		bool guiding = TutorialController.IsExchangeStep;
+		if (YG2.saves.diamonds == 0 && !guiding)
 		{
 			fart.Play();
 			return;
 		}
-		YG2.saves.goldCoins += YG2.saves.diamonds * 5;
-		YG2.saves.diamonds = 0;
+		if (YG2.saves.diamonds > 0)
+		{
+			YG2.saves.goldCoins += YG2.saves.diamonds * 5;
+			YG2.saves.diamonds = 0;
+		}
+		if (guiding)
+			TutorialController.NotifyExchanged();
 		YG2.SaveProgress();
 		UpdatePanelOfValute();
 		UpdateTriggers();
@@ -248,7 +256,11 @@ public class MainMenuController : MonoBehaviour
 	void SaveNick(string wroteName)
 	{
 		if (string.IsNullOrWhiteSpace(wroteName))
+		{
+			if (TutorialController.BlocksAutoLegendNick)
+				return;
 			wroteName = GameTexts.LegendNick;
+		}
 		YG2.saves.isNickGiven = true;
 		YG2.saves.nickName = wroteName;
 		YG2.SaveProgress();
@@ -296,6 +308,9 @@ public class MainMenuController : MonoBehaviour
 
 	public void UpdateMapOnBackground(int id)
 	{
+		// #region agent log
+		try { string spriteName = (maps != null && id >= 0 && id < maps.Length && maps[id] != null) ? maps[id].name : "null"; System.IO.File.AppendAllText("/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/.cursor/debug-d61023.log", "{\"sessionId\":\"d61023\",\"runId\":\"map-align\",\"hypothesisId\":\"H2\",\"location\":\"MainMenuController.UpdateMapOnBackground\",\"message\":\"bg-sprite\",\"data\":{\"id\":" + id + ",\"sprite\":\"" + spriteName + "\"},\"timestamp\":" + System.DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() + "}\n"); } catch {}
+		// #endregion
 		mapField.sprite = maps[id];
 		YG2.saves.selectedMapID = id;
 		GameController.NormalizeChosenMode();

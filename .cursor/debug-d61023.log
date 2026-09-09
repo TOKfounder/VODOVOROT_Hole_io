@@ -1,0 +1,6 @@
+{"sessionId":"d61023","runId":"map-align","hypothesisId":"H2","location":"MainMenuController.UpdateMapOnBackground","message":"bg-sprite","data":{"id":0,"sprite":"Map1"},"timestamp":1788972118163}
+{"sessionId":"d61023","runId":"map-align","hypothesisId":"H2","location":"MainMenuController.UpdateMapOnBackground","message":"bg-sprite","data":{"id":0,"sprite":"Map1"},"timestamp":1788972137021}
+{"sessionId":"d61023","runId":"map-align","hypothesisId":"H2","location":"MainMenuController.UpdateMapOnBackground","message":"bg-sprite","data":{"id":0,"sprite":"Map1"},"timestamp":1788972146221}
+{"sessionId":"d61023","runId":"map-align","hypothesisId":"H1","location":"ModeSelectionUI.BindMapButton","message":"map-click","data":{"button":"City1","mapId":0,"canvas":"CanvasForDesktop"},"timestamp":1788972150788}
+{"sessionId":"d61023","runId":"map-align","hypothesisId":"H2","location":"MainMenuController.UpdateMapOnBackground","message":"bg-sprite","data":{"id":0,"sprite":"Map1"},"timestamp":1788972150788}
+{"sessionId":"d61023","runId":"map-align","hypothesisId":"H3","location":"GameController.StartGame","message":"load-scene","data":{"selectedMapID":0,"sceneIndex":1,"tutorialDone":false},"timestamp":1788972152142}

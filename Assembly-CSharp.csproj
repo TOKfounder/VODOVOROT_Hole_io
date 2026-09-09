@@ -106,6 +106,7 @@
     <Compile Include="Assets/PluginYourGames/Scripts/Basic/YGSendMessage.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Authorization/Scripts/Auth_yg.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/InterstitialAdv/Scripts/InterstitialAdv_callingSimulation.cs" />
+    <Compile Include="Assets/ScriptsFromAI/UiClickFeedback.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/InfoYG/InfoYG.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Basic/GamePause.cs" />
     <Compile Include="Assets/ScriptsFromAI/HoleParent.cs" />
