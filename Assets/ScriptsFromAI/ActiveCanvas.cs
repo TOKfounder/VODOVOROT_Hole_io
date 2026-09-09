@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public static class ActiveCanvas
 {
 	private static Font cachedFont;
+	private static Sprite cachedPointer;
 
 	public static Canvas Get()
 	{
@@ -34,6 +35,13 @@ public static class ActiveCanvas
 
 		cachedFont = FindSceneFont(null);
 		return cachedFont;
+	}
+
+	public static Sprite GetHudPointerSprite()
+	{
+		if (cachedPointer == null)
+			cachedPointer = Resources.Load<Sprite>("HudPointer");
+		return cachedPointer;
 	}
 
 	public static void ApplyUiFontEverywhere()

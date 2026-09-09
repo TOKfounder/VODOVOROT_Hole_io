@@ -30,6 +30,43 @@ public static class GameTexts
 		? "Простой красный тазик — старт без бонусов. Надёжная классика стока!"
 		: "A plain red basin — no stat bonuses. Reliable drain classic!";
 
+	private static readonly string[] SkinFlavorRu =
+	{
+		"Простой красный тазик — старт без бонусов. Надёжная классика стока!",
+		"Этот унитаз готов поддержать тебя в любой трудной и странной ситуации!",
+		"Блеск роскоши для истинных чемпионов! Стань королём туалетных побед.",
+		"Сиди с комфортом и властвуй! Злые силы не пройдут через эту дыру...",
+		"На этом троне даже проблемы исчезают! Почувствуй себя властелином стока."
+	};
+
+	private static readonly string[] SkinFlavorEn =
+	{
+		"A plain red basin — no stat bonuses. Reliable drain classic!",
+		"This toilet bowl is ready to support you in any difficult and strange situation!",
+		"The splendor of luxury for true champions! Become the king of toilet victories.",
+		"Sit comfortably and rule! Evil forces will not pass through this hole...",
+		"On this throne, even problems disappear! Feel like the lord of the drain."
+	};
+
+	public static string SkinBonusLine(int index)
+	{
+		int speed = SkinStats.SpeedBonusPercent(index);
+		int size = SkinStats.StartBonusPercent(index);
+		if (speed <= 0 && size <= 0)
+			return Ru ? "Бонус: нет." : "Bonus: none.";
+		return Ru
+			? $"Бонус: скорость +{speed}%, размер +{size}%."
+			: $"Bonus: speed +{speed}%, size +{size}%.";
+	}
+
+	public static string SkinFeature(int index)
+	{
+		string[] flavors = Ru ? SkinFlavorRu : SkinFlavorEn;
+		if (index < 0 || index >= flavors.Length)
+			index = 0;
+		return flavors[index] + "\n" + SkinBonusLine(index);
+	}
+
 	public static string ReasonBossAbsorbed => Ru
 		? "Босс поглощён"
 		: "The boss was absorbed";
@@ -78,44 +115,45 @@ public static class GameTexts
 
 	public static string Tutorial => Ru ? "Обучение" : "Tutorial";
 	public static string TutorialNext => Ru ? "Далее" : "Next";
-	public static string TutorialSkip => Ru ? "Скип" : "Skip";
-	public static string TutorialOk => Ru ? "Ок!" : "OK!";
-	public static string TutorialFinger => "👉";
+	public static string TutorialSkip => Ru ? "Пропустить" : "Skip";
+	public static string TutorialOk => Ru ? "Ок" : "OK";
 
-	public static string TutorialNickTitle => Ru ? "Как тебя звать?" : "What's your name?";
+	public static string TutorialNickTitle => Ru ? "Имя" : "Name";
 	public static string TutorialNickBody => Ru
-		? "Напиши ник. Пустым в водоворот не пускаем — даже унитаз знает, кого глотать."
-		: "Type a nickname. Empty names don't go down the drain.";
-	public static string TutorialNickNeed => Ru ? "Сначала введи ник" : "Enter a nickname first";
+		? "Введи ник, чтобы начать."
+		: "Enter a nickname to start.";
+	public static string TutorialNickNeed => Ru ? "Сначала введи ник." : "Enter a nickname first.";
 
-	public static string TutorialMoveTitle => Ru ? "Куда катим" : "How to move";
+	public static string TutorialMoveTitle => Ru ? "Как двигаемся" : "How to move";
 	public static string TutorialMoveBody => Ru
-		? "ПК: WASD или стрелки. Джойстик на экране — если трогаешь его, клавиатура молчит, и наоборот."
-		: "PC: WASD or arrows. On-screen stick and keyboard never mix: one at a time.";
+		? "Управляй джойстиком. На ПК — WASD."
+		: "Use the joystick. On PC, use WASD.";
 
 	public static string TutorialBoostTitle => Ru ? "Буст" : "Boost";
 	public static string TutorialBoostBody => Ru
-		? "Зажми кнопку буста. На ПК ещё Shift или Пробел. Отпустил — снова спокойный смыв."
-		: "Hold the boost button. On PC, Shift or Space also work. Release to cruise.";
+		? "Удерживай кнопку буста. На ПК — Shift или Пробел."
+		: "Hold the boost button. On PC: Shift or Space.";
 
-	public static string TutorialGrowTitle => Ru ? "Расти и сияй" : "Grow and glow";
-	public static string TutorialGrowBody => Ru
-		? "Ешь то, что меньше дыры — уровень растёт. Не-красный скин чуть быстрее и поярче. Красный тазик — честный сток без бонусов."
-		: "Eat what is smaller than you to level up. Non-red skins are a bit faster and flashier. The red basin is the honest no-bonus start.";
-
-	public static string TutorialEatTitle => Ru ? "Пора перекусить" : "Time to snack";
+	public static string TutorialEatTitle => Ru ? "Поглощение" : "Absorb";
 	public static string TutorialEatBody => Ru
-		? "Заезжай на объект меньше дыры. Если не влез — он вернётся на место, не обижайся."
-		: "Drive over something smaller than the hole. Miss it, and it pops back. No hard feelings.";
+		? "Наезжай на объект меньше дыры. Больше дыры — не поглотится."
+		: "Drive over something smaller than the hole. Larger objects stay.";
 
-	public static string TutorialArrowsTitle => Ru ? "Куда смотреть" : "Where to look";
+	public static string TutorialMapTitle => Ru ? "Карта" : "Map";
+	public static string TutorialMapBody => Ru
+		? "Точки на миникарте — ты и цели. Стрелки показывают направление."
+		: "Minimap dots are you and targets. Arrows show the direction.";
+
+	public static string TutorialArrowsTitle => Ru ? "Стрелки" : "Arrows";
 	public static string TutorialArrowsBody => Ru
-		? "Стрелки и точки на карте — живые цели. Жёлтое было вчера: враги красные, босс чёрный, как пробка в трубе."
-		: "Arrows and map dots mark live targets. Enemies are red. The boss is black, like a clog in the pipe.";
+		? "Стрелки ведут к ближайшим объектам, которые можно поглотить."
+		: "Arrows point to the nearest objects you can absorb.";
 
-	public static string TutorialEatHint => Ru ? "Съешь что-нибудь поменьше 👉" : "Eat something smaller 👉";
-	public static string TutorialEatDoneTitle => Ru ? "Глоток засчитан" : "That's a gulp";
+	public static string TutorialEatHint => Ru
+		? "Наезжай на объект меньше дыры."
+		: "Drive over something smaller than the hole.";
+	public static string TutorialEatDoneTitle => Ru ? "Готово" : "Done";
 	public static string TutorialEatDoneBody => Ru
-		? "Так и живём: меньше — в дыру, больше — объезжай. Дальше сам, легенда."
-		: "That's the loop: smaller goes in, bigger you skip. You're on your own now.";
+		? "Объект поглощён. Так растёт дыра."
+		: "Object absorbed. That is how the hole grows.";
 }

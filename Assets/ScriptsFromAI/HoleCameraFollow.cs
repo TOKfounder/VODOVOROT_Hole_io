@@ -16,6 +16,8 @@ public class HoleCameraFollow : MonoBehaviour
 	private float punchStrength;
 	private Vector3 currentOffset;
 	private bool offsetInitialized;
+	private float stableRadius;
+	private bool stableRadiusInit;
 	private static HoleCameraFollow instance;
 
 	public static HoleCameraFollow Ensure(HoleParent player)
@@ -50,6 +52,7 @@ public class HoleCameraFollow : MonoBehaviour
 		if (camTransform.parent != null)
 			camTransform.SetParent(null, true);
 		offsetInitialized = false;
+		stableRadiusInit = false;
 		SnapNow();
 	}
 
@@ -74,7 +77,27 @@ public class HoleCameraFollow : MonoBehaviour
 		if (target == null || camTransform == null)
 			return;
 
-		float radius = Mathf.Max(0.08f, target.GetHoleRadius());
+		float liveRadius = Mathf.Max(0.08f, target.GetHoleRadius());
+		float baseline = Mathf.Max(0.08f, target.GetStableHoleRadius());
+		if (target.IsBirthIntro)
+		{
+			stableRadius = liveRadius;
+			stableRadiusInit = true;
+		}
+		else if (!stableRadiusInit)
+		{
+			stableRadius = baseline;
+			stableRadiusInit = true;
+		}
+		else
+		{
+			float blend = 1f - Mathf.Exp(-smoothSpeed * Mathf.Max(0f, dt));
+			stableRadius = Mathf.Lerp(stableRadius, baseline, blend);
+		}
+
+		float radius = target.IsBirthIntro
+			? liveRadius
+			: stableRadius + (liveRadius - stableRadius) * 0.5f;
 		float distance = radius * distancePerRadius * distanceScale;
 		if (punchTimer > 0f)
 		{

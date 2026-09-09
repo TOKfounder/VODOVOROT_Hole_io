@@ -9,6 +9,11 @@ public class EnemyMovement : MonoBehaviour
 	public float searchInterval = 0.75f;
 	public LayerMask fallableObjects;
 
+	[Header("Hunting")]
+	[SerializeField] private float huntSightRadius = 45f;
+	[SerializeField] private float huntPlayerSeconds = 10f;
+	[SerializeField] private float farmAfterHuntSeconds = 18f;
+
 	private const float BossFarmSeconds = 30f;
 	private const float BossProbeSeconds = 120f;
 	private const float BossSpeedMul = 0.56f;
@@ -22,6 +27,9 @@ public class EnemyMovement : MonoBehaviour
 	private float ignoreCooldown;
 	private bool fleeFromTarget;
 	private EnemyController enemyController;
+	private float huntPlayerUntil = -1f;
+	private float farmUntil;
+	private float edgeRecoverUntil;
 
 	public bool BossMayAbsorbPlayer
 	{
@@ -149,13 +157,46 @@ public class EnemyMovement : MonoBehaviour
 		}
 
 		if (ModeManager.currentMode == ModeManager.Mode.Hunting)
+			return TrySetHuntingTarget(player);
+
+		return false;
+	}
+
+	private bool TrySetHuntingTarget(BlackHoleController player)
+	{
+		float dx = player.transform.position.x - transform.position.x;
+		float dz = player.transform.position.z - transform.position.z;
+		bool inSight = dx * dx + dz * dz <= huntSightRadius * huntSightRadius;
+		bool playerBigger = player.currentLevel > enemyController.currentLevel
+			|| (player.currentLevel == enemyController.currentLevel && player.score > enemyController.score);
+		bool meBigger = enemyController.currentLevel > player.currentLevel
+			|| (player.currentLevel == enemyController.currentLevel && enemyController.score > player.score);
+
+		if (inSight && playerBigger && Time.time >= edgeRecoverUntil)
 		{
-			bool playerIsBigger = player.currentLevel > enemyController.currentLevel
-				|| (player.currentLevel == enemyController.currentLevel && player.score >= enemyController.score);
+			huntPlayerUntil = -1f;
+			fleeFromTarget = true;
 			SetTarget(player.transform);
-			fleeFromTarget = playerIsBigger;
 			return true;
 		}
+
+		float now = Time.time;
+		if (meBigger && now >= farmUntil)
+		{
+			if (huntPlayerUntil < 0f)
+				huntPlayerUntil = now + huntPlayerSeconds;
+			if (now < huntPlayerUntil)
+			{
+				fleeFromTarget = false;
+				SetTarget(player.transform);
+				return true;
+			}
+
+			huntPlayerUntil = -1f;
+			farmUntil = now + farmAfterHuntSeconds;
+		}
+		else if (!meBigger)
+			huntPlayerUntil = -1f;
 
 		return false;
 	}
@@ -252,12 +293,47 @@ public class EnemyMovement : MonoBehaviour
 
 	void ApplyMove(Vector3 moveDir)
 	{
+		if (rb == null || enemyController == null)
+			return;
+
 		int level = enemyController.currentLevel;
 		float speed = (level >= 0 && level < levelSpeeds.Length) ? levelSpeeds[level] : levelSpeeds[^1];
 		float mul = IsThisBoss() ? BossSpeedMul : EnemySpeedMul;
-		Vector3 newPosition = rb.position + moveDir * speed * mul * Time.fixedDeltaTime;
-		ClampToBounds(ref newPosition);
+		Vector3 delta = moveDir * speed * mul * Time.fixedDeltaTime;
+		Vector3 newPosition = rb.position + delta;
+		Vector3 clamped = newPosition;
+		ClampToBounds(ref clamped);
+		if ((clamped - newPosition).sqrMagnitude > 0.0001f)
+		{
+			edgeRecoverUntil = Time.time + 0.6f;
+			FaceMapCenter();
+			if (withoutCamera != null)
+			{
+				newPosition = rb.position + withoutCamera.transform.forward * speed * mul * Time.fixedDeltaTime;
+				ClampToBounds(ref newPosition);
+			}
+			else
+				newPosition = clamped;
+		}
+		else
+			newPosition = clamped;
 		rb.MovePosition(newPosition);
+	}
+
+	private void FaceMapCenter()
+	{
+		if (withoutCamera == null || GamingManager.Instance == null)
+			return;
+
+		Vector3 center = new Vector3(
+			(GamingManager.Instance.minX + GamingManager.Instance.maxX) * 0.5f,
+			transform.position.y,
+			(GamingManager.Instance.minZ + GamingManager.Instance.maxZ) * 0.5f);
+		Vector3 dir = center - transform.position;
+		dir.y = 0f;
+		if (dir.sqrMagnitude < 0.0001f)
+			return;
+		withoutCamera.transform.rotation = Quaternion.LookRotation(dir.normalized);
 	}
 
 	void ClampToBounds(ref Vector3 newPosition)

@@ -1,19 +1,26 @@
 using System.Collections;
+using PinePie.SimpleJoystick;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
 
 public class TutorialController : MonoBehaviour
 {
-	private const int MenuCardCount = 4;
+	private const int MatchCardCount = 4;
 	private const float ReplayLeft = 18f;
 	private const float ReplayTop = -18f;
+	private const float PointerOffset = 92f;
+	private static readonly Color PointerTint = new Color(1f, 0.85f, 0.2f, 1f);
 
 	public static TutorialController Instance { get; private set; }
+	public static bool ReplayMatchTutorial { get; set; }
 
 	private Canvas targetCanvas;
 	private RectTransform overlayRoot;
-	private Text fingerText;
+	private RectTransform cardRect;
+	private Image dimImage;
+	private RectTransform pointerRect;
+	private RectTransform pointerTarget;
 	private Text titleText;
 	private Text bodyText;
 	private Text hintText;
@@ -23,10 +30,10 @@ public class TutorialController : MonoBehaviour
 	private Text skipLabel;
 	private Text replayLabel;
 	private GameObject replayButtonGo;
-	private bool isReplay;
-	private bool showIntroAdOnClose;
+	private Vector2 skipCardPos;
 	private bool menuFlow;
 	private bool waitingForEat;
+	private bool showingDone;
 	private int step;
 	private Coroutine matchRoutine;
 	private InputField promotedNick;
@@ -45,6 +52,9 @@ public class TutorialController : MonoBehaviour
 		if (canvas == null)
 			return;
 
+		if (Instance != null && Instance.targetCanvas != canvas)
+			Instance.ReleaseForCanvasSwitch();
+
 		TutorialController controller = canvas.GetComponent<TutorialController>();
 		if (controller == null)
 			controller = canvas.gameObject.AddComponent<TutorialController>();
@@ -56,6 +66,9 @@ public class TutorialController : MonoBehaviour
 		Canvas canvas = ActiveCanvas.Get();
 		if (canvas == null)
 			return;
+
+		if (Instance != null && Instance.targetCanvas != canvas)
+			Instance.ReleaseForCanvasSwitch();
 
 		TutorialController controller = canvas.GetComponent<TutorialController>();
 		if (controller == null)
@@ -82,7 +95,7 @@ public class TutorialController : MonoBehaviour
 		EnsureReplayButton(canvas.gameObject);
 		SetReplayVisible(YG2.saves.tutorialMenuSeen);
 		if (!YG2.saves.tutorialMenuSeen)
-			StartCoroutine(OpenMenuNextFrame(false));
+			StartCoroutine(OpenMenuNextFrame());
 	}
 
 	private void BindMatch(Canvas canvas)
@@ -91,7 +104,9 @@ public class TutorialController : MonoBehaviour
 		Instance = this;
 		EnsureOverlay();
 		SetReplayVisible(false);
-		if (YG2.saves.tutorialMenuSeen && !YG2.saves.tutorialMatchSeen)
+		bool replay = ReplayMatchTutorial;
+		ReplayMatchTutorial = false;
+		if (replay || (YG2.saves.tutorialMenuSeen && !YG2.saves.tutorialMatchSeen))
 		{
 			if (matchRoutine != null)
 				StopCoroutine(matchRoutine);
@@ -106,24 +121,61 @@ public class TutorialController : MonoBehaviour
 			Instance = null;
 	}
 
-	private IEnumerator OpenMenuNextFrame(bool replay)
+	private void ReleaseForCanvasSwitch()
 	{
-		yield return null;
-		OpenMenu(replay);
+		RestoreNickField();
+		HideEatHint();
+		if (overlayRoot != null)
+			overlayRoot.gameObject.SetActive(false);
+		if (Instance == this)
+			Instance = null;
 	}
 
-	public void OpenMenu(bool replay)
+	void LateUpdate()
+	{
+		RefreshLivePointerTarget();
+		if (pointerRect != null && pointerRect.gameObject.activeSelf)
+			UpdatePointer();
+	}
+
+	private void RefreshLivePointerTarget()
+	{
+		if (menuFlow || waitingForEat || showingDone || overlayRoot == null || !overlayRoot.gameObject.activeSelf)
+			return;
+		if (step != 3 || cardRect == null || !cardRect.gameObject.activeSelf)
+			return;
+
+		MatchHud hud = Object.FindAnyObjectByType<MatchHud>();
+		if (hud == null)
+			return;
+		RectTransform target = IsCleaningMode() ? hud.FirstActiveArrow() : hud.MinimapRect;
+		if (target != pointerTarget)
+			PointAt(target);
+	}
+
+	private IEnumerator OpenMenuNextFrame()
+	{
+		yield return null;
+		OpenNickCard();
+	}
+
+	private void OpenNickCard()
 	{
 		menuFlow = true;
-		isReplay = replay;
-		showIntroAdOnClose = !replay && !YG2.saves.tutorialMenuSeen;
 		waitingForEat = false;
+		showingDone = false;
 		step = 0;
-		if (!replay)
-			ClearNickFieldsForFirstRun();
+		ClearNickFieldsForFirstRun();
 		SetReplayVisible(false);
-		ShowOverlay(true);
+		ShowCardOverlay();
 		ApplyCurrentCard();
+	}
+
+	private void OnReplayClicked()
+	{
+		ReplayMatchTutorial = true;
+		if (GameController.Instance != null)
+			GameController.Instance.StartGame();
 	}
 
 	private void EnsureOverlay()
@@ -139,33 +191,34 @@ public class TutorialController : MonoBehaviour
 		overlayRoot.anchorMax = Vector2.one;
 		overlayRoot.offsetMin = Vector2.zero;
 		overlayRoot.offsetMax = Vector2.zero;
-		Image dim = rootGo.GetComponent<Image>();
-		dim.color = new Color(0f, 0f, 0f, 0.62f);
-		dim.raycastTarget = true;
+		dimImage = rootGo.GetComponent<Image>();
+		dimImage.color = new Color(0f, 0f, 0f, 0.62f);
+		dimImage.raycastTarget = true;
 
 		GameObject cardGo = new GameObject("TutorialCard", typeof(RectTransform), typeof(Image));
 		cardGo.transform.SetParent(overlayRoot, false);
-		RectTransform card = cardGo.GetComponent<RectTransform>();
-		card.anchorMin = new Vector2(0.5f, 0.5f);
-		card.anchorMax = new Vector2(0.5f, 0.5f);
-		card.pivot = new Vector2(0.5f, 0.5f);
-		card.sizeDelta = new Vector2(620f, 360f);
-		card.GetComponent<Image>().color = new Color(0.12f, 0.1f, 0.14f, 0.96f);
-		card.GetComponent<Image>().raycastTarget = true;
+		cardRect = cardGo.GetComponent<RectTransform>();
+		cardRect.anchorMin = new Vector2(0.5f, 0.5f);
+		cardRect.anchorMax = new Vector2(0.5f, 0.5f);
+		cardRect.pivot = new Vector2(0.5f, 0.5f);
+		cardRect.sizeDelta = new Vector2(620f, 320f);
+		cardGo.GetComponent<Image>().color = new Color(0.12f, 0.1f, 0.14f, 0.96f);
+		cardGo.GetComponent<Image>().raycastTarget = true;
 
-		fingerText = CreateLabel(card, "Finger", new Vector2(0f, 132f), new Vector2(80f, 64f), 42);
-		titleText = CreateLabel(card, "Title", new Vector2(0f, 72f), new Vector2(560f, 56f), 34);
-		bodyText = CreateLabel(card, "Body", new Vector2(0f, -8f), new Vector2(560f, 140f), 22);
+		titleText = CreateLabel(cardRect, "Title", new Vector2(0f, 92f), new Vector2(560f, 56f), 34);
+		bodyText = CreateLabel(cardRect, "Body", new Vector2(0f, 8f), new Vector2(560f, 140f), 22);
 		if (titleText != null)
 			titleText.fontStyle = FontStyle.Bold;
 		if (bodyText != null)
 			bodyText.alignment = TextAnchor.UpperCenter;
 
-		nextButton = CreateButton(card, "NextButton", new Vector2(120f, -130f), new Vector2(200f, 56f), new Color(0.28f, 0.72f, 0.32f, 1f), out nextLabel);
-		skipButton = CreateButton(card, "SkipButton", new Vector2(-120f, -130f), new Vector2(200f, 56f), new Color(0.35f, 0.35f, 0.4f, 1f), out skipLabel);
+		nextButton = CreateButton(cardRect, "NextButton", new Vector2(130f, -110f), new Vector2(220f, 56f), new Color(0.28f, 0.72f, 0.32f, 1f), out nextLabel);
+		skipButton = CreateButton(cardRect, "SkipButton", new Vector2(-130f, -110f), new Vector2(220f, 56f), new Color(0.35f, 0.35f, 0.4f, 1f), out skipLabel);
+		skipCardPos = new Vector2(-130f, -110f);
 		nextButton.onClick.AddListener(OnNext);
 		skipButton.onClick.AddListener(OnSkip);
 
+		pointerRect = CreatePointer(overlayRoot);
 		hintText = ActiveCanvas.CreateText(targetCanvas.transform, "TutorialEatHint", new Vector2(0f, -150f), new Vector2(640f, 48f));
 		if (hintText != null)
 		{
@@ -176,6 +229,24 @@ public class TutorialController : MonoBehaviour
 		overlayRoot.gameObject.SetActive(false);
 		if (font != null)
 			ActiveCanvas.ApplyUiFontEverywhere();
+	}
+
+	private static RectTransform CreatePointer(Transform parent)
+	{
+		GameObject go = new GameObject("TutorialPointer", typeof(RectTransform), typeof(Image));
+		go.transform.SetParent(parent, false);
+		RectTransform rect = go.GetComponent<RectTransform>();
+		rect.anchorMin = new Vector2(0.5f, 0.5f);
+		rect.anchorMax = new Vector2(0.5f, 0.5f);
+		rect.pivot = new Vector2(0.5f, 0.5f);
+		rect.sizeDelta = new Vector2(64f, 96f);
+		Image image = go.GetComponent<Image>();
+		image.sprite = ActiveCanvas.GetHudPointerSprite();
+		image.preserveAspect = true;
+		image.color = PointerTint;
+		image.raycastTarget = false;
+		go.SetActive(false);
+		return rect;
 	}
 
 	private void EnsureReplayButton(GameObject canvasGo)
@@ -200,12 +271,18 @@ public class TutorialController : MonoBehaviour
 			rect.anchorMax = new Vector2(0f, 1f);
 			rect.pivot = new Vector2(0f, 1f);
 			rect.anchoredPosition = new Vector2(ReplayLeft, ReplayTop);
-			button.onClick.AddListener(() => OpenMenu(true));
 			buttonGo = button.gameObject;
 			if (canvasGo == targetCanvas.gameObject)
 				replayLabel = label;
 			else
 				label.text = GameTexts.Tutorial;
+		}
+
+		Button replayButton = buttonGo.GetComponent<Button>();
+		if (replayButton != null)
+		{
+			replayButton.onClick.RemoveAllListeners();
+			replayButton.onClick.AddListener(OnReplayClicked);
 		}
 
 		if (canvasGo == targetCanvas.gameObject)
@@ -269,16 +346,84 @@ public class TutorialController : MonoBehaviour
 		return button;
 	}
 
-	private void ShowOverlay(bool visible)
+	private void ShowCardOverlay()
 	{
-		if (overlayRoot != null)
+		if (overlayRoot == null)
+			return;
+		overlayRoot.gameObject.SetActive(true);
+		overlayRoot.SetAsLastSibling();
+		if (dimImage != null)
 		{
-			overlayRoot.gameObject.SetActive(visible);
-			if (visible)
-				overlayRoot.SetAsLastSibling();
+			dimImage.color = new Color(0f, 0f, 0f, 0.62f);
+			dimImage.raycastTarget = true;
 		}
-		if (!visible)
-			HideEatHint();
+		if (cardRect != null)
+			cardRect.gameObject.SetActive(true);
+		if (nextButton != null)
+			nextButton.gameObject.SetActive(true);
+		PlaceSkipOnCard();
+		HideEatHint();
+	}
+
+	private void ShowPracticeHud()
+	{
+		if (overlayRoot == null)
+			return;
+		overlayRoot.gameObject.SetActive(true);
+		overlayRoot.SetAsLastSibling();
+		if (dimImage != null)
+		{
+			dimImage.color = new Color(0f, 0f, 0f, 0f);
+			dimImage.raycastTarget = false;
+		}
+		if (cardRect != null)
+			cardRect.gameObject.SetActive(false);
+		if (nextButton != null)
+			nextButton.gameObject.SetActive(false);
+		PlaceSkipForPractice();
+		HidePointer();
+		if (hintText != null)
+		{
+			hintText.text = GameTexts.TutorialEatHint;
+			hintText.gameObject.SetActive(true);
+			hintText.transform.SetAsLastSibling();
+		}
+	}
+
+	private void HideOverlay()
+	{
+		RestoreNickField();
+		HidePointer();
+		HideEatHint();
+		PlaceSkipOnCard();
+		if (overlayRoot != null)
+			overlayRoot.gameObject.SetActive(false);
+	}
+
+	private void PlaceSkipOnCard()
+	{
+		if (skipButton == null || cardRect == null)
+			return;
+		RectTransform rect = skipButton.GetComponent<RectTransform>();
+		rect.SetParent(cardRect, false);
+		rect.anchorMin = new Vector2(0.5f, 0.5f);
+		rect.anchorMax = new Vector2(0.5f, 0.5f);
+		rect.pivot = new Vector2(0.5f, 0.5f);
+		rect.anchoredPosition = skipCardPos;
+		skipButton.gameObject.SetActive(true);
+	}
+
+	private void PlaceSkipForPractice()
+	{
+		if (skipButton == null || overlayRoot == null)
+			return;
+		RectTransform rect = skipButton.GetComponent<RectTransform>();
+		rect.SetParent(overlayRoot, false);
+		rect.anchorMin = new Vector2(1f, 1f);
+		rect.anchorMax = new Vector2(1f, 1f);
+		rect.pivot = new Vector2(1f, 1f);
+		rect.anchoredPosition = new Vector2(-18f, -18f);
+		skipButton.gameObject.SetActive(true);
 	}
 
 	private void SetReplayVisible(bool visible)
@@ -306,46 +451,59 @@ public class TutorialController : MonoBehaviour
 	private void ApplyCurrentCard()
 	{
 		if (nextLabel != null)
-			nextLabel.text = GameTexts.TutorialNext;
+			nextLabel.text = showingDone ? GameTexts.TutorialOk : GameTexts.TutorialNext;
 		if (skipLabel != null)
 			skipLabel.text = GameTexts.TutorialSkip;
-		if (fingerText != null)
-			fingerText.text = GameTexts.TutorialFinger;
 
-		SetNickFieldOverOverlay(menuFlow && step == 0);
+		SetNickFieldOverOverlay(menuFlow);
+		if (promotedNick != null)
+			promotedNick.transform.SetAsLastSibling();
 
 		if (menuFlow)
 		{
-			switch (step)
-			{
-				case 0:
-					SetCard(GameTexts.TutorialNickTitle, GameTexts.TutorialNickBody);
-					break;
-				case 1:
-					SetCard(GameTexts.TutorialMoveTitle, GameTexts.TutorialMoveBody);
-					break;
-				case 2:
-					SetCard(GameTexts.TutorialBoostTitle, GameTexts.TutorialBoostBody);
-					break;
-				default:
-					SetCard(GameTexts.TutorialGrowTitle, GameTexts.TutorialGrowBody);
-					break;
-			}
+			SetCard(GameTexts.TutorialNickTitle, GameTexts.TutorialNickBody);
+			PointAt(ResolveNickField() != null ? ResolveNickField().GetComponent<RectTransform>() : null);
+			if (promotedNick != null)
+				promotedNick.transform.SetAsLastSibling();
 			return;
 		}
 
-		if (waitingForEat)
+		if (showingDone)
 		{
 			SetCard(GameTexts.TutorialEatDoneTitle, GameTexts.TutorialEatDoneBody);
-			if (nextLabel != null)
-				nextLabel.text = GameTexts.TutorialOk;
+			HidePointer();
 			return;
 		}
 
-		if (step == 0)
-			SetCard(GameTexts.TutorialEatTitle, GameTexts.TutorialEatBody);
-		else
-			SetCard(GameTexts.TutorialArrowsTitle, GameTexts.TutorialArrowsBody);
+		switch (step)
+		{
+			case 0:
+				SetCard(GameTexts.TutorialMoveTitle, GameTexts.TutorialMoveBody);
+				PointAt(FindJoystick());
+				break;
+			case 1:
+				SetCard(GameTexts.TutorialBoostTitle, GameTexts.TutorialBoostBody);
+				PointAt(FindBoost());
+				break;
+			case 2:
+				SetCard(GameTexts.TutorialEatTitle, GameTexts.TutorialEatBody);
+				HidePointer();
+				break;
+			default:
+				if (IsCleaningMode())
+				{
+					SetCard(GameTexts.TutorialArrowsTitle, GameTexts.TutorialArrowsBody);
+					MatchHud hud = Object.FindAnyObjectByType<MatchHud>();
+					PointAt(hud != null ? hud.FirstActiveArrow() : null);
+				}
+				else
+				{
+					SetCard(GameTexts.TutorialMapTitle, GameTexts.TutorialMapBody);
+					MatchHud hud = Object.FindAnyObjectByType<MatchHud>();
+					PointAt(hud != null ? hud.MinimapRect : null);
+				}
+				break;
+		}
 	}
 
 	private void SetCard(string title, string body)
@@ -360,45 +518,36 @@ public class TutorialController : MonoBehaviour
 	{
 		if (menuFlow)
 		{
-			if (step == 0 && !TryCommitNick(false))
+			if (!TryCommitNick(false))
 			{
 				if (bodyText != null)
 					bodyText.text = GameTexts.TutorialNickNeed;
 				return;
 			}
-
-			step++;
-			if (step >= MenuCardCount)
-			{
-				FinishMenu(false);
-				return;
-			}
-			ApplyCurrentCard();
+			FinishMenu(false);
 			return;
 		}
 
-		if (waitingForEat)
+		if (showingDone)
 		{
 			CloseMatchTutorial();
 			return;
 		}
 
-		if (step == 0 && NeedsArrowsCard())
+		step++;
+		if (step >= MatchCardCount)
 		{
-			step = 1;
-			ApplyCurrentCard();
+			BeginEatTask();
 			return;
 		}
-
-		BeginEatTask();
+		ApplyCurrentCard();
 	}
 
 	private void OnSkip()
 	{
 		if (menuFlow)
 		{
-			if (!isReplay)
-				TryCommitNick(true);
+			TryCommitNick(true);
 			FinishMenu(true);
 			return;
 		}
@@ -409,15 +558,11 @@ public class TutorialController : MonoBehaviour
 	private void FinishMenu(bool skipped)
 	{
 		YG2.saves.tutorialMenuSeen = true;
-		if (skipped && !isReplay)
+		if (skipped)
 			YG2.saves.tutorialMatchSeen = true;
 		YG2.SaveProgress();
-		RestoreNickField();
-		ShowOverlay(false);
+		HideOverlay();
 		SetReplayVisible(true);
-		if (showIntroAdOnClose && !YG2.nowAdsShow)
-			YG2.InterstitialAdvShow();
-		showIntroAdOnClose = false;
 	}
 
 	private bool TryCommitNick(bool allowLegend)
@@ -441,12 +586,19 @@ public class TutorialController : MonoBehaviour
 		return true;
 	}
 
+	private static bool UseMobileNickField()
+	{
+		if (GameController.Instance != null)
+			return GameController.Instance.IsMobileCanvasActive();
+		return YG2.envir.isMobile;
+	}
+
 	private static string ReadNickFields()
 	{
 		if (MainMenuController.Instance == null)
 			return YG2.saves.nickName;
 
-		if (YG2.envir.isMobile && MainMenuController.Instance.nameInput != null)
+		if (UseMobileNickField() && MainMenuController.Instance.nameInput != null)
 			return MainMenuController.Instance.nameInput.text;
 		if (MainMenuController.Instance.DnameInput != null)
 			return MainMenuController.Instance.DnameInput.text;
@@ -459,7 +611,7 @@ public class TutorialController : MonoBehaviour
 	{
 		if (MainMenuController.Instance == null)
 			return null;
-		if (YG2.envir.isMobile && MainMenuController.Instance.nameInput != null)
+		if (UseMobileNickField() && MainMenuController.Instance.nameInput != null)
 			return MainMenuController.Instance.nameInput;
 		if (MainMenuController.Instance.DnameInput != null)
 			return MainMenuController.Instance.DnameInput;
@@ -528,36 +680,31 @@ public class TutorialController : MonoBehaviour
 
 		menuFlow = false;
 		waitingForEat = false;
+		showingDone = false;
 		step = 0;
-		isReplay = false;
+		SetMatchClockFrozen(true);
 		MatchPause.Pause();
-		ShowOverlay(true);
+		ShowCardOverlay();
 		ApplyCurrentCard();
 	}
 
-	private static bool NeedsArrowsCard()
+	private static bool IsCleaningMode()
 	{
-		return ModeManager.currentMode == ModeManager.Mode.Boss
-			|| ModeManager.currentMode == ModeManager.Mode.Hunting
-			|| ModeManager.currentMode == ModeManager.Mode.TeamMode;
+		return ModeManager.currentMode == ModeManager.Mode.TotalCleaning;
 	}
 
 	private void BeginEatTask()
 	{
 		waitingForEat = true;
-		ShowOverlay(false);
+		showingDone = false;
 		MatchPause.Resume();
-		if (hintText != null)
-		{
-			hintText.text = GameTexts.TutorialEatHint;
-			hintText.gameObject.SetActive(true);
-			hintText.transform.SetAsLastSibling();
-		}
+		SetMatchClockFrozen(true);
+		ShowPracticeHud();
 	}
 
 	private void OnPlayerScored()
 	{
-		if (!waitingForEat || overlayRoot == null || overlayRoot.gameObject.activeSelf)
+		if (!waitingForEat || showingDone)
 			return;
 		if (GamingManager.Instance != null && GamingManager.Instance.HasEnded)
 		{
@@ -565,24 +712,104 @@ public class TutorialController : MonoBehaviour
 			return;
 		}
 
+		waitingForEat = false;
+		showingDone = true;
 		HideEatHint();
+		SetMatchClockFrozen(true);
 		MatchPause.Pause();
-		ShowOverlay(true);
+		ShowCardOverlay();
 		ApplyCurrentCard();
 	}
 
 	private void CloseMatchTutorial()
 	{
 		waitingForEat = false;
+		showingDone = false;
 		YG2.saves.tutorialMatchSeen = true;
 		YG2.SaveProgress();
-		ShowOverlay(false);
+		SetMatchClockFrozen(false);
+		HideOverlay();
 		MatchPause.Resume();
+	}
+
+	private static void SetMatchClockFrozen(bool frozen)
+	{
+		if (GamingManager.Instance != null)
+			GamingManager.Instance.SetMatchClockFrozen(frozen);
 	}
 
 	private void HideEatHint()
 	{
 		if (hintText != null)
 			hintText.gameObject.SetActive(false);
+	}
+
+	private void HidePointer()
+	{
+		pointerTarget = null;
+		if (pointerRect != null)
+			pointerRect.gameObject.SetActive(false);
+	}
+
+	private void PointAt(RectTransform target)
+	{
+		pointerTarget = target;
+		if (pointerRect == null)
+			return;
+		bool show = target != null;
+		pointerRect.gameObject.SetActive(show);
+		if (show)
+		{
+			pointerRect.SetAsLastSibling();
+			UpdatePointer();
+		}
+	}
+
+	private void UpdatePointer()
+	{
+		if (pointerRect == null || pointerTarget == null)
+			return;
+
+		Vector3[] corners = new Vector3[4];
+		pointerTarget.GetWorldCorners(corners);
+		Vector3 targetCenter = (corners[0] + corners[2]) * 0.5f;
+		Vector3 from = cardRect != null && cardRect.gameObject.activeSelf
+			? cardRect.position
+			: pointerRect.position;
+		Vector3 away = targetCenter - from;
+		away.z = 0f;
+		if (away.sqrMagnitude < 0.01f)
+			away = Vector3.up;
+		away.Normalize();
+		pointerRect.position = targetCenter - away * PointerOffset;
+		float angle = Mathf.Atan2(away.y, away.x) * Mathf.Rad2Deg - 90f;
+		pointerRect.localEulerAngles = new Vector3(0f, 0f, angle);
+	}
+
+	private static RectTransform FindJoystick()
+	{
+		JoystickController[] sticks = Object.FindObjectsByType<JoystickController>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+		for (int i = 0; i < sticks.Length; i++)
+		{
+			if (sticks[i] != null && sticks[i].gameObject.activeInHierarchy)
+				return sticks[i].GetComponent<RectTransform>();
+		}
+		return null;
+	}
+
+	private RectTransform FindBoost()
+	{
+		Canvas canvas = targetCanvas != null ? targetCanvas : ActiveCanvas.Get();
+		if (canvas == null)
+			return null;
+		BoostButton[] buttons = canvas.GetComponentsInChildren<BoostButton>(true);
+		for (int i = 0; i < buttons.Length; i++)
+		{
+			if (buttons[i] != null && buttons[i].gameObject.activeInHierarchy)
+				return buttons[i].GetComponent<RectTransform>();
+		}
+		if (buttons.Length > 0 && buttons[0] != null)
+			return buttons[0].GetComponent<RectTransform>();
+		return null;
 	}
 }

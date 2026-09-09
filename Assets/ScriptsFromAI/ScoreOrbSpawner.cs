@@ -12,7 +12,7 @@ public class ScoreOrbSpawner : MonoBehaviour
 
 	[SerializeField] private int poolSize = 64;
 	[SerializeField] private float popHeight = 1.4f;
-	[SerializeField] private float ringPadding = 2.24f;
+	[SerializeField] private float ringPadding = 1.12f;
 	[SerializeField] private float groundOffset = 0.18f;
 
 	private readonly List<ScoreOrb> pool = new List<ScoreOrb>(64);

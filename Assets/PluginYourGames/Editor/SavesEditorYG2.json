@@ -7,10 +7,10 @@
         false,
         false
     ],
-    "idSave": 205408,
+    "idSave": 205492,
     "isFirst": false,
     "langRu": true,
-    "score": 0,
+    "score": 2011,
     "equipedMaterial": 0,
     "massiveOfObtaining": [
         1,
@@ -19,22 +19,22 @@
         0,
         1
     ],
-    "exp": 716,
-    "levelOfProgress": 7,
-    "goldCoins": 1732,
+    "exp": 910,
+    "levelOfProgress": 8,
+    "goldCoins": 1861,
     "isNickGiven": true,
     "nickName": "Руслан",
     "selectedMapID": 1,
-    "diamonds": 62,
+    "diamonds": 85,
     "isGaming": false,
     "soundValue": 0.5,
     "musicValue": 0.5,
     "done": true,
-    "languageChosenByPlayer": false,
-    "chosenMode": 2,
+    "languageChosenByPlayer": true,
+    "chosenMode": 0,
     "rewardedHandLeft": 2,
     "rewardedBagLeft": 5,
     "rewardedBoxLeft": 10,
     "tutorialMenuSeen": true,
-    "tutorialMatchSeen": false
+    "tutorialMatchSeen": true
 }

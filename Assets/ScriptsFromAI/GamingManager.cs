@@ -63,6 +63,7 @@ public class GamingManager : MonoBehaviour
 	[SerializeField] private float boostLeftShift = 170f;
 
 	private bool timerGo;
+	private bool matchClockFrozen;
 	private bool once;
 	private bool rewardApplied;
 	private bool endSequenceStarted;
@@ -151,6 +152,7 @@ public class GamingManager : MonoBehaviour
 		isTeamMode = ModeManager.currentMode == ModeManager.Mode.TeamMode;
 
 		MatchPause.ForceReset();
+		SetMatchClockFrozen(false);
 		ActiveCanvas.ApplyUiFontEverywhere();
 		ScorePopupZone.EnsureZone(ActiveCanvas.Get());
 		MatchHud.Ensure();
@@ -240,6 +242,11 @@ public class GamingManager : MonoBehaviour
 
 	public void HandleTimer(bool b) => timerGo = b;
 
+	public void SetMatchClockFrozen(bool frozen)
+	{
+		matchClockFrozen = frozen;
+	}
+
 	IEnumerator UpdateFlag()
 	{
 		while (true)
@@ -252,7 +259,7 @@ public class GamingManager : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		if (timerGo)
+		if (timerGo && !matchClockFrozen)
 			timer += Time.fixedDeltaTime;
 
 		UpdateBossClock();
@@ -435,6 +442,7 @@ public class GamingManager : MonoBehaviour
 	private void ShowEndPanel()
 	{
 		MatchPause.ForceReset();
+		SetMatchClockFrozen(false);
 		HoleFeedback.ForPlayer?.SetMatchActive(false);
 		MatchHud hud = FindAnyObjectByType<MatchHud>();
 		if (hud != null)

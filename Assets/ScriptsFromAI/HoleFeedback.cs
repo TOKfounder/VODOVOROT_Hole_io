@@ -6,27 +6,17 @@ public class HoleFeedback : MonoBehaviour
 {
 	public static HoleFeedback ForPlayer { get; private set; }
 
-	private static readonly Color InkVoid = new Color(0.10f, 0.08f, 0.12f, 0.82f);
-	private static readonly Color AbyssMist = new Color(0.16f, 0.22f, 0.26f, 0.70f);
-	private static readonly Color VoidRing = new Color(0.18f, 0.12f, 0.28f, 0.88f);
-	private static readonly Color[] RibbonColors =
-	{
-		new Color(0.25f, 0.95f, 1f, 0.95f),
-		new Color(1f, 0.35f, 0.95f, 0.95f),
-		new Color(1f, 0.85f, 0.2f, 0.95f),
-		new Color(0.45f, 1f, 0.35f, 0.95f),
-		new Color(1f, 0.45f, 0.25f, 0.95f),
-		new Color(0.55f, 0.55f, 1f, 0.95f),
-		new Color(1f, 0.65f, 0.85f, 0.95f),
-	};
+	private static readonly Color Water = new Color(0.45f, 0.88f, 1f, 0.9f);
+	private static readonly Color WaterDeep = new Color(0.22f, 0.58f, 0.78f, 0.78f);
+	private static readonly Color WaterWhite = new Color(0.88f, 0.97f, 1f, 0.92f);
 
 	[SerializeField] private bool debugEmitOnStart;
 	[Header("Suction Ribbons")]
-	[SerializeField] private int ribbonCount = 7;
-	[SerializeField] private float ribbonOrbitSpeed = 2.4f;
-	[SerializeField] private float ribbonInwardSpeed = 1.15f;
-	[SerializeField] private float ribbonTrailTime = 0.32f;
-	[SerializeField] private float ribbonWidth = 0.1f;
+	[SerializeField] private int ribbonCount = 4;
+	[SerializeField] private float ribbonOrbitSpeed = 2.1f;
+	[SerializeField] private float ribbonInwardSpeed = 1.05f;
+	[SerializeField] private float ribbonTrailTime = 0.26f;
+	[SerializeField] private float ribbonWidth = 0.055f;
 	[SerializeField] private float ribbonOuterMul = 1.15f;
 	[SerializeField] private float ribbonRespawnRadius = 0.12f;
 
@@ -41,10 +31,7 @@ public class HoleFeedback : MonoBehaviour
 	private Color borderRest = Color.white;
 	private float borderFlashTimer;
 	private Material billboardMat;
-	private Material meshMat;
-	private Mesh sphereMesh;
 	private Texture2D billboardTexture;
-	private bool ownsSphereMesh;
 	private bool matchEnded;
 	private bool ygPaused;
 	private float nextGulpTime;
@@ -138,14 +125,10 @@ public class HoleFeedback : MonoBehaviour
 			ForPlayer = null;
 		if (billboardMat != null)
 			Destroy(billboardMat);
-		if (meshMat != null)
-			Destroy(meshMat);
 		if (ribbonMat != null)
 			Destroy(ribbonMat);
 		if (billboardTexture != null)
 			Destroy(billboardTexture);
-		if (ownsSphereMesh && sphereMesh != null)
-			Destroy(sphereMesh);
 	}
 
 	void LateUpdate()
@@ -173,8 +156,8 @@ public class HoleFeedback : MonoBehaviour
 		float radius = GetEffectRadius();
 		float vfx = SkinStats.VfxMultiplier;
 		Vector3 pos = GetHoleWorldPos();
-		EmitBurst(gulp, Mathf.RoundToInt(24 * vfx), pos, InkVoid, radius * 0.15f, 1.6f);
-		EmitBurst(gulp, Mathf.RoundToInt(16 * vfx), pos, AbyssMist, radius * 0.1f, 2.1f);
+		EmitBurst(gulp, Mathf.RoundToInt(22 * vfx), pos, WaterWhite, radius * 0.12f, 1.5f);
+		EmitBurst(gulp, Mathf.RoundToInt(14 * vfx), pos, Water, radius * 0.08f, 1.9f);
 		HoleCameraFollow.Punch(0.28f);
 		AudioManager.PlayGulp();
 	}
@@ -182,7 +165,7 @@ public class HoleFeedback : MonoBehaviour
 	public void PlayLevelUp()
 	{
 		float radius = GetEffectRadius();
-		EmitRing(radius, VoidRing, 40);
+		EmitRing(radius, Water, 36);
 		FlashBorder();
 		HoleCameraFollow.Punch(0.7f);
 		AudioManager.PlayLevelUp();
@@ -190,19 +173,13 @@ public class HoleFeedback : MonoBehaviour
 
 	public void PlayAbsorb(Color burstColor)
 	{
-		Color inkBurst = DarkenTowardInk(burstColor);
+		Color splash = Color.Lerp(burstColor, Water, 0.55f);
+		splash.a = Mathf.Clamp01(Mathf.Max(burstColor.a, 0.8f));
 		float radius = GetEffectRadius();
-		EmitBurst(gulp, 40, GetHoleWorldPos(), inkBurst, radius * 0.2f, 2.4f);
-		EmitRing(radius * 1.15f, inkBurst, 48);
+		EmitBurst(gulp, 32, GetHoleWorldPos(), splash, radius * 0.16f, 2.1f);
+		EmitRing(radius * 1.12f, Water, 40);
 		HoleCameraFollow.Punch(1.15f);
 		AudioManager.PlayAbsorb();
-	}
-
-	private static Color DarkenTowardInk(Color color)
-	{
-		Color result = Color.Lerp(color, InkVoid, 0.45f);
-		result.a = Mathf.Clamp01(Mathf.Max(color.a, 0.75f));
-		return result;
 	}
 
 	private float GetEffectRadius()
@@ -224,7 +201,7 @@ public class HoleFeedback : MonoBehaviour
 
 		var main = suction.main;
 		main.startSize = radius * 0.1f;
-		main.startColor = InkVoid;
+		main.startColor = Water;
 
 		int falling = target.nearbyFallingObjects != null ? target.nearbyFallingObjects.Count : 0;
 		var emission = suction.emission;
@@ -248,7 +225,7 @@ public class HoleFeedback : MonoBehaviour
 			}
 		}
 
-		int count = Mathf.Clamp(ribbonCount, 3, 12);
+		int count = Mathf.Clamp(ribbonCount, 3, 5);
 		while (ribbons.Count < count)
 		{
 			int index = ribbons.Count;
@@ -267,7 +244,7 @@ public class HoleFeedback : MonoBehaviour
 			if (ribbonMat != null)
 				trail.material = ribbonMat;
 
-			Color color = RibbonColors[index % RibbonColors.Length];
+			Color color = Color.Lerp(WaterDeep, WaterWhite, (index % 3) * 0.45f);
 			Gradient gradient = new Gradient();
 			gradient.SetKeys(
 				new[]
@@ -277,7 +254,7 @@ public class HoleFeedback : MonoBehaviour
 				},
 				new[]
 				{
-					new GradientAlphaKey(0.95f, 0f),
+					new GradientAlphaKey(0.7f, 0f),
 					new GradientAlphaKey(0f, 1f)
 				});
 			trail.colorGradient = gradient;
@@ -389,12 +366,6 @@ public class HoleFeedback : MonoBehaviour
 			billboardMat = CreateParticleMaterial(billboardTexture, "Sprites/Default");
 		else
 			ApplyParticleMaterial(billboardMat, billboardTexture);
-		if (meshMat == null)
-			meshMat = CreateParticleMaterial(null, "Unlit/Color");
-		else
-			ApplyParticleMaterial(meshMat, null);
-		if (sphereMesh == null)
-			sphereMesh = CreateSphereMesh(out ownsSphereMesh);
 	}
 
 	private void EnsureSystems()
@@ -417,11 +388,11 @@ public class HoleFeedback : MonoBehaviour
 		ConfigureSuction();
 
 		if (gulp == null)
-			gulp = CreateSystem("GulpBurst", false, 80, true);
+			gulp = CreateSystem("GulpBurst", false, 80, false);
 		ConfigureGulp();
 
 		if (ring == null)
-			ring = CreateSystem("LevelRing", false, 96, true);
+			ring = CreateSystem("LevelRing", false, 96, false);
 		ConfigureRing();
 		EnsureRibbons();
 	}
@@ -435,8 +406,8 @@ public class HoleFeedback : MonoBehaviour
 		main.startLifetime = 0.55f;
 		main.startSpeed = new ParticleSystem.MinMaxCurve(0.4f, 1.1f);
 		main.startSize = 0.12f;
-		main.startColor = InkVoid;
-		main.gravityModifier = 0.15f;
+		main.startColor = Water;
+		main.gravityModifier = 0.35f;
 		var shape = suction.shape;
 		shape.shapeType = ParticleSystemShapeType.Circle;
 		shape.radius = 0.4f;
@@ -457,14 +428,14 @@ public class HoleFeedback : MonoBehaviour
 		main.startLifetime = 0.45f;
 		main.startSpeed = new ParticleSystem.MinMaxCurve(1.2f, 2.4f);
 		main.startSize = 0.15f;
-		main.startColor = InkVoid;
-		main.gravityModifier = 0.8f;
+		main.startColor = WaterWhite;
+		main.gravityModifier = 0.45f;
 		var emission = gulp.emission;
 		emission.rateOverTime = 0f;
 		var shape = gulp.shape;
 		shape.shapeType = ParticleSystemShapeType.Hemisphere;
 		shape.radius = 0.15f;
-		ConfigureMeshRenderer(gulp.GetComponent<ParticleSystemRenderer>());
+		ConfigureBillboardRenderer(gulp.GetComponent<ParticleSystemRenderer>());
 	}
 
 	private void ConfigureRing()
@@ -476,7 +447,7 @@ public class HoleFeedback : MonoBehaviour
 		main.startLifetime = 0.55f;
 		main.startSpeed = 1.8f;
 		main.startSize = 0.18f;
-		main.startColor = VoidRing;
+		main.startColor = Water;
 		main.gravityModifier = 0f;
 		var emission = ring.emission;
 		emission.rateOverTime = 0f;
@@ -486,7 +457,7 @@ public class HoleFeedback : MonoBehaviour
 		var vel = ring.velocityOverLifetime;
 		vel.enabled = true;
 		vel.radial = new ParticleSystem.MinMaxCurve(1.4f);
-		ConfigureMeshRenderer(ring.GetComponent<ParticleSystemRenderer>());
+		ConfigureBillboardRenderer(ring.GetComponent<ParticleSystemRenderer>());
 	}
 
 	private ParticleSystem CreateSystem(string name, bool loop, int maxParticles, bool useMesh)
@@ -520,20 +491,6 @@ public class HoleFeedback : MonoBehaviour
 			rend.material = billboardMat;
 		rend.maxParticleSize = 4f;
 		rend.sortingFudge = -2f;
-	}
-
-	private void ConfigureMeshRenderer(ParticleSystemRenderer rend)
-	{
-		if (rend == null)
-			return;
-
-		rend.renderMode = ParticleSystemRenderMode.Mesh;
-		if (sphereMesh != null)
-			rend.mesh = sphereMesh;
-		if (meshMat != null)
-			rend.material = meshMat;
-		rend.maxParticleSize = 4f;
-		rend.sortingFudge = -1f;
 	}
 
 	private void EmitBurst(ParticleSystem ps, int count, Vector3 worldPos, Color color, float size, float speed)
@@ -597,31 +554,9 @@ public class HoleFeedback : MonoBehaviour
 		if (texture != null)
 			mat.mainTexture = texture;
 		if (mat.HasProperty("_TintColor"))
-			mat.SetColor("_TintColor", InkVoid);
+			mat.SetColor("_TintColor", Water);
 		if (mat.HasProperty("_Color"))
-			mat.SetColor("_Color", InkVoid);
-	}
-
-	private static Mesh CreateSphereMesh(out bool ownsMesh)
-	{
-		Mesh builtin = Resources.GetBuiltinResource<Mesh>("New-Sphere.fbx");
-		if (builtin != null)
-		{
-			ownsMesh = false;
-			return builtin;
-		}
-
-		GameObject temp = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-		Mesh source = temp.GetComponent<MeshFilter>().sharedMesh;
-		Mesh copy = new Mesh();
-		copy.vertices = source.vertices;
-		copy.triangles = source.triangles;
-		copy.normals = source.normals;
-		copy.uv = source.uv;
-		copy.RecalculateBounds();
-		Destroy(temp);
-		ownsMesh = true;
-		return copy;
+			mat.SetColor("_Color", Water);
 	}
 
 	private static Texture2D CreateSoftCircleTexture()

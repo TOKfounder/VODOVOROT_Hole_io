@@ -8,7 +8,8 @@ public class MatchHud : MonoBehaviour
 	private const int MaxArrows = 6;
 	private const int CleaningArrowCount = 3;
 	private const float CleaningHideRadius = 8f;
-	private const float ArrowDistance = 120f;
+	private const float ArrowDistance = 220f;
+	private const float ArrowAlpha = 0.7f;
 	private const float AllyArrowScale = 0.62f;
 	private static readonly Color BossDangerColor = new Color(0.08f, 0.08f, 0.1f, 0.95f);
 	private static readonly Color EnemyArrowColor = new Color(1f, 0.35f, 0.25f, 0.9f);
@@ -20,7 +21,7 @@ public class MatchHud : MonoBehaviour
 	private Text timerText;
 	private Text statusText;
 	private readonly List<RectTransform> arrows = new List<RectTransform>(MaxArrows);
-	private readonly List<Text> arrowGlyphs = new List<Text>(MaxArrows);
+	private readonly List<Image> arrowImages = new List<Image>(MaxArrows);
 	private RectTransform minimapRoot;
 	private readonly List<RectTransform> minimapDots = new List<RectTransform>(12);
 	private readonly List<Image> minimapDotImages = new List<Image>(12);
@@ -29,6 +30,17 @@ public class MatchHud : MonoBehaviour
 	private readonly List<FallingObject> cleaningScratch = new List<FallingObject>(32);
 
 	public Text TimerText => timerText;
+	public RectTransform MinimapRect => minimapRoot;
+
+	public RectTransform FirstActiveArrow()
+	{
+		for (int i = 0; i < arrows.Count; i++)
+		{
+			if (arrows[i] != null && arrows[i].gameObject.activeSelf)
+				return arrows[i];
+		}
+		return arrows.Count > 0 ? arrows[0] : null;
+	}
 
 	public void SetVisible(bool visible)
 	{
@@ -85,30 +97,21 @@ public class MatchHud : MonoBehaviour
 
 	private RectTransform CreateArrow(string name)
 	{
-		Font font = ActiveCanvas.GetUiFont();
-		if (font == null)
-		{
-			arrowGlyphs.Add(null);
-			return null;
-		}
-
-		GameObject arrowGo = new GameObject(name, typeof(RectTransform), typeof(Text));
+		GameObject arrowGo = new GameObject(name, typeof(RectTransform), typeof(Image));
 		arrowGo.transform.SetParent(transform, false);
 		RectTransform rect = arrowGo.GetComponent<RectTransform>();
 		rect.anchorMin = new Vector2(0.5f, 0.5f);
 		rect.anchorMax = new Vector2(0.5f, 0.5f);
 		rect.pivot = new Vector2(0.5f, 0.5f);
-		rect.sizeDelta = new Vector2(80f, 80f);
+		rect.sizeDelta = new Vector2(56f, 84f);
 
-		Text glyph = arrowGo.GetComponent<Text>();
-		glyph.text = "▲";
-		glyph.alignment = TextAnchor.MiddleCenter;
-		glyph.fontSize = 48;
-		glyph.color = EnemyArrowColor;
-		glyph.font = font;
-		glyph.raycastTarget = false;
+		Image image = arrowGo.GetComponent<Image>();
+		image.sprite = ActiveCanvas.GetHudPointerSprite();
+		image.preserveAspect = true;
+		image.color = EnemyArrowColor;
+		image.raycastTarget = false;
 		arrowGo.SetActive(false);
-		arrowGlyphs.Add(glyph);
+		arrowImages.Add(image);
 		return rect;
 	}
 
@@ -183,7 +186,7 @@ public class MatchHud : MonoBehaviour
 
 		if (ModeManager.currentMode == ModeManager.Mode.Boss)
 		{
-			PlaceArrow(0, ModeManager.ActiveBoss != null ? ModeManager.ActiveBoss.transform : null, 0, 1, BossDangerColor, 1f, arrowHideRadius);
+			PlaceArrow(0, ModeManager.ActiveBoss != null ? ModeManager.ActiveBoss.transform : null, BossDangerColor, 1f, arrowHideRadius);
 			HideUnusedArrows(1);
 			return;
 		}
@@ -243,7 +246,7 @@ public class MatchHud : MonoBehaviour
 		int limit = Mathf.Min(CleaningArrowCount, cleaningScratch.Count);
 		for (int i = 0; i < limit && shown < MaxArrows; i++)
 		{
-			if (PlaceArrow(shown, cleaningScratch[i].transform, shown, limit, LandmarkArrowColor, 0.85f, CleaningHideRadius))
+			if (PlaceArrow(shown, cleaningScratch[i].transform, LandmarkArrowColor, 0.85f, CleaningHideRadius))
 				shown++;
 		}
 		return shown;
@@ -368,36 +371,23 @@ public class MatchHud : MonoBehaviour
 	private int PlaceListArrows(List<EnemyController> list, int startIndex, Color color, float scale)
 	{
 		int shown = startIndex;
-		int totalFar = CountFar(list);
-		int spreadIndex = 0;
 		for (int i = 0; i < list.Count && shown < MaxArrows; i++)
 		{
 			EnemyController enemy = list[i];
 			if (enemy == null || enemy.IsConsumed)
 				continue;
-			if (PlaceArrow(shown, enemy.transform, spreadIndex, totalFar, color, scale, arrowHideRadius))
-			{
+			if (PlaceArrow(shown, enemy.transform, color, scale, arrowHideRadius))
 				shown++;
-				spreadIndex++;
-			}
 		}
 		return shown;
 	}
 
-	private int CountFar(List<EnemyController> list)
-	{
-		int count = 0;
-		for (int i = 0; i < list.Count; i++)
-		{
-			if (list[i] != null && !list[i].IsConsumed && IsFarFromPlayer(list[i].transform.position, arrowHideRadius))
-				count++;
-		}
-		return count;
-	}
-
-	private bool PlaceArrow(int index, Transform target, int spreadIndex, int spreadTotal, Color color, float scale, float hideRadius)
+	private bool PlaceArrow(int index, Transform target, Color color, float scale, float hideRadius)
 	{
 		if (index < 0 || index >= arrows.Count || arrows[index] == null || target == null)
+			return false;
+
+		if (BlackHoleController.Player == null || Camera.main == null)
 			return false;
 
 		if (!IsFarFromPlayer(target.position, hideRadius))
@@ -406,9 +396,21 @@ public class MatchHud : MonoBehaviour
 			return false;
 		}
 
-		Vector3 targetScreen = Camera.main.WorldToScreenPoint(target.position);
-		Vector3 playerScreen = Camera.main.WorldToScreenPoint(BlackHoleController.Player.transform.position);
-		Vector2 dir = (Vector2)(targetScreen - playerScreen);
+		Vector3 world = target.position - BlackHoleController.Player.transform.position;
+		world.y = 0f;
+		Transform cam = Camera.main.transform;
+		Vector3 right = cam.right;
+		right.y = 0f;
+		Vector3 forward = cam.forward;
+		forward.y = 0f;
+		if (right.sqrMagnitude < 0.0001f)
+			right = Vector3.right;
+		if (forward.sqrMagnitude < 0.0001f)
+			forward = Vector3.forward;
+		right.Normalize();
+		forward.Normalize();
+
+		Vector2 dir = new Vector2(Vector3.Dot(world, right), Vector3.Dot(world, forward));
 		if (dir.sqrMagnitude < 0.001f)
 		{
 			arrows[index].gameObject.SetActive(false);
@@ -416,22 +418,18 @@ public class MatchHud : MonoBehaviour
 		}
 
 		dir.Normalize();
-		if (spreadTotal > 1)
-		{
-			float fan = (spreadIndex - (spreadTotal - 1) * 0.5f) * 18f;
-			dir = (Vector2)(Quaternion.Euler(0f, 0f, fan) * dir);
-		}
-
+		Vector3 playerScreen = Camera.main.WorldToScreenPoint(BlackHoleController.Player.transform.position);
 		RectTransform arrow = arrows[index];
 		arrow.gameObject.SetActive(true);
-		arrow.sizeDelta = new Vector2(80f, 80f) * scale;
+		arrow.sizeDelta = new Vector2(56f, 84f) * scale;
 		float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 		arrow.localEulerAngles = new Vector3(0f, 0f, angle - 90f);
 		arrow.position = playerScreen + (Vector3)(dir * ArrowDistance * scale);
-		if (index < arrowGlyphs.Count && arrowGlyphs[index] != null)
+		if (index < arrowImages.Count && arrowImages[index] != null)
 		{
-			arrowGlyphs[index].color = color;
-			arrowGlyphs[index].fontSize = Mathf.RoundToInt(48f * scale);
+			Color tint = color;
+			tint.a = ArrowAlpha;
+			arrowImages[index].color = tint;
 		}
 		return true;
 	}

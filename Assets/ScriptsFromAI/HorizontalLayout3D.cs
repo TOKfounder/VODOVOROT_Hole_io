@@ -25,18 +25,6 @@ public class HorizontalLayout3D : MonoBehaviour
 	private bool isRotating = false;
 
 	private int chosenObj = 0;
-	private string[] features = {
-		"Простой красный тазик — старт без бонусов. Надёжная классика стока!",
-	 "Этот унитаз готов поддержать тебя в любой трудной и странной ситуации!",
-	 "Блеск роскоши для истинных чемпионов! Стань королём туалетных побед.",
-	 "Сиди с комфортом и властвуй! Злые силы не пройдут через эту дыру...",
-	 "На этом троне даже проблемы исчезают! Почувствуй себя властелином стока." };
-	private string[] featuresEn = {
-		"A plain red basin — no stat bonuses. Reliable drain classic!",
-	 "This toilet bowl is ready to support you in any difficult and strange situation!",
-	 "The splendor of luxury for true champions! Become the king of toilet victories.",
-	 "Sit comfortably and rule! Evil forces will not pass through this hole...",
-	 "On this throne, even problems disappear! Feel like the lord of the drain." };
 
 	private int[] necessaryLevels = {0, 1, 4, 7, 10 };
 	private int[] costsForCoins = { 0, 20, 270, 800, 2400 };
@@ -162,9 +150,7 @@ public class HorizontalLayout3D : MonoBehaviour
 				buttonOfEquiping.GetComponentInChildren<Text>().text = GameTexts.Equip;
 			}
 		}
-		feature.text = chosenObj == 0
-			? GameTexts.RedBasinFeature
-			: (YG2.saves.langRu ? features[chosenObj] : featuresEn[chosenObj]);
+		feature.text = GameTexts.SkinFeature(chosenObj);
 	}
 
 	public void BuyForSomething(int id)

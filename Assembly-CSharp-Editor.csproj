@@ -82,6 +82,7 @@
     <Compile Include="Assets/PluginYourGames/Scripts/InfoYG/Editor/ExampleScenes.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Server/Editor/Server.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Server/Editor/WelcomeWindow.cs" />
+    <Compile Include="Assets/ScriptsFromAI/Editor/GameControllerEditor.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Storage/Scripts/Editor/Storage_build.cs" />
     <Compile Include="Assets/PluginYourGames/Platforms/YandexGames/Scripts/Editor/TestLabel/TestLabel_build.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/StickyAdv/Scripts/Editor/StickyAdv_build.cs" />

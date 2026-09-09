@@ -33,18 +33,18 @@ public class HoleParent : MonoBehaviour
 
 	protected float[] scoreRequired = {
 			0,
-			26,
-			163,
-			795,
-			1779,
-			3703,
-			5127,
-			8751,
-			11375,
-			13000,
-			15000
+			10,
+			45,
+			120,
+			280,
+			580,
+			1100,
+			2000,
+			3400,
+			5400,
+			8000
 	};
-	protected float[] levelScales = { 0.41f, 0.7f, 1.1f, 1.65f, 2.4f, 3.4f, 4.8f, 6.6f, 8.8f, 11.5f, 15f };
+	protected float[] levelScales = { 0.41f, 0.94f, 2.37f, 4.36f, 6.77f, 9.21f, 11.52f, 13.77f, 15.8f, 17.59f, 18.7f };
 	public int score;
 	protected Vector3 targetScale;
 	protected float scaleLerpSpeed = 2f;
@@ -52,6 +52,7 @@ public class HoleParent : MonoBehaviour
 	private bool birthIntro;
 	public bool IsBirthIntro => birthIntro;
 	private float radius;
+	private float radiusPerScale;
 
 	protected virtual bool UseBirthIntro => false;
 
@@ -331,6 +332,18 @@ public class HoleParent : MonoBehaviour
 
 		size = refreshedSize;
 		radius = (size.x + size.z) / 2f;
+		float sx = transform.localScale.x;
+		if (radiusPerScale <= 0f && radius > 0.02f && sx > 0.08f && !birthIntro)
+			radiusPerScale = radius / sx;
+	}
+
+	public float GetHoleRadius() => radius;
+
+	public float GetStableHoleRadius()
+	{
+		if (radiusPerScale > 0f)
+			return Mathf.Max(0.08f, targetScale.x * radiusPerScale);
+		return Mathf.Max(0.08f, radius);
 	}
 
 	public bool IsInHole(Vector3 objPos)
@@ -339,8 +352,6 @@ public class HoleParent : MonoBehaviour
 		float dz = objPos.z - transform.position.z;
 		return dx * dx + dz * dz <= radius * radius;
 	}
-
-	public float GetHoleRadius() => radius;
 
 	public bool CanAbsorbOtherHole(HoleParent other)
 	{

@@ -177,6 +177,9 @@ public class ModeManager : MonoBehaviour
 			if (!TryResolveHuntingSpawn(i, count, out Vector3 pos, out float yaw))
 				continue;
 
+			if (TryGetMapBounds(out float minX, out float maxX, out float minZ, out float maxZ))
+				yaw = YawTowardMapCenter(pos, minX, maxX, minZ, maxZ);
+
 			Quaternion rot = Quaternion.Euler(0f, yaw, 0f);
 			GameObject enemyObject = Instantiate(enemyPrefab, pos, rot, transform);
 			EnemyController enemy = enemyObject != null ? enemyObject.GetComponent<EnemyController>() : null;
@@ -217,7 +220,16 @@ public class ModeManager : MonoBehaviour
 		float nx = 0.5f + Mathf.Cos(t) * 0.32f;
 		float nz = 0.5f + Mathf.Sin(t) * 0.32f;
 		pos = ResolveHuntingSpawn(playerPos, height, minX, maxX, minZ, maxZ, nx, nz, t);
+		yaw = YawTowardMapCenter(pos, minX, maxX, minZ, maxZ);
 		return true;
+	}
+
+	private static float YawTowardMapCenter(Vector3 pos, float minX, float maxX, float minZ, float maxZ)
+	{
+		Vector3 toCenter = new Vector3((minX + maxX) * 0.5f - pos.x, 0f, (minZ + maxZ) * 0.5f - pos.z);
+		if (toCenter.sqrMagnitude < 0.0001f)
+			return 0f;
+		return Quaternion.LookRotation(toCenter.normalized).eulerAngles.y;
 	}
 
 	private Vector3 ResolveHuntingSpawn(

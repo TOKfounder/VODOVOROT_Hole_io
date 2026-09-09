@@ -206,4 +206,55 @@ public class GameController : MonoBehaviour
 				GamingManager.Instance.UpdateUI();
 		}
 	}
+
+	public bool IsMobileCanvasActive()
+	{
+		return CanvasForMobile != null && CanvasForMobile.activeInHierarchy;
+	}
+
+#if UNITY_EDITOR
+	public void EditorResetTutorial()
+	{
+		YG2.saves.tutorialMenuSeen = false;
+		YG2.saves.tutorialMatchSeen = false;
+		YG2.saves.isNickGiven = false;
+		YG2.saves.nickName = "";
+		YG2.saves.isGaming = false;
+		TutorialController.ReplayMatchTutorial = false;
+		YG2.SaveProgress();
+		Time.timeScale = 1f;
+		SceneManager.LoadScene(0);
+	}
+
+	public void EditorShowMobileCanvas()
+	{
+		ApplyEditorCanvas(true);
+	}
+
+	public void EditorShowDesktopCanvas()
+	{
+		ApplyEditorCanvas(false);
+	}
+
+	private void ApplyEditorCanvas(bool mobile)
+	{
+		if (CanvasForMobile != null)
+			CanvasForMobile.SetActive(mobile);
+		if (CanvasForDesktop != null)
+			CanvasForDesktop.SetActive(!mobile);
+
+		GameObject active = mobile ? CanvasForMobile : CanvasForDesktop;
+		currentCanvas = active != null ? active.GetComponent<Canvas>() : null;
+
+		if (SceneManager.GetActiveScene().buildIndex == 0)
+			TutorialController.EnsureMenu();
+		else
+			TutorialController.EnsureMatch();
+
+		UpdateAllUI();
+		LanguageManager language = FindAnyObjectByType<LanguageManager>();
+		if (language != null)
+			language.RefreshUI();
+	}
+#endif
 }
