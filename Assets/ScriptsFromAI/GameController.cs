@@ -175,6 +175,9 @@ public class GameController : MonoBehaviour
 		YG2.saves.isGaming = true;
 		YG2.SaveProgress();
 		int sceneIndex = YG2.saves.selectedMapID + 1;
+		int sceneCount = SceneManager.sceneCountInBuildSettings;
+		if (sceneIndex <= 0 || sceneIndex >= sceneCount)
+			sceneIndex = 1;
 		// #region agent log
 		try { System.IO.File.AppendAllText("/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/.cursor/debug-d61023.log", "{\"sessionId\":\"d61023\",\"runId\":\"map-align\",\"hypothesisId\":\"H3\",\"location\":\"GameController.StartGame\",\"message\":\"load-scene\",\"data\":{\"selectedMapID\":" + YG2.saves.selectedMapID + ",\"sceneIndex\":" + sceneIndex + ",\"tutorialDone\":" + (TutorialController.IsDone ? "true" : "false") + "},\"timestamp\":" + System.DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() + "}\n"); } catch {}
 		// #endregion

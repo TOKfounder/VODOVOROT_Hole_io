@@ -98,6 +98,7 @@
     <Compile Include="Assets/ScriptsFromAI/ScoreOrb.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/RewardedAdv/Scripts/RewardedAdv_interface.cs" />
     <Compile Include="Assets/UsedAssets/Fries and Seagull/City 03/Scene Props/Scripts/ArrayArrangement.cs" />
+    <Compile Include="Assets/ScriptsFromAI/MapAbsorbableSetup.cs" />
     <Compile Include="Assets/ScriptsFromAI/BoostButton.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Basic/YGInsides.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/EditorScr/FileYG.cs" />
@@ -109,8 +110,8 @@
     <Compile Include="Assets/ScriptsFromAI/UiClickFeedback.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/InfoYG/InfoYG.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Basic/GamePause.cs" />
-    <Compile Include="Assets/PluginYourGames/Modules/EnvirData/Scripts/EnvirData_yandexPlatform.cs" />
     <Compile Include="Assets/ScriptsFromAI/HoleParent.cs" />
+    <Compile Include="Assets/PluginYourGames/Modules/EnvirData/Scripts/EnvirData_yandexPlatform.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/RewardedAdv/Scripts/RewardedAdvLockTimer.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/PlayerStats/Example/Scripts/PlayerStatsExample.cs" />
     <Compile Include="Assets/UsedAssets/Fries and Seagull/City 03/Scene Props/Scripts/Setup/FriesPostProcessorIdentifier.cs" />
@@ -144,8 +145,8 @@
     <Compile Include="Assets/ScriptsFromAI/ActiveCanvas.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Leaderboards/Example/Scripts/CustomLBExample.cs" />
     <Compile Include="Assets/PluginYourGames/Example/Scripts/DemoTextTranslateRU.cs" />
-    <Compile Include="Assets/PluginYourGames/Modules/Storage/Scripts/Storage_info.cs" />
     <Compile Include="Assets/ScriptsFromAI/Tool.cs" />
+    <Compile Include="Assets/PluginYourGames/Modules/Storage/Scripts/Storage_info.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Platform/ProjectSettings.cs" />
     <Compile Include="Assets/ScriptsFromAI/EnemyController.cs" />
     <Compile Include="Assets/ScriptsFromAI/ScorePopupZone.cs" />
@@ -198,8 +199,8 @@
     <Compile Include="Assets/PluginYourGames/Scripts/Basic/IPlatformsYG2.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Other/EventsYG2.cs" />
     <Compile Include="Assets/PluginYourGames/Platforms/YandexGames/Scripts/OwnHost/OwnHost.cs" />
-    <Compile Include="Assets/PluginYourGames/Modules/Storage/Example/Scripts/SaverTest.cs" />
     <Compile Include="Assets/ScriptsFromAI/BlackHoleController.cs" />
+    <Compile Include="Assets/PluginYourGames/Modules/Storage/Example/Scripts/SaverTest.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Basic/InitAttributes.cs" />
     <Compile Include="Assets/UsedAssets/PinePie/Simple Joystick/Core/Base/JoystickController.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/InterstitialAdv/Scripts/InterAdv_yg.cs" />

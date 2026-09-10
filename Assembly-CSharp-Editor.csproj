@@ -72,6 +72,7 @@
     <Compile Include="Assets/PluginYourGames/Scripts/EditorScr/Editor/FastButton.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Server/Editor/NotificationUpdateWindow.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Other/Editor/EventsYG2Editor.cs" />
+    <Compile Include="Assets/ScriptsFromAI/Editor/MapFallingObjectBaker.cs" />
     <Compile Include="Assets/PluginYourGames/Platforms/YandexGames/Scripts/Editor/GradientBackground/GradientBackground_build.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/EditorScr/Editor/BuildModify/BuildLog.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Flags/Scripts/Editor/Flags_build.cs" />

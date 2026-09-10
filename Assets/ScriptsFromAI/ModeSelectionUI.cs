@@ -15,6 +15,7 @@ public class ModeSelectionUI : MonoBehaviour
 	private Button mobileTeamButton;
 	private Button mobileCityButton;
 	private Button mobileGardenButton;
+	private Button mobileCastleButton;
 
 	private Button desktopBossButton;
 	private Button desktopTotalButton;
@@ -22,6 +23,7 @@ public class ModeSelectionUI : MonoBehaviour
 	private Button desktopTeamButton;
 	private Button desktopCityButton;
 	private Button desktopGardenButton;
+	private Button desktopCastleButton;
 
 	void Awake()
 	{
@@ -59,12 +61,14 @@ public class ModeSelectionUI : MonoBehaviour
 		mobileTeamButton = null;
 		mobileCityButton = null;
 		mobileGardenButton = null;
+		mobileCastleButton = null;
 		desktopBossButton = null;
 		desktopTotalButton = null;
 		desktopHuntingButton = null;
 		desktopTeamButton = null;
 		desktopCityButton = null;
 		desktopGardenButton = null;
+		desktopCastleButton = null;
 
 		Button[] allButtons = FindObjectsByType<Button>(FindObjectsInactive.Include, FindObjectsSortMode.None);
 		for (int i = 0; i < allButtons.Length; i++)
@@ -94,6 +98,10 @@ public class ModeSelectionUI : MonoBehaviour
 				case "Garden":
 				case "Garden2":
 					Assign(ref mobileGardenButton, ref desktopGardenButton, button, isMobile);
+					break;
+				case "Castle":
+				case "Castle2":
+					Assign(ref mobileCastleButton, ref desktopCastleButton, button, isMobile);
 					break;
 			}
 		}
@@ -131,6 +139,8 @@ public class ModeSelectionUI : MonoBehaviour
 		BindMapButton(desktopCityButton, 0);
 		BindMapButton(mobileGardenButton, 1);
 		BindMapButton(desktopGardenButton, 1);
+		BindMapButton(mobileCastleButton, 2);
+		BindMapButton(desktopCastleButton, 2);
 		HookModePanel(mobileBossButton);
 		HookModePanel(desktopBossButton);
 		HookModePanel(mobileTotalButton);
@@ -263,6 +273,8 @@ public class ModeSelectionUI : MonoBehaviour
 		ClearMapCardTint(desktopCityButton);
 		ClearMapCardTint(mobileGardenButton);
 		ClearMapCardTint(desktopGardenButton);
+		ClearMapCardTint(mobileCastleButton);
+		ClearMapCardTint(desktopCastleButton);
 		if (TutorialController.Instance != null)
 			TutorialController.Instance.RefreshLock();
 	}

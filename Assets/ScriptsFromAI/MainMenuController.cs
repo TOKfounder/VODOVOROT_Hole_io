@@ -311,6 +311,10 @@ public class MainMenuController : MonoBehaviour
 		// #region agent log
 		try { string spriteName = (maps != null && id >= 0 && id < maps.Length && maps[id] != null) ? maps[id].name : "null"; System.IO.File.AppendAllText("/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/.cursor/debug-d61023.log", "{\"sessionId\":\"d61023\",\"runId\":\"map-align\",\"hypothesisId\":\"H2\",\"location\":\"MainMenuController.UpdateMapOnBackground\",\"message\":\"bg-sprite\",\"data\":{\"id\":" + id + ",\"sprite\":\"" + spriteName + "\"},\"timestamp\":" + System.DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() + "}\n"); } catch {}
 		// #endregion
+		if (maps == null || maps.Length == 0)
+			return;
+		if (id < 0 || id >= maps.Length)
+			id = 0;
 		mapField.sprite = maps[id];
 		YG2.saves.selectedMapID = id;
 		GameController.NormalizeChosenMode();
@@ -375,6 +379,7 @@ public class MainMenuController : MonoBehaviour
 			ru ? "Доступные Локации" : "Available Locations",
 			ru ? "Городской Вайб" : "City Vibe",
 			ru ? "Садовый Парк" : "Garden Park",
+			ru ? "Средневековый Замок" : "Medieval Castle",
 			ru ? "Новые карты скоро..." : "New maps are coming soon...");
 
 		SetModePanelTexts(PanelOfModes, ru);
@@ -425,6 +430,7 @@ public class MainMenuController : MonoBehaviour
 			ru ? "Доступные Локации" : "Available Locations",
 			ru ? "Городской Вайб" : "City Vibe",
 			ru ? "Садовый Парк" : "Garden Park",
+			ru ? "Средневековый Замок" : "Medieval Castle",
 			ru ? "Новые карты скоро..." : "New maps are coming soon...");
 		SetModePanelTexts(DPanelOfModes, ru);
 		SetTexts(DPanelOfProgress,
@@ -456,8 +462,8 @@ public class MainMenuController : MonoBehaviour
 			ru ? "Задача перегнать Босса по уровню и победить поглотив его" :
 				"The task is to overtake the Boss by level and defeat him by absorbing him",
 			ru ? "Охота" : "Hunting",
-			ru ? "Город — 5 врагов, сад — 4. Мелкие убегают, крупные идут в тебя. Награда за каждого, джекпот за всех." :
-				"City has 5 enemies, garden has 4. Small ones flee, big ones chase you. Reward per kill, jackpot for all.",
+			ru ? "Город и замок — 5 врагов, сад — 4. Мелкие убегают, крупные идут в тебя. Награда за каждого, джекпот за всех." :
+				"City and castle have 5 enemies, garden has 4. Small ones flee, big ones chase you. Reward per kill, jackpot for all.",
 			ru ? "Командный" : "Teamwork",
 			ru ? "Победа по сумме поглощённого. На HUD — процент очков синих и красных." :
 				"Win by absorbed score. The HUD shows each team's point percent.");

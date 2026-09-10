@@ -7,10 +7,10 @@
         false,
         false
     ],
-    "idSave": 205711,
+    "idSave": 205767,
     "isFirst": false,
     "langRu": true,
-    "score": 12306,
+    "score": 0,
     "equipedMaterial": 0,
     "massiveOfObtaining": [
         1,
@@ -22,8 +22,8 @@
     "exp": 1110,
     "levelOfProgress": 11,
     "goldCoins": 0,
-    "isNickGiven": true,
-    "nickName": "вввв",
+    "isNickGiven": false,
+    "nickName": "",
     "selectedMapID": 0,
     "diamonds": 3,
     "isGaming": true,
@@ -35,7 +35,7 @@
     "rewardedHandLeft": 2,
     "rewardedBagLeft": 5,
     "rewardedBoxLeft": 10,
-    "tutorialMenuSeen": false,
-    "tutorialMatchSeen": false,
-    "tutorialStage": 7
+    "tutorialMenuSeen": true,
+    "tutorialMatchSeen": true,
+    "tutorialStage": 16
 }

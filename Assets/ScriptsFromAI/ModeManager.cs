@@ -14,9 +14,11 @@ public class ModeManager : MonoBehaviour
 
 	private const int CityMapId = 0;
 	private const int GardenMapId = 1;
+	private const int CastleMapId = 2;
 
 	public static bool IsGardenMap() => YG2.saves.selectedMapID == GardenMapId;
 	public static bool IsCityMap() => YG2.saves.selectedMapID == CityMapId;
+	public static bool IsCastleMap() => YG2.saves.selectedMapID == CastleMapId;
 
 	public static EnemyController ActiveBoss { get; private set; }
 	public static readonly List<EnemyController> HuntingEnemies = new List<EnemyController>();
