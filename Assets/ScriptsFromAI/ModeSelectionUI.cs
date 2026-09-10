@@ -178,9 +178,6 @@ public class ModeSelectionUI : MonoBehaviour
 		button.onClick = new Button.ButtonClickedEvent();
 		button.onClick.AddListener(() =>
 		{
-			// #region agent log
-			try { System.IO.File.AppendAllText("/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/.cursor/debug-d61023.log", "{\"sessionId\":\"d61023\",\"runId\":\"map-align\",\"hypothesisId\":\"H1\",\"location\":\"ModeSelectionUI.BindMapButton\",\"message\":\"map-click\",\"data\":{\"button\":\"" + button.gameObject.name + "\",\"mapId\":" + mapId + ",\"canvas\":\"" + (button.GetComponentInParent<Canvas>(true) != null ? button.GetComponentInParent<Canvas>(true).name : "null") + "\"},\"timestamp\":" + System.DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() + "}\n"); } catch {}
-			// #endregion
 			if (MainMenuController.Instance != null)
 				MainMenuController.Instance.UpdateMapOnBackground(mapId);
 			CloseNamedPanel(button, "PanelOfMaps");
@@ -269,12 +266,12 @@ public class ModeSelectionUI : MonoBehaviour
 		ApplyModeCard(mobileTeamButton, chosenMode == (int)ModeManager.Mode.TeamMode);
 		ApplyModeCard(desktopTeamButton, chosenMode == (int)ModeManager.Mode.TeamMode);
 
-		ClearMapCardTint(mobileCityButton);
-		ClearMapCardTint(desktopCityButton);
-		ClearMapCardTint(mobileGardenButton);
-		ClearMapCardTint(desktopGardenButton);
-		ClearMapCardTint(mobileCastleButton);
-		ClearMapCardTint(desktopCastleButton);
+		ApplyMapCard(mobileCityButton, true);
+		ApplyMapCard(desktopCityButton, true);
+		ApplyMapCard(mobileGardenButton, false);
+		ApplyMapCard(desktopGardenButton, false);
+		ApplyMapCard(mobileCastleButton, false);
+		ApplyMapCard(desktopCastleButton, false);
 		if (TutorialController.Instance != null)
 			TutorialController.Instance.RefreshLock();
 	}
@@ -284,11 +281,18 @@ public class ModeSelectionUI : MonoBehaviour
 		if (button == null)
 			return;
 
-		if (!TutorialController.IsLockingUi)
+		bool lockUi = TutorialController.IsLockingUi;
+		if (!lockUi)
 			button.interactable = true;
 		button.enabled = true;
 		button.transition = Selectable.Transition.None;
-		Color face = selected ? selectedColor : normalColor;
+		Color face;
+		if (lockUi && IsTutorialModeTarget(button))
+			face = selectedColor;
+		else if (lockUi)
+			face = disabledColor;
+		else
+			face = selected ? selectedColor : normalColor;
 		Image image = button.targetGraphic as Image;
 		if (image == null)
 			image = button.GetComponent<Image>();
@@ -300,28 +304,48 @@ public class ModeSelectionUI : MonoBehaviour
 		colors.highlightedColor = face;
 		colors.pressedColor = face;
 		colors.selectedColor = face;
-		colors.disabledColor = normalColor;
+		colors.disabledColor = disabledColor;
 		button.colors = colors;
 	}
 
-	private static void ClearMapCardTint(Button button)
+	private void ApplyMapCard(Button button, bool isCity)
 	{
 		if (button == null)
 			return;
 
+		bool lockUi = TutorialController.IsLockingUi;
+		if (!lockUi)
+			button.interactable = true;
+		button.enabled = true;
+		button.transition = Selectable.Transition.None;
+		bool cityStep = YG2.saves.tutorialStage == TutorialController.StageCity;
+		Color face;
+		if (lockUi && cityStep && isCity)
+			face = Color.white;
+		else if (lockUi)
+			face = disabledColor;
+		else
+			face = Color.white;
 		Image image = button.targetGraphic as Image;
 		if (image == null)
 			image = button.GetComponent<Image>();
 		if (image != null)
-			image.color = Color.white;
+			image.color = face;
 
 		ColorBlock colors = button.colors;
-		colors.normalColor = Color.white;
-		colors.highlightedColor = Color.white;
-		colors.pressedColor = Color.white;
-		colors.selectedColor = Color.white;
-		colors.disabledColor = Color.white;
+		colors.normalColor = face;
+		colors.highlightedColor = face;
+		colors.pressedColor = face;
+		colors.selectedColor = face;
+		colors.disabledColor = disabledColor;
 		button.colors = colors;
+	}
+
+	private static bool IsTutorialModeTarget(Button button)
+	{
+		return button != null
+			&& YG2.saves.tutorialStage == TutorialController.StageCleaning
+			&& button.gameObject.name == "TotalCleaning";
 	}
 
 	private void HookModePanel(Button button)

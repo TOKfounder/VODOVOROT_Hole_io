@@ -28,7 +28,10 @@ public class TutorialController : MonoBehaviour
 	private const int WhiteFriendIndex = 1;
 	private const int WhiteFriendCoinCost = 20;
 	private const float PointerOffset = 92f;
-	private const float OverlayLocalZ = -110f;
+	private const float OverlayLocalZ = -200f;
+	private const float GuideDimAlpha = 0.62f;
+	private const float GuidePlaqueWidth = 620f;
+	private const float GuidePlaqueHeight = 320f;
 	private static readonly Color PointerTint = new Color(1f, 0.85f, 0.2f, 1f);
 
 	public static TutorialController Instance { get; private set; }
@@ -182,6 +185,7 @@ public class TutorialController : MonoBehaviour
 		targetCanvas = canvas;
 		Instance = this;
 		ShowCleaningLandmarks = false;
+		MatchPause.ForceReset();
 		UiClickFeedback.EnsureOnScene();
 		HideReplayButtons();
 		EnsureOverlay();
@@ -191,6 +195,7 @@ public class TutorialController : MonoBehaviour
 		{
 			UnlockAll();
 			HideOverlay();
+			RefreshSelectionCards();
 			return;
 		}
 
@@ -377,6 +382,7 @@ public class TutorialController : MonoBehaviour
 		YG2.SaveProgress();
 		UnlockAll();
 		HideOverlay();
+		RefreshSelectionCards();
 	}
 
 	private static void SetStage(int stage)
@@ -414,7 +420,7 @@ public class TutorialController : MonoBehaviour
 		cardRect.anchorMax = new Vector2(0.5f, 1f);
 		cardRect.pivot = new Vector2(0.5f, 1f);
 		cardRect.anchoredPosition = new Vector2(0f, -18f);
-		cardRect.sizeDelta = new Vector2(560f, 120f);
+		cardRect.sizeDelta = new Vector2(GuidePlaqueWidth, GuidePlaqueHeight);
 		Image cardImage = cardGo.GetComponent<Image>();
 		cardImage.color = new Color(0.12f, 0.1f, 0.14f, 0.96f);
 		cardImage.raycastTarget = false;
@@ -522,6 +528,7 @@ public class TutorialController : MonoBehaviour
 		if (stage >= StageDone)
 		{
 			HideOverlay();
+			RefreshSelectionCards();
 			return;
 		}
 
@@ -537,8 +544,9 @@ public class TutorialController : MonoBehaviour
 			return;
 		}
 
-		ShowGuidePlaque(GuideTitle(stage), GuideBody(stage), false);
+		ShowGuidePlaque(GuideTitle(stage), GuideBody(stage));
 		PointAt(ResolveTargetRect());
+		RefreshSelectionCards();
 	}
 
 	private static string GuideTitle(int stage)
@@ -585,7 +593,7 @@ public class TutorialController : MonoBehaviour
 		}
 	}
 
-	private void ShowGuidePlaque(string title, string body, bool dim)
+	private void ShowGuidePlaque(string title, string body)
 	{
 		if (overlayRoot == null)
 			return;
@@ -593,8 +601,8 @@ public class TutorialController : MonoBehaviour
 		BringOverlayForward();
 		if (dimImage != null)
 		{
-			dimImage.color = dim ? new Color(0f, 0f, 0f, 0.62f) : new Color(0f, 0f, 0f, 0f);
-			dimImage.raycastTarget = dim;
+			dimImage.color = new Color(0f, 0f, 0f, GuideDimAlpha);
+			dimImage.raycastTarget = false;
 		}
 		if (cardRect != null)
 		{
@@ -602,7 +610,7 @@ public class TutorialController : MonoBehaviour
 			LayoutPlaqueAwayFrom(ResolveTargetRect());
 			Image cardImage = cardRect.GetComponent<Image>();
 			if (cardImage != null)
-				cardImage.raycastTarget = dim;
+				cardImage.raycastTarget = true;
 		}
 		if (nextButton != null)
 			nextButton.gameObject.SetActive(false);
@@ -620,7 +628,7 @@ public class TutorialController : MonoBehaviour
 		BringOverlayForward();
 		if (dimImage != null)
 		{
-			dimImage.color = new Color(0f, 0f, 0f, 0.62f);
+			dimImage.color = new Color(0f, 0f, 0f, GuideDimAlpha);
 			dimImage.raycastTarget = true;
 		}
 		if (cardRect != null)
@@ -630,7 +638,7 @@ public class TutorialController : MonoBehaviour
 			cardRect.anchorMax = new Vector2(0.5f, 0.5f);
 			cardRect.pivot = new Vector2(0.5f, 0.5f);
 			cardRect.anchoredPosition = Vector2.zero;
-			cardRect.sizeDelta = new Vector2(620f, 320f);
+			cardRect.sizeDelta = new Vector2(GuidePlaqueWidth, GuidePlaqueHeight);
 			Image cardImage = cardRect.GetComponent<Image>();
 			if (cardImage != null)
 				cardImage.raycastTarget = true;
@@ -681,16 +689,16 @@ public class TutorialController : MonoBehaviour
 		cardRect.anchorMax = cardRect.anchorMin;
 		cardRect.pivot = new Vector2(0.5f, targetHigh ? 0f : 1f);
 		cardRect.anchoredPosition = new Vector2(0f, targetHigh ? 24f : -18f);
-		cardRect.sizeDelta = new Vector2(560f, 120f);
+		cardRect.sizeDelta = new Vector2(GuidePlaqueWidth, GuidePlaqueHeight);
 		if (titleText != null)
 		{
-			titleText.rectTransform.anchoredPosition = new Vector2(0f, -28f);
-			titleText.rectTransform.sizeDelta = new Vector2(520f, 36f);
+			titleText.rectTransform.anchoredPosition = new Vector2(0f, -36f);
+			titleText.rectTransform.sizeDelta = new Vector2(560f, 56f);
 		}
 		if (bodyText != null)
 		{
-			bodyText.rectTransform.anchoredPosition = new Vector2(0f, -78f);
-			bodyText.rectTransform.sizeDelta = new Vector2(520f, 64f);
+			bodyText.rectTransform.anchoredPosition = new Vector2(0f, -120f);
+			bodyText.rectTransform.sizeDelta = new Vector2(560f, 140f);
 		}
 	}
 
@@ -781,7 +789,7 @@ public class TutorialController : MonoBehaviour
 	{
 		if (IsDone || YG2.saves.tutorialStage != StageEndContinue)
 			return;
-		ShowGuidePlaque(GameTexts.TutorialContinueTitle, GameTexts.TutorialContinueBody, false);
+		ShowGuidePlaque(GameTexts.TutorialContinueTitle, GameTexts.TutorialContinueBody);
 		PointAt(ResolveTargetRect());
 		ApplyLock();
 	}
@@ -799,6 +807,12 @@ public class TutorialController : MonoBehaviour
 
 		bool lockUi = IsLockingUi;
 		Button allowed = ResolveTargetButton();
+		if (lockUi && allowed == null && ShouldHaveMenuButtonTarget())
+		{
+			allowed = FindFallbackMenuButton();
+			if (allowed == null)
+				lockUi = false;
+		}
 		bool allowNext = YG2.saves.tutorialStage == StageMatchCards;
 		Button[] buttons = targetCanvas.GetComponentsInChildren<Button>(true);
 		for (int i = 0; i < buttons.Length; i++)
@@ -874,6 +888,27 @@ public class TutorialController : MonoBehaviour
 			case StageEquipWhite: return FindButton("Equiping");
 			default: return null;
 		}
+	}
+
+	private static bool ShouldHaveMenuButtonTarget()
+	{
+		int stage = YG2.saves.tutorialStage;
+		return stage != StageNick
+			&& stage != StageMatchCards
+			&& stage != StageMatchPlay
+			&& stage < StageDone;
+	}
+
+	private Button FindFallbackMenuButton()
+	{
+		return FindButton("Points") ?? FindButton("Modes") ?? FindButton("PlayButton");
+	}
+
+	private static void RefreshSelectionCards()
+	{
+		ModeSelectionUI ui = Object.FindAnyObjectByType<ModeSelectionUI>();
+		if (ui != null)
+			ui.Refresh();
 	}
 
 	private RectTransform ResolveTargetRect()

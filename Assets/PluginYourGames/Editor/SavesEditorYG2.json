@@ -7,10 +7,10 @@
         false,
         false
     ],
-    "idSave": 205767,
+    "idSave": 205893,
     "isFirst": false,
     "langRu": true,
-    "score": 0,
+    "score": 6142,
     "equipedMaterial": 0,
     "massiveOfObtaining": [
         1,
@@ -19,14 +19,14 @@
         0,
         0
     ],
-    "exp": 1110,
+    "exp": 1113,
     "levelOfProgress": 11,
-    "goldCoins": 0,
-    "isNickGiven": false,
-    "nickName": "",
+    "goldCoins": 20,
+    "isNickGiven": true,
+    "nickName": "Руслан",
     "selectedMapID": 0,
-    "diamonds": 3,
-    "isGaming": true,
+    "diamonds": 0,
+    "isGaming": false,
     "soundValue": 0.5,
     "musicValue": 0.5,
     "done": true,
@@ -35,7 +35,7 @@
     "rewardedHandLeft": 2,
     "rewardedBagLeft": 5,
     "rewardedBoxLeft": 10,
-    "tutorialMenuSeen": true,
-    "tutorialMatchSeen": true,
-    "tutorialStage": 16
+    "tutorialMenuSeen": false,
+    "tutorialMatchSeen": false,
+    "tutorialStage": 12
 }

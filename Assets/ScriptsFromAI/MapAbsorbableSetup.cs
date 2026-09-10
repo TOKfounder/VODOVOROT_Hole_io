@@ -31,6 +31,12 @@ public class MapAbsorbableSetup : MonoBehaviour
 		return n == "ImmersivePack" || n == "MapPlayableGround" || n == "EventSystem";
 	}
 
+	private static bool ShouldSkipAbsorbable(GameObject go)
+	{
+		string n = go.name;
+		return n == "Plane" || n == "MainPlatform" || n == "MapPlayableGround";
+	}
+
 	private static void StripFarmPoints(Transform root)
 	{
 		Transform[] transforms = root.GetComponentsInChildren<Transform>(true);
@@ -69,6 +75,8 @@ public class MapAbsorbableSetup : MonoBehaviour
 
 			GameObject go = rend.gameObject;
 			if (go.GetComponent<Camera>() != null || go.GetComponent<Light>() != null)
+				continue;
+			if (ShouldSkipAbsorbable(go))
 				continue;
 
 			if (go.GetComponent<FallingObject>() == null)

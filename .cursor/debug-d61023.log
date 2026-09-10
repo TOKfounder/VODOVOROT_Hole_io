@@ -27,3 +27,11 @@
 {"sessionId":"d61023","runId":"map-align","hypothesisId":"H1","location":"ModeSelectionUI.BindMapButton","message":"map-click","data":{"button":"City1","mapId":0,"canvas":"CanvasForDesktop"},"timestamp":1789014593486}
 {"sessionId":"d61023","runId":"map-align","hypothesisId":"H2","location":"MainMenuController.UpdateMapOnBackground","message":"bg-sprite","data":{"id":0,"sprite":"Map1"},"timestamp":1789014593487}
 {"sessionId":"d61023","runId":"map-align","hypothesisId":"H3","location":"GameController.StartGame","message":"load-scene","data":{"selectedMapID":0,"sceneIndex":1,"tutorialDone":true},"timestamp":1789014594537}
+{"sessionId":"d61023","runId":"map-align","hypothesisId":"H2","location":"MainMenuController.UpdateMapOnBackground","message":"bg-sprite","data":{"id":0,"sprite":"Map1"},"timestamp":1789020422928}
+{"sessionId":"d61023","runId":"map-align","hypothesisId":"H2","location":"MainMenuController.UpdateMapOnBackground","message":"bg-sprite","data":{"id":0,"sprite":"Map1"},"timestamp":1789020431423}
+{"sessionId":"d61023","runId":"map-align","hypothesisId":"H2","location":"MainMenuController.UpdateMapOnBackground","message":"bg-sprite","data":{"id":0,"sprite":"Map1"},"timestamp":1789020439885}
+{"sessionId":"d61023","runId":"map-align","hypothesisId":"H1","location":"ModeSelectionUI.BindMapButton","message":"map-click","data":{"button":"City1","mapId":0,"canvas":"CanvasForDesktop"},"timestamp":1789020442269}
+{"sessionId":"d61023","runId":"map-align","hypothesisId":"H2","location":"MainMenuController.UpdateMapOnBackground","message":"bg-sprite","data":{"id":0,"sprite":"Map1"},"timestamp":1789020442269}
+{"sessionId":"d61023","runId":"map-align","hypothesisId":"H3","location":"GameController.StartGame","message":"load-scene","data":{"selectedMapID":0,"sceneIndex":1,"tutorialDone":false},"timestamp":1789020444487}
+{"sessionId":"d61023","runId":"map-align","hypothesisId":"H2","location":"MainMenuController.UpdateMapOnBackground","message":"bg-sprite","data":{"id":0,"sprite":"Map1"},"timestamp":1789020602341}
+{"sessionId":"d61023","runId":"map-align","hypothesisId":"H2","location":"MainMenuController.UpdateMapOnBackground","message":"bg-sprite","data":{"id":0,"sprite":"Map1"},"timestamp":1789020632408}
