@@ -121,7 +121,7 @@ public class FallingObject : MonoBehaviour
 		rb.isKinematic = true;
 		rb.useGravity = true;
 		rb.detectCollisions = true;
-		rb.linearVelocity = Vector3.zero;
+		rb.velocity = Vector3.zero;
 		rb.angularVelocity = Vector3.zero;
 		isTriggered = false;
 		col.enabled = true;
@@ -180,8 +180,8 @@ public class FallingObject : MonoBehaviour
 		}
 
 		rb.mass = V3 * 50;
-		rb.linearDamping = 4;
-		rb.angularDamping = 4;
+		rb.drag = 4;
+		rb.angularDrag = 4;
 	}
 
 

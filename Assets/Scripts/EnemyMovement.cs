@@ -34,7 +34,7 @@ public class EnemyMovement : MonoBehaviour
 		enemyController = GetComponentInParent<EnemyController>();
 
 		// Важно: уменьшаем сопротивление повороту
-		rb.angularDamping = 3f;           // ← добавь
+		rb.angularDrag = 3f;
 		rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
 		StartCoroutine(SearchRoutine());

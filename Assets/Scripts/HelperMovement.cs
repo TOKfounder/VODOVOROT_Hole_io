@@ -39,7 +39,7 @@ public class HelperMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         helperController = GetComponentInParent<HelperController>();
 
-        rb.angularDamping = 3f;
+        rb.angularDrag = 3f;
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
         StartCoroutine(SearchRoutine());

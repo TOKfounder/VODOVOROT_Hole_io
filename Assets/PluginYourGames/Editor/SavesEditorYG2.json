@@ -7,7 +7,7 @@
         false,
         false
     ],
-    "idSave": 40,
+    "idSave": 41,
     "isFirst": false,
     "langRu": false,
     "score": 0,
@@ -31,5 +31,5 @@
     "musicValue": 0.5,
     "done": true,
     "chosenMode": 0,
-    "tutorialDone": false
+    "tutorialDone": true
 }
