@@ -24,10 +24,6 @@ public class ScorePopupZone : MonoBehaviour
 			Instance = null;
 	}
 
-	public void Pulse()
-	{
-	}
-
 	public Vector3 GetRandomScreenPosition()
 	{
 		if (zone == null)

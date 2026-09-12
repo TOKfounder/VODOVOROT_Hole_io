@@ -3,21 +3,21 @@ using System.Collections;
 
 public class EnemyMovement : MonoBehaviour
 {
-	public GameObject withoutCamera;
-	public float rotationSpeed = 0.1f;
-	public float detectionRadius = 50f;
-	public float searchInterval = 0.75f;
-	public LayerMask fallableObjects;
+	[SerializeField] private GameObject withoutCamera;
+	[SerializeField] private float rotationSpeed = 0.1f;
+	[SerializeField] private float detectionRadius = 50f;
+	[SerializeField] private float searchInterval = 0.75f;
+	[SerializeField] private LayerMask fallableObjects;
 
 	[Header("Hunting")]
 	[SerializeField] private float huntSightRadius = 45f;
 	[SerializeField] private float huntPlayerSeconds = 10f;
 	[SerializeField] private float farmAfterHuntSeconds = 18f;
 
-	private const float BossFarmSeconds = 30f;
-	private const float BossProbeSeconds = 120f;
-	private const float BossSpeedMul = 0.56f;
-	private const float EnemySpeedMul = 0.25f;
+	private float bossFarmSeconds = 30f;
+	private float bossProbeSeconds = 120f;
+	private float bossSpeedMul = 0.56f;
+	private float enemySpeedMul = 0.25f;
 
 	private Transform currentTarget;
 	private float[] levelSpeeds = { 6f, 6.89f, 7.78f, 8.67f, 9.56f, 10.44f, 13.83f, 15.22f, 20f, 25f, 28f };
@@ -50,11 +50,43 @@ public class EnemyMovement : MonoBehaviour
 
 	void Start()
 	{
+		ApplyBalanceConfig();
 		rb = GetComponent<Rigidbody>();
 		enemyController = GetComponentInParent<EnemyController>();
 		if (withoutCamera == null && enemyController != null)
 			withoutCamera = enemyController.WithoutCamera;
 		StartCoroutine(SearchRoutine());
+	}
+
+	void ApplyBalanceConfig()
+	{
+		GameBalanceConfig config = GameBalance.Current;
+		if (config != null)
+			levelSpeeds = GameBalance.CopyOr(config.levelSpeeds, levelSpeeds);
+
+		ModeConfig hunting = GameBalance.Mode(ModeManager.Mode.Hunting);
+		if (hunting != null)
+		{
+			if (hunting.huntSightRadius > 0f)
+				huntSightRadius = hunting.huntSightRadius;
+			if (hunting.huntPlayerSeconds > 0f)
+				huntPlayerSeconds = hunting.huntPlayerSeconds;
+			if (hunting.farmAfterHuntSeconds > 0f)
+				farmAfterHuntSeconds = hunting.farmAfterHuntSeconds;
+			if (hunting.enemySpeedMul > 0f)
+				enemySpeedMul = hunting.enemySpeedMul;
+		}
+
+		ModeConfig boss = GameBalance.Mode(ModeManager.Mode.Boss);
+		if (boss != null)
+		{
+			if (boss.bossFarmSeconds > 0f)
+				bossFarmSeconds = boss.bossFarmSeconds;
+			if (boss.bossProbeSeconds > 0f)
+				bossProbeSeconds = boss.bossProbeSeconds;
+			if (boss.bossSpeedMul > 0f)
+				bossSpeedMul = boss.bossSpeedMul;
+		}
 	}
 
 	IEnumerator SearchRoutine()
@@ -206,12 +238,12 @@ public class EnemyMovement : MonoBehaviour
 		return ModeManager.ActiveBoss == enemyController;
 	}
 
-	private static BossPhase GetBossPhase()
+	private BossPhase GetBossPhase()
 	{
 		float timer = GamingManager.Instance != null ? GamingManager.Instance.timer : 0f;
-		if (timer < BossFarmSeconds)
+		if (timer < bossFarmSeconds)
 			return BossPhase.Farm;
-		if (timer < BossFarmSeconds + BossProbeSeconds)
+		if (timer < bossFarmSeconds + bossProbeSeconds)
 			return BossPhase.Probe;
 		return BossPhase.Hunt;
 	}
@@ -298,7 +330,7 @@ public class EnemyMovement : MonoBehaviour
 
 		int level = enemyController.currentLevel;
 		float speed = (level >= 0 && level < levelSpeeds.Length) ? levelSpeeds[level] : levelSpeeds[^1];
-		float mul = IsThisBoss() ? BossSpeedMul : EnemySpeedMul;
+		float mul = IsThisBoss() ? bossSpeedMul : enemySpeedMul;
 		Vector3 delta = moveDir * speed * mul * Time.fixedDeltaTime;
 		Vector3 newPosition = rb.position + delta;
 		Vector3 clamped = newPosition;

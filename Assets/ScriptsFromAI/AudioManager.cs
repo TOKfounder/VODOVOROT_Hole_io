@@ -8,8 +8,8 @@ public class AudioManager : MonoBehaviour
 {
 	public static AudioManager Instance;
 
-	public AudioSource musicSource;
-	public AudioMixer mixer;
+	[SerializeField] private AudioSource musicSource;
+	[SerializeField] private AudioMixer mixer;
 
 	[Header("Match SFX")]
 	[SerializeField] private AudioSource sfxSource;
@@ -22,19 +22,19 @@ public class AudioManager : MonoBehaviour
 	private float nextGulpTime;
 	private float nextAbsorbTime;
 
-	public float dbValSound;
-	public float dbValMusic;
+	[SerializeField] private float dbValSound;
+	[SerializeField] private float dbValMusic;
 
 [Header("Mobile Objs")]
-	public GameObject krest1;
-	public GameObject krest2;
-	public Slider SoundSlider;
-	public Slider MusicSlider;
+	[SerializeField] private GameObject krest1;
+	[SerializeField] private GameObject krest2;
+	[SerializeField] private Slider SoundSlider;
+	[SerializeField] private Slider MusicSlider;
 [Header("Desktop Objs")]
-	public GameObject Dkrest1;
-	public GameObject Dkrest2;
-	public Slider DSoundSlider;
-	public Slider DMusicSlider;
+	[SerializeField] private GameObject Dkrest1;
+	[SerializeField] private GameObject Dkrest2;
+	[SerializeField] private Slider DSoundSlider;
+	[SerializeField] private Slider DMusicSlider;
 
 	void Awake()
 	{

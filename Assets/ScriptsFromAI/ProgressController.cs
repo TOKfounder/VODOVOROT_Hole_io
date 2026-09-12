@@ -4,7 +4,7 @@ using YG;
 
 public class ProgressController : MonoBehaviour
 {
-	public Image progressFill;
+	[SerializeField] private Image progressFill;
 	private const int ExpPerLevel = 100;
 	private const int MaxDisplayLevel = 10;
 

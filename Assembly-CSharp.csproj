@@ -72,11 +72,13 @@
     <Compile Include="Assets/ScriptsFromAI/SkinStats.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/RewardedAdv/Scripts/RewardedAdv_projectSettings.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/InterstitialAdv/Scripts/InterAdv_yandexPlatform.cs" />
+    <Compile Include="Assets/ScriptsFromAI/ModeConfig.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/RewardedAdv/Scripts/RewardedAdv_info.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/EditorScr/Attributes/ColorYGAttribute.cs" />
     <Compile Include="Assets/UsedAssets/Fries and Seagull/City 03/Scene Props/Scripts/Inspector/IgnoreInInspectorAttribute.cs" />
     <Compile Include="Assets/UsedAssets/Fries and Seagull/City 03/Scene Props/Scripts/Rotatable.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/RewardedAdv/Scripts/RewardedAdv_yg.cs" />
+    <Compile Include="Assets/ScriptsFromAI/SkinCatalog.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/InterstitialAdv/Scripts/InterAdv_interface.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/EditorScr/UnityPackagesManager.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Other/PauseGameYG.cs" />
@@ -86,6 +88,7 @@
     <Compile Include="Assets/PluginYourGames/Scripts/Server/ServerInfo.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Storage/Scripts/Storage_yandexPlatform.cs" />
     <Compile Include="Assets/UsedAssets/Fries and Seagull/City 03/Scene Props/Scripts/RotatableObject.cs" />
+    <Compile Include="Assets/ScriptsFromAI/MapConfig.cs" />
     <Compile Include="Assets/PluginYourGames/Example/Scripts/Scenes/AllDemoScenes.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Authorization/Scripts/GetPlayerYG.cs" />
     <Compile Include="Assets/ScriptsFromAI/MatchPause.cs" />
@@ -127,6 +130,7 @@
     <Compile Include="Assets/PluginYourGames/Modules/Leaderboards/Scripts/LB_lang.cs" />
     <Compile Include="Assets/ScriptsFromAI/HoleFeedback.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/EditorScr/Attributes/NestedYGAttribute.cs" />
+    <Compile Include="Assets/ScriptsFromAI/GameBalanceConfig.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/InterstitialAdv/Scripts/AdNotification/AdNotificationYG.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Flags/Scripts/Flags_yndexPlatform.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Other/ImageLoadYG.cs" />

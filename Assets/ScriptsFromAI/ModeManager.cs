@@ -122,9 +122,28 @@ public class ModeManager : MonoBehaviour
 	{
 		GameController.NormalizeChosenMode();
 		currentMode = (Mode)YG2.saves.chosenMode;
+		ApplyMapConfig();
 
 		if (mainPlayer == null)
 			mainPlayer = GameObject.FindGameObjectWithTag("Player");
+	}
+
+	private void ApplyMapConfig()
+	{
+		MapConfig map = GameBalance.Map(YG2.saves.selectedMapID);
+		if (map == null)
+			return;
+
+		if (map.playerEdgeInset > 0f)
+			playerEdgeInset = map.playerEdgeInset;
+		if (map.bossEdgeInset > 0f)
+			bossEdgeInset = map.bossEdgeInset;
+		if (map.huntingSpawnInset > 0f)
+			huntingSpawnInset = map.huntingSpawnInset;
+		if (map.huntingMinPlayerDistance > 0f)
+			huntingMinPlayerDistance = map.huntingMinPlayerDistance;
+		if (map.teamSideInset > 0f)
+			teamSideInset = map.teamSideInset;
 	}
 
 	void Start()
@@ -201,6 +220,9 @@ public class ModeManager : MonoBehaviour
 		int assigned = CountAssigned(huntingSpawnPoints);
 		if (assigned > 0)
 			return assigned;
+		MapConfig map = GameBalance.Map(YG2.saves.selectedMapID);
+		if (map != null && map.huntingEnemyCount > 0)
+			return map.huntingEnemyCount;
 		return IsGardenMap() ? gardenHuntingEnemyCount : cityHuntingEnemyCount;
 	}
 
@@ -477,7 +499,13 @@ public class ModeManager : MonoBehaviour
 		return minX < maxX && minZ < maxZ;
 	}
 
-	private float GetSpawnHeight() => IsGardenMap() ? gardenSpawnHeight : citySpawnHeight;
+	private float GetSpawnHeight()
+	{
+		MapConfig map = GameBalance.Map(YG2.saves.selectedMapID);
+		if (map != null)
+			return map.spawnHeight;
+		return IsGardenMap() ? gardenSpawnHeight : citySpawnHeight;
+	}
 
 	private static void ApplySpawnTransform(Transform target, Vector3 position, float yaw)
 	{

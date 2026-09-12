@@ -1,7 +1,7 @@
 using UnityEngine;
 public class SpiralRotation : MonoBehaviour
 {
-	public float rotationSpeed = -100f;
+	[SerializeField] private float rotationSpeed = -100f;
 
 	void Update()
 	{

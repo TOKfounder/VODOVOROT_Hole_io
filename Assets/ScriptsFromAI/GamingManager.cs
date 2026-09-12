@@ -22,22 +22,22 @@ public class GamingManager : MonoBehaviour
 	public GameObject MobpanelOfEnd;
 	public GameObject DeskpanelOfEnd;
 	private bool endPanelRaised;
-	public float perc = 0f;
+	[SerializeField] private float perc = 0f;
 	public float minX;
 	public float maxX;
 	public float minZ;
 	public float maxZ;
-	public GameObject[] walls;
+	[SerializeField] private GameObject[] walls;
 
 	public float timer;
 	public int AllValues;
-	public Image Mflazhok;
-	public Image Dflazhok;
-	public Text Mpercent;
-	public Text Dpercent;
+	[SerializeField] private Image Mflazhok;
+	[SerializeField] private Image Dflazhok;
+	[SerializeField] private Text Mpercent;
+	[SerializeField] private Text Dpercent;
 
 	[Header("Total Cleaning")]
-	public float totalCleaningDuration = 180f;
+	[SerializeField] private float totalCleaningDuration = 180f;
 
 	[Header("Boss Mode")]
 	[SerializeField] private float bossModeDuration = 300f;
@@ -49,15 +49,15 @@ public class GamingManager : MonoBehaviour
 	[Header("Team Mode")]
 	[SerializeField] private float teamModeDuration = 180f;
 
-	public Text totalCleaningTimerText;
+	[SerializeField] private Text totalCleaningTimerText;
 
 [Header("Mobile UI")]
-	public Text BoostText;
-	public Text[] MobilePanelOfSettings;
+	[SerializeField] private Text BoostText;
+	[SerializeField] private Text[] MobilePanelOfSettings;
 	public Text[] PanelOfEnd;
 [Header("Desktop UI")]
-	public Text DBoostText;
-	public Text[] DesktopPanelOfSettings;
+	[SerializeField] private Text DBoostText;
+	[SerializeField] private Text[] DesktopPanelOfSettings;
 	public Text[] DPanelOfEnd;
 
 	[SerializeField] private Vector2 boostMobileCorner = new Vector2(92f, 108f);
@@ -130,6 +130,7 @@ public class GamingManager : MonoBehaviour
 
 	void Start()
 	{
+		ApplyBalanceConfig();
 		// WebGL: отключаем тени глобально вместо обхода всех MeshRenderer на огромной карте
 		QualitySettings.shadows = ShadowQuality.Disable;
 
@@ -505,6 +506,30 @@ public class GamingManager : MonoBehaviour
 		TutorialController.NotifyMatchEnded();
 	}
 
+	private void ApplyBalanceConfig()
+	{
+		ModeConfig cleaning = GameBalance.Mode(ModeManager.Mode.TotalCleaning);
+		if (cleaning != null && cleaning.duration > 0f)
+			totalCleaningDuration = cleaning.duration;
+
+		ModeConfig boss = GameBalance.Mode(ModeManager.Mode.Boss);
+		if (boss != null)
+		{
+			if (boss.duration > 0f)
+				bossModeDuration = boss.duration;
+			if (boss.overtimeDuration > 0f)
+				bossOvertimeDuration = boss.overtimeDuration;
+		}
+
+		ModeConfig hunting = GameBalance.Mode(ModeManager.Mode.Hunting);
+		if (hunting != null && hunting.duration > 0f)
+			huntingModeDuration = hunting.duration;
+
+		ModeConfig team = GameBalance.Mode(ModeManager.Mode.TeamMode);
+		if (team != null && team.duration > 0f)
+			teamModeDuration = team.duration;
+	}
+
 	private static int GetPlayerScore()
 	{
 		return BlackHoleController.Player != null
@@ -594,13 +619,19 @@ public class GamingManager : MonoBehaviour
 
 	private MatchRewardData GetBossWinReward()
 	{
-		int leftover = Mathf.RoundToInt(RemainingBossTime / 20f);
+		ModeConfig boss = GameBalance.Mode(ModeManager.Mode.Boss);
+		float leftoverDiv = boss != null && boss.leftoverSecondsPerBonus > 0f
+			? boss.leftoverSecondsPerBonus
+			: 20f;
+		int leftover = Mathf.RoundToInt(RemainingBossTime / leftoverDiv);
+		int high = boss != null ? boss.leftoverSpriteHigh : 8;
+		int mid = boss != null ? boss.leftoverSpriteMid : 3;
 		return new MatchRewardData
 		{
-			exp = 50,
-			coins = 25 + leftover,
-			diamonds = 5,
-			resultSpriteIndex = leftover >= 8 ? 0 : leftover >= 3 ? 1 : 2
+			exp = boss != null ? boss.winExp : 50,
+			coins = (boss != null ? boss.winCoins : 25) + leftover,
+			diamonds = boss != null ? boss.winDiamonds : 5,
+			resultSpriteIndex = leftover >= high ? 0 : leftover >= mid ? 1 : 2
 		};
 	}
 
@@ -611,35 +642,48 @@ public class GamingManager : MonoBehaviour
 
 		int spawned = Mathf.Max(1, ModeManager.HuntingSpawned);
 		int killed = Mathf.Clamp(spawned - ModeManager.RemainingHunters, 0, spawned);
+		ModeConfig hunting = GameBalance.Mode(ModeManager.Mode.Hunting);
 		if (huntingComplete || killed >= spawned)
 		{
 			return new MatchRewardData
 			{
-				exp = 60,
-				coins = 40,
-				diamonds = 8,
+				exp = hunting != null ? hunting.jackpotExp : 60,
+				coins = hunting != null ? hunting.jackpotCoins : 40,
+				diamonds = hunting != null ? hunting.jackpotDiamonds : 8,
 				resultSpriteIndex = 0
 			};
 		}
 
 		float progress = killed / (float)spawned;
+		float expMul = hunting != null ? hunting.partialExp : 50f;
+		float coinMul = hunting != null ? hunting.partialCoins : 30f;
+		float diamondMul = hunting != null ? hunting.partialDiamonds : 6f;
+		int expMin = hunting != null ? hunting.partialExpMin : 8;
+		int coinMin = hunting != null ? hunting.partialCoinsMin : 5;
+		int diamondMin = hunting != null ? hunting.partialDiamondsMin : 1;
+		float good = hunting != null ? hunting.goodSpriteProgress : 0.7f;
 		return new MatchRewardData
 		{
-			exp = Mathf.Max(8, Mathf.RoundToInt(50f * progress)),
-			coins = Mathf.Max(5, Mathf.RoundToInt(30f * progress)),
-			diamonds = Mathf.Max(1, Mathf.RoundToInt(6f * progress)),
-			resultSpriteIndex = progress >= 0.7f ? 1 : -1
+			exp = Mathf.Max(expMin, Mathf.RoundToInt(expMul * progress)),
+			coins = Mathf.Max(coinMin, Mathf.RoundToInt(coinMul * progress)),
+			diamonds = Mathf.Max(diamondMin, Mathf.RoundToInt(diamondMul * progress)),
+			resultSpriteIndex = progress >= good ? 1 : -1
 		};
 	}
 
 	public MatchRewardData GetTotalCleaningReward(float progress)
 	{
 		progress = Mathf.Clamp01(progress);
+		ModeConfig cleaning = GameBalance.Mode(ModeManager.Mode.TotalCleaning);
+		float low = cleaning != null ? cleaning.lowThreshold : 0.5f;
+		float mid = cleaning != null ? cleaning.midThreshold : 0.7f;
 
-		if (progress < 0.5f)
+		if (progress < low)
 		{
-			int coins = Mathf.RoundToInt(15f * (progress / 0.5f));
-			int exp = Mathf.RoundToInt(25f * (progress / 0.5f));
+			float lowCoins = cleaning != null ? cleaning.lowCoins : 15f;
+			float lowExp = cleaning != null ? cleaning.lowExp : 25f;
+			int coins = Mathf.RoundToInt(lowCoins * (progress / low));
+			int exp = Mathf.RoundToInt(lowExp * (progress / low));
 			return new MatchRewardData
 			{
 				exp = exp,
@@ -649,22 +693,22 @@ public class GamingManager : MonoBehaviour
 			};
 		}
 
-		if (progress < 0.7f)
+		if (progress < mid)
 		{
 			return new MatchRewardData
 			{
-				exp = 35,
-				coins = 20,
-				diamonds = 4,
+				exp = cleaning != null ? cleaning.midExp : 35,
+				coins = cleaning != null ? cleaning.midCoins : 20,
+				diamonds = cleaning != null ? cleaning.midDiamonds : 4,
 				resultSpriteIndex = 1
 			};
 		}
 
 		return new MatchRewardData
 		{
-			exp = 50,
-			coins = 25,
-			diamonds = 5,
+			exp = cleaning != null ? cleaning.highExp : 50,
+			coins = cleaning != null ? cleaning.highCoins : 25,
+			diamonds = cleaning != null ? cleaning.highDiamonds : 5,
 			resultSpriteIndex = 0
 		};
 	}
@@ -672,11 +716,18 @@ public class GamingManager : MonoBehaviour
 	private MatchRewardData GetPartialDefeatReward(float progress)
 	{
 		progress = Mathf.Clamp01(progress);
+		GameBalanceConfig root = GameBalance.Current;
+		float expMul = root != null ? root.defeatExp : 25f;
+		float coinMul = root != null ? root.defeatCoins : 12f;
+		float diamondMul = root != null ? root.defeatDiamonds : 3f;
+		int expMin = root != null ? root.defeatExpMin : 5;
+		int coinMin = root != null ? root.defeatCoinsMin : 3;
+		int diamondMin = root != null ? root.defeatDiamondsMin : 0;
 		return new MatchRewardData
 		{
-			exp = Mathf.Max(5, (int)(25f * progress)),
-			coins = Mathf.Max(3, (int)(12f * progress)),
-			diamonds = Mathf.Max(0, (int)(3f * progress)),
+			exp = Mathf.Max(expMin, (int)(expMul * progress)),
+			coins = Mathf.Max(coinMin, (int)(coinMul * progress)),
+			diamonds = Mathf.Max(diamondMin, (int)(diamondMul * progress)),
 			resultSpriteIndex = -1
 		};
 	}

@@ -6,8 +6,6 @@ using YG;
 public class MatchHud : MonoBehaviour
 {
 	private const int MaxArrows = 6;
-	private const int CleaningArrowCount = 3;
-	private const float CleaningHideRadius = 8f;
 	private const float ArrowDistance = 220f;
 	private const float ArrowAlpha = 0.7f;
 	private const float AllyArrowScale = 0.62f;
@@ -26,8 +24,6 @@ public class MatchHud : MonoBehaviour
 	private readonly List<RectTransform> minimapDots = new List<RectTransform>(12);
 	private readonly List<Image> minimapDotImages = new List<Image>(12);
 	private Sprite minimapSprite;
-	private static readonly Color LandmarkArrowColor = new Color(1f, 0.92f, 0.45f, 0.88f);
-	private readonly List<FallingObject> cleaningScratch = new List<FallingObject>(32);
 
 	public Text TimerText => timerText;
 	public RectTransform MinimapRect => minimapRoot;
@@ -208,61 +204,11 @@ public class MatchHud : MonoBehaviour
 
 		if (ModeManager.currentMode == ModeManager.Mode.TotalCleaning)
 		{
-			if (!TutorialController.ShowCleaningLandmarks)
-			{
-				HideUnusedArrows(0);
-				return;
-			}
-
-			int shown = PlaceLandmarkArrows();
-			HideUnusedArrows(shown);
+			HideUnusedArrows(0);
 			return;
 		}
 
 		HideUnusedArrows(0);
-	}
-
-	private int PlaceLandmarkArrows()
-	{
-		HoleParent player = BlackHoleController.Player;
-		if (player == null)
-			return 0;
-
-		cleaningScratch.Clear();
-		List<FallingObject> landmarks = FallingObject.LandmarkObjects;
-		Vector3 playerPos = player.transform.position;
-		for (int i = 0; i < landmarks.Count; i++)
-		{
-			FallingObject fo = landmarks[i];
-			if (fo == null || fo.value <= 1 || fo.isTriggered)
-				continue;
-			if (!Tool.CanFit2D(fo.size, player.size))
-				continue;
-			cleaningScratch.Add(fo);
-		}
-
-		cleaningScratch.Sort((a, b) =>
-		{
-			float da = HorizontalSqr(playerPos, a.transform.position);
-			float db = HorizontalSqr(playerPos, b.transform.position);
-			return da.CompareTo(db);
-		});
-
-		int shown = 0;
-		int limit = Mathf.Min(CleaningArrowCount, cleaningScratch.Count);
-		for (int i = 0; i < limit && shown < MaxArrows; i++)
-		{
-			if (PlaceArrow(shown, cleaningScratch[i].transform, LandmarkArrowColor, 0.85f, CleaningHideRadius))
-				shown++;
-		}
-		return shown;
-	}
-
-	private static float HorizontalSqr(Vector3 from, Vector3 to)
-	{
-		float dx = to.x - from.x;
-		float dz = to.z - from.z;
-		return dx * dx + dz * dz;
 	}
 
 	private void BuildMinimap()

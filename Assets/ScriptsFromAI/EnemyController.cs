@@ -5,6 +5,7 @@ using YG;
 public class EnemyController : HoleParent
 {
 	private int bossScore = 163;
+	private int bossStartLevel = 2;
 	public static int count;
 	private bool absorptionHandled;
 	private EnemyMovement cachedMovement;
@@ -17,9 +18,10 @@ public class EnemyController : HoleParent
 		base.Start();
 		holeType = TypeOfHole.enemy;
 		cachedMovement = GetComponentInChildren<EnemyMovement>();
+		ApplyBossStartFromConfig();
 		if (ModeManager.currentMode == ModeManager.Mode.Boss)
 		{
-			score = ScoreRequiredForLevel(2);
+			score = ScoreRequiredForLevel(bossStartLevel);
 			if (score <= 0)
 				score = bossScore;
 			RefreshSizeFromScore();
@@ -33,6 +35,15 @@ public class EnemyController : HoleParent
 	{
 		base.FixedUpdate();
 		TryAbsorbPlayer();
+	}
+
+	private void ApplyBossStartFromConfig()
+	{
+		ModeConfig boss = GameBalance.Mode(ModeManager.Mode.Boss);
+		if (boss == null)
+			return;
+		if (boss.bossStartLevel > 0)
+			bossStartLevel = boss.bossStartLevel;
 	}
 
 	private void TryAbsorbPlayer()

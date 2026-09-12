@@ -16,13 +16,13 @@ public class HoleParent : MonoBehaviour
 
 	public TypeOfHole holeType;
 	public Image border;
-	public GameObject pointsPref;
+	[SerializeField] private GameObject pointsPref;
 	public GameObject WithoutCamera;
 	public Vector3 size;
 	public GameObject hole;
-	public float baseRadius = 0.2f;
+	[SerializeField] private float baseRadius = 0.2f;
 	public int currentLevel;
-	public Canvas mainCanvas;
+	[SerializeField] private Canvas mainCanvas;
 	public Collider platform;
 	public int TeamId { get; private set; } = -1;
 	public bool IsConsumed { get; private set; }
@@ -68,8 +68,22 @@ public class HoleParent : MonoBehaviour
 
 	protected virtual void Awake()
 	{
+		ApplyBalanceConfig();
 		if (platform != null)
 			GamingManager.allPlatforms.Add(platform);
+	}
+
+	private void ApplyBalanceConfig()
+	{
+		GameBalanceConfig config = GameBalance.Current;
+		if (config == null)
+			return;
+		scoreRequired = GameBalance.CopyOr(config.scoreRequired, scoreRequired);
+		levelScales = GameBalance.CopyOr(config.levelScales, levelScales);
+		if (config.scaleLerpSpeed > 0f)
+			scaleLerpSpeed = config.scaleLerpSpeed;
+		if (config.birthLerpSpeed > 0f)
+			birthLerpSpeed = config.birthLerpSpeed;
 	}
 
 	public virtual void Start()
@@ -109,8 +123,9 @@ public class HoleParent : MonoBehaviour
 				continue;
 			}
 
-			bool belowFloor = (!obj.isColon && obj.rend.bounds.center.y <= 0f)
-				|| (obj.isColon && obj.rend.bounds.max.y <= 0f);
+			float floorY = GetScoreFloorY();
+			bool belowFloor = (!obj.isColon && obj.rend.bounds.center.y <= floorY)
+				|| (obj.isColon && obj.rend.bounds.max.y <= floorY);
 
 			if (!belowFloor)
 				continue;
@@ -206,7 +221,6 @@ public class HoleParent : MonoBehaviour
 				HoleFeedback.ForPlayer?.PlayAbsorb(popupColor);
 			else
 				HoleFeedback.ForPlayer?.PlayGulp();
-			TutorialController.NotifyPlayerScored();
 		}
 		isUpdated = false;
 	}
@@ -244,10 +258,7 @@ public class HoleParent : MonoBehaviour
 		GameObject points = pointsPool.Get();
 		Vector3 screenPos;
 		if (ScorePopupZone.Instance != null)
-		{
 			screenPos = ScorePopupZone.Instance.GetRandomScreenPosition();
-			ScorePopupZone.Instance.Pulse();
-		}
 		else
 			screenPos = Camera.main.WorldToScreenPoint(hole.transform.position);
 
@@ -359,6 +370,13 @@ public class HoleParent : MonoBehaviour
 		return Mathf.Max(0.08f, radius);
 	}
 
+	public float GetScoreFloorY()
+	{
+		if (platform != null)
+			return platform.bounds.min.y + 0.04f;
+		return transform.position.y;
+	}
+
 	public bool IsInHole(Vector3 objPos)
 	{
 		float dx = objPos.x - transform.position.x;
@@ -397,7 +415,6 @@ public class HoleParent : MonoBehaviour
 	{
 		totalScore = 0;
 		holeList.Clear();
-		FallingObject.ClearMatchCache();
 	}
 
 	private void TryAbsorbOppositeTeamHoles()

@@ -5,19 +5,19 @@ using YG;
 public class EndGameController : MonoBehaviour
 {
 	public static EndGameController Instance;
-	public Image resultImage;
+	[SerializeField] private Image resultImage;
 [Header("Mobile UI")]
-	public Image MresultImage;
-	public Text MexpText;
-	public Text McoinText;
-	public Text MbrillText;
+	[SerializeField] private Image MresultImage;
+	[SerializeField] private Text MexpText;
+	[SerializeField] private Text McoinText;
+	[SerializeField] private Text MbrillText;
 [Header("Desktop UI")]
-	public Image DresultImage;
-	public Text expText;
-	public Text coinText;
-	public Text brillText;
+	[SerializeField] private Image DresultImage;
+	[SerializeField] private Text expText;
+	[SerializeField] private Text coinText;
+	[SerializeField] private Text brillText;
 
-	public Sprite[] spritesOfResult;
+	[SerializeField] private Sprite[] spritesOfResult;
 
 	private int currentCoinIncome;
 	private int brillCount;

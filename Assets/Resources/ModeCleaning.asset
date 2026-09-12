@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2cbc6719b71744ffab1dda2bb5fa7bd, type: 3}
+  m_Name: ModeCleaning
+  m_EditorClassIdentifier: 
+  duration: 180
+  overtimeDuration: 0
+  bossStartLevel: 2
+  bossFarmSeconds: 30
+  bossProbeSeconds: 120
+  bossSpeedMul: 0.56
+  leftoverSecondsPerBonus: 20
+  leftoverSpriteHigh: 8
+  leftoverSpriteMid: 3
+  huntSightRadius: 45
+  huntPlayerSeconds: 10
+  farmAfterHuntSeconds: 18
+  enemySpeedMul: 0.25
+  winExp: 50
+  winCoins: 25
+  winDiamonds: 5
+  jackpotExp: 60
+  jackpotCoins: 40
+  jackpotDiamonds: 8
+  partialExp: 50
+  partialCoins: 30
+  partialDiamonds: 6
+  partialExpMin: 8
+  partialCoinsMin: 5
+  partialDiamondsMin: 1
+  goodSpriteProgress: 0.7
+  lowThreshold: 0.5
+  midThreshold: 0.7
+  lowCoins: 15
+  lowExp: 25
+  midExp: 35
+  midCoins: 20
+  midDiamonds: 4
+  highExp: 50
+  highCoins: 25
+  highDiamonds: 5

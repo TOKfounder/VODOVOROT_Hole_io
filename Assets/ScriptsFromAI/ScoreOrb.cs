@@ -134,12 +134,7 @@ public class ScoreOrb : FallingObject
 		}
 
 		settled = true;
-		if (rb != null)
-		{
-			rb.isKinematic = false;
-			rb.useGravity = true;
-		}
-		IgnoreMapPlatforms();
+		IgnorePlayableGround();
 		pendingTrigger = null;
 	}
 
@@ -170,16 +165,8 @@ public class ScoreOrb : FallingObject
 		if (isTriggered)
 			return;
 
-		CurrentHole = otherHole;
-		isTriggered = true;
-		if (rb != null)
-		{
-			rb.isKinematic = false;
-			rb.useGravity = true;
-		}
-		if (!CurrentHole.nearbyFallingObjects.Contains(this))
-			CurrentHole.nearbyFallingObjects.Add(this);
-		OnSuctionBegan(CurrentHole);
+		BeginSuctionPhysics(otherHole);
+		OnSuctionBegan(otherHole);
 	}
 
 	void OnTriggerExit(Collider other)
@@ -269,8 +256,6 @@ public class ScoreOrb : FallingObject
 
 		colorBlock.SetColor(ColorId, tint);
 		rend.SetPropertyBlock(colorBlock);
-		if (rend.material != null)
-			rend.material.color = tint;
 	}
 
 	private bool IsPendingTriggerValid()
@@ -297,7 +282,6 @@ public class ScoreOrb : FallingObject
 		else if (rend != null)
 			size = rend.bounds.size;
 		V3 = size.x * size.y * size.z;
-		if (rb != null)
-			rb.mass = Mathf.Max(0.15f, V3 * 50f);
+		ApplyBodyTuning(false);
 	}
 }

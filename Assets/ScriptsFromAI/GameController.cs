@@ -6,10 +6,10 @@ using YG;
 public class GameController : MonoBehaviour
 {
 	public static GameController Instance;
-	public Material[] materials;
+	[SerializeField] private Material[] materials;
 
-	public GameObject mainToilet;
-	public GameObject mainObodok;
+	[SerializeField] private GameObject mainToilet;
+	[SerializeField] private GameObject mainObodok;
 
 	public GameObject CanvasForDesktop;
 	public GameObject CanvasForMobile;

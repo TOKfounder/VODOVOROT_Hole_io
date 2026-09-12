@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11c0d4a04084447f9a13d4388f6a7740, type: 3}
+  m_Name: GameBalance
+  m_EditorClassIdentifier: 
+  scoreRequired:
+  - 0
+  - 44
+  - 128
+  - 293
+  - 624
+  - 1209
+  - 2243
+  - 3998
+  - 6825
+  - 10725
+  - 15990
+  levelScales:
+  - 0.41
+  - 0.45
+  - 0.62
+  - 1.12
+  - 2
+  - 3.34
+  - 5.11
+  - 7.57
+  - 11.48
+  - 17.06
+  - 18.7
+  levelSpeeds:
+  - 6
+  - 6.89
+  - 7.78
+  - 8.67
+  - 9.56
+  - 10.44
+  - 13.83
+  - 15.22
+  - 20
+  - 25
+  - 28
+  scaleLerpSpeed: 1.15
+  birthLerpSpeed: 5
+  skinSpeedMul:
+  - 1
+  - 1.04
+  - 1.08
+  - 1.12
+  - 1.15
+  skinStartMul:
+  - 1
+  - 1.02
+  - 1.05
+  - 1.08
+  - 1.1
+  skins: {fileID: 11400000, guid: c09d4c869703841df9f8aee4eb48b2eb, type: 2}
+  boss: {fileID: 11400000, guid: 85e721a709a214c9f8b9bcec5b032393, type: 2}
+  cleaning: {fileID: 11400000, guid: 4d13cf9e76aa748e9a74349403f2ae87, type: 2}
+  hunting: {fileID: 11400000, guid: 12de224858758448a978ab36073b8503, type: 2}
+  team: {fileID: 11400000, guid: b031d9bcb279c407989417ef78aeeb96, type: 2}
+  city: {fileID: 11400000, guid: 761d111c5f10f4c478c3c95c87f01d54, type: 2}
+  garden: {fileID: 11400000, guid: 63a789c5c964041008dc620d61bec144, type: 2}
+  castle: {fileID: 11400000, guid: 23ecb0ed57eee42a39caa76f91a04920, type: 2}
+  suctionMassMin: 0.4
+  suctionMassMax: 3
+  suctionDrag: 0.25
+  suctionPull: 28
+  suctionDownForce: 38
+  defeatExp: 25
+  defeatCoins: 12
+  defeatDiamonds: 3
+  defeatExpMin: 5
+  defeatCoinsMin: 3
+  defeatDiamondsMin: 0

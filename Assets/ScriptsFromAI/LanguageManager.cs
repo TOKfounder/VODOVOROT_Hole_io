@@ -5,12 +5,12 @@ using YG;
 public class LanguageManager : MonoBehaviour
 {
 	public static LanguageManager Instance;
-	public Sprite isRus;
-	public Sprite isEng;
-	public Button Mflag;
-	public Button Dflag;
-	public Image Mimage;
-	public Image Dimage;
+	[SerializeField] private Sprite isRus;
+	[SerializeField] private Sprite isEng;
+	[SerializeField] private Button Mflag;
+	[SerializeField] private Button Dflag;
+	[SerializeField] private Image Mimage;
+	[SerializeField] private Image Dimage;
 
 	private void Awake()
 	{

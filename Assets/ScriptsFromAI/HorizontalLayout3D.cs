@@ -5,18 +5,18 @@ using YG;
 public class HorizontalLayout3D : MonoBehaviour
 {
 	public static HorizontalLayout3D Instance;
-	public float radius = 120f; // радиус круга
-	public float startAngle = 50f;
-	public Camera targetCamera;
+	public float radius = 120f;
+	[SerializeField] private float startAngle = 50f;
+	[SerializeField] private Camera targetCamera;
 	public GameObject[] captions;
-	public Text feature;
-	public GameObject buttonOfBuying;
-	public GameObject buttonOfEquiping;
-	public Text necessaryLevel;
-	public Text costForCoins;
-	public Text costForDonate;
-	public Button donateButton;
-	public Image currencyImage;
+	[SerializeField] private Text feature;
+	[SerializeField] private GameObject buttonOfBuying;
+	[SerializeField] private GameObject buttonOfEquiping;
+	[SerializeField] private Text necessaryLevel;
+	[SerializeField] private Text costForCoins;
+	[SerializeField] private Text costForDonate;
+	[SerializeField] private Button donateButton;
+	[SerializeField] private Image currencyImage;
 
 	private string[] toiletIDs = {"obodok", "white", "gold", "scrag", "lord" };
 	private float initialAngle;
@@ -35,6 +35,28 @@ public class HorizontalLayout3D : MonoBehaviour
 	void Awake()
 	{
 		Instance = this;
+		ApplySkinCatalog();
+	}
+
+	void ApplySkinCatalog()
+	{
+		SkinCatalog catalog = GameBalance.Skins;
+		if (catalog == null || catalog.skins == null || catalog.skins.Length == 0)
+			return;
+
+		int n = catalog.skins.Length;
+		necessaryLevels = new int[n];
+		costsForCoins = new int[n];
+		costsForDonate = new int[n];
+		for (int i = 0; i < n; i++)
+		{
+			SkinDef def = catalog.skins[i];
+			if (def == null)
+				continue;
+			necessaryLevels[i] = def.necessaryLevel;
+			costsForCoins[i] = def.costCoins;
+			costsForDonate[i] = def.costDonate;
+		}
 	}
 
 	void Start()
@@ -152,7 +174,16 @@ public class HorizontalLayout3D : MonoBehaviour
 				buttonOfEquiping.GetComponentInChildren<Text>().text = GameTexts.Equip;
 			}
 		}
-		feature.text = GameTexts.SkinFeature(chosenObj);
+		if (feature != null)
+		{
+			feature.horizontalOverflow = HorizontalWrapMode.Wrap;
+			feature.verticalOverflow = VerticalWrapMode.Overflow;
+			feature.resizeTextForBestFit = true;
+			feature.resizeTextMinSize = 12;
+			int maxSize = feature.fontSize > 0 ? feature.fontSize : 24;
+			feature.resizeTextMaxSize = maxSize;
+			feature.text = GameTexts.SkinFeature(chosenObj);
+		}
 	}
 
 	public void BuyForSomething(int id)

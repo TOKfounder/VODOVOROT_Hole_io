@@ -27,7 +27,20 @@ public class TutorialController : MonoBehaviour
 
 	private const int MatchCardCount = 4;
 	private const int WhiteFriendIndex = 1;
-	private const int WhiteFriendCoinCost = 20;
+	private static int WhiteFriendCoinCost
+	{
+		get
+		{
+			SkinCatalog catalog = GameBalance.Skins;
+			if (catalog != null)
+			{
+				SkinDef def = catalog.Get(WhiteFriendIndex);
+				if (def != null && def.costCoins > 0)
+					return def.costCoins;
+			}
+			return 20;
+		}
+	}
 	private const float PointerOffset = 92f;
 	private const float PlaqueGap = 16f;
 	private const float OverlayLocalZ = -200f;
@@ -46,7 +59,6 @@ public class TutorialController : MonoBehaviour
 	private static readonly Color PointerTint = new Color(1f, 0.85f, 0.2f, 1f);
 
 	public static TutorialController Instance { get; private set; }
-	public static bool ShowCleaningLandmarks { get; private set; }
 
 	public static bool IsDone => YG2.saves.tutorialStage >= StageDone;
 
@@ -92,10 +104,6 @@ public class TutorialController : MonoBehaviour
 	private bool mapsPanelWasOpen;
 	private InputField nickField;
 	private bool nickHooked;
-
-	public static void NotifyPlayerScored()
-	{
-	}
 
 	public static void MigrateSaves()
 	{
@@ -208,7 +216,6 @@ public class TutorialController : MonoBehaviour
 	{
 		targetCanvas = canvas;
 		Instance = this;
-		ShowCleaningLandmarks = false;
 		MatchPause.ForceReset();
 		UiClickFeedback.EnsureOnScene();
 		HideReplayButtons();
@@ -234,7 +241,6 @@ public class TutorialController : MonoBehaviour
 	{
 		targetCanvas = canvas;
 		Instance = this;
-		ShowCleaningLandmarks = false;
 		UiClickFeedback.EnsureOnScene();
 		HideReplayButtons();
 		EnsureOverlay();
@@ -268,16 +274,12 @@ public class TutorialController : MonoBehaviour
 	{
 		UnhookNickField();
 		if (Instance == this)
-		{
-			ShowCleaningLandmarks = false;
 			Instance = null;
-		}
 	}
 
 	private void ReleaseForCanvasSwitch()
 	{
 		UnhookNickField();
-		ShowCleaningLandmarks = false;
 		if (overlayRoot != null)
 			overlayRoot.gameObject.SetActive(false);
 		if (Instance == this)
@@ -1029,7 +1031,6 @@ public class TutorialController : MonoBehaviour
 	{
 		HidePointer();
 		HideMatchDim();
-		ShowCleaningLandmarks = false;
 		if (overlayRoot != null)
 			overlayRoot.gameObject.SetActive(false);
 	}

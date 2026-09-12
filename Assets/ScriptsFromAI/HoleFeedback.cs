@@ -13,8 +13,8 @@ public class HoleFeedback : MonoBehaviour
 	[SerializeField] private bool debugEmitOnStart;
 	[Header("Suction Ribbons")]
 	[SerializeField] private int ribbonCount = 4;
-	[SerializeField] private float ribbonOrbitSpeed = 2.1f;
-	[SerializeField] private float ribbonInwardSpeed = 1.05f;
+	[SerializeField] private float ribbonOrbitSpeed = 0.72f;
+	[SerializeField] private float ribbonInwardSpeed = 0.42f;
 	[SerializeField] private float ribbonTrailTime = 0.26f;
 	[SerializeField] private float ribbonWidth = 0.055f;
 	[SerializeField] private float ribbonOuterMul = 1.15f;
@@ -156,8 +156,9 @@ public class HoleFeedback : MonoBehaviour
 		float radius = GetEffectRadius();
 		float vfx = SkinStats.VfxMultiplier;
 		Vector3 pos = GetHoleWorldPos();
-		EmitBurst(gulp, Mathf.RoundToInt(22 * vfx), pos, WaterWhite, radius * 0.12f, 1.5f);
-		EmitBurst(gulp, Mathf.RoundToInt(14 * vfx), pos, Water, radius * 0.08f, 1.9f);
+		Vector3 bottom = pos + Vector3.down * Mathf.Max(0.08f, radius * 0.18f);
+		EmitBurst(gulp, Mathf.RoundToInt(8 * vfx), bottom, WaterWhite, radius * 0.1f, 0.55f);
+		EmitBurst(gulp, Mathf.RoundToInt(6 * vfx), pos, Water, radius * 0.07f, 0.7f);
 		HoleCameraFollow.Punch(0.28f);
 		AudioManager.PlayGulp();
 	}
@@ -205,7 +206,7 @@ public class HoleFeedback : MonoBehaviour
 
 		int falling = target.nearbyFallingObjects != null ? target.nearbyFallingObjects.Count : 0;
 		var emission = suction.emission;
-		emission.rateOverTime = falling > 0 ? 28f : 10f;
+		emission.rateOverTime = falling > 0 ? 16f : 7f;
 	}
 
 	private void EnsureRibbons()
@@ -403,17 +404,17 @@ public class HoleFeedback : MonoBehaviour
 			return;
 
 		var main = suction.main;
-		main.startLifetime = 0.55f;
-		main.startSpeed = new ParticleSystem.MinMaxCurve(0.4f, 1.1f);
+		main.startLifetime = 0.85f;
+		main.startSpeed = new ParticleSystem.MinMaxCurve(0.12f, 0.32f);
 		main.startSize = 0.12f;
 		main.startColor = Water;
-		main.gravityModifier = 0.35f;
+		main.gravityModifier = 0.12f;
 		var shape = suction.shape;
 		shape.shapeType = ParticleSystemShapeType.Circle;
 		shape.radius = 0.4f;
 		var vel = suction.velocityOverLifetime;
 		vel.enabled = true;
-		vel.radial = new ParticleSystem.MinMaxCurve(-1.8f);
+		vel.radial = new ParticleSystem.MinMaxCurve(-2.6f);
 		ConfigureBillboardRenderer(suction.GetComponent<ParticleSystemRenderer>());
 		if (!suction.isPlaying)
 			suction.Play();
@@ -425,8 +426,8 @@ public class HoleFeedback : MonoBehaviour
 			return;
 
 		var main = gulp.main;
-		main.startLifetime = 0.45f;
-		main.startSpeed = new ParticleSystem.MinMaxCurve(1.2f, 2.4f);
+		main.startLifetime = 0.38f;
+		main.startSpeed = new ParticleSystem.MinMaxCurve(0.4f, 0.85f);
 		main.startSize = 0.15f;
 		main.startColor = WaterWhite;
 		main.gravityModifier = 0.45f;

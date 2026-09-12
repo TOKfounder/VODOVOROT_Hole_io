@@ -32,20 +32,20 @@ public static class GameTexts
 
 	private static readonly string[] SkinFlavorRu =
 	{
-		"Простой красный тазик — старт без бонусов. Надёжная классика стока!",
-		"Этот унитаз готов поддержать тебя в любой трудной и странной ситуации!",
-		"Блеск роскоши для истинных чемпионов! Стань королём туалетных побед.",
-		"Сиди с комфортом и властвуй! Злые силы не пройдут через эту дыру...",
-		"На этом троне даже проблемы исчезают! Почувствуй себя властелином стока."
+		"Классика стока без бонусов.",
+		"Надёжный унитаз для любой передряги.",
+		"Блеск для чемпионов слива.",
+		"Трон, через который зло не пройдёт.",
+		"На этом троне проблемы исчезают."
 	};
 
 	private static readonly string[] SkinFlavorEn =
 	{
-		"A plain red basin — no stat bonuses. Reliable drain classic!",
-		"This toilet bowl is ready to support you in any difficult and strange situation!",
-		"The splendor of luxury for true champions! Become the king of toilet victories.",
-		"Sit comfortably and rule! Evil forces will not pass through this hole...",
-		"On this throne, even problems disappear! Feel like the lord of the drain."
+		"Drain classic with no bonuses.",
+		"A reliable bowl for any mess.",
+		"Luxury shine for drain champions.",
+		"A throne evil cannot pass.",
+		"On this throne, problems vanish."
 	};
 
 	public static string SkinBonusLine(int index)
@@ -64,7 +64,7 @@ public static class GameTexts
 		string[] flavors = Ru ? SkinFlavorRu : SkinFlavorEn;
 		if (index < 0 || index >= flavors.Length)
 			index = 0;
-		return flavors[index] + "\n" + SkinBonusLine(index);
+		return SkinBonusLine(index) + "\n" + flavors[index];
 	}
 
 	public static string ReasonBossAbsorbed => Ru

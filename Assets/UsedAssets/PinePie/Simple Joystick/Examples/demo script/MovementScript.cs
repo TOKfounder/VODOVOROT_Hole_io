@@ -20,9 +20,10 @@ namespace PinePie.SimpleJoystick.Examples.DemoScript
 		private bool holding;
 		private bool keyboardOwnsInput;
 
-		void Start()
-		{
-			if (YG2.envir.isMobile)
+	void Start()
+	{
+		ApplyBalanceConfig();
+		if (YG2.envir.isMobile)
 				boostButton = boostButtons != null && boostButtons.Length > 0 ? boostButtons[0] : null;
 			else
 				boostButton = boostButtons != null && boostButtons.Length > 1 ? boostButtons[1] : null;
@@ -34,6 +35,14 @@ namespace PinePie.SimpleJoystick.Examples.DemoScript
 
 			ResolveJoystick();
 			rb = GetComponent<Rigidbody>();
+		}
+
+		void ApplyBalanceConfig()
+		{
+			GameBalanceConfig config = GameBalance.Current;
+			if (config == null)
+				return;
+			levelSpeeds = GameBalance.CopyOr(config.levelSpeeds, levelSpeeds);
 		}
 
 		void ResolveJoystick()

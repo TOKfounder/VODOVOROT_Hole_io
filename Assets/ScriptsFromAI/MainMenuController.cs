@@ -8,19 +8,19 @@ public class MainMenuController : MonoBehaviour
 	public static MainMenuController Instance;
 	public InputField nameInput;
 	public InputField DnameInput;
-	public Image levelImage;
-	public Text levelText;
-	public Text pointText;
-	public Image DlevelImage;
-	public Text DlevelText;
-	public Text DpointText;
-	public Sprite[] maps;
-	public Image mapField;
+	[SerializeField] private Image levelImage;
+	[SerializeField] private Text levelText;
+	[SerializeField] private Text pointText;
+	[SerializeField] private Image DlevelImage;
+	[SerializeField] private Text DlevelText;
+	[SerializeField] private Text DpointText;
+	[SerializeField] private Sprite[] maps;
+	[SerializeField] private Image mapField;
 
-	public Text cntOfDiamonds;
-	public Button exchangeBut;
-	public Text DcntOfDiamonds;
-	public Button DexchangeBut;
+	[SerializeField] private Text cntOfDiamonds;
+	[SerializeField] private Button exchangeBut;
+	[SerializeField] private Text DcntOfDiamonds;
+	[SerializeField] private Button DexchangeBut;
 
 	
 	public AudioSource dzyn;
@@ -28,56 +28,56 @@ public class MainMenuController : MonoBehaviour
 
 
 	[Header("Mobile UI")]
-	public Text rank;
+	[SerializeField] private Text rank;
 
-	public GameObject triggerForDaimonds;
-	public GameObject triggerForNewSkin;
+	[SerializeField] private GameObject triggerForDaimonds;
+	[SerializeField] private GameObject triggerForNewSkin;
 
-	public Button couple;
-	public Button hand;
-	public Button bag;
-	public Button box;
+	[SerializeField] private Button couple;
+	[SerializeField] private Button hand;
+	[SerializeField] private Button bag;
+	[SerializeField] private Button box;
 
-	public Text Tcouple;
-	public Text Thand;
-	public Text Tbag;
-	public Text Tbox;
-	public Text scoreText;
+	[SerializeField] private Text Tcouple;
+	[SerializeField] private Text Thand;
+	[SerializeField] private Text Tbag;
+	[SerializeField] private Text Tbox;
+	[SerializeField] private Text scoreText;
 
 	public Text[] MainMenu;
-	public Text[] PanelOfSkins;
-	public Text PanelOfLeaders;
-	public Text[] MobilePanelOfSettings;
-	public Text[] PanelOfMaps;
-	public Text[] PanelOfModes;
-	public Text[] PanelOfProgress;
-	public Text[] PanelOfValute;
+	[SerializeField] private Text[] PanelOfSkins;
+	[SerializeField] private Text PanelOfLeaders;
+	[SerializeField] private Text[] MobilePanelOfSettings;
+	[SerializeField] private Text[] PanelOfMaps;
+	[SerializeField] private Text[] PanelOfModes;
+	[SerializeField] private Text[] PanelOfProgress;
+	[SerializeField] private Text[] PanelOfValute;
 
 [Header("Desktop UI")]
-	public Text Drank;
+	[SerializeField] private Text Drank;
 
-	public GameObject DtriggerForDaimonds;
-	public GameObject DtriggerForNewSkin;
+	[SerializeField] private GameObject DtriggerForDaimonds;
+	[SerializeField] private GameObject DtriggerForNewSkin;
 
-	public Button Dcouple;
-	public Button Dhand;
-	public Button Dbag;
-	public Button Dbox;
+	[SerializeField] private Button Dcouple;
+	[SerializeField] private Button Dhand;
+	[SerializeField] private Button Dbag;
+	[SerializeField] private Button Dbox;
 
-	public Text DTcouple;
-	public Text DThand;
-	public Text DTbag;
-	public Text DTbox;
-	public Text DscoreText;
+	[SerializeField] private Text DTcouple;
+	[SerializeField] private Text DThand;
+	[SerializeField] private Text DTbag;
+	[SerializeField] private Text DTbox;
+	[SerializeField] private Text DscoreText;
 
 	public Text[] DMainMenu;
-	public Text[] DPanelOfSkins;
-	public Text DPanelOfLeaders;
-	public Text[] DesktopPanelOfSettings;
-	public Text[] DPanelOfMaps;
-	public Text[] DPanelOfModes;
-	public Text[] DPanelOfProgress;
-	public Text[] DPanelOfValute;
+	[SerializeField] private Text[] DPanelOfSkins;
+	[SerializeField] private Text DPanelOfLeaders;
+	[SerializeField] private Text[] DesktopPanelOfSettings;
+	[SerializeField] private Text[] DPanelOfMaps;
+	[SerializeField] private Text[] DPanelOfModes;
+	[SerializeField] private Text[] DPanelOfProgress;
+	[SerializeField] private Text[] DPanelOfValute;
 
 
 	private int CntHand => YG2.saves.rewardedHandLeft;

@@ -266,12 +266,13 @@ public class ModeSelectionUI : MonoBehaviour
 		ApplyModeCard(mobileTeamButton, chosenMode == (int)ModeManager.Mode.TeamMode);
 		ApplyModeCard(desktopTeamButton, chosenMode == (int)ModeManager.Mode.TeamMode);
 
-		ApplyMapCard(mobileCityButton, true);
-		ApplyMapCard(desktopCityButton, true);
-		ApplyMapCard(mobileGardenButton, false);
-		ApplyMapCard(desktopGardenButton, false);
-		ApplyMapCard(mobileCastleButton, false);
-		ApplyMapCard(desktopCastleButton, false);
+		int mapId = YG2.saves.selectedMapID;
+		ApplyMapCard(mobileCityButton, mapId == 0, 0);
+		ApplyMapCard(desktopCityButton, mapId == 0, 0);
+		ApplyMapCard(mobileGardenButton, mapId == 1, 1);
+		ApplyMapCard(desktopGardenButton, mapId == 1, 1);
+		ApplyMapCard(mobileCastleButton, mapId == 2, 2);
+		ApplyMapCard(desktopCastleButton, mapId == 2, 2);
 		if (TutorialController.Instance != null)
 			TutorialController.Instance.RefreshLock();
 	}
@@ -308,7 +309,7 @@ public class ModeSelectionUI : MonoBehaviour
 		button.colors = colors;
 	}
 
-	private void ApplyMapCard(Button button, bool isCity)
+	private void ApplyMapCard(Button button, bool selected, int mapId)
 	{
 		if (button == null)
 			return;
@@ -320,12 +321,12 @@ public class ModeSelectionUI : MonoBehaviour
 		button.transition = Selectable.Transition.None;
 		bool cityStep = YG2.saves.tutorialStage == TutorialController.StageCity;
 		Color face;
-		if (lockUi && cityStep && isCity)
-			face = Color.white;
+		if (lockUi && cityStep)
+			face = mapId == 0 ? selectedColor : disabledColor;
 		else if (lockUi)
 			face = disabledColor;
 		else
-			face = Color.white;
+			face = selected ? selectedColor : Color.white;
 		Image image = button.targetGraphic as Image;
 		if (image == null)
 			image = button.GetComponent<Image>();
