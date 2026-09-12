@@ -68,7 +68,7 @@ public static class MapFallingObjectBaker
 				}
 
 				GameObject go = rend.gameObject;
-				if (ShouldSkip(go))
+				if (ShouldSkip(go) || HasChildMesh(go.transform))
 				{
 					skipped++;
 					continue;
@@ -80,27 +80,20 @@ public static class MapFallingObjectBaker
 					continue;
 				}
 
-				if (go.GetComponent<Collider>() == null)
+				MeshCollider meshCol = go.GetComponent<MeshCollider>();
+				if (meshCol != null && !meshCol.convex)
+				{
+					meshCol.enabled = false;
+					if (go.GetComponent<BoxCollider>() == null)
+					{
+						go.AddComponent<BoxCollider>();
+						addedBox++;
+					}
+				}
+				else if (go.GetComponent<Collider>() == null)
 				{
 					go.AddComponent<BoxCollider>();
 					addedBox++;
-				}
-				else
-				{
-					MeshCollider meshCol = go.GetComponent<MeshCollider>();
-					if (meshCol != null && !meshCol.convex)
-					{
-						meshCol.convex = true;
-						if (!meshCol.convex)
-						{
-							meshCol.enabled = false;
-							if (go.GetComponent<BoxCollider>() == null)
-							{
-								go.AddComponent<BoxCollider>();
-								addedBox++;
-							}
-						}
-					}
 				}
 
 				go.AddComponent<FallingObject>();
@@ -136,6 +129,20 @@ public static class MapFallingObjectBaker
 			if (n.StartsWith("Canvas"))
 				return true;
 			t = t.parent;
+		}
+		return false;
+	}
+
+	static bool HasChildMesh(Transform root)
+	{
+		Renderer[] children = root.GetComponentsInChildren<Renderer>(true);
+		for (int i = 0; i < children.Length; i++)
+		{
+			Renderer child = children[i];
+			if (child == null || child.transform == root)
+				continue;
+			if (child is MeshRenderer || child is SkinnedMeshRenderer)
+				return true;
 		}
 		return false;
 	}

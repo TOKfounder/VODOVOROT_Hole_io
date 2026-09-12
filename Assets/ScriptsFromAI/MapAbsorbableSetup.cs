@@ -37,6 +37,30 @@ public class MapAbsorbableSetup : MonoBehaviour
 		return n == "Plane" || n == "MainPlatform" || n == "MapPlayableGround";
 	}
 
+	private static bool HasChildMesh(Transform root)
+	{
+		Renderer[] children = root.GetComponentsInChildren<Renderer>(true);
+		for (int i = 0; i < children.Length; i++)
+		{
+			Renderer child = children[i];
+			if (child == null || child.transform == root)
+				continue;
+			if (child is MeshRenderer || child is SkinnedMeshRenderer)
+				return true;
+		}
+		return false;
+	}
+
+	private static void DisableNonConvexMesh(GameObject go)
+	{
+		MeshCollider meshCol = go.GetComponent<MeshCollider>();
+		if (meshCol == null || meshCol.convex)
+			return;
+		meshCol.enabled = false;
+		if (go.GetComponent<BoxCollider>() == null)
+			go.AddComponent<BoxCollider>();
+	}
+
 	private static void StripFarmPoints(Transform root)
 	{
 		Transform[] transforms = root.GetComponentsInChildren<Transform>(true);
@@ -76,23 +100,14 @@ public class MapAbsorbableSetup : MonoBehaviour
 			GameObject go = rend.gameObject;
 			if (go.GetComponent<Camera>() != null || go.GetComponent<Light>() != null)
 				continue;
-			if (ShouldSkipAbsorbable(go))
+			if (ShouldSkipAbsorbable(go) || HasChildMesh(go.transform))
 				continue;
 
 			if (go.GetComponent<FallingObject>() == null)
 			{
+				DisableNonConvexMesh(go);
 				if (go.GetComponent<Collider>() == null)
 					go.AddComponent<BoxCollider>();
-				else
-				{
-					MeshCollider meshCol = go.GetComponent<MeshCollider>();
-					if (meshCol != null && !meshCol.convex)
-					{
-						meshCol.enabled = false;
-						if (go.GetComponent<BoxCollider>() == null)
-							go.AddComponent<BoxCollider>();
-					}
-				}
 				go.AddComponent<FallingObject>();
 			}
 

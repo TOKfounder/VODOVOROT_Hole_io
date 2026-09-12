@@ -371,9 +371,24 @@ public class MatchHud : MonoBehaviour
 
 		dir.Normalize();
 		Vector3 playerScreen = Camera.main.WorldToScreenPoint(BlackHoleController.Player.transform.position);
+		Vector3 targetScreen = Camera.main.WorldToScreenPoint(target.position);
+		if (targetScreen.z < 0f)
+		{
+			arrows[index].gameObject.SetActive(false);
+			return false;
+		}
+
 		RectTransform arrow = arrows[index];
-		arrow.gameObject.SetActive(true);
 		arrow.sizeDelta = new Vector2(56f, 84f) * scale;
+		float tipOffset = ArrowDistance * scale + arrow.sizeDelta.y * 0.5f;
+		Vector2 screenDelta = (Vector2)targetScreen - (Vector2)playerScreen;
+		if (screenDelta.magnitude <= tipOffset)
+		{
+			arrow.gameObject.SetActive(false);
+			return false;
+		}
+
+		arrow.gameObject.SetActive(true);
 		float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 		arrow.localEulerAngles = new Vector3(0f, 0f, angle - 90f);
 		arrow.position = playerScreen + (Vector3)(dir * ArrowDistance * scale);

@@ -39,9 +39,14 @@ public class GameBalanceConfig : ScriptableObject
 	[Header("Suction")]
 	public float suctionMassMin = 0.4f;
 	public float suctionMassMax = 3f;
-	public float suctionDrag = 0.25f;
-	public float suctionPull = 28f;
-	public float suctionDownForce = 38f;
+	public float suctionDrag = 0.8f;
+	public float suctionPull = 13f;
+	public float suctionDownForce = 17f;
+	public float suctionOrbit = 10f;
+	public float suctionOrbitInward = 4f;
+	public float suctionOrbitDown = 6f;
+	[Range(0.2f, 1f)] public float suctionRimFactor = 0.55f;
+	public float suctionSqueezeSpeed = 1.2f;
 
 	[Header("Defeat reward")]
 	public float defeatExp = 25f;

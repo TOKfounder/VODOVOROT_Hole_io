@@ -20,10 +20,11 @@ public static class Tool
 		return st;
 	}
 
+	private const float FitHoleMargin = 1.1f;
+
 	public static bool CanFit2D(Vector3 sizeA, Vector3 sizeB)
 	{
-		return (sizeA.x <= sizeB.x && sizeA.z <= sizeB.z) || (sizeA.x <= sizeB.x && sizeA.y <= sizeB.z) 
-		|| (sizeA.y <= sizeB.x && sizeA.z <= sizeB.z);
+		return CanFitFootprint(sizeA, sizeB);
 	}
 	public static bool CanAbsorbHoleSize(Vector3 smallerHole, Vector3 playerHole)
 	{
@@ -43,7 +44,12 @@ public static class Tool
 
 	public static bool CanFitForEnemies(Vector3 sizeA, Vector3 sizeB)
 	{
-		return (sizeA.x <= sizeB.x && sizeA.z <= sizeB.z) && (sizeA.x <= sizeB.x && sizeA.y <= sizeB.z) 
-		&& (sizeA.y <= sizeB.x && sizeA.z <= sizeB.z);
+		return CanFitFootprint(sizeA, sizeB);
+	}
+
+	public static bool CanFitFootprint(Vector3 objectSize, Vector3 holeSize)
+	{
+		return objectSize.x * FitHoleMargin <= holeSize.x
+			&& objectSize.z * FitHoleMargin <= holeSize.z;
 	}
 }

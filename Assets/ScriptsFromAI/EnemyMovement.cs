@@ -64,17 +64,17 @@ public class EnemyMovement : MonoBehaviour
 		if (config != null)
 			levelSpeeds = GameBalance.CopyOr(config.levelSpeeds, levelSpeeds);
 
-		ModeConfig hunting = GameBalance.Mode(ModeManager.Mode.Hunting);
-		if (hunting != null)
+		ModeConfig current = GameBalance.Mode(ModeManager.currentMode);
+		if (current != null)
 		{
-			if (hunting.huntSightRadius > 0f)
-				huntSightRadius = hunting.huntSightRadius;
-			if (hunting.huntPlayerSeconds > 0f)
-				huntPlayerSeconds = hunting.huntPlayerSeconds;
-			if (hunting.farmAfterHuntSeconds > 0f)
-				farmAfterHuntSeconds = hunting.farmAfterHuntSeconds;
-			if (hunting.enemySpeedMul > 0f)
-				enemySpeedMul = hunting.enemySpeedMul;
+			if (current.huntSightRadius > 0f)
+				huntSightRadius = current.huntSightRadius;
+			if (current.huntPlayerSeconds > 0f)
+				huntPlayerSeconds = current.huntPlayerSeconds;
+			if (current.farmAfterHuntSeconds > 0f)
+				farmAfterHuntSeconds = current.farmAfterHuntSeconds;
+			if (current.enemySpeedMul > 0f)
+				enemySpeedMul = current.enemySpeedMul;
 		}
 
 		ModeConfig boss = GameBalance.Mode(ModeManager.Mode.Boss);

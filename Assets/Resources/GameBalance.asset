@@ -72,9 +72,14 @@ MonoBehaviour:
   castle: {fileID: 11400000, guid: 23ecb0ed57eee42a39caa76f91a04920, type: 2}
   suctionMassMin: 0.4
   suctionMassMax: 3
-  suctionDrag: 0.25
-  suctionPull: 28
-  suctionDownForce: 38
+  suctionDrag: 0.8
+  suctionPull: 13
+  suctionDownForce: 17
+  suctionOrbit: 10
+  suctionOrbitInward: 4
+  suctionOrbitDown: 6
+  suctionRimFactor: 0.55
+  suctionSqueezeSpeed: 1.2
   defeatExp: 25
   defeatCoins: 12
   defeatDiamonds: 3

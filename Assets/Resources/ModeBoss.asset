@@ -17,14 +17,14 @@ MonoBehaviour:
   bossStartLevel: 2
   bossFarmSeconds: 30
   bossProbeSeconds: 120
-  bossSpeedMul: 0.56
+  bossSpeedMul: 1.68
   leftoverSecondsPerBonus: 20
   leftoverSpriteHigh: 8
   leftoverSpriteMid: 3
   huntSightRadius: 45
   huntPlayerSeconds: 10
   farmAfterHuntSeconds: 18
-  enemySpeedMul: 0.25
+  enemySpeedMul: 0.75
   winExp: 50
   winCoins: 25
   winDiamonds: 5

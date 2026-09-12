@@ -61,7 +61,7 @@ public class GamingManager : MonoBehaviour
 	public Text[] DPanelOfEnd;
 
 	[SerializeField] private Vector2 boostMobileCorner = new Vector2(92f, 108f);
-	[SerializeField] private float boostDesktopExtraX = 86f;
+	[SerializeField] private float boostDesktopMinimapGap = 60f;
 
 	private bool timerGo;
 	private bool matchClockFrozen;
@@ -215,11 +215,7 @@ public class GamingManager : MonoBehaviour
 			if (YG2.envir.isMobile)
 				PlaceBoostMobile(rect, canvas);
 			else
-			{
-				Vector2 pos = rect.anchoredPosition;
-				pos.x += boostDesktopExtraX;
-				rect.anchoredPosition = pos;
-			}
+				PlaceBoostDesktop(rect);
 			return;
 		}
 	}
@@ -248,6 +244,20 @@ public class GamingManager : MonoBehaviour
 		}
 
 		rect.anchoredPosition = pos;
+	}
+
+	private void PlaceBoostDesktop(RectTransform rect)
+	{
+		MatchHud hud = MatchHud.Ensure();
+		RectTransform minimap = hud != null ? hud.MinimapRect : null;
+		RectTransform parent = rect.parent as RectTransform;
+		if (minimap == null || parent == null)
+			return;
+
+		Rect map = RectInParent(minimap, parent);
+		float halfW = Mathf.Max(rect.rect.width * 0.5f, 40f);
+		Vector3 local = new Vector3(map.xMin - boostDesktopMinimapGap - halfW, map.center.y, 0f);
+		rect.position = parent.TransformPoint(local);
 	}
 
 	private static Rect RectInParent(RectTransform target, RectTransform parent)

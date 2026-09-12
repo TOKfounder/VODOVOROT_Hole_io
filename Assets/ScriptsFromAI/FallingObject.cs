@@ -3,7 +3,6 @@ using System.Collections;
 
 public class FallingObject : MonoBehaviour
 {
-	private const int MaxConvexTriangles = 255;
 	private const float IdleResetSeconds = 4f;
 	private const float VisualSqueeze = 0.38f;
 
@@ -40,7 +39,7 @@ public class FallingObject : MonoBehaviour
 
 	void Awake()
 	{
-		col = GetComponent<Collider>();
+		CacheEnabledCollider();
 		if (col == null)
 			col = gameObject.AddComponent<BoxCollider>();
 		rb = GetComponent<Rigidbody>();
@@ -90,7 +89,7 @@ public class FallingObject : MonoBehaviour
 		float minMass = config != null ? config.suctionMassMin : 0.4f;
 		float maxMass = config != null ? config.suctionMassMax : 3f;
 		float drag = suction
-			? (config != null ? config.suctionDrag : 0.25f)
+			? (config != null ? config.suctionDrag : 0.8f)
 			: 4f;
 		rb.mass = Mathf.Clamp(V3 > 0f ? V3 * 0.35f : minMass, minMass, maxMass);
 		rb.drag = drag;
@@ -110,34 +109,42 @@ public class FallingObject : MonoBehaviour
 			hole.nearbyFallingObjects.Add(this);
 	}
 
+	private void CacheEnabledCollider()
+	{
+		Collider[] cols = GetComponents<Collider>();
+		col = null;
+		for (int i = 0; i < cols.Length; i++)
+		{
+			Collider candidate = cols[i];
+			if (candidate == null || !candidate.enabled)
+				continue;
+			MeshCollider mesh = candidate as MeshCollider;
+			if (mesh != null && !mesh.convex)
+				continue;
+			col = candidate;
+			return;
+		}
+	}
+
 	private void PrepareSuctionCollider()
 	{
 		if (preparedMesh)
 			return;
 
-		meshCol = col as MeshCollider;
-		if (meshCol == null)
-			meshCol = GetComponent<MeshCollider>();
+		meshCol = GetComponent<MeshCollider>();
 		if (meshCol == null || meshCol.convex)
+		{
+			CacheEnabledCollider();
 			return;
+		}
 
 		preparedMesh = true;
 		meshWasConvex = meshCol.convex;
 		meshWasEnabled = meshCol.enabled;
-
-		int tris = 0;
-		if (meshCol.sharedMesh != null)
-			tris = meshCol.sharedMesh.triangles.Length / 3;
-
-		if (tris > 0 && tris <= MaxConvexTriangles)
-		{
-			meshCol.convex = true;
-			col = meshCol;
-			return;
-		}
-
 		meshCol.enabled = false;
-		suctionBox = gameObject.AddComponent<BoxCollider>();
+
+		if (suctionBox == null)
+			suctionBox = gameObject.AddComponent<BoxCollider>();
 		Bounds world = rend != null ? rend.bounds : meshCol.bounds;
 		suctionBox.center = transform.InverseTransformPoint(world.center);
 		Vector3 lossy = transform.lossyScale;
@@ -197,21 +204,40 @@ public class FallingObject : MonoBehaviour
 			return;
 
 		GameBalanceConfig config = GameBalance.Current;
-		float pull = config != null ? config.suctionPull : 28f;
-		float down = config != null ? config.suctionDownForce : 38f;
-		Vector3 holePos = CurrentHole.transform.position;
-		Vector3 toHole = holePos - rb.position;
+		float pull = config != null ? config.suctionPull : 13f;
+		float down = config != null ? config.suctionDownForce : 17f;
+		float orbit = config != null ? config.suctionOrbit : 10f;
+		float inward = config != null ? config.suctionOrbitInward : 4f;
+		float orbitDown = config != null ? config.suctionOrbitDown : 6f;
+		float rimFactor = config != null ? config.suctionRimFactor : 0.55f;
+		float squeezeSpeed = config != null ? config.suctionSqueezeSpeed : 1.2f;
+
+		Vector3 toHole = CurrentHole.transform.position - rb.position;
 		toHole.y = 0f;
-		Vector3 force = Vector3.down * down;
-		if (toHole.sqrMagnitude > 0.0001f)
-			force += toHole.normalized * pull;
+		float dist = toHole.magnitude;
+		float rim = CurrentHole.GetStableHoleRadius() * rimFactor;
+		bool atRim = dist > rim;
+		Vector3 force;
+		if (atRim && dist > 0.0001f)
+		{
+			Vector3 radial = toHole / dist;
+			Vector3 tangent = Vector3.Cross(Vector3.up, radial);
+			force = tangent * orbit + radial * inward + Vector3.down * orbitDown;
+		}
+		else
+		{
+			force = Vector3.down * down;
+			if (dist > 0.0001f)
+				force += (toHole / dist) * pull;
+		}
 		rb.AddForce(force, ForceMode.Acceleration);
 
-		transform.localScale = Vector3.Lerp(transform.localScale, squeezeFrom * VisualSqueeze, 4f * Time.fixedDeltaTime);
+		transform.localScale = Vector3.Lerp(transform.localScale, squeezeFrom * VisualSqueeze, squeezeSpeed * Time.fixedDeltaTime);
 
 		Vector3 vel = rb.velocity;
-		bool towardHole = toHole.sqrMagnitude > 0.0001f && Vector3.Dot(vel, toHole.normalized) > 0.12f;
-		if (vel.y < -0.12f || towardHole)
+		Vector3 velXZ = new Vector3(vel.x, 0f, vel.z);
+		bool towardHole = dist > 0.0001f && Vector3.Dot(velXZ, toHole) > 0f;
+		if (vel.y < -0.08f || towardHole || velXZ.sqrMagnitude > 0.014f)
 			suctionStillMoving = true;
 	}
 
@@ -280,16 +306,7 @@ public class FallingObject : MonoBehaviour
 			myCoroutine = StartCoroutine(DelayForUpdateCurrentHole());
 		}
 
-		if (CurrentHole.holeType == HoleParent.TypeOfHole.enemy
-			|| CurrentHole.holeType == HoleParent.TypeOfHole.enemyHelper)
-		{
-			if (Tool.CanFitForEnemies(size, CurrentHole.size))
-			{
-				BeginSuctionPhysics(CurrentHole);
-				beganSuction = true;
-			}
-		}
-		else if (Tool.CanFit2D(size, CurrentHole.size))
+		if (Tool.CanFitFootprint(size, CurrentHole.size))
 		{
 			BeginSuctionPhysics(CurrentHole);
 			beganSuction = true;

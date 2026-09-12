@@ -13,8 +13,8 @@ public class HoleFeedback : MonoBehaviour
 	[SerializeField] private bool debugEmitOnStart;
 	[Header("Suction Ribbons")]
 	[SerializeField] private int ribbonCount = 4;
-	[SerializeField] private float ribbonOrbitSpeed = 0.72f;
-	[SerializeField] private float ribbonInwardSpeed = 0.42f;
+	[SerializeField] private float ribbonOrbitSpeed = 0.38f;
+	[SerializeField] private float ribbonInwardSpeed = 0.22f;
 	[SerializeField] private float ribbonTrailTime = 0.26f;
 	[SerializeField] private float ribbonWidth = 0.055f;
 	[SerializeField] private float ribbonOuterMul = 1.15f;
