@@ -132,6 +132,7 @@ public class MainMenuController : MonoBehaviour
 		ActiveCanvas.ApplyUiFontEverywhere();
 		if (mapField != null)
 			mapField.raycastTarget = false;
+		UpdateMapOnBackground(YG2.saves.selectedMapID);
 		if (GameController.Instance != null)
 			GameController.Instance.RefreshModeSelectionUI();
 		TutorialController.EnsureMenu();

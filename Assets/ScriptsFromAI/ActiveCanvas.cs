@@ -5,6 +5,10 @@ public static class ActiveCanvas
 {
 	private static Font cachedFont;
 	private static Sprite cachedPointer;
+	private static Sprite cachedRoundedPanel;
+
+	private static readonly Color UiOutlineColor = new Color(0f, 0f, 0f, 0.92f);
+	private static readonly Vector2 UiOutlineDistance = new Vector2(2.4f, -2.4f);
 
 	public static Canvas Get()
 	{
@@ -53,9 +57,123 @@ public static class ActiveCanvas
 		Text[] texts = Object.FindObjectsByType<Text>(FindObjectsInactive.Include, FindObjectsSortMode.None);
 		for (int i = 0; i < texts.Length; i++)
 		{
-			if (texts[i] != null)
-				texts[i].font = font;
+			if (texts[i] == null)
+				continue;
+			texts[i].font = font;
+			ApplyUiTextOutline(texts[i]);
 		}
+	}
+
+	public static void ApplyUiTextOutline(Text text)
+	{
+		if (text == null)
+			return;
+		if (text.GetComponent<NickBillboard>() != null)
+			return;
+
+		Outline outline = text.GetComponent<Outline>();
+		if (outline == null)
+			outline = text.gameObject.AddComponent<Outline>();
+		outline.effectColor = UiOutlineColor;
+		outline.effectDistance = IsSkinCarouselCaption(text) ? UiOutlineDistance * 0.6f : UiOutlineDistance;
+		outline.useGraphicAlpha = true;
+	}
+
+	private static bool IsSkinCarouselCaption(Text text)
+	{
+		if (text == null)
+			return false;
+
+		HorizontalLayout3D[] layouts = Object.FindObjectsByType<HorizontalLayout3D>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+		for (int i = 0; i < layouts.Length; i++)
+		{
+			GameObject[] captions = layouts[i] != null ? layouts[i].captions : null;
+			if (captions == null)
+				continue;
+			for (int c = 0; c < captions.Length; c++)
+			{
+				GameObject caption = captions[c];
+				if (caption == null)
+					continue;
+				if (caption == text.gameObject || text.transform.IsChildOf(caption.transform))
+					return true;
+			}
+		}
+		return false;
+	}
+
+	public static void ApplyRoundedPanel(Image image)
+	{
+		if (image == null)
+			return;
+
+		image.sprite = GetRoundedPanelSprite();
+		image.type = Image.Type.Sliced;
+		image.pixelsPerUnitMultiplier = 1f;
+		image.color = Color.white;
+
+		Outline outline = image.GetComponent<Outline>();
+		if (outline == null)
+			outline = image.gameObject.AddComponent<Outline>();
+		outline.effectColor = new Color(0.03f, 0.02f, 0.04f, 0.95f);
+		outline.effectDistance = new Vector2(2f, -2f);
+		outline.useGraphicAlpha = true;
+	}
+
+	public static Sprite GetRoundedPanelSprite()
+	{
+		if (cachedRoundedPanel != null)
+			return cachedRoundedPanel;
+
+		const int size = 64;
+		const float radius = 16f;
+		const float stroke = 3.2f;
+		Texture2D tex = new Texture2D(size, size, TextureFormat.RGBA32, false);
+		tex.wrapMode = TextureWrapMode.Clamp;
+		tex.filterMode = FilterMode.Bilinear;
+		tex.hideFlags = HideFlags.HideAndDontSave;
+
+		Color fill = new Color(0.12f, 0.1f, 0.14f, 0.96f);
+		Color border = new Color(0.05f, 0.04f, 0.06f, 1f);
+		float cx = (size - 1) * 0.5f;
+		Color[] pixels = new Color[size * size];
+		for (int y = 0; y < size; y++)
+		{
+			for (int x = 0; x < size; x++)
+			{
+				float sdf = SdRoundedBox(x - cx, y - cx, cx, radius);
+				Color color;
+				if (sdf > 0.6f)
+					color = Color.clear;
+				else if (sdf > -stroke)
+					color = Color.Lerp(border, Color.clear, Mathf.Clamp01((sdf + 0.5f) / 1.1f));
+				else
+					color = fill;
+				pixels[y * size + x] = color;
+			}
+		}
+
+		tex.SetPixels(pixels);
+		tex.Apply(false, false);
+		cachedRoundedPanel = Sprite.Create(
+			tex,
+			new Rect(0f, 0f, size, size),
+			new Vector2(0.5f, 0.5f),
+			100f,
+			0,
+			SpriteMeshType.FullRect,
+			new Vector4(radius, radius, radius, radius));
+		cachedRoundedPanel.name = "TutorialRoundedPanel";
+		return cachedRoundedPanel;
+	}
+
+	private static float SdRoundedBox(float px, float py, float half, float radius)
+	{
+		float qx = Mathf.Abs(px) - (half - radius);
+		float qy = Mathf.Abs(py) - (half - radius);
+		float ox = Mathf.Max(qx, 0f);
+		float oy = Mathf.Max(qy, 0f);
+		return Mathf.Sqrt(ox * ox + oy * oy) + Mathf.Min(Mathf.Max(qx, qy), 0f) - radius;
 	}
 
 	private static Font FindLoadedFont(string nameContains)
@@ -95,7 +213,11 @@ public static class ActiveCanvas
 
 		Transform existing = parent.Find(name);
 		if (existing != null)
-			return existing.GetComponent<Text>();
+		{
+			Text existingText = existing.GetComponent<Text>();
+			ApplyUiTextOutline(existingText);
+			return existingText;
+		}
 
 		Font font = GetUiFont();
 		if (font == null)
@@ -116,6 +238,7 @@ public static class ActiveCanvas
 		text.color = Color.white;
 		text.font = font;
 		text.raycastTarget = false;
+		ApplyUiTextOutline(text);
 		return text;
 	}
 

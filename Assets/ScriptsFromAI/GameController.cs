@@ -103,9 +103,9 @@ public class GameController : MonoBehaviour
 			YG2.saves.isFirst = false;
 			YG2.saves.levelOfProgress = 0;
 			YG2.saves.goldCoins = 0;
-			YG2.saves.chosenMode = 0;
+			YG2.saves.chosenMode = (int)ModeManager.Mode.Boss;
 			YG2.saves.diamonds = 3;
-			YG2.saves.selectedMapID = 0;
+			YG2.saves.selectedMapID = 1;
 			YG2.saves.rewardedHandLeft = 2;
 			YG2.saves.rewardedBagLeft = 5;
 			YG2.saves.rewardedBoxLeft = 10;
@@ -165,11 +165,7 @@ public class GameController : MonoBehaviour
 	public void StartGame()
 	{
 		if (!TutorialController.IsDone)
-		{
-			YG2.saves.chosenMode = (int)ModeManager.Mode.TotalCleaning;
-			YG2.saves.selectedMapID = 0;
 			TutorialController.NotifyPlayStarted();
-		}
 		NormalizeChosenMode();
 		ModeManager.currentMode = (ModeManager.Mode)YG2.saves.chosenMode;
 		YG2.saves.isGaming = true;
@@ -270,6 +266,8 @@ public class GameController : MonoBehaviour
 		YG2.saves.massiveOfObtaining = new int[] { 1, 0, 0, 0, 0 };
 		YG2.saves.goldCoins = 0;
 		YG2.saves.diamonds = 3;
+		YG2.saves.chosenMode = (int)ModeManager.Mode.Boss;
+		YG2.saves.selectedMapID = 1;
 		YG2.SaveProgress();
 		Time.timeScale = 1f;
 		SceneManager.LoadScene(0);

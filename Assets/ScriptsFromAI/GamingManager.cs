@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.UI;
+using PinePie.SimpleJoystick;
 using YG;
 
 [DefaultExecutionOrder(-100)]
@@ -59,7 +60,8 @@ public class GamingManager : MonoBehaviour
 	public Text[] DesktopPanelOfSettings;
 	public Text[] DPanelOfEnd;
 
-	[SerializeField] private float boostLeftShift = 170f;
+	[SerializeField] private Vector2 boostMobileCorner = new Vector2(92f, 108f);
+	[SerializeField] private float boostDesktopExtraX = 86f;
 
 	private bool timerGo;
 	private bool matchClockFrozen;
@@ -209,11 +211,55 @@ public class GamingManager : MonoBehaviour
 			RectTransform rect = buttons[i].GetComponent<RectTransform>();
 			if (rect == null)
 				continue;
-			Vector2 pos = rect.anchoredPosition;
-			pos.x -= boostLeftShift;
-			rect.anchoredPosition = pos;
+			if (YG2.envir.isMobile)
+				PlaceBoostMobile(rect, canvas);
+			else
+			{
+				Vector2 pos = rect.anchoredPosition;
+				pos.x += boostDesktopExtraX;
+				rect.anchoredPosition = pos;
+			}
 			return;
 		}
+	}
+
+	private void PlaceBoostMobile(RectTransform rect, Canvas canvas)
+	{
+		rect.anchorMin = Vector2.zero;
+		rect.anchorMax = Vector2.zero;
+		rect.pivot = new Vector2(0.5f, 0.5f);
+		Vector2 pos = boostMobileCorner;
+
+		RectTransform parent = rect.parent as RectTransform;
+		JoystickController stick = canvas.GetComponentInChildren<JoystickController>(true);
+		if (parent != null && stick != null)
+		{
+			RectTransform stickRect = stick.GetComponent<RectTransform>();
+			if (stickRect != null)
+			{
+				Rect stickLocal = RectInParent(stickRect, parent);
+				float halfW = Mathf.Max(rect.rect.width * 0.5f, 48f);
+				float halfH = Mathf.Max(rect.rect.height * 0.5f, 48f);
+				Rect boostLocal = new Rect(pos.x - halfW, pos.y - halfH, halfW * 2f, halfH * 2f);
+				if (boostLocal.Overlaps(stickLocal))
+					pos.y = stickLocal.yMax + halfH + 18f;
+			}
+		}
+
+		rect.anchoredPosition = pos;
+	}
+
+	private static Rect RectInParent(RectTransform target, RectTransform parent)
+	{
+		Vector3[] corners = new Vector3[4];
+		target.GetWorldCorners(corners);
+		Vector3 a = parent.InverseTransformPoint(corners[0]);
+		Vector3 b = parent.InverseTransformPoint(corners[2]);
+		return Rect.MinMaxRect(
+			Mathf.Min(a.x, b.x),
+			Mathf.Min(a.y, b.y),
+			Mathf.Max(a.x, b.x),
+			Mathf.Max(a.y, b.y));
 	}
 
 	private void HookSettingsPause()

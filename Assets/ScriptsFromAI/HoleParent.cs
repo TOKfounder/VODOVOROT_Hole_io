@@ -33,21 +33,21 @@ public class HoleParent : MonoBehaviour
 
 	protected float[] scoreRequired = {
 			0,
-			22,
-			65,
-			150,
-			320,
-			620,
-			1150,
-			2050,
-			3500,
-			5500,
-			8200
+			44,
+			128,
+			293,
+			624,
+			1209,
+			2243,
+			3998,
+			6825,
+			10725,
+			15990
 	};
-	protected float[] levelScales = { 0.41f, 0.72f, 1.35f, 2.5f, 4f, 5.8f, 7.8f, 10.2f, 13.5f, 17.59f, 18.7f };
+	protected float[] levelScales = { 0.41f, 0.45f, 0.62f, 1.12f, 2f, 3.34f, 5.11f, 7.57f, 11.48f, 17.06f, 18.7f };
 	public int score;
 	protected Vector3 targetScale;
-	protected float scaleLerpSpeed = 2f;
+	protected float scaleLerpSpeed = 1.15f;
 	[SerializeField] private float birthLerpSpeed = 5f;
 	private bool birthIntro;
 	public bool IsBirthIntro => birthIntro;

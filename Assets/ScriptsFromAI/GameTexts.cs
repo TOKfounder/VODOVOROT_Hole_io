@@ -149,6 +149,10 @@ public static class GameTexts
 	public static string TutorialCurrencyBody => Ru ? "Открой магазин валюты." : "Open the currency shop.";
 	public static string TutorialExchangeTitle => Ru ? "Обмен" : "Exchange";
 	public static string TutorialExchangeBody => Ru ? "Обменяй алмазы на монеты." : "Exchange diamonds for coins.";
+	public static string TutorialValuteReturnTitle => Ru ? "Закрой магазин" : "Close shop";
+	public static string TutorialValuteReturnBody => Ru
+		? "Закрой магазин валюты."
+		: "Close the currency shop.";
 	public static string TutorialSkinsTitle => Ru ? "Скины" : "Skins";
 	public static string TutorialSkinsBody => Ru ? "Открой магазин скинов." : "Open the skin shop.";
 	public static string TutorialRotateTitle => Ru ? "Белый друг" : "White Friend";
@@ -159,6 +163,10 @@ public static class GameTexts
 	public static string TutorialBuyBody => Ru ? "Купи Белого друга за монеты." : "Buy White Friend with coins.";
 	public static string TutorialEquipTitle => Ru ? "Экипировка" : "Equip";
 	public static string TutorialEquipBody => Ru ? "Надень Белого друга." : "Equip White Friend.";
+	public static string TutorialSkinsReturnTitle => Ru ? "Закрой магазин" : "Close shop";
+	public static string TutorialSkinsReturnBody => Ru
+		? "Закрой магазин скинов."
+		: "Close the skin shop.";
 
 	public static string TutorialCleaningRulesTitle => Ru ? "Зачистка карты" : "Map cleaning";
 	public static string TutorialCleaningRulesBody => Ru

@@ -1,5 +1,4 @@
 using System.Collections;
-using PinePie.SimpleJoystick;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
@@ -22,16 +21,28 @@ public class TutorialController : MonoBehaviour
 	public const int StageRotateWhite = 13;
 	public const int StageBuyWhite = 14;
 	public const int StageEquipWhite = 15;
-	public const int StageDone = 16;
+	public const int StageValuteReturn = 17;
+	public const int StageSkinsReturn = 18;
+	public const int StageDone = 19;
 
 	private const int MatchCardCount = 4;
 	private const int WhiteFriendIndex = 1;
 	private const int WhiteFriendCoinCost = 20;
 	private const float PointerOffset = 92f;
+	private const float PlaqueGap = 16f;
 	private const float OverlayLocalZ = -200f;
+	private const float OverlaySkinZPad = 80f;
 	private const float GuideDimAlpha = 0.62f;
-	private const float GuidePlaqueWidth = 620f;
-	private const float GuidePlaqueHeight = 320f;
+	private const float GuidePlaquePadX = 24f;
+	private const float GuidePlaquePadY = 18f;
+	private const float GuidePlaqueMinWidth = 200f;
+	private const float GuidePlaqueMaxWidth = 560f;
+	private const float GuidePlaqueScreenMargin = 20f;
+	private const float GuideTextGap = 8f;
+	private const float GuidePlaqueWidth = 480f;
+	private const float GuidePlaqueHeight = 160f;
+	private const float MatchCardWidth = 620f;
+	private const float MatchCardHeight = 320f;
 	private static readonly Color PointerTint = new Color(1f, 0.85f, 0.2f, 1f);
 
 	public static TutorialController Instance { get; private set; }
@@ -65,6 +76,8 @@ public class TutorialController : MonoBehaviour
 	private RectTransform overlayRoot;
 	private RectTransform cardRect;
 	private Image dimImage;
+	private GameObject matchDimRoot;
+	private Image matchDimImage;
 	private RectTransform pointerRect;
 	private RectTransform pointerTarget;
 	private Text titleText;
@@ -74,6 +87,7 @@ public class TutorialController : MonoBehaviour
 	private int matchCard;
 	private Coroutine matchRoutine;
 	private bool visualsDirty;
+	private bool plaqueFollowsPointer;
 	private bool modesPanelWasOpen;
 	private bool mapsPanelWasOpen;
 	private InputField nickField;
@@ -85,15 +99,25 @@ public class TutorialController : MonoBehaviour
 
 	public static void MigrateSaves()
 	{
-		if (YG2.saves.tutorialStage >= StageDone)
+		if (YG2.saves.tutorialMenuSeen && YG2.saves.tutorialMatchSeen)
 		{
+			YG2.saves.tutorialStage = StageDone;
+			return;
+		}
+
+		if (YG2.saves.tutorialStage == 16)
+		{
+			YG2.saves.tutorialStage = StageDone;
 			YG2.saves.tutorialMenuSeen = true;
 			YG2.saves.tutorialMatchSeen = true;
 			return;
 		}
 
-		if (YG2.saves.tutorialMenuSeen && YG2.saves.tutorialMatchSeen)
-			YG2.saves.tutorialStage = StageDone;
+		if (YG2.saves.tutorialStage >= StageDone)
+		{
+			YG2.saves.tutorialMenuSeen = true;
+			YG2.saves.tutorialMatchSeen = true;
+		}
 	}
 
 	public static void EnsureMenu()
@@ -159,7 +183,7 @@ public class TutorialController : MonoBehaviour
 		if (!IsExchangeStep)
 			return;
 		EnsureWhiteFriendCoins();
-		SetStage(StageSkins);
+		SetStage(StageValuteReturn);
 	}
 
 	public static void EnsureWhiteFriendCoins()
@@ -272,11 +296,18 @@ public class TutorialController : MonoBehaviour
 			ApplyStageVisuals();
 		}
 		ApplyLock();
-		RectTransform live = ResolveTargetRect();
-		if (live != pointerTarget)
-			PointAt(live);
-		if (pointerRect != null && pointerRect.gameObject.activeSelf)
-			UpdatePointer();
+		if (YG2.saves.tutorialStage == StageMatchCards)
+		{
+			HidePointer();
+		}
+		else
+		{
+			RectTransform live = ResolveTargetRect();
+			if (live != pointerTarget)
+				PointAt(live);
+			if (pointerRect != null && pointerRect.gameObject.activeSelf)
+				UpdatePointer();
+		}
 		if (overlayRoot != null && overlayRoot.gameObject.activeSelf)
 			BringOverlayForward();
 	}
@@ -292,8 +323,12 @@ public class TutorialController : MonoBehaviour
 			SetStage(StageMaps);
 		else if (stage == StageExchange)
 			SetStage(StageCurrency);
+		else if (stage == StageValuteReturn && !IsPanelActive("PanelOfValute"))
+			SetStage(StageSkins);
 		else if (stage == StageRotateWhite || stage == StageBuyWhite || stage == StageEquipWhite)
 			SetStage(StageSkins);
+		else if (stage == StageSkinsReturn && !IsPanelActive("PanelOfSkins"))
+			CompleteTutorial();
 	}
 
 	private void PollAdvances()
@@ -344,6 +379,13 @@ public class TutorialController : MonoBehaviour
 					ApplyStageVisuals();
 				}
 				break;
+			case StageValuteReturn:
+				if (!IsPanelActive("PanelOfValute"))
+				{
+					SetStage(StageSkins);
+					ApplyStageVisuals();
+				}
+				break;
 			case StageSkins:
 				if (IsPanelActive("PanelOfSkins"))
 				{
@@ -369,6 +411,13 @@ public class TutorialController : MonoBehaviour
 				break;
 			case StageEquipWhite:
 				if (YG2.saves.equipedMaterial == WhiteFriendIndex)
+				{
+					SetStage(StageSkinsReturn);
+					ApplyStageVisuals();
+				}
+				break;
+			case StageSkinsReturn:
+				if (!IsPanelActive("PanelOfSkins"))
 					CompleteTutorial();
 				break;
 		}
@@ -412,17 +461,31 @@ public class TutorialController : MonoBehaviour
 		dimImage = rootGo.GetComponent<Image>();
 		dimImage.color = new Color(0f, 0f, 0f, 0f);
 		dimImage.raycastTarget = false;
+		dimImage.enabled = false;
+
+		GameObject matchDimGo = new GameObject("MatchDim", typeof(RectTransform), typeof(Image));
+		matchDimGo.transform.SetParent(overlayRoot, false);
+		matchDimRoot = matchDimGo;
+		RectTransform matchDimRect = matchDimGo.GetComponent<RectTransform>();
+		matchDimRect.anchorMin = Vector2.zero;
+		matchDimRect.anchorMax = Vector2.one;
+		matchDimRect.offsetMin = Vector2.zero;
+		matchDimRect.offsetMax = Vector2.zero;
+		matchDimImage = matchDimGo.GetComponent<Image>();
+		matchDimImage.color = new Color(0f, 0f, 0f, GuideDimAlpha);
+		matchDimImage.raycastTarget = true;
+		matchDimGo.SetActive(false);
 
 		GameObject cardGo = new GameObject("TutorialCard", typeof(RectTransform), typeof(Image));
 		cardGo.transform.SetParent(overlayRoot, false);
 		cardRect = cardGo.GetComponent<RectTransform>();
-		cardRect.anchorMin = new Vector2(0.5f, 1f);
-		cardRect.anchorMax = new Vector2(0.5f, 1f);
-		cardRect.pivot = new Vector2(0.5f, 1f);
-		cardRect.anchoredPosition = new Vector2(0f, -18f);
+		cardRect.anchorMin = new Vector2(0.5f, 0.5f);
+		cardRect.anchorMax = new Vector2(0.5f, 0.5f);
+		cardRect.pivot = new Vector2(0.5f, 0.5f);
+		cardRect.anchoredPosition = Vector2.zero;
 		cardRect.sizeDelta = new Vector2(GuidePlaqueWidth, GuidePlaqueHeight);
 		Image cardImage = cardGo.GetComponent<Image>();
-		cardImage.color = new Color(0.12f, 0.1f, 0.14f, 0.96f);
+		ActiveCanvas.ApplyRoundedPanel(cardImage);
 		cardImage.raycastTarget = false;
 
 		titleText = CreateLabel(cardRect, "Title", new Vector2(0f, -28f), new Vector2(520f, 36f), 26);
@@ -449,8 +512,58 @@ public class TutorialController : MonoBehaviour
 			return;
 		overlayRoot.SetAsLastSibling();
 		Vector3 pos = overlayRoot.localPosition;
-		pos.z = OverlayLocalZ;
+		pos.z = ResolveOverlayLocalZ();
 		overlayRoot.localPosition = pos;
+		ApplyGuidePerspectiveScale();
+	}
+
+	private float GuidePerspectiveScale()
+	{
+		if (overlayRoot == null || targetCanvas == null)
+			return 1f;
+		Camera cam = targetCanvas.worldCamera != null ? targetCanvas.worldCamera : Camera.main;
+		if (cam == null)
+			return 1f;
+
+		Transform canvasTf = targetCanvas.transform;
+		Vector3 close = overlayRoot.position;
+		Vector3 baseline = canvasTf.TransformPoint(new Vector3(overlayRoot.localPosition.x, overlayRoot.localPosition.y, OverlayLocalZ));
+		float dClose = Vector3.Distance(cam.transform.position, close);
+		float dBase = Vector3.Distance(cam.transform.position, baseline);
+		if (dBase < 0.001f)
+			return 1f;
+		return Mathf.Clamp(dClose / dBase, 0.25f, 1f);
+	}
+
+	private void ApplyGuidePerspectiveScale()
+	{
+		float scale = GuidePerspectiveScale();
+		if (cardRect != null)
+			cardRect.localScale = new Vector3(scale, scale, 1f);
+		if (pointerRect != null)
+			pointerRect.localScale = new Vector3(scale, scale, 1f);
+	}
+
+	private float ResolveOverlayLocalZ()
+	{
+		float z = OverlayLocalZ;
+		if (targetCanvas == null)
+			return z;
+
+		HorizontalLayout3D[] layouts = targetCanvas.GetComponentsInChildren<HorizontalLayout3D>(false);
+		for (int i = 0; i < layouts.Length; i++)
+		{
+			HorizontalLayout3D layout = layouts[i];
+			if (layout == null || !layout.gameObject.activeInHierarchy)
+				continue;
+			float worldRadius = layout.radius * Mathf.Max(
+				Mathf.Abs(layout.transform.lossyScale.x),
+				Mathf.Abs(layout.transform.lossyScale.z));
+			Vector3 worldFront = layout.transform.position - targetCanvas.transform.forward * worldRadius;
+			float canvasZ = targetCanvas.transform.InverseTransformPoint(worldFront).z;
+			z = Mathf.Min(z, canvasZ - OverlaySkinZPad);
+		}
+		return z;
 	}
 
 	private static RectTransform CreatePointer(Transform parent)
@@ -545,7 +658,6 @@ public class TutorialController : MonoBehaviour
 		}
 
 		ShowGuidePlaque(GuideTitle(stage), GuideBody(stage));
-		PointAt(ResolveTargetRect());
 		RefreshSelectionCards();
 	}
 
@@ -563,10 +675,12 @@ public class TutorialController : MonoBehaviour
 			case StageEndContinue: return GameTexts.TutorialContinueTitle;
 			case StageCurrency: return GameTexts.TutorialCurrencyTitle;
 			case StageExchange: return GameTexts.TutorialExchangeTitle;
+			case StageValuteReturn: return GameTexts.TutorialValuteReturnTitle;
 			case StageSkins: return GameTexts.TutorialSkinsTitle;
 			case StageRotateWhite: return GameTexts.TutorialRotateTitle;
 			case StageBuyWhite: return GameTexts.TutorialBuyTitle;
 			case StageEquipWhite: return GameTexts.TutorialEquipTitle;
+			case StageSkinsReturn: return GameTexts.TutorialSkinsReturnTitle;
 			default: return "";
 		}
 	}
@@ -585,10 +699,12 @@ public class TutorialController : MonoBehaviour
 			case StageEndContinue: return GameTexts.TutorialContinueBody;
 			case StageCurrency: return GameTexts.TutorialCurrencyBody;
 			case StageExchange: return GameTexts.TutorialExchangeBody;
+			case StageValuteReturn: return GameTexts.TutorialValuteReturnBody;
 			case StageSkins: return GameTexts.TutorialSkinsBody;
 			case StageRotateWhite: return GameTexts.TutorialRotateBody;
 			case StageBuyWhite: return GameTexts.TutorialBuyBody;
 			case StageEquipWhite: return GameTexts.TutorialEquipBody;
+			case StageSkinsReturn: return GameTexts.TutorialSkinsReturnBody;
 			default: return "";
 		}
 	}
@@ -599,15 +715,12 @@ public class TutorialController : MonoBehaviour
 			return;
 		overlayRoot.gameObject.SetActive(true);
 		BringOverlayForward();
-		if (dimImage != null)
-		{
-			dimImage.color = new Color(0f, 0f, 0f, GuideDimAlpha);
-			dimImage.raycastTarget = false;
-		}
+		DisableRootOverlayImage();
+		HideMatchDim();
+		plaqueFollowsPointer = true;
 		if (cardRect != null)
 		{
 			cardRect.gameObject.SetActive(true);
-			LayoutPlaqueAwayFrom(ResolveTargetRect());
 			Image cardImage = cardRect.GetComponent<Image>();
 			if (cardImage != null)
 				cardImage.raycastTarget = true;
@@ -618,6 +731,8 @@ public class TutorialController : MonoBehaviour
 			titleText.text = title;
 		if (bodyText != null)
 			bodyText.text = body;
+		ApplyGuidePlaqueTextLayout();
+		PointAt(ResolveTargetRect());
 	}
 
 	private void ShowMatchCard(int card)
@@ -626,11 +741,9 @@ public class TutorialController : MonoBehaviour
 			return;
 		overlayRoot.gameObject.SetActive(true);
 		BringOverlayForward();
-		if (dimImage != null)
-		{
-			dimImage.color = new Color(0f, 0f, 0f, GuideDimAlpha);
-			dimImage.raycastTarget = true;
-		}
+		DisableRootOverlayImage();
+		ShowMatchDim();
+		plaqueFollowsPointer = false;
 		if (cardRect != null)
 		{
 			cardRect.gameObject.SetActive(true);
@@ -638,7 +751,7 @@ public class TutorialController : MonoBehaviour
 			cardRect.anchorMax = new Vector2(0.5f, 0.5f);
 			cardRect.pivot = new Vector2(0.5f, 0.5f);
 			cardRect.anchoredPosition = Vector2.zero;
-			cardRect.sizeDelta = new Vector2(GuidePlaqueWidth, GuidePlaqueHeight);
+			cardRect.sizeDelta = new Vector2(MatchCardWidth, MatchCardHeight);
 			Image cardImage = cardRect.GetComponent<Image>();
 			if (cardImage != null)
 				cardImage.raycastTarget = true;
@@ -666,40 +779,223 @@ public class TutorialController : MonoBehaviour
 		if (nextLabel != null)
 			nextLabel.text = GameTexts.TutorialNext;
 		ApplyMatchCardTexts(card);
-		PointAt(MatchCardPointer(card));
+		HidePointer();
 	}
 
-	private void LayoutPlaqueAwayFrom(RectTransform target)
+	private void DisableRootOverlayImage()
+	{
+		if (dimImage == null)
+			return;
+		dimImage.enabled = false;
+		dimImage.raycastTarget = false;
+		dimImage.color = new Color(0f, 0f, 0f, 0f);
+	}
+
+	private void ShowMatchDim()
+	{
+		if (matchDimRoot != null)
+		{
+			matchDimRoot.SetActive(true);
+			matchDimRoot.transform.SetAsFirstSibling();
+		}
+		if (matchDimImage != null)
+		{
+			matchDimImage.color = new Color(0f, 0f, 0f, GuideDimAlpha);
+			matchDimImage.raycastTarget = true;
+		}
+	}
+
+	private void HideMatchDim()
+	{
+		if (matchDimRoot != null)
+			matchDimRoot.SetActive(false);
+	}
+
+	private Vector2 FitGuidePlaqueSize()
+	{
+		float maxWidth = GuidePlaqueMaxWidth;
+		if (overlayRoot != null)
+			maxWidth = Mathf.Min(maxWidth, overlayRoot.rect.width - GuidePlaqueScreenMargin * 2f);
+		if (TryGetMenuSafeRect(out Rect safe))
+			maxWidth = Mathf.Min(maxWidth, Mathf.Max(GuidePlaqueMinWidth, safe.width - GuidePlaqueScreenMargin * 2f));
+		maxWidth = Mathf.Max(maxWidth, GuidePlaqueMinWidth);
+		float innerMax = Mathf.Max(80f, maxWidth - GuidePlaquePadX * 2f);
+
+		float titleW = MeasurePreferredWidth(titleText, innerMax);
+		float bodyW = MeasurePreferredWidth(bodyText, innerMax);
+		float inner = Mathf.Clamp(Mathf.Max(titleW, bodyW, 160f), 160f, innerMax);
+
+		float titleH = ApplyWrappedSize(titleText, inner);
+		float bodyH = ApplyWrappedSize(bodyText, inner);
+		float gap = titleH > 0f && bodyH > 0f ? GuideTextGap : 0f;
+
+		if (titleText != null)
+			titleText.rectTransform.anchoredPosition = new Vector2(0f, -GuidePlaquePadY);
+		if (bodyText != null)
+			bodyText.rectTransform.anchoredPosition = new Vector2(0f, -(GuidePlaquePadY + titleH + gap));
+
+		return new Vector2(inner + GuidePlaquePadX * 2f, GuidePlaquePadY + titleH + gap + bodyH + GuidePlaquePadY);
+	}
+
+	private static float MeasurePreferredWidth(Text text, float cap)
+	{
+		if (text == null || string.IsNullOrEmpty(text.text))
+			return 0f;
+		text.horizontalOverflow = HorizontalWrapMode.Overflow;
+		text.verticalOverflow = VerticalWrapMode.Overflow;
+		return Mathf.Min(text.preferredWidth, cap);
+	}
+
+	private static float ApplyWrappedSize(Text text, float inner)
+	{
+		if (text == null)
+			return 0f;
+		text.horizontalOverflow = HorizontalWrapMode.Wrap;
+		text.verticalOverflow = VerticalWrapMode.Overflow;
+		text.rectTransform.sizeDelta = new Vector2(inner, 8f);
+		float height = Mathf.Max(text.preferredHeight, text.fontSize);
+		text.rectTransform.sizeDelta = new Vector2(inner, height);
+		return height;
+	}
+
+	private void ApplyGuidePlaqueTextLayout()
 	{
 		if (cardRect == null)
 			return;
+		cardRect.sizeDelta = FitGuidePlaqueSize();
+	}
 
-		bool targetHigh = false;
-		if (target != null && targetCanvas != null)
+	private void LayoutPlaqueAtPointerTail(Vector2 tipDirLocal)
+	{
+		if (cardRect == null || pointerRect == null)
+			return;
+
+		cardRect.anchorMin = new Vector2(0.5f, 0.5f);
+		cardRect.anchorMax = new Vector2(0.5f, 0.5f);
+		cardRect.pivot = new Vector2(0.5f, 0.5f);
+		Vector2 size = FitGuidePlaqueSize();
+		cardRect.sizeDelta = size;
+		float scale = GuidePerspectiveScale();
+		ApplyGuidePerspectiveScale();
+		float along = (pointerRect.sizeDelta.y * 0.5f + PlaqueGap + size.y * 0.5f) * scale;
+		Vector2 pos = new Vector2(0f, pointerRect.anchoredPosition.y - tipDirLocal.y * along);
+		cardRect.anchoredPosition = ClampPlaquePos(pos, size * scale);
+		cardRect.SetAsLastSibling();
+		if (pointerRect != null)
+			pointerRect.SetAsLastSibling();
+	}
+
+	private Vector2 ClampPlaquePos(Vector2 pos, Vector2 size)
+	{
+		float halfW = size.x * 0.5f;
+		float halfH = size.y * 0.5f;
+		if (TryGetMenuSafeRect(out Rect safe))
 		{
-			Camera cam = targetCanvas.worldCamera;
-			Vector3[] corners = new Vector3[4];
-			target.GetWorldCorners(corners);
-			Vector3 mid = (corners[0] + corners[2]) * 0.5f;
-			Vector2 screen = RectTransformUtility.WorldToScreenPoint(cam, mid);
-			targetHigh = screen.y > Screen.height * 0.62f;
+			float minX = safe.xMin + halfW;
+			float maxX = safe.xMax - halfW;
+			float minY = safe.yMin + halfH;
+			float maxY = safe.yMax - halfH;
+			pos.x = minX > maxX ? safe.center.x : Mathf.Clamp(pos.x, minX, maxX);
+			pos.y = minY > maxY ? safe.center.y : Mathf.Clamp(pos.y, minY, maxY);
+			return pos;
 		}
 
-		cardRect.anchorMin = new Vector2(0.5f, targetHigh ? 0f : 1f);
-		cardRect.anchorMax = cardRect.anchorMin;
-		cardRect.pivot = new Vector2(0.5f, targetHigh ? 0f : 1f);
-		cardRect.anchoredPosition = new Vector2(0f, targetHigh ? 24f : -18f);
-		cardRect.sizeDelta = new Vector2(GuidePlaqueWidth, GuidePlaqueHeight);
-		if (titleText != null)
+		if (overlayRoot == null)
+			return pos;
+		float halfScreenW = overlayRoot.rect.width * 0.5f;
+		float halfScreenH = overlayRoot.rect.height * 0.5f;
+		float minOx = -halfScreenW + halfW + GuidePlaqueScreenMargin;
+		float maxOx = halfScreenW - halfW - GuidePlaqueScreenMargin;
+		float minOy = -halfScreenH + halfH + GuidePlaqueScreenMargin;
+		float maxOy = halfScreenH - halfH - GuidePlaqueScreenMargin;
+		pos.x = minOx > maxOx ? 0f : Mathf.Clamp(pos.x, minOx, maxOx);
+		pos.y = minOy > maxOy ? 0f : Mathf.Clamp(pos.y, minOy, maxOy);
+		return pos;
+	}
+
+	private bool TryGetMenuSafeRect(out Rect safe)
+	{
+		safe = default;
+		RectTransform title = FindMenuTitle();
+		Button play = FindButton("PlayButton");
+		Button maps = FindButton("Maps");
+		Button modes = FindButton("Modes");
+		if (title == null || play == null || maps == null || modes == null)
+			return false;
+
+		if (!TryGetOverlayAabb(title, out Vector2 titleMin, out _)
+			|| !TryGetOverlayAabb(play.GetComponent<RectTransform>(), out _, out Vector2 playMax)
+			|| !TryGetOverlayAabb(maps.GetComponent<RectTransform>(), out Vector2 mapsMin, out _)
+			|| !TryGetOverlayAabb(modes.GetComponent<RectTransform>(), out _, out Vector2 modesMax))
+			return false;
+
+		float xMin = mapsMin.x + GuidePlaqueScreenMargin;
+		float xMax = modesMax.x - GuidePlaqueScreenMargin;
+		float yMin = playMax.y + GuidePlaqueScreenMargin;
+		float yMax = titleMin.y - GuidePlaqueScreenMargin;
+		if (xMax <= xMin || yMax <= yMin)
+			return false;
+		safe = Rect.MinMaxRect(xMin, yMin, xMax, yMax);
+		return true;
+	}
+
+	private bool TryGetOverlayAabb(RectTransform target, out Vector2 min, out Vector2 max)
+	{
+		min = Vector2.zero;
+		max = Vector2.zero;
+		if (target == null || overlayRoot == null)
+			return false;
+
+		Vector3[] corners = new Vector3[4];
+		target.GetWorldCorners(corners);
+		min = max = WorldToOverlayLocal(corners[0]);
+		for (int i = 1; i < 4; i++)
 		{
-			titleText.rectTransform.anchoredPosition = new Vector2(0f, -36f);
-			titleText.rectTransform.sizeDelta = new Vector2(560f, 56f);
+			Vector2 point = WorldToOverlayLocal(corners[i]);
+			min = Vector2.Min(min, point);
+			max = Vector2.Max(max, point);
 		}
-		if (bodyText != null)
-		{
-			bodyText.rectTransform.anchoredPosition = new Vector2(0f, -120f);
-			bodyText.rectTransform.sizeDelta = new Vector2(560f, 140f);
-		}
+		return true;
+	}
+
+	private RectTransform FindMenuTitle()
+	{
+		MainMenuController menu = MainMenuController.Instance;
+		if (menu == null)
+			return null;
+		RectTransform mobile = TitleFromArray(menu.MainMenu);
+		RectTransform desktop = TitleFromArray(menu.DMainMenu);
+		if (IsUnderTargetCanvas(mobile))
+			return mobile;
+		if (IsUnderTargetCanvas(desktop))
+			return desktop;
+		return mobile != null ? mobile : desktop;
+	}
+
+	private static RectTransform TitleFromArray(Text[] texts)
+	{
+		if (texts == null || texts.Length == 0 || texts[0] == null)
+			return null;
+		return texts[0].rectTransform;
+	}
+
+	private bool IsUnderTargetCanvas(RectTransform rect)
+	{
+		if (rect == null || targetCanvas == null)
+			return false;
+		return rect.GetComponentInParent<Canvas>() == targetCanvas;
+	}
+
+	private Vector2 WorldToOverlayLocal(Vector3 world)
+	{
+		if (overlayRoot == null)
+			return Vector2.zero;
+		Camera cam = targetCanvas != null ? targetCanvas.worldCamera : null;
+		Vector2 screen = RectTransformUtility.WorldToScreenPoint(cam, world);
+		Vector2 local;
+		if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(overlayRoot, screen, cam, out local))
+			return Vector2.zero;
+		return local;
 	}
 
 	private void ApplyMatchCardTexts(int card)
@@ -721,15 +1017,6 @@ public class TutorialController : MonoBehaviour
 		}
 	}
 
-	private RectTransform MatchCardPointer(int card)
-	{
-		if (card == 0)
-			return FindJoystick();
-		if (card == 1)
-			return FindBoost();
-		return null;
-	}
-
 	private void SetCard(string title, string body)
 	{
 		if (titleText != null)
@@ -741,6 +1028,7 @@ public class TutorialController : MonoBehaviour
 	private void HideOverlay()
 	{
 		HidePointer();
+		HideMatchDim();
 		ShowCleaningLandmarks = false;
 		if (overlayRoot != null)
 			overlayRoot.gameObject.SetActive(false);
@@ -882,10 +1170,12 @@ public class TutorialController : MonoBehaviour
 			case StageEndContinue: return FindButton("ReturningToHome");
 			case StageCurrency: return FindActivator("PanelOfValute") ?? FindButton("Points");
 			case StageExchange: return FindButton("Exchange");
+			case StageValuteReturn: return FindButton("Return", "PanelOfValute");
 			case StageSkins: return FindActivator("PanelOfSkins") ?? FindButton("SkinsShop");
 			case StageRotateWhite: return FindRotateNextButton();
 			case StageBuyWhite: return FindButton("InnerValute");
 			case StageEquipWhite: return FindButton("Equiping");
+			case StageSkinsReturn: return FindButton("Return", "PanelOfSkins");
 			default: return null;
 		}
 	}
@@ -919,7 +1209,7 @@ public class TutorialController : MonoBehaviour
 			return field != null ? field.GetComponent<RectTransform>() : null;
 		}
 		if (YG2.saves.tutorialStage == StageMatchCards)
-			return MatchCardPointer(matchCard);
+			return null;
 		Button button = ResolveTargetButton();
 		return button != null ? button.GetComponent<RectTransform>() : null;
 	}
@@ -1176,53 +1466,40 @@ public class TutorialController : MonoBehaviour
 			pointerRect.SetAsLastSibling();
 			UpdatePointer();
 		}
+		else if (plaqueFollowsPointer && cardRect != null)
+		{
+			cardRect.anchorMin = new Vector2(0.5f, 0.5f);
+			cardRect.anchorMax = new Vector2(0.5f, 0.5f);
+			cardRect.pivot = new Vector2(0.5f, 0.5f);
+			Vector2 size = FitGuidePlaqueSize();
+			cardRect.sizeDelta = size;
+			float scale = GuidePerspectiveScale();
+			ApplyGuidePerspectiveScale();
+			cardRect.anchoredPosition = ClampPlaquePos(Vector2.zero, size * scale);
+		}
 	}
 
 	private void UpdatePointer()
 	{
-		if (pointerRect == null || pointerTarget == null)
+		if (pointerRect == null || pointerTarget == null || overlayRoot == null)
 			return;
 
 		Vector3[] corners = new Vector3[4];
 		pointerTarget.GetWorldCorners(corners);
 		Vector3 targetCenter = (corners[0] + corners[2]) * 0.5f;
-		Vector3 from = cardRect != null && cardRect.gameObject.activeSelf
-			? cardRect.position
-			: pointerRect.position;
-		Vector3 away = targetCenter - from;
-		away.z = 0f;
-		if (away.sqrMagnitude < 0.01f)
-			away = Vector3.up;
-		away.Normalize();
-		pointerRect.position = targetCenter - away * PointerOffset;
-		float angle = Mathf.Atan2(away.y, away.x) * Mathf.Rad2Deg - 90f;
+		Vector2 targetLocal = WorldToOverlayLocal(targetCenter);
+		Camera cam = targetCanvas != null ? targetCanvas.worldCamera : null;
+		Vector2 screen = RectTransformUtility.WorldToScreenPoint(cam, targetCenter);
+		bool targetHigh = screen.y > Screen.height * 0.5f;
+		Vector2 tipDir = targetHigh ? Vector2.up : Vector2.down;
+		pointerRect.anchorMin = new Vector2(0.5f, 0.5f);
+		pointerRect.anchorMax = new Vector2(0.5f, 0.5f);
+		pointerRect.pivot = new Vector2(0.5f, 0.5f);
+		pointerRect.anchoredPosition = targetLocal - tipDir * (PointerOffset * GuidePerspectiveScale());
+		float angle = Mathf.Atan2(tipDir.y, tipDir.x) * Mathf.Rad2Deg - 90f;
 		pointerRect.localEulerAngles = new Vector3(0f, 0f, angle);
-	}
-
-	private static RectTransform FindJoystick()
-	{
-		JoystickController[] sticks = UnityEngine.Object.FindObjectsByType<JoystickController>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
-		for (int i = 0; i < sticks.Length; i++)
-		{
-			if (sticks[i] != null && sticks[i].gameObject.activeInHierarchy)
-				return sticks[i].GetComponent<RectTransform>();
-		}
-		return null;
-	}
-
-	private RectTransform FindBoost()
-	{
-		Canvas canvas = targetCanvas != null ? targetCanvas : ActiveCanvas.Get();
-		if (canvas == null)
-			return null;
-		BoostButton[] buttons = canvas.GetComponentsInChildren<BoostButton>(true);
-		for (int i = 0; i < buttons.Length; i++)
-		{
-			if (buttons[i] != null && buttons[i].gameObject.activeInHierarchy)
-				return buttons[i].GetComponent<RectTransform>();
-		}
-		if (buttons.Length > 0 && buttons[0] != null)
-			return buttons[0].GetComponent<RectTransform>();
-		return null;
+		pointerRect.SetAsLastSibling();
+		if (plaqueFollowsPointer)
+			LayoutPlaqueAtPointerTail(tipDir);
 	}
 }
