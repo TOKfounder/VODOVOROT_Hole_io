@@ -180,12 +180,17 @@ public class EnemyMovement : MonoBehaviour
 		if (ModeManager.currentMode == ModeManager.Mode.TeamMode)
 		{
 			Transform holeTarget = FindClosestOpponentHole();
-			if (holeTarget != null)
-			{
-				SetTarget(holeTarget);
-				return true;
-			}
-			return false;
+			if (holeTarget == null)
+				return false;
+
+			float dx = holeTarget.position.x - transform.position.x;
+			float dz = holeTarget.position.z - transform.position.z;
+			float range = huntSightRadius * MatchRules.TeamHuntRangeFactor;
+			if (dx * dx + dz * dz > range * range)
+				return false;
+
+			SetTarget(holeTarget);
+			return true;
 		}
 
 		BlackHoleController player = BlackHoleController.Player;

@@ -8,6 +8,7 @@ public class BlackHoleController : HoleParent
 
 	public static BlackHoleController Instance => Player;
 	private bool eliminatedReported;
+	private float invulnerableUntil;
 
 	protected override void Awake()
 	{
@@ -23,6 +24,8 @@ public class BlackHoleController : HoleParent
 	}
 
 	protected override bool UseBirthIntro => true;
+
+	public bool IsInvulnerable => Time.time < invulnerableUntil;
 
 	public override void Start()
 	{
@@ -50,7 +53,7 @@ public class BlackHoleController : HoleParent
 
 	public void Eliminate()
 	{
-		if (eliminatedReported)
+		if (eliminatedReported || IsInvulnerable)
 			return;
 
 		eliminatedReported = true;
@@ -62,6 +65,26 @@ public class BlackHoleController : HoleParent
 			movement.enabled = false;
 
 		GamingManager.Instance?.OnPlayerEliminated();
+	}
+
+	public void ReviveFromAd()
+	{
+		eliminatedReported = false;
+		ClearConsumed();
+		enabled = true;
+		PinePie.SimpleJoystick.Examples.DemoScript.MovementScript movement =
+			GetComponent<PinePie.SimpleJoystick.Examples.DemoScript.MovementScript>();
+		if (movement != null)
+			movement.enabled = true;
+
+		int kept = Mathf.Max(
+			ScoreRequiredForLevel(Mathf.Max(0, currentLevel - 1)),
+			Mathf.RoundToInt(score * MatchRules.ReviveScoreKeep));
+		score = kept;
+		RefreshSizeFromScore();
+		invulnerableUntil = Time.time + MatchRules.ReviveInvulnSeconds;
+		HoleFeedback.ForPlayer?.SetMatchActive(true);
+		HoleFeedback.ForPlayer?.PlayLevelUp();
 	}
 
 	private void TryAbsorbActiveBoss()

@@ -42,6 +42,17 @@ public static class Tool
 		return dx * dx + dz * dz <= maxDist * maxDist;
 	}
 
+	public static bool IsHoleIoOverlap(Vector2 eaterCenter, float eaterRadius, Vector2 preyCenter, float preyRadius, float centerFactor)
+	{
+		if (eaterRadius <= 0.01f)
+			return false;
+
+		float dx = preyCenter.x - eaterCenter.x;
+		float dz = preyCenter.y - eaterCenter.y;
+		float maxDist = eaterRadius * Mathf.Clamp(centerFactor, 0.2f, 1.2f);
+		return dx * dx + dz * dz <= maxDist * maxDist;
+	}
+
 	public static bool CanFitForEnemies(Vector3 sizeA, Vector3 sizeB)
 	{
 		return CanFitFootprint(sizeA, sizeB);

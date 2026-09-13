@@ -12,12 +12,12 @@ public class HoleFeedback : MonoBehaviour
 
 	[SerializeField] private bool debugEmitOnStart;
 	[Header("Suction Ribbons")]
-	[SerializeField] private int ribbonCount = 4;
-	[SerializeField] private float ribbonOrbitSpeed = 0.38f;
-	[SerializeField] private float ribbonInwardSpeed = 0.22f;
-	[SerializeField] private float ribbonTrailTime = 0.26f;
-	[SerializeField] private float ribbonWidth = 0.055f;
-	[SerializeField] private float ribbonOuterMul = 1.15f;
+	[SerializeField] private int ribbonCount = 5;
+	[SerializeField] private float ribbonOrbitSpeed = 0.52f;
+	[SerializeField] private float ribbonInwardSpeed = 0.3f;
+	[SerializeField] private float ribbonTrailTime = 0.4f;
+	[SerializeField] private float ribbonWidth = 0.08f;
+	[SerializeField] private float ribbonOuterMul = 1.28f;
 	[SerializeField] private float ribbonRespawnRadius = 0.12f;
 
 	private HoleParent target;
@@ -157,8 +157,8 @@ public class HoleFeedback : MonoBehaviour
 		float vfx = SkinStats.VfxMultiplier;
 		Vector3 pos = GetHoleWorldPos();
 		Vector3 bottom = pos + Vector3.down * Mathf.Max(0.08f, radius * 0.18f);
-		EmitBurst(gulp, Mathf.RoundToInt(8 * vfx), bottom, WaterWhite, radius * 0.1f, 0.55f);
-		EmitBurst(gulp, Mathf.RoundToInt(6 * vfx), pos, Water, radius * 0.07f, 0.7f);
+		EmitBurst(gulp, Mathf.RoundToInt(14 * vfx), bottom, WaterWhite, radius * 0.12f, 0.7f);
+		EmitBurst(gulp, Mathf.RoundToInt(10 * vfx), pos, Water, radius * 0.09f, 0.85f);
 		HoleCameraFollow.Punch(0.28f);
 		AudioManager.PlayGulp();
 	}
@@ -177,8 +177,8 @@ public class HoleFeedback : MonoBehaviour
 		Color splash = Color.Lerp(burstColor, Water, 0.55f);
 		splash.a = Mathf.Clamp01(Mathf.Max(burstColor.a, 0.8f));
 		float radius = GetEffectRadius();
-		EmitBurst(gulp, 32, GetHoleWorldPos(), splash, radius * 0.16f, 2.1f);
-		EmitRing(radius * 1.12f, Water, 40);
+		EmitBurst(gulp, 48, GetHoleWorldPos(), splash, radius * 0.2f, 2.4f);
+		EmitRing(radius * 1.2f, Water, 52);
 		HoleCameraFollow.Punch(1.15f);
 		AudioManager.PlayAbsorb();
 	}
@@ -207,7 +207,7 @@ public class HoleFeedback : MonoBehaviour
 
 		int falling = target.nearbyFallingObjects != null ? target.nearbyFallingObjects.Count : 0;
 		var emission = suction.emission;
-		emission.rateOverTime = falling > 0 ? 16f : 7f;
+		emission.rateOverTime = falling > 0 ? 28f : 12f;
 	}
 
 	private void EnsureRibbons()

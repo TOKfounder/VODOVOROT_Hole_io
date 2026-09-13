@@ -136,7 +136,7 @@ namespace PinePie.SimpleJoystick.Examples.DemoScript
 				WithoutCamera.transform.rotation = Quaternion.Slerp(
 					WithoutCamera.transform.rotation,
 					targetRotation,
-					rotationSpeed * Time.deltaTime);
+					rotationSpeed * Time.fixedDeltaTime);
 			}
 
 			float k = 1f;

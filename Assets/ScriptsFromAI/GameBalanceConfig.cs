@@ -35,6 +35,7 @@ public class GameBalanceConfig : ScriptableObject
 	public MapConfig city;
 	public MapConfig garden;
 	public MapConfig castle;
+	public MapConfig industrial;
 
 	[Header("Suction")]
 	public float suctionMassMin = 0.4f;
@@ -48,6 +49,10 @@ public class GameBalanceConfig : ScriptableObject
 	[Range(0.2f, 1f)] public float suctionRimFactor = 0.55f;
 	public float suctionSqueezeSpeed = 1.2f;
 	public float suctionAttractRadius = 1.5f;
+
+	[Header("Hole absorb")]
+	public float absorbSizeMul = 1.15f;
+	public float absorbCenterFactor = 0.55f;
 
 	[Header("Defeat reward")]
 	public float defeatExp = 25f;
@@ -80,6 +85,8 @@ public class GameBalanceConfig : ScriptableObject
 			return garden != null ? garden : city;
 		if (mapId == 2)
 			return castle != null ? castle : city;
+		if (mapId == 3)
+			return industrial != null ? industrial : city;
 		return city;
 	}
 }

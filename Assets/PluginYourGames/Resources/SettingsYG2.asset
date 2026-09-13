@@ -192,6 +192,15 @@ MonoBehaviour:
       priceCurrencyCode: YAN
       currencyImageURL: 
       consumed: 1
+    - id: starter
+      title: Starter Pack
+      description: Product - StarterPack
+      imageURI: demo image
+      price: 79 YAN
+      priceValue: 79
+      priceCurrencyCode: YAN
+      currencyImageURL: 
+      consumed: 1
   RewardedAdv:
     skipInterAdvAfterReward: 0
     labelAdvSimLabel: 0

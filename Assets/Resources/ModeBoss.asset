@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2cbc6719b71744ffab1dda2bb5fa7bd, type: 3}
   m_Name: ModeBoss
   m_EditorClassIdentifier: 
-  duration: 300
-  overtimeDuration: 20
+  duration: 80
+  overtimeDuration: 10
   bossStartLevel: 2
-  bossFarmSeconds: 30
-  bossProbeSeconds: 120
+  bossFarmSeconds: 20
+  bossProbeSeconds: 25
   bossSpeedMul: 1
-  leftoverSecondsPerBonus: 20
-  leftoverSpriteHigh: 8
-  leftoverSpriteMid: 3
+  leftoverSecondsPerBonus: 10
+  leftoverSpriteHigh: 4
+  leftoverSpriteMid: 2
   huntSightRadius: 45
   huntPlayerSeconds: 10
   farmAfterHuntSeconds: 18

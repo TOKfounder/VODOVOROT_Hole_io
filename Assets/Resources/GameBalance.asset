@@ -70,6 +70,7 @@ MonoBehaviour:
   city: {fileID: 11400000, guid: 761d111c5f10f4c478c3c95c87f01d54, type: 2}
   garden: {fileID: 11400000, guid: 63a789c5c964041008dc620d61bec144, type: 2}
   castle: {fileID: 11400000, guid: 23ecb0ed57eee42a39caa76f91a04920, type: 2}
+  industrial: {fileID: 11400000, guid: e772485d51f8742dd902ecba19e86965, type: 2}
   suctionMassMin: 0.4
   suctionMassMax: 3
   suctionDrag: 0.8
@@ -81,6 +82,8 @@ MonoBehaviour:
   suctionRimFactor: 0.55
   suctionSqueezeSpeed: 1.2
   suctionAttractRadius: 1.5
+  absorbSizeMul: 1.15
+  absorbCenterFactor: 0.55
   defeatExp: 25
   defeatCoins: 12
   defeatDiamonds: 3

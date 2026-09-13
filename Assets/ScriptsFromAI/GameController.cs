@@ -183,13 +183,15 @@ public class GameController : MonoBehaviour
 		TutorialController.NotifyReturningToMenu();
 		YG2.saves.isGaming = false;
 		YG2.SaveProgress();
-		if (!skipAds && !YG2.nowAdsShow)
+		if (!skipAds && !YG2.nowAdsShow && !YG2.saves.adsRemoved)
 			YG2.InterstitialAdvShow();
 		SceneManager.LoadScene(0);
 	}
 
 	public void ChangeMain(int chosenObj)
 	{
+		if (materials == null || chosenObj < 0 || chosenObj >= materials.Length)
+			return;
 		if (chosenObj == 0)
 		{
 			mainToilet.SetActive(false);

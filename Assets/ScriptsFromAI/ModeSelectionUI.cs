@@ -16,6 +16,7 @@ public class ModeSelectionUI : MonoBehaviour
 	private Button mobileCityButton;
 	private Button mobileGardenButton;
 	private Button mobileCastleButton;
+	private Button mobileIndustrialButton;
 
 	private Button desktopBossButton;
 	private Button desktopTotalButton;
@@ -24,6 +25,7 @@ public class ModeSelectionUI : MonoBehaviour
 	private Button desktopCityButton;
 	private Button desktopGardenButton;
 	private Button desktopCastleButton;
+	private Button desktopIndustrialButton;
 
 	void Awake()
 	{
@@ -62,6 +64,7 @@ public class ModeSelectionUI : MonoBehaviour
 		mobileCityButton = null;
 		mobileGardenButton = null;
 		mobileCastleButton = null;
+		mobileIndustrialButton = null;
 		desktopBossButton = null;
 		desktopTotalButton = null;
 		desktopHuntingButton = null;
@@ -69,6 +72,7 @@ public class ModeSelectionUI : MonoBehaviour
 		desktopCityButton = null;
 		desktopGardenButton = null;
 		desktopCastleButton = null;
+		desktopIndustrialButton = null;
 
 		Button[] allButtons = FindObjectsByType<Button>(FindObjectsInactive.Include, FindObjectsSortMode.None);
 		for (int i = 0; i < allButtons.Length; i++)
@@ -102,6 +106,10 @@ public class ModeSelectionUI : MonoBehaviour
 				case "Castle":
 				case "Castle2":
 					Assign(ref mobileCastleButton, ref desktopCastleButton, button, isMobile);
+					break;
+				case "Industrial":
+				case "Industrial2":
+					Assign(ref mobileIndustrialButton, ref desktopIndustrialButton, button, isMobile);
 					break;
 			}
 		}
@@ -141,6 +149,8 @@ public class ModeSelectionUI : MonoBehaviour
 		BindMapButton(desktopGardenButton, 1);
 		BindMapButton(mobileCastleButton, 2);
 		BindMapButton(desktopCastleButton, 2);
+		BindMapButton(mobileIndustrialButton, 3);
+		BindMapButton(desktopIndustrialButton, 3);
 		HookModePanel(mobileBossButton);
 		HookModePanel(desktopBossButton);
 		HookModePanel(mobileTotalButton);
@@ -273,6 +283,8 @@ public class ModeSelectionUI : MonoBehaviour
 		ApplyMapCard(desktopGardenButton, mapId == 1, 1);
 		ApplyMapCard(mobileCastleButton, mapId == 2, 2);
 		ApplyMapCard(desktopCastleButton, mapId == 2, 2);
+		ApplyMapCard(mobileIndustrialButton, mapId == 3, 3);
+		ApplyMapCard(desktopIndustrialButton, mapId == 3, 3);
 		if (TutorialController.Instance != null)
 			TutorialController.Instance.RefreshLock();
 	}

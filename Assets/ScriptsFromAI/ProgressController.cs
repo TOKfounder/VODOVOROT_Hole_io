@@ -6,7 +6,7 @@ public class ProgressController : MonoBehaviour
 {
 	[SerializeField] private Image progressFill;
 	private const int ExpPerLevel = 100;
-	private const int MaxDisplayLevel = 10;
+	private const int MaxDisplayLevel = 6;
 
 	void OnEnable()
 	{

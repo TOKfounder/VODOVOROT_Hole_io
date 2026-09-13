@@ -15,10 +15,12 @@ public class ModeManager : MonoBehaviour
 	private const int CityMapId = 0;
 	private const int GardenMapId = 1;
 	private const int CastleMapId = 2;
+	private const int IndustrialMapId = 3;
 
 	public static bool IsGardenMap() => YG2.saves.selectedMapID == GardenMapId;
 	public static bool IsCityMap() => YG2.saves.selectedMapID == CityMapId;
 	public static bool IsCastleMap() => YG2.saves.selectedMapID == CastleMapId;
+	public static bool IsIndustrialMap() => YG2.saves.selectedMapID == IndustrialMapId;
 
 	public static EnemyController ActiveBoss { get; private set; }
 	public static readonly List<EnemyController> HuntingEnemies = new List<EnemyController>();
@@ -134,16 +136,11 @@ public class ModeManager : MonoBehaviour
 		if (map == null)
 			return;
 
-		if (map.playerEdgeInset > 0f)
-			playerEdgeInset = map.playerEdgeInset;
-		if (map.bossEdgeInset > 0f)
-			bossEdgeInset = map.bossEdgeInset;
-		if (map.huntingSpawnInset > 0f)
-			huntingSpawnInset = map.huntingSpawnInset;
-		if (map.huntingMinPlayerDistance > 0f)
-			huntingMinPlayerDistance = map.huntingMinPlayerDistance;
-		if (map.teamSideInset > 0f)
-			teamSideInset = map.teamSideInset;
+		playerEdgeInset = map.playerEdgeInset > 0f ? map.playerEdgeInset : MatchRules.PlayerEdgeInset;
+		bossEdgeInset = map.bossEdgeInset > 0f ? map.bossEdgeInset : MatchRules.BossEdgeInset;
+		huntingSpawnInset = map.huntingSpawnInset > 0f ? map.huntingSpawnInset : MatchRules.HuntingSpawnInset;
+		huntingMinPlayerDistance = map.huntingMinPlayerDistance > 0f ? map.huntingMinPlayerDistance : MatchRules.HuntingMinPlayerDistance;
+		teamSideInset = map.teamSideInset > 0f ? map.teamSideInset : MatchRules.TeamSideInset;
 	}
 
 	void Start()
@@ -227,7 +224,7 @@ public class ModeManager : MonoBehaviour
 		MapConfig map = GameBalance.Map(YG2.saves.selectedMapID);
 		if (map != null && map.huntingEnemyCount > 0)
 			return map.huntingEnemyCount;
-		return IsGardenMap() ? gardenHuntingEnemyCount : cityHuntingEnemyCount;
+		return MatchRules.HuntingEnemyCount;
 	}
 
 	private bool TryResolveHuntingSpawn(int index, int count, out Vector3 pos, out float yaw)
@@ -339,18 +336,23 @@ public class ModeManager : MonoBehaviour
 		if (playerHole != null)
 			playerHole.ApplyTeamVisuals(TeamBlue, allyTeamColor, null);
 
-		if (CountAssigned(teamSpawnPoints) >= 5)
+		int allyCount = GetTeamAllyCount();
+		int enemyCount = GetTeamEnemyCount();
+		int need = allyCount + enemyCount;
+
+		if (CountAssigned(teamSpawnPoints) >= need)
 		{
-			TryGetAssignedPoint(teamSpawnPoints, 0, out Vector3 a1, out float a1y);
-			TryGetAssignedPoint(teamSpawnPoints, 1, out Vector3 a2, out float a2y);
-			TryGetAssignedPoint(teamSpawnPoints, 2, out Vector3 e1, out float e1y);
-			TryGetAssignedPoint(teamSpawnPoints, 3, out Vector3 e2, out float e2y);
-			TryGetAssignedPoint(teamSpawnPoints, 4, out Vector3 e3, out float e3y);
-			SpawnTeamHole(a1, a1y, TeamBlue, allyTeamColor, ru ? "Союзник 1" : "Ally 1", TeamAllies);
-			SpawnTeamHole(a2, a2y, TeamBlue, allyTeamColor, ru ? "Союзник 2" : "Ally 2", TeamAllies);
-			SpawnTeamHole(e1, e1y, TeamRed, enemyTeamColor, ru ? "Враг 1" : "Enemy 1", TeamEnemies);
-			SpawnTeamHole(e2, e2y, TeamRed, enemyTeamColor, ru ? "Враг 2" : "Enemy 2", TeamEnemies);
-			SpawnTeamHole(e3, e3y, TeamRed, enemyTeamColor, ru ? "Враг 3" : "Enemy 3", TeamEnemies);
+			int index = 0;
+			for (int i = 0; i < allyCount; i++, index++)
+			{
+				TryGetAssignedPoint(teamSpawnPoints, index, out Vector3 pos, out float yaw);
+				SpawnTeamHole(pos, yaw, TeamBlue, allyTeamColor, ru ? $"Союзник {i + 1}" : $"Ally {i + 1}", TeamAllies);
+			}
+			for (int i = 0; i < enemyCount; i++, index++)
+			{
+				TryGetAssignedPoint(teamSpawnPoints, index, out Vector3 pos, out float yaw);
+				SpawnTeamHole(pos, yaw, TeamRed, enemyTeamColor, ru ? $"Враг {i + 1}" : $"Enemy {i + 1}", TeamEnemies);
+			}
 			TeamEnemySpawned = RemainingTeamEnemies;
 			return;
 		}
@@ -367,12 +369,34 @@ public class ModeManager : MonoBehaviour
 		float southYaw = spawnYaw;
 		float northYaw = spawnYaw + 180f;
 
-		SpawnTeamHole(new Vector3(leftX, height, southZ), southYaw, TeamBlue, allyTeamColor, ru ? "Союзник 1" : "Ally 1", TeamAllies);
-		SpawnTeamHole(new Vector3(rightX, height, southZ), southYaw, TeamBlue, allyTeamColor, ru ? "Союзник 2" : "Ally 2", TeamAllies);
-		SpawnTeamHole(new Vector3(leftX, height, northZ), northYaw, TeamRed, enemyTeamColor, ru ? "Враг 1" : "Enemy 1", TeamEnemies);
-		SpawnTeamHole(new Vector3(centerX, height, northZ), northYaw, TeamRed, enemyTeamColor, ru ? "Враг 2" : "Enemy 2", TeamEnemies);
-		SpawnTeamHole(new Vector3(rightX, height, northZ), northYaw, TeamRed, enemyTeamColor, ru ? "Враг 3" : "Enemy 3", TeamEnemies);
+		if (allyCount >= 1)
+			SpawnTeamHole(new Vector3(leftX, height, southZ), southYaw, TeamBlue, allyTeamColor, ru ? "Союзник 1" : "Ally 1", TeamAllies);
+		if (allyCount >= 2)
+			SpawnTeamHole(new Vector3(rightX, height, southZ), southYaw, TeamBlue, allyTeamColor, ru ? "Союзник 2" : "Ally 2", TeamAllies);
+
+		if (enemyCount >= 1)
+			SpawnTeamHole(new Vector3(leftX, height, northZ), northYaw, TeamRed, enemyTeamColor, ru ? "Враг 1" : "Enemy 1", TeamEnemies);
+		if (enemyCount >= 2)
+			SpawnTeamHole(new Vector3(rightX, height, northZ), northYaw, TeamRed, enemyTeamColor, ru ? "Враг 2" : "Enemy 2", TeamEnemies);
+		if (enemyCount >= 3)
+			SpawnTeamHole(new Vector3(centerX, height, northZ), northYaw, TeamRed, enemyTeamColor, ru ? "Враг 3" : "Enemy 3", TeamEnemies);
 		TeamEnemySpawned = RemainingTeamEnemies;
+	}
+
+	private static int GetTeamAllyCount()
+	{
+		MapConfig map = GameBalance.Map(YG2.saves.selectedMapID);
+		if (map != null && map.teamAllyCount > 0)
+			return map.teamAllyCount;
+		return MatchRules.TeamAllyCount;
+	}
+
+	private static int GetTeamEnemyCount()
+	{
+		MapConfig map = GameBalance.Map(YG2.saves.selectedMapID);
+		if (map != null && map.teamEnemyCount > 0)
+			return map.teamEnemyCount;
+		return MatchRules.TeamEnemyCount;
 	}
 
 	private void SpawnTeamHole(

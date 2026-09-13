@@ -68,6 +68,7 @@
     <Compile Include="Assets/UsedAssets/Fries and Seagull/City 03/Scene Props/Scripts/Setup/FriesManagerBRP.cs" />
     <Compile Include="Assets/UsedAssets/Fries and Seagull/City 03/Scene Props/Scripts/Inspector/KiiValuePair.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Other/PlatformEventsYG2.cs" />
+    <Compile Include="Assets/ScriptsFromAI/ReviveOffer.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/InfoYG/BasicSettings.cs" />
     <Compile Include="Assets/ScriptsFromAI/SkinStats.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/RewardedAdv/Scripts/RewardedAdv_projectSettings.cs" />
@@ -185,6 +186,7 @@
     <Compile Include="Assets/PluginYourGames/Modules/Payments/Scripts/Payments_lang.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Flags/Example/Scripts/FlagsExample.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/InfoYG/InfoYG_lang.cs" />
+    <Compile Include="Assets/ScriptsFromAI/StarterPackPopup.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/RewardedAdv/Scripts/RewardedAdv_yandexPlatform.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Platform/PlatformSettings_langs.cs" />
     <Compile Include="Assets/UsedAssets/Fries and Seagull/City 03/Scene Props/Scripts/FencePlacement.cs" />
@@ -218,6 +220,7 @@
     <Compile Include="Assets/PluginYourGames/Modules/Payments/Scripts/Payments_yandexPlatform.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Localization/Scripts/Lang_info.cs" />
     <Compile Include="Assets/UsedAssets/Fries and Seagull/City 03/Scene Props/Scripts/FenceData.cs" />
+    <Compile Include="Assets/ScriptsFromAI/MatchRules.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/EditorScr/Attributes/HeaderYGAttribute.cs" />
     <Compile Include="Assets/UsedAssets/Fries and Seagull/City 03/Scene Props/Scripts/Inspector/AnInspector.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/RewardedAdv/Scripts/RewardedAdv_optionalPlatform.cs" />

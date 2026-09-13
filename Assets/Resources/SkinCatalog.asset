@@ -25,16 +25,16 @@ MonoBehaviour:
     costDonate: 10000
   - speedMul: 1.08
     startMul: 1.05
-    necessaryLevel: 4
-    costCoins: 270
+    necessaryLevel: 2
+    costCoins: 150
     costDonate: 10
   - speedMul: 1.12
     startMul: 1.08
-    necessaryLevel: 7
-    costCoins: 800
+    necessaryLevel: 4
+    costCoins: 400
     costDonate: 40
   - speedMul: 1.15
     startMul: 1.1
-    necessaryLevel: 10
-    costCoins: 2400
+    necessaryLevel: 6
+    costCoins: 900
     costDonate: 100

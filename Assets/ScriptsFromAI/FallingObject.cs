@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -38,6 +39,7 @@ public class FallingObject : MonoBehaviour
 	private bool preparedMesh;
 	private BoxCollider suctionBox;
 	private static Collider cachedGround;
+	private static bool sceneHooked;
 	public static readonly List<FallingObject> Active = new List<FallingObject>(512);
 	private SuctionPhase suctionPhase;
 	private Vector3 gulpLiftPos;
@@ -54,8 +56,30 @@ public class FallingObject : MonoBehaviour
 	protected virtual bool NeedsRigidbodyAtStart => false;
 	protected virtual int ObjectLayer => 7;
 
+	[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+	private static void ResetStaticState()
+	{
+		cachedGround = null;
+		sceneHooked = false;
+		Active.Clear();
+	}
+
+	private static void EnsureSceneHook()
+	{
+		if (sceneHooked)
+			return;
+		sceneHooked = true;
+		SceneManager.sceneLoaded += OnSceneLoaded;
+	}
+
+	private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+	{
+		cachedGround = null;
+	}
+
 	void Awake()
 	{
+		EnsureSceneHook();
 		CacheEnabledCollider();
 		if (col == null)
 			col = gameObject.AddComponent<BoxCollider>();
@@ -569,6 +593,7 @@ public class FallingObject : MonoBehaviour
 		suctionPhase = SuctionPhase.Slide;
 		gulpArmed = false;
 		if (myCoroutine != null) StopCoroutine(myCoroutine);
+		gameObject.SetActive(false);
 	}
 
 	private void HideVisuals()

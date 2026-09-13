@@ -247,4 +247,49 @@ public static class ActiveCanvas
 		Canvas canvas = Get();
 		return canvas == null ? null : CreateText(canvas.transform, name, anchoredPosition, size);
 	}
+
+	public static Button CreateLabeledButton(Transform parent, string name, Vector2 pos, Vector2 size, Color color, string label)
+	{
+		if (parent == null)
+			return null;
+
+		Transform existing = parent.Find(name);
+		if (existing != null)
+		{
+			Text existingLabel = existing.GetComponentInChildren<Text>();
+			if (existingLabel != null)
+				existingLabel.text = label;
+			return existing.GetComponent<Button>();
+		}
+
+		GameObject go = new GameObject(name, typeof(RectTransform), typeof(Image), typeof(Button));
+		go.transform.SetParent(parent, false);
+		RectTransform rect = go.GetComponent<RectTransform>();
+		rect.anchorMin = new Vector2(0.5f, 0.5f);
+		rect.anchorMax = new Vector2(0.5f, 0.5f);
+		rect.pivot = new Vector2(0.5f, 0.5f);
+		rect.anchoredPosition = pos;
+		rect.sizeDelta = size;
+		Image image = go.GetComponent<Image>();
+		image.color = color;
+		image.raycastTarget = true;
+		Button button = go.GetComponent<Button>();
+
+		Text text = CreateText(go.transform, "Label", Vector2.zero, size);
+		if (text != null)
+		{
+			RectTransform labelRect = text.rectTransform;
+			labelRect.anchorMin = Vector2.zero;
+			labelRect.anchorMax = Vector2.one;
+			labelRect.offsetMin = Vector2.zero;
+			labelRect.offsetMax = Vector2.zero;
+			labelRect.anchoredPosition = Vector2.zero;
+			text.fontSize = 24;
+			text.raycastTarget = false;
+			text.text = label;
+		}
+
+		UiClickFeedback.EnsureOn(button);
+		return button;
+	}
 }

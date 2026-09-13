@@ -72,6 +72,9 @@ public class AudioManager : MonoBehaviour
 
 	private static AudioClip LoadMatchClip(string fileName)
 	{
+		AudioClip clip = Resources.Load<AudioClip>("Sounds/" + fileName);
+		if (clip != null)
+			return clip;
 #if UNITY_EDITOR
 		return UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>($"Assets/SoundsAndMelodies/{fileName}.wav");
 #else

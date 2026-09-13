@@ -53,6 +53,7 @@ public class HoleParent : MonoBehaviour
 	public bool IsBirthIntro => birthIntro;
 	private float radius;
 	private float radiusPerScale;
+	private Renderer holeRenderer;
 
 	protected virtual bool UseBirthIntro => false;
 
@@ -69,6 +70,8 @@ public class HoleParent : MonoBehaviour
 	protected virtual void Awake()
 	{
 		ApplyBalanceConfig();
+		if (hole != null)
+			holeRenderer = hole.GetComponent<Renderer>();
 		if (platform != null)
 			GamingManager.allPlatforms.Add(platform);
 	}
@@ -216,6 +219,11 @@ public class HoleParent : MonoBehaviour
 		IsConsumed = true;
 	}
 
+	public void ClearConsumed()
+	{
+		IsConsumed = false;
+	}
+
 	public int GetCurrentLevel(float[] required)
 	{
 		for (int i = required.Length - 1; i >= 0; i--)
@@ -333,12 +341,13 @@ public class HoleParent : MonoBehaviour
 		if (hole == null)
 			return Vector3.zero;
 
-		Renderer renderer = hole.GetComponent<Renderer>();
-		if (renderer == null)
+		if (holeRenderer == null)
+			holeRenderer = hole.GetComponent<Renderer>();
+		if (holeRenderer == null)
 			return Vector3.zero;
 
 		Bounds totalBound = new Bounds(hole.transform.position, Vector3.zero);
-		totalBound.Encapsulate(renderer.bounds);
+		totalBound.Encapsulate(holeRenderer.bounds);
 		return totalBound.size;
 	}
 
@@ -416,15 +425,21 @@ public class HoleParent : MonoBehaviour
 		if (other == null || other.IsConsumed || IsConsumed || other.size == Vector3.zero || size == Vector3.zero)
 			return false;
 
+		if (other is BlackHoleController player && player.IsInvulnerable)
+			return false;
+
 		if (ModeManager.currentMode == ModeManager.Mode.TeamMode && !IsOpponent(other))
 			return false;
 
-		if (!Tool.CanAbsorbHoleSize(other.size, size))
-			return false;
-
+		float myRadius = GetStableHoleRadius();
+		float theirRadius = other.GetStableHoleRadius();
+		float sizeMul = GameBalance.Current != null && GameBalance.Current.absorbSizeMul > 0f
+			? GameBalance.Current.absorbSizeMul
+			: MatchRules.AbsorbSizeMul;
+		if (myRadius >= theirRadius * sizeMul)
+			return true;
 		if (currentLevel > other.currentLevel)
 			return true;
-
 		return currentLevel == other.currentLevel && score > other.score;
 	}
 
@@ -435,7 +450,10 @@ public class HoleParent : MonoBehaviour
 
 		Vector2 myCenter = new Vector2(transform.position.x, transform.position.z);
 		Vector2 otherCenter = new Vector2(other.transform.position.x, other.transform.position.z);
-		return Tool.IsCircleFullyInside(myCenter, radius, otherCenter, other.GetHoleRadius());
+		float centerFactor = GameBalance.Current != null && GameBalance.Current.absorbCenterFactor > 0f
+			? GameBalance.Current.absorbCenterFactor
+			: MatchRules.AbsorbCenterFactor;
+		return Tool.IsHoleIoOverlap(myCenter, GetStableHoleRadius(), otherCenter, other.GetStableHoleRadius(), centerFactor);
 	}
 
 	public static void ResetStaticMatchState()

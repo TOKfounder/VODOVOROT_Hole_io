@@ -443,6 +443,7 @@ public class TutorialController : MonoBehaviour
 		UnlockAll();
 		HideOverlay();
 		RefreshSelectionCards();
+		StarterPackPopup.TryShow();
 	}
 
 	private static void SetStage(int stage)

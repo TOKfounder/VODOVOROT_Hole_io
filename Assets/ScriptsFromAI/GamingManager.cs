@@ -37,17 +37,17 @@ public class GamingManager : MonoBehaviour
 	[SerializeField] private Text Dpercent;
 
 	[Header("Total Cleaning")]
-	[SerializeField] private float totalCleaningDuration = 180f;
+	[SerializeField] private float totalCleaningDuration = 75f;
 
 	[Header("Boss Mode")]
-	[SerializeField] private float bossModeDuration = 300f;
-	[SerializeField] private float bossOvertimeDuration = 20f;
+	[SerializeField] private float bossModeDuration = 80f;
+	[SerializeField] private float bossOvertimeDuration = 10f;
 
 	[Header("Hunting")]
-	[SerializeField] private float huntingModeDuration = 180f;
+	[SerializeField] private float huntingModeDuration = 75f;
 
 	[Header("Team Mode")]
-	[SerializeField] private float teamModeDuration = 180f;
+	[SerializeField] private float teamModeDuration = 75f;
 
 	[SerializeField] private Text totalCleaningTimerText;
 
@@ -79,6 +79,9 @@ public class GamingManager : MonoBehaviour
 	private bool bossOvertimeArmed;
 	private float bossEndTime;
 	private int progressScore;
+	private bool reviveUsed;
+	private bool revivePending;
+	private ShadowQuality shadowsBeforeMatch;
 
 	public bool TeamDraw { get; private set; }
 	public bool BossDraw { get; private set; }
@@ -131,7 +134,7 @@ public class GamingManager : MonoBehaviour
 	void Start()
 	{
 		ApplyBalanceConfig();
-		// WebGL: отключаем тени глобально вместо обхода всех MeshRenderer на огромной карте
+		shadowsBeforeMatch = QualitySettings.shadows;
 		QualitySettings.shadows = ShadowQuality.Disable;
 
 		once = true;
@@ -144,6 +147,8 @@ public class GamingManager : MonoBehaviour
 		huntingComplete = false;
 		teamVictory = false;
 		playerEliminated = false;
+		reviveUsed = false;
+		revivePending = false;
 		TeamDraw = false;
 		bossOvertimeArmed = false;
 		bossEndTime = bossModeDuration;
@@ -196,6 +201,13 @@ public class GamingManager : MonoBehaviour
 		NudgeBoostButton();
 		UiClickFeedback.EnsureOnScene();
 		TutorialController.EnsureMatch();
+	}
+
+	void OnDestroy()
+	{
+		QualitySettings.shadows = shadowsBeforeMatch;
+		if (Instance == this)
+			Instance = null;
 	}
 
 	private void NudgeBoostButton()
@@ -321,7 +333,7 @@ public class GamingManager : MonoBehaviour
 
 		UpdateBossClock();
 
-		bool shouldEnd = once && (
+		bool shouldEnd = once && !revivePending && (
 			(isTotalCleaningMode && (
 				GetCapturePercent() >= 1f
 				|| timer >= totalCleaningDuration - 0.01f))
@@ -343,7 +355,7 @@ public class GamingManager : MonoBehaviour
 		float fill = Mathf.Clamp01(perc);
 		if (isTotalCleaningMode)
 		{
-			string percentText = $"{(int)(fill * 100)}%";
+			string percentText = $"{Mathf.RoundToInt(fill * 100f)}%";
 			if (YG2.envir.isMobile)
 			{
 				if (Mflazhok != null) Mflazhok.fillAmount = fill;
@@ -465,9 +477,45 @@ public class GamingManager : MonoBehaviour
 
 	public void OnPlayerEliminated()
 	{
-		if (playerEliminated)
+		if (playerEliminated || revivePending || HasEnded)
 			return;
 
+		if (!reviveUsed && TutorialController.IsDone)
+		{
+			revivePending = true;
+			SetMatchClockFrozen(true);
+			MatchPause.Pause();
+			ReviveOffer offer = ReviveOffer.Ensure();
+			if (offer != null)
+			{
+				offer.Show();
+				return;
+			}
+			revivePending = false;
+		}
+
+		FinishElimination();
+	}
+
+	public void OnReviveAccepted()
+	{
+		reviveUsed = true;
+		revivePending = false;
+		BlackHoleController.Player?.ReviveFromAd();
+		SetMatchClockFrozen(false);
+		MatchPause.Resume();
+	}
+
+	public void OnReviveDeclined()
+	{
+		revivePending = false;
+		FinishElimination();
+	}
+
+	private void FinishElimination()
+	{
+		if (playerEliminated)
+			return;
 		playerEliminated = true;
 		once = false;
 		ShowEndPanel();
@@ -506,6 +554,10 @@ public class GamingManager : MonoBehaviour
 		if (hud != null)
 			hud.SetVisible(false);
 
+		ReviveOffer existingRevive = FindAnyObjectByType<ReviveOffer>();
+		if (existingRevive != null)
+			existingRevive.Hide();
+
 		endPanelRaised = true;
 
 		if (YG2.envir.isMobile)
@@ -519,25 +571,27 @@ public class GamingManager : MonoBehaviour
 	private void ApplyBalanceConfig()
 	{
 		ModeConfig cleaning = GameBalance.Mode(ModeManager.Mode.TotalCleaning);
-		if (cleaning != null && cleaning.duration > 0f)
-			totalCleaningDuration = cleaning.duration;
+		totalCleaningDuration = cleaning != null && cleaning.duration > 0f
+			? cleaning.duration
+			: MatchRules.ShortMatchSeconds;
 
 		ModeConfig boss = GameBalance.Mode(ModeManager.Mode.Boss);
-		if (boss != null)
-		{
-			if (boss.duration > 0f)
-				bossModeDuration = boss.duration;
-			if (boss.overtimeDuration > 0f)
-				bossOvertimeDuration = boss.overtimeDuration;
-		}
+		bossModeDuration = boss != null && boss.duration > 0f
+			? boss.duration
+			: MatchRules.BossMatchSeconds;
+		bossOvertimeDuration = boss != null && boss.overtimeDuration > 0f
+			? boss.overtimeDuration
+			: MatchRules.BossOvertimeSeconds;
 
 		ModeConfig hunting = GameBalance.Mode(ModeManager.Mode.Hunting);
-		if (hunting != null && hunting.duration > 0f)
-			huntingModeDuration = hunting.duration;
+		huntingModeDuration = hunting != null && hunting.duration > 0f
+			? hunting.duration
+			: MatchRules.ShortMatchSeconds;
 
 		ModeConfig team = GameBalance.Mode(ModeManager.Mode.TeamMode);
-		if (team != null && team.duration > 0f)
-			teamModeDuration = team.duration;
+		teamModeDuration = team != null && team.duration > 0f
+			? team.duration
+			: MatchRules.ShortMatchSeconds;
 	}
 
 	private static int GetPlayerScore()

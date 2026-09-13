@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/scene/MedievalCastle.unity
     guid: 2b3e34ee345754949ac09bceea98777c
+  - enabled: 1
+    path: Assets/scene/Industrial.unity
+    guid: c368c914e26dd4ac2a75c682f28d3960
   m_configObjects: {}

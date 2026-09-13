@@ -26,5 +26,6 @@ namespace YG
 		public bool tutorialMenuSeen = false;
 		public bool tutorialMatchSeen = false;
 		public int tutorialStage = 0;
+		public bool adsRemoved = false;
 	}
 }

@@ -10,13 +10,15 @@ public class MapAbsorbableSetup : MonoBehaviour
 	private static readonly string[] GroundParts =
 	{
 		"Grass Tile", "Natures_Grass Tile", "Asphalt", "Sidewalk", "Pavement",
-		"Street", "Crosswalk", "Curb", " Road", "Road "
+		"Street", "Crosswalk", "Curb", " Road", "Road ",
+		"_b_floor", "_s_floor", "WholeFloor"
 	};
 
 	private static readonly string[] DecorParts =
 	{
 		"Window", "Lamp", "Glow", "Torch",
-		"Point Light", "Spot Light", "Directional Light", "Area Light"
+		"Point Light", "Spot Light", "Directional Light", "Area Light",
+		"Particles", "Smoke"
 	};
 
 	void Awake()
@@ -51,6 +53,8 @@ public class MapAbsorbableSetup : MonoBehaviour
 	private static bool IsGround(string name)
 	{
 		if (name.Contains("Tile") && (name.Contains("Grass") || name.Contains("Road") || name.Contains("Asphalt")))
+			return true;
+		if (name.Contains("floor") || name.Contains("Floor"))
 			return true;
 		for (int i = 0; i < GroundParts.Length; i++)
 		{

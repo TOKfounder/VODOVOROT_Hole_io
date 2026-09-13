@@ -7,7 +7,7 @@
         false,
         false
     ],
-    "idSave": 206454,
+    "idSave": 206475,
     "isFirst": false,
     "langRu": true,
     "score": 0,
@@ -24,18 +24,19 @@
     "goldCoins": 455,
     "isNickGiven": true,
     "nickName": "ууу",
-    "selectedMapID": 2,
+    "selectedMapID": 3,
     "diamonds": 10,
-    "isGaming": true,
+    "isGaming": false,
     "soundValue": 0.5,
     "musicValue": 0.5,
     "done": true,
     "languageChosenByPlayer": true,
-    "chosenMode": 2,
+    "chosenMode": 0,
     "rewardedHandLeft": 2,
     "rewardedBagLeft": 5,
     "rewardedBoxLeft": 10,
     "tutorialMenuSeen": true,
     "tutorialMatchSeen": true,
-    "tutorialStage": 19
+    "tutorialStage": 19,
+    "adsRemoved": false
 }

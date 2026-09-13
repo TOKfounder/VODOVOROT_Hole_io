@@ -4,7 +4,7 @@ using UnityEngine;
 public class ModeConfig : ScriptableObject
 {
 	[Header("Timer")]
-	public float duration = 180f;
+	public float duration = 75f;
 	public float overtimeDuration;
 
 	[Header("Boss")]

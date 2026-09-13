@@ -55,5 +55,6 @@ public class LanguageManager : MonoBehaviour
 			GameController.Instance.UpdateAllUI();
 		if (TutorialController.Instance != null)
 			TutorialController.Instance.RefreshTexts();
+		StarterPackPopup.RefreshIfOpen();
 	}
 }

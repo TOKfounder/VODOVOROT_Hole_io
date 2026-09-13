@@ -1,3 +1,4 @@
+using UnityEngine;
 using YG;
 
 public static class GameTexts
@@ -169,9 +170,92 @@ public static class GameTexts
 		: "Close the skin shop.";
 
 	public static string TutorialCleaningRulesTitle => Ru ? "Зачистка карты" : "Map cleaning";
-	public static string TutorialCleaningRulesBody => Ru
-		? "Таймер 3:00. Съешь крупные объекты — процент растёт. Дойди до 100% или дождись конца времени."
-		: "Timer 3:00. Eat the large objects to raise the percent. Reach 100% or wait until time runs out.";
+	public static string TutorialCleaningRulesBody
+	{
+		get
+		{
+			string clock = FormatClock(CleaningSeconds);
+			return Ru
+				? $"Таймер {clock}. Съешь крупные объекты — процент растёт. Стрелки ведут к ним. Дойди до 100% или дождись конца времени."
+				: $"Timer {clock}. Eat the large objects to raise the percent. Arrows point to them. Reach 100% or wait until time runs out.";
+		}
+	}
+
+	public static string FormatClock(float seconds)
+	{
+		int total = Mathf.Max(0, Mathf.RoundToInt(seconds));
+		return $"{total / 60}:{total % 60:00}";
+	}
+
+	private static float CleaningSeconds
+	{
+		get
+		{
+			ModeConfig cleaning = GameBalance.Mode(ModeManager.Mode.TotalCleaning);
+			return cleaning != null && cleaning.duration > 0f ? cleaning.duration : MatchRules.ShortMatchSeconds;
+		}
+	}
+
+	public static string SkinShortName(int index)
+	{
+		switch (index)
+		{
+			case 1: return Ru ? "Белый друг" : "White Friend";
+			case 2: return Ru ? "Золотой унитаз" : "Golden bowl";
+			case 3: return Ru ? "Трон Кощея" : "Scrag's Throne";
+			case 4: return Ru ? "Туалет Бога" : "God's Toilet";
+			default: return Ru ? "Красный тазик" : "Red basin";
+		}
+	}
+
+	public static string NextSkinHint(int index, int coinsLeft, int levelNeed)
+	{
+		string name = SkinShortName(index);
+		if (levelNeed > 0)
+			return Ru
+				? $"Дальше: {name}. Нужен {levelNeed} ур."
+				: $"Next: {name}. Need level {levelNeed}.";
+		return Ru
+			? $"Дальше: {name}. Ещё {coinsLeft} монет."
+			: $"Next: {name}. {coinsLeft} coins left.";
+	}
+
+	public static string ReviveTitle => Ru ? "Вас спустили!" : "You got flushed!";
+	public static string ReviveBody => Ru
+		? "Одно возрождение за рекламу. Дыра станет чуть меньше."
+		: "One revive for a short ad. The hole will shrink a bit.";
+	public static string ReviveWatch => Ru ? "Возродиться" : "Revive";
+	public static string ReviveGiveUp => Ru ? "Сдаться" : "Give up";
+
+	public static string StarterPackTitle => Ru ? "Стартовый пак" : "Starter pack";
+	public static string StarterPackBody => Ru
+		? $"Алмазы {MatchRules.StarterPackDiamonds}, монеты {MatchRules.StarterPackCoins} и навсегда без межстраничной рекламы."
+		: $"{MatchRules.StarterPackDiamonds} diamonds, {MatchRules.StarterPackCoins} coins, and no interstitial ads forever.";
+	public static string StarterPackBuy => Ru ? "Забрать выгоду" : "Get the deal";
+	public static string StarterPackLater => Ru ? "Позже" : "Later";
+	public static string StarterPackWas => Ru
+		? $"было {MatchRules.StarterPackWasPrice}"
+		: $"was {MatchRules.StarterPackWasPrice}";
+	public static string StarterPackNow => MatchRules.StarterPackPrice;
+
+	public static string AdsRemovedLabel => Ru ? "Реклама между играми выключена" : "Interstitials are off";
+
+	public static string ModeCleaningTitle => Ru ? "Тотальная Зачистка" : "Total Cleaning";
+	public static string ModeCleaningBody => Ru
+		? $"Крупные объекты за {FormatClock(CleaningSeconds)}. Мелочь можно есть, но в 100% она не входит. Стрелки ведут к крупным."
+		: $"Eat the large objects in {FormatClock(CleaningSeconds)}. Small props are optional and do not count toward 100%. Arrows point to the big ones.";
+	public static string ModeBossTitle => Ru ? "Босс Туалетов" : "The Toilet Boss";
+	public static string ModeBossBody => Ru
+		? "Перегони босса и наезжай, если ты заметно крупнее. Или будь крупнее к сирене."
+		: "Overtake the boss and ram him when you are clearly bigger. Or be bigger when the siren hits.";
+	public static string ModeHuntingTitle => Ru ? "Охота" : "Hunting";
+	public static string ModeHuntingBody => Ru
+		? "Три врага. Мелкие убегают, крупные идут в тебя. Награда за каждого, джекпот за всех."
+		: "Three enemies. Small ones flee, big ones chase you. Reward per kill, jackpot for all.";
+	public static string ModeTeamTitle => Ru ? "Командный" : "Teamwork";
+	public static string ModeTeamBody => Ru
+		? "2 на 2. Победа по сумме очков. Союзник сначала ест карту, потом чужие дыры."
+		: "2 vs 2. Win by absorbed score. Your ally farms first, then hunts enemy holes.";
 
 	public static string TutorialMoveTitle => Ru ? "Как двигаемся" : "How to move";
 	public static string TutorialMoveBody => Ru

@@ -28,8 +28,8 @@ public class HorizontalLayout3D : MonoBehaviour
 
 	public int ChosenIndex => chosenObj;
 
-	private int[] necessaryLevels = {0, 1, 4, 7, 10 };
-	private int[] costsForCoins = { 0, 20, 270, 800, 2400 };
+	private int[] necessaryLevels = { 0, 1, 2, 4, 6 };
+	private int[] costsForCoins = { 0, 20, 150, 400, 900 };
 	private int[] costsForDonate = { 0, 10000, 10, 40, 100 };
 
 	void Awake()
@@ -113,7 +113,7 @@ public class HorizontalLayout3D : MonoBehaviour
 		if (isRotating) return;
 		initialAngle = startAngle;
 		// int count = transform.childCount;
-		int count = 5;
+		int count = Mathf.Max(1, transform.childCount);
 		float val = 360f / count;
 		float angle = right ? -val : val;
 		chosenObj = right ? chosenObj + 1 : chosenObj + count - 1;
@@ -142,6 +142,10 @@ public class HorizontalLayout3D : MonoBehaviour
 	}
 	public void UpdateForChosen()
 	{
+		if (necessaryLevels != null && necessaryLevels.Length > 0)
+			chosenObj = Mathf.Clamp(chosenObj, 0, necessaryLevels.Length - 1);
+		if (YG2.saves.massiveOfObtaining == null || chosenObj >= YG2.saves.massiveOfObtaining.Length)
+			return;
 		if (YG2.saves.massiveOfObtaining[chosenObj] == 0)
 		{
 			buttonOfBuying.SetActive(true);
@@ -224,30 +228,37 @@ public class HorizontalLayout3D : MonoBehaviour
 	{
 		if (id != 2)
 		{
-			MainMenuController.Instance.fart.Play();
+			if (MainMenuController.Instance != null)
+				MainMenuController.Instance.fart.Play();
 			return;
 		}
 
+		BuyCurrentForCoins();
+	}
+
+	public void BuyCurrentForCoins()
+	{
 		if (!IsSkinUnlocked(chosenObj))
 		{
-			MainMenuController.Instance.fart.Play();
+			if (MainMenuController.Instance != null)
+				MainMenuController.Instance.fart.Play();
 			return;
 		}
 
-		bool isBought = false;
-		if (YG2.saves.goldCoins >= costsForCoins[chosenObj])
+		int cost = chosenObj >= 0 && chosenObj < costsForCoins.Length ? costsForCoins[chosenObj] : 0;
+		if (YG2.saves.goldCoins < cost)
 		{
-			isBought = true;
-			YG2.saves.goldCoins -= costsForCoins[chosenObj];
+			if (MainMenuController.Instance != null)
+				MainMenuController.Instance.fart.Play();
+			return;
 		}
-		else
-			MainMenuController.Instance.fart.Play();
 
-		if (isBought)
+		YG2.saves.goldCoins -= cost;
+		if (YG2.saves.massiveOfObtaining != null && chosenObj < YG2.saves.massiveOfObtaining.Length)
 			YG2.saves.massiveOfObtaining[chosenObj] = 1;
 		YG2.SaveProgress();
 		UpdateForChosen();
-		MainMenuController.Instance.UpdateTriggers();
+		MainMenuController.Instance?.UpdateTriggers();
 	}
 	
 	public void EquipMaterial()

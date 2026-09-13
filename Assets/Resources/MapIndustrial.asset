@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c3289f093b9e49679c5eff0f0f7e35e, type: 3}
-  m_Name: MapCastle
+  m_Name: MapIndustrial
   m_EditorClassIdentifier: 
-  huntingEnemyCount: 3
+  huntingEnemyCount: 5
   teamAllyCount: 1
   teamEnemyCount: 2
   spawnHeight: 0.2
-  playerEdgeInset: 8
-  bossEdgeInset: 8
-  huntingSpawnInset: 12
-  huntingMinPlayerDistance: 14
-  teamSideInset: 12
+  playerEdgeInset: 12
+  bossEdgeInset: 12
+  huntingSpawnInset: 18
+  huntingMinPlayerDistance: 22
+  teamSideInset: 18

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2cbc6719b71744ffab1dda2bb5fa7bd, type: 3}
   m_Name: ModeCleaning
   m_EditorClassIdentifier: 
-  duration: 180
+  duration: 75
   overtimeDuration: 0
   bossStartLevel: 2
-  bossFarmSeconds: 30
-  bossProbeSeconds: 120
+  bossFarmSeconds: 20
+  bossProbeSeconds: 25
   bossSpeedMul: 0.56
   leftoverSecondsPerBonus: 20
   leftoverSpriteHigh: 8

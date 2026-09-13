@@ -12,6 +12,8 @@ public class MatchHud : MonoBehaviour
 	private static readonly Color BossDangerColor = new Color(0.08f, 0.08f, 0.1f, 0.95f);
 	private static readonly Color EnemyArrowColor = new Color(1f, 0.35f, 0.25f, 0.9f);
 	private static readonly Color AllyArrowColor = new Color(0.3f, 0.9f, 1f, 0.85f);
+	private static readonly Color FoodArrowColor = new Color(1f, 0.85f, 0.25f, 0.88f);
+	private readonly List<FallingObject> largeFoodBuffer = new List<FallingObject>(32);
 
 	[SerializeField] [Tooltip("Стрелка гаснет, когда цель ближе этого радиуса по XZ")]
 	[Min(1f)] private float arrowHideRadius = 20f;
@@ -204,7 +206,8 @@ public class MatchHud : MonoBehaviour
 
 		if (ModeManager.currentMode == ModeManager.Mode.TotalCleaning)
 		{
-			HideUnusedArrows(0);
+			int shown = PlaceLargeFoodArrows();
+			HideUnusedArrows(shown);
 			return;
 		}
 
@@ -228,7 +231,7 @@ public class MatchHud : MonoBehaviour
 		bg.color = new Color(0.05f, 0.07f, 0.1f, 0.62f);
 		bg.raycastTarget = false;
 
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 12; i++)
 		{
 			GameObject dotGo = new GameObject("MinimapDot_" + i, typeof(RectTransform), typeof(Image));
 			dotGo.transform.SetParent(minimapRoot, false);
@@ -248,11 +251,8 @@ public class MatchHud : MonoBehaviour
 		if (minimapRoot == null || GamingManager.Instance == null)
 			return;
 
-		bool showMap = ModeManager.currentMode != ModeManager.Mode.TotalCleaning;
-		if (minimapRoot.gameObject.activeSelf != showMap)
-			minimapRoot.gameObject.SetActive(showMap);
-		if (!showMap)
-			return;
+		if (!minimapRoot.gameObject.activeSelf)
+			minimapRoot.gameObject.SetActive(true);
 
 		int used = 0;
 		used = PlaceMinimapDot(used, BlackHoleController.Player != null ? BlackHoleController.Player.transform : null, Color.white, 12f);
@@ -265,6 +265,8 @@ public class MatchHud : MonoBehaviour
 			used = PlaceMinimapDots(used, ModeManager.TeamAllies, AllyArrowColor, 9f);
 			used = PlaceMinimapDots(used, ModeManager.TeamEnemies, EnemyArrowColor, 9f);
 		}
+		else if (ModeManager.currentMode == ModeManager.Mode.TotalCleaning)
+			used = PlaceLargeFoodMinimapDots(used);
 
 		for (int i = used; i < minimapDots.Count; i++)
 		{
@@ -318,6 +320,63 @@ public class MatchHud : MonoBehaviour
 		tex.SetPixels(new[] { Color.white, Color.white, Color.white, Color.white });
 		tex.Apply();
 		return Sprite.Create(tex, new Rect(0f, 0f, 2f, 2f), new Vector2(0.5f, 0.5f), 2f);
+	}
+
+	private int PlaceLargeFoodArrows()
+	{
+		CollectLargeFood(largeFoodBuffer);
+		SortFoodByPlayerDistance(largeFoodBuffer);
+		int shown = 0;
+		for (int i = 0; i < largeFoodBuffer.Count && shown < MaxArrows; i++)
+		{
+			FallingObject food = largeFoodBuffer[i];
+			if (food == null)
+				continue;
+			if (PlaceArrow(shown, food.transform, FoodArrowColor, 0.85f, arrowHideRadius * 0.65f))
+				shown++;
+		}
+		return shown;
+	}
+
+	private int PlaceLargeFoodMinimapDots(int start)
+	{
+		CollectLargeFood(largeFoodBuffer);
+		int used = start;
+		for (int i = 0; i < largeFoodBuffer.Count && used < minimapDots.Count; i++)
+		{
+			FallingObject food = largeFoodBuffer[i];
+			if (food == null)
+				continue;
+			used = PlaceMinimapDot(used, food.transform, FoodArrowColor, 8f);
+		}
+		return used;
+	}
+
+	private static void CollectLargeFood(List<FallingObject> dest)
+	{
+		dest.Clear();
+		List<FallingObject> foods = FallingObject.Active;
+		for (int i = 0; i < foods.Count; i++)
+		{
+			FallingObject food = foods[i];
+			if (food == null || !food.isActiveAndEnabled || food.isTriggered || food.value <= 1)
+				continue;
+			dest.Add(food);
+		}
+	}
+
+	private static void SortFoodByPlayerDistance(List<FallingObject> foods)
+	{
+		if (BlackHoleController.Player == null || foods.Count < 2)
+			return;
+
+		Vector3 player = BlackHoleController.Player.transform.position;
+		foods.Sort((a, b) =>
+		{
+			float da = a == null ? float.MaxValue : (a.transform.position - player).sqrMagnitude;
+			float db = b == null ? float.MaxValue : (b.transform.position - player).sqrMagnitude;
+			return da.CompareTo(db);
+		});
 	}
 
 	private int PlaceListArrows(List<EnemyController> list, int startIndex, Color color, float scale)

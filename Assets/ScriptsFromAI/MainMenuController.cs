@@ -136,6 +136,8 @@ public class MainMenuController : MonoBehaviour
 		if (GameController.Instance != null)
 			GameController.Instance.RefreshModeSelectionUI();
 		TutorialController.EnsureMenu();
+		HideRewardedShopOffers();
+		StarterPackPopup.TryShow();
 	}
 
 	public void UpdateTriggers()
@@ -148,15 +150,17 @@ public class MainMenuController : MonoBehaviour
 	}
 	public bool CheckForNewSkin()
 	{
-		int[] necessaryLevels = {0, 1, 4, 7, 10 };
-		int[] costsForCoins = {0, 20, 270, 800, 2400 };
-		for (int i = 0; i < YG2.saves.massiveOfObtaining.Length; i++)
+		SkinCatalog catalog = GameBalance.Skins;
+		int[] obtained = YG2.saves.massiveOfObtaining;
+		if (catalog == null || catalog.skins == null || obtained == null)
+			return false;
+
+		int count = Mathf.Min(catalog.skins.Length, obtained.Length);
+		for (int i = 0; i < count; i++)
 		{
-			if (YG2.saves.massiveOfObtaining[i] == 1)
+			if (obtained[i] == 1)
 				continue;
-			if (necessaryLevels[i] > YG2.saves.levelOfProgress)
-				continue;
-			if (costsForCoins[i] <= YG2.saves.goldCoins)
+			if (catalog.CanBuy(i, YG2.saves.levelOfProgress, YG2.saves.goldCoins))
 				return true;
 		}
 		return false;
@@ -216,6 +220,8 @@ public class MainMenuController : MonoBehaviour
 			YG2.saves.massiveOfObtaining[3] = 1;
 		else if (id == "lord")
 			YG2.saves.massiveOfObtaining[4] = 1;
+		else if (id == MatchRules.StarterPackId)
+			GrantStarterPack();
 		YG2.SaveProgress();
     YG2.ConsumePurchaseByID(id);
 		HorizontalLayout3D.Instance?.UpdateForChosen();
@@ -240,6 +246,35 @@ public class MainMenuController : MonoBehaviour
 		YG2.SaveProgress();
 		UpdatePanelOfValute();
 		UpdateTriggers();
+	}
+
+	private static void GrantStarterPack()
+	{
+		if (YG2.saves.adsRemoved)
+			return;
+		YG2.saves.diamonds += MatchRules.StarterPackDiamonds;
+		YG2.saves.goldCoins += MatchRules.StarterPackCoins;
+		YG2.saves.adsRemoved = true;
+	}
+
+	private void HideRewardedShopOffers()
+	{
+		HideOffer(couple, Tcouple);
+		HideOffer(hand, Thand);
+		HideOffer(bag, Tbag);
+		HideOffer(box, Tbox);
+		HideOffer(Dcouple, DTcouple);
+		HideOffer(Dhand, DThand);
+		HideOffer(Dbag, DTbag);
+		HideOffer(Dbox, DTbox);
+	}
+
+	private static void HideOffer(Button button, Text label)
+	{
+		if (button != null)
+			button.gameObject.SetActive(false);
+		if (label != null)
+			label.gameObject.SetActive(false);
 	}
 
 	private void FailedPurchased(string id)
@@ -292,8 +327,36 @@ public class MainMenuController : MonoBehaviour
 		UpdateUI();
 		UpdatePanelOfValute();
 		UpdateTriggers();
+		UpdateNextSkinHint();
 		if (GameController.Instance != null)
 			GameController.Instance.RefreshModeSelectionUI();
+	}
+
+	private void UpdateNextSkinHint()
+	{
+		SkinCatalog catalog = GameBalance.Skins;
+		int next = catalog != null ? catalog.GetNextLockedIndex(YG2.saves.massiveOfObtaining) : -1;
+		if (next < 0)
+			return;
+
+		SkinDef def = catalog.Get(next);
+		if (def == null)
+			return;
+
+		int levelNeed = def.necessaryLevel > YG2.saves.levelOfProgress ? def.necessaryLevel : 0;
+		int coinsLeft = Mathf.Max(0, def.costCoins - YG2.saves.goldCoins);
+		string hint = GameTexts.NextSkinHint(next, coinsLeft, levelNeed);
+		ApplyHint(triggerForNewSkin, hint);
+		ApplyHint(DtriggerForNewSkin, hint);
+	}
+
+	private static void ApplyHint(GameObject trigger, string hint)
+	{
+		if (trigger == null)
+			return;
+		Text text = trigger.GetComponentInChildren<Text>(true);
+		if (text != null)
+			text.text = hint;
 	}
 
 	private void onUpdateLB(LBData lbData)
@@ -378,9 +441,10 @@ public class MainMenuController : MonoBehaviour
 			ru ? "Городской Вайб" : "City Vibe",
 			ru ? "Садовый Парк" : "Garden Park",
 			ru ? "Средневековый Замок" : "Medieval Castle",
+			ru ? "Промзона" : "Industrial Zone",
 			ru ? "Новые карты скоро..." : "New maps are coming soon...");
 
-		SetModePanelTexts(PanelOfModes, ru);
+		SetModePanelTexts(PanelOfModes);
 
 		SetTexts(PanelOfProgress,
 			ru ? "Прогресс" : "Progress",
@@ -429,8 +493,9 @@ public class MainMenuController : MonoBehaviour
 			ru ? "Городской Вайб" : "City Vibe",
 			ru ? "Садовый Парк" : "Garden Park",
 			ru ? "Средневековый Замок" : "Medieval Castle",
+			ru ? "Промзона" : "Industrial Zone",
 			ru ? "Новые карты скоро..." : "New maps are coming soon...");
-		SetModePanelTexts(DPanelOfModes, ru);
+		SetModePanelTexts(DPanelOfModes);
 		SetTexts(DPanelOfProgress,
 			ru ? "Прогресс" : "Progress",
 			ru ? "Красный\nТазик" : "Red\nbasin",
@@ -449,22 +514,19 @@ public class MainMenuController : MonoBehaviour
 			ru ? "Обменять" : "Exchange");
 	}
 
-	private static void SetModePanelTexts(Text[] panel, bool ru)
+	private static void SetModePanelTexts(Text[] panel)
 	{
+		bool ru = YG2.saves.langRu;
 		SetTexts(panel,
 			ru ? "Доступные Режимы" : "Available Modes",
-			ru ? "Тотальная Зачистка" : "Total Cleaning",
-			ru ? "Съешь крупные объекты за 3 минуты. Мелочь можно есть, но в 100% она не входит." :
-				"Eat the large objects in 3 minutes. Small props are optional and do not count toward 100%.",
-			ru ? "Босс Туалетов" : "The Toilet Boss",
-			ru ? "Задача перегнать Босса по уровню и победить поглотив его" :
-				"The task is to overtake the Boss by level and defeat him by absorbing him",
-			ru ? "Охота" : "Hunting",
-			ru ? "Город и замок — 5 врагов, сад — 4. Мелкие убегают, крупные идут в тебя. Награда за каждого, джекпот за всех." :
-				"City and castle have 5 enemies, garden has 4. Small ones flee, big ones chase you. Reward per kill, jackpot for all.",
-			ru ? "Командный" : "Teamwork",
-			ru ? "Победа по сумме поглощённого. На HUD — процент очков синих и красных." :
-				"Win by absorbed score. The HUD shows each team's point percent.");
+			GameTexts.ModeCleaningTitle,
+			GameTexts.ModeCleaningBody,
+			GameTexts.ModeBossTitle,
+			GameTexts.ModeBossBody,
+			GameTexts.ModeHuntingTitle,
+			GameTexts.ModeHuntingBody,
+			GameTexts.ModeTeamTitle,
+			GameTexts.ModeTeamBody);
 	}
 
 	private static void SetText(Text target, string value)
