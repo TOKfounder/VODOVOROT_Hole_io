@@ -10,7 +10,7 @@ namespace PinePie.SimpleJoystick.Examples.DemoScript
 		private CanvasGroup joystickGroup;
 		public GameObject WithoutCamera;
 		public float rotationSpeed = 10f;
-		public float[] levelSpeeds = { 6f, 6.89f, 7.78f, 8.67f, 9.56f, 10.44f, 13.83f, 15.22f, 20f, 25f, 28f };
+		public float[] levelSpeeds = { 3.6f, 4.134f, 4.668f, 5.202f, 5.736f, 6.264f, 8.298f, 9.132f, 12f, 15f, 16.8f };
 		public Button[] boostButtons;
 		private Button boostButton;
 		private BoostButton boostHold;

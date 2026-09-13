@@ -193,6 +193,7 @@ public class ModeManager : MonoBehaviour
 		HuntingSpawned = 0;
 
 		int count = GetHuntingCount();
+		FarmSectors.Build(count);
 		for (int i = 0; i < count; i++)
 		{
 			if (!TryResolveHuntingSpawn(i, count, out Vector3 pos, out float yaw))
@@ -209,6 +210,9 @@ public class ModeManager : MonoBehaviour
 				bool ru = YG2.saves.langRu;
 				int index = HuntingSpawned + 1;
 				enemy.SetNickname(ru ? $"Враг {index}" : $"Enemy {index}");
+				EnemyMovement movement = enemy.GetComponentInChildren<EnemyMovement>();
+				if (movement != null)
+					movement.FarmSectorIndex = i;
 				HuntingEnemies.Add(enemy);
 				HuntingSpawned++;
 			}
@@ -231,6 +235,18 @@ public class ModeManager : MonoBehaviour
 		yaw = spawnYaw;
 		if (TryGetAssignedPoint(huntingSpawnPoints, index, out pos, out yaw))
 			return true;
+
+		if (FarmSectors.Count > 0)
+		{
+			pos = FarmSectors.GetCenter(index);
+			pos.y = GetSpawnHeight();
+			if (mainPlayer != null && TryGetMapBounds(out float minXf, out float maxXf, out float minZf, out float maxZf))
+			{
+				pos = PushAwayFromPlayer(pos, mainPlayer.transform.position, pos.y, minXf, maxXf, minZf, maxZf);
+				yaw = YawTowardMapCenter(pos, minXf, maxXf, minZf, maxZf);
+			}
+			return true;
+		}
 
 		if (!TryGetMapBounds(out float minX, out float maxX, out float minZ, out float maxZ))
 		{

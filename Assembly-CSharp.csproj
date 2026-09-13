@@ -195,6 +195,7 @@
     <Compile Include="Assets/ScriptsFromAI/GameTexts.cs" />
     <Compile Include="Assets/PluginYourGames/Example/Scripts/BasicData.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Payments/Scripts/ConsumePurchasesYG.cs" />
+    <Compile Include="Assets/ScriptsFromAI/FarmSectors.cs" />
     <Compile Include="Assets/ScriptsFromAI/SavesYG.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Leaderboards/Scripts/LBPlayerDataYG.cs" />
     <Compile Include="Assets/ScriptsFromAI/ModePanelRefreshTrigger.cs" />

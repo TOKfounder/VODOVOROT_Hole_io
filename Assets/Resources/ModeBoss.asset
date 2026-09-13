@@ -17,7 +17,7 @@ MonoBehaviour:
   bossStartLevel: 2
   bossFarmSeconds: 30
   bossProbeSeconds: 120
-  bossSpeedMul: 1.68
+  bossSpeedMul: 1
   leftoverSecondsPerBonus: 20
   leftoverSpriteHigh: 8
   leftoverSpriteMid: 3

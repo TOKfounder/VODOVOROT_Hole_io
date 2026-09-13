@@ -98,7 +98,8 @@ public class HoleCameraFollow : MonoBehaviour
 		float radius = target.IsBirthIntro
 			? liveRadius
 			: stableRadius + (liveRadius - stableRadius) * 0.5f;
-		float distance = radius * distancePerRadius * distanceScale;
+		float desktopMul = YG2.envir.isMobile ? 1f : 0.8f;
+		float distance = radius * distancePerRadius * distanceScale * desktopMul;
 		if (punchTimer > 0f)
 		{
 			punchTimer -= dt;

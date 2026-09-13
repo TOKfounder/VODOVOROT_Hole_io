@@ -6,9 +6,9 @@ public class HoleFeedback : MonoBehaviour
 {
 	public static HoleFeedback ForPlayer { get; private set; }
 
-	private static readonly Color Water = new Color(0.45f, 0.88f, 1f, 0.9f);
-	private static readonly Color WaterDeep = new Color(0.22f, 0.58f, 0.78f, 0.78f);
-	private static readonly Color WaterWhite = new Color(0.88f, 0.97f, 1f, 0.92f);
+	private static readonly Color Water = new Color(0.12f, 0.42f, 0.92f, 0.92f);
+	private static readonly Color WaterDeep = new Color(0.04f, 0.18f, 0.62f, 0.86f);
+	private static readonly Color WaterWhite = new Color(0.72f, 0.9f, 1f, 0.95f);
 
 	[SerializeField] private bool debugEmitOnStart;
 	[Header("Suction Ribbons")]
@@ -196,9 +196,10 @@ public class HoleFeedback : MonoBehaviour
 			return;
 
 		float radius = GetEffectRadius();
+		float attractMul = GameBalance.Current != null ? GameBalance.Current.suctionAttractRadius : 1.5f;
 		suction.transform.position = GetHoleWorldPos() + Vector3.up * 0.05f;
 		var shape = suction.shape;
-		shape.radius = radius;
+		shape.radius = radius * attractMul;
 
 		var main = suction.main;
 		main.startSize = radius * 0.1f;
@@ -364,7 +365,7 @@ public class HoleFeedback : MonoBehaviour
 		if (billboardTexture == null)
 			billboardTexture = CreateSoftCircleTexture();
 		if (billboardMat == null)
-			billboardMat = CreateParticleMaterial(billboardTexture, "Sprites/Default");
+			billboardMat = CreateParticleMaterial(billboardTexture, "Legacy Shaders/Particles/Additive");
 		else
 			ApplyParticleMaterial(billboardMat, billboardTexture);
 	}
@@ -414,7 +415,7 @@ public class HoleFeedback : MonoBehaviour
 		shape.radius = 0.4f;
 		var vel = suction.velocityOverLifetime;
 		vel.enabled = true;
-		vel.radial = new ParticleSystem.MinMaxCurve(-2.6f);
+		vel.radial = new ParticleSystem.MinMaxCurve(-3.4f);
 		ConfigureBillboardRenderer(suction.GetComponent<ParticleSystemRenderer>());
 		if (!suction.isPlaying)
 			suction.Play();
@@ -523,7 +524,11 @@ public class HoleFeedback : MonoBehaviour
 
 	private static Shader FindParticleShader()
 	{
-		Shader shader = Shader.Find("Legacy Shaders/Particles/Alpha Blended");
+		Shader shader = Shader.Find("Legacy Shaders/Particles/Additive");
+		if (shader == null)
+			shader = Shader.Find("Mobile/Particles/Additive");
+		if (shader == null)
+			shader = Shader.Find("Legacy Shaders/Particles/Alpha Blended");
 		if (shader == null)
 			shader = Shader.Find("Mobile/Particles/Alpha Blended");
 		if (shader == null)
@@ -573,7 +578,11 @@ public class HoleFeedback : MonoBehaviour
 				float dist = Vector2.Distance(new Vector2(x, y), center) / radius;
 				float alpha = Mathf.Clamp01(1f - dist);
 				alpha *= alpha;
-				tex.SetPixel(x, y, new Color(1f, 1f, 1f, alpha));
+				float spark = Mathf.Clamp01(1f - dist * 2.4f);
+				spark *= spark;
+				Color pixel = Color.Lerp(WaterDeep, WaterWhite, spark);
+				pixel.a = Mathf.Max(alpha, spark * 0.85f);
+				tex.SetPixel(x, y, pixel);
 			}
 		}
 		tex.Apply(false, false);

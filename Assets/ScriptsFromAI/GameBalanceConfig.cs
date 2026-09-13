@@ -16,7 +16,7 @@ public class GameBalanceConfig : ScriptableObject
 
 	public float[] levelSpeeds =
 	{
-		6f, 6.89f, 7.78f, 8.67f, 9.56f, 10.44f, 13.83f, 15.22f, 20f, 25f, 28f
+		3.6f, 4.134f, 4.668f, 5.202f, 5.736f, 6.264f, 8.298f, 9.132f, 12f, 15f, 16.8f
 	};
 
 	public float scaleLerpSpeed = 1.15f;
@@ -47,6 +47,7 @@ public class GameBalanceConfig : ScriptableObject
 	public float suctionOrbitDown = 6f;
 	[Range(0.2f, 1f)] public float suctionRimFactor = 0.55f;
 	public float suctionSqueezeSpeed = 1.2f;
+	public float suctionAttractRadius = 1.5f;
 
 	[Header("Defeat reward")]
 	public float defeatExp = 25f;

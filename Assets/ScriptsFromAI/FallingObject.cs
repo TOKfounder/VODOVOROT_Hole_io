@@ -1,10 +1,21 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class FallingObject : MonoBehaviour
 {
 	private const float IdleResetSeconds = 4f;
 	private const float VisualSqueeze = 0.38f;
+	private const float GulpOffsetMul = 0.3f;
+	private const float GulpMoveSpeed = 4.5f;
+
+	private enum SuctionPhase
+	{
+		Slide,
+		Lift,
+		Drift,
+		Drop
+	}
 
 	public int value;
 	public Vector3 size;
@@ -27,8 +38,14 @@ public class FallingObject : MonoBehaviour
 	private bool preparedMesh;
 	private BoxCollider suctionBox;
 	private static Collider cachedGround;
+	public static readonly List<FallingObject> Active = new List<FallingObject>(512);
+	private SuctionPhase suctionPhase;
+	private Vector3 gulpLiftPos;
+	private Vector3 gulpDriftPos;
+	private bool gulpArmed;
 
 	public HoleParent CurrentHole { get; set; }
+	public bool IsAirborneGulp => isTriggered && (suctionPhase == SuctionPhase.Lift || suctionPhase == SuctionPhase.Drift);
 
 	protected virtual bool AssignValueFromVolume => true;
 	protected virtual bool CountsTowardMapTotal => true;
@@ -47,7 +64,20 @@ public class FallingObject : MonoBehaviour
 			EnsureFallingBody(true);
 		rend = GetComponent<Renderer>();
 		if (rend == null)
+			rend = GetComponentInChildren<Renderer>();
+		if (rend == null)
 			Destroy(GetComponent<FallingObject>());
+	}
+
+	void OnEnable()
+	{
+		if (!Active.Contains(this))
+			Active.Add(this);
+	}
+
+	void OnDisable()
+	{
+		Active.Remove(this);
 	}
 
 	void Start()
@@ -100,13 +130,40 @@ public class FallingObject : MonoBehaviour
 	{
 		CurrentHole = hole;
 		isTriggered = true;
+		suctionPhase = SuctionPhase.Slide;
+		gulpArmed = false;
 		squeezeFrom = transform.localScale;
 		PrepareSuctionCollider();
 		EnsureFallingBody(false);
 		IgnoreMapPlatforms();
 		IgnorePlayableGround();
+		AttachToHoleList(hole);
+	}
+
+	private void BindToHole(HoleParent hole)
+	{
+		if (CurrentHole != null && CurrentHole != hole)
+		{
+			if (CurrentHole.platform != null && col != null)
+				Physics.IgnoreCollision(CurrentHole.platform, col, true);
+			CurrentHole.nearbyFallingObjects.Remove(this);
+		}
+
+		CurrentHole = hole;
+		if (hole != null && hole.platform != null && col != null)
+			Physics.IgnoreCollision(hole.platform, col, false);
+	}
+
+	private void AttachToHoleList(HoleParent hole)
+	{
 		if (hole != null && !hole.nearbyFallingObjects.Contains(this))
 			hole.nearbyFallingObjects.Add(this);
+	}
+
+	private void DetachFromHoleList()
+	{
+		if (CurrentHole != null)
+			CurrentHole.nearbyFallingObjects.Remove(this);
 	}
 
 	private void CacheEnabledCollider()
@@ -200,45 +257,57 @@ public class FallingObject : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		if (!isTriggered || rb == null || rb.isKinematic || CurrentHole == null)
+		if (!isTriggered || rb == null || CurrentHole == null)
 			return;
+		if (CurrentHole.IsConsumed || !CurrentHole.isActiveAndEnabled)
+		{
+			ResetToStart();
+			return;
+		}
 
 		GameBalanceConfig config = GameBalance.Current;
 		float pull = config != null ? config.suctionPull : 13f;
 		float down = config != null ? config.suctionDownForce : 17f;
-		float orbit = config != null ? config.suctionOrbit : 10f;
-		float inward = config != null ? config.suctionOrbitInward : 4f;
-		float orbitDown = config != null ? config.suctionOrbitDown : 6f;
-		float rimFactor = config != null ? config.suctionRimFactor : 0.55f;
 		float squeezeSpeed = config != null ? config.suctionSqueezeSpeed : 1.2f;
+		float attractMul = config != null ? config.suctionAttractRadius : 1.5f;
 
-		Vector3 toHole = CurrentHole.transform.position - rb.position;
+		Vector3 holePos = CurrentHole.transform.position;
+		Vector3 toHole = holePos - rb.position;
 		toHole.y = 0f;
 		float dist = toHole.magnitude;
-		float rim = CurrentHole.GetStableHoleRadius() * rimFactor;
-		bool atRim = dist > rim;
-		Vector3 force;
-		if (atRim && dist > 0.0001f)
+		float holeRadius = CurrentHole.GetStableHoleRadius();
+		float attractR = holeRadius * attractMul;
+
+		if (suctionPhase == SuctionPhase.Slide && dist <= holeRadius)
+			BeginGulp(holePos, holeRadius);
+
+		if (suctionPhase == SuctionPhase.Lift || suctionPhase == SuctionPhase.Drift)
+			StepGulp();
+		else if (!rb.isKinematic)
 		{
-			Vector3 radial = toHole / dist;
-			Vector3 tangent = Vector3.Cross(Vector3.up, radial);
-			force = tangent * orbit + radial * inward + Vector3.down * orbitDown;
-		}
-		else
-		{
-			force = Vector3.down * down;
+			float t = attractR > 0.001f ? Mathf.Clamp01(1f - dist / attractR) : 1f;
+			float slidePull = pull * Mathf.Lerp(0.12f, 0.55f, t * t);
+			Vector3 force = Vector3.down * (down * Mathf.Lerp(0.15f, 0.45f, t));
 			if (dist > 0.0001f)
-				force += (toHole / dist) * pull;
+				force += (toHole / dist) * slidePull;
+			if (suctionPhase == SuctionPhase.Drop)
+				force = Vector3.down * down + (dist > 0.0001f ? (toHole / dist) * (pull * 0.35f) : Vector3.zero);
+			rb.AddForce(force, ForceMode.Acceleration);
 		}
-		rb.AddForce(force, ForceMode.Acceleration);
 
-		transform.localScale = Vector3.Lerp(transform.localScale, squeezeFrom * VisualSqueeze, squeezeSpeed * Time.fixedDeltaTime);
+		if (suctionPhase != SuctionPhase.Slide)
+			transform.localScale = Vector3.Lerp(transform.localScale, squeezeFrom * VisualSqueeze, squeezeSpeed * Time.fixedDeltaTime);
 
-		Vector3 vel = rb.velocity;
-		Vector3 velXZ = new Vector3(vel.x, 0f, vel.z);
-		bool towardHole = dist > 0.0001f && Vector3.Dot(velXZ, toHole) > 0f;
-		if (vel.y < -0.08f || towardHole || velXZ.sqrMagnitude > 0.014f)
+		if (IsAirborneGulp || (suctionPhase == SuctionPhase.Slide && dist <= attractR))
 			suctionStillMoving = true;
+		else if (!rb.isKinematic)
+		{
+			Vector3 vel = rb.velocity;
+			Vector3 velXZ = new Vector3(vel.x, 0f, vel.z);
+			bool towardHole = dist > 0.0001f && Vector3.Dot(velXZ, toHole) > 0f;
+			if (vel.y < -0.08f || towardHole || velXZ.sqrMagnitude > 0.014f)
+				suctionStillMoving = true;
+		}
 	}
 
 	IEnumerator DelayForUpdateCurrentHole()
@@ -274,29 +343,13 @@ public class FallingObject : MonoBehaviour
 			return;
 
 		HoleParent otherHole = other.GetComponentInParent<HoleParent>();
-		if (otherHole == null)
+		if (otherHole == null || otherHole.IsConsumed || !otherHole.isActiveAndEnabled)
 			return;
 
-		if (isTriggered)
-		{
-			if (CurrentHole == null || otherHole != CurrentHole)
-			{
-				if (CurrentHole != null && CurrentHole.platform != null && col != null)
-					Physics.IgnoreCollision(CurrentHole.platform, col, true);
-				isTriggered = false;
-				CurrentHole = otherHole;
-				if (CurrentHole.platform != null && col != null)
-					Physics.IgnoreCollision(CurrentHole.platform, col, false);
-			}
-			else
-				return;
-		}
-		else
-		{
-			CurrentHole = otherHole;
-			if (CurrentHole.platform != null && col != null)
-				Physics.IgnoreCollision(CurrentHole.platform, col, false);
-		}
+		if (isTriggered && CurrentHole != null && !CurrentHole.IsConsumed && CurrentHole.isActiveAndEnabled)
+			return;
+
+		BindToHole(otherHole);
 
 		bool beganSuction = false;
 
@@ -320,19 +373,109 @@ public class FallingObject : MonoBehaviour
 	{
 	}
 
+	public void TryAttract(HoleParent hole)
+	{
+		if (hole == null || hole.IsConsumed || !hole.isActiveAndEnabled || isTriggered || value <= 0)
+			return;
+		if (!Tool.CanFitFootprint(size, hole.size))
+			return;
+
+		float attractMul = GameBalance.Current != null ? GameBalance.Current.suctionAttractRadius : 1.5f;
+		Vector3 delta = hole.transform.position - transform.position;
+		delta.y = 0f;
+		float limit = hole.GetStableHoleRadius() * attractMul;
+		if (delta.sqrMagnitude > limit * limit)
+			return;
+
+		BindToHole(hole);
+		if (!isColon && ResetsIfNotScored)
+		{
+			if (myCoroutine != null)
+				StopCoroutine(myCoroutine);
+			myCoroutine = StartCoroutine(DelayForUpdateCurrentHole());
+		}
+		BeginSuctionPhysics(hole);
+		OnSuctionBegan(hole);
+	}
+
+	private void BeginGulp(Vector3 holePos, float holeRadius)
+	{
+		if (gulpArmed)
+			return;
+		gulpArmed = true;
+		suctionPhase = SuctionPhase.Lift;
+		float height = rend != null ? rend.bounds.size.y : size.y;
+		if (height < 0.05f)
+			height = 0.25f;
+		gulpLiftPos = rb.position + Vector3.up * (height * 0.25f);
+		Vector2 circle = Random.insideUnitCircle.normalized;
+		if (circle.sqrMagnitude < 0.01f)
+			circle = Vector2.right;
+		gulpDriftPos = new Vector3(
+			holePos.x + circle.x * holeRadius * GulpOffsetMul,
+			gulpLiftPos.y,
+			holePos.z + circle.y * holeRadius * GulpOffsetMul);
+		if (rb != null)
+		{
+			rb.velocity = Vector3.zero;
+			rb.angularVelocity = Vector3.zero;
+			rb.useGravity = false;
+			rb.isKinematic = true;
+		}
+	}
+
+	private void StepGulp()
+	{
+		if (rb == null)
+			return;
+
+		Vector3 target = suctionPhase == SuctionPhase.Lift ? gulpLiftPos : gulpDriftPos;
+		Vector3 next = Vector3.MoveTowards(rb.position, target, GulpMoveSpeed * Time.fixedDeltaTime);
+		rb.MovePosition(next);
+		if ((next - target).sqrMagnitude > 0.0025f)
+			return;
+
+		if (suctionPhase == SuctionPhase.Lift)
+			suctionPhase = SuctionPhase.Drift;
+		else
+			BeginDrop();
+	}
+
+	private void BeginDrop()
+	{
+		suctionPhase = SuctionPhase.Drop;
+		if (rb == null)
+			return;
+		rb.isKinematic = false;
+		rb.useGravity = true;
+		rb.velocity = Vector3.zero;
+		rb.angularVelocity = Vector3.zero;
+		ApplyBodyTuning(true);
+	}
+
 	private Vector3 GetVisualSize()
 	{
+		Renderer[] renderers = GetComponentsInChildren<Renderer>();
+		bool any = false;
 		Bounds totalBounds = new Bounds(transform.position, Vector3.zero);
-		Collider collider = GetComponent<Collider>();
-		if (collider != null && collider.enabled)
+		for (int i = 0; i < renderers.Length; i++)
 		{
-			totalBounds.Encapsulate(collider.bounds);
-			return totalBounds.size;
+			Renderer mesh = renderers[i];
+			if (mesh == null || !mesh.enabled)
+				continue;
+			if (!(mesh is MeshRenderer) && !(mesh is SkinnedMeshRenderer))
+				continue;
+			if (MapAbsorbableSetup.IsDecorName(mesh.gameObject.name))
+				continue;
+			if (!any)
+			{
+				totalBounds = mesh.bounds;
+				any = true;
+			}
+			else
+				totalBounds.Encapsulate(mesh.bounds);
 		}
-		Renderer renderer = GetComponent<Renderer>();
-		if (renderer != null && renderer.enabled)
-			totalBounds.Encapsulate(renderer.bounds);
-		return totalBounds.size;
+		return any ? totalBounds.size : Vector3.zero;
 	}
 
 	private void AssignDefaultValue()
@@ -383,16 +526,23 @@ public class FallingObject : MonoBehaviour
 
 	public virtual void ResetToStart()
 	{
+		DetachFromHoleList();
 		transform.position = startPosition;
 		transform.rotation = startRotation;
 		if (startScale.sqrMagnitude > 0.0001f)
 			transform.localScale = startScale;
 		ReleaseFallingBody();
 		isTriggered = false;
+		suctionPhase = SuctionPhase.Slide;
+		gulpArmed = false;
 		if (col != null)
 			col.enabled = true;
-		if (rend != null)
-			rend.enabled = true;
+		Renderer[] renderers = GetComponentsInChildren<Renderer>(true);
+		for (int i = 0; i < renderers.Length; i++)
+		{
+			if (renderers[i] != null)
+				renderers[i].enabled = true;
+		}
 		CurrentHole = null;
 		IgnoreMapPlatforms();
 		if (myCoroutine != null) StopCoroutine(myCoroutine);
@@ -400,6 +550,7 @@ public class FallingObject : MonoBehaviour
 
 	public virtual void OnScored(HoleParent hole)
 	{
+		DetachFromHoleList();
 		int gained = value;
 		hole.AddScore(gained);
 		if (gained > 1 && hole is BlackHoleController)
@@ -413,9 +564,22 @@ public class FallingObject : MonoBehaviour
 			rb.isKinematic = true;
 		if (col != null)
 			col.enabled = false;
-		if (rend != null)
-			rend.enabled = false;
+		HideVisuals();
 		CurrentHole = null;
+		suctionPhase = SuctionPhase.Slide;
+		gulpArmed = false;
 		if (myCoroutine != null) StopCoroutine(myCoroutine);
+	}
+
+	private void HideVisuals()
+	{
+		Renderer[] renderers = GetComponentsInChildren<Renderer>(true);
+		for (int i = 0; i < renderers.Length; i++)
+		{
+			if (renderers[i] != null)
+				renderers[i].enabled = false;
+		}
+		if (col != null)
+			col.enabled = false;
 	}
 }

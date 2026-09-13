@@ -37,17 +37,17 @@ MonoBehaviour:
   - 17.06
   - 18.7
   levelSpeeds:
-  - 6
-  - 6.89
-  - 7.78
-  - 8.67
-  - 9.56
-  - 10.44
-  - 13.83
-  - 15.22
-  - 20
-  - 25
-  - 28
+  - 3.6
+  - 4.134
+  - 4.668
+  - 5.202
+  - 5.736
+  - 6.264
+  - 8.298
+  - 9.132
+  - 12
+  - 15
+  - 16.8
   scaleLerpSpeed: 1.15
   birthLerpSpeed: 5
   skinSpeedMul:
@@ -80,6 +80,7 @@ MonoBehaviour:
   suctionOrbitDown: 6
   suctionRimFactor: 0.55
   suctionSqueezeSpeed: 1.2
+  suctionAttractRadius: 1.5
   defeatExp: 25
   defeatCoins: 12
   defeatDiamonds: 3

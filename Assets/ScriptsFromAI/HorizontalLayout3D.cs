@@ -74,6 +74,8 @@ public class HorizontalLayout3D : MonoBehaviour
 	
 	void BuyCurrentItem()
 	{
+		if (!IsSkinUnlocked(chosenObj))
+			return;
 		YG2.BuyPayments(toiletIDs[chosenObj]);
 	}
 
@@ -144,8 +146,12 @@ public class HorizontalLayout3D : MonoBehaviour
 		{
 			buttonOfBuying.SetActive(true);
 			buttonOfEquiping.SetActive(false);
-			necessaryLevel.text = YG2.saves.langRu ? $"{necessaryLevels[chosenObj]} уровень" : $"{necessaryLevels[chosenObj]} level";
+			bool unlocked = IsSkinUnlocked(chosenObj);
+			necessaryLevel.text = YG2.saves.langRu
+				? (unlocked ? $"{necessaryLevels[chosenObj]} уровень" : $"Нужен {necessaryLevels[chosenObj]} уровень")
+				: (unlocked ? $"{necessaryLevels[chosenObj]} level" : $"Need level {necessaryLevels[chosenObj]}");
 			costForCoins.text = $"{costsForCoins[chosenObj]}";
+			SetBuyInteractable(unlocked);
 			if (chosenObj == 1)
 			{
 				costForDonate.text = "";
@@ -155,8 +161,8 @@ public class HorizontalLayout3D : MonoBehaviour
 			else
 			{
 				costForDonate.text = $"{costsForDonate[chosenObj]}";
-				donateButton.interactable = true;
-				currencyImage.color = new Color(1, 1, 1, 1);
+				donateButton.interactable = unlocked;
+				currencyImage.color = unlocked ? Color.white : new Color(1, 1, 1, 0.35f);
 			}
 		}
 		else
@@ -186,29 +192,57 @@ public class HorizontalLayout3D : MonoBehaviour
 		}
 	}
 
+	private bool IsSkinUnlocked(int index)
+	{
+		if (index < 0 || index >= necessaryLevels.Length)
+			return false;
+		if (index == 1 && TutorialController.AllowsWhiteFriendBuy)
+			return true;
+		return YG2.saves.levelOfProgress >= necessaryLevels[index];
+	}
+
+	private void SetBuyInteractable(bool unlocked)
+	{
+		if (buttonOfBuying == null)
+			return;
+		Button[] buttons = buttonOfBuying.GetComponentsInChildren<Button>(true);
+		for (int i = 0; i < buttons.Length; i++)
+		{
+			Button btn = buttons[i];
+			if (btn == null || btn == donateButton)
+				continue;
+			if (btn.gameObject.name == "Achivements")
+			{
+				btn.interactable = false;
+				continue;
+			}
+			btn.interactable = unlocked;
+		}
+	}
+
 	public void BuyForSomething(int id)
 	{
+		if (id != 2)
+		{
+			MainMenuController.Instance.fart.Play();
+			return;
+		}
+
+		if (!IsSkinUnlocked(chosenObj))
+		{
+			MainMenuController.Instance.fart.Play();
+			return;
+		}
+
 		bool isBought = false;
-		if (id == 1)
+		if (YG2.saves.goldCoins >= costsForCoins[chosenObj])
 		{
-			//проверка уровня
-			if (YG2.saves.levelOfProgress >= necessaryLevels[chosenObj])
-			{
-				isBought = true;
-			}
-			else
-				MainMenuController.Instance.fart.Play();
+			isBought = true;
+			YG2.saves.goldCoins -= costsForCoins[chosenObj];
 		}
-		else if (id == 2)
-		{
-			if (YG2.saves.goldCoins >= costsForCoins[chosenObj])
-			{
-				isBought = true;
-				YG2.saves.goldCoins -= costsForCoins[chosenObj];
-			}
-			else
-				MainMenuController.Instance.fart.Play();
-		}
+		else
+			MainMenuController.Instance.fart.Play();
+
 		if (isBought)
 			YG2.saves.massiveOfObtaining[chosenObj] = 1;
 		YG2.SaveProgress();

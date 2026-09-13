@@ -20,7 +20,7 @@ public class EnemyMovement : MonoBehaviour
 	private float enemySpeedMul = 0.25f;
 
 	private Transform currentTarget;
-	private float[] levelSpeeds = { 6f, 6.89f, 7.78f, 8.67f, 9.56f, 10.44f, 13.83f, 15.22f, 20f, 25f, 28f };
+	private float[] levelSpeeds = { 3.6f, 4.134f, 4.668f, 5.202f, 5.736f, 6.264f, 8.298f, 9.132f, 12f, 15f, 16.8f };
 	private Rigidbody rb;
 	private float stuckTimer;
 	private Transform ignoredTarget;
@@ -30,6 +30,7 @@ public class EnemyMovement : MonoBehaviour
 	private float huntPlayerUntil = -1f;
 	private float farmUntil;
 	private float edgeRecoverUntil;
+	public int FarmSectorIndex { get; set; } = -1;
 
 	public bool BossMayAbsorbPlayer
 	{
@@ -139,26 +140,39 @@ public class EnemyMovement : MonoBehaviour
 			return;
 		}
 
+		int sector = FarmSectorIndex;
+		if (sector >= 0 && FarmSectors.Count > 0)
+			sector = FarmSectors.FindSectorWithFood(sector, enemyController.size, FarmSectors.SectorRadius);
+
+		Transform bestTarget = PickClosestFood(hitColliders, sector, true);
+		if (bestTarget == null)
+			bestTarget = PickClosestFood(hitColliders, sector, false);
+		SetTarget(bestTarget);
+	}
+
+	private Transform PickClosestFood(Collider[] hits, int sector, bool sectorOnly)
+	{
 		float closestDist = Mathf.Infinity;
 		Transform bestTarget = null;
-		foreach (var hit in hitColliders)
+		for (int i = 0; i < hits.Length; i++)
 		{
-			if (hit.transform == ignoredTarget) continue;
+			Collider hit = hits[i];
+			if (hit == null || hit.transform == ignoredTarget)
+				continue;
 
-			var fo = hit.GetComponentInParent<FallingObject>();
-			if (fo == null) continue;
+			FallingObject fo = hit.GetComponentInParent<FallingObject>();
+			if (fo == null || !Tool.CanFitForEnemies(fo.size, enemyController.size))
+				continue;
+			if (sectorOnly && sector >= 0 && !FarmSectors.IsInSector(sector, fo.transform.position, FarmSectors.SectorRadius))
+				continue;
 
-			if (Tool.CanFitForEnemies(fo.size, enemyController.size))
-			{
-				float dist = Vector3.Distance(transform.position, hit.transform.position);
-				if (closestDist > dist)
-				{
-					closestDist = dist;
-					bestTarget = hit.transform;
-				}
-			}
+			float dist = Vector3.Distance(transform.position, hit.transform.position);
+			if (dist >= closestDist)
+				continue;
+			closestDist = dist;
+			bestTarget = hit.transform;
 		}
-		SetTarget(bestTarget);
+		return bestTarget;
 	}
 
 	private bool TrySetModeTarget()

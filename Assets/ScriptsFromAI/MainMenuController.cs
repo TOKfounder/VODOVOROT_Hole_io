@@ -154,8 +154,8 @@ public class MainMenuController : MonoBehaviour
 		{
 			if (YG2.saves.massiveOfObtaining[i] == 1)
 				continue;
-			if (necessaryLevels[i] <= YG2.saves.levelOfProgress)
-				return true;
+			if (necessaryLevels[i] > YG2.saves.levelOfProgress)
+				continue;
 			if (costsForCoins[i] <= YG2.saves.goldCoins)
 				return true;
 		}

@@ -84,6 +84,15 @@ public class TutorialController : MonoBehaviour
 
 	public static bool IsExchangeStep => YG2.saves.tutorialStage == StageExchange;
 
+	public static bool AllowsWhiteFriendBuy
+	{
+		get
+		{
+			int stage = YG2.saves.tutorialStage;
+			return stage == StageRotateWhite || stage == StageBuyWhite;
+		}
+	}
+
 	private Canvas targetCanvas;
 	private RectTransform overlayRoot;
 	private RectTransform cardRect;

@@ -114,14 +114,21 @@ public class HoleParent : MonoBehaviour
 
 	protected virtual void FixedUpdate()
 	{
-		for (int i = nearbyFallingObjects.Count - 1; i >= 0; i--)
+		bool holeAlive = !IsConsumed && isActiveAndEnabled;
+		if (holeAlive)
+			AttractNearby();
+
+		for (int i = nearbyFallingObjects.Count - 1; i >= 0 && holeAlive; i--)
 		{
 			FallingObject obj = nearbyFallingObjects[i];
-			if (obj == null || !obj.isTriggered || obj.rend == null)
+			if (obj == null || !obj.isTriggered || obj.rend == null || obj.CurrentHole != this)
 			{
 				nearbyFallingObjects.RemoveAt(i);
 				continue;
 			}
+
+			if (obj.IsAirborneGulp)
+				continue;
 
 			float floorY = GetScoreFloorY();
 			bool belowFloor = (!obj.isColon && obj.rend.bounds.center.y <= floorY)
@@ -151,6 +158,26 @@ public class HoleParent : MonoBehaviour
 			RefreshHoleMetrics();
 
 		TryAbsorbOppositeTeamHoles();
+	}
+
+	private void AttractNearby()
+	{
+		float attractMul = GameBalance.Current != null ? GameBalance.Current.suctionAttractRadius : 1.5f;
+		float limit = GetStableHoleRadius() * attractMul;
+		Vector3 holePos = transform.position;
+		List<FallingObject> foods = FallingObject.Active;
+		for (int i = 0; i < foods.Count; i++)
+		{
+			FallingObject fo = foods[i];
+			if (fo == null || fo.isTriggered || fo.value <= 0)
+				continue;
+
+			Vector3 delta = fo.transform.position - holePos;
+			if (delta.x > limit || delta.x < -limit || delta.z > limit || delta.z < -limit)
+				continue;
+
+			fo.TryAttract(this);
+		}
 	}
 
 	public bool IsOpponent(HoleParent other)

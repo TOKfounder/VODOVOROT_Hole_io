@@ -34,27 +34,6 @@ public static class MapFallingObjectBaker
 		int already = 0;
 
 		GameObject[] roots = scene.GetRootGameObjects();
-		var farmPoints = new System.Collections.Generic.List<GameObject>();
-		for (int r = 0; r < roots.Length; r++)
-		{
-			Transform[] transforms = roots[r].GetComponentsInChildren<Transform>(true);
-			for (int i = 0; i < transforms.Length; i++)
-			{
-				Transform t = transforms[i];
-				if (t != null && t.name.StartsWith("FarmPoint"))
-					farmPoints.Add(t.gameObject);
-			}
-		}
-		for (int i = 0; i < farmPoints.Count; i++)
-		{
-			if (farmPoints[i] != null)
-			{
-				Object.DestroyImmediate(farmPoints[i]);
-				farmDeleted++;
-			}
-		}
-
-		roots = scene.GetRootGameObjects();
 		for (int r = 0; r < roots.Length; r++)
 		{
 			Renderer[] renderers = roots[r].GetComponentsInChildren<Renderer>(true);
