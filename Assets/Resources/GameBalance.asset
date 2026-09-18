@@ -81,7 +81,8 @@ MonoBehaviour:
   suctionOrbitDown: 6
   suctionRimFactor: 0.55
   suctionSqueezeSpeed: 1.2
-  suctionAttractRadius: 1.5
+  suctionAttractRadius: 1.1
+  suctionLiftDiameterFactor: 0.3
   absorbSizeMul: 1.15
   absorbCenterFactor: 0.55
   defeatExp: 25

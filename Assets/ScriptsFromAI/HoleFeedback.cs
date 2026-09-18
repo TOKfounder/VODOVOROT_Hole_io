@@ -196,7 +196,7 @@ public class HoleFeedback : MonoBehaviour
 			return;
 
 		float radius = GetEffectRadius();
-		float attractMul = GameBalance.Current != null ? GameBalance.Current.suctionAttractRadius : 1.5f;
+		float attractMul = GameBalance.Current != null ? GameBalance.Current.suctionAttractRadius : 1.1f;
 		suction.transform.position = GetHoleWorldPos() + Vector3.up * 0.05f;
 		var shape = suction.shape;
 		shape.radius = radius * attractMul;

@@ -43,6 +43,7 @@ public class TutorialController : MonoBehaviour
 	}
 	private const float PointerOffset = 92f;
 	private const float PlaqueGap = 16f;
+	private const float SkinsPlaqueExtraDown = 45f;
 	private const float OverlayLocalZ = -200f;
 	private const float OverlaySkinZPad = 80f;
 	private const float GuideDimAlpha = 0.62f;
@@ -586,7 +587,7 @@ public class TutorialController : MonoBehaviour
 		rect.anchorMin = new Vector2(0.5f, 0.5f);
 		rect.anchorMax = new Vector2(0.5f, 0.5f);
 		rect.pivot = new Vector2(0.5f, 0.5f);
-		rect.sizeDelta = new Vector2(64f, 96f);
+		rect.sizeDelta = new Vector2(64f / 1.5f, 96f / 1.5f);
 		Image image = go.GetComponent<Image>();
 		image.sprite = ActiveCanvas.GetHudPointerSprite();
 		image.preserveAspect = true;
@@ -890,6 +891,8 @@ public class TutorialController : MonoBehaviour
 		float scale = GuidePerspectiveScale();
 		ApplyGuidePerspectiveScale();
 		float along = (pointerRect.sizeDelta.y * 0.5f + PlaqueGap + size.y * 0.5f) * scale;
+		if (YG2.saves.tutorialStage == StageSkins)
+			along += SkinsPlaqueExtraDown * scale;
 		Vector2 pos = new Vector2(0f, pointerRect.anchoredPosition.y - tipDirLocal.y * along);
 		cardRect.anchoredPosition = ClampPlaquePos(pos, size * scale);
 		cardRect.SetAsLastSibling();

@@ -7,14 +7,14 @@ public class FallingObject : MonoBehaviour
 {
 	private const float IdleResetSeconds = 4f;
 	private const float VisualSqueeze = 0.38f;
-	private const float GulpOffsetMul = 0.3f;
 	private const float GulpMoveSpeed = 4.5f;
+	private const float DefaultAttractMul = 1.1f;
+	private const float DefaultLiftDiameterFactor = 0.3f;
 
 	private enum SuctionPhase
 	{
 		Slide,
 		Lift,
-		Drift,
 		Drop
 	}
 
@@ -42,12 +42,10 @@ public class FallingObject : MonoBehaviour
 	private static bool sceneHooked;
 	public static readonly List<FallingObject> Active = new List<FallingObject>(512);
 	private SuctionPhase suctionPhase;
-	private Vector3 gulpLiftPos;
-	private Vector3 gulpDriftPos;
 	private bool gulpArmed;
 
 	public HoleParent CurrentHole { get; set; }
-	public bool IsAirborneGulp => isTriggered && (suctionPhase == SuctionPhase.Lift || suctionPhase == SuctionPhase.Drift);
+	public bool IsAirborneGulp => isTriggered && suctionPhase == SuctionPhase.Lift;
 
 	protected virtual bool AssignValueFromVolume => true;
 	protected virtual bool CountsTowardMapTotal => true;
@@ -162,6 +160,7 @@ public class FallingObject : MonoBehaviour
 		IgnoreMapPlatforms();
 		IgnorePlayableGround();
 		AttachToHoleList(hole);
+		BeginGulp();
 	}
 
 	private void BindToHole(HoleParent hole)
@@ -290,39 +289,40 @@ public class FallingObject : MonoBehaviour
 		}
 
 		GameBalanceConfig config = GameBalance.Current;
-		float pull = config != null ? config.suctionPull : 13f;
 		float down = config != null ? config.suctionDownForce : 17f;
 		float squeezeSpeed = config != null ? config.suctionSqueezeSpeed : 1.2f;
-		float attractMul = config != null ? config.suctionAttractRadius : 1.5f;
+		float attractMul = config != null ? config.suctionAttractRadius : DefaultAttractMul;
 
 		Vector3 holePos = CurrentHole.transform.position;
 		Vector3 toHole = holePos - rb.position;
 		toHole.y = 0f;
 		float dist = toHole.magnitude;
-		float holeRadius = CurrentHole.GetStableHoleRadius();
-		float attractR = holeRadius * attractMul;
+		float attractR = CurrentHole.GetStableHoleRadius() * attractMul;
 
-		if (suctionPhase == SuctionPhase.Slide && dist <= holeRadius)
-			BeginGulp(holePos, holeRadius);
+		if (suctionPhase == SuctionPhase.Slide)
+			BeginGulp();
 
-		if (suctionPhase == SuctionPhase.Lift || suctionPhase == SuctionPhase.Drift)
+		if (suctionPhase == SuctionPhase.Lift)
 			StepGulp();
-		else if (!rb.isKinematic)
+		else if (suctionPhase == SuctionPhase.Drop && !rb.isKinematic)
 		{
-			float t = attractR > 0.001f ? Mathf.Clamp01(1f - dist / attractR) : 1f;
-			float slidePull = pull * Mathf.Lerp(0.12f, 0.55f, t * t);
-			Vector3 force = Vector3.down * (down * Mathf.Lerp(0.15f, 0.45f, t));
-			if (dist > 0.0001f)
-				force += (toHole / dist) * slidePull;
-			if (suctionPhase == SuctionPhase.Drop)
-				force = Vector3.down * down + (dist > 0.0001f ? (toHole / dist) * (pull * 0.35f) : Vector3.zero);
-			rb.AddForce(force, ForceMode.Acceleration);
+			float dt = Time.fixedDeltaTime;
+			Vector3 vel = rb.velocity;
+			float nextX = Mathf.MoveTowards(rb.position.x, holePos.x, GulpMoveSpeed * dt);
+			float nextZ = Mathf.MoveTowards(rb.position.z, holePos.z, GulpMoveSpeed * dt);
+			if (dt > 0.0001f)
+			{
+				vel.x = (nextX - rb.position.x) / dt;
+				vel.z = (nextZ - rb.position.z) / dt;
+			}
+			rb.velocity = vel;
+			rb.AddForce(Vector3.down * down, ForceMode.Acceleration);
 		}
 
 		if (suctionPhase != SuctionPhase.Slide)
 			transform.localScale = Vector3.Lerp(transform.localScale, squeezeFrom * VisualSqueeze, squeezeSpeed * Time.fixedDeltaTime);
 
-		if (IsAirborneGulp || (suctionPhase == SuctionPhase.Slide && dist <= attractR))
+		if (IsAirborneGulp || suctionPhase == SuctionPhase.Drop || (suctionPhase == SuctionPhase.Slide && dist <= attractR))
 			suctionStillMoving = true;
 		else if (!rb.isKinematic)
 		{
@@ -404,7 +404,7 @@ public class FallingObject : MonoBehaviour
 		if (!Tool.CanFitFootprint(size, hole.size))
 			return;
 
-		float attractMul = GameBalance.Current != null ? GameBalance.Current.suctionAttractRadius : 1.5f;
+		float attractMul = GameBalance.Current != null ? GameBalance.Current.suctionAttractRadius : DefaultAttractMul;
 		Vector3 delta = hole.transform.position - transform.position;
 		delta.y = 0f;
 		float limit = hole.GetStableHoleRadius() * attractMul;
@@ -422,23 +422,12 @@ public class FallingObject : MonoBehaviour
 		OnSuctionBegan(hole);
 	}
 
-	private void BeginGulp(Vector3 holePos, float holeRadius)
+	private void BeginGulp()
 	{
 		if (gulpArmed)
 			return;
 		gulpArmed = true;
 		suctionPhase = SuctionPhase.Lift;
-		float height = rend != null ? rend.bounds.size.y : size.y;
-		if (height < 0.05f)
-			height = 0.25f;
-		gulpLiftPos = rb.position + Vector3.up * (height * 0.25f);
-		Vector2 circle = Random.insideUnitCircle.normalized;
-		if (circle.sqrMagnitude < 0.01f)
-			circle = Vector2.right;
-		gulpDriftPos = new Vector3(
-			holePos.x + circle.x * holeRadius * GulpOffsetMul,
-			gulpLiftPos.y,
-			holePos.z + circle.y * holeRadius * GulpOffsetMul);
 		if (rb != null)
 		{
 			rb.velocity = Vector3.zero;
@@ -450,18 +439,23 @@ public class FallingObject : MonoBehaviour
 
 	private void StepGulp()
 	{
-		if (rb == null)
+		if (rb == null || CurrentHole == null)
 			return;
 
-		Vector3 target = suctionPhase == SuctionPhase.Lift ? gulpLiftPos : gulpDriftPos;
+		GameBalanceConfig config = GameBalance.Current;
+		float liftFactor = config != null ? config.suctionLiftDiameterFactor : DefaultLiftDiameterFactor;
+		Vector3 holePos = CurrentHole.transform.position;
+		float holeRadius = CurrentHole.GetStableHoleRadius();
+		float liftY = holePos.y + holeRadius * 2f * liftFactor;
+		Vector3 target = new Vector3(holePos.x, liftY, holePos.z);
 		Vector3 next = Vector3.MoveTowards(rb.position, target, GulpMoveSpeed * Time.fixedDeltaTime);
 		rb.MovePosition(next);
-		if ((next - target).sqrMagnitude > 0.0025f)
-			return;
 
-		if (suctionPhase == SuctionPhase.Lift)
-			suctionPhase = SuctionPhase.Drift;
-		else
+		float dx = next.x - holePos.x;
+		float dz = next.z - holePos.z;
+		bool overHole = dx * dx + dz * dz <= holeRadius * holeRadius;
+		bool atHeight = next.y >= liftY - 0.05f;
+		if (overHole && atHeight)
 			BeginDrop();
 	}
 

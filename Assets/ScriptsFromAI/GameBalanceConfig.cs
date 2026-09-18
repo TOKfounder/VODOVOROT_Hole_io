@@ -48,7 +48,12 @@ public class GameBalanceConfig : ScriptableObject
 	public float suctionOrbitDown = 6f;
 	[Range(0.2f, 1f)] public float suctionRimFactor = 0.55f;
 	public float suctionSqueezeSpeed = 1.2f;
-	public float suctionAttractRadius = 1.5f;
+	[Min(0.05f)]
+	[Tooltip("Множитель радиуса дыры, с которого объекты начинают всасываться")]
+	public float suctionAttractRadius = 1.1f;
+	[Min(0.05f)]
+	[Tooltip("Высота подъёма при захвате в долях диаметра дыры")]
+	public float suctionLiftDiameterFactor = 0.3f;
 
 	[Header("Hole absorb")]
 	public float absorbSizeMul = 1.15f;

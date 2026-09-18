@@ -242,20 +242,20 @@ public static class GameTexts
 
 	public static string ModeCleaningTitle => Ru ? "Тотальная Зачистка" : "Total Cleaning";
 	public static string ModeCleaningBody => Ru
-		? $"Крупные объекты за {FormatClock(CleaningSeconds)}. Мелочь можно есть, но в 100% она не входит. Стрелки ведут к крупным."
-		: $"Eat the large objects in {FormatClock(CleaningSeconds)}. Small props are optional and do not count toward 100%. Arrows point to the big ones.";
+		? $"Большое за {FormatClock(CleaningSeconds)}. Крошки в статистику не проходят."
+		: $"The big stuff in {FormatClock(CleaningSeconds)}. Crumbs don't count.";
 	public static string ModeBossTitle => Ru ? "Босс Туалетов" : "The Toilet Boss";
 	public static string ModeBossBody => Ru
-		? "Перегони босса и наезжай, если ты заметно крупнее. Или будь крупнее к сирене."
-		: "Overtake the boss and ram him when you are clearly bigger. Or be bigger when the siren hits.";
+		? "Сначала обгони, потом проглоти унитаз."
+		: "Overtake first, then swallow the toilet.";
 	public static string ModeHuntingTitle => Ru ? "Охота" : "Hunting";
 	public static string ModeHuntingBody => Ru
-		? "Три врага. Мелкие убегают, крупные идут в тебя. Награда за каждого, джекпот за всех."
-		: "Three enemies. Small ones flee, big ones chase you. Reward per kill, jackpot for all.";
+		? "Три цели. За каждую — награда, за все — куш."
+		: "Three targets. Pay per catch, jackpot for all.";
 	public static string ModeTeamTitle => Ru ? "Командный" : "Teamwork";
 	public static string ModeTeamBody => Ru
-		? "2 на 2. Победа по сумме очков. Союзник сначала ест карту, потом чужие дыры."
-		: "2 vs 2. Win by absorbed score. Your ally farms first, then hunts enemy holes.";
+		? "Двое своих, двое чужих. Счёт общий."
+		: "Two of yours, two of theirs. Shared score.";
 
 	public static string TutorialMoveTitle => Ru ? "Как двигаемся" : "How to move";
 	public static string TutorialMoveBody => Ru

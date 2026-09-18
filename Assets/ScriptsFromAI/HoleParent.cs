@@ -165,7 +165,7 @@ public class HoleParent : MonoBehaviour
 
 	private void AttractNearby()
 	{
-		float attractMul = GameBalance.Current != null ? GameBalance.Current.suctionAttractRadius : 1.5f;
+		float attractMul = GameBalance.Current != null ? GameBalance.Current.suctionAttractRadius : 1.1f;
 		float limit = GetStableHoleRadius() * attractMul;
 		Vector3 holePos = transform.position;
 		List<FallingObject> foods = FallingObject.Active;

@@ -206,8 +206,7 @@ public class MatchHud : MonoBehaviour
 
 		if (ModeManager.currentMode == ModeManager.Mode.TotalCleaning)
 		{
-			int shown = PlaceLargeFoodArrows();
-			HideUnusedArrows(shown);
+			HideUnusedArrows(0);
 			return;
 		}
 
