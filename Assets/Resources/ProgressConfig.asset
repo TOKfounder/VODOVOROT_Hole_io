@@ -1,0 +1,114 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8e2a14d9b047f3a1e5c0d7b4f8a92e, type: 3}
+  m_Name: ProgressConfig
+  m_EditorClassIdentifier: 
+  maxLevel: 30
+  expToNext:
+  - 60
+  - 68
+  - 77
+  - 87
+  - 98
+  - 110
+  - 123
+  - 137
+  - 152
+  - 168
+  - 185
+  - 203
+  - 222
+  - 242
+  - 263
+  - 285
+  - 308
+  - 332
+  - 357
+  - 383
+  - 410
+  - 438
+  - 467
+  - 497
+  - 528
+  - 560
+  - 593
+  - 627
+  - 662
+  coinsAtLevel:
+  - 0
+  - 0
+  - 12
+  - 13
+  - 14
+  - 15
+  - 16
+  - 17
+  - 18
+  - 19
+  - 20
+  - 21
+  - 22
+  - 23
+  - 24
+  - 25
+  - 26
+  - 27
+  - 28
+  - 29
+  - 30
+  - 31
+  - 32
+  - 33
+  - 34
+  - 35
+  - 36
+  - 37
+  - 38
+  - 39
+  - 40
+  diamondsAtLevel:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 3
+  - 0
+  - 0
+  - 0
+  - 0
+  - 4
+  - 0
+  - 0
+  - 0
+  - 0
+  - 5
+  - 0
+  - 0
+  - 0
+  - 0
+  - 6
+  - 0
+  - 0
+  - 0
+  - 0
+  - 8
+  - 0
+  - 0
+  - 0
+  - 0
+  - 12
+  overflowExpPerCoin: 25
+  huntingUnlockLevel: 10
+  castleUnlockLevel: 15
+  teamUnlockLevel: 22
+  industrialUnlockLevel: 30

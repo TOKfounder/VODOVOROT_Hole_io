@@ -170,6 +170,12 @@ public class ModeSelectionUI : MonoBehaviour
 		button.onClick = new Button.ButtonClickedEvent();
 		button.onClick.AddListener(() =>
 		{
+			if (!ProgressPresenter.IsModeUnlocked(mode))
+			{
+				if (MainMenuController.Instance != null && MainMenuController.Instance.fart != null)
+					MainMenuController.Instance.fart.Play();
+				return;
+			}
 			OnModeButtonClicked(mode);
 			if (!TutorialController.KeepModesPanelOpen)
 				CloseNamedPanel(button, "PanelOfModes");
@@ -188,6 +194,12 @@ public class ModeSelectionUI : MonoBehaviour
 		button.onClick = new Button.ButtonClickedEvent();
 		button.onClick.AddListener(() =>
 		{
+			if (!ProgressPresenter.IsMapUnlocked(mapId))
+			{
+				if (MainMenuController.Instance != null && MainMenuController.Instance.fart != null)
+					MainMenuController.Instance.fart.Play();
+				return;
+			}
 			if (MainMenuController.Instance != null)
 				MainMenuController.Instance.UpdateMapOnBackground(mapId);
 			CloseNamedPanel(button, "PanelOfMaps");
@@ -267,14 +279,14 @@ public class ModeSelectionUI : MonoBehaviour
 		GameController.NormalizeChosenMode();
 		int chosenMode = YG2.saves.chosenMode;
 
-		ApplyModeCard(mobileBossButton, chosenMode == (int)ModeManager.Mode.Boss);
-		ApplyModeCard(desktopBossButton, chosenMode == (int)ModeManager.Mode.Boss);
-		ApplyModeCard(mobileTotalButton, chosenMode == (int)ModeManager.Mode.TotalCleaning);
-		ApplyModeCard(desktopTotalButton, chosenMode == (int)ModeManager.Mode.TotalCleaning);
-		ApplyModeCard(mobileHuntingButton, chosenMode == (int)ModeManager.Mode.Hunting);
-		ApplyModeCard(desktopHuntingButton, chosenMode == (int)ModeManager.Mode.Hunting);
-		ApplyModeCard(mobileTeamButton, chosenMode == (int)ModeManager.Mode.TeamMode);
-		ApplyModeCard(desktopTeamButton, chosenMode == (int)ModeManager.Mode.TeamMode);
+		ApplyModeCard(mobileBossButton, chosenMode == (int)ModeManager.Mode.Boss, ModeManager.Mode.Boss);
+		ApplyModeCard(desktopBossButton, chosenMode == (int)ModeManager.Mode.Boss, ModeManager.Mode.Boss);
+		ApplyModeCard(mobileTotalButton, chosenMode == (int)ModeManager.Mode.TotalCleaning, ModeManager.Mode.TotalCleaning);
+		ApplyModeCard(desktopTotalButton, chosenMode == (int)ModeManager.Mode.TotalCleaning, ModeManager.Mode.TotalCleaning);
+		ApplyModeCard(mobileHuntingButton, chosenMode == (int)ModeManager.Mode.Hunting, ModeManager.Mode.Hunting);
+		ApplyModeCard(desktopHuntingButton, chosenMode == (int)ModeManager.Mode.Hunting, ModeManager.Mode.Hunting);
+		ApplyModeCard(mobileTeamButton, chosenMode == (int)ModeManager.Mode.TeamMode, ModeManager.Mode.TeamMode);
+		ApplyModeCard(desktopTeamButton, chosenMode == (int)ModeManager.Mode.TeamMode, ModeManager.Mode.TeamMode);
 
 		int mapId = YG2.saves.selectedMapID;
 		ApplyMapCard(mobileCityButton, mapId == 0, 0);
@@ -289,10 +301,13 @@ public class ModeSelectionUI : MonoBehaviour
 			TutorialController.Instance.RefreshLock();
 	}
 
-	private void ApplyModeCard(Button button, bool selected)
+	private void ApplyModeCard(Button button, bool selected, ModeManager.Mode mode)
 	{
 		if (button == null)
 			return;
+
+		bool unlocked = ProgressPresenter.IsModeUnlocked(mode);
+		SetLockOverlay(button, unlocked ? "" : GameTexts.ContentLockLevel(ProgressPresenter.Instance.Model.UnlockLevelForMode(mode)));
 
 		bool lockUi = TutorialController.IsLockingUi;
 		if (!lockUi)
@@ -303,6 +318,8 @@ public class ModeSelectionUI : MonoBehaviour
 		if (lockUi && IsTutorialModeTarget(button))
 			face = selectedColor;
 		else if (lockUi)
+			face = disabledColor;
+		else if (!unlocked)
 			face = disabledColor;
 		else
 			face = selected ? selectedColor : normalColor;
@@ -326,6 +343,9 @@ public class ModeSelectionUI : MonoBehaviour
 		if (button == null)
 			return;
 
+		bool unlocked = ProgressPresenter.IsMapUnlocked(mapId);
+		SetLockOverlay(button, unlocked ? "" : GameTexts.ContentLockLevel(ProgressPresenter.Instance.Model.UnlockLevelForMap(mapId)));
+
 		bool lockUi = TutorialController.IsLockingUi;
 		if (!lockUi)
 			button.interactable = true;
@@ -336,6 +356,8 @@ public class ModeSelectionUI : MonoBehaviour
 		if (lockUi && cityStep)
 			face = mapId == 0 ? selectedColor : disabledColor;
 		else if (lockUi)
+			face = disabledColor;
+		else if (!unlocked)
 			face = disabledColor;
 		else
 			face = selected ? selectedColor : Color.white;
@@ -352,6 +374,38 @@ public class ModeSelectionUI : MonoBehaviour
 		colors.selectedColor = face;
 		colors.disabledColor = disabledColor;
 		button.colors = colors;
+	}
+
+	private static void SetLockOverlay(Button button, string label)
+	{
+		if (button == null)
+			return;
+		Transform existing = button.transform.Find("ContentLockLabel");
+		if (string.IsNullOrEmpty(label))
+		{
+			if (existing != null)
+				existing.gameObject.SetActive(false);
+			return;
+		}
+
+		Text text = existing != null ? existing.GetComponent<Text>() : null;
+		if (text == null)
+		{
+			text = ActiveCanvas.CreateText(button.transform, "ContentLockLabel", Vector2.zero, new Vector2(120f, 36f));
+			if (text == null)
+				return;
+			text.gameObject.name = "ContentLockLabel";
+			RectTransform rect = text.rectTransform;
+			rect.anchorMin = new Vector2(1f, 1f);
+			rect.anchorMax = new Vector2(1f, 1f);
+			rect.pivot = new Vector2(1f, 1f);
+			rect.anchoredPosition = new Vector2(-8f, -8f);
+			text.fontSize = 16;
+			text.alignment = TextAnchor.UpperRight;
+			text.raycastTarget = false;
+		}
+		text.gameObject.SetActive(true);
+		text.text = label;
 	}
 
 	private static bool IsTutorialModeTarget(Button button)

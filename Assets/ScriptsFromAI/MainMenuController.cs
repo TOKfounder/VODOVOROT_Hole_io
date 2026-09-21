@@ -160,7 +160,7 @@ public class MainMenuController : MonoBehaviour
 		{
 			if (obtained[i] == 1)
 				continue;
-			if (catalog.CanBuy(i, YG2.saves.levelOfProgress, YG2.saves.goldCoins))
+			if (catalog.CanBuy(i, ProgressPresenter.Level, YG2.saves.goldCoins))
 				return true;
 		}
 		return false;
@@ -222,10 +222,20 @@ public class MainMenuController : MonoBehaviour
 			YG2.saves.massiveOfObtaining[4] = 1;
 		else if (id == MatchRules.StarterPackId)
 			GrantStarterPack();
+		else if (id == MatchRules.IapMapCastle)
+			ProgressPresenter.UnlockMap(ProgressConfig.CastleMapId);
+		else if (id == MatchRules.IapMapIndustrial)
+			ProgressPresenter.UnlockMap(ProgressConfig.IndustrialMapId);
+		else if (id == MatchRules.IapModeHunting)
+			ProgressPresenter.UnlockMode(ModeManager.Mode.Hunting);
+		else if (id == MatchRules.IapModeTeam)
+			ProgressPresenter.UnlockMode(ModeManager.Mode.TeamMode);
 		YG2.SaveProgress();
     YG2.ConsumePurchaseByID(id);
 		HorizontalLayout3D.Instance?.UpdateForChosen();
 		UpdatePanelOfValute();
+		if (GameController.Instance != null)
+			GameController.Instance.RefreshModeSelectionUI();
 	}
 
 	private void ExchangeButton()
@@ -255,6 +265,7 @@ public class MainMenuController : MonoBehaviour
 		YG2.saves.diamonds += MatchRules.StarterPackDiamonds;
 		YG2.saves.goldCoins += MatchRules.StarterPackCoins;
 		YG2.saves.adsRemoved = true;
+		ProgressPresenter.UnlockPaidContent();
 	}
 
 	private void HideRewardedShopOffers()
@@ -304,14 +315,17 @@ public class MainMenuController : MonoBehaviour
 
 	public void UpdateMainMenu()
 	{
+		ProgressPresenter.Instance.Sync();
 		UpdateMapOnBackground(YG2.saves.selectedMapID);
-		YG2.saves.levelOfProgress = (int)(YG2.saves.exp / 100f);
-		levelText.text = $"{(int)(YG2.saves.exp / 100f)}";
+		int level = ProgressPresenter.Instance.Model.CurrentLevel;
+		float fill = ProgressPresenter.Instance.Model.LevelFill;
+		YG2.saves.levelOfProgress = level;
+		levelText.text = $"{level}";
 		pointText.text = $"{Tool.ConvertText(YG2.saves.goldCoins)}";
-		levelImage.fillAmount = YG2.saves.exp % 100 / 100f;
-		DlevelText.text = $"{(int)(YG2.saves.exp / 100f)}";
+		levelImage.fillAmount = fill;
+		DlevelText.text = $"{level}";
 		DpointText.text = $"{Tool.ConvertText(YG2.saves.goldCoins)}";
-		DlevelImage.fillAmount = YG2.saves.exp % 100 / 100f;
+		DlevelImage.fillAmount = fill;
 		if (YG2.saves.isNickGiven || !string.IsNullOrEmpty(YG2.saves.nickName))
 		{
 			string nick = string.IsNullOrEmpty(YG2.saves.nickName) ? GameTexts.LegendNick : YG2.saves.nickName;
@@ -343,7 +357,7 @@ public class MainMenuController : MonoBehaviour
 		if (def == null)
 			return;
 
-		int levelNeed = def.necessaryLevel > YG2.saves.levelOfProgress ? def.necessaryLevel : 0;
+		int levelNeed = def.necessaryLevel > ProgressPresenter.Level ? def.necessaryLevel : 0;
 		int coinsLeft = Mathf.Max(0, def.costCoins - YG2.saves.goldCoins);
 		string hint = GameTexts.NextSkinHint(next, coinsLeft, levelNeed);
 		ApplyHint(triggerForNewSkin, hint);
@@ -376,6 +390,12 @@ public class MainMenuController : MonoBehaviour
 			return;
 		if (id < 0 || id >= maps.Length)
 			id = 0;
+		if (!ProgressPresenter.IsMapUnlocked(id))
+		{
+			if (fart != null)
+				fart.Play();
+			return;
+		}
 		mapField.sprite = maps[id];
 		YG2.saves.selectedMapID = id;
 		GameController.NormalizeChosenMode();

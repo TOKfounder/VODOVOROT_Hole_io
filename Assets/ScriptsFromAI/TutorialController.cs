@@ -27,20 +27,6 @@ public class TutorialController : MonoBehaviour
 
 	private const int MatchCardCount = 4;
 	private const int WhiteFriendIndex = 1;
-	private static int WhiteFriendCoinCost
-	{
-		get
-		{
-			SkinCatalog catalog = GameBalance.Skins;
-			if (catalog != null)
-			{
-				SkinDef def = catalog.Get(WhiteFriendIndex);
-				if (def != null && def.costCoins > 0)
-					return def.costCoins;
-			}
-			return 20;
-		}
-	}
 	private const float PointerOffset = 92f;
 	private const float PlaqueGap = 16f;
 	private const float SkinsPlaqueExtraDown = 45f;
@@ -84,15 +70,6 @@ public class TutorialController : MonoBehaviour
 	public static bool BlocksAutoLegendNick => YG2.saves.tutorialStage == StageNick;
 
 	public static bool IsExchangeStep => YG2.saves.tutorialStage == StageExchange;
-
-	public static bool AllowsWhiteFriendBuy
-	{
-		get
-		{
-			int stage = YG2.saves.tutorialStage;
-			return stage == StageRotateWhite || stage == StageBuyWhite;
-		}
-	}
 
 	private Canvas targetCanvas;
 	private RectTransform overlayRoot;
@@ -200,14 +177,7 @@ public class TutorialController : MonoBehaviour
 	{
 		if (!IsExchangeStep)
 			return;
-		EnsureWhiteFriendCoins();
 		SetStage(StageValuteReturn);
-	}
-
-	public static void EnsureWhiteFriendCoins()
-	{
-		if (YG2.saves.goldCoins < WhiteFriendCoinCost)
-			YG2.saves.goldCoins = WhiteFriendCoinCost;
 	}
 
 	public void RefreshTexts()
@@ -413,13 +383,6 @@ public class TutorialController : MonoBehaviour
 				}
 				break;
 			case StageBuyWhite:
-				if (YG2.saves.massiveOfObtaining != null
-					&& YG2.saves.massiveOfObtaining.Length > WhiteFriendIndex
-					&& YG2.saves.massiveOfObtaining[WhiteFriendIndex] == 1)
-				{
-					SetStage(StageEquipWhite);
-					ApplyStageVisuals();
-				}
 				break;
 			case StageEquipWhite:
 				if (YG2.saves.equipedMaterial == WhiteFriendIndex)
@@ -671,6 +634,8 @@ public class TutorialController : MonoBehaviour
 		}
 
 		ShowGuidePlaque(GuideTitle(stage), GuideBody(stage));
+		if (stage == StageBuyWhite)
+			ShowGiftNext();
 		RefreshSelectionCards();
 	}
 
@@ -746,6 +711,48 @@ public class TutorialController : MonoBehaviour
 			bodyText.text = body;
 		ApplyGuidePlaqueTextLayout();
 		PointAt(ResolveTargetRect());
+	}
+
+	private void ShowGiftNext()
+	{
+		if (nextButton == null || cardRect == null)
+			return;
+		nextButton.gameObject.SetActive(true);
+		RectTransform nextRect = nextButton.GetComponent<RectTransform>();
+		nextRect.anchorMin = new Vector2(0.5f, 0f);
+		nextRect.anchorMax = new Vector2(0.5f, 0f);
+		nextRect.pivot = new Vector2(0.5f, 0.5f);
+		nextRect.anchoredPosition = new Vector2(0f, -36f);
+		nextButton.transform.SetAsLastSibling();
+		if (nextLabel != null)
+			nextLabel.text = GameTexts.TutorialNext;
+		if (pointerRect != null)
+			pointerRect.gameObject.SetActive(false);
+		pointerTarget = nextButton.GetComponent<RectTransform>();
+	}
+
+	private static void GrantWhiteFriend()
+	{
+		if (YG2.saves.massiveOfObtaining == null || YG2.saves.massiveOfObtaining.Length < 5)
+		{
+			int[] padded = new int[5];
+			if (YG2.saves.massiveOfObtaining != null)
+			{
+				int copy = Mathf.Min(5, YG2.saves.massiveOfObtaining.Length);
+				for (int i = 0; i < copy; i++)
+					padded[i] = YG2.saves.massiveOfObtaining[i];
+			}
+			padded[0] = 1;
+			YG2.saves.massiveOfObtaining = padded;
+		}
+		YG2.saves.massiveOfObtaining[WhiteFriendIndex] = 1;
+		YG2.SaveProgress();
+		HorizontalLayout3D[] shops = Object.FindObjectsByType<HorizontalLayout3D>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+		for (int i = 0; i < shops.Length; i++)
+		{
+			if (shops[i] != null)
+				shops[i].UpdateForChosen();
+		}
 	}
 
 	private void ShowMatchCard(int card)
@@ -1066,6 +1073,14 @@ public class TutorialController : MonoBehaviour
 
 	private void OnMatchNext()
 	{
+		if (YG2.saves.tutorialStage == StageBuyWhite)
+		{
+			GrantWhiteFriend();
+			SetStage(StageEquipWhite);
+			ApplyStageVisuals();
+			return;
+		}
+
 		if (YG2.saves.tutorialStage != StageMatchCards)
 			return;
 
@@ -1115,7 +1130,8 @@ public class TutorialController : MonoBehaviour
 			if (allowed == null)
 				lockUi = false;
 		}
-		bool allowNext = YG2.saves.tutorialStage == StageMatchCards;
+		bool allowNext = YG2.saves.tutorialStage == StageMatchCards
+			|| YG2.saves.tutorialStage == StageBuyWhite;
 		Button[] buttons = targetCanvas.GetComponentsInChildren<Button>(true);
 		for (int i = 0; i < buttons.Length; i++)
 		{
@@ -1187,7 +1203,7 @@ public class TutorialController : MonoBehaviour
 			case StageValuteReturn: return FindButton("Return", "PanelOfValute");
 			case StageSkins: return FindActivator("PanelOfSkins") ?? FindButton("SkinsShop");
 			case StageRotateWhite: return FindRotateNextButton();
-			case StageBuyWhite: return FindButton("InnerValute");
+			case StageBuyWhite: return nextButton;
 			case StageEquipWhite: return FindButton("Equiping");
 			case StageSkinsReturn: return FindButton("Return", "PanelOfSkins");
 			default: return null;

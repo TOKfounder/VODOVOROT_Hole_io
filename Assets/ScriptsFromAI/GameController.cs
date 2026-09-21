@@ -101,7 +101,7 @@ public class GameController : MonoBehaviour
 			YG2.saves.massiveOfObtaining = new int[] { 1, 0, 0, 0, 0 };
 			YG2.saves.exp = 0;
 			YG2.saves.isFirst = false;
-			YG2.saves.levelOfProgress = 0;
+			YG2.saves.levelOfProgress = 1;
 			YG2.saves.goldCoins = 0;
 			YG2.saves.chosenMode = (int)ModeManager.Mode.Boss;
 			YG2.saves.diamonds = 3;
@@ -121,8 +121,9 @@ public class GameController : MonoBehaviour
 			}
 			YG2.saves.massiveOfObtaining = newArray;
 		}
-		NormalizeChosenMode();
 		TutorialController.MigrateSaves();
+		ProgressPresenter.Instance.Sync();
+		NormalizeChosenMode();
 		YG2.SaveProgress();
 		ChangeMain(YG2.saves.equipedMaterial);
 		UiClickFeedback.EnsureOnScene();
@@ -210,6 +211,8 @@ public class GameController : MonoBehaviour
 
 	public void ChangeMode(int id)
 	{
+		if (!ProgressPresenter.IsModeUnlocked((ModeManager.Mode)id))
+			return;
 		YG2.saves.chosenMode = id;
 		ModeManager.currentMode = (ModeManager.Mode)id;
 		YG2.SaveProgress();
@@ -224,6 +227,7 @@ public class GameController : MonoBehaviour
 
 		YG2.saves.chosenMode = mode;
 		ModeManager.currentMode = (ModeManager.Mode)mode;
+		ProgressPresenter.Instance.Model.NormalizeSelection();
 	}
 
 	public void RefreshModeSelectionUI()

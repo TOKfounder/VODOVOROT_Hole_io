@@ -71,6 +71,7 @@ MonoBehaviour:
   garden: {fileID: 11400000, guid: 63a789c5c964041008dc620d61bec144, type: 2}
   castle: {fileID: 11400000, guid: 23ecb0ed57eee42a39caa76f91a04920, type: 2}
   industrial: {fileID: 11400000, guid: e772485d51f8742dd902ecba19e86965, type: 2}
+  progress: {fileID: 11400000, guid: e3b1c7a04f8d4c2e9a6b5d0c8f1e2a47, type: 2}
   suctionMassMin: 0.4
   suctionMassMax: 3
   suctionDrag: 0.8

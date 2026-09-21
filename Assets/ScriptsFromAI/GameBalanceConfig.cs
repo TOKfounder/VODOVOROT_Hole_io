@@ -36,6 +36,7 @@ public class GameBalanceConfig : ScriptableObject
 	public MapConfig garden;
 	public MapConfig castle;
 	public MapConfig industrial;
+	public ProgressConfig progress;
 
 	[Header("Suction")]
 	public float suctionMassMin = 0.4f;
@@ -121,6 +122,7 @@ public static class GameBalance
 	}
 
 	public static SkinCatalog Skins => Current != null ? Current.skins : null;
+	public static ProgressConfig Progress => Current != null ? Current.progress : null;
 
 	public static float[] CopyOr(float[] source, float[] fallback)
 	{

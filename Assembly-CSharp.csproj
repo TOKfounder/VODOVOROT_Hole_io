@@ -125,6 +125,7 @@
     <Compile Include="Assets/ScriptsFromAI/MatchHud.cs" />
     <Compile Include="Assets/ScriptsFromAI/TutorialController.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/StickyAdv/Scripts/StickyAdv_yg.cs" />
+    <Compile Include="Assets/ScriptsFromAI/ProgressModel.cs" />
     <Compile Include="Assets/ScriptsFromAI/ScoreOrbSpawner.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Platform/PlatformSettingsAttributes.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/EditorScr/Attributes/LabelYGAttribute.cs" />
@@ -159,6 +160,7 @@
     <Compile Include="Assets/ScriptsFromAI/PointsScript.cs" />
     <Compile Include="Assets/PluginYourGames/Scripts/Platform/PlatformSettings.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Authorization/Scripts/Auth_lang.cs" />
+    <Compile Include="Assets/ScriptsFromAI/ProgressConfig.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/StickyAdv/Scripts/StickyAdv_yandexPlatform.cs" />
     <Compile Include="Assets/ScriptsFromAI/SpiralRotation.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Flags/Scripts/Flags_info.cs" />
@@ -225,6 +227,7 @@
     <Compile Include="Assets/UsedAssets/Fries and Seagull/City 03/Scene Props/Scripts/Inspector/AnInspector.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/RewardedAdv/Scripts/RewardedAdv_optionalPlatform.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/PlayerStats/Scripts/PlayerStats_interface.cs" />
+    <Compile Include="Assets/ScriptsFromAI/ProgressPresenter.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/EnvirData/Scripts/EnvirData_interface.cs" />
     <Compile Include="Assets/ScriptsFromAI/MainMenuController.cs" />
     <Compile Include="Assets/PluginYourGames/Modules/Localization/Example/Scripts/LanguageExample.cs" />

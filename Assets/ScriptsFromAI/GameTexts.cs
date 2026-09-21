@@ -160,8 +160,10 @@ public static class GameTexts
 	public static string TutorialRotateBody => Ru
 		? "Прокрути карусель до Белого друга."
 		: "Rotate the carousel to White Friend.";
-	public static string TutorialBuyTitle => Ru ? "Покупка" : "Buy";
-	public static string TutorialBuyBody => Ru ? "Купи Белого друга за монеты." : "Buy White Friend with coins.";
+	public static string TutorialBuyTitle => Ru ? "Подарок" : "Gift";
+	public static string TutorialBuyBody => Ru
+		? "Белый друг — твой. Забери и надень."
+		: "White Friend is yours. Claim it, then equip.";
 	public static string TutorialEquipTitle => Ru ? "Экипировка" : "Equip";
 	public static string TutorialEquipBody => Ru ? "Надень Белого друга." : "Equip White Friend.";
 	public static string TutorialSkinsReturnTitle => Ru ? "Закрой магазин" : "Close shop";
@@ -208,6 +210,74 @@ public static class GameTexts
 		}
 	}
 
+	public static string SkinNeedLevel(int level) => Ru ? $"Нужен {level} уровень" : $"Need level {level}";
+	public static string ContentLockLevel(int level) => Ru ? $"Ур. {level}" : $"Lv {level}";
+	public static string ContentLockedHint => Ru
+		? "Откроется на дороге прогресса, в стартовом паке или за рубли."
+		: "Unlocks on the progress road, in the starter pack, or for real money.";
+
+	public static string ProgressUnlockLabel => Ru ? "открыть" : "unlock";
+	public static string ProgressDiamondsTitle => Ru ? "Алмазы" : "Gems";
+	public static string ProgressDiamondAmount(int amount) => Ru ? $"+{amount} алм." : $"+{amount} gems";
+
+	public static bool TryProgressMilestone(int level, ProgressModel model, out string title, out string detail)
+	{
+		title = "";
+		detail = "";
+		string content = ProgressContentName(level, model);
+		string skin = ProgressSkinName(level);
+		int diamonds = model != null ? model.Runtime.DiamondsAt(level) : 0;
+		if (string.IsNullOrEmpty(content) && string.IsNullOrEmpty(skin) && diamonds <= 0)
+			return false;
+
+		if (!string.IsNullOrEmpty(content))
+		{
+			title = content;
+			detail = diamonds > 0 ? ProgressDiamondAmount(diamonds) : ProgressUnlockLabel;
+			return true;
+		}
+
+		if (!string.IsNullOrEmpty(skin))
+		{
+			title = skin;
+			detail = diamonds > 0 ? ProgressDiamondAmount(diamonds) : ProgressUnlockLabel;
+			return true;
+		}
+
+		title = ProgressDiamondsTitle;
+		detail = ProgressDiamondAmount(diamonds);
+		return true;
+	}
+
+	private static string ProgressContentName(int level, ProgressModel model)
+	{
+		if (model == null)
+			return "";
+		if (level == model.UnlockLevelForMode(ModeManager.Mode.Hunting))
+			return Ru ? "Охота" : "Hunt";
+		if (level == model.UnlockLevelForMap(ProgressConfig.CastleMapId))
+			return Ru ? "Замок" : "Castle";
+		if (level == model.UnlockLevelForMode(ModeManager.Mode.TeamMode))
+			return Ru ? "Команда" : "Team";
+		if (level == model.UnlockLevelForMap(ProgressConfig.IndustrialMapId))
+			return Ru ? "Промзона" : "Factory";
+		return "";
+	}
+
+	private static string ProgressSkinName(int level)
+	{
+		SkinCatalog catalog = GameBalance.Skins;
+		if (catalog == null || catalog.skins == null)
+			return "";
+		for (int i = 2; i < catalog.skins.Length; i++)
+		{
+			SkinDef def = catalog.skins[i];
+			if (def != null && def.necessaryLevel == level)
+				return SkinShortName(i);
+		}
+		return "";
+	}
+
 	public static string NextSkinHint(int index, int coinsLeft, int levelNeed)
 	{
 		string name = SkinShortName(index);
@@ -229,8 +299,8 @@ public static class GameTexts
 
 	public static string StarterPackTitle => Ru ? "Стартовый пак" : "Starter pack";
 	public static string StarterPackBody => Ru
-		? $"Алмазы {MatchRules.StarterPackDiamonds}, монеты {MatchRules.StarterPackCoins} и навсегда без межстраничной рекламы."
-		: $"{MatchRules.StarterPackDiamonds} diamonds, {MatchRules.StarterPackCoins} coins, and no interstitial ads forever.";
+		? $"Алмазы {MatchRules.StarterPackDiamonds}, монеты {MatchRules.StarterPackCoins}, Замок и Промзона, Охота и Командный, и навсегда без межстраничной рекламы."
+		: $"{MatchRules.StarterPackDiamonds} diamonds, {MatchRules.StarterPackCoins} coins, Castle and Industrial, Hunting and Team, and no interstitial ads forever.";
 	public static string StarterPackBuy => Ru ? "Забрать выгоду" : "Get the deal";
 	public static string StarterPackLater => Ru ? "Позже" : "Later";
 	public static string StarterPackWas => Ru

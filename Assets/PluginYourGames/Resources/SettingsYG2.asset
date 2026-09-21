@@ -201,6 +201,42 @@ MonoBehaviour:
       priceCurrencyCode: YAN
       currencyImageURL: 
       consumed: 1
+    - id: map_castle
+      title: Castle Map
+      description: Product - CastleMap
+      imageURI: demo image
+      price: 49 YAN
+      priceValue: 49
+      priceCurrencyCode: YAN
+      currencyImageURL: 
+      consumed: 1
+    - id: map_industrial
+      title: Industrial Map
+      description: Product - IndustrialMap
+      imageURI: demo image
+      price: 49 YAN
+      priceValue: 49
+      priceCurrencyCode: YAN
+      currencyImageURL: 
+      consumed: 1
+    - id: mode_hunting
+      title: Hunting Mode
+      description: Product - HuntingMode
+      imageURI: demo image
+      price: 49 YAN
+      priceValue: 49
+      priceCurrencyCode: YAN
+      currencyImageURL: 
+      consumed: 1
+    - id: mode_team
+      title: Team Mode
+      description: Product - TeamMode
+      imageURI: demo image
+      price: 49 YAN
+      priceValue: 49
+      priceCurrencyCode: YAN
+      currencyImageURL: 
+      consumed: 1
   RewardedAdv:
     skipInterAdvAfterReward: 0
     labelAdvSimLabel: 0

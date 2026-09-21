@@ -17,6 +17,9 @@ public class HorizontalLayout3D : MonoBehaviour
 	[SerializeField] private Text costForDonate;
 	[SerializeField] private Button donateButton;
 	[SerializeField] private Image currencyImage;
+	private static readonly Color32 EquipColor = new Color32(120, 182, 50, 255);
+	private static readonly Color32 EquippedColor = new Color32(50, 101, 182, 255);
+	private static readonly Color32 LockedColor = new Color32(72, 72, 80, 255);
 
 	private string[] toiletIDs = {"obodok", "white", "gold", "scrag", "lord" };
 	private float initialAngle;
@@ -146,44 +149,20 @@ public class HorizontalLayout3D : MonoBehaviour
 			chosenObj = Mathf.Clamp(chosenObj, 0, necessaryLevels.Length - 1);
 		if (YG2.saves.massiveOfObtaining == null || chosenObj >= YG2.saves.massiveOfObtaining.Length)
 			return;
-		if (YG2.saves.massiveOfObtaining[chosenObj] == 0)
+
+		HideLegacyLockPlaque();
+		bool owned = YG2.saves.massiveOfObtaining[chosenObj] == 1;
+		if (!owned)
 		{
-			buttonOfBuying.SetActive(true);
-			buttonOfEquiping.SetActive(false);
 			bool unlocked = IsSkinUnlocked(chosenObj);
-			necessaryLevel.text = YG2.saves.langRu
-				? (unlocked ? $"{necessaryLevels[chosenObj]} уровень" : $"Нужен {necessaryLevels[chosenObj]} уровень")
-				: (unlocked ? $"{necessaryLevels[chosenObj]} level" : $"Need level {necessaryLevels[chosenObj]}");
-			costForCoins.text = $"{costsForCoins[chosenObj]}";
-			SetBuyInteractable(unlocked);
-			if (chosenObj == 1)
-			{
-				costForDonate.text = "";
-				donateButton.interactable = false;
-				currencyImage.color = new Color(1, 1, 1, 0);
-			}
+			if (!unlocked)
+				ShowLockedState();
 			else
-			{
-				costForDonate.text = $"{costsForDonate[chosenObj]}";
-				donateButton.interactable = unlocked;
-				currencyImage.color = unlocked ? Color.white : new Color(1, 1, 1, 0.35f);
-			}
+				ShowBuyState();
 		}
 		else
-		{
-			buttonOfBuying.SetActive(false);
-			buttonOfEquiping.SetActive(true);
-			if (chosenObj == YG2.saves.equipedMaterial)
-			{
-				buttonOfEquiping.GetComponent<Image>().color = new Color32(50, 101, 182, 255);
-				buttonOfEquiping.GetComponentInChildren<Text>().text = GameTexts.Equipped;
-			}
-			else
-			{
-				buttonOfEquiping.GetComponent<Image>().color = new Color32(120, 182, 50, 255);
-				buttonOfEquiping.GetComponentInChildren<Text>().text = GameTexts.Equip;
-			}
-		}
+			ShowOwnedState();
+
 		if (feature != null)
 		{
 			feature.horizontalOverflow = HorizontalWrapMode.Wrap;
@@ -200,12 +179,93 @@ public class HorizontalLayout3D : MonoBehaviour
 	{
 		if (index < 0 || index >= necessaryLevels.Length)
 			return false;
-		if (index == 1 && TutorialController.AllowsWhiteFriendBuy)
-			return true;
-		return YG2.saves.levelOfProgress >= necessaryLevels[index];
+		return ProgressPresenter.Level >= necessaryLevels[index];
 	}
 
-	private void SetBuyInteractable(bool unlocked)
+	private void ShowLockedState()
+	{
+		if (buttonOfBuying != null)
+			buttonOfBuying.SetActive(false);
+		SetEquipButton(GameTexts.SkinNeedLevel(necessaryLevels[chosenObj]), LockedColor, false);
+	}
+
+	private void ShowBuyState()
+	{
+		if (buttonOfBuying != null)
+			buttonOfBuying.SetActive(true);
+		if (buttonOfEquiping != null)
+			buttonOfEquiping.SetActive(false);
+
+		if (necessaryLevel != null)
+		{
+			necessaryLevel.gameObject.SetActive(true);
+			necessaryLevel.text = YG2.saves.langRu
+				? $"{necessaryLevels[chosenObj]} уровень"
+				: $"{necessaryLevels[chosenObj]} level";
+		}
+
+		SetBuyRowInteractable();
+		if (costForCoins != null)
+			costForCoins.text = $"{costsForCoins[chosenObj]}";
+		if (chosenObj == 1)
+		{
+			if (costForDonate != null)
+				costForDonate.text = "";
+			if (donateButton != null)
+			{
+				donateButton.interactable = false;
+				donateButton.gameObject.SetActive(false);
+			}
+			if (currencyImage != null)
+				currencyImage.color = new Color(1f, 1f, 1f, 0f);
+		}
+		else
+		{
+			if (donateButton != null)
+			{
+				donateButton.gameObject.SetActive(true);
+				donateButton.interactable = true;
+			}
+			if (costForDonate != null)
+				costForDonate.text = $"{costsForDonate[chosenObj]}";
+			if (currencyImage != null)
+				currencyImage.color = Color.white;
+		}
+	}
+
+	private void ShowOwnedState()
+	{
+		if (buttonOfBuying != null)
+			buttonOfBuying.SetActive(false);
+		bool equipped = chosenObj == YG2.saves.equipedMaterial;
+		SetEquipButton(
+			equipped ? GameTexts.Equipped : GameTexts.Equip,
+			equipped ? EquippedColor : EquipColor,
+			true);
+	}
+
+	private void SetEquipButton(string label, Color32 color, bool clickable)
+	{
+		if (buttonOfEquiping == null)
+			return;
+		buttonOfEquiping.SetActive(true);
+		Image image = buttonOfEquiping.GetComponent<Image>();
+		if (image != null)
+			image.color = color;
+		Text text = buttonOfEquiping.GetComponentInChildren<Text>();
+		if (text != null)
+			text.text = label;
+		Button button = buttonOfEquiping.GetComponent<Button>();
+		if (button != null)
+		{
+			ColorBlock colors = button.colors;
+			colors.disabledColor = Color.white;
+			button.colors = colors;
+			button.interactable = clickable;
+		}
+	}
+
+	private void SetBuyRowInteractable()
 	{
 		if (buttonOfBuying == null)
 			return;
@@ -213,15 +273,31 @@ public class HorizontalLayout3D : MonoBehaviour
 		for (int i = 0; i < buttons.Length; i++)
 		{
 			Button btn = buttons[i];
-			if (btn == null || btn == donateButton)
+			if (btn == null)
 				continue;
 			if (btn.gameObject.name == "Achivements")
 			{
+				ColorBlock colors = btn.colors;
+				colors.disabledColor = colors.normalColor;
+				btn.colors = colors;
 				btn.interactable = false;
+				btn.gameObject.SetActive(true);
 				continue;
 			}
-			btn.interactable = unlocked;
+			if (btn == donateButton)
+				continue;
+			btn.interactable = true;
+			btn.gameObject.SetActive(true);
 		}
+	}
+
+	private void HideLegacyLockPlaque()
+	{
+		if (buttonOfBuying == null)
+			return;
+		Transform leftover = buttonOfBuying.transform.Find("LevelLockPlaque");
+		if (leftover != null)
+			leftover.gameObject.SetActive(false);
 	}
 
 	public void BuyForSomething(int id)
@@ -263,6 +339,10 @@ public class HorizontalLayout3D : MonoBehaviour
 	
 	public void EquipMaterial()
 	{
+		if (YG2.saves.massiveOfObtaining == null || chosenObj >= YG2.saves.massiveOfObtaining.Length)
+			return;
+		if (YG2.saves.massiveOfObtaining[chosenObj] != 1)
+			return;
 		GameController.Instance.ChangeMain(chosenObj);
 		UpdateForChosen();
 	}

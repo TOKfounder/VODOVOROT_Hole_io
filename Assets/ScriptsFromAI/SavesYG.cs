@@ -27,5 +27,10 @@ namespace YG
 		public bool tutorialMatchSeen = false;
 		public int tutorialStage = 0;
 		public bool adsRemoved = false;
+		public int progressClaimedLevel = 1;
+		public int contentLocksVersion = 0;
+		public int unlockedMapsMask = 0;
+		public int unlockedModesMask = 0;
+		public int overflowExpConverted = 0;
 	}
 }

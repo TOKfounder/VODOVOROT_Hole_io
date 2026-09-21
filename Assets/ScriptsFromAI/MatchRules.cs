@@ -17,6 +17,10 @@ public static class MatchRules
 	public const int StarterPackCoins = 400;
 	public const string StarterPackWasPrice = "199 ₽";
 	public const string StarterPackPrice = "79 ₽";
+	public const string IapMapCastle = "map_castle";
+	public const string IapMapIndustrial = "map_industrial";
+	public const string IapModeHunting = "mode_hunting";
+	public const string IapModeTeam = "mode_team";
 
 	public const float AbsorbSizeMul = 1.15f;
 	public const float AbsorbCenterFactor = 0.55f;

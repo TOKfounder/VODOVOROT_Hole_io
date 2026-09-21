@@ -15,7 +15,7 @@ MonoBehaviour:
   skins:
   - speedMul: 1
     startMul: 1
-    necessaryLevel: 0
+    necessaryLevel: 1
     costCoins: 0
     costDonate: 0
   - speedMul: 1.04
@@ -25,16 +25,16 @@ MonoBehaviour:
     costDonate: 10000
   - speedMul: 1.08
     startMul: 1.05
-    necessaryLevel: 2
+    necessaryLevel: 8
     costCoins: 150
     costDonate: 10
   - speedMul: 1.12
     startMul: 1.08
-    necessaryLevel: 4
+    necessaryLevel: 16
     costCoins: 400
     costDonate: 40
   - speedMul: 1.15
     startMul: 1.1
-    necessaryLevel: 6
+    necessaryLevel: 24
     costCoins: 900
     costDonate: 100

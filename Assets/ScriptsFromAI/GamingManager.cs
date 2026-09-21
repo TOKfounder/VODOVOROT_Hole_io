@@ -849,6 +849,8 @@ public class GamingManager : MonoBehaviour
 		YG2.SetLeaderboard("BestPlayers", YG2.saves.exp);
 		YG2.SaveProgress();
 		rewardApplied = true;
+		ProgressPresenter.Instance.Sync();
+		YG2.SaveProgress();
 	}
 
 	public void EndOfGame()
