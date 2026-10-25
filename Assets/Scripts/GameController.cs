@@ -65,7 +65,6 @@ public class GameController : MonoBehaviour
 			YG2.saves.selectedMapID = 0;
 
 			YG2.GetLeaderboard("BestPlayers");
-			YG2.SetLeaderboard("BestPlayers", YG2.saves.exp);
 		}
 
 		if (YG2.saves.massiveOfObtaining.Length < 5)

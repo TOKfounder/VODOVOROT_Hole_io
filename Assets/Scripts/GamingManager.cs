@@ -55,6 +55,16 @@ public class GamingManager : MonoBehaviour
     private bool once = true;
     private bool rewardApplied = false;
     private bool endSequenceStarted = false;
+    private MatchRewardData settledReward;
+
+    public string Stage2RoundId { get; private set; }
+    public bool Stage2NaturalCompletion { get; private set; }
+    public int Stage2PlayerAbsorbedValue { get; private set; }
+    public int Stage2EquippedSkin { get; private set; }
+    public int Stage2Map { get; private set; }
+    public int Stage2Mode { get; private set; }
+    public bool IsStage2RankRewardEligible => Stage2NaturalCompletion && Stage2PlayerAbsorbedValue > 0;
+    public MatchRewardData SettledReward => settledReward;
 
     public bool IsTotalCleaningMode => isTotalCleaningMode;
     public bool HasRewardBeenApplied => rewardApplied;
@@ -87,6 +97,13 @@ public class GamingManager : MonoBehaviour
         once = true;
         rewardApplied = false;
         endSequenceStarted = false;
+        Stage2RoundId = System.Guid.NewGuid().ToString("N");
+        Stage2NaturalCompletion = false;
+        Stage2PlayerAbsorbedValue = 0;
+        Stage2EquippedSkin = YG2.saves.equipedMaterial;
+        Stage2Map = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex - 1;
+        Stage2Mode = YG2.saves.chosenMode;
+        settledReward = default;
         YG2.saves.isGaming = true;
         Time.timeScale = 1f;
         timer = 0f;
@@ -127,11 +144,13 @@ public class GamingManager : MonoBehaviour
             {
                 if (isTotalCleaningMode && (perc >= 1f || timer >= totalCleaningDuration - 0.01f))
                 {
+                    Stage2NaturalCompletion = true;
                     once = false;
                     EndOfGame();
                 }
                 else if (!isTotalCleaningMode && perc >= 1f)
                 {
+                    Stage2NaturalCompletion = true;
                     once = false;
                     EndOfGame();
                 }
@@ -215,6 +234,7 @@ public class GamingManager : MonoBehaviour
 
         if (isTotalCleaningMode && once && timer >= totalCleaningDuration - 0.01f)
         {
+            Stage2NaturalCompletion = true;
             once = false;
             EndOfGame();
         }
@@ -305,14 +325,23 @@ public class GamingManager : MonoBehaviour
 
     public void ApplyMatchReward(MatchRewardData reward)
     {
+        if (rewardApplied) return;
+        rewardApplied = true;
+        settledReward = reward;
         YG2.saves.score = HoleParent.totalScore;
         YG2.saves.exp += reward.exp;
         YG2.saves.goldCoins += reward.coins;
         YG2.saves.diamonds += reward.diamonds;
 
-        YG2.SetLeaderboard("BestPlayers", YG2.saves.exp);
         VodovorotGameManager.Instance?.SaveProgress();
-        rewardApplied = true;
+        Vodovorot.Stage2.LeaderboardRoundService.BeginRound(Stage2RoundId, IsStage2RankRewardEligible);
+    }
+
+    public void RegisterPlayerAbsorption(HoleParent owner, int amount)
+    {
+        if (endSequenceStarted || owner == null || amount <= 0) return;
+        if (owner.holeType == HoleParent.TypeOfHole.player || owner.holeType == HoleParent.TypeOfHole.playerHelper)
+            Stage2PlayerAbsorbedValue += amount;
     }
 
     public void ApplyCurrentTotalCleaningRewardIfNeeded()

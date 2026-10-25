@@ -78,6 +78,10 @@ namespace YG
                 return;
             }
 
+            // A deliberate account login is awaiting its actual cloud profile, or failed to load it.
+            // Never write the still-visible guest profile over an unknown existing account.
+            if (Vodovorot.Stage2.LeaderboardRoundService.IsAuthProfileWriteBlocked) return;
+
             saves.idSave++;
 #if !UNITY_EDITOR
             if (infoYG.Storage.saveLocal)
@@ -204,6 +208,9 @@ namespace YG.Insides
 
         public static void SetLoadSaves(string data)
         {
+            if (data == "STAGE2_AUTH_CLOUD_ERROR" &&
+                Vodovorot.Stage2.LeaderboardRoundService.NotifyAuthCloudLoadFailed()) return;
+
             DataState cloudDataState = DataState.Exist;
             DataState localDataState = DataState.Exist;
             SavesYG cloudData = new SavesYG();
@@ -233,6 +240,24 @@ namespace YG.Insides
                 }
             }
             else cloudDataState = DataState.NotExist;
+
+            // During deliberate login, malformed cloud data must not enter the plugin's
+            // default/recovery branch and discard the still-visible guest profile.
+            if (cloudDataState == DataState.Broken &&
+                Vodovorot.Stage2.LeaderboardRoundService.NotifyAuthCloudLoadFailed()) return;
+
+            // Stage 2's voluntary post-round login must wait for this real cloud outcome.
+            // Preserve guest progress only for an explicitly empty new account; never merge with an existing account.
+            if (Vodovorot.Stage2.LeaderboardRoundService.TryResolveAuthCloudProfile(cloudData,
+                cloudDataState == DataState.NotExist, cloudDataState == DataState.Broken,
+                out SavesYG authenticatedProfile, out bool carryGuest))
+            {
+                YG2.saves = authenticatedProfile;
+                Vodovorot.Stage2.LeaderboardRoundService.NotifyAuthCloudProfileReady();
+                if (carryGuest) YG2.SaveProgress();
+                GetDataInvoke();
+                return;
+            }
 
             if (infoYG.Storage.saveLocal == false)
             {

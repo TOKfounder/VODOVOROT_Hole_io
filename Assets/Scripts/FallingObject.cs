@@ -16,6 +16,8 @@ public class FallingObject : MonoBehaviour
 	private Collider col;
 	private Collider[] objectColliders;
 	private Coroutine myCoroutine;
+	private Vodovorot.Stage2.CascadeProp cascadeProp;
+	private bool spawnStatsReady;
 	private readonly System.Collections.Generic.List<HoleParent> candidateHoles =
 		new System.Collections.Generic.List<HoleParent>(4);
 
@@ -50,6 +52,7 @@ public class FallingObject : MonoBehaviour
 		gameObject.layer = 7;
 		IgnoreAllRegisteredPlatforms();
 		RefreshSpawnStats();
+		spawnStatsReady = true;
 		VodovorotGameManager.Instance.GamingManager.AllValues += value;
 	}
 
@@ -187,7 +190,7 @@ public class FallingObject : MonoBehaviour
 
 	public void ResetToStart()
 	{
-		transform.position = startPosition;
+		transform.position = cascadeProp != null ? cascadeProp.SafeResetPosition(startPosition) : startPosition;
 		transform.rotation = startRotation;
 		rb.isKinematic = true;
 		isTriggered = false;
@@ -201,7 +204,10 @@ public class FallingObject : MonoBehaviour
 
 	public void OnScored(HoleParent hole)
 	{
+		if (hole == null || value <= 0) return;
 		hole.AddScore(value);
+		Vodovorot.Stage2.Stage2Audio.PlayAbsorption(hole, value, size);
+		VodovorotGameManager.Instance?.GamingManager?.RegisterPlayerAbsorption(hole, value);
 		value = 0;
 
 		rb.isKinematic = true;
@@ -376,6 +382,7 @@ public class FallingObject : MonoBehaviour
 
 		isTriggered = true;
 		rb.isKinematic = false;
+		cascadeProp?.RememberHole(CurrentHole);
 
 		if (!CurrentHole.nearbyFallingObjects.Contains(this))
 			CurrentHole.nearbyFallingObjects.Add(this);
@@ -385,6 +392,39 @@ public class FallingObject : MonoBehaviour
 			if (myCoroutine != null) StopCoroutine(myCoroutine);
 			myCoroutine = StartCoroutine(DelayForUpdateCurrentHole());
 		}
+	}
+
+	// Stage 2 only relocates existing City props after their original size/value was cached.
+	// It must never call RefreshSpawnStats again or substitute a smaller collider for fit.
+	internal bool CanArrangeCascade => spawnStatsReady && value > 0 && !isColon && !isTriggered &&
+		rb != null && rb.isKinematic && col != null && col.enabled && !col.isTrigger;
+	internal Bounds CascadeBounds => col != null ? col.bounds : new Bounds(transform.position, size);
+
+	internal bool ArrangeCascade(Vector3 position, Vodovorot.Stage2.CascadeProp member)
+	{
+		if (!CanArrangeCascade) return false;
+		cascadeProp = member;
+		Vodovorot.Stage2.CascadePhysics.AssignOwnedColliders(this);
+		transform.position = position;
+		rb.position = position;
+		startPosition = position;
+		return true;
+	}
+
+	internal bool TryBeginCascadeFall(HoleParent hole)
+	{
+		if (cascadeProp == null || !CanArrangeCascade || hole == null || !hole.isActiveAndEnabled ||
+			!CanBeEatenBy(hole)) return false;
+
+		// Only the small support group within reach of the hole that removed its support wakes.
+		Bounds bounds = CascadeBounds;
+		Vector3 delta = bounds.center - hole.transform.position;
+		delta.y = 0f;
+		float reach = Mathf.Max(hole.size.x, hole.size.z) * .5f + Mathf.Max(bounds.extents.x, bounds.extents.z);
+		if (delta.sqrMagnitude > reach * reach) return false;
+		SetCurrentHole(hole);
+		TryActivateCurrentHole();
+		return isTriggered;
 	}
 
 	private bool CanBeEatenBy(HoleParent hole)

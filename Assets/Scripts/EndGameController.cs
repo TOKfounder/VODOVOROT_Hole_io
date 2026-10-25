@@ -47,6 +47,7 @@ public class EndGameController : MonoBehaviour
         if (gamingManager.IsTotalCleaningMode)
         {
             HandleTotalCleaningGame(gamingManager);
+            Vodovorot.Stage2.Stage2RoundPresentation.Install(this, gamingManager);
             return;
         }
 
@@ -62,6 +63,7 @@ public class EndGameController : MonoBehaviour
         {
             HandleCompleteGame();
         }
+        Vodovorot.Stage2.Stage2RoundPresentation.Install(this, gamingManager);
     }
 
     private void HandleIncompleteGame(float progress)
@@ -75,12 +77,10 @@ public class EndGameController : MonoBehaviour
 
         SetResultTexts(exp, currentCoinIncome, brillCount);
 
-        YG2.saves.exp += exp;
-        YG2.saves.goldCoins += currentCoinIncome;
-        YG2.saves.diamonds += brillCount;
-
-        YG2.SetLeaderboard("BestPlayers", YG2.saves.exp);
-        VodovorotGameManager.Instance.SaveProgress();
+        VodovorotGameManager.Instance.GamingManager.ApplyMatchReward(new GamingManager.MatchRewardData
+        {
+            exp = exp, coins = currentCoinIncome, diamonds = brillCount, resultSpriteIndex = 2
+        });
         VodovorotGameManager.Instance.GamingManager.UpdateUI();
     }
 
@@ -107,14 +107,11 @@ public class EndGameController : MonoBehaviour
             brillCount = 3;
         }
 
-        YG2.saves.goldCoins += currentCoinIncome;
-        YG2.saves.diamonds += brillCount;
-        YG2.saves.exp += 50;
-
         SetResultTexts(50, currentCoinIncome, brillCount);
-
-        YG2.SetLeaderboard("BestPlayers", YG2.saves.exp);
-        VodovorotGameManager.Instance.SaveProgress();
+        VodovorotGameManager.Instance.GamingManager.ApplyMatchReward(new GamingManager.MatchRewardData
+        {
+            exp = 50, coins = currentCoinIncome, diamonds = brillCount, resultSpriteIndex = 0
+        });
         VodovorotGameManager.Instance.GamingManager.UpdateUI();
     }
 

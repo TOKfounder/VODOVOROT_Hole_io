@@ -48,16 +48,17 @@ function NotAuthorized(hasPlayer = false) {
 }
 
 async function OpenAuthDialog() {
-    if (!ysdk) {
-        LogStyledMessage('OpenAuthDialog: ysdk is null');
-        return;
-    }
-
+    let stage2Authenticated = false;
     try {
+        if (!ysdk) {
+            LogStyledMessage('OpenAuthDialog: ysdk is null');
+            return;
+        }
         player = await ysdk.getPlayer();
 
         if (player.isAuthorized()) {
             await InitPlayer();
+            stage2Authenticated = !!(player && player.isAuthorized());
             YG2Instance('LoggedIn');
             return;
         }
@@ -68,6 +69,7 @@ async function OpenAuthDialog() {
 
             if (player.isAuthorized()) {
                 await InitPlayer();
+                stage2Authenticated = !!(player && player.isAuthorized());
                 YG2Instance('LoggedIn');
             } else {
                 await InitPlayer();
@@ -81,5 +83,9 @@ async function OpenAuthDialog() {
         player = null;
         await InitPlayer();
         LogStyledMessage('CRASH OpenAuthDialog / getPlayer:', e?.message ?? e);
+    } finally {
+        // The optional round flow waits for this explicit completion, even when
+        // credentials take a long time or the profile finished loading before this finally.
+        YG2Instance('Stage2AuthDialogClosed', stage2Authenticated ? 'true' : 'false');
     }
 }

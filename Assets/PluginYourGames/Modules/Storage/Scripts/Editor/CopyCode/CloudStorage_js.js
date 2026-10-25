@@ -1,6 +1,8 @@
 ﻿var cloudSaves = NO_DATA;
 
 function SaveCloud(jsonData, flush) {
+    var stage2Root = typeof window !== 'undefined' ? window : globalThis;
+    if (stage2Root.__vodovorotStage2AuthPending || stage2Root.__vodovorotStage2AuthBlocked) return;
     if (player == null) {
         console.error('CRASH Save Cloud: ', 'Didnt have time to load');
         return;
@@ -15,9 +17,12 @@ function SaveCloud(jsonData, flush) {
 }
 
 function LoadCloud() {
+    var stage2RequestRoot = typeof window !== 'undefined' ? window : globalThis;
+    var stage2AuthRequest = stage2RequestRoot.__vodovorotStage2AuthPending === true;
+    var stage2AuthGeneration = stage2RequestRoot.__vodovorotStage2AuthGeneration || 0;
     return new Promise((resolve) => {
         if (ysdk == null) {
-            Final(NO_DATA);
+            Final(NO_DATA, true);
             return;
         }
         try {
@@ -29,15 +34,21 @@ function LoadCloud() {
                 }
             }).catch(() => {
                 console.error('Load Cloud Error!');
-                Final(NO_DATA);
+                Final(NO_DATA, true);
             });
         }
         catch (e) {
             console.error('CRASH Load saves Cloud: ', e.message);
-            Final(NO_DATA);
+            Final(NO_DATA, true);
         }
 
-        function Final(res) {
+        function Final(res, failed) {
+            var stage2Root = typeof window !== 'undefined' ? window : globalThis;
+            // A user retry supersedes the earlier slow request; its late result must not replace the newer profile.
+            if (stage2AuthRequest && stage2AuthGeneration !== (stage2Root.__vodovorotStage2AuthGeneration || 0)) {
+                resolve(res); return;
+            }
+            if (failed && stage2AuthRequest) res = 'STAGE2_AUTH_CLOUD_ERROR';
             cloudSaves = res;
             YG2Instance('SetLoadSaves', res);
             resolve(res);

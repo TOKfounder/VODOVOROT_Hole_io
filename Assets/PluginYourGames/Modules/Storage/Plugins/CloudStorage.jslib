@@ -15,6 +15,8 @@ mergeInto(LibraryManager.library,
 
 	SaveCloud_js: function (jsonData, flush)
 	{
+        var stage2Root = typeof window !== 'undefined' ? window : globalThis;
+        if (stage2Root.__vodovorotStage2AuthPending || stage2Root.__vodovorotStage2AuthBlocked) return;
 		SaveCloud(UTF8ToString(jsonData), flush);
 	}
 });

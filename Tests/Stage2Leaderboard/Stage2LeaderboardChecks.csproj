@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup><BaseIntermediateOutputPath>/private/tmp/vodovorot-stage2-leaderboard-obj/</BaseIntermediateOutputPath><MSBuildProjectExtensionsPath>/private/tmp/vodovorot-stage2-leaderboard-obj/</MSBuildProjectExtensionsPath></PropertyGroup>
+  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
+  <PropertyGroup><OutputType>Exe</OutputType><NuGetAudit>false</NuGetAudit><TargetFramework>net10.0</TargetFramework><EnableDefaultCompileItems>false</EnableDefaultCompileItems><BaseIntermediateOutputPath>/private/tmp/vodovorot-stage2-leaderboard-obj/</BaseIntermediateOutputPath><OutputPath>/private/tmp/vodovorot-stage2-leaderboard-bin/</OutputPath></PropertyGroup>
+  <ItemGroup><Compile Include="Program.cs" /><Compile Include="../../Assets/Scripts/Stage2/LeaderboardRankRules.cs" /><Compile Include="../../Assets/Scripts/Stage2/LeaderboardSaves.cs" /><Compile Include="../../Assets/Scripts/Stage2/LeaderboardProfileLoadRules.cs" /></ItemGroup>
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+</Project>

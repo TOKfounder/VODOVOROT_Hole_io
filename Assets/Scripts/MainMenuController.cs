@@ -87,6 +87,7 @@ public class MainMenuController : MonoBehaviour
         YG2.onPurchaseFailed += FailedPurchased;
         YG2.onRewardAdv += UpgradeForAdv;
         YG2.onGetLeaderboard += onUpdateLB;
+        Vodovorot.Stage2.LeaderboardRoundService.Changed += OnStage2RankingUpdated;
         YG2.GetLeaderboard("BestPlayers");
     }
 
@@ -96,6 +97,7 @@ public class MainMenuController : MonoBehaviour
         YG2.onPurchaseFailed -= FailedPurchased;
         YG2.onRewardAdv -= UpgradeForAdv;
         YG2.onGetLeaderboard -= onUpdateLB;
+        Vodovorot.Stage2.LeaderboardRoundService.Changed -= OnStage2RankingUpdated;
     }
 
     void Start()
@@ -333,11 +335,24 @@ public class MainMenuController : MonoBehaviour
         UpdateTriggers();
     }
 
+    private void OnStage2RankingUpdated(Vodovorot.Stage2.LeaderboardRoundSnapshot result)
+    {
+        if (result == null || result.bonusCoins <= 0 || result.status != Vodovorot.Stage2.LeaderboardRoundStatus.Confirmed)
+            return;
+        string balance = Tool.ConvertText(YG2.saves.goldCoins);
+        if (pointText != null) pointText.text = balance;
+        if (DpointText != null) DpointText.text = balance;
+        UpdateTriggers();
+    }
+
     private void onUpdateLB(LBData data)
     {
-        if (data.technoName == "BestPlayers")
+        if (data != null && data.technoName == "BestPlayers")
         {
-            rank.text = Drank.text = data.currentPlayer.rank.ToString();
+            string place = data.currentPlayer != null && data.currentPlayer.rank > 0
+                ? data.currentPlayer.rank.ToString() : "—";
+            if (rank != null) rank.text = place;
+            if (Drank != null) Drank.text = place;
         }
     }
 
