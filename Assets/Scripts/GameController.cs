@@ -41,6 +41,9 @@ public class GameController : MonoBehaviour
 			CanvasForMobile?.SetActive(false);
 			currentCanvas = CanvasForDesktop.GetComponent<Canvas>();
 		}
+			// The wide authored MainMenu also serves landscape phones. The installer
+			// rejects gameplay scenes, preserving their mobile HUD and joystick.
+			Vodovorot.Stage3.MobileMenuLayout.Install(this);
 	}
 
 	void Start()

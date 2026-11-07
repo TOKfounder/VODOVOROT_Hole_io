@@ -1,6 +1,8 @@
 using System.Collections;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
+using Vodovorot.Stage3;
 
 namespace Vodovorot.Stage2
 {
@@ -8,13 +10,21 @@ namespace Vodovorot.Stage2
     public sealed class Stage2RoundPresentation : MonoBehaviour
     {
         private GamingManager match;
+        private EndGameController results;
         private bool initialized;
+        private RectTransform actionBar;
+        private Button rankingButton, shareButton;
+#if UNITY_WEBGL && !UNITY_EDITOR
+        [DllImport("__Internal")] private static extern float LeaderboardStage2_CssRatio();
+#endif
 
         public static void Install(EndGameController results, GamingManager gamingManager)
         {
+            RoundResultsVisualStyle.Apply(results, gamingManager);
             var presentation = results.GetComponent<Stage2RoundPresentation>();
             if (presentation == null) presentation = results.gameObject.AddComponent<Stage2RoundPresentation>();
             presentation.match = gamingManager;
+            presentation.results = results;
             if (!presentation.initialized) presentation.StartCoroutine(presentation.Present());
         }
 
@@ -29,17 +39,34 @@ namespace Vodovorot.Stage2
             var bar = new GameObject("Stage2ResultActions", typeof(RectTransform));
             bar.transform.SetParent(parent, false);
             var rect = (RectTransform)bar.transform;
+            actionBar = rect;
             rect.anchorMin = new Vector2(0.08f, 0.015f);
             rect.anchorMax = new Vector2(0.92f, 0.095f);
             rect.offsetMin = rect.offsetMax = Vector2.zero;
-            Stage2Ui.Button(rect, ru ? "Рейтинг" : "Ranking", new Vector2(0, 0), new Vector2(0.48f, 1),
+            rankingButton = Stage2Ui.Button(rect, ru ? "Рейтинг" : "Ranking", new Vector2(0, 0), new Vector2(0.48f, 1),
                 () => LeaderboardRoundPanel.Show(match.Stage2RoundId, match.IsStage2RankRewardEligible));
-            Stage2Ui.Button(rect, ru ? "Поделиться" : "Share", new Vector2(0.52f, 0), new Vector2(1, 1),
-                () => AchievementCard.Show(match));
+            shareButton = Stage2Ui.Button(rect, ru ? "Поделиться" : "Share", new Vector2(0.52f, 0), new Vector2(1, 1),
+                () => AchievementCard.Show(match), RankingVisualStyle.Load().amber);
 
             LeaderboardRoundPanel.ShareRequested += Share;
             // Always dismissible; guest invitation is offered after gameplay, never at the entrance.
             LeaderboardRoundPanel.Show(match.Stage2RoundId, match.IsStage2RankRewardEligible);
+            LayoutActions();
+        }
+
+        private void LateUpdate() => LayoutActions();
+
+        private void LayoutActions()
+        {
+            if (actionBar == null) return;
+            float ratio = 1;
+#if UNITY_WEBGL && !UNITY_EDITOR
+            ratio = Mathf.Clamp(LeaderboardStage2_CssRatio(), .25f, 8);
+#endif
+            bool ru = YG.YG2.saves == null || YG.YG2.saves.langRu;
+            if (rankingButton != null) rankingButton.GetComponentInChildren<Text>(true).text = ru ? "Рейтинг" : "Ranking";
+            if (shareButton != null) shareButton.GetComponentInChildren<Text>(true).text = ru ? "Поделиться" : "Share";
+            RoundResultsVisualStyle.Layout(results, match, actionBar, rankingButton, shareButton, ratio);
         }
 
         private void Share() { if (match != null) AchievementCard.Show(match); }
@@ -52,19 +79,10 @@ namespace Vodovorot.Stage2
 
     internal static class Stage2Ui
     {
-        internal static readonly Color Ink = new Color(0.16f, 0.13f, 0.25f);
-        internal static readonly Color Paper = new Color(1f, 0.98f, 0.92f);
-        internal static readonly Color Accent = new Color(0.25f, 0.15f, 0.57f);
-        private static Font font;
-        internal static Font Font
-        {
-            get
-            {
-                if (font != null) return font;
-                font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-                return font;
-            }
-        }
+        internal static Color Ink => RankingVisualStyle.Load().ink;
+        internal static Color Paper => RankingVisualStyle.Load().paper;
+        internal static Color Accent => RankingVisualStyle.Load().blue;
+        internal static Font Font => RankingVisualStyle.Load().comicFont;
 
         internal static RectTransform Rect(Transform parent, string name, Vector2 min, Vector2 max)
         {
@@ -86,17 +104,13 @@ namespace Vodovorot.Stage2
             return label;
         }
 
-        internal static Button Button(Transform parent, string text, Vector2 min, Vector2 max, UnityEngine.Events.UnityAction action)
+        internal static Button Button(Transform parent, string text, Vector2 min, Vector2 max, UnityEngine.Events.UnityAction action, Color? color = null)
         {
-            var rect = Rect(parent, "Button_" + text, min, max);
-            var image = rect.gameObject.AddComponent<Image>(); image.color = Accent;
-            var button = rect.gameObject.AddComponent<Button>(); button.targetGraphic = image;
-            var colors = button.colors;
-            colors.highlightedColor = new Color(1.15f, 1.15f, 1.15f);
-            colors.pressedColor = new Color(0.72f, 0.72f, 0.8f);
-            button.colors = colors;
-            Text(rect, text, 29, new Vector2(0.04f, 0.05f), new Vector2(0.96f, 0.95f), Color.white);
-            button.onClick.AddListener(action);
+            var button = RankingUiStyle.Button("Button_" + text, parent, RankingVisualStyle.Load(), color ?? Accent, action);
+            var rect = (RectTransform)button.transform;
+            rect.anchorMin = min; rect.anchorMax = max; rect.offsetMin = rect.offsetMax = Vector2.zero;
+            Text label = button.GetComponentInChildren<Text>(); label.text = text; label.fontSize = 29;
+            label.resizeTextForBestFit = true; label.resizeTextMinSize = 14; label.resizeTextMaxSize = 29;
             return button;
         }
 
@@ -109,7 +123,7 @@ namespace Vodovorot.Stage2
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             scaler.referenceResolution = new Vector2(1080, 1920); scaler.matchWidthOrHeight = 0.5f;
             var dim = Rect(go.transform, "Backdrop", Vector2.zero, Vector2.one).gameObject.AddComponent<Image>();
-            dim.color = new Color(0.07f, 0.05f, 0.13f, 0.86f);
+            dim.color = RankingVisualStyle.Load().backdrop;
             return (RectTransform)go.transform;
         }
     }

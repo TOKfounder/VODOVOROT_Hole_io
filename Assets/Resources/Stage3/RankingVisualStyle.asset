@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a6c9d2dc03e4c10a7235be0036117f4, type: 3}
+  m_Name: RankingVisualStyle
+  m_EditorClassIdentifier: 
+  comicFont: {fileID: 12800000, guid: ff778551676e7a04680de208d9fdab69, type: 3}
+  roundedShape: {fileID: 21300000, guid: 29ee602180342004ca1639148a124c78, type: 3}
+  filledShape: {fileID: 21300000, guid: 23a9b61d148ce3f47ac5cab7c4645aaf, type: 3}
+  goldMedal: {fileID: 21300008, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
+  goldStar: {fileID: 21300048, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
+  ink: {r: 0.06666667, g: 0.105882354, b: 0.13333334, a: 1}
+  paper: {r: 0.93333334, g: 0.98039216, b: 1, a: 1}
+  blue: {r: 0.12156863, g: 0.6156863, b: 0.90588236, a: 1}
+  green: {r: 0.34901962, g: 0.8392157, b: 0.14509805, a: 1}
+  amber: {r: 1, g: 0.76862746, b: 0.18431373, a: 1}
+  lightBlue: {r: 0.8039216, g: 0.93333334, b: 0.9882353, a: 1}
+  outline: {r: 0, g: 0, b: 0, a: 1}
+  backdrop: {r: 0.019607844, g: 0.09411765, b: 0.14117648, a: 0.8235294}
+  border: 3
+  minimumButtonHeight: 52
+  textOutline: 1.4

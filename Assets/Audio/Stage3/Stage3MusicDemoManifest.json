@@ -1,0 +1,27 @@
+{
+  "revision": 3,
+  "status": "approved_acoustic_direction_full_themes_imported",
+  "approval": "User approved recorded acoustic menu V3, then full four-theme development. Full loops in production; excerpts are Editor-only.",
+  "clips": [
+    {
+      "themeId": "menu",
+      "file": "DemoMenu.wav",
+      "seconds": 24
+    },
+    {
+      "themeId": "city",
+      "file": "DemoCity.wav",
+      "seconds": 24
+    },
+    {
+      "themeId": "garden",
+      "file": "DemoGarden.wav",
+      "seconds": 24
+    },
+    {
+      "themeId": "medieval",
+      "file": "DemoMedieval.wav",
+      "seconds": 24
+    }
+  ]
+}

@@ -72,7 +72,7 @@ namespace Vodovorot.Stage2
             if (gameObject.scene.name != CitySceneName) return false;
             if (!CascadePhysics.ValidateConfiguration(out string physicsError))
             { Debug.LogError("[CascadeCity] " + physicsError, this); return false; }
-            FallingObject[] objects = FindObjectsByType<FallingObject>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+            FallingObject[] objects = FindObjectsByType<FallingObject>(FindObjectsInactive.Exclude);
             var cones = Select(objects, "Props_Traffic cone", 4, Vector3.zero);
             if (cones == null) return false;
             Vector3 anchor = Vector3.zero;

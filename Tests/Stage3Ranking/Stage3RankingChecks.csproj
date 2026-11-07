@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup><BaseIntermediateOutputPath>/private/tmp/vodovorot-stage3-ranking-obj/</BaseIntermediateOutputPath><MSBuildProjectExtensionsPath>/private/tmp/vodovorot-stage3-ranking-obj/</MSBuildProjectExtensionsPath></PropertyGroup>
+  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
+  <PropertyGroup><OutputType>Exe</OutputType><NuGetAudit>false</NuGetAudit><TargetFramework>net10.0</TargetFramework><EnableDefaultCompileItems>false</EnableDefaultCompileItems><DefineConstants>UNITY_EDITOR</DefineConstants><OutputPath>/private/tmp/vodovorot-stage3-ranking-bin/</OutputPath></PropertyGroup>
+  <ItemGroup><Compile Include="Program.cs" /><Compile Include="../../Assets/Scripts/Stage3/RankSimulationPlan.cs" /><Compile Include="../../Assets/Scripts/Stage2/LeaderboardRankRules.cs" /><Compile Include="../../Assets/Scripts/Stage2/LeaderboardSaves.cs" /></ItemGroup>
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+</Project>

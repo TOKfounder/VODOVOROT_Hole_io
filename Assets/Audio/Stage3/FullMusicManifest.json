@@ -1,0 +1,1643 @@
+{
+  "status": "four_full_original_loops_for_root_import_and_playback_QA",
+  "source": "Assets/Scripts/Stage3/Editor/Stage3FullMusicComposition.py",
+  "sourceSha256": "20e0df12dc2da682d6bf1e0b6491593a8f1968d66ba371f66ebd3a6576799bbc",
+  "renderer": "Builds/Stage3Review/Tools/tsf-render",
+  "rendererSha256": "4a570f428691ad6faa07945d98f9dd54830211013824762919a1be3aad83ec91",
+  "sourceBanks": {
+    "nylon": {
+      "path": "Tools/Audio/Samples/SpanishClassicalGuitar-SF2-20190618/SpanishClassicalGuitar-20190618.sf2",
+      "sha256": "0d4c08ea8c1c8924b3829084b0c8778f6d6b906f331e44fde51bc159f76b03b9",
+      "license": "CC0-1.0"
+    },
+    "ukulele": {
+      "path": "Tools/Audio/Samples/Ukulele SF2-20260811/Ukulele 20260811.sf2",
+      "sha256": "7dea9ce3976980cd52d009e045c741ea924d1294b5e1aa5c60bb50b03d966d34",
+      "license": "CC0-1.0"
+    },
+    "bass": {
+      "path": "Tools/Audio/Samples/FingerBassYR SF2-20190930/FingerBassYR 20190930.sf2",
+      "sha256": "bd1332696f61c0cb254ce7f202fb6b945ff46ccb1dcdd62e345a50bde3afb165",
+      "license": "CC0-1.0"
+    }
+  },
+  "sharedOriginalMotif": [
+    66,
+    64,
+    62,
+    57,
+    59,
+    62,
+    64,
+    66
+  ],
+  "noIntroOutroFade": true,
+  "warmupCycles": 2,
+  "naturalTailsWrapped": true,
+  "browserCompressedSeamCheckRequired": true,
+  "subjectivelyListened": false,
+  "clips": [
+    {
+      "theme": "menu",
+      "title": "Small Things, Slowly",
+      "bpm": 88,
+      "meter": "4/4",
+      "bars": 36,
+      "warmupCycles": 2,
+      "extractedContinuousCycle": 3,
+      "introOutroFade": false,
+      "sampleTailWrap": true,
+      "circularEffects": true,
+      "sections": [
+        {
+          "name": "A: approved motif",
+          "firstBar": 0,
+          "bars": 8,
+          "character": "A: approved motif"
+        },
+        {
+          "name": "A answer: new contour and uke replies",
+          "firstBar": 8,
+          "bars": 8,
+          "character": "A answer: new contour and uke replies"
+        },
+        {
+          "name": "B: lower guitar, space and changed harmony",
+          "firstBar": 16,
+          "bars": 8,
+          "character": "B: lower guitar, space and changed harmony"
+        },
+        {
+          "name": "A return: varied melody and lifted accompaniment",
+          "firstBar": 24,
+          "bars": 8,
+          "character": "A return: varied melody and lifted accompaniment"
+        },
+        {
+          "name": "Four-bar turnaround",
+          "firstBar": 32,
+          "bars": 4,
+          "character": "Four-bar turnaround"
+        }
+      ],
+      "score": "Builds/Stage3Review/FullMusic/menu/score.json",
+      "stems": {
+        "nylon_melody": {
+          "eventsPerCycle": 118,
+          "bank": "Tools/Audio/Samples/SpanishClassicalGuitar-SF2-20190618/SpanishClassicalGuitar-20190618.sf2",
+          "bankSha256": "0d4c08ea8c1c8924b3829084b0c8778f6d6b906f331e44fde51bc159f76b03b9",
+          "render": {
+            "rate": 44100,
+            "channels": 2,
+            "bits": 16,
+            "notes": 354,
+            "seconds": 298.5454422,
+            "rawFloatPeak": 0.2975814342,
+            "pcmGain": 1,
+            "peak": 0.2975814342,
+            "rms": 0.05029830793
+          },
+          "sourcePeriodicity": {
+            "comparedContinuousCycles": [
+              2,
+              3
+            ],
+            "maxDifferencePcm16": 0,
+            "rmsDifference": 0.0,
+            "exactSampleFraction": 1.0
+          },
+          "rawCycleRms": 0.050638690253053675,
+          "rawCyclePeak": 0.29758599400520325,
+          "mixGain": 1.125621530003192
+        },
+        "nylon_fingerpick": {
+          "eventsPerCycle": 266,
+          "bank": "Tools/Audio/Samples/SpanishClassicalGuitar-SF2-20190618/SpanishClassicalGuitar-20190618.sf2",
+          "bankSha256": "0d4c08ea8c1c8924b3829084b0c8778f6d6b906f331e44fde51bc159f76b03b9",
+          "render": {
+            "rate": 44100,
+            "channels": 2,
+            "bits": 16,
+            "notes": 798,
+            "seconds": 298.5454422,
+            "rawFloatPeak": 0.396151185,
+            "pcmGain": 1,
+            "peak": 0.396151185,
+            "rms": 0.05086913047
+          },
+          "sourcePeriodicity": {
+            "comparedContinuousCycles": [
+              2,
+              3
+            ],
+            "maxDifferencePcm16": 0,
+            "rmsDifference": 0.0,
+            "exactSampleFraction": 1.0
+          },
+          "rawCycleRms": 0.05121363076443733,
+          "rawCyclePeak": 0.3961607813835144,
+          "mixGain": 0.8396202213778433
+        },
+        "ukulele_comp": {
+          "eventsPerCycle": 27,
+          "bank": "Tools/Audio/Samples/Ukulele SF2-20260811/Ukulele 20260811.sf2",
+          "bankSha256": "7dea9ce3976980cd52d009e045c741ea924d1294b5e1aa5c60bb50b03d966d34",
+          "render": {
+            "rate": 44100,
+            "channels": 2,
+            "bits": 16,
+            "notes": 81,
+            "seconds": 298.5454422,
+            "rawFloatPeak": 0.1023785472,
+            "pcmGain": 1,
+            "peak": 0.1023785472,
+            "rms": 0.002712261396
+          },
+          "sourcePeriodicity": {
+            "comparedContinuousCycles": [
+              2,
+              3
+            ],
+            "maxDifferencePcm16": 0,
+            "rmsDifference": 0.0,
+            "exactSampleFraction": 1.0
+          },
+          "rawCycleRms": 0.0027306204923126585,
+          "rawCyclePeak": 0.10238959640264511,
+          "mixGain": 2.343988143641124
+        },
+        "ukulele_touch": {
+          "eventsPerCycle": 88,
+          "bank": "Tools/Audio/Samples/Ukulele SF2-20260811/Ukulele 20260811.sf2",
+          "bankSha256": "7dea9ce3976980cd52d009e045c741ea924d1294b5e1aa5c60bb50b03d966d34",
+          "render": {
+            "rate": 44100,
+            "channels": 2,
+            "bits": 16,
+            "notes": 264,
+            "seconds": 298.5454422,
+            "rawFloatPeak": 0.08029343933,
+            "pcmGain": 1,
+            "peak": 0.08029343933,
+            "rms": 0.003154549344
+          },
+          "sourcePeriodicity": {
+            "comparedContinuousCycles": [
+              2,
+              3
+            ],
+            "maxDifferencePcm16": 0,
+            "rmsDifference": 0.0,
+            "exactSampleFraction": 1.0
+          },
+          "rawCycleRms": 0.003175897430186486,
+          "rawCyclePeak": 0.08029419928789139,
+          "mixGain": 2.490839958225483
+        },
+        "ukulele_answer": {
+          "eventsPerCycle": 7,
+          "bank": "Tools/Audio/Samples/Ukulele SF2-20260811/Ukulele 20260811.sf2",
+          "bankSha256": "7dea9ce3976980cd52d009e045c741ea924d1294b5e1aa5c60bb50b03d966d34",
+          "render": {
+            "rate": 44100,
+            "channels": 2,
+            "bits": 16,
+            "notes": 21,
+            "seconds": 298.5454422,
+            "rawFloatPeak": 0.1469275355,
+            "pcmGain": 1,
+            "peak": 0.1469275355,
+            "rms": 0.004266942645
+          },
+          "sourcePeriodicity": {
+            "comparedContinuousCycles": [
+              2,
+              3
+            ],
+            "maxDifferencePcm16": 0,
+            "rmsDifference": 0.0,
+            "exactSampleFraction": 1.0
+          },
+          "rawCycleRms": 0.00429581492256979,
+          "rawCyclePeak": 0.14691610634326935,
+          "mixGain": 1.9739156394630772
+        },
+        "finger_bass": {
+          "eventsPerCycle": 115,
+          "bank": "Tools/Audio/Samples/FingerBassYR SF2-20190930/FingerBassYR 20190930.sf2",
+          "bankSha256": "bd1332696f61c0cb254ce7f202fb6b945ff46ccb1dcdd62e345a50bde3afb165",
+          "render": {
+            "rate": 44100,
+            "channels": 2,
+            "bits": 16,
+            "notes": 345,
+            "seconds": 298.5454422,
+            "rawFloatPeak": 0.2594161332,
+            "pcmGain": 1,
+            "peak": 0.2594161332,
+            "rms": 0.04429385792
+          },
+          "sourcePeriodicity": {
+            "comparedContinuousCycles": [
+              2,
+              3
+            ],
+            "maxDifferencePcm16": 0,
+            "rmsDifference": 0.0,
+            "exactSampleFraction": 1.0
+          },
+          "rawCycleRms": 0.04459360591698451,
+          "rawCyclePeak": 0.2594073414802551,
+          "mixGain": 1.076387500247386
+        }
+      },
+      "pcm": {
+        "file": "FullMenu.wav",
+        "seconds": 98.18181406,
+        "frames": 4329818,
+        "rate": 44100,
+        "channels": 2,
+        "bits": 16,
+        "peak": 0.5091708,
+        "rms": 0.108,
+        "rmsDbFS": -19.332,
+        "dc": 4.0878e-05,
+        "stereoCorrelation": 0.9852404,
+        "monoRmsRatio": 0.9962486,
+        "firstFramePcm16": [
+          650,
+          486
+        ],
+        "lastFramePcm16": [
+          714,
+          535
+        ],
+        "sha256": "64f0f223eb34fdee14603f1d20a9bf82a758d92bf69ba45eed9abb93024c8c43"
+      },
+      "loopJoins": {
+        "source": "Builds/Stage3Review/FullMusic/FullMenu.wav",
+        "twoJoins": [
+          {
+            "joinNumber": 1,
+            "timelineFrame": 4329818,
+            "deltaPerChannel": [
+              -0.0019531846064638203,
+              -0.0014954069643238624
+            ],
+            "maxAbsDelta": 0.0019531846064638203,
+            "normalAdjacentP99": 0.019531846064638203,
+            "pcm16EightFramesBeforeAfter": [
+              [
+                1146,
+                872
+              ],
+              [
+                1089,
+                828
+              ],
+              [
+                1030,
+                782
+              ],
+              [
+                968,
+                734
+              ],
+              [
+                905,
+                685
+              ],
+              [
+                841,
+                635
+              ],
+              [
+                777,
+                585
+              ],
+              [
+                714,
+                535
+              ],
+              [
+                650,
+                486
+              ],
+              [
+                588,
+                437
+              ],
+              [
+                527,
+                389
+              ],
+              [
+                468,
+                343
+              ],
+              [
+                411,
+                298
+              ],
+              [
+                356,
+                255
+              ],
+              [
+                303,
+                212
+              ],
+              [
+                252,
+                171
+              ]
+            ]
+          },
+          {
+            "joinNumber": 2,
+            "timelineFrame": 8659636,
+            "deltaPerChannel": [
+              -0.0019531846064638203,
+              -0.0014954069643238624
+            ],
+            "maxAbsDelta": 0.0019531846064638203,
+            "normalAdjacentP99": 0.019531846064638203,
+            "pcm16EightFramesBeforeAfter": [
+              [
+                1146,
+                872
+              ],
+              [
+                1089,
+                828
+              ],
+              [
+                1030,
+                782
+              ],
+              [
+                968,
+                734
+              ],
+              [
+                905,
+                685
+              ],
+              [
+                841,
+                635
+              ],
+              [
+                777,
+                585
+              ],
+              [
+                714,
+                535
+              ],
+              [
+                650,
+                486
+              ],
+              [
+                588,
+                437
+              ],
+              [
+                527,
+                389
+              ],
+              [
+                468,
+                343
+              ],
+              [
+                411,
+                298
+              ],
+              [
+                356,
+                255
+              ],
+              [
+                303,
+                212
+              ],
+              [
+                252,
+                171
+              ]
+            ]
+          }
+        ],
+        "qaAudio": "Builds/Stage3Review/FullMusic/QA/menu-two-loop-joins.wav",
+        "qaFormat": "Two 3.6s seam windows separated by 0.25s silence",
+        "note": "Numerical PCM/score verification only; no claim of subjective listening."
+      },
+      "musicalSeam": {
+        "lastChord": "A7",
+        "nextChord": "D6",
+        "behavior": "A7/Aadd9 answer leads back to D6 and the shared motif; no stopping cadence."
+      }
+    },
+    {
+      "theme": "city",
+      "title": "Sidewalk, Soft Shuffle",
+      "bpm": 96,
+      "meter": "4/4",
+      "bars": 40,
+      "warmupCycles": 2,
+      "extractedContinuousCycle": 3,
+      "introOutroFade": false,
+      "sampleTailWrap": true,
+      "circularEffects": true,
+      "sections": [
+        {
+          "name": "A: syncopated motif",
+          "firstBar": 0,
+          "bars": 8,
+          "character": "A: syncopated motif"
+        },
+        {
+          "name": "A answer: bass variations and uke",
+          "firstBar": 8,
+          "bars": 8,
+          "character": "A answer: bass variations and uke"
+        },
+        {
+          "name": "B: different harmony, shorter guitar answers",
+          "firstBar": 16,
+          "bars": 8,
+          "character": "B: different harmony, shorter guitar answers"
+        },
+        {
+          "name": "Break: muted density, phrase fragments",
+          "firstBar": 24,
+          "bars": 8,
+          "character": "Break: muted density, phrase fragments"
+        },
+        {
+          "name": "A return: complete theme",
+          "firstBar": 32,
+          "bars": 8,
+          "character": "A return: complete theme"
+        }
+      ],
+      "score": "Builds/Stage3Review/FullMusic/city/score.json",
+      "stems": {
+        "nylon_melody": {
+          "eventsPerCycle": 117,
+          "bank": "Tools/Audio/Samples/SpanishClassicalGuitar-SF2-20190618/SpanishClassicalGuitar-20190618.sf2",
+          "bankSha256": "0d4c08ea8c1c8924b3829084b0c8778f6d6b906f331e44fde51bc159f76b03b9",
+          "render": {
+            "rate": 44100,
+            "channels": 2,
+            "bits": 16,
+            "notes": 351,
+            "seconds": 304,
+            "rawFloatPeak": 0.328766197,
+            "pcmGain": 1,
+            "peak": 0.328766197,
+            "rms": 0.04582586701
+          },
+          "sourcePeriodicity": {
+            "comparedContinuousCycles": [
+              2,
+              3
+            ],
+            "maxDifferencePcm16": 0,
+            "rmsDifference": 0.0,
+            "exactSampleFraction": 1.0
+          },
+          "rawCycleRms": 0.04613036432689873,
+          "rawCyclePeak": 0.32877591252326965,
+          "mixGain": 1.1253865806662848
+        },
+        "nylon_fingerpick": {
+          "eventsPerCycle": 192,
+          "bank": "Tools/Audio/Samples/SpanishClassicalGuitar-SF2-20190618/SpanishClassicalGuitar-20190618.sf2",
+          "bankSha256": "0d4c08ea8c1c8924b3829084b0c8778f6d6b906f331e44fde51bc159f76b03b9",
+          "render": {
+            "rate": 44100,
+            "channels": 2,
+            "bits": 16,
+            "notes": 576,
+            "seconds": 304,
+            "rawFloatPeak": 0.272685498,
+            "pcmGain": 1,
+            "peak": 0.272685498,
+            "rms": 0.04722451776
+          },
+          "sourcePeriodicity": {
+            "comparedContinuousCycles": [
+              2,
+              3
+            ],
+            "maxDifferencePcm16": 0,
+            "rmsDifference": 0.0,
+            "exactSampleFraction": 1.0
+          },
+          "rawCycleRms": 0.0475382811383584,
+          "rawCyclePeak": 0.27268287539482117,
+          "mixGain": 0.7572844271593104
+        },
+        "ukulele_comp": {
+          "eventsPerCycle": 336,
+          "bank": "Tools/Audio/Samples/Ukulele SF2-20260811/Ukulele 20260811.sf2",
+          "bankSha256": "7dea9ce3976980cd52d009e045c741ea924d1294b5e1aa5c60bb50b03d966d34",
+          "render": {
+            "rate": 44100,
+            "channels": 2,
+            "bits": 16,
+            "notes": 1008,
+            "seconds": 304,
+            "rawFloatPeak": 0.1712456793,
+            "pcmGain": 1,
+            "peak": 0.1712456793,
+            "rms": 0.01299839416
+          },
+          "sourcePeriodicity": {
+            "comparedContinuousCycles": [
+              2,
+              3
+            ],
+            "maxDifferencePcm16": 0,
+            "rmsDifference": 0.0,
+            "exactSampleFraction": 1.0
+          },
+          "rawCycleRms": 0.013084763190189311,
+          "rawCyclePeak": 0.17123936116695404,
+          "mixGain": 1.4015469245181664
+        },
+        "ukulele_touch": {
+          "eventsPerCycle": 92,
+          "bank": "Tools/Audio/Samples/Ukulele SF2-20260811/Ukulele 20260811.sf2",
+          "bankSha256": "7dea9ce3976980cd52d009e045c741ea924d1294b5e1aa5c60bb50b03d966d34",
+          "render": {
+            "rate": 44100,
+            "channels": 2,
+            "bits": 16,
+            "notes": 276,
+            "seconds": 304,
+            "rawFloatPeak": 0.08110143244,
+            "pcmGain": 1,
+            "peak": 0.08110143244,
+            "rms": 0.003259641768
+          },
+          "sourcePeriodicity": {
+            "comparedContinuousCycles": [
+              2,
+              3
+            ],
+            "maxDifferencePcm16": 0,
+            "rmsDifference": 0.0,
+            "exactSampleFraction": 1.0
+          },
+          "rawCycleRms": 0.0032813059483344166,
+          "rawCyclePeak": 0.08108767867088318,
+          "mixGain": 2.4664659696543474
+        },
+        "ukulele_answer": {
+          "eventsPerCycle": 11,
+          "bank": "Tools/Audio/Samples/Ukulele SF2-20260811/Ukulele 20260811.sf2",
+          "bankSha256": "7dea9ce3976980cd52d009e045c741ea924d1294b5e1aa5c60bb50b03d966d34",
+          "render": {
+            "rate": 44100,
+            "channels": 2,
+            "bits": 16,
+            "notes": 33,
+            "seconds": 304,
+            "rawFloatPeak": 0.1595393866,
+            "pcmGain": 1,
+            "peak": 0.1595393866,
+            "rms": 0.005352680416
+          },
+          "sourcePeriodicity": {
+            "comparedContinuousCycles": [
+              2,
+              3
+            ],
+            "maxDifferencePcm16": 0,
+            "rmsDifference": 0.0,
+            "exactSampleFraction": 1.0
+          },
+          "rawCycleRms": 0.00538824589237997,
+          "rawCyclePeak": 0.1595507711172104,
+          "mixGain": 1.8176032492312932
+        },
+        "finger_bass": {
+          "eventsPerCycle": 176,
+          "bank": "Tools/Audio/Samples/FingerBassYR SF2-20190930/FingerBassYR 20190930.sf2",
+          "bankSha256": "bd1332696f61c0cb254ce7f202fb6b945ff46ccb1dcdd62e345a50bde3afb165",
+          "render": {
+            "rate": 44100,
+            "channels": 2,
+            "bits": 16,
+            "notes": 528,
+            "seconds": 304,
+            "rawFloatPeak": 0.2565569878,
+            "pcmGain": 1,
+            "peak": 0.2565569878,
+            "rms": 0.04258893597
+          },
+          "sourcePeriodicity": {
+            "comparedContinuousCycles": [
+              2,
+              3
+            ],
+            "maxDifferencePcm16": 0,
+            "rmsDifference": 0.0,
+            "exactSampleFraction": 1.0
+          },
+          "rawCycleRms": 0.042871919412191234,
+          "rawCyclePeak": 0.25656911730766296,
+          "mixGain": 1.2082514187717526
+        }
+      },
+      "pcm": {
+        "file": "FullCity.wav",
+        "seconds": 100.0,
+        "frames": 4410000,
+        "rate": 44100,
+        "channels": 2,
+        "bits": 16,
+        "peak": 0.5600147,
+        "rms": 0.1049724,
+        "rmsDbFS": -19.578,
+        "dc": 5.914e-05,
+        "stereoCorrelation": 0.986367,
+        "monoRmsRatio": 0.9965859,
+        "firstFramePcm16": [
+          -57,
+          -152
+        ],
+        "lastFramePcm16": [
+          -24,
+          -127
+        ],
+        "sha256": "b0fead26327194af3de65dadaf5ab8a4e10021ee5c132f648af66ca7f151de69"
+      },
+      "loopJoins": {
+        "source": "Builds/Stage3Review/FullMusic/FullCity.wav",
+        "twoJoins": [
+          {
+            "joinNumber": 1,
+            "timelineFrame": 4410000,
+            "deltaPerChannel": [
+              -0.0010071108127079073,
+              -0.0007629627368999298
+            ],
+            "maxAbsDelta": 0.0010071108127079073,
+            "normalAdjacentP99": 0.021179845576342046,
+            "pcm16EightFramesBeforeAfter": [
+              [
+                84,
+                -30
+              ],
+              [
+                80,
+                -34
+              ],
+              [
+                73,
+                -41
+              ],
+              [
+                62,
+                -52
+              ],
+              [
+                47,
+                -66
+              ],
+              [
+                28,
+                -83
+              ],
+              [
+                4,
+                -104
+              ],
+              [
+                -24,
+                -127
+              ],
+              [
+                -57,
+                -152
+              ],
+              [
+                -92,
+                -180
+              ],
+              [
+                -129,
+                -209
+              ],
+              [
+                -166,
+                -238
+              ],
+              [
+                -202,
+                -266
+              ],
+              [
+                -237,
+                -294
+              ],
+              [
+                -269,
+                -319
+              ],
+              [
+                -297,
+                -341
+              ]
+            ]
+          },
+          {
+            "joinNumber": 2,
+            "timelineFrame": 8820000,
+            "deltaPerChannel": [
+              -0.0010071108127079073,
+              -0.0007629627368999298
+            ],
+            "maxAbsDelta": 0.0010071108127079073,
+            "normalAdjacentP99": 0.021179845576342046,
+            "pcm16EightFramesBeforeAfter": [
+              [
+                84,
+                -30
+              ],
+              [
+                80,
+                -34
+              ],
+              [
+                73,
+                -41
+              ],
+              [
+                62,
+                -52
+              ],
+              [
+                47,
+                -66
+              ],
+              [
+                28,
+                -83
+              ],
+              [
+                4,
+                -104
+              ],
+              [
+                -24,
+                -127
+              ],
+              [
+                -57,
+                -152
+              ],
+              [
+                -92,
+                -180
+              ],
+              [
+                -129,
+                -209
+              ],
+              [
+                -166,
+                -238
+              ],
+              [
+                -202,
+                -266
+              ],
+              [
+                -237,
+                -294
+              ],
+              [
+                -269,
+                -319
+              ],
+              [
+                -297,
+                -341
+              ]
+            ]
+          }
+        ],
+        "qaAudio": "Builds/Stage3Review/FullMusic/QA/city-two-loop-joins.wav",
+        "qaFormat": "Two 3.6s seam windows separated by 0.25s silence",
+        "note": "Numerical PCM/score verification only; no claim of subjective listening."
+      },
+      "musicalSeam": {
+        "lastChord": "A7",
+        "nextChord": "D6",
+        "behavior": "A7/Aadd9 answer leads back to D6 and the shared motif; no stopping cadence."
+      }
+    },
+    {
+      "theme": "garden",
+      "title": "By the Fern",
+      "bpm": 80,
+      "meter": "4/4",
+      "bars": 32,
+      "warmupCycles": 2,
+      "extractedContinuousCycle": 3,
+      "introOutroFade": false,
+      "sampleTailWrap": true,
+      "circularEffects": true,
+      "sections": [
+        {
+          "name": "A: soft fingerpicked motif",
+          "firstBar": 0,
+          "bars": 8,
+          "character": "A: soft fingerpicked motif"
+        },
+        {
+          "name": "Answer: spacious guitar and low wooden taps",
+          "firstBar": 8,
+          "bars": 8,
+          "character": "Answer: spacious guitar and low wooden taps"
+        },
+        {
+          "name": "Open B: wide rests, lower register",
+          "firstBar": 16,
+          "bars": 8,
+          "character": "Open B: wide rests, lower register"
+        },
+        {
+          "name": "A return: small melodic ornaments",
+          "firstBar": 24,
+          "bars": 8,
+          "character": "A return: small melodic ornaments"
+        }
+      ],
+      "score": "Builds/Stage3Review/FullMusic/garden/score.json",
+      "stems": {
+        "nylon_melody": {
+          "eventsPerCycle": 97,
+          "bank": "Tools/Audio/Samples/SpanishClassicalGuitar-SF2-20190618/SpanishClassicalGuitar-20190618.sf2",
+          "bankSha256": "0d4c08ea8c1c8924b3829084b0c8778f6d6b906f331e44fde51bc159f76b03b9",
+          "render": {
+            "rate": 44100,
+            "channels": 2,
+            "bits": 16,
+            "notes": 291,
+            "seconds": 292,
+            "rawFloatPeak": 0.2784888148,
+            "pcmGain": 1,
+            "peak": 0.2784888148,
+            "rms": 0.04495643948
+          },
+          "sourcePeriodicity": {
+            "comparedContinuousCycles": [
+              2,
+              3
+            ],
+            "maxDifferencePcm16": 0,
+            "rmsDifference": 0.0,
+            "exactSampleFraction": 1.0
+          },
+          "rawCycleRms": 0.0452675401044567,
+          "rawCyclePeak": 0.2784813940525055,
+          "mixGain": 1.1487259939463879
+        },
+        "nylon_fingerpick": {
+          "eventsPerCycle": 149,
+          "bank": "Tools/Audio/Samples/SpanishClassicalGuitar-SF2-20190618/SpanishClassicalGuitar-20190618.sf2",
+          "bankSha256": "0d4c08ea8c1c8924b3829084b0c8778f6d6b906f331e44fde51bc159f76b03b9",
+          "render": {
+            "rate": 44100,
+            "channels": 2,
+            "bits": 16,
+            "notes": 447,
+            "seconds": 292,
+            "rawFloatPeak": 0.2655850053,
+            "pcmGain": 1,
+            "peak": 0.2655850053,
+            "rms": 0.04113499427
+          },
+          "sourcePeriodicity": {
+            "comparedContinuousCycles": [
+              2,
+              3
+            ],
+            "maxDifferencePcm16": 0,
+            "rmsDifference": 0.0,
+            "exactSampleFraction": 1.0
+          },
+          "rawCycleRms": 0.04141913174611992,
+          "rawCyclePeak": 0.26557207107543945,
+          "mixGain": 1.2071716110921114
+        },
+        "ukulele_comp": {
+          "eventsPerCycle": 24,
+          "bank": "Tools/Audio/Samples/Ukulele SF2-20260811/Ukulele 20260811.sf2",
+          "bankSha256": "7dea9ce3976980cd52d009e045c741ea924d1294b5e1aa5c60bb50b03d966d34",
+          "render": {
+            "rate": 44100,
+            "channels": 2,
+            "bits": 16,
+            "notes": 72,
+            "seconds": 292,
+            "rawFloatPeak": 0.06731904298,
+            "pcmGain": 1,
+            "peak": 0.06731904298,
+            "rms": 0.002492830456
+          },
+          "sourcePeriodicity": {
+            "comparedContinuousCycles": [
+              2,
+              3
+            ],
+            "maxDifferencePcm16": 0,
+            "rmsDifference": 0.0,
+            "exactSampleFraction": 1.0
+          },
+          "rawCycleRms": 0.0025100834334601608,
+          "rawCyclePeak": 0.06732383370399475,
+          "mixGain": 3.564859378852623
+        },
+        "ukulele_touch": {
+          "eventsPerCycle": 48,
+          "bank": "Tools/Audio/Samples/Ukulele SF2-20260811/Ukulele 20260811.sf2",
+          "bankSha256": "7dea9ce3976980cd52d009e045c741ea924d1294b5e1aa5c60bb50b03d966d34",
+          "render": {
+            "rate": 44100,
+            "channels": 2,
+            "bits": 16,
+            "notes": 144,
+            "seconds": 292,
+            "rawFloatPeak": 0.0574882105,
+            "pcmGain": 1,
+            "peak": 0.0574882105,
+            "rms": 0.001852007879
+          },
+          "sourcePeriodicity": {
+            "comparedContinuousCycles": [
+              2,
+              3
+            ],
+            "maxDifferencePcm16": 0,
+            "rmsDifference": 0.0,
+            "exactSampleFraction": 1.0
+          },
+          "rawCycleRms": 0.0018648229725470337,
+          "rawCyclePeak": 0.057496871799230576,
+          "mixGain": 3.217463581438517
+        },
+        "finger_bass": {
+          "eventsPerCycle": 64,
+          "bank": "Tools/Audio/Samples/FingerBassYR SF2-20190930/FingerBassYR 20190930.sf2",
+          "bankSha256": "bd1332696f61c0cb254ce7f202fb6b945ff46ccb1dcdd62e345a50bde3afb165",
+          "render": {
+            "rate": 44100,
+            "channels": 2,
+            "bits": 16,
+            "notes": 192,
+            "seconds": 292,
+            "rawFloatPeak": 0.2118113041,
+            "pcmGain": 1,
+            "peak": 0.2118113041,
+            "rms": 0.03361367487
+          },
+          "sourcePeriodicity": {
+            "comparedContinuousCycles": [
+              2,
+              3
+            ],
+            "maxDifferencePcm16": 0,
+            "rmsDifference": 0.0,
+            "exactSampleFraction": 1.0
+          },
+          "rawCycleRms": 0.033846304364464376,
+          "rawCyclePeak": 0.21179845929145813,
+          "mixGain": 1.2113582492937212
+        }
+      },
+      "pcm": {
+        "file": "FullGarden.wav",
+        "seconds": 96.0,
+        "frames": 4233600,
+        "rate": 44100,
+        "channels": 2,
+        "bits": 16,
+        "peak": 0.5167394,
+        "rms": 0.108,
+        "rmsDbFS": -19.332,
+        "dc": 5.2709e-05,
+        "stereoCorrelation": 0.9819603,
+        "monoRmsRatio": 0.995017,
+        "firstFramePcm16": [
+          -91,
+          47
+        ],
+        "lastFramePcm16": [
+          -252,
+          -88
+        ],
+        "sha256": "99a9f0ab14582f11f09b3c081d76a1988e87329563d769b24615939405be7c23"
+      },
+      "loopJoins": {
+        "source": "Builds/Stage3Review/FullMusic/FullGarden.wav",
+        "twoJoins": [
+          {
+            "joinNumber": 1,
+            "timelineFrame": 4233600,
+            "deltaPerChannel": [
+              0.004913480025635548,
+              0.004119998779259621
+            ],
+            "maxAbsDelta": 0.004913480025635548,
+            "normalAdjacentP99": 0.0184942167424543,
+            "pcm16EightFramesBeforeAfter": [
+              [
+                -1235,
+                -918
+              ],
+              [
+                -1116,
+                -817
+              ],
+              [
+                -989,
+                -709
+              ],
+              [
+                -855,
+                -595
+              ],
+              [
+                -713,
+                -475
+              ],
+              [
+                -565,
+                -350
+              ],
+              [
+                -411,
+                -221
+              ],
+              [
+                -252,
+                -88
+              ],
+              [
+                -91,
+                47
+              ],
+              [
+                71,
+                182
+              ],
+              [
+                233,
+                317
+              ],
+              [
+                393,
+                452
+              ],
+              [
+                551,
+                584
+              ],
+              [
+                706,
+                713
+              ],
+              [
+                858,
+                839
+              ],
+              [
+                1005,
+                961
+              ]
+            ]
+          },
+          {
+            "joinNumber": 2,
+            "timelineFrame": 8467200,
+            "deltaPerChannel": [
+              0.004913480025635548,
+              0.004119998779259621
+            ],
+            "maxAbsDelta": 0.004913480025635548,
+            "normalAdjacentP99": 0.0184942167424543,
+            "pcm16EightFramesBeforeAfter": [
+              [
+                -1235,
+                -918
+              ],
+              [
+                -1116,
+                -817
+              ],
+              [
+                -989,
+                -709
+              ],
+              [
+                -855,
+                -595
+              ],
+              [
+                -713,
+                -475
+              ],
+              [
+                -565,
+                -350
+              ],
+              [
+                -411,
+                -221
+              ],
+              [
+                -252,
+                -88
+              ],
+              [
+                -91,
+                47
+              ],
+              [
+                71,
+                182
+              ],
+              [
+                233,
+                317
+              ],
+              [
+                393,
+                452
+              ],
+              [
+                551,
+                584
+              ],
+              [
+                706,
+                713
+              ],
+              [
+                858,
+                839
+              ],
+              [
+                1005,
+                961
+              ]
+            ]
+          }
+        ],
+        "qaAudio": "Builds/Stage3Review/FullMusic/QA/garden-two-loop-joins.wav",
+        "qaFormat": "Two 3.6s seam windows separated by 0.25s silence",
+        "note": "Numerical PCM/score verification only; no claim of subjective listening."
+      },
+      "musicalSeam": {
+        "lastChord": "A7",
+        "nextChord": "D6",
+        "behavior": "A7/Aadd9 answer leads back to D6 and the shared motif; no stopping cadence."
+      }
+    },
+    {
+      "theme": "medieval",
+      "title": "Pockets and Puddles",
+      "bpm": 276,
+      "meter": "6/8",
+      "bars": 72,
+      "warmupCycles": 2,
+      "extractedContinuousCycle": 3,
+      "introOutroFade": false,
+      "sampleTailWrap": true,
+      "circularEffects": true,
+      "sections": [
+        {
+          "name": "A: comic plucked dance",
+          "firstBar": 0,
+          "bars": 8,
+          "character": "A: comic plucked dance"
+        },
+        {
+          "name": "A answer: ukulele replies",
+          "firstBar": 8,
+          "bars": 8,
+          "character": "A answer: ukulele replies"
+        },
+        {
+          "name": "B: low string answer",
+          "firstBar": 16,
+          "bars": 8,
+          "character": "B: low string answer"
+        },
+        {
+          "name": "Call and response",
+          "firstBar": 24,
+          "bars": 8,
+          "character": "Call and response"
+        },
+        {
+          "name": "Breathing bridge",
+          "firstBar": 32,
+          "bars": 8,
+          "character": "Breathing bridge"
+        },
+        {
+          "name": "A: lifted melody",
+          "firstBar": 40,
+          "bars": 8,
+          "character": "A: lifted melody"
+        },
+        {
+          "name": "B: new ending figures",
+          "firstBar": 48,
+          "bars": 8,
+          "character": "B: new ending figures"
+        },
+        {
+          "name": "Theme return",
+          "firstBar": 56,
+          "bars": 8,
+          "character": "Theme return"
+        },
+        {
+          "name": "Eight-bar turnaround",
+          "firstBar": 64,
+          "bars": 8,
+          "character": "Eight-bar turnaround"
+        }
+      ],
+      "score": "Builds/Stage3Review/FullMusic/medieval/score.json",
+      "stems": {
+        "nylon_melody": {
+          "eventsPerCycle": 221,
+          "bank": "Tools/Audio/Samples/SpanishClassicalGuitar-SF2-20190618/SpanishClassicalGuitar-20190618.sf2",
+          "bankSha256": "0d4c08ea8c1c8924b3829084b0c8778f6d6b906f331e44fde51bc159f76b03b9",
+          "render": {
+            "rate": 44100,
+            "channels": 2,
+            "bits": 16,
+            "notes": 663,
+            "seconds": 285.7391156,
+            "rawFloatPeak": 0.3174161911,
+            "pcmGain": 1,
+            "peak": 0.3174161911,
+            "rms": 0.05635587365
+          },
+          "sourcePeriodicity": {
+            "comparedContinuousCycles": [
+              2,
+              3
+            ],
+            "maxDifferencePcm16": 0,
+            "rmsDifference": 0.0,
+            "exactSampleFraction": 1.0
+          },
+          "rawCycleRms": 0.05675451919897007,
+          "rawCyclePeak": 0.317423015832901,
+          "mixGain": 1.004325308442299
+        },
+        "nylon_fingerpick": {
+          "eventsPerCycle": 416,
+          "bank": "Tools/Audio/Samples/SpanishClassicalGuitar-SF2-20190618/SpanishClassicalGuitar-20190618.sf2",
+          "bankSha256": "0d4c08ea8c1c8924b3829084b0c8778f6d6b906f331e44fde51bc159f76b03b9",
+          "render": {
+            "rate": 44100,
+            "channels": 2,
+            "bits": 16,
+            "notes": 1248,
+            "seconds": 285.7391156,
+            "rawFloatPeak": 0.3267043531,
+            "pcmGain": 1,
+            "peak": 0.3267043531,
+            "rms": 0.05996220422
+          },
+          "sourcePeriodicity": {
+            "comparedContinuousCycles": [
+              2,
+              3
+            ],
+            "maxDifferencePcm16": 0,
+            "rmsDifference": 0.0,
+            "exactSampleFraction": 1.0
+          },
+          "rawCycleRms": 0.06038738404906813,
+          "rawCyclePeak": 0.3267006576061249,
+          "mixGain": 0.778308263226138
+        },
+        "ukulele_comp": {
+          "eventsPerCycle": 408,
+          "bank": "Tools/Audio/Samples/Ukulele SF2-20260811/Ukulele 20260811.sf2",
+          "bankSha256": "7dea9ce3976980cd52d009e045c741ea924d1294b5e1aa5c60bb50b03d966d34",
+          "render": {
+            "rate": 44100,
+            "channels": 2,
+            "bits": 16,
+            "notes": 1224,
+            "seconds": 285.7391156,
+            "rawFloatPeak": 0.130429849,
+            "pcmGain": 1,
+            "peak": 0.130429849,
+            "rms": 0.01219227042
+          },
+          "sourcePeriodicity": {
+            "comparedContinuousCycles": [
+              2,
+              3
+            ],
+            "maxDifferencePcm16": 0,
+            "rmsDifference": 0.0,
+            "exactSampleFraction": 1.0
+          },
+          "rawCycleRms": 0.012278520235743526,
+          "rawCyclePeak": 0.13043610751628876,
+          "mixGain": 1.79174685366048
+        },
+        "ukulele_touch": {
+          "eventsPerCycle": 172,
+          "bank": "Tools/Audio/Samples/Ukulele SF2-20260811/Ukulele 20260811.sf2",
+          "bankSha256": "7dea9ce3976980cd52d009e045c741ea924d1294b5e1aa5c60bb50b03d966d34",
+          "render": {
+            "rate": 44100,
+            "channels": 2,
+            "bits": 16,
+            "notes": 516,
+            "seconds": 285.7391156,
+            "rawFloatPeak": 0.06535673887,
+            "pcmGain": 1,
+            "peak": 0.06535673887,
+            "rms": 0.003806000877
+          },
+          "sourcePeriodicity": {
+            "comparedContinuousCycles": [
+              2,
+              3
+            ],
+            "maxDifferencePcm16": 0,
+            "rmsDifference": 0.0,
+            "exactSampleFraction": 1.0
+          },
+          "rawCycleRms": 0.003832930077411107,
+          "rawCyclePeak": 0.06537064909934998,
+          "mixGain": 3.0594770398568483
+        },
+        "ukulele_answer": {
+          "eventsPerCycle": 22,
+          "bank": "Tools/Audio/Samples/Ukulele SF2-20260811/Ukulele 20260811.sf2",
+          "bankSha256": "7dea9ce3976980cd52d009e045c741ea924d1294b5e1aa5c60bb50b03d966d34",
+          "render": {
+            "rate": 44100,
+            "channels": 2,
+            "bits": 16,
+            "notes": 66,
+            "seconds": 285.7391156,
+            "rawFloatPeak": 0.1575019807,
+            "pcmGain": 1,
+            "peak": 0.1575019807,
+            "rms": 0.007582210352
+          },
+          "sourcePeriodicity": {
+            "comparedContinuousCycles": [
+              2,
+              3
+            ],
+            "maxDifferencePcm16": 0,
+            "rmsDifference": 0.0,
+            "exactSampleFraction": 1.0
+          },
+          "rawCycleRms": 0.007635846666693872,
+          "rawCyclePeak": 0.1575060337781906,
+          "mixGain": 1.8411993054716576
+        },
+        "finger_bass": {
+          "eventsPerCycle": 144,
+          "bank": "Tools/Audio/Samples/FingerBassYR SF2-20190930/FingerBassYR 20190930.sf2",
+          "bankSha256": "bd1332696f61c0cb254ce7f202fb6b945ff46ccb1dcdd62e345a50bde3afb165",
+          "render": {
+            "rate": 44100,
+            "channels": 2,
+            "bits": 16,
+            "notes": 432,
+            "seconds": 285.7391156,
+            "rawFloatPeak": 0.2339515239,
+            "pcmGain": 1,
+            "peak": 0.2339515239,
+            "rms": 0.04712342156
+          },
+          "sourcePeriodicity": {
+            "comparedContinuousCycles": [
+              2,
+              3
+            ],
+            "maxDifferencePcm16": 0,
+            "rmsDifference": 0.0,
+            "exactSampleFraction": 1.0
+          },
+          "rawCycleRms": 0.047456796770541446,
+          "rawCyclePeak": 0.23395489156246185,
+          "mixGain": 0.906087282036954
+        }
+      },
+      "pcm": {
+        "file": "FullMedieval.wav",
+        "seconds": 93.91303855,
+        "frames": 4141565,
+        "rate": 44100,
+        "channels": 2,
+        "bits": 16,
+        "peak": 0.5137791,
+        "rms": 0.108,
+        "rmsDbFS": -19.332,
+        "dc": 3.6077e-05,
+        "stereoCorrelation": 0.9806805,
+        "monoRmsRatio": 0.9951355,
+        "firstFramePcm16": [
+          -694,
+          -673
+        ],
+        "lastFramePcm16": [
+          -619,
+          -616
+        ],
+        "sha256": "963baac27e1179922a7ebf0daf15cc8a1179e1352dc6012335eedb8e0635dc04"
+      },
+      "loopJoins": {
+        "source": "Builds/Stage3Review/FullMusic/FullMedieval.wav",
+        "twoJoins": [
+          {
+            "joinNumber": 1,
+            "timelineFrame": 4141565,
+            "deltaPerChannel": [
+              -0.0022888882106997894,
+              -0.00173955504013184
+            ],
+            "maxAbsDelta": 0.0022888882106997894,
+            "normalAdjacentP99": 0.021851252784813993,
+            "pcm16EightFramesBeforeAfter": [
+              [
+                -259,
+                -347
+              ],
+              [
+                -293,
+                -372
+              ],
+              [
+                -331,
+                -401
+              ],
+              [
+                -375,
+                -434
+              ],
+              [
+                -426,
+                -472
+              ],
+              [
+                -485,
+                -515
+              ],
+              [
+                -549,
+                -563
+              ],
+              [
+                -619,
+                -616
+              ],
+              [
+                -694,
+                -673
+              ],
+              [
+                -772,
+                -732
+              ],
+              [
+                -849,
+                -791
+              ],
+              [
+                -923,
+                -849
+              ],
+              [
+                -996,
+                -905
+              ],
+              [
+                -1068,
+                -960
+              ],
+              [
+                -1139,
+                -1014
+              ],
+              [
+                -1211,
+                -1067
+              ]
+            ]
+          },
+          {
+            "joinNumber": 2,
+            "timelineFrame": 8283130,
+            "deltaPerChannel": [
+              -0.0022888882106997894,
+              -0.00173955504013184
+            ],
+            "maxAbsDelta": 0.0022888882106997894,
+            "normalAdjacentP99": 0.021851252784813993,
+            "pcm16EightFramesBeforeAfter": [
+              [
+                -259,
+                -347
+              ],
+              [
+                -293,
+                -372
+              ],
+              [
+                -331,
+                -401
+              ],
+              [
+                -375,
+                -434
+              ],
+              [
+                -426,
+                -472
+              ],
+              [
+                -485,
+                -515
+              ],
+              [
+                -549,
+                -563
+              ],
+              [
+                -619,
+                -616
+              ],
+              [
+                -694,
+                -673
+              ],
+              [
+                -772,
+                -732
+              ],
+              [
+                -849,
+                -791
+              ],
+              [
+                -923,
+                -849
+              ],
+              [
+                -996,
+                -905
+              ],
+              [
+                -1068,
+                -960
+              ],
+              [
+                -1139,
+                -1014
+              ],
+              [
+                -1211,
+                -1067
+              ]
+            ]
+          }
+        ],
+        "qaAudio": "Builds/Stage3Review/FullMusic/QA/medieval-two-loop-joins.wav",
+        "qaFormat": "Two 3.6s seam windows separated by 0.25s silence",
+        "note": "Numerical PCM/score verification only; no claim of subjective listening."
+      },
+      "musicalSeam": {
+        "lastChord": "A7",
+        "nextChord": "D6",
+        "behavior": "A7/Aadd9 answer leads back to D6 and the shared motif; no stopping cadence."
+      }
+    }
+  ]
+}

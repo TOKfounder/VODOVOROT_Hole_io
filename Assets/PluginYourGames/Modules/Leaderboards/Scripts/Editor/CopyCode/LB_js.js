@@ -69,7 +69,8 @@ function EntriesLB(res, photoSize) {
         else
             extraDataArray[i] = res.entries[i].extraData;
 
-        if (res.entries[i].player.scopePermissions.public_name !== "allow")
+        // Missing permissions must remain anonymous rather than aborting the entire table.
+        if (!res.entries[i].player.scopePermissions || res.entries[i].player.scopePermissions.public_name !== "allow")
             names[i] = "anonymous";
         else
             names[i] = res.entries[i].player.publicName;

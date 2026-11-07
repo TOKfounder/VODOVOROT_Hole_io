@@ -1,0 +1,9 @@
+Migration completed 2026-11-06: 2022.3.62f2 -> 6000.3.26f1 LTS -> 6000.6.8f1.
+Final report: FINAL_MIGRATION_RU.txt; machine evidence: acceptance-audit.json.
+Final build succeeded, 0 errors / 14 warnings; 35 runtime checks, 13 SDK simulator checks, 12 Node/C# smoke modules passed.
+Actual WebGL City loop/absorption/growth/end/repeat, Garden/Medieval smoke, official dev SDK purchase/reward/cancel/reload and explicit production pause callbacks verified.
+Live platform delivery/cloud/billing not verified; existing draft and public version unchanged.
+All 3089 original GUIDs, 23 scenes, 771 prefabs, original Editor save/SDK settings preserved. Original profiles/audio restored; no Editor left running for this project.
+Preview remains http://localhost:8753/ using a localhost test profile and official dev mocks.
+Production ZIP: builds/Unity66/VODOVOROT_Unity-6000.6.8f1_WebGL.zip.
+Backup: /Users/ruslanrassulov/Desktop/Games/_MigrationBackups/VODOVOROT_Hole_io-20261106-pre-unity66 (RECOVERY.txt).

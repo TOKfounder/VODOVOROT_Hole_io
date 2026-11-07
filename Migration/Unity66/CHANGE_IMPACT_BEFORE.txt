@@ -1,0 +1,77 @@
+Unity change impact — 2026-11-06
+
+Scope: migrate the existing working tree at 51175f703d8663514f7ae46b5f9b63b65bf4fcf0
+(branch www, ahead 1), including all staged, unstaged and untracked author changes.
+No reset, commit, publishing, render-pipeline conversion or new engine features.
+
+Recoverable baseline:
+/Users/ruslanrassulov/Desktop/Games/_MigrationBackups/VODOVOROT_Hole_io-20261106-pre-unity66
+Project/ includes .git, Assets with .meta, Packages, ProjectSettings, UserSettings,
+Tools, Tests, Docs and existing builds. Regenerable Library, Temp, Logs and obj omitted.
+sha256-source.json covers 7278 files; user-data copy includes TOKGames application
+support and its Unity preference files. Original unresolved Git source aa5fc638d623f56178d50329d9ad8c541a57fe66
+archived in Dependencies, with original manifest and lock in Project/Packages.
+Restoration must use a separate directory and Unity 2022.3.62f2; opening upgraded
+serialized assets in 2022 is not a supported rollback. Do not overwrite newer saves.
+
+Observed baseline defects/environment:
+- Git package did not resolve in already-open 2022 Editor: Xcode licence refusal.
+  Native-arm64 CLI-tools Git wrapper is used only in this migration's launch environment.
+- No Pipeline attached. Only one Editor driver. Idle Untitled scene had no dirty mark;
+  the original Editor was closed normally and running inventory confirmed count=0.
+- SimulatorKit initially reported 6000.3.10f1, so no verified 6.6 baseline there.
+- 6000.6.8f1 and WebGLSupport are installed and verified by unity editors verify.
+
+Route and authoritative references:
+2022.3.62f2 -> 6000.3.26f1 LTS import/compile checkpoint -> 6000.6.8f1.
+The installed stable target is the official 2026-11-03 release:
+https://unity.com/releases/editor/whats-new/6000.6.8f1
+Guides reviewed: https://docs.unity.com/en-us/engine/6000.6/manual/upgrade-guides/upgrade-guide-unity6
+and upgrade-guide-unity61 / 62 / 63 / 64 / 65 / 66 at the same base URL.
+Local reference snapshots guide-unity*.txt accompany this record.
+The LTS checkpoint isolates package/import/physics changes; the second step audits
+EntityId, no-sort object discovery and removed Editor APIs. No need to install every
+intervening release: Unity 6 guide supports migration from 2022 LTS, and this project
+has no URP/HDRP, DOTS, Cinemachine, Addressables or custom native plugin migration.
+
+Risk chains and minimum evidence (predicted until checked):
+1. Assets/Scenes/MainMenu.unity -> GameController/MainMenuController -> YG2.saves ->
+   AudioManager, menus/shops/map selection. High consequence if old JSON or references
+   fail. Preserve SavesYG fields and SDK storage hooks; deserialize old profile with
+   the engine and compare data; isolated profile, file-byte restoration and UI play.
+2. Low Poly City/Garden/MedievalCastle -> GamingManager/HoleParent/FallingObject ->
+   Rigidbody, trigger/size checks, score -> growth and natural round settlement.
+   High consequence, medium likelihood across PhysX versions. Actual absorption,
+   oversize rejection, support fall, timer, reward-once and repeat/menu checks.
+3. GamingManager/Stage2RoundPresentation -> LeaderboardRoundService -> PluginYG
+   callbacks -> exp/coins, save and result UI. High consequence. Retain cloud-read
+   barrier and round idempotency. Existing pure/bridge/storage checks plus SDK test
+   simulation; live Yandex is a separate environment and never implied by mocks.
+4. Scene UI GUIDs -> com.unity.ugui + TMP fonts/materials -> rendered menu/HUD/results.
+   High likelihood package overlap when TMP is integrated into uGUI in Unity 6.
+   Check package-resolved ownership, compile, missing scripts/references and visuals.
+5. Built-in GraphicsSettings + scene camera post-processing -> materials/shaders,
+   postprocessing 3.5.0 -> visible city/garden/castle. Medium-high likelihood of old
+   package InstanceID API failures. Preserve pipeline, lighting and source assets;
+   adapt package only if proven necessary; engine import/material audit and captures.
+6. Assets/WebGLTemplates/YandexGames + PluginYourGames .jslib + Stage3MusicGate,
+   LeaderboardBridge/VodovorotAchievement -> Emscripten -> SDK init/storage/focus/ads
+   and AudioContext. High consequence. Release WebGL build, served compression/MIME,
+   real browser interaction and platform test callbacks; no real purchase/ad billing.
+7. MCP #main -> lock revision aa5fc638... (package 10.3.0) -> editor tools/object IDs.
+   Medium-high likelihood of obsolete API and truncation faults. Pin exact revision,
+   retain archive, inspect compatibility wrapper and use full 64-bit IDs; never derive
+   an object identifier from GetHashCode or truncate it. Test reverse resolution.
+8. Editor scene/menu review diagnostics use GetInstanceID into int fields; Unity 6.5
+   replaces APIs with 64-bit EntityId. Audit diagnostic type and equality semantics.
+   No game save fields currently carry Unity object IDs. Conditional compilation and
+   Editor tools must compile in the final Editor and be excluded from Web player.
+
+Audio/profile rules: before each game series, retain current Music/SFX and set both
+to zero through AudioManager sliders/settings API. New disposable profiles also mute.
+Restore originals before handoff; do not change default player volume or OS mute.
+Existing QA runners that enable audible test fixtures need a silent migration mode.
+
+Acceptance is separate evidence for baseline compile, LTS compile, final Editor
+compile/autotests/game run, preserved source/GUID/data, final WebGL build and browser
+game run. A historical report or passing source test does not prove a current run.

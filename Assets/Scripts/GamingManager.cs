@@ -61,6 +61,7 @@ public class GamingManager : MonoBehaviour
     public bool Stage2NaturalCompletion { get; private set; }
     public int Stage2PlayerAbsorbedValue { get; private set; }
     public int Stage2EquippedSkin { get; private set; }
+    public string Stage2EquippedSkinId { get; private set; }
     public int Stage2Map { get; private set; }
     public int Stage2Mode { get; private set; }
     public bool IsStage2RankRewardEligible => Stage2NaturalCompletion && Stage2PlayerAbsorbedValue > 0;
@@ -74,6 +75,7 @@ public class GamingManager : MonoBehaviour
     {
         if (VodovorotGameManager.Instance != null)
             VodovorotGameManager.Instance.GamingManager = this;
+        Vodovorot.Stage3.RoundResultsVisualStyle.ApplySettings(this);
 
         // Расчёт границ карты
         if (walls.Length >= 4)
@@ -88,7 +90,7 @@ public class GamingManager : MonoBehaviour
     void Start()
     {
         // Отключаем тени на всех мешах (оптимизация)
-        foreach (var renderer in FindObjectsByType<MeshRenderer>(FindObjectsInactive.Exclude, FindObjectsSortMode.None))
+        foreach (var renderer in FindObjectsByType<MeshRenderer>(FindObjectsInactive.Exclude))
         {
             renderer.receiveShadows = false;
             renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
@@ -101,6 +103,7 @@ public class GamingManager : MonoBehaviour
         Stage2NaturalCompletion = false;
         Stage2PlayerAbsorbedValue = 0;
         Stage2EquippedSkin = YG2.saves.equipedMaterial;
+        Stage2EquippedSkinId = Vodovorot.Stage3.SkinVisualCatalog.IdForLegacyIndex(Mathf.Clamp(Stage2EquippedSkin, 0, 4));
         Stage2Map = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex - 1;
         Stage2Mode = YG2.saves.chosenMode;
         settledReward = default;
@@ -381,8 +384,9 @@ public class GamingManager : MonoBehaviour
         SetPair(MobilePanelOfSettings[4], DesktopPanelOfSettings[4], ru, "Завершить игру", "End the game");
 
         // End panel
-        SetPair(PanelOfEnd[0], DPanelOfEnd[0], ru, "Опыт:", "Experience:");
-        SetPair(PanelOfEnd[1], DPanelOfEnd[1], ru, "Итог", "Result");
+        // The authored mobile array stores Caption before Expir; desktop stores Expir before Caption.
+        SetPair(PanelOfEnd[1], DPanelOfEnd[0], ru, "Опыт:", "Experience:");
+        SetPair(PanelOfEnd[0], DPanelOfEnd[1], ru, "Итог", "Result");
         SetPair(PanelOfEnd[2], DPanelOfEnd[2], ru, "Монеты:", "Coins:");
         SetPair(PanelOfEnd[3], DPanelOfEnd[3], ru, "Бриллианты:", "Brilliants:");
         SetPair(PanelOfEnd[4], DPanelOfEnd[4], ru, "Продолжить", "Continue");

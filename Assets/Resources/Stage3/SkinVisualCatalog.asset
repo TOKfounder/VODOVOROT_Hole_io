@@ -1,0 +1,150 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c5f152e419446bb89221b8914518d3e, type: 3}
+  m_Name: SkinVisualCatalog
+  m_EditorClassIdentifier: 
+  entries:
+  - id: obodok
+    legacyIndex: 0
+    visualPrefab: {fileID: 2771255527278917103, guid: 3e08288ca3d7247c29b7573cfce55100, type: 3}
+    nameRu: "\u041A\u0440\u0430\u0441\u043D\u044B\u0439\n\u0422\u0430\u0437\u0438\u043A"
+    nameEn: 'Red
+
+      basin'
+    sourceScenePath: Assets/Scenes/MainMenu.unity
+    sourceRootPath: CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (0)
+    sourceGlobalObjectId: GlobalObjectId_V1-2-7375ccb4939762041a007bc843c277f5-1744954573-0
+    modelRootPath: CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (0)
+    bodyPath: CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (0)/obodok/Toilet
+    captionPath: CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (0)/Cap
+    waterPath: CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (0)/Cylinder
+    authoredCameraPosition: {x: 3.3, y: 39.57893, z: -13.021601}
+    authoredCameraRotation: {x: 0.46702197, y: -0, z: -0, w: 0.8842458}
+    authoredFieldOfView: 60
+    authoredOrthographic: 0
+    authoredOrthographicSize: 5
+    sourceTransformCount: 8
+    sourceMeshRendererCount: 3
+    sourceGraphicCount: 3
+    sourceBodyMaterialPath: Assets/Materials/ToiletMaterials/Obodok.mat
+    sourceWaterMaterialPath: Assets/Materials/SpiralWaterMaterial.mat
+    poseDescription: Saved MainMenu desktop shop; ArrangeChildren applied only in
+      temporary preview; Canvas/Panel/Carousel frames and all model local transforms
+      preserved.
+  - id: white
+    legacyIndex: 1
+    visualPrefab: {fileID: 8974457083334754393, guid: 00b6f6482b3ad49babd32b319d496a6a, type: 3}
+    nameRu: "\u0411\u0435\u043B\u044B\u0439\n\u0414\u0440\u0443\u0433"
+    nameEn: 'White
+
+      Friend'
+    sourceScenePath: Assets/Scenes/MainMenu.unity
+    sourceRootPath: CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (1)
+    sourceGlobalObjectId: GlobalObjectId_V1-2-7375ccb4939762041a007bc843c277f5-4087864432884933081-0
+    modelRootPath: CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (1)
+    bodyPath: CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (1)/Toilet
+    captionPath: CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (1)/Cap
+    waterPath: CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (1)/Cylinder
+    authoredCameraPosition: {x: 3.3, y: 39.57893, z: -13.021601}
+    authoredCameraRotation: {x: 0.46702197, y: -0, z: -0, w: 0.8842458}
+    authoredFieldOfView: 60
+    authoredOrthographic: 0
+    authoredOrthographicSize: 5
+    sourceTransformCount: 6
+    sourceMeshRendererCount: 3
+    sourceGraphicCount: 2
+    sourceBodyMaterialPath: Assets/Prefabs/Prefs/Toilet.fbx
+    sourceWaterMaterialPath: Assets/Materials/SpiralWaterMaterial.mat
+    poseDescription: Saved MainMenu desktop shop; ArrangeChildren applied only in
+      temporary preview; Canvas/Panel/Carousel frames and all model local transforms
+      preserved.
+  - id: gold
+    legacyIndex: 2
+    visualPrefab: {fileID: 5861147769268219521, guid: f985ce3e64bbe4bdcaea833e8a872273, type: 3}
+    nameRu: "\u0417\u043E\u043B\u043E\u0442\u043E\u0439\n\u0443\u043D\u0438\u0442\u0430\u0437"
+    nameEn: 'Golden
+
+      bowl'
+    sourceScenePath: Assets/Scenes/MainMenu.unity
+    sourceRootPath: CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (2)
+    sourceGlobalObjectId: GlobalObjectId_V1-2-7375ccb4939762041a007bc843c277f5-3514761338814720781-0
+    modelRootPath: CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (2)
+    bodyPath: CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (2)/Toilet
+    captionPath: CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (2)/Cap
+    waterPath: CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (2)/Cylinder
+    authoredCameraPosition: {x: 3.3, y: 39.57893, z: -13.021601}
+    authoredCameraRotation: {x: 0.46702197, y: -0, z: -0, w: 0.8842458}
+    authoredFieldOfView: 60
+    authoredOrthographic: 0
+    authoredOrthographicSize: 5
+    sourceTransformCount: 6
+    sourceMeshRendererCount: 3
+    sourceGraphicCount: 2
+    sourceBodyMaterialPath: Assets/Materials/ToiletMaterials/Second.mat
+    sourceWaterMaterialPath: Assets/Materials/SpiralWaterMaterial.mat
+    poseDescription: Saved MainMenu desktop shop; ArrangeChildren applied only in
+      temporary preview; Canvas/Panel/Carousel frames and all model local transforms
+      preserved.
+  - id: scrag
+    legacyIndex: 3
+    visualPrefab: {fileID: 8241927255429320072, guid: d933c022263a741b2b5db1b2ea8ea0c7, type: 3}
+    nameRu: "\u0422\u0440\u043E\u043D\n\u041A\u043E\u0449\u0435\u044F"
+    nameEn: 'Scrag''s
+
+      Throne'
+    sourceScenePath: Assets/Scenes/MainMenu.unity
+    sourceRootPath: CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (3)
+    sourceGlobalObjectId: GlobalObjectId_V1-2-7375ccb4939762041a007bc843c277f5-5673887680445151077-0
+    modelRootPath: CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (3)
+    bodyPath: CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (3)/Toilet
+    captionPath: CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (3)/Cap
+    waterPath: CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (3)/Cylinder
+    authoredCameraPosition: {x: 3.3, y: 39.57893, z: -13.021601}
+    authoredCameraRotation: {x: 0.46702197, y: -0, z: -0, w: 0.8842458}
+    authoredFieldOfView: 60
+    authoredOrthographic: 0
+    authoredOrthographicSize: 5
+    sourceTransformCount: 6
+    sourceMeshRendererCount: 3
+    sourceGraphicCount: 2
+    sourceBodyMaterialPath: Assets/Materials/Material_meshs/Grid.mat
+    sourceWaterMaterialPath: Assets/Materials/SpiralWaterMaterial.mat
+    poseDescription: Saved MainMenu desktop shop; ArrangeChildren applied only in
+      temporary preview; Canvas/Panel/Carousel frames and all model local transforms
+      preserved.
+  - id: lord
+    legacyIndex: 4
+    visualPrefab: {fileID: 1264721893316905239, guid: 745f460bf1e8c40b7b70e0d84a655226, type: 3}
+    nameRu: "\u0422\u0443\u0430\u043B\u0435\u0442\n\u0411\u043E\u0433\u0430"
+    nameEn: 'God''s
+
+      Toilet'
+    sourceScenePath: Assets/Scenes/MainMenu.unity
+    sourceRootPath: CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (4)
+    sourceGlobalObjectId: GlobalObjectId_V1-2-7375ccb4939762041a007bc843c277f5-6955772114123955290-0
+    modelRootPath: CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (4)
+    bodyPath: CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (4)/Toilet
+    captionPath: CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (4)/Cap
+    waterPath: CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (4)/Cylinder
+    authoredCameraPosition: {x: 3.3, y: 39.57893, z: -13.021601}
+    authoredCameraRotation: {x: 0.46702197, y: -0, z: -0, w: 0.8842458}
+    authoredFieldOfView: 60
+    authoredOrthographic: 0
+    authoredOrthographicSize: 5
+    sourceTransformCount: 6
+    sourceMeshRendererCount: 3
+    sourceGraphicCount: 2
+    sourceBodyMaterialPath: Assets/Materials/Material_meshs/Sign_slow.mat
+    sourceWaterMaterialPath: Assets/Materials/SpiralWaterMaterial.mat
+    poseDescription: Saved MainMenu desktop shop; ArrangeChildren applied only in
+      temporary preview; Canvas/Panel/Carousel frames and all model local transforms
+      preserved.

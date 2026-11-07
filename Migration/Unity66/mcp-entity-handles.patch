@@ -1,0 +1,162 @@
+--- upstream/Runtime/Helpers/UnityObjectIdCompat.cs
++++ local/Runtime/Helpers/UnityObjectIdCompat.cs
+@@ -1,10 +1,11 @@
++using System;
++using System.Collections.Generic;
++using System.Globalization;
+ using UnityEngine;
+ #if UNITY_EDITOR
+ using UnityEditor;
+ #endif
+-#if UNITY_6000_6_OR_NEWER
+-using System.Collections.Generic;
+-#endif
++using Object = UnityEngine.Object;
+ 
+ namespace MCPForUnity.Runtime.Helpers
+ {
+@@ -18,23 +19,10 @@
+     /// </summary>
+     public static class UnityObjectIdCompat
+     {
+-#if UNITY_6000_6_OR_NEWER
+-        // 6000.6 stubs out both EditorUtility.InstanceIDToObject(int) and EntityId's
+-        // implicit int->EntityId conversion (both throw NotImplementedException at
+-        // runtime despite existing in the API surface - verified against 6000.6.0f1).
+-        // The only working reverse path is EntityIdToObject(EntityId) fed a value built
+-        // via EntityId.FromULong(ulong), which needs the full 64-bit id, not the
+-        // truncated int this class hands out. So we cache the full value behind the
+-        // truncated int at mint time and look it up here instead of trying to
+-        // reconstruct it from the int alone.
+-        private static readonly Dictionary<int, ulong> _fullIdCache = new Dictionary<int, ulong>();
+-#endif
+-
+         /// <summary>
+-        /// Returns a session-scoped int handle for the object. On 6.5+ truncates the
+-        /// EntityId's underlying ulong; lossy but stable within a session and preserves
+-        /// the int-shaped wire format that older consumers expect. For deserialization
+-        /// round-trips on 6.5+, prefer the full <c>entityID</c> field.
++        /// Returns an opaque session-scoped handle for the legacy int wire format.
++        /// The registry retains the full EntityId; a handle is never a truncated ID.
++        /// Serialized references also carry the full entityID field on Unity 6.5+.
+         /// </summary>
+         public static int GetInstanceIDCompat(this Object obj)
+         {
+@@ -44,35 +32,100 @@
+             }
+ 
+ #if UNITY_6000_5_OR_NEWER
+-            ulong full = EntityId.ToULong(obj.GetEntityId());
+-            int truncated = (int)full;
+-#if UNITY_6000_6_OR_NEWER
+-            _fullIdCache[truncated] = full;
+-#endif
+-            return truncated;
++            return GetOrCreateHandle(obj.GetEntityId());
+ #else
+             return obj.GetInstanceID();
+ #endif
+         }
+ 
++#if UNITY_6000_5_OR_NEWER
++        private static readonly Dictionary<EntityId, int> Handles = new Dictionary<EntityId, int>();
++        private static readonly Dictionary<int, EntityId> Entities = new Dictionary<int, EntityId>();
++        private static int nextHandle = -1;
++
++        private static int GetOrCreateHandle(EntityId entityId)
++        {
++            if (Handles.TryGetValue(entityId, out int handle))
++                return handle;
++            if (nextHandle == int.MinValue)
++                throw new InvalidOperationException("MCP session object handles exhausted.");
++
++            handle = nextHandle--;
++            Handles.Add(entityId, handle);
++            Entities.Add(handle, entityId);
++            return handle;
++        }
++
++#if UNITY_EDITOR
++        private const string RegistryKey = "MCPForUnity.EntityHandles.v1";
++
++        [Serializable]
++        private sealed class HandleSnapshot
++        {
++            public int nextHandle = -1;
++            public int[] handles;
++            public string[] entityIds;
++        }
++
++        static UnityObjectIdCompat()
++        {
++            string json = SessionState.GetString(RegistryKey, "");
++            if (!string.IsNullOrEmpty(json))
++            {
++                var snapshot = JsonUtility.FromJson<HandleSnapshot>(json);
++                if (snapshot != null && snapshot.handles != null && snapshot.entityIds != null
++                    && snapshot.handles.Length == snapshot.entityIds.Length)
++                {
++                    nextHandle = snapshot.nextHandle;
++                    for (int i = 0; i < snapshot.handles.Length; i++)
++                    {
++                        if (!ulong.TryParse(snapshot.entityIds[i], NumberStyles.None,
++                            CultureInfo.InvariantCulture, out ulong raw))
++                            continue;
++                        var entity = EntityId.FromULong(raw);
++                        Handles[entity] = snapshot.handles[i];
++                        Entities[snapshot.handles[i]] = entity;
++                    }
++                }
++            }
++            // Keep tool references valid through recompilation/Play domain reloads.
++            // SessionState is cleared when the Editor quits, just like object identity.
++            AssemblyReloadEvents.beforeAssemblyReload += SaveHandles;
++        }
++
++        private static void SaveHandles()
++        {
++            var snapshot = new HandleSnapshot
++            {
++                nextHandle = nextHandle,
++                handles = new int[Entities.Count],
++                entityIds = new string[Entities.Count]
++            };
++            int index = 0;
++            foreach (var entry in Entities)
++            {
++                snapshot.handles[index] = entry.Key;
++                snapshot.entityIds[index] = EntityId.ToULong(entry.Value)
++                    .ToString(CultureInfo.InvariantCulture);
++                index++;
++            }
++            SessionState.SetString(RegistryKey, JsonUtility.ToJson(snapshot));
++        }
++#endif
++#endif
++
+ #if UNITY_EDITOR
+         /// <summary>
+         /// Resolves an int instance ID handle back to a UnityEngine.Object.
+         ///   Pre-6.0  : EditorUtility.InstanceIDToObject(int)
+-        ///   6.0–6.5  : EditorUtility.EntityIdToObject(int)  (implicit int→EntityId cast)
+-        ///   6.6+     : EditorUtility.EntityIdToObject(EntityId.FromULong(full)) using the
+-        ///              full 64-bit value cached in GetInstanceIDCompat, since the int-only
+-        ///              paths (including the implicit int→EntityId cast) are unimplemented
+-        ///              stubs on this Unity version. Only resolves ids minted this session.
++        ///   6.0–6.4  : EditorUtility.EntityIdToObject(int)
++        ///   6.5+     : resolve the opaque handle to its complete EntityId.
+         /// </summary>
+         public static Object InstanceIDToObjectCompat(int instanceId)
+         {
+-#if UNITY_6000_6_OR_NEWER
+-            if (_fullIdCache.TryGetValue(instanceId, out ulong full))
+-            {
+-                return EditorUtility.EntityIdToObject(EntityId.FromULong(full));
+-            }
+-            return null;
++#if UNITY_6000_5_OR_NEWER
++            return Entities.TryGetValue(instanceId, out EntityId entityId)
++                ? EditorUtility.EntityIdToObject(entityId) : null;
+ #elif UNITY_6000_3_OR_NEWER
+             return EditorUtility.EntityIdToObject(instanceId);
+ #else

@@ -310,7 +310,7 @@ public class MainMenuController : MonoBehaviour
         UpdateTriggers();
     }
 
-    private void FailedPurchased(string id) => Debug.Log($"Покупка {id} была совершена");
+    private void FailedPurchased(string id) => Debug.Log($"Покупка {id} отменена или не удалась");
 
     private void SaveNick(string name)
     {

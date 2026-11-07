@@ -125,6 +125,11 @@ namespace YG.Insides
 
         public static void SaveEditor()
         {
+            if (Vodovorot.Stage3.RankSimulationContext.BlockEditorSave)
+            {
+                Vodovorot.Stage3.RankSimulationContext.NotifySuppressedEditorSave();
+                return;
+            }
             Message("Save Progress (in Editor)");
 
             bool fileExits = false;
@@ -145,6 +150,7 @@ namespace YG.Insides
 
         public static void LoadEditor()
         {
+            if (Vodovorot.Stage3.RankSimulationContext.TryLoadIsolatedEditorProfile()) return;
             if (File.Exists(PATH_SAVES_EDITOR))
             {
                 string json = File.ReadAllText(PATH_SAVES_EDITOR);
@@ -158,6 +164,7 @@ namespace YG.Insides
             {
                 YG2.SetDefaultSaves();
             }
+            Vodovorot.Stage3.RankSimulationContext.OnEditorProfileLoaded();
         }
 #endif
         public static void SaveLocal()

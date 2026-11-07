@@ -26,10 +26,13 @@ namespace Vodovorot.Stage2
         private int queued;
         private AudioSource rankVoice;
         private AudioManager manager;
-        private AudioMixerGroup sfxGroup, musicGroup;
+        private AudioMixerGroup sfxGroup;
         private double nextMixerProbe, nextRankAccent;
         private bool focused = true, applicationPaused;
         private uint variationState = 0x715D3A29u;
+
+        /// <summary>Read-only DSP deadline; explicit auditions wait for the same ordinary cooldown.</summary>
+        public double NextRankAccentAt => nextRankAccent;
 
         private void Awake()
         {
@@ -77,14 +80,15 @@ namespace Vodovorot.Stage2
             if (!rankConfirmations.Add(confirmationId)) return;
             rankConfirmationOrder.Enqueue(confirmationId);
             if (rankConfirmationOrder.Count > 32) rankConfirmations.Remove(rankConfirmationOrder.Dequeue());
-            if (!CanPlay() || MusicVolume <= 0f || AudioSettings.dspTime < nextRankAccent) return;
+            if (!CanPlay() || SoundVolume <= 0f || AudioSettings.dspTime < nextRankAccent) return;
             AudioClip clip = Clip("Stage2Audio/RankImproved");
             if (clip == null) return;
             RefreshRouting(true);
             rankVoice.pitch = 1f;
             rankVoice.clip = clip;
-            rankVoice.volume = Stage2AudioPolicy.OutputGain(Stage2AudioPolicy.RankAccentGain, MusicVolume, musicGroup != null);
+            rankVoice.volume = Stage2AudioPolicy.OutputGain(Stage2AudioPolicy.RankAccentGain, SoundVolume, sfxGroup != null);
             rankVoice.Play();
+            Vodovorot.Stage3.BackgroundMusicPlayer.DuckForRankAccent();
             nextRankAccent = AudioSettings.dspTime + 2.5;
         }
 
@@ -94,10 +98,10 @@ namespace Vodovorot.Stage2
             RefreshRouting(false);
             for (int i = 0; i < voices.Length; i++)
                 voices[i].volume = Stage2AudioPolicy.OutputGain(gains[i], SoundVolume, sfxGroup != null);
-            rankVoice.volume = Stage2AudioPolicy.OutputGain(Stage2AudioPolicy.RankAccentGain, MusicVolume, musicGroup != null);
+            rankVoice.volume = Stage2AudioPolicy.OutputGain(Stage2AudioPolicy.RankAccentGain, SoundVolume, sfxGroup != null);
             if (Time.timeScale <= 0f || SoundVolume <= 0f) StopAbsorptions();
             else TryPlayNext(AudioSettings.dspTime);
-            if (MusicVolume <= 0f) rankVoice.Stop();
+            if (SoundVolume <= 0f) rankVoice.Stop();
         }
 
         private void TryPlayNext(double now)
@@ -150,12 +154,11 @@ namespace Vodovorot.Stage2
             nextMixerProbe = now + 1;
             AudioManager current = VodovorotGameManager.Instance != null ? VodovorotGameManager.Instance.AudioManager : null;
             if (current == null) current = FindAnyObjectByType<AudioManager>();
-            if (!force && current == manager && (current == null || sfxGroup != null || musicGroup != null)) return;
+            if (!force && current == manager && (current == null || sfxGroup != null)) return;
             manager = current;
             sfxGroup = Group(manager != null ? manager.mixer : null, "SFX");
-            musicGroup = Group(manager != null ? manager.mixer : null, "Music");
             foreach (AudioSource voice in voices) voice.outputAudioMixerGroup = sfxGroup;
-            rankVoice.outputAudioMixerGroup = musicGroup;
+            rankVoice.outputAudioMixerGroup = sfxGroup;
         }
 
         private static AudioMixerGroup Group(AudioMixer mixer, string name)
@@ -167,7 +170,6 @@ namespace Vodovorot.Stage2
         }
 
         private static float SoundVolume => YG2.saves != null ? Stage2AudioPolicy.SavedVolume(YG2.saves.soundValue) : 0f;
-        private static float MusicVolume => YG2.saves != null ? Stage2AudioPolicy.SavedVolume(YG2.saves.musicValue) : 0f;
         private bool CanPlay() => isActiveAndEnabled && focused && !applicationPaused && !YG2.nowAdsShow;
 
         private void StopAbsorptions()

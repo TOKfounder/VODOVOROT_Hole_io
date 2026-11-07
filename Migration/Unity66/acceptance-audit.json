@@ -1,0 +1,125 @@
+{
+  "finishedUtc": "2026-11-05T22:17:28.112253+00:00",
+  "status": "verified-local-migration-with-documented-platform-limits",
+  "route": [
+    "2022.3.62f2",
+    "6000.3.26f1",
+    "6000.6.8f1"
+  ],
+  "finalRevision": "237b6593792b",
+  "editorValidation": {
+    "unity": "6000.6.8f1",
+    "scenes": [
+      {
+        "path": "Assets/Scenes/MainMenu.unity",
+        "roots": 13,
+        "missingScripts": 0,
+        "brokenMaterials": []
+      },
+      {
+        "path": "Assets/Scenes/Low Poly City.unity",
+        "roots": 4,
+        "missingScripts": 0,
+        "brokenMaterials": []
+      },
+      {
+        "path": "Assets/Scenes/Garden.unity",
+        "roots": 6,
+        "missingScripts": 0,
+        "brokenMaterials": []
+      },
+      {
+        "path": "Assets/Scenes/MedievalCastle.unity",
+        "roots": 4,
+        "missingScripts": 0,
+        "brokenMaterials": []
+      }
+    ],
+    "oldSaveChangedFields": [],
+    "renderPipeline": "Built-in",
+    "problems": [],
+    "finishedUtc": "2026-11-05T22:03:11.9176260Z"
+  },
+  "build": {
+    "unity": "6000.6.8f1",
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 14,
+    "bytes": 29765568,
+    "seconds": 193.589789,
+    "path": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/Builds/Unity66/Yandex",
+    "finishedUtc": "2026-11-05T22:11:48.3670740Z"
+  },
+  "preservation": {
+    "finishedUtc": "2026-11-05T22:14:46.449128+00:00",
+    "originalMetaCount": 3089,
+    "changedOrMissingGuids": [],
+    "sceneCount": 23,
+    "changedScenes": [],
+    "prefabCount": 771,
+    "changedPrefabs": [],
+    "missingOriginalSourceFiles": [],
+    "editorSaveByteExact": true,
+    "sdkSettingsByteExact": true,
+    "vendoredMcpProvenanceMismatches": []
+  },
+  "runtime": {
+    "passed": true,
+    "completed": true,
+    "checks": 35,
+    "errors": [],
+    "scope": "Editor runtime; offline SDK simulation, no production account calls; real City physics. Player teleports, 55% reward progress and timer advancement are QA fixtures."
+  },
+  "sdkSimulator": {
+    "passed": true,
+    "checks": 13,
+    "scope": "Stock PluginYG Editor simulator and actual Unity callback handlers; isolated local profile; no live platform or charges"
+  },
+  "nodeTestModules": 12,
+  "nodeTestFailures": 0,
+  "mcp": {
+    "uniqueRoundTrips": 256,
+    "domainReload": true,
+    "actualExecuteCode": true,
+    "commit": "aa5fc638d623f56178d50329d9ad8c541a57fe66"
+  },
+  "browser": {
+    "cityActualAbsorption": true,
+    "cityActualGrowth": true,
+    "naturalRoundEndAndRepeat": true,
+    "gardenAndMedievalVisualMovementSmoke": true,
+    "officialDevSdk": true,
+    "purchaseSuccessDelta": 20,
+    "purchaseCancelDelta": 0,
+    "rewardedSuccessDelta": 5,
+    "rewardedEarlyCloseDelta": 0,
+    "balanceAfterReload": 28,
+    "unconsumedPurchasesAfterReload": 0,
+    "syntheticProductionPauseCallbackFreezesActualTimer": true,
+    "livePlatformEventDeliveryVerified": false,
+    "testCloudIsLocalStorage": true,
+    "realMoneyTransactions": false,
+    "publishedOrUploadedDraft": false,
+    "logs": "web-final-logs.json"
+  },
+  "audio": {
+    "nativeOriginalByteExact": true,
+    "nativeOriginalMusic": 0.5,
+    "nativeOriginalSfx": 0.5,
+    "browserSlidersRestoredToMidpoint": true,
+    "browserAudioEvidence": [
+      "web-audio-restored.png",
+      "chrome-audio-restored.png"
+    ],
+    "listeningAssessment": false
+  },
+  "limits": [
+    "No new build uploaded over existing Yandex draft 2.0",
+    "No live remote cloud/auth/ranking/adnetwork/billing verification",
+    "Official dev SDK on/dispatchEvent are no-ops: automatic platform pause event delivery not verified",
+    "Garden/Medieval smoke only, not full runs",
+    "No physical mobile device/performance or listening certification",
+    "Existing client purchase consumption crash/network atomicity not redesigned"
+  ],
+  "report": "FINAL_MIGRATION_RU.txt"
+}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using YG;
+using Vodovorot.Stage3;
 
 namespace Vodovorot.Stage2
 {
@@ -31,6 +32,8 @@ namespace Vodovorot.Stage2
         public LeaderboardNeighbor[] neighbors = new LeaderboardNeighbor[0];
         public int targetRank;
         public long targetXp;
+        public bool isSimulation;
+        public string simulationLabel;
     }
 
     /// <summary>One network transaction and at most one persisted coin bonus per real round.</summary>
@@ -66,21 +69,8 @@ namespace Vodovorot.Stage2
             public LeaderboardRoundSnapshot snapshot;
         }
 
-        [Serializable] private sealed class Reply
-        {
-            public int requestId = 0;
-            public string status = null;
-            public string playerId = null;
-            public int rank = 0;
-            public int score = 0;
-            public bool submitted = false;
-            public bool neighborsAvailable = false;
-            public LeaderboardNeighbor[] entries = null;
-        }
-
 #if UNITY_WEBGL && !UNITY_EDITOR && YandexGamesPlatform_yg
         [DllImport("__Internal")] private static extern void LeaderboardStage2_AuthLoad(int state);
-        [DllImport("__Internal")] private static extern void LeaderboardStage2_Request(string objectName, int requestId, string playerId, int xp);
 #endif
         public static bool IsAuthProfileWriteBlocked => instance != null &&
             (instance.authLoadPending || instance.authProfileInvalid) && YG2.player != null && YG2.player.auth;
@@ -120,17 +110,7 @@ namespace Vodovorot.Stage2
 #endif
         }
 
-        public static bool CanUsePlatform
-        {
-            get
-            {
-#if UNITY_WEBGL && !UNITY_EDITOR && YandexGamesPlatform_yg
-                return true;
-#else
-                return false;
-#endif
-            }
-        }
+        public static bool CanUsePlatform => LeaderboardRoundTransport.Current.IsAvailable;
 
         public static LeaderboardRoundSnapshot Current
         {
@@ -167,6 +147,9 @@ namespace Vodovorot.Stage2
         public static void BeginRound(string roundId, bool eligibleRound)
         {
             if (string.IsNullOrEmpty(roundId)) return;
+#if UNITY_EDITOR
+            RankSimulationContext.BeforeRoundBegins(roundId, ref eligibleRound);
+#endif
             if (instance == null)
             {
                 var go = new GameObject("Stage2LeaderboardService");
@@ -185,7 +168,9 @@ namespace Vodovorot.Stage2
             if (!rounds.TryGetValue(roundId, out current))
             {
                 current = new Round { id = roundId, eligible = eligibleRound, deadline = Time.realtimeSinceStartup + 12f,
-                    snapshot = new LeaderboardRoundSnapshot { roundId = roundId, status = LeaderboardRoundStatus.WaitingForProfile } };
+                    snapshot = new LeaderboardRoundSnapshot { roundId = roundId, status = LeaderboardRoundStatus.WaitingForProfile,
+                        isSimulation = LeaderboardRoundTransport.Current.IsSimulation,
+                        simulationLabel = LeaderboardRoundTransport.Current.SimulationLabel } };
                 rounds.Add(roundId, current);
                 TryStart(current);
             }
@@ -297,9 +282,7 @@ namespace Vodovorot.Stage2
             int request = ++nextRequest;
             pending.Add(request, round);
             SetStatus(round, LeaderboardRoundStatus.Loading);
-#if UNITY_WEBGL && !UNITY_EDITOR && YandexGamesPlatform_yg
-            LeaderboardStage2_Request(gameObject.name, request, round.playerId, round.xp);
-#endif
+            LeaderboardRoundTransport.Current.Request(gameObject.name, request, round.playerId, round.xp, OnLeaderboardResponse);
         }
 
         /// <summary>Called only with the actual parsed cloud outcome during a deliberate post-round login.</summary>
@@ -357,8 +340,8 @@ namespace Vodovorot.Stage2
         [UnityEngine.Scripting.Preserve]
         public void OnLeaderboardResponse(string json)
         {
-            Reply reply;
-            try { reply = JsonUtility.FromJson<Reply>(json); }
+            LeaderboardTransportReply reply;
+            try { reply = JsonUtility.FromJson<LeaderboardTransportReply>(json); }
             catch { return; }
             if (reply == null || !pending.TryGetValue(reply.requestId, out Round round)) return;
             pending.Remove(reply.requestId);
@@ -387,7 +370,9 @@ namespace Vodovorot.Stage2
             round.snapshot = new LeaderboardRoundSnapshot { roundId = round.id, status = LeaderboardRoundStatus.Confirmed,
                 rank = reply.rank, score = reply.score, previousRank = decision.previousRank, improved = decision.improved,
                 firstObservation = decision.firstObservation, bonusCoins = paid, neighborsAvailable = reply.neighborsAvailable,
-                neighbors = reply.entries ?? new LeaderboardNeighbor[0] };
+                neighbors = reply.entries ?? new LeaderboardNeighbor[0],
+                isSimulation = LeaderboardRoundTransport.Current.IsSimulation,
+                simulationLabel = LeaderboardRoundTransport.Current.SimulationLabel };
             foreach (LeaderboardNeighbor neighbor in round.snapshot.neighbors)
                 if (neighbor != null && !neighbor.isSelf && neighbor.rank == reply.rank - 1 && neighbor.score >= reply.score)
                 { round.snapshot.targetRank = neighbor.rank; round.snapshot.targetXp = LeaderboardRankRules.XpToPass(reply.score, neighbor.score); break; }
@@ -408,6 +393,54 @@ namespace Vodovorot.Stage2
             round.snapshot.status = status; Publish(round);
         }
         private void Publish(Round round) { if (current == round) Changed?.Invoke(round.snapshot); }
+
+#if UNITY_EDITOR
+        /// <summary>Suspends the live service without clearing its records, callbacks or pending requests.</summary>
+        internal static IDisposable IsolateEditorSession(ILeaderboardRoundTransport transport)
+        {
+            return new EditorSession(transport);
+        }
+
+        private sealed class EditorSession : IDisposable
+        {
+            private readonly LeaderboardRoundService previous = instance;
+            private readonly ILeaderboardRoundTransport previousTransport = LeaderboardRoundTransport.EditorOverride;
+            private readonly int previousBonus = BonusCoins;
+            private readonly float startedAt = Time.realtimeSinceStartup;
+            private readonly bool wasEnabled;
+            private bool disposed;
+
+            internal EditorSession(ILeaderboardRoundTransport transport)
+            {
+                wasEnabled = previous != null && previous.enabled;
+                if (previous != null) previous.enabled = false;
+                instance = null;
+                LeaderboardRoundTransport.EditorOverride = transport;
+            }
+
+            public void Dispose()
+            {
+                if (disposed) return;
+                disposed = true;
+                LeaderboardRoundService simulation = instance;
+                instance = previous;
+                LeaderboardRoundTransport.EditorOverride = previousTransport;
+                BonusCoins = previousBonus;
+                if (simulation != null && simulation != previous)
+                {
+                    simulation.enabled = false;
+                    Destroy(simulation.gameObject);
+                }
+                if (previous != null)
+                {
+                    float suspendedFor = Time.realtimeSinceStartup - startedAt;
+                    foreach (Round round in previous.rounds.Values) round.deadline += suspendedFor;
+                    previous.lastAuthLoadAt += suspendedFor;
+                    previous.enabled = wasEnabled;
+                }
+            }
+        }
+#endif
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void ResetStatics() { instance = null; Changed = null; BonusCoins = LeaderboardRankRules.DefaultBonusCoins; }

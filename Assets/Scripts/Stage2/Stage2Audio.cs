@@ -7,6 +7,9 @@ namespace Vodovorot.Stage2
     {
         private static AbsorptionAudioPool instance;
 
+        /// <summary>Does not create a pool, reserve a voice or bypass the normal rank accent limiter.</summary>
+        public static double NextRankAccentAt => instance != null ? instance.NextRankAccentAt : 0;
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void ResetStatics() => instance = null;
 

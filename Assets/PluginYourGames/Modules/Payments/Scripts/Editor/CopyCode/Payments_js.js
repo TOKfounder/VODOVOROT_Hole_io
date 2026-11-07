@@ -81,7 +81,7 @@ function InitPayments(sendback) {
 function BuyPayments(id) {
     try {
         if (payments != null) {
-            payments.purchase(id).then(() => {
+            payments.purchase({ id: id }).then(() => {
                 LogStyledMessage('Purchase Success');
                 ConsumePurchase(id, true);
                 FocusGame();

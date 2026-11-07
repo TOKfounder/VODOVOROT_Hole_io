@@ -34,7 +34,8 @@ function RequestingEnvironmentData() {
                 "isTablet": ysdk.deviceInfo.isTablet(),
                 "isTV": ysdk.deviceInfo.isTV(),
                 "appID": ysdk.environment.app.id,
-                "browserLang": ysdk.environment.browser.lang,
+                // Current SDK documents i18n.lang; browser is an optional legacy field.
+                "browserLang": (ysdk.environment.browser && ysdk.environment.browser.lang) || navigator.language || "en",
                 "payload": ysdk.environment.payload,
                 "platform": navigator.platform,
                 "browser": browser

@@ -230,7 +230,13 @@ public sealed class Stage2PlayChecks : MonoBehaviour
         // developer's profile are used as test fixtures, and Editor SDK cannot submit online.
         YG2.saves = new SavesYG { isFirst = false, tutorialDone = true, langRu = true,
             selectedMapID = 0, chosenMode = 0, equipedMaterial = 2, exp = 100, goldCoins = 17, diamonds = 3,
-            massiveOfObtaining = new[] { 1, 1, 1, 0, 0 } };
+            massiveOfObtaining = new[] { 1, 1, 1, 0, 0 }, musicValue = 0, soundValue = 0 };
+        AudioManager audioSettings = FindAnyObjectByType<AudioManager>();
+        if (audioSettings != null)
+        {
+            audioSettings.MusicSlider.value = 0;
+            audioSettings.SoundSlider.value = 0;
+        }
         Check("profile.isolated-offline", !LeaderboardRoundService.CanUsePlatform, "Editor platform requests disabled; disposable QA profile.");
         AsyncOperation city = SceneManager.LoadSceneAsync(CascadeCityLayout.CitySceneName);
         while (!city.isDone) yield return null;
@@ -248,7 +254,7 @@ public sealed class Stage2PlayChecks : MonoBehaviour
         string invariant = "Layout not applied";
         Check("city.value-and-geometry", layout != null && layout.ValidateInitialState(out invariant), invariant ?? "Original map total/value/fit geometry preserved.");
         bool isolatedPhysics = CascadePhysics.ValidateConfiguration(out string physicsError);
-        CascadeProp[] arranged = FindObjectsByType<CascadeProp>(FindObjectsSortMode.None);
+        CascadeProp[] arranged = FindObjectsByType<CascadeProp>();
         Check("city.isolated-cascade-collisions", isolatedPhysics && arranged.Length == 16 &&
             arranged.All(member => member.gameObject.layer == CascadePhysics.Layer &&
                 member.GetComponentsInChildren<Collider>(true).Where(collider => collider.GetComponentInParent<FallingObject>() == member.GetComponent<FallingObject>())
@@ -339,7 +345,7 @@ public sealed class Stage2PlayChecks : MonoBehaviour
     private IEnumerator CheckActualAbsorption()
     {
         player.InitializeScore(0, true);
-        FallingObject target = FindObjectsByType<FallingObject>(FindObjectsSortMode.None).Where(item =>
+        FallingObject target = FindObjectsByType<FallingObject>().Where(item =>
             item.value > 0 && !item.isColon && item.GetComponent<CascadeProp>() == null &&
             item.GetComponent<Rigidbody>() != null && item.GetComponent<Rigidbody>().isKinematic &&
             item.GetComponent<Collider>() != null && item.GetComponent<Collider>().bounds.min.y < .2f &&
@@ -356,7 +362,7 @@ public sealed class Stage2PlayChecks : MonoBehaviour
 
     private IEnumerator CheckTooLarge()
     {
-        FallingObject large = FindObjectsByType<FallingObject>(FindObjectsSortMode.None).Where(item =>
+        FallingObject large = FindObjectsByType<FallingObject>().Where(item =>
             item.value > 0 && !item.isColon && item.GetComponent<CascadeProp>() == null &&
             item.GetComponent<Rigidbody>() != null && item.GetComponent<Rigidbody>().isKinematic &&
             item.GetComponent<Collider>() != null && item.GetComponent<Collider>().bounds.min.y < .3f &&
@@ -376,7 +382,7 @@ public sealed class Stage2PlayChecks : MonoBehaviour
     private IEnumerator CheckSupportFall()
     {
         FieldInfo supportField = typeof(CascadeProp).GetField("supports", BindingFlags.NonPublic | BindingFlags.Instance);
-        CascadeProp upper = FindObjectsByType<CascadeProp>(FindObjectsSortMode.None).FirstOrDefault(member =>
+        CascadeProp upper = FindObjectsByType<CascadeProp>().FirstOrDefault(member =>
         {
             var supports = (FallingObject[])supportField.GetValue(member);
             return supports != null && supports.Length == 1 && member.GetComponent<FallingObject>().value > 0 && supports[0].value > 0;
@@ -404,7 +410,7 @@ public sealed class Stage2PlayChecks : MonoBehaviour
     {
         target.y = player.transform.position.y;
         Rigidbody body = player.GetComponentInChildren<Rigidbody>();
-        if (body != null) { body.velocity = Vector3.zero; body.angularVelocity = Vector3.zero; body.position = target; }
+        if (body != null) { body.linearVelocity = Vector3.zero; body.angularVelocity = Vector3.zero; body.position = target; }
         player.transform.position = target;
         Physics.SyncTransforms();
     }
@@ -434,7 +440,7 @@ public sealed class Stage2PlayChecks : MonoBehaviour
                 siteViewport = camera.WorldToViewportPoint(diagnostic.siteCenter) });
         }
         Plane[] frustum = main != null ? GeometryUtility.CalculateFrustumPlanes(main) : null;
-        foreach (MeshRenderer renderer in FindObjectsByType<MeshRenderer>(FindObjectsSortMode.None))
+        foreach (MeshRenderer renderer in FindObjectsByType<MeshRenderer>())
         {
             if (renderer.gameObject.scene != SceneManager.GetActiveScene() || renderer.GetComponentInParent<HoleParent>() != null) continue;
             diagnostic.worldRenderers++;

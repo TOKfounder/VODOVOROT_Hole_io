@@ -1,0 +1,37 @@
+Сверка unity-change-impact после миграции, 6 ноября 2026.
+
+1. Сохранения/прогресс: схема и исходный файл сохранены; старый JSON без
+   отличий полей; изолированные тестовые профили, byte-exact restore.
+   Ненулевые награды и повторные lifecycle вызовы — native runtime QA;
+   сохранение тестовой покупки после reload — настоящий WebGL + official dev SDK.
+2. Физика/рост: новые имена Rigidbody API с прежними значениями, fixedDeltaTime
+   сохранён. 35 native runtime проверок; реальная browser-абсорбция/рост/таймер/
+   результаты/повтор. Garden/Medieval только smoke, полного прохождения нет.
+3. Общие сцены/префабы/GUID: 23/771 побайтово, 3089 GUID без изменений.
+   Нет нового процедурного построения мира/UI в production. Новые GameObject
+   в QA не являются обязательными создателями игрового мира.
+4. UI/TMP/render: uGUI2.6 с интегрированным TMP; postprocessing3.5.4,
+   Built-in сохранён. Четыре сцены без missing scripts/broken materials.
+   Native/браузерный UI, пять портретов и три карты просмотрены.
+5. SDK/WebGL: исправлены доказанные ошибки optional browser/scopePermissions
+   и payment argument. Каждый контракт выполняется реальным JS-источником
+   в регрессии; финальный browser payment success/cancel/reload подтверждён.
+   Реклама только штатная тестовая; удалённая платформа не подменяется mock.
+6. Object IDs/editor: ulong в диагностике, полный EntityId registry в MCP;
+   256 round trips + реальная domain reload + ExecuteCode CodeDom success.
+   #main устранён из новой зависимости, upstream commit и патч архивированы.
+7. Build/settings: Editor и финальный IL2CPP/WebGL успешны. Static batching1,
+   dynamic0 по удалённой возможности 6.6, timestep .0333. Условные компиляции
+   release/development проверены. Полные версии и hashes закреплены.
+8. Аудио/данные: все игровые серии без звука штатными ползунками; Editor-файл
+   восстановлен точно, preview/Chrome ползунки возвращены к середине.
+   Runtime/smoke аудио прошли; слуховой и мобильной оценки не было.
+
+Фактический diff: migration-only.patch, changed-original-files.json,
+package-changes-final.json, preservation-final.json, mcp-provenance.json.
+Обоснование дополнительных правок: JS optional-fields/payment ошибки обнаружены
+в текущем official dev adapter и сверены с текущей документацией Яндекса.
+Изменения тестов соответствуют уже существующему UI и новым путям Unity DLL.
+Переработки архитектуры, художественного оформления и схемы сохранений нет.
+
+Остаточные ограничения/предупреждения полностью перечислены в FINAL_MIGRATION_RU.txt.

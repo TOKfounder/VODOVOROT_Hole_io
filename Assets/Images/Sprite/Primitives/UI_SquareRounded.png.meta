@@ -1,7 +1,10 @@
 fileFormatVersion: 2
 guid: 23a9b61d148ce3f47ac5cab7c4645aaf
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -7345131181138246965
+    second: UI_SquareRounded_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -147,7 +150,29 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: UI_SquareRounded_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc20c9f5b1ad01a90800000000000000
+      internalID: -7345131181138246965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []

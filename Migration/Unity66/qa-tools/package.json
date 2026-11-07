@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@yandex-games/sdk-dev-proxy": "^0.0.2"
+  }
+}

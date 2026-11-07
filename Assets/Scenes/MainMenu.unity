@@ -20813,7 +20813,7 @@ MonoBehaviour:
   textLegasy:
     title: {fileID: 0}
     description: {fileID: 0}
-    priceValue: {fileID: 0}
+    priceValue: {fileID: 333652097}
   textMP:
     title: {fileID: 0}
     description: {fileID: 0}
@@ -20890,7 +20890,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 4b10251d8d1a40c4d97edcf51fc6b4ea, type: 3}
+    m_Font: {fileID: 12800000, guid: ff778551676e7a04680de208d9fdab69, type: 3}
     m_FontSize: 13
     m_FontStyle: 0
     m_BestFit: 0
@@ -32875,7 +32875,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 4b10251d8d1a40c4d97edcf51fc6b4ea, type: 3}
+    m_Font: {fileID: 12800000, guid: ff778551676e7a04680de208d9fdab69, type: 3}
     m_FontSize: 13
     m_FontStyle: 0
     m_BestFit: 0
@@ -34858,7 +34858,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 4b10251d8d1a40c4d97edcf51fc6b4ea, type: 3}
+    m_Font: {fileID: 12800000, guid: ff778551676e7a04680de208d9fdab69, type: 3}
     m_FontSize: 13
     m_FontStyle: 0
     m_BestFit: 0
@@ -37120,7 +37120,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 4b10251d8d1a40c4d97edcf51fc6b4ea, type: 3}
+    m_Font: {fileID: 12800000, guid: ff778551676e7a04680de208d9fdab69, type: 3}
     m_FontSize: 13
     m_FontStyle: 0
     m_BestFit: 0
@@ -38340,12 +38340,12 @@ MonoBehaviour:
   - {fileID: 3165773835708950568}
   - {fileID: 838164050119758053}
   - {fileID: 7704123862603973117}
-  featureText: {fileID: 0}
+  featureText: {fileID: 3408974870657637859}
   buttonOfBuying: {fileID: 3303430579871072793}
   buttonOfEquiping: {fileID: 4514337090985493011}
-  necessaryLevelText: {fileID: 0}
-  costForCoinsText: {fileID: 0}
-  costForDonateText: {fileID: 0}
+  necessaryLevelText: {fileID: 6307472806283903349}
+  costForCoinsText: {fileID: 4573420508301518770}
+  costForDonateText: {fileID: 7324114430492809676}
   donateButton: {fileID: 7816335281364157203}
   currencyImage: {fileID: 6463069385058133118}
   toiletIDs:
@@ -41265,7 +41265,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 4b10251d8d1a40c4d97edcf51fc6b4ea, type: 3}
+    m_Font: {fileID: 12800000, guid: ff778551676e7a04680de208d9fdab69, type: 3}
     m_FontSize: 13
     m_FontStyle: 0
     m_BestFit: 0
@@ -46511,7 +46511,7 @@ MonoBehaviour:
   textLegasy:
     title: {fileID: 0}
     description: {fileID: 0}
-    priceValue: {fileID: 0}
+    priceValue: {fileID: 7324114430492809676}
   textMP:
     title: {fileID: 0}
     description: {fileID: 0}
@@ -48380,7 +48380,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 4b10251d8d1a40c4d97edcf51fc6b4ea, type: 3}
+    m_Font: {fileID: 12800000, guid: ff778551676e7a04680de208d9fdab69, type: 3}
     m_FontSize: 13
     m_FontStyle: 0
     m_BestFit: 0
@@ -50480,7 +50480,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 4b10251d8d1a40c4d97edcf51fc6b4ea, type: 3}
+    m_Font: {fileID: 12800000, guid: ff778551676e7a04680de208d9fdab69, type: 3}
     m_FontSize: 13
     m_FontStyle: 0
     m_BestFit: 0
@@ -51457,7 +51457,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 4b10251d8d1a40c4d97edcf51fc6b4ea, type: 3}
+    m_Font: {fileID: 12800000, guid: ff778551676e7a04680de208d9fdab69, type: 3}
     m_FontSize: 13
     m_FontStyle: 0
     m_BestFit: 0
@@ -55175,12 +55175,12 @@ MonoBehaviour:
   - {fileID: 1436703377782474981}
   - {fileID: 6770082309072652884}
   - {fileID: 1974286073917663548}
-  featureText: {fileID: 0}
+  featureText: {fileID: 2133753336}
   buttonOfBuying: {fileID: 1936415505}
   buttonOfEquiping: {fileID: 247892394}
-  necessaryLevelText: {fileID: 0}
-  costForCoinsText: {fileID: 0}
-  costForDonateText: {fileID: 0}
+  necessaryLevelText: {fileID: 146379950}
+  costForCoinsText: {fileID: 955137573}
+  costForDonateText: {fileID: 333652097}
   donateButton: {fileID: 3420345252218550352}
   currencyImage: {fileID: 7456531140028314797}
   toiletIDs:

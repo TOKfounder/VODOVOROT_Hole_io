@@ -100,7 +100,7 @@ async function test(name, callback) {
 (async () => {
   await test('native_file_share_runs_in_real_click_activation_with_png_and_public_url', async () => {
     const f = fixture(); f.open({}, 'originalPortraitPng');
-    assert.equal(f.button('Share').disabled, true); assert.equal(f.button('Save image').disabled, true);
+    assert.equal(f.button('Share').disabled, true); assert.equal(f.button('Save PNG').disabled, true);
     assert.equal(f.state.images.length, 1);
     f.ready(); f.button('Share').click(); await flush();
     assert.equal(f.state.shares.length, 1); const { payload, activation } = f.state.shares[0];
@@ -117,7 +117,7 @@ async function test(name, callback) {
   });
   await test('unsupported_web_share_keeps_real_download_and_copy_fallbacks', async () => {
     const f = fixture({ share: false }); f.open(); f.ready(); f.button('Share').click();
-    assert.equal(f.state.shares.length, 0); f.button('Save image').click();
+    assert.equal(f.state.shares.length, 0); f.button('Save PNG').click();
     assert.equal(f.state.downloads.length, 1); assert.equal(f.state.downloads[0].activation, true);
     assert.equal(f.state.downloads[0].name, 'vodovorot-achievement.png');
     f.button('Copy link').click(); await flush(); assert.equal(f.state.copies[0], 'https://yandex.ru/games/app/473763');
@@ -157,7 +157,8 @@ async function test(name, callback) {
     assert.match(f.overlay().style.cssText, /overflow:auto/); assert.match(f.overlay().style.cssText, /safe-area-inset-bottom/);
     assert.match(f.overlay().querySelectorAll('canvas')[0].style.cssText, /max-width:min\(100%,560px\)/);
     assert.match(f.overlay().querySelectorAll('canvas')[0].style.cssText, /100dvh/);
-    assert.match(f.button('Share').style.cssText, /min-height:48px/);
+    const minimumHeight = f.button('Share').style.cssText.match(/min-height:(\d+)px/);
+    assert.ok(minimumHeight && Number(minimumHeight[1]) >= 48, 'Touch target must remain at least 48px tall');
   });
   await test('invalid_or_private_url_cannot_be_shared', async () => {
     const f = fixture(); f.open({ url: 'https://example.com/private?token=secret' }); f.ready(); f.button('Share').click(); await flush();
@@ -169,7 +170,7 @@ async function test(name, callback) {
     const canceled = fixture({ shareError: 'AbortError' }); canceled.open(); canceled.ready(); canceled.button('Share').click(); await flush();
     assert.ok(canceled.overlay().descendants().some(e => e.textContent === 'Sharing cancelled.'));
     const failed = fixture({ blobFailure: true }); failed.open(); failed.ready();
-    assert.equal(failed.button('Share').disabled, true); assert.equal(failed.button('Save image').disabled, true);
+    assert.equal(failed.button('Share').disabled, true); assert.equal(failed.button('Save PNG').disabled, true);
     assert.equal(failed.state.created.length, 0); assert.equal(failed.button('Copy link').disabled, false);
   });
   const passed = checks.every(check => check.passed);
