@@ -1,6 +1,6 @@
 'use strict';
 // Device-free regression for Unity WebGL's pending-channel resume race.
-// Executes the installed Unity 2022 Audio.js initialization + the real gate to
+// Executes the project's installed Unity Audio.js initialization + the real gate to
 // obtain event orders, then compiles/runs the actual player suspension/volume
 // methods against controllable AudioSource stubs. No Unity launch or playback.
 // Run: node Tests/Stage3Music/music-context-resume-regression.cjs
@@ -10,8 +10,10 @@ const vm = require('node:vm'), cp = require('node:child_process');
 const project = path.resolve(__dirname, '../..');
 const player = fs.readFileSync(path.join(project, 'Assets/Scripts/Stage3/BackgroundMusicPlayer.cs'), 'utf8');
 const gate = fs.readFileSync(path.join(project, 'Assets/Plugins/WebGL/Stage3MusicGate.jslib'), 'utf8');
-const nativePath = process.env.UNITY2022_AUDIO_JS ||
-  '/Applications/Unity/Hub/Editor/2022.3.62f2/PlaybackEngines/WebGLSupport/BuildTools/lib/Audio.js';
+const projectVersion = fs.readFileSync(path.resolve(__dirname, '../../ProjectSettings/ProjectVersion.txt'), 'utf8')
+  .match(/^m_EditorVersion: (.+)$/m)[1];
+const nativePath = process.env.VODOVOROT_UNITY_AUDIO_JS || process.env.UNITY2022_AUDIO_JS ||
+  `/Applications/Unity/Hub/Editor/${projectVersion}/PlaybackEngines/WebGLSupport/BuildTools/lib/Audio.js`;
 const native = fs.readFileSync(nativePath, 'utf8');
 const initMarker = 'JS_Sound_Init: ';
 const initStart = native.indexOf(initMarker), initEnd = native.indexOf('\nJS_Sound_ReleaseInstance__proxy', initStart);

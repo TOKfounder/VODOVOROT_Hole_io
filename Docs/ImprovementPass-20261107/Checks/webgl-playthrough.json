@@ -1,0 +1,127 @@
+{
+  "environment": "Unity 6000.6.8f1 WebGL in IAB, isolated guest origins localhost:8768 through8772, explicit local QA SDK; not live Yandex",
+  "firstBuild": "build_c6a72f902e25",
+  "audio": "Music and SFX 0.5 -> 0 via in-game settings before each series; restored to 0.5 between series",
+  "completed": [
+    {
+      "scenario": "Fresh profile and tutorial",
+      "observation": "Actual menu XP 0, English 100 XP to level 1; all five tutorial steps reached; timer stayed 03:00 through tutorial."
+    },
+    {
+      "scenario": "Real keyboard movement",
+      "observation": "W/A/S/D changed the world relative to the player; real absorption reduced next-size target 26 ->20 ->13 ->7 and reached size2."
+    },
+    {
+      "scenario": "Full natural City round",
+      "observation": "Unshortened 180-second timer expired at00:00; capture0.1%; +5 XP/+1 coin; 95 XP to level1. No frozen point popup remained on results.",
+      "evidence": "../Evidence/final-natural-results.jpg"
+    },
+    {
+      "scenario": "Reward x3 duplicate",
+      "observation": "Local ad UI sent onRewarded twice; result showed +3 coins total, x3 button disabled.",
+      "evidence": "../Evidence/final-x3-duplicate.jpg"
+    },
+    {
+      "scenario": "Interstitial timing point",
+      "observation": "No interstitial at first entry or during controls; local fullscreen ad requested only after Continue returned to menu, after full round elapsed.",
+      "evidence": "../Evidence/final-interstitial-pause.jpg"
+    },
+    {
+      "scenario": "Reload earned progress",
+      "observation": "Reload preserved XP5, coins3, next goal95; no reset.",
+      "evidence": "../Evidence/final-saved-reloaded.jpg"
+    },
+    {
+      "scenario": "Partial menu rewarded progress",
+      "observation": "Cancel left hand offer at2 ads/diamonds3. Duplicate callback on a valid first ad changed remaining2 ->1 without payout; reload retained1.",
+      "evidence": "../Evidence/final-hand-reloaded.jpg"
+    },
+    {
+      "scenario": "Complete menu rewarded progress",
+      "observation": "Second valid hand ad with duplicate callback changed diamonds3 ->23, remaining reset2. Exactly promised20 granted once.",
+      "evidence": "../Evidence/final-hand-paid-once.jpg"
+    },
+    {
+      "scenario": "Repeated natural City round, revised results layout",
+      "observation": "180s naturally expired, capture0.5%, size2, +5XP/+1coin. x3 cancel/error left reward unchanged; subsequent duplicate granted exactly3 coins total. No overlapping XP/growth row.",
+      "evidence": "../Evidence/verified-results-desktop.jpg",
+      "build": "build_ca485b7e343f"
+    },
+    {
+      "scenario": "Responsive results",
+      "observation": "Results checked at1280x720,390x844,844x390; Continue, x3, Ranking and Share accessible.",
+      "evidence": "../Evidence/verified-mobile-portrait.jpg"
+    },
+    {
+      "scenario": "Garden mobile drag",
+      "observation": "Actual mobile SDK drag movement. Natural empty round yielded0XP/0coins; minimum reward not farmed by idle round."
+    },
+    {
+      "scenario": "Medieval mobile input and early exit",
+      "observation": "Drag/boost absorbed objects,20 points. Interrupted round did not receive natural-end minimum. Quick second menu return did not trigger another interstitial."
+    },
+    {
+      "scenario": "Persisted RU/EN",
+      "observation": "Selected Russian in fresh mobile profile; tutorial, gameplay, boost, natural180s results, card and menu retained RU across scenes. Full useful Medieval round0.1%, +5XP/+1coin.",
+      "evidence": "../Evidence/verified-ru-full-round.jpg",
+      "build": "build_e40ff40c1eff and build_3acf4509b960"
+    },
+    {
+      "scenario": "Progress/skin shop/card UI",
+      "observation": "RU/EN progress panels and five existing skin models checked. Card ready image appeared; no external sharing performed. RU mobile next-goal header fitted."
+    },
+    {
+      "scenario": "Modal order",
+      "observation": "Growth text stays behind pause settings. Existing legacy landscape settings clips upper language label at844x390; core buttons accessible.",
+      "evidence": "../Evidence/verified-pause-layer.jpg"
+    },
+    {
+      "scenario": "Final volume-camera regression in WebGL",
+      "build": "build_857186a7913c",
+      "observation": "Fresh silent RU mobile guest; Medieval drag up10s+boost5s, right8s+boost5s, up8s. Entire character and green rim remain visible at previously failing wall; size1, next5, capture0.1%.",
+      "before": "../Evidence/before-silhouette-fix.jpg",
+      "evidence": "../Evidence/verified-narrow-wall-route.jpg"
+    },
+    {
+      "scenario": "Final early-exit confirmation",
+      "observation": "At02:12 early exit:0XP/0coins/0diamonds, next100, x3 disabled; no minimum reward or early interstitial. Returned to menu, Music/SFX restored0.5/0.5 through settings.",
+      "evidence": "../Evidence/verified-final-interrupted-result.jpg"
+    }
+  ],
+  "limitations": [
+    "Live prices/IAP/cloud/rank and actual platform ads disabled by QA adapter.",
+    "No physical phone tested.",
+    "Editor component fixtures are not an actual Editor input playthrough.",
+    "City boundary still has plain gray surfaces and a blue background band; full environment redesign outside package.",
+    "Extreme size at15000 points covered by component checks, not reached naturally.",
+    "Native Editor input was not confirmed; no claim of Editor playthrough.",
+    "Tab switching observed; actual platform focus/blur behavior not certified.",
+    "No measured target-phone FPS or memory numbers.",
+    "Pre-existing negative-scale BoxCollider warning on two Medieval Double Door instances; colliders/transforms not changed in this package."
+  ],
+  "viewports": [
+    "1280x720",
+    "390x844",
+    "844x390"
+  ],
+  "fixedFromFirstPass": [
+    {
+      "issue": "Growth HUD over results and XP goal over title",
+      "evidence": "../Evidence/final-natural-results.jpg",
+      "change": "Hide growth text on round end; save separate goal row; overlay layout uses player framebuffer.",
+      "status": "Fixed and repeated actual WebGL at three viewports."
+    },
+    {
+      "issue": "Blue camera area on natural City route",
+      "evidence": "../Evidence/final-city-blue-area.jpg",
+      "change": "Hidden static occluders must not keep participating in baked camera occlusion. Camera culling setting is restored on disable.",
+      "status": "Functional framing/culling improved and repeated. Residual plain/blue border geometry is not claimed artistically resolved."
+    }
+  ],
+  "finalBuild": "build_857186a7913c",
+  "finalBrowserLogs": {
+    "file": "webgl-final-browser-logs.json",
+    "count": 14,
+    "classification": "12 expected local-preview leaderboard disabled errors;2 pre-existing negative-scale BoxCollider warnings on Medieval Double Door frames. No unexpected game exception captured. Not an all-build zero-error claim."
+  }
+}

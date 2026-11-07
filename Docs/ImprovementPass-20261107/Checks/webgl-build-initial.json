@@ -1,0 +1,111 @@
+{
+  "status": "completed",
+  "buildId": "build_c9064ad6eb8f",
+  "result": "Succeeded",
+  "platform": "WebGL",
+  "outputPath": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/builds/ImprovementPass-20261107/Yandex",
+  "totalSizeBytes": 29756893,
+  "buildTimeMs": 242573,
+  "buildStartedAt": "2026-11-07T20:57:16.7809480Z",
+  "buildEndedAt": "2026-11-07T21:01:19.3546180Z",
+  "totalWarnings": 25,
+  "totalErrors": 0,
+  "errors": [],
+  "warnings": [
+    {
+      "message": "Pre-baked collision is disabled on 28 mesh(es) referenced by Mesh Collider components in this build. In future versions of Unity, the build process will no longer automatically pre-bake collision for these meshes; enable pre-baked collision in the Mesh import settings. Use Project Auditor (Window > Analysis > Project Auditor > Game Objects) to find and fix similar issues across the project. Affected meshes:\n - 'Cube' (triangle collision is disabled)\n - 'plant 1' (convex collision is disabled)\n - 'Wall' (convex collision is disabled)\n - 'Building_G' (convex collision is disabled)\n - 'Cube' (convex collision is disabled)\n - 'stone 1' (convex collision is disabled)\n - 'Power poles' (convex collision is disabled)\n - 'stone 1' (convex collision is disabled)\n - 'Building_n' (convex collision is disabled)\n - 'stone 1' (convex collision is disabled)\n - 'Cube' (convex collision is disabled)\n - 'stone pot' (convex collision is disabled)\n - 'Building_M' (convex collision is disabled)\n - 'hedge.001' (convex collision is disabled)\n - 'Building R' (convex collision is disabled)\n - 'Wall' (convex collision is disabled)\n - 'bus stop' (convex collision is disabled)\n - 'Wall' (convex collision is disabled)\n - 'Building_Q' (convex collision is disabled)\n - 'TowerB' (convex collision is disabled)\n - 'CastleTop' (triangle collision is disabled)\n - 'HouseB' (convex collision is disabled)\n - 'House' (triangle collision is disabled)\n - 'Column' (triangle collision is disabled)\n - 'BridgeMiddle' (triangle collision is disabled)\n - 'Castle' (triangle collision is disabled)\n - 'BridgeEnd' (triangle collision is disabled)\n - 'BridgeStart' (triangle collision is disabled)"
+    },
+    {
+      "message": "You are building a player, but you have uncompiled code changes. This means that any post-processing or importing code you may have changed will not affect this player build."
+    },
+    {
+      "message": "warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'",
+      "file": "Assets/PluginYourGames/Example/Scripts/Scenes/DemoScenePartial.cs"
+    },
+    {
+      "message": "warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'",
+      "file": "Assets/PluginYourGames/Example/Scripts/Scenes/DemoScenePartial.cs"
+    },
+    {
+      "message": "warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'",
+      "file": "Assets/PluginYourGames/Example/Scripts/Scenes/AllDemoScenes.cs"
+    },
+    {
+      "message": "warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'",
+      "file": "Assets/PluginYourGames/Example/Scripts/Scenes/AllDemoScenes.cs"
+    },
+    {
+      "message": "warning CS0618: 'Object.FindObjectsOfType<T>(bool)' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'",
+      "file": "Assets/Scripts/Stage3/MenuPresentationStyle.cs"
+    },
+    {
+      "message": "warning CS8321: The local function 'SetPause' is declared but never used",
+      "file": "Assets/PluginYourGames/Scripts/Basic/WindowGame.cs"
+    },
+    {
+      "message": "warning CS8321: The local function 'SetPause' is declared but never used",
+      "file": "Assets/PluginYourGames/Scripts/Basic/WindowGame.cs"
+    },
+    {
+      "message": "warning CS0414: The field 'HoleParent.keepScoreOnStart' is assigned but its value is never used",
+      "file": "Assets/Scripts/HoleParent.cs"
+    },
+    {
+      "message": "warning UAC1001: Field 'data' type 'YG.LBPlayerDataYG.Data' is skipped by serialization (missing the [Serializable] attribute). Refer to the Serialization rules analyzer reference. (https://docs.unity3d.com/6000.6/Documentation/Manual/script-serialization-analyzer.html#uac1001)",
+      "file": "Assets/PluginYourGames/Modules/Leaderboards/Scripts/LBPlayerDataYG.cs"
+    },
+    {
+      "message": "warning UAC0009: DEVELOPMENT_BUILD preprocessor directive has been deprecated. Please use one of the managed code variant directives (such as DEBUG, UNITY_ENABLE_CHECKS or UNITY_INCLUDE_INSTRUMENTATION) if different code paths are desired for different managed code variants. Checking for development build is possible at runtime using Debug.isDebugBuild. See the Conditional Compilation manual page for more details.",
+      "file": "Assets/Scripts/Stage3/BackgroundMusicPlayer.cs"
+    },
+    {
+      "message": "warning UAC0009: DEVELOPMENT_BUILD preprocessor directive has been deprecated. Please use one of the managed code variant directives (such as DEBUG, UNITY_ENABLE_CHECKS or UNITY_INCLUDE_INSTRUMENTATION) if different code paths are desired for different managed code variants. Checking for development build is possible at runtime using Debug.isDebugBuild. See the Conditional Compilation manual page for more details.",
+      "file": "Assets/Scripts/Stage3/BackgroundMusicPlayer.cs"
+    },
+    {
+      "message": "warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'",
+      "file": "Assets/PluginYourGames/Example/Scripts/Scenes/AllDemoScenes.cs"
+    },
+    {
+      "message": "warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'",
+      "file": "Assets/PluginYourGames/Example/Scripts/Scenes/AllDemoScenes.cs"
+    },
+    {
+      "message": "warning CS0618: 'Object.FindObjectsOfType<T>(bool)' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'",
+      "file": "Assets/Scripts/Stage3/MenuPresentationStyle.cs"
+    },
+    {
+      "message": "warning CS8321: The local function 'SetPause' is declared but never used",
+      "file": "Assets/PluginYourGames/Scripts/Basic/WindowGame.cs"
+    },
+    {
+      "message": "warning CS8321: The local function 'SetPause' is declared but never used",
+      "file": "Assets/PluginYourGames/Scripts/Basic/WindowGame.cs"
+    },
+    {
+      "message": "warning CS0414: The field 'HoleParent.keepScoreOnStart' is assigned but its value is never used",
+      "file": "Assets/Scripts/HoleParent.cs"
+    },
+    {
+      "message": "warning UAC1001: Field 'data' type 'YG.LBPlayerDataYG.Data' is skipped by serialization (missing the [Serializable] attribute). Refer to the Serialization rules analyzer reference. (https://docs.unity3d.com/6000.6/Documentation/Manual/script-serialization-analyzer.html#uac1001)",
+      "file": "Assets/PluginYourGames/Modules/Leaderboards/Scripts/LBPlayerDataYG.cs"
+    },
+    {
+      "message": "warning UAC0009: DEVELOPMENT_BUILD preprocessor directive has been deprecated. Please use one of the managed code variant directives (such as DEBUG, UNITY_ENABLE_CHECKS or UNITY_INCLUDE_INSTRUMENTATION) if different code paths are desired for different managed code variants. Checking for development build is possible at runtime using Debug.isDebugBuild. See the Conditional Compilation manual page for more details.",
+      "file": "Assets/Scripts/Stage3/BackgroundMusicPlayer.cs"
+    },
+    {
+      "message": "warning UAC0009: DEVELOPMENT_BUILD preprocessor directive has been deprecated. Please use one of the managed code variant directives (such as DEBUG, UNITY_ENABLE_CHECKS or UNITY_INCLUDE_INSTRUMENTATION) if different code paths are desired for different managed code variants. Checking for development build is possible at runtime using Debug.isDebugBuild. See the Conditional Compilation manual page for more details.",
+      "file": "Assets/Scripts/Stage3/BackgroundMusicPlayer.cs"
+    },
+    {
+      "message": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/Library/Bee/artifacts/WebGL/il2cppOutput/cpp: [Unity.TextMeshPro] - System.Void TMPro.TMP_TextParsingUtilities::.cctor() - Method was given it's own cpp file because it is large and costly to compile"
+    },
+    {
+      "message": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/Library/Bee/artifacts/WebGL/il2cppOutput/cpp: [Unity.TextMeshPro] - System.Void TMPro.TextMeshPro::GenerateTextMesh() - Method was given it's own cpp file because it is large and costly to compile"
+    },
+    {
+      "message": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/Library/Bee/artifacts/WebGL/il2cppOutput/cpp: [Unity.TextMeshPro] - System.Void TMPro.TextMeshProUGUI::GenerateTextMesh() - Method was given it's own cpp file because it is large and costly to compile"
+    }
+  ]
+}

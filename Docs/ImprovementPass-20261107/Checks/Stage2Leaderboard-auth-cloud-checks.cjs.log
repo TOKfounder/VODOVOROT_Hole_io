@@ -1,0 +1,2 @@
+PASS: 4 retry-generation/pending-failed-write-gate/recovery contract checks
+PASS: 4 auth-only cloud empty/error/write-gate contract checks

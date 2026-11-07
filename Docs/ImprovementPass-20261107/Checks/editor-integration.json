@@ -1,0 +1,216 @@
+{
+  "environment": "Unity Editor: controlled fixtures and real components; not a gameplay pass",
+  "finishedUtc": "2026-11-07T23:24:28.7891580Z",
+  "error": null,
+  "checks": [
+    {
+      "name": "isolated profile required",
+      "passed": true
+    },
+    {
+      "name": "actual saved tuning scene loaded",
+      "passed": true
+    },
+    {
+      "name": "test starts with Music and SFX at zero",
+      "passed": true
+    },
+    {
+      "name": "lab slider changes the real round timer",
+      "passed": true
+    },
+    {
+      "name": "moving a slider does not mutate the shared settings asset",
+      "passed": true
+    },
+    {
+      "name": "Save writes selected parameters to the asset",
+      "passed": true
+    },
+    {
+      "name": "Reset restores the saved choice",
+      "passed": true
+    },
+    {
+      "name": "Restart creates a new real round and retains selected parameters",
+      "passed": true
+    },
+    {
+      "name": "production defaults restored after testing Save",
+      "passed": true
+    },
+    {
+      "name": "empty completed round receives no minimum reward",
+      "passed": true
+    },
+    {
+      "name": "useful completed round receives configured minimum XP and coins",
+      "passed": true
+    },
+    {
+      "name": "interrupted round cannot farm the completion minimum",
+      "passed": true
+    },
+    {
+      "name": "base reward is applied exactly once",
+      "passed": true
+    },
+    {
+      "name": "only one rewarded request can be pending",
+      "passed": true
+    },
+    {
+      "name": "cancelled or unsolicited rewarded callback grants nothing",
+      "passed": true
+    },
+    {
+      "name": "successful coin multiplier can be claimed only once",
+      "passed": true
+    },
+    {
+      "name": "x3 total is exact and another request is refused",
+      "passed": true
+    },
+    {
+      "name": "final authored growth threshold is reachable and full",
+      "passed": true
+    },
+    {
+      "name": "growth readout respects the first threshold boundary",
+      "passed": true
+    },
+    {
+      "name": "fit size follows visible growth without another score; level=1; small=0.6730022; cached=1.565489; visible=1.640047; timeScale=1; frames=102",
+      "passed": true
+    },
+    {
+      "name": "point effects expire while the game is paused",
+      "passed": true
+    },
+    {
+      "name": "a camera inside an authored large occluder hides that renderer",
+      "passed": true
+    },
+    {
+      "name": "hidden baked occluders cannot cull the revealed world",
+      "passed": true
+    },
+    {
+      "name": "occluder is restored after the camera leaves",
+      "passed": true
+    },
+    {
+      "name": "disabling the cutaway restores original renderer visibility",
+      "passed": true
+    },
+    {
+      "name": "disabling cutaway restores the camera culling setting",
+      "passed": true
+    },
+    {
+      "name": "camera reduces out-of-map view without clipping the player at corner 0; inside=True; player=(0.50, 0.38, 8.91); camera=(-124.17, 8.24, -85.60); overshoot=3.629868 -> 1.998528; bounds=-125.5378,14.64238,-82.98895,41.15195; footprint=(-125.63, 0.16, -84.99);(-122.70, 0.16, -84.99);(-127.52, 0.16, -68.82);(-120.80, 0.16, -68.82)",
+      "passed": true
+    },
+    {
+      "name": "camera reduces out-of-map view without clipping the player at corner 1; inside=True; player=(0.50, 0.38, 8.93); camera=(13.23, 8.24, -85.58); overshoot=3.625748 -> 1.987335; bounds=-125.5378,14.64238,-82.98895,41.15195; footprint=(11.77, 0.16, -84.98);(14.70, 0.16, -84.98);(9.87, 0.16, -68.78);(16.60, 0.16, -68.78)",
+      "passed": true
+    },
+    {
+      "name": "camera reduces out-of-map view without clipping the player at corner 2; inside=False; player=(0.50, 0.70, 11.61); camera=(-124.13, 8.24, 30.99); overshoot=11.56788 -> 6.633751; bounds=-125.5378,14.64238,-82.98895,41.15195; footprint=(-125.60, 0.16, 31.60);(-122.67, 0.16, 31.60);(-127.50, 0.16, 47.79);(-120.77, 0.16, 47.79)",
+      "passed": true
+    },
+    {
+      "name": "camera reduces out-of-map view without clipping the player at corner 3; inside=False; player=(0.50, 0.70, 11.61); camera=(13.26, 8.24, 31.02); overshoot=11.55371 -> 6.671684; bounds=-125.5378,14.64238,-82.98895,41.15195; footprint=(11.79, 0.16, 31.63);(14.72, 0.16, 31.63);(9.89, 0.16, 47.82);(16.62, 0.16, 47.82)",
+      "passed": true
+    },
+    {
+      "name": "movement keeps the entire visible rim within the map at corner 0",
+      "passed": true
+    },
+    {
+      "name": "movement keeps the entire visible rim within the map at corner 1",
+      "passed": true
+    },
+    {
+      "name": "movement keeps the entire visible rim within the map at corner 2",
+      "passed": true
+    },
+    {
+      "name": "movement keeps the entire visible rim within the map at corner 3",
+      "passed": true
+    },
+    {
+      "name": "growth HUD is hidden on results",
+      "passed": true
+    },
+    {
+      "name": "all saved account goal views retain their settings asset reference",
+      "passed": true
+    },
+    {
+      "name": "account goal follows English menu localization",
+      "passed": true
+    },
+    {
+      "name": "account goal follows Russian menu localization",
+      "passed": true
+    },
+    {
+      "name": "XP display uses the saved account experience rather than the authored placeholder",
+      "passed": true
+    },
+    {
+      "name": "Russian choice survives a menu scene reload",
+      "passed": true
+    },
+    {
+      "name": "language button toggles the restored choice to English",
+      "passed": true
+    },
+    {
+      "name": "English choice and goal survive another scene reload",
+      "passed": true
+    },
+    {
+      "name": "one ad advances one saved step; duplicate callback has no effect",
+      "passed": true
+    },
+    {
+      "name": "partial rewarded progress survives leaving and reopening the menu",
+      "passed": true
+    },
+    {
+      "name": "second valid hand step pays the promised reward exactly once",
+      "passed": true
+    },
+    {
+      "name": "failed ad does not advance saved progress",
+      "passed": true
+    },
+    {
+      "name": "old JSON without new fields loads with zero ad progress",
+      "passed": true
+    },
+    {
+      "name": "new profile round-trip preserves existing economy fields",
+      "passed": true
+    },
+    {
+      "name": "silent slider synchronization causes only one save callback",
+      "passed": true
+    },
+    {
+      "name": "coverage and next account goal show the actual earned progress",
+      "passed": true
+    },
+    {
+      "name": "personal save remains byte-for-byte unchanged",
+      "passed": true
+    },
+    {
+      "name": "no Unity runtime errors during the integration sequence",
+      "passed": true
+    }
+  ],
+  "runtimeErrors": []
+}

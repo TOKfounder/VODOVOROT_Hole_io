@@ -204,6 +204,11 @@ namespace Vodovorot.Stage3
             simulationProfile.isGaming = false;
             simulationProfile.langRu = true;
             simulationProfile.stage2LeaderboardProfiles = new List<LeaderboardProfileRecord>();
+            if (SessionState.GetBool("Vodovorot.RoundExperience.SilentFreshProfile", false))
+            {
+                var fresh = new SavesYG { isFirst = false, selectedMapID = 0, tutorialDone = true, soundValue = 0f, musicValue = 0f };
+                JsonUtility.FromJsonOverwrite(JsonUtility.ToJson(fresh), simulationProfile);
+            }
             YG2.saves = simulationProfile;
             originalTimeScale = Time.timeScale;
             haveTimeScale = true;

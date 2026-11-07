@@ -1,0 +1,29 @@
+{
+  "scope": "Checkpoint ada7173485b6ebad86821a9a077c906d966e1ec5 -> current ImprovementPass changes",
+  "driver": "/root; one Unity/browser driver",
+  "agents": [
+    {
+      "id": "/root/logic_exploits",
+      "model": "gpt-6-luna",
+      "reasoning_effort": "high",
+      "status": "completed",
+      "sourceFindings": "No confirmed exploit. Conditional late same-ID callback risk; SDK capability not established."
+    },
+    {
+      "id": "/root/web_performance",
+      "model": "gpt-6-luna",
+      "reasoning_effort": "high",
+      "status": "completed",
+      "sourceFindings": "Final volume sweep reviewed: 4 player visuals; City276/Garden568/Medieval1360/Lab276 authored references; no confirmed defect or per-frame managed allocation. Target-device profile still required; no FPS measurements claimed."
+    },
+    {
+      "id": "/root/visual_world",
+      "model": "gpt-6.1-terra",
+      "reasoning_effort": "high",
+      "status": "completed",
+      "sourceFindings": "Reviewed before/after frames: final Medieval route shows entire character/rim; final RU useful-round results +5XP/+1coin and buttons readable, no growth overlay. Previous responsive/header/modal checks passed. Specific frames/routes only; boundary geometry remains visually plain."
+    }
+  ],
+  "noChildAgents": true,
+  "runtimeEvidence": "Root performed actual WebGL input, natural full rounds and final narrow-wall route; agents reviewed code/frames. No additional agents or parallel Editor drivers."
+}

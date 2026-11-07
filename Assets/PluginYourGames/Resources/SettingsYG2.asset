@@ -23,7 +23,7 @@ MonoBehaviour:
     flags: []
   InterstitialAdv:
     showFirstAdv: 0
-    interAdvInterval: 60
+    interAdvInterval: 180
     postponeCallByFail: 0
     postponeCallTimer: 10
     labelAdvSimLabel: 0
@@ -38,22 +38,19 @@ MonoBehaviour:
 
         3. anonymous: 23
 
-        4.
-        Player 4: 30
+        4. Player 4: 30
 
         5. Player current: 40
 
         6. Player 6: 50
 
-        7.
-        Player 7: 60
+        7. Player 7: 60
 
         8. Player 8: 70
 
         9. Player 9: 80
 
-        10.
-        Player 10: 90'
+        10. Player 10: 90'
       isDefault: 0
       isInvertSortOrder: 0
       decimalOffset: 0
@@ -135,251 +132,251 @@ MonoBehaviour:
         score: 1590
         photo: anonymous
         uniqueID: vodovorot-visual-npc-01
-        extraData:
+        extraData: 
       - rank: 2
         name: "\u041C\u0430\u043A\u0441 \xB7 QA 02"
         score: 1580
         photo: anonymous
         uniqueID: vodovorot-visual-npc-02
-        extraData:
+        extraData: 
       - rank: 3
         name: "\u0410\u043B\u0438\u0441\u0430 \xB7 QA 03"
         score: 1570
         photo: anonymous
         uniqueID: vodovorot-visual-npc-03
-        extraData:
+        extraData: 
       - rank: 4
         name: "\u0422\u0438\u043C \xB7 QA 04"
         score: 1560
         photo: anonymous
         uniqueID: vodovorot-visual-npc-04
-        extraData:
+        extraData: 
       - rank: 5
         name: "\u041B\u0435\u043E \xB7 QA 05"
         score: 1550
         photo: anonymous
         uniqueID: vodovorot-visual-npc-05
-        extraData:
+        extraData: 
       - rank: 6
         name: "\u0412\u0438\u043A\u0430 \xB7 QA 06"
         score: 1540
         photo: anonymous
         uniqueID: vodovorot-visual-npc-06
-        extraData:
+        extraData: 
       - rank: 7
         name: "\u0421\u0430\u0448\u0430 \xB7 QA 07"
         score: 1530
         photo: anonymous
         uniqueID: vodovorot-visual-npc-07
-        extraData:
+        extraData: 
       - rank: 8
         name: "\u0420\u043E\u043C\u0430 \xB7 QA 08"
         score: 1520
         photo: anonymous
         uniqueID: vodovorot-visual-npc-08
-        extraData:
+        extraData: 
       - rank: 9
         name: "\u041C\u0430\u0448\u0430 \xB7 QA 09"
         score: 1510
         photo: anonymous
         uniqueID: vodovorot-visual-npc-09
-        extraData:
+        extraData: 
       - rank: 10
         name: "\u041C\u0430\u043A\u0441 \xB7 QA 10"
         score: 1500
         photo: anonymous
         uniqueID: vodovorot-visual-npc-10
-        extraData:
+        extraData: 
       - rank: 11
         name: "\u0410\u043B\u0438\u0441\u0430 \xB7 QA 11"
         score: 1490
         photo: anonymous
         uniqueID: vodovorot-visual-npc-11
-        extraData:
+        extraData: 
       - rank: 12
         name: "\u0422\u0438\u043C \xB7 QA 12"
         score: 1480
         photo: anonymous
         uniqueID: vodovorot-visual-npc-12
-        extraData:
+        extraData: 
       - rank: 13
         name: "\u041B\u0435\u043E \xB7 QA 13"
         score: 1470
         photo: anonymous
         uniqueID: vodovorot-visual-npc-13
-        extraData:
+        extraData: 
       - rank: 14
         name: "\u0412\u0438\u043A\u0430 \xB7 QA 14"
         score: 1460
         photo: anonymous
         uniqueID: vodovorot-visual-npc-14
-        extraData:
+        extraData: 
       - rank: 15
         name: "\u0421\u0430\u0448\u0430 \xB7 QA 15"
         score: 1450
         photo: anonymous
         uniqueID: vodovorot-visual-npc-15
-        extraData:
+        extraData: 
       - rank: 16
         name: "\u0420\u043E\u043C\u0430 \xB7 QA 16"
         score: 1440
         photo: anonymous
         uniqueID: vodovorot-visual-npc-16
-        extraData:
+        extraData: 
       - rank: 17
         name: "\u041C\u0430\u0448\u0430 \xB7 QA 17"
         score: 1430
         photo: anonymous
         uniqueID: vodovorot-visual-npc-17
-        extraData:
+        extraData: 
       - rank: 18
         name: "\u041C\u0430\u043A\u0441 \xB7 QA 18"
         score: 1420
         photo: anonymous
         uniqueID: vodovorot-visual-npc-18
-        extraData:
+        extraData: 
       - rank: 19
         name: "\u0410\u043B\u0438\u0441\u0430 \xB7 QA 19"
         score: 1410
         photo: anonymous
         uniqueID: vodovorot-visual-npc-19
-        extraData:
+        extraData: 
       - rank: 20
         name: "\u0422\u0438\u043C \xB7 QA 20"
         score: 1400
         photo: anonymous
         uniqueID: vodovorot-visual-npc-20
-        extraData:
+        extraData: 
       - rank: 21
         name: "\u041B\u0435\u043E \xB7 QA 21"
         score: 1390
         photo: anonymous
         uniqueID: vodovorot-visual-npc-21
-        extraData:
+        extraData: 
       - rank: 22
         name: "\u0412\u0438\u043A\u0430 \xB7 QA 22"
         score: 1380
         photo: anonymous
         uniqueID: vodovorot-visual-npc-22
-        extraData:
+        extraData: 
       - rank: 23
         name: "\u0421\u0430\u0448\u0430 \xB7 QA 23"
         score: 1370
         photo: anonymous
         uniqueID: vodovorot-visual-npc-23
-        extraData:
+        extraData: 
       - rank: 24
         name: "\u0420\u043E\u043C\u0430 \xB7 QA 24"
         score: 1360
         photo: anonymous
         uniqueID: vodovorot-visual-npc-24
-        extraData:
+        extraData: 
       - rank: 25
         name: "\u041C\u0430\u0448\u0430 \xB7 QA 25"
         score: 1001
         photo: anonymous
         uniqueID: vodovorot-visual-npc-25
-        extraData:
+        extraData: 
       - rank: 26
         name: "\u041C\u0430\u043A\u0441 \xB7 QA 26"
         score: 1001
         photo: anonymous
         uniqueID: vodovorot-visual-npc-26
-        extraData:
+        extraData: 
       - rank: 27
         name: "\u0410\u043B\u0438\u0441\u0430 \xB7 QA 27"
         score: 1001
         photo: anonymous
         uniqueID: vodovorot-visual-npc-27
-        extraData:
+        extraData: 
       - rank: 28
         name: "\u0422\u0438\u043C \xB7 QA 28"
         score: 1001
         photo: anonymous
         uniqueID: vodovorot-visual-npc-28
-        extraData:
+        extraData: 
       - rank: 29
         name: "\u041B\u0435\u043E \xB7 QA 29"
         score: 1001
         photo: anonymous
         uniqueID: vodovorot-visual-npc-29
-        extraData:
+        extraData: 
       - rank: 30
         name: "Player current \xB7 \u0422\u0415\u0421\u0422"
         score: 1000
         photo: anonymous
         uniqueID: 000
-        extraData:
+        extraData: 
       - rank: 31
         name: "\u0412\u0438\u043A\u0430 \xB7 QA 30"
         score: 900
         photo: anonymous
         uniqueID: vodovorot-visual-npc-30
-        extraData:
+        extraData: 
       - rank: 32
         name: "\u0421\u0430\u0448\u0430 \xB7 QA 31"
         score: 890
         photo: anonymous
         uniqueID: vodovorot-visual-npc-31
-        extraData:
+        extraData: 
       - rank: 33
         name: "\u0420\u043E\u043C\u0430 \xB7 QA 32"
         score: 880
         photo: anonymous
         uniqueID: vodovorot-visual-npc-32
-        extraData:
+        extraData: 
       - rank: 34
         name: "\u041C\u0430\u0448\u0430 \xB7 QA 33"
         score: 870
         photo: anonymous
         uniqueID: vodovorot-visual-npc-33
-        extraData:
+        extraData: 
       - rank: 35
         name: "\u041C\u0430\u043A\u0441 \xB7 QA 34"
         score: 860
         photo: anonymous
         uniqueID: vodovorot-visual-npc-34
-        extraData:
+        extraData: 
       - rank: 36
         name: "\u0410\u043B\u0438\u0441\u0430 \xB7 QA 35"
         score: 850
         photo: anonymous
         uniqueID: vodovorot-visual-npc-35
-        extraData:
+        extraData: 
       - rank: 37
         name: "\u0422\u0438\u043C \xB7 QA 36"
         score: 840
         photo: anonymous
         uniqueID: vodovorot-visual-npc-36
-        extraData:
+        extraData: 
       - rank: 38
         name: "\u041B\u0435\u043E \xB7 QA 37"
         score: 830
         photo: anonymous
         uniqueID: vodovorot-visual-npc-37
-        extraData:
+        extraData: 
       - rank: 39
         name: "\u0412\u0438\u043A\u0430 \xB7 QA 38"
         score: 820
         photo: anonymous
         uniqueID: vodovorot-visual-npc-38
-        extraData:
+        extraData: 
       - rank: 40
         name: "\u0421\u0430\u0448\u0430 \xB7 QA 39"
         score: 810
         photo: anonymous
         uniqueID: vodovorot-visual-npc-39
-        extraData:
+        extraData: 
       - rank: 41
         name: "\u0420\u043E\u043C\u0430 \xB7 QA 40"
         score: 800
         photo: anonymous
         uniqueID: vodovorot-visual-npc-40
-        extraData:
+        extraData: 
       currentPlayer:
         rank: 30
         score: 1000
-        extraData:
+        extraData: 
   Localization:
     setLanguageMod: 1
   Payments:
@@ -475,7 +472,7 @@ MonoBehaviour:
     device: 1
     language: ru
     enableInterAdv: 1
-    advIntervalSimulation: 60
+    advIntervalSimulation: 180
     durationAdv: 0.5
     loadAdv: 0
     testFailAds: 0
@@ -511,6 +508,9 @@ MonoBehaviour:
     pixelRatioValue: 1
     developerBuild: 0
   platformInfo:
+    localProdGameId: 
+    localProdPort: 8080
+    localProdUseCsp: 1
     ownHost: 0
   platformToggles:
     showFirstAdv: 0

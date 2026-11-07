@@ -153,6 +153,32 @@ namespace PinePie.SimpleJoystick
             if (baseMode != JoystickBaseMode.Static) joystickBase.gameObject.SetActive(false);
         }
 
+        public void ResetInput()
+        {
+            isPressed = false;
+            dragStartedInside = false;
+            inputDirection = Vector2.zero;
+            if (handle != null) handle.anchoredPosition = Vector2.zero;
+            if (joystickBase == null) return;
+            if (baseMode != JoystickBaseMode.Static)
+            {
+                joystickBase.anchoredPosition = baseStartPos;
+                joystickBase.gameObject.SetActive(false);
+            }
+        }
+
+        private void OnDisable() => ResetInput();
+
+        private void OnApplicationFocus(bool focused)
+        {
+            if (!focused) ResetInput();
+        }
+
+        private void OnApplicationPause(bool paused)
+        {
+            if (paused) ResetInput();
+        }
+
 
 #if UNITY_EDITOR
         void OnDrawGizmos()

@@ -109,7 +109,7 @@ public class TutorialController : MonoBehaviour
         currentStep = index;
         UpdateDots();
 
-        string text = YG2.saves.langRu ? steps[index].textRu : steps[index].textEn;
+        string text = StepText(index);
 
         if (textCoroutine != null) StopCoroutine(textCoroutine);
         textCoroutine = StartCoroutine(AnimateText(text));
@@ -122,7 +122,7 @@ public class TutorialController : MonoBehaviour
         if (isAnimating)
         {
             StopCoroutine(textCoroutine);
-            textLabel.text = YG2.saves.langRu ? steps[currentStep].textRu : steps[currentStep].textEn;
+            textLabel.text = StepText(currentStep);
             isAnimating = false;
             return;
         }
@@ -141,6 +141,18 @@ public class TutorialController : MonoBehaviour
         Time.timeScale = 1f;
         YG2.saves.tutorialDone = true;
         YG2.SaveProgress();
+    }
+
+    private static string StepText(int index)
+    {
+        bool ru = YG2.saves.langRu;
+        if (index == 0 && YG2.envir.isDesktop)
+            return ru ? "Двигайся WASD или стрелками. Можно удерживать мышь и тянуть в нужную сторону."
+                : "Move with WASD or arrow keys. You can also hold and drag the mouse.";
+        if (index == 1)
+            return ru ? "Начни с мелких предметов. Очки приближают следующий размер — смотри подсказку сверху!"
+                : "Start with small objects. Points bring the next size closer — watch the readout above!";
+        return ru ? steps[index].textRu : steps[index].textEn;
     }
 
     private IEnumerator AnimateText(string fullText)

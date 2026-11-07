@@ -42,8 +42,8 @@ public class PointsScript : MonoBehaviour
     {
         if (time < duration)
         {
-            transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
-            time += Time.deltaTime;
+            transform.Translate(Vector3.up * moveSpeed * Time.unscaledDeltaTime);
+            time += Time.unscaledDeltaTime;
 
             if (txt != null)
             {

@@ -48,14 +48,12 @@ public class GameController : MonoBehaviour
 
 	void Start()
 	{
-		YG2.InterstitialAdvShow();
 		Time.timeScale = 1f;
 
 		if (YG2.saves.isFirst)
 		{
 			YG2.saves.soundValue = 0.5f;
 			YG2.saves.musicValue = 0.5f;
-			YG2.saves.langRu = true;
 			YG2.saves.score = 0;
 			YG2.saves.equipedMaterial = 0;
 			YG2.saves.massiveOfObtaining = new int[] { 1, 0, 0, 0, 0 };

@@ -1,0 +1,62 @@
+[
+  {
+    "file": "Tests/Stage2/achievement_card_contract.test.cjs",
+    "exit": 0,
+    "tail": "as_one_reusable_selectable_manual_link\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"legacy_copy_success_removes_temporary_field\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"close_revokes_blob_removes_keyboard_listener_and_restores_focus\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"closing_before_async_blob_does_not_create_or_leak_object_url\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"reopening_replaces_dialog_and_old_url_only\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"tab_focus_trap_and_mobile_css_bounds_are_explicit\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"invalid_or_private_url_cannot_be_shared\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"share_cancellation_and_image_encoding_failure_do_not_claim_success\",\n      \"passed\": true\n    }\n  ]\n}\n"
+  },
+  {
+    "file": "Tests/Stage2Leaderboard/auth-cloud-checks.cjs",
+    "exit": 1,
+    "tail": "ODOVOROT_Hole_io/Tests/Stage2Leaderboard/auth-cloud-checks.cjs:28:23\n    at Object.<anonymous> (/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/Tests/Stage2Leaderboard/auth-cloud-checks.cjs:53:3)\n    at Module._compile (node:internal/modules/cjs/loader:1854:14)\n    at Object..js (node:internal/modules/cjs/loader:1985:10)\n    at Module.load (node:internal/modules/cjs/loader:1577:32)\n    at Module._load (node:internal/modules/cjs/loader:1379:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  errno: -2,\n  code: 'ENOENT',\n  syscall: 'open',\n  path: 'Assets/PluginYourGames/Modules/Storage/Scripts/Editor/CopyCode/CloudStorage_js.js'\n}\n"
+  },
+  {
+    "file": "Tests/Stage2Leaderboard/auth-dialog-checks.cjs",
+    "exit": 1,
+    "tail": "_js.js'\n    at Object.readFileSync (node:fs:441:20)\n    at Object.<anonymous> (/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/Tests/Stage2Leaderboard/auth-dialog-checks.cjs:3:17)\n    at Module._compile (node:internal/modules/cjs/loader:1854:14)\n    at Object..js (node:internal/modules/cjs/loader:1985:10)\n    at Module.load (node:internal/modules/cjs/loader:1577:32)\n    at Module._load (node:internal/modules/cjs/loader:1379:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  errno: -2,\n  code: 'ENOENT',\n  syscall: 'open',\n  path: 'Assets/PluginYourGames/Modules/Authorization/Scripts/Editor/CopyCode/Auth_js.js'\n}\n\nNode.js v24.16.0\n"
+  },
+  {
+    "file": "Tests/Stage2Leaderboard/bridge-checks.cjs",
+    "exit": 1,
+    "tail": "Assets/Scripts/Stage2/LeaderboardBridge.jslib'\n    at Object.readFileSync (node:fs:441:20)\n    at Object.<anonymous> (/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/Tests/Stage2Leaderboard/bridge-checks.cjs:6:19)\n    at Module._compile (node:internal/modules/cjs/loader:1854:14)\n    at Object..js (node:internal/modules/cjs/loader:1985:10)\n    at Module.load (node:internal/modules/cjs/loader:1577:32)\n    at Module._load (node:internal/modules/cjs/loader:1379:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  errno: -2,\n  code: 'ENOENT',\n  syscall: 'open',\n  path: 'Assets/Scripts/Stage2/LeaderboardBridge.jslib'\n}\n\nNode.js v24.16.0\n"
+  },
+  {
+    "file": "Tests/Stage2Leaderboard/sdk-optional-fields.cjs",
+    "exit": 0,
+    "tail": "PASS: real environment bridge without legacy browser, and mixed leaderboard privacy permissions\n"
+  },
+  {
+    "file": "Tests/Stage2Leaderboard/sdk-payments.cjs",
+    "exit": 0,
+    "tail": "PASS: actual payment bridge uses { id }, success consumes once, cancellation grants nothing\n"
+  },
+  {
+    "file": "Tests/Stage2Leaderboard/storage-smoke.cjs",
+    "exit": 0,
+    "tail": "PASS: 11 actual C# storage sentinel/broken/order/profile-preservation smoke checks\n"
+  },
+  {
+    "file": "Tests/Stage3Music/music-browser-gate.cjs",
+    "exit": 0,
+    "tail": "PASS: 17 actual browser music gate gesture/focus/visibility/lifecycle contracts\n"
+  },
+  {
+    "file": "Tests/Stage3Music/music-context-resume-regression.cjs",
+    "exit": 1,
+    "tail": "adFileSync (node:fs:441:20)\n    at Object.<anonymous> (/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/Tests/Stage3Music/music-context-resume-regression.cjs:15:19)\n    at Module._compile (node:internal/modules/cjs/loader:1854:14)\n    at Object..js (node:internal/modules/cjs/loader:1985:10)\n    at Module.load (node:internal/modules/cjs/loader:1577:32)\n    at Module._load (node:internal/modules/cjs/loader:1379:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  errno: -2,\n  code: 'ENOENT',\n  syscall: 'open',\n  path: '/Applications/Unity/Hub/Editor/2022.3.62f2/PlaybackEngines/WebGLSupport/BuildTools/lib/Audio.js'\n}\n\nNode.js v24.16.0\n"
+  },
+  {
+    "file": "Tests/Stage3Music/music-player-compile.cjs",
+    "exit": 0,
+    "tail": "PASS: real player + Editor audition compile against Unity 6000.6.8f1 APIs; WebGL release/development player compiles\n"
+  },
+  {
+    "file": "Tests/Stage3Ranking/editor-storage-smoke.cjs",
+    "exit": 0,
+    "tail": "PASS: 14 actual Editor storage guard/load/object-identity/file-byte contracts\n"
+  },
+  {
+    "file": "Tests/Stage3Ranking/stop-transition-smoke.cjs",
+    "exit": 0,
+    "tail": "PASS: 13 actual Stop pending-entry/cancellation/idle-cleanup/teardown/reload-guard contracts\n"
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "environment": "Editor controlled fixture, not gameplay",
+  "rendererName": "Tower_visual",
+  "dimensions": "(1.06, 5.30, 1.06)",
+  "included": true,
+  "hidden": true,
+  "restored": true,
+  "originalPointRayMissed": true,
+  "silhouetteHidden": true,
+  "error": null
+}

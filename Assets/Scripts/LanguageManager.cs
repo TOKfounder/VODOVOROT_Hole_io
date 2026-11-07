@@ -23,21 +23,21 @@ public class LanguageManager : MonoBehaviour
     	// DontDestroyOnLoad(gameObject);
 	}
 
-	void Start()
-	{
-		if (!YG2.saves.done)
-		{
-			YG2.SwitchLanguage(YG2.envir.language);
-			YG2.saves.langRu = YG2.envir.language == "ru"? true : false;
-			YG2.saves.done = true;
-			YG2.SaveProgress();
-		}
-		Onclick();
-		Onclick();
-		// if (YG2.saves.langRu)
-		// 	Onclick();
-		// flag.onClick.Invoke();
-	}
+    void Start()
+    {
+        bool firstLanguageSelection = !YG2.saves.done;
+        if (firstLanguageSelection)
+        {
+            YG2.saves.langRu = YG2.envir.language == "ru";
+            YG2.saves.done = true;
+        }
+
+        // A scene change must restore the saved choice, not click the toggle twice
+        // and silently return to the browser language.
+        Adecvat = YG2.saves.langRu == (YG2.envir.language == "ru");
+        VodovorotGameManager.Instance.GameController.UpdateAllUI();
+        if (firstLanguageSelection) YG2.SaveProgress();
+    }
 	public void Onclick()
 	{
 		Adecvat = !Adecvat;

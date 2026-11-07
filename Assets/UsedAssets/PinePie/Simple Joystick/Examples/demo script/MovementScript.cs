@@ -15,9 +15,15 @@ namespace PinePie.SimpleJoystick.Examples.DemoScript
         public float rotationSpeed = 10f;
         public float[] levelSpeeds = { 6f, 6.89f, 7.78f, 8.67f, 9.56f, 10.44f, 13.83f, 15.22f, 20f, 25f };
 
+        [SerializeField] private JoystickController mobileJoystick;
+        [SerializeField] private JoystickController desktopJoystick;
         private JoystickController joystickController;
+        [SerializeField] private GamingManager gamingManager;
+        private BoostButton boostControl;
         private Rigidbody rb;
         private bool isBoosting = false;
+        private bool focused = true;
+        private bool inputSuspended;
 
         private BlackHoleController playerHole;   // ссылка на нашу дыру игрока
 
@@ -25,9 +31,10 @@ namespace PinePie.SimpleJoystick.Examples.DemoScript
         {
             // Выбираем кнопку буста в зависимости от платформы
             boostButton = YG2.envir.isMobile ? boostButtons[0] : boostButtons[1];
+            joystickController = YG2.envir.isMobile ? mobileJoystick : desktopJoystick;
 
-            joystickController = GameObject.Find("JoystickRuler").GetComponent<JoystickController>();
             rb = GetComponent<Rigidbody>();
+            if (boostButton != null) boostControl = boostButton.GetComponent<BoostButton>();
 
             // Находим BlackHoleController один раз в Start
             playerHole = GetComponentInParent<BlackHoleController>();
@@ -39,7 +46,7 @@ namespace PinePie.SimpleJoystick.Examples.DemoScript
 
         void FixedUpdate()
         {
-            if (playerHole == null) return;
+            if (playerHole == null || gamingManager == null || !focused || YG2.nowAdsShow) return;
 
             HandleBoostUI();
             HandleInput();
@@ -77,6 +84,16 @@ namespace PinePie.SimpleJoystick.Examples.DemoScript
                 movement = new Vector3(input.x, 0f, input.y);
             }
 
+            if (YG2.envir.isDesktop)
+            {
+                float horizontal = (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) ? 1f : 0f) -
+                    (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) ? 1f : 0f);
+                float vertical = (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) ? 1f : 0f) -
+                    (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) ? 1f : 0f);
+                if (horizontal != 0f || vertical != 0f)
+                    movement = new Vector3(horizontal, 0f, vertical);
+            }
+
             if (movement.magnitude > 1f)
                 movement = movement.normalized;
 
@@ -92,7 +109,7 @@ namespace PinePie.SimpleJoystick.Examples.DemoScript
 
             // Множитель скорости от буста
             float boostMultiplier = 1f;
-            if (isBoosting || (boostButton != null && boostButton.GetComponent<BoostButton>().isHolding))
+            if (isBoosting || (boostControl != null && boostControl.isHolding))
                 boostMultiplier = 2f;
 
             // Берём текущий уровень игрока из BlackHoleController
@@ -105,16 +122,57 @@ namespace PinePie.SimpleJoystick.Examples.DemoScript
                 * currentSpeed 
                 * Time.fixedDeltaTime;
 
-            // Ограничение по границам карты
-            newPosition.x = Mathf.Clamp(newPosition.x, 
-                VodovorotGameManager.Instance.GamingManager.minX, 
-                VodovorotGameManager.Instance.GamingManager.maxX);
+            rb.MovePosition(ClampPositionToMap(newPosition));
+        }
 
-            newPosition.z = Mathf.Clamp(newPosition.z, 
-                VodovorotGameManager.Instance.GamingManager.minZ, 
-                VodovorotGameManager.Instance.GamingManager.maxZ);
+        private Vector3 ClampPositionToMap(Vector3 position)
+        {
+            // The whole visible rim stays on the floor; clamping only its center
+            // allowed part of the hole to float beyond the outer road at a wall.
+            float radius = Mathf.Max(playerHole.size.x, playerHole.size.z) * .5f + .5f;
+            float insetX = Mathf.Min(radius, (gamingManager.maxX - gamingManager.minX) * .5f);
+            float insetZ = Mathf.Min(radius, (gamingManager.maxZ - gamingManager.minZ) * .5f);
+            position.x = Mathf.Clamp(position.x, gamingManager.minX + insetX, gamingManager.maxX - insetX);
+            position.z = Mathf.Clamp(position.z, gamingManager.minZ + insetZ, gamingManager.maxZ - insetZ);
+            return position;
+        }
 
-            rb.MovePosition(newPosition);
+        private void OnEnable()
+        {
+            YG2.onFocusWindowGame += OnApplicationFocus;
+            YG2.onOpenAnyAdv += ResetHeldInput;
+        }
+
+        private void OnDisable()
+        {
+            YG2.onFocusWindowGame -= OnApplicationFocus;
+            YG2.onOpenAnyAdv -= ResetHeldInput;
+            ResetHeldInput();
+        }
+
+        private void OnApplicationFocus(bool hasFocus)
+        {
+            focused = hasFocus;
+            if (!hasFocus) ResetHeldInput();
+        }
+
+        private void OnApplicationPause(bool paused)
+        {
+            if (paused) ResetHeldInput();
+        }
+
+        private void Update()
+        {
+            bool suspended = Time.timeScale <= 0f || YG2.nowAdsShow;
+            if (suspended && !inputSuspended) ResetHeldInput();
+            inputSuspended = suspended;
+        }
+
+        private void ResetHeldInput()
+        {
+            isBoosting = false;
+            if (boostControl != null) boostControl.isHolding = false;
+            if (joystickController != null) joystickController.ResetInput();
         }
     }
 }

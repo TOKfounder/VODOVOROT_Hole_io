@@ -1,0 +1,1 @@
+PASS: actual payment bridge uses { id }, success consumes once, cancellation grants nothing

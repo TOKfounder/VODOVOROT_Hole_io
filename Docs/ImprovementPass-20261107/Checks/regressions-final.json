@@ -1,0 +1,66 @@
+{
+  "environment": "Node/.NET fixtures and bridge mocks; not live Yandex SDK",
+  "modules": [
+    {
+      "file": "Tests/Stage2/achievement_card_contract.test.cjs",
+      "exit": 0,
+      "tail": "as_one_reusable_selectable_manual_link\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"legacy_copy_success_removes_temporary_field\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"close_revokes_blob_removes_keyboard_listener_and_restores_focus\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"closing_before_async_blob_does_not_create_or_leak_object_url\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"reopening_replaces_dialog_and_old_url_only\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"tab_focus_trap_and_mobile_css_bounds_are_explicit\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"invalid_or_private_url_cannot_be_shared\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"share_cancellation_and_image_encoding_failure_do_not_claim_success\",\n      \"passed\": true\n    }\n  ]\n}\n"
+    },
+    {
+      "file": "Tests/Stage2Leaderboard/auth-cloud-checks.cjs",
+      "exit": 0,
+      "tail": "PASS: 4 retry-generation/pending-failed-write-gate/recovery contract checks\nPASS: 4 auth-only cloud empty/error/write-gate contract checks\n"
+    },
+    {
+      "file": "Tests/Stage2Leaderboard/auth-dialog-checks.cjs",
+      "exit": 0,
+      "tail": "PASS: 5 actual auth-dialog slow-await/cancel/already-auth/SDK-absent/early-profile contracts\n"
+    },
+    {
+      "file": "Tests/Stage2Leaderboard/bridge-checks.cjs",
+      "exit": 0,
+      "tail": "PASS: 13 awaited bridge/identity/availability/rate-limit contract checks\n"
+    },
+    {
+      "file": "Tests/Stage2Leaderboard/sdk-optional-fields.cjs",
+      "exit": 0,
+      "tail": "PASS: real environment bridge without legacy browser, and mixed leaderboard privacy permissions\n"
+    },
+    {
+      "file": "Tests/Stage2Leaderboard/sdk-payments.cjs",
+      "exit": 0,
+      "tail": "PASS: actual payment bridge uses { id }, success consumes once, cancellation grants nothing\n"
+    },
+    {
+      "file": "Tests/Stage2Leaderboard/storage-smoke.cjs",
+      "exit": 0,
+      "tail": "PASS: 11 actual C# storage sentinel/broken/order/profile-preservation smoke checks\n"
+    },
+    {
+      "file": "Tests/Stage3Music/music-browser-gate.cjs",
+      "exit": 0,
+      "tail": "PASS: 17 actual browser music gate gesture/focus/visibility/lifecycle contracts\n"
+    },
+    {
+      "file": "Tests/Stage3Music/music-context-resume-regression.cjs",
+      "exit": 0,
+      "tail": "Real Unity/gate traces: [\"native.pause,gate:13,reason,native.resume,gate:15\",\"gate:13,native.pause,reason,gate:15,native.resume\"]\nPASS: 432 actual player assertions, 9 suspension reasons x 2 native/gate event orders; max2 existing voices, mute hold, re-Pause, safe resume, timeScale0 and single-volume paths\n"
+    },
+    {
+      "file": "Tests/Stage3Music/music-player-compile.cjs",
+      "exit": 0,
+      "tail": "PASS: real player + Editor audition compile against Unity 6000.6.8f1 APIs; WebGL release/development player compiles\n"
+    },
+    {
+      "file": "Tests/Stage3Ranking/editor-storage-smoke.cjs",
+      "exit": 0,
+      "tail": "PASS: 14 actual Editor storage guard/load/object-identity/file-byte contracts\n"
+    },
+    {
+      "file": "Tests/Stage3Ranking/stop-transition-smoke.cjs",
+      "exit": 0,
+      "tail": "PASS: 13 actual Stop pending-entry/cancellation/idle-cleanup/teardown/reload-guard contracts\n"
+    }
+  ],
+  "passed": true
+}

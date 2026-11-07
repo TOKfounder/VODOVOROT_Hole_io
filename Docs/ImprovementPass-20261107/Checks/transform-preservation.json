@@ -1,0 +1,37 @@
+[
+  {
+    "path": "Assets/Scenes/Low Poly City.unity",
+    "oldTransforms": 12410,
+    "currentTransforms": 12410,
+    "modifiedExistingTransforms": [],
+    "missingExistingTransforms": []
+  },
+  {
+    "path": "Assets/Scenes/Garden.unity",
+    "oldTransforms": 6830,
+    "currentTransforms": 6830,
+    "modifiedExistingTransforms": [],
+    "missingExistingTransforms": []
+  },
+  {
+    "path": "Assets/Scenes/MedievalCastle.unity",
+    "oldTransforms": 78,
+    "currentTransforms": 78,
+    "modifiedExistingTransforms": [],
+    "missingExistingTransforms": []
+  },
+  {
+    "path": "Assets/Scenes/MainMenu.unity",
+    "oldTransforms": 57,
+    "currentTransforms": 57,
+    "modifiedExistingTransforms": [],
+    "missingExistingTransforms": []
+  },
+  {
+    "path": "Assets/Prefabs/GamingPrefabs/ImmersivePack.prefab",
+    "oldTransforms": 15,
+    "currentTransforms": 15,
+    "modifiedExistingTransforms": [],
+    "missingExistingTransforms": []
+  }
+]

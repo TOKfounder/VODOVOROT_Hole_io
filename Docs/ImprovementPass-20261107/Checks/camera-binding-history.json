@@ -1,0 +1,27 @@
+{
+  "inspection": "Unity Editor saved scene data, not a gameplay measurement",
+  "before": {
+    "City": 234,
+    "Garden": 46,
+    "MedievalCastle": 390
+  },
+  "missedTallMedievalRenderers": 968,
+  "examples": [
+    {
+      "name": "Tower",
+      "bounds": "2.48 x11.02 x2.48"
+    },
+    {
+      "name": "Tower_visual",
+      "bounds": "1.06 x5.30 x1.06"
+    }
+  ],
+  "after": {
+    "City": 276,
+    "Garden": 568,
+    "MedievalCastle": 1360,
+    "LabCity": 276
+  },
+  "scope": "Only renderer references changed; transforms/materials/colliders unchanged",
+  "targetedFixture": "narrow-camera.json"
+}

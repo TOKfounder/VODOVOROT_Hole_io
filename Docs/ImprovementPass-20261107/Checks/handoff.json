@@ -1,0 +1,45 @@
+{
+  "editor": {
+    "restored": true,
+    "simulator": "UnityEditor.DeviceSimulation.SimulatorWindow",
+    "position": "(x:314.00, y:70.00, width:905.00, height:541.50)",
+    "docked": true,
+    "gamePosition": "(x:588.00, y:62.00, width:275.00, height:485.00)",
+    "scene": "Assets/Scenes/MainMenu.unity",
+    "dirty": false,
+    "music": 0.5,
+    "sfx": 0.5,
+    "isolated": false
+  },
+  "editorStatus": {
+    "status": "ready",
+    "compiling": false,
+    "domainReloadInProgress": false,
+    "codeLoadCount": 34,
+    "autoRefresh": "enabled",
+    "playMode": "stopped",
+    "runInBackground": false,
+    "lastHeartbeat": "2026-11-07T23:36:16.435185Z",
+    "projectPath": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io",
+    "unityVersion": "6000.6.8f1",
+    "role": "main",
+    "instanceName": "Main Editor"
+  },
+  "personalSave": {
+    "byteIdentical": true,
+    "sha256": "05c3f28f982d89f8061c480072968b932fb6789d7e5a4706787681becd71bf0b",
+    "excludedFromCommit": true
+  },
+  "browser": {
+    "url": "http://localhost:8772/?qaAds=1&qaMobile=1",
+    "tabId": "11",
+    "scene": "MainMenu",
+    "music": 0.5,
+    "sfx": 0.5,
+    "restoredThroughGameSettings": true,
+    "viewportOverride": "reset",
+    "qaOnly": true
+  },
+  "temporaryServers": "Old owned preview processes8765..8771 stopped; only8772 retained for user preview",
+  "localBuild": "builds/ImprovementPass-20261107/Yandex (excluded from Git)"
+}

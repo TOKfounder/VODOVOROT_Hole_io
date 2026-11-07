@@ -23,6 +23,9 @@ public class EndGameController : MonoBehaviour
     // Данные для награды (используется для рекламы x3)
     private int currentCoinIncome;
     private int brillCount;
+    [SerializeField] private Button coinBonusButton;
+    [SerializeField] private Text accountGoalText;
+    public Text AccountGoalText => accountGoalText;
 
     private void Awake()
     {
@@ -31,7 +34,13 @@ public class EndGameController : MonoBehaviour
         //     VodovorotGameManager.Instance.EndGameController = this;
     }
 
-    public void ShowRewardedAdv(string rewardID) => YG2.RewardedAdvShow(rewardID);
+    public void ShowRewardedAdv(string rewardID)
+    {
+        GamingManager game = VodovorotGameManager.Instance?.GamingManager;
+        if (rewardID != "1" || YG2.nowAdsShow || game == null || !game.TryBeginCoinBonus()) return;
+        RefreshCoinBonus();
+        YG2.RewardedAdvShow(rewardID);
+    }
 
     private void Start()
     {
@@ -48,6 +57,7 @@ public class EndGameController : MonoBehaviour
         {
             HandleTotalCleaningGame(gamingManager);
             Vodovorot.Stage2.Stage2RoundPresentation.Install(this, gamingManager);
+            RefreshCoinBonus();
             return;
         }
 
@@ -64,6 +74,7 @@ public class EndGameController : MonoBehaviour
             HandleCompleteGame();
         }
         Vodovorot.Stage2.Stage2RoundPresentation.Install(this, gamingManager);
+        RefreshCoinBonus();
     }
 
     private void HandleIncompleteGame(float progress)
@@ -152,19 +163,46 @@ public class EndGameController : MonoBehaviour
         MbrillText.text = brillText.text = diaStr;
     }
 
-    private void OnEnable() => YG2.onRewardAdv += X3ToCoinsForRewarded;
-    private void OnDisable() => YG2.onRewardAdv -= X3ToCoinsForRewarded;
+    private void OnEnable()
+    {
+        YG2.onRewardAdv += X3ToCoinsForRewarded;
+        YG2.onCloseRewardedAdv += FinishCoinBonusRequest;
+        YG2.onErrorRewardedAdv += FinishCoinBonusRequest;
+        RefreshCoinBonus();
+    }
+
+    private void OnDisable()
+    {
+        YG2.onRewardAdv -= X3ToCoinsForRewarded;
+        YG2.onCloseRewardedAdv -= FinishCoinBonusRequest;
+        YG2.onErrorRewardedAdv -= FinishCoinBonusRequest;
+    }
 
     public void X3ToCoinsForRewarded(string id)
     {
-        if (id == "1")
+        if (id != "1") return;
+        GamingManager game = VodovorotGameManager.Instance?.GamingManager;
+        if (game == null || !game.TryApplyCoinBonus()) return;
+        RefreshCoinBonus();
+    }
+
+    private void FinishCoinBonusRequest()
+    {
+        VodovorotGameManager.Instance?.GamingManager?.CancelCoinBonus();
+        RefreshCoinBonus();
+    }
+
+    private void RefreshCoinBonus()
+    {
+        GamingManager game = VodovorotGameManager.Instance?.GamingManager;
+        if (game == null) return;
+        if (coinBonusButton != null)
+            coinBonusButton.interactable = game.HasRewardBeenApplied && game.SettledReward.coins > 0 &&
+                !game.HasClaimedCoinBonus && !game.IsCoinBonusPending;
+        if (game.HasRewardBeenApplied)
         {
-            YG2.saves.goldCoins += 2 * currentCoinIncome;
-            string tripleStr = $"+{3 * currentCoinIncome}";
-
-            McoinText.text = coinText.text = tripleStr;
-
-            VodovorotGameManager.Instance.SaveProgress();
+            string coins = "+" + game.SettledReward.coins * (game.HasClaimedCoinBonus ? 3 : 1);
+            McoinText.text = coinText.text = coins;
         }
     }
 }

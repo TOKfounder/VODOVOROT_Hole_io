@@ -40,8 +40,8 @@ public class AudioManager : MonoBehaviour
 
 	private void SetSFXVolume(float val)
 	{
-		SoundSlider.value = val;
-		DSoundSlider.value = val;
+		SoundSlider.SetValueWithoutNotify(val);
+		DSoundSlider.SetValueWithoutNotify(val);
 		YG2.saves.soundValue = val;
 		dbValSound = Mathf.Log10(Mathf.Clamp(val, 0.001f, 1f)) * 20;
 		mixer.SetFloat("SFXVol", dbValSound);
@@ -60,8 +60,8 @@ public class AudioManager : MonoBehaviour
 
 	private void SetMusicVolume(float val) // Значение от 0 до 1
 	{
-		MusicSlider.value = val;
-		DMusicSlider.value = val;
+		MusicSlider.SetValueWithoutNotify(val);
+		DMusicSlider.SetValueWithoutNotify(val);
 		YG2.saves.musicValue = val;
 		dbValMusic = Mathf.Log10(Mathf.Clamp(val, 0.001f, 1f)) * 20;
 		mixer.SetFloat("MusicVol", dbValMusic);

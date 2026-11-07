@@ -1,0 +1,50 @@
+{
+  "passed": true,
+  "implementation": "Assets/Plugins/WebGL/VodovorotAchievement.jslib",
+  "checks": [
+    {
+      "name": "native_file_share_runs_in_real_click_activation_with_png_and_public_url",
+      "passed": true
+    },
+    {
+      "name": "link_share_when_file_share_unsupported_and_no_invented_unknown_rank",
+      "passed": true
+    },
+    {
+      "name": "unsupported_web_share_keeps_real_download_and_copy_fallbacks",
+      "passed": true
+    },
+    {
+      "name": "clipboard_denial_has_one_reusable_selectable_manual_link",
+      "passed": true
+    },
+    {
+      "name": "legacy_copy_success_removes_temporary_field",
+      "passed": true
+    },
+    {
+      "name": "close_revokes_blob_removes_keyboard_listener_and_restores_focus",
+      "passed": true
+    },
+    {
+      "name": "closing_before_async_blob_does_not_create_or_leak_object_url",
+      "passed": true
+    },
+    {
+      "name": "reopening_replaces_dialog_and_old_url_only",
+      "passed": true
+    },
+    {
+      "name": "tab_focus_trap_and_mobile_css_bounds_are_explicit",
+      "passed": true
+    },
+    {
+      "name": "invalid_or_private_url_cannot_be_shared",
+      "passed": true
+    },
+    {
+      "name": "share_cancellation_and_image_encoding_failure_do_not_claim_success",
+      "passed": true
+    }
+  ]
+}

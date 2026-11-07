@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using YG;
 using YG.Utils.LB;
+using Vodovorot.RoundExperience;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -69,12 +70,22 @@ public class MainMenuController : MonoBehaviour
     public Text[] DPanelOfValute;
 
     // Счётчики для rewarded рекламы
-    private int CntHand = 2;
-    private int CntBag = 5;
-    private int CntBox = 10;
+    [SerializeField] private RoundExperienceSettings experienceSettings;
+    private int experiencePerLevel = 100;
+    private float roundSeconds = 180f;
+    private RoundExperienceValues experienceValues;
+    private string pendingRewardId;
+    public event System.Action ProgressUpdated;
 
     private void Awake()
     {
+        if (experienceSettings != null)
+        {
+            RoundExperienceValues values = experienceSettings.CreateRuntimeValues();
+            experienceValues = values;
+            experiencePerLevel = values.ExperiencePerLevel;
+            roundSeconds = values.RoundSeconds;
+        }
         if (VodovorotGameManager.Instance != null)
             VodovorotGameManager.Instance.MainMenuController = this;
 
@@ -86,9 +97,11 @@ public class MainMenuController : MonoBehaviour
         YG2.onPurchaseSuccess += SuccessPurchased;
         YG2.onPurchaseFailed += FailedPurchased;
         YG2.onRewardAdv += UpgradeForAdv;
+        YG2.onCloseRewardedAdv += FinishRewardRequest;
+        YG2.onErrorRewardedAdv += FinishRewardRequest;
         YG2.onGetLeaderboard += onUpdateLB;
         Vodovorot.Stage2.LeaderboardRoundService.Changed += OnStage2RankingUpdated;
-        YG2.GetLeaderboard("BestPlayers");
+        OnOpenLeaderboard();
     }
 
     private void OnDisable()
@@ -96,6 +109,8 @@ public class MainMenuController : MonoBehaviour
         YG2.onPurchaseSuccess -= SuccessPurchased;
         YG2.onPurchaseFailed -= FailedPurchased;
         YG2.onRewardAdv -= UpgradeForAdv;
+        YG2.onCloseRewardedAdv -= FinishRewardRequest;
+        YG2.onErrorRewardedAdv -= FinishRewardRequest;
         YG2.onGetLeaderboard -= onUpdateLB;
         Vodovorot.Stage2.LeaderboardRoundService.Changed -= OnStage2RankingUpdated;
     }
@@ -167,8 +182,8 @@ public class MainMenuController : MonoBehaviour
         SetPair(PanelOfModes[0], DPanelOfModes[0], ru, "Доступные Режимы", "Available Modes");
         SetPair(PanelOfModes[1], DPanelOfModes[1], ru, "Тотальная Зачистка", "Total Cleaning");
         SetPair(PanelOfModes[2], DPanelOfModes[2], ru,
-            "Задача поглотить максимум объектов за 3 минуты",
-            "The task is to consume as many objects as possible in 3 minutes.");
+            "Поглоти максимум объектов за " + System.TimeSpan.FromSeconds(roundSeconds).ToString(@"mm\:ss"),
+            "Absorb as much as you can in " + System.TimeSpan.FromSeconds(roundSeconds).ToString(@"mm\:ss"));
         SetPair(PanelOfModes[3], DPanelOfModes[3], ru, "Босс Туалетов", "The Toilet Boss");
         SetPair(PanelOfModes[4], DPanelOfModes[4], ru,
             "Задача перегнать Босса по уровню и победить поглотив его",
@@ -215,15 +230,16 @@ public class MainMenuController : MonoBehaviour
     {
         UpdateMapOnBackground(YG2.saves.selectedMapID);
 
-        YG2.saves.levelOfProgress = (int)(YG2.saves.exp / 100f);
+        YG2.saves.levelOfProgress = Mathf.Max(0, YG2.saves.exp) / experiencePerLevel;
 
         levelText.text = YG2.saves.levelOfProgress.ToString();
         pointText.text = Tool.ConvertText(YG2.saves.goldCoins);
-        levelImage.fillAmount = (YG2.saves.exp % 100f) / 100f;
+        levelImage.fillAmount = (YG2.saves.exp % experiencePerLevel) / (float)experiencePerLevel;
 
         DlevelText.text = YG2.saves.levelOfProgress.ToString();
         DpointText.text = Tool.ConvertText(YG2.saves.goldCoins);
-        DlevelImage.fillAmount = (YG2.saves.exp % 100f) / 100f;
+        DlevelImage.fillAmount = levelImage.fillAmount;
+        scoreText.text = DscoreText.text = Tool.ConvertText(YG2.saves.exp);
 
         if (YG2.saves.isNickGiven)
         {
@@ -235,18 +251,24 @@ public class MainMenuController : MonoBehaviour
         UpdatePanelOfValute();
         UpdateTriggers();
         OnOpenLeaderboard();
+        ProgressUpdated?.Invoke();
     }
 
     public void UpdatePanelOfValute()
     {
         bool ru = YG2.saves.langRu;
 
+        int handRemaining = RemainingRewardAds("hand", YG2.saves.rewardedHandProgress);
+        int bagRemaining = RemainingRewardAds("bag", YG2.saves.rewardedBagProgress);
+        int boxRemaining = RemainingRewardAds("box", YG2.saves.rewardedBoxProgress);
+        int singleRemaining = RemainingRewardAds("couple", 0);
+
         cntOfDiamonds.text = DcntOfDiamonds.text = YG2.saves.diamonds.ToString();
 
-        Tcouple.text = DTcouple.text = ru ? "1 рекл" : "1 ad";
-        Thand.text = DThand.text = ru ? $"{CntHand} рекл" : $"{CntHand} ad";
-        Tbag.text = DTbag.text = ru ? $"{CntBag} рекл" : $"{CntBag} ad";
-        Tbox.text = DTbox.text = ru ? $"{CntBox} рекл" : $"{CntBox} ad";
+        Tcouple.text = DTcouple.text = ru ? $"{singleRemaining} рекл" : $"{singleRemaining} ad";
+        Thand.text = DThand.text = ru ? $"{handRemaining} рекл" : $"{handRemaining} ad";
+        Tbag.text = DTbag.text = ru ? $"{bagRemaining} рекл" : $"{bagRemaining} ad";
+        Tbox.text = DTbox.text = ru ? $"{boxRemaining} рекл" : $"{boxRemaining} ad";
     }
 
     public void UpdateTriggers()
@@ -276,17 +298,48 @@ public class MainMenuController : MonoBehaviour
 
     public bool CheckForDaimonds() => YG2.saves.diamonds != 0;
 
-    private void ShowRewardedAdv(string id) => YG2.RewardedAdvShow(id);
+    private void ShowRewardedAdv(string id)
+    {
+        if (pendingRewardId != null || YG2.nowAdsShow) return;
+        if (!experienceValues.TryGetRewardedOffer(id, out _)) return;
+        pendingRewardId = id;
+        YG2.RewardedAdvShow(id);
+    }
+
+    private void FinishRewardRequest()
+    {
+        pendingRewardId = null;
+        UpdatePanelOfValute();
+    }
 
     private void UpgradeForAdv(string id)
     {
-        if (id == "couple") YG2.saves.diamonds += 5;
-        else if (id == "hand") { CntHand = Mathf.Max(0, CntHand - 1); if (CntHand == 0) { YG2.saves.diamonds += 20; CntHand = 2; } }
-        else if (id == "bag") { CntBag = Mathf.Max(0, CntBag - 1); if (CntBag == 0) { YG2.saves.diamonds += 100; CntBag = 5; } }
-        else if (id == "box") { CntBox = Mathf.Max(0, CntBox - 1); if (CntBox == 0) { YG2.saves.diamonds += 300; CntBox = 10; } }
+        if (id != pendingRewardId) return;
+        // Consume the request before saving or refreshing UI so a repeated callback has no effect.
+        pendingRewardId = null;
+        if (!experienceValues.TryGetRewardedOffer(id, out RewardedOfferValues offer)) return;
+        int awarded = 0;
+        if (id == "couple")
+        {
+            int singleProgress = 0;
+            awarded = RewardedProgressRules.Advance(ref singleProgress, offer.RequiredAds, offer.Diamonds);
+        }
+        else if (id == "hand")
+            awarded = RewardedProgressRules.Advance(ref YG2.saves.rewardedHandProgress, offer.RequiredAds, offer.Diamonds);
+        else if (id == "bag")
+            awarded = RewardedProgressRules.Advance(ref YG2.saves.rewardedBagProgress, offer.RequiredAds, offer.Diamonds);
+        else if (id == "box")
+            awarded = RewardedProgressRules.Advance(ref YG2.saves.rewardedBoxProgress, offer.RequiredAds, offer.Diamonds);
+        YG2.saves.diamonds += awarded;
 
         VodovorotGameManager.Instance.SaveProgress();
         UpdatePanelOfValute();
+    }
+
+    private int RemainingRewardAds(string id, int progress)
+    {
+        return experienceValues.TryGetRewardedOffer(id, out RewardedOfferValues offer)
+            ? RewardedProgressRules.Remaining(progress, offer.RequiredAds) : 0;
     }
 
     private void SuccessPurchased(string id)
@@ -365,5 +418,10 @@ public class MainMenuController : MonoBehaviour
         VodovorotGameManager.Instance.SaveProgress();
     }
 
-    public void OnOpenLeaderboard() => YG2.GetLeaderboard("BestPlayers");
+    public void OnOpenLeaderboard()
+    {
+        if (rank != null) rank.text = "—";
+        if (Drank != null) Drank.text = "—";
+        YG2.GetLeaderboard("BestPlayers");
+    }
 }

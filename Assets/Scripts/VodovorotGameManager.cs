@@ -22,6 +22,7 @@ public class VodovorotGameManager : MonoBehaviour
     public GamingManager GamingManager;
     public ModeManager ModeManager;
     public HorizontalLayout3D HorizontalLayout3D;
+    private bool showInterAdWhenMenuReady;
 
     public bool IsInGame => SceneManager.GetActiveScene().buildIndex != 0;
 
@@ -97,6 +98,7 @@ public class VodovorotGameManager : MonoBehaviour
 
     public void ReturnToMenu()
     {
+        showInterAdWhenMenuReady = IsInGame;
         if (IsInGame && GamingManager != null)
             GamingManager.FinalizeInterruptedMatchIfNeeded();
 
@@ -137,6 +139,11 @@ public class VodovorotGameManager : MonoBehaviour
         {
             if (MainMenuController != null)
                 MainMenuController.UpdateMainMenu();
+            if (showInterAdWhenMenuReady)
+            {
+                showInterAdWhenMenuReady = false;
+                YG2.InterstitialAdvShow();
+            }
         }
     }
 

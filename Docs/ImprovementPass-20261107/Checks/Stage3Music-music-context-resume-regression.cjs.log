@@ -1,0 +1,2 @@
+Real Unity/gate traces: ["native.pause,gate:13,reason,native.resume,gate:15","gate:13,native.pause,reason,gate:15,native.resume"]
+PASS: 432 actual player assertions, 9 suspension reasons x 2 native/gate event orders; max2 existing voices, mute hold, re-Pause, safe resume, timeScale0 and single-volume paths

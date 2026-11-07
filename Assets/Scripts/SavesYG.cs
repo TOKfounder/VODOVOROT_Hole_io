@@ -20,5 +20,8 @@ namespace YG
 		public bool done = false;
 		public int chosenMode = 0;
 		public bool tutorialDone = false;
+		public int rewardedHandProgress = 0;
+		public int rewardedBagProgress = 0;
+		public int rewardedBoxProgress = 0;
 	}
 }

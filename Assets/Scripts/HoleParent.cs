@@ -38,12 +38,18 @@ public class HoleParent : MonoBehaviour
     protected Vector3 targetScale;
     protected float scaleLerpSpeed = 8f;             // увеличил скорость сглаживания
     private float radius;
+    private Renderer holeRenderer;
+
+    public event System.Action<HoleParent> GrowthProgressChanged;
+    public int PointsToNextSize => currentLevel >= scoreRequired.Length - 1
+        ? 0 : Mathf.Max(0, Mathf.CeilToInt(scoreRequired[currentLevel + 1] - score));
 
     private bool isInitialized = false;
     private bool keepScoreOnStart = false;
 
     protected virtual void Awake()
     {
+        if (hole != null) holeRenderer = hole.GetComponent<Renderer>();
         if (border == null)
             border = GetComponentInChildren<Image>(true);
 
@@ -142,6 +148,7 @@ public class HoleParent : MonoBehaviour
 
         // Сглаживание масштаба (было в Update — теперь здесь)
         transform.localScale = Vector3.Lerp(transform.localScale, targetScale, scaleLerpSpeed * Time.fixedDeltaTime);
+        RefreshFitSize();
     }
 
     // Вызывается только когда score реально изменился
@@ -204,7 +211,7 @@ public class HoleParent : MonoBehaviour
 
         if (border != null)
         {
-            if (currentLevel == 10)
+            if (currentLevel == scoreRequired.Length - 1)
             {
                 border.fillAmount = 1f;
             }
@@ -222,13 +229,13 @@ public class HoleParent : MonoBehaviour
         if (snapScale)
             transform.localScale = targetScale;
 
-        size = GetVisualSizeOfHole();
-        radius = (size.x + size.z) / 2f;
+        RefreshFitSize();
+        GrowthProgressChanged?.Invoke(this);
     }
 
     public int GetCurrentLevel(float[] scoreRequired)
     {
-        for (int i = scoreRequired.Length - 2; i >= 0; i--)
+        for (int i = scoreRequired.Length - 1; i >= 0; i--)
         {
             if (score >= scoreRequired[i])
                 return i;
@@ -238,10 +245,20 @@ public class HoleParent : MonoBehaviour
 
     public Vector3 GetVisualSizeOfHole()
     {
-        Renderer renderer = hole.GetComponent<Renderer>();
+        Renderer renderer = holeRenderer;
+        if (!Application.isPlaying && hole != null)
+            renderer = hole.GetComponent<Renderer>();
+        if (renderer == null) return Vector3.zero;
         Bounds totalBound = new Bounds(hole.transform.position, Vector3.zero);
         totalBound.Encapsulate(renderer.bounds);
         return totalBound.size;
+    }
+
+    private void RefreshFitSize()
+    {
+        // The fit follows the visible interpolation, including a growth with no later score event.
+        size = GetVisualSizeOfHole();
+        radius = (size.x + size.z) / 2f;
     }
 
     public Vector3 GetFitSize()

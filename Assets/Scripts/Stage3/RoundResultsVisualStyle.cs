@@ -41,7 +41,9 @@ namespace Vodovorot.Stage3
             Canvas root = canvas.rootCanvas;
             Camera camera = root.renderMode == RenderMode.ScreenSpaceOverlay ? null : root.worldCamera;
             if (root.renderMode != RenderMode.ScreenSpaceOverlay && camera == null) return;
-            Rect pixels = camera != null ? camera.pixelRect : root.pixelRect;
+            // Overlay layout uses the player framebuffer. Canvas.pixelRect can
+            // lag behind a browser resize while the overlay itself has resized.
+            Rect pixels = camera != null ? camera.pixelRect : new Rect(0, 0, Screen.width, Screen.height);
             cssRatio = Mathf.Clamp(cssRatio, .25f, 8f);
             Rect view = new Rect(pixels.x / cssRatio, pixels.y / cssRatio, pixels.width / cssRatio, pixels.height / cssRatio);
             if (view.width < 240 || view.height < 280) return;
@@ -72,6 +74,13 @@ namespace Vodovorot.Stage3
             if (results.resultImage != null)
                 PlaceScreen(results.resultImage.rectTransform, new Rect(heading.x, heading.y, medalWidth, titleHeight), camera, cssRatio);
             float bodyTop = heading.yMin - gap;
+            if (results.AccountGoalText != null)
+            {
+                float goalHeight = wide ? 26 : 36;
+                Rect goalBox = new Rect(inside.x, bodyTop - goalHeight, inside.width, goalHeight);
+                PlaceText(results.AccountGoalText, goalBox, camera, cssRatio, 20, 16, TextAnchor.MiddleCenter);
+                bodyTop = goalBox.yMin - gap;
+            }
             Rect stats, actions;
             if (wide)
             {

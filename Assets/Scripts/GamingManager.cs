@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using YG;
+using Vodovorot.RoundExperience;
 
 public class GamingManager : MonoBehaviour
 {
@@ -44,6 +45,13 @@ public class GamingManager : MonoBehaviour
 
     [Header("Total Cleaning Mode")]
     public float totalCleaningDuration = 180f;
+    [SerializeField] private RoundExperienceSettings experienceSettings;
+    private RoundExperienceValues experienceValues;
+    private bool coinBonusPending;
+    public bool HasClaimedCoinBonus { get; private set; }
+    public bool IsCoinBonusPending => coinBonusPending;
+    public event System.Action ProgressUpdated;
+    public event System.Action RewardUpdated;
 
     // Публичные данные
     public float perc = 0f;
@@ -69,10 +77,13 @@ public class GamingManager : MonoBehaviour
 
     public bool IsTotalCleaningMode => isTotalCleaningMode;
     public bool HasRewardBeenApplied => rewardApplied;
+    public bool HasRoundEnded => endSequenceStarted;
     public float RemainingTime => Mathf.Max(0f, totalCleaningDuration - timer);
 
     private void Awake()
     {
+        if (experienceSettings != null)
+            experienceValues = experienceSettings.CreateRuntimeValues();
         if (VodovorotGameManager.Instance != null)
             VodovorotGameManager.Instance.GamingManager = this;
         Vodovorot.Stage3.RoundResultsVisualStyle.ApplySettings(this);
@@ -98,6 +109,8 @@ public class GamingManager : MonoBehaviour
 
         once = true;
         rewardApplied = false;
+        HasClaimedCoinBonus = false;
+        coinBonusPending = false;
         endSequenceStarted = false;
         Stage2RoundId = System.Guid.NewGuid().ToString("N");
         Stage2NaturalCompletion = false;
@@ -111,6 +124,8 @@ public class GamingManager : MonoBehaviour
         Time.timeScale = 1f;
         timer = 0f;
         timerGo = true;
+        if (experienceValues.RoundSeconds > 0f)
+            totalCleaningDuration = experienceValues.RoundSeconds;
 
         isTotalCleaningMode = VodovorotGameManager.Instance?.ModeManager != null &&
             VodovorotGameManager.Instance.ModeManager.currentMode == ModeManager.Mode.TotalCleaning;
@@ -166,7 +181,7 @@ public class GamingManager : MonoBehaviour
     private void UpdateProgressUI()
     {
         float fill = Mathf.Clamp01(perc);
-        string percentText = $"{(int)(fill * 100)}%";
+        string percentText = ProgressReadout.Capture(fill, YG2.saves.langRu);
 
         if (isTotalCleaningMode)
         {
@@ -190,6 +205,7 @@ public class GamingManager : MonoBehaviour
                 Dpercent.text = percentText;
             }
         }
+        ProgressUpdated?.Invoke();
     }
 
     private void UpdateTotalCleaningTimerUI()
@@ -254,6 +270,9 @@ public class GamingManager : MonoBehaviour
         timerGo = false;
         once = false;
         Time.timeScale = 0;
+        if (Stage2NaturalCompletion && timer >= totalCleaningDuration - 0.01f)
+            timer = totalCleaningDuration;
+        UpdateProgressUI();
 
         if (YG2.envir.isMobile)
             MobpanelOfEnd?.SetActive(true);
@@ -324,7 +343,18 @@ public class GamingManager : MonoBehaviour
         };
     }
 
-    public MatchRewardData GetCurrentTotalCleaningReward() => GetTotalCleaningReward(GetCapturePercent());
+    public MatchRewardData GetCurrentTotalCleaningReward()
+    {
+        MatchRewardData reward = GetTotalCleaningReward(GetCapturePercent());
+        // A completed useful attempt advances the account even when map-wide coverage is tiny.
+        // Interrupted and empty attempts keep their existing proportional reward.
+        if (Stage2NaturalCompletion && Stage2PlayerAbsorbedValue > 0)
+        {
+            reward.exp = Mathf.Max(reward.exp, experienceValues.MinimumCompletedExperience);
+            reward.coins = Mathf.Max(reward.coins, experienceValues.MinimumCompletedCoins);
+        }
+        return reward;
+    }
 
     public void ApplyMatchReward(MatchRewardData reward)
     {
@@ -337,8 +367,41 @@ public class GamingManager : MonoBehaviour
         YG2.saves.diamonds += reward.diamonds;
 
         VodovorotGameManager.Instance?.SaveProgress();
+        RewardUpdated?.Invoke();
         Vodovorot.Stage2.LeaderboardRoundService.BeginRound(Stage2RoundId, IsStage2RankRewardEligible);
     }
+
+    public bool TryBeginCoinBonus()
+    {
+        if (!rewardApplied || settledReward.coins <= 0 || HasClaimedCoinBonus || coinBonusPending)
+            return false;
+        coinBonusPending = true;
+        return true;
+    }
+
+    public void CancelCoinBonus() => coinBonusPending = false;
+
+    public bool TryApplyCoinBonus()
+    {
+        if (!coinBonusPending || HasClaimedCoinBonus || !rewardApplied)
+            return false;
+        coinBonusPending = false;
+        HasClaimedCoinBonus = true;
+        YG2.saves.goldCoins += settledReward.coins * 2;
+        VodovorotGameManager.Instance?.SaveProgress();
+        RewardUpdated?.Invoke();
+        return true;
+    }
+
+#if UNITY_EDITOR
+    public void ConfigureExperienceForTesting(RoundExperienceValues values)
+    {
+        if (!Vodovorot.Stage3.RankSimulationContext.Active)
+            throw new System.InvalidOperationException("Use an isolated test profile.");
+        experienceValues = values;
+        totalCleaningDuration = Mathf.Max(1f, values.RoundSeconds);
+    }
+#endif
 
     public void RegisterPlayerAbsorption(HoleParent owner, int amount)
     {
@@ -417,6 +480,8 @@ public class GamingManager : MonoBehaviour
         EnemyController.count = 0;
         rewardApplied = false;
         endSequenceStarted = false;
+        HasClaimedCoinBonus = false;
+        coinBonusPending = false;
         isTotalCleaningMode = false;
     }
 }
