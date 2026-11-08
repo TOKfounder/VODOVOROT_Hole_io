@@ -36,7 +36,7 @@ function InitPayments(sendback) {
                                 currencyImageURL[i] = products[i].getPriceCurrencyImage("medium");
 
                                 consumed[i] = true;
-                                for (i2 = 0; i2 < purchases.length; i2++) {
+                                for (let i2 = 0; i2 < purchases.length; i2++) {
                                     if (purchases[i2].productID === productID[i]) {
                                         consumed[i] = false;
                                         break;
@@ -78,69 +78,77 @@ function InitPayments(sendback) {
     });
 }
 
+// Serialize deliveries so each acknowledgement refers to its own full-profile save.
+let purchaseDeliveryQueue = Promise.resolve();
+let pendingPurchaseDelivery = null;
+const supportedPurchaseIDs = new Set(['hand', 'bag', 'box', 'chest', 'gold', 'scrag', 'lord']);
+
 function BuyPayments(id) {
-    try {
-        if (payments != null) {
-            payments.purchase({ id: id }).then(() => {
-                LogStyledMessage('Purchase Success');
-                ConsumePurchase(id, true);
-                FocusGame();
-            }).catch(e => {
-                console.error('Purchase Failed', e.message);
-                YG2Instance('OnPurchaseFailed', id);
-                FocusGame();
-            })
-        }
-        else {
-            LogStyledMessage('Payments == null');
-            YG2Instance('OnPurchaseFailed', id);
-        }
-    } catch (e) {
-        console.error('CRASH Buy Payments: ', e.message);
+    if (!payments || !supportedPurchaseIDs.has(id)) {
         YG2Instance('OnPurchaseFailed', id);
-        FocusGame();
+        return;
     }
+    payments.purchase({ id: id })
+        .then(() => ConsumePurchase(id, true))
+        .catch(() => YG2Instance('OnPurchaseFailed', id))
+        .finally(() => FocusGame());
+}
+
+function QueuePurchaseDelivery(purchase) {
+    // Other versions of this app have their own catalog. Never consume their orders.
+    if (!supportedPurchaseIDs.has(purchase.productID)) return Promise.resolve();
+    purchaseDeliveryQueue = purchaseDeliveryQueue.catch(() => {}).then(async () => {
+        await new Promise((resolve, reject) => {
+            const timeout = setTimeout(() => {
+                pendingPurchaseDelivery = null;
+                reject(new Error('Purchase delivery acknowledgement timed out'));
+            }, 15000);
+            pendingPurchaseDelivery = {
+                token: purchase.purchaseToken,
+                resolve: () => { clearTimeout(timeout); resolve(); },
+                reject: () => { clearTimeout(timeout); reject(new Error('Purchase remains pending')); }
+            };
+            window.__vodovorotPurchaseCloudWrite = null;
+            YG2Instance('OnPurchaseDelivery', JSON.stringify({
+                productID: purchase.productID, purchaseToken: purchase.purchaseToken
+            }));
+        });
+        await payments.consumePurchase(purchase.purchaseToken);
+    });
+    return purchaseDeliveryQueue;
+}
+
+function AcknowledgePurchaseDelivery(token, accepted) {
+    const pending = pendingPurchaseDelivery;
+    if (!pending || pending.token !== token) return;
+    const write = window.__vodovorotPurchaseCloudWrite;
+    if (!accepted || !write) {
+        pendingPurchaseDelivery = null;
+        pending.reject();
+        return;
+    }
+    // A real, flushed cloud commit must succeed before acknowledging the SDK order.
+    Promise.resolve(write).then(() => {
+        if (pendingPurchaseDelivery === pending) pendingPurchaseDelivery = null;
+        pending.resolve();
+    }, () => {
+        if (pendingPurchaseDelivery === pending) pendingPurchaseDelivery = null;
+        pending.reject();
+    });
 }
 
 function ConsumePurchase(id, onPurchaseSuccess) {
-    try {
-        if (payments != null) {
-            payments.getPurchases().then(purchases => {
-                for (i = 0; i < purchases.length; i++) {
-                    if (purchases[i].productID === id) {
-                        payments.consumePurchase(purchases[i].purchaseToken);
-
-                        if (onPurchaseSuccess)
-                            YG2Instance('OnPurchaseSuccess', id);
-                    }
-                }
-            });
+    if (!payments) return Promise.resolve();
+    return payments.getPurchases().then(async purchases => {
+        for (const purchase of purchases) {
+            if (purchase.productID === id) await QueuePurchaseDelivery(purchase);
         }
-        else {
-            LogStyledMessage('Consume purchase: payments null');
-        }
-    } catch (e) {
-        console.error('CRASH Consume Purchase: ', e.message);
-    }
+    }).catch(() => console.warn('Purchase delivery pending; retry on next launch'));
 }
 
 function ConsumePurchases(onPurchaseSuccess) {
-    try {
-        if (payments != null) {
-            payments.getPurchases().then(purchases => {
-                LogStyledMessage('Unprocessed purchases: ', purchases.length);
-                for (i = 0; i < purchases.length; i++) {
-                    payments.consumePurchase(purchases[i].purchaseToken);
-
-                    if (onPurchaseSuccess)
-                        YG2Instance('OnPurchaseSuccess', purchases[i].productID);
-                }
-            });
-        }
-        else {
-            LogStyledMessage('Consume purchases: payments null');
-        }
-    } catch (e) {
-        console.error('CRASH Consume purchases: ', e.message);
-    }
+    if (!payments) return Promise.resolve();
+    return payments.getPurchases().then(async purchases => {
+        for (const purchase of purchases) await QueuePurchaseDelivery(purchase);
+    }).catch(() => console.warn('Purchase restoration pending; retry on next launch'));
 }

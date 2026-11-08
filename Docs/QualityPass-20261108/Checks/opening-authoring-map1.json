@@ -1,0 +1,639 @@
+[
+  {
+    "scene": "Assets/Scenes/Garden.unity",
+    "originalCount": 78,
+    "moved": 63,
+    "edits": [
+      {
+        "name": "Garden/MyTown2/Lamp_7_prefab (05)/Lamp 7",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-2542314472355558678-576223906",
+        "wave": 1,
+        "before": "(-31.89001, 0.19440, -36.71571)",
+        "after": "(-31.89001, 0.19440, -36.72071)",
+        "deltaMetres": 0.005,
+        "localScale": "(100.00000, 100.00000, 100.00000)",
+        "localRotation": "(270.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown2/Lamp_7_prefab (04)/Lamp 7",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-2542314472355558678-1146630497",
+        "wave": 1,
+        "before": "(-31.51001, 0.19440, -36.71571)",
+        "after": "(-31.51001, 0.19440, -36.71072)",
+        "deltaMetres": 0.005,
+        "localScale": "(100.00000, 100.00000, 100.00000)",
+        "localRotation": "(270.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown2/Lamp_7_prefab (18)/Lamp 7",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-2542314472355558678-2016415130",
+        "wave": 1,
+        "before": "(-31.89001, 0.19440, -36.16570)",
+        "after": "(-31.87251, 0.19440, -36.15878)",
+        "deltaMetres": 0.01882555,
+        "localScale": "(100.00000, 100.00000, 100.00000)",
+        "localRotation": "(270.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown2/Lamp_7_prefab (19)/Lamp 7",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-2542314472355558678-797523707",
+        "wave": 1,
+        "before": "(-31.51001, 0.19440, -36.16570)",
+        "after": "(-31.49251, 0.19440, -36.14878)",
+        "deltaMetres": 0.0243504141,
+        "localScale": "(100.00000, 100.00000, 100.00000)",
+        "localRotation": "(270.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown2/Lamp_7_prefab (06)/Lamp 7",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-2542314472355558678-773663956",
+        "wave": 1,
+        "before": "(-31.89001, 0.19440, -35.61571)",
+        "after": "(-31.78201, 0.19440, -35.58823)",
+        "deltaMetres": 0.111444153,
+        "localScale": "(100.00000, 100.00000, 100.00000)",
+        "localRotation": "(270.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown2/Lamp_7_prefab (13)/Lamp 7",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-2542314472355558678-1599579615",
+        "wave": 1,
+        "before": "(-31.51001, 0.19440, -35.61571)",
+        "after": "(-31.40201, 0.19440, -35.54824)",
+        "deltaMetres": 0.1273496,
+        "localScale": "(100.00000, 100.00000, 100.00000)",
+        "localRotation": "(270.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown2/Lamp_7_prefab (15)/Lamp 7",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-2542314472355558678-65599671",
+        "wave": 1,
+        "before": "(-31.89001, 0.19440, -35.06571)",
+        "after": "(-31.79344, 0.19440, -35.08618)",
+        "deltaMetres": 0.09872002,
+        "localScale": "(100.00000, 100.00000, 100.00000)",
+        "localRotation": "(270.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown2/Lamp_7_prefab (08)/Lamp 7",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-2542314472355558678-1511109551",
+        "wave": 1,
+        "before": "(-31.51001, 0.19440, -35.06571)",
+        "after": "(-31.41344, 0.19440, -35.04618)",
+        "deltaMetres": 0.09853249,
+        "localScale": "(100.00000, 100.00000, 100.00000)",
+        "localRotation": "(270.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown2/Lamp_7_prefab (38)/Lamp 7",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-2542314472355558678-1227141793",
+        "wave": 1,
+        "before": "(-31.89001, 0.19440, -34.51571)",
+        "after": "(-31.84906, 0.19440, -34.58366)",
+        "deltaMetres": 0.0793311447,
+        "localScale": "(100.00000, 100.00000, 100.00000)",
+        "localRotation": "(270.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown2/Lamp_7_prefab (09)/Lamp 7",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-2542314472355558678-1931526420",
+        "wave": 1,
+        "before": "(-31.51001, 0.19440, -34.51571)",
+        "after": "(-31.46906, 0.19440, -34.54365)",
+        "deltaMetres": 0.04958324,
+        "localScale": "(100.00000, 100.00000, 100.00000)",
+        "localRotation": "(270.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (39)",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-7270633218675642648-502087457",
+        "wave": 1,
+        "before": "(-31.88962, 0.19540, -33.95015)",
+        "after": "(-31.92302, 0.19540, -34.01740)",
+        "deltaMetres": 0.07507509,
+        "localScale": "(0.14889, 0.44831, 0.14889)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (23)",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-4272639696895291242-2030806324",
+        "wave": 1,
+        "before": "(-31.50962, 0.19540, -33.95015)",
+        "after": "(-31.54302, 0.19540, -33.97739)",
+        "deltaMetres": 0.0430924259,
+        "localScale": "(0.14889, 0.44831, 0.14889)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (19)",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-596862007169126698-502087457",
+        "wave": 1,
+        "before": "(-31.44962, 0.19541, -32.91015)",
+        "after": "(-31.55887, 0.19541, -32.88200)",
+        "deltaMetres": 0.112811692,
+        "localScale": "(0.14889, 0.44831, 0.14889)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (6)/Natures_Bush_02 (19)",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-596862007169126698-2030806324",
+        "wave": 1,
+        "before": "(-31.44962, 0.19541, -32.29015)",
+        "after": "(-31.34039, 0.19541, -32.35831)",
+        "deltaMetres": 0.128761053,
+        "localScale": "(0.14889, 0.44831, 0.14889)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (17)",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-4496444139376525543-2030806324",
+        "wave": 1,
+        "before": "(-30.89962, 0.19541, -32.91015)",
+        "after": "(-30.87263, 0.19541, -32.83412)",
+        "deltaMetres": 0.0806875,
+        "localScale": "(0.14889, 0.44831, 0.14889)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (29)",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-2330163352761646943-502087457",
+        "wave": 1,
+        "before": "(-30.89962, 0.19540, -34.29015)",
+        "after": "(-30.82359, 0.19540, -34.35715)",
+        "deltaMetres": 0.1013445,
+        "localScale": "(0.14889, 0.44831, 0.14889)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (25)",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-8978572790669686668-2030806324",
+        "wave": 1,
+        "before": "(-30.34962, 0.19541, -32.91015)",
+        "after": "(-30.37102, 0.19541, -32.90211)",
+        "deltaMetres": 0.0228494871,
+        "localScale": "(0.14889, 0.44831, 0.14889)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (9)/Natures_Bush_02 (31)",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-6283252684513574132-502087457",
+        "wave": 1,
+        "before": "(-30.34962, 0.19540, -34.29015)",
+        "after": "(-30.33101, 0.19540, -34.28211)",
+        "deltaMetres": 0.0202764571,
+        "localScale": "(0.14889, 0.44831, 0.14889)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (21)",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-6561367796985795139-502087457",
+        "wave": 1,
+        "before": "(-29.79962, 0.19540, -34.29015)",
+        "after": "(-29.82801, 0.19540, -34.35378)",
+        "deltaMetres": 0.06967195,
+        "localScale": "(0.14889, 0.44831, 0.14889)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (9)/Natures_Bush_02 (35)",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-1658148031666611300-502087457",
+        "wave": 1,
+        "before": "(-29.24962, 0.19540, -34.29015)",
+        "after": "(-29.27639, 0.19540, -34.39634)",
+        "deltaMetres": 0.109509647,
+        "localScale": "(0.14889, 0.44831, 0.14889)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (9)/Natures_Bush_02 (23)",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-4272639696895291242-502087457",
+        "wave": 1,
+        "before": "(-28.69962, 0.19540, -34.29015)",
+        "after": "(-28.67778, 0.19540, -34.39032)",
+        "deltaMetres": 0.10252329,
+        "localScale": "(0.14889, 0.44831, 0.14889)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (37)",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-7587584268067048917-502087457",
+        "wave": 1,
+        "before": "(-28.14962, 0.19540, -34.29015)",
+        "after": "(-28.08103, 0.19540, -34.33847)",
+        "deltaMetres": 0.0839099,
+        "localScale": "(0.14889, 0.44831, 0.14889)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (22)",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-1274736043745028399-2030806324",
+        "wave": 1,
+        "before": "(-27.59962, 0.19541, -32.91015)",
+        "after": "(-27.57311, 0.19541, -32.88452)",
+        "deltaMetres": 0.0368826836,
+        "localScale": "(0.14889, 0.44831, 0.14889)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (26)",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-6918125069770881215-502087457",
+        "wave": 1,
+        "before": "(-27.59962, 0.19540, -33.79015)",
+        "after": "(-27.53311, 0.19540, -33.76452)",
+        "deltaMetres": 0.0712854862,
+        "localScale": "(0.14889, 0.44831, 0.14889)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (9)/Natures_Bush_02 (25)",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-8978572790669686668-502087457",
+        "wave": 1,
+        "before": "(-27.04962, 0.19540, -33.79015)",
+        "after": "(-27.03194, 0.19540, -33.70229)",
+        "deltaMetres": 0.08962588,
+        "localScale": "(0.14889, 0.44831, 0.14889)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (6)/Natures_Bush_02 (29)",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-2330163352761646943-2030806324",
+        "wave": 1,
+        "before": "(-26.49962, 0.19541, -32.91015)",
+        "after": "(-26.56844, 0.19541, -32.80027)",
+        "deltaMetres": 0.129660323,
+        "localScale": "(0.14889, 0.44831, 0.14889)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (6)/Natures_Bush_02 (18)",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-599564960881732303-2030806324",
+        "wave": 1,
+        "before": "(-25.94962, 0.19540, -32.91015)",
+        "after": "(-26.01590, 0.19540, -32.82851)",
+        "deltaMetres": 0.105152838,
+        "localScale": "(0.14889, 0.44831, 0.14889)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown2/Lamp_7_prefab (37)/Lamp 7",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-2542314472355558678-2122165827",
+        "wave": 1,
+        "before": "(-25.95001, 0.19440, -33.30570)",
+        "after": "(-25.97629, 0.19440, -33.22407)",
+        "deltaMetres": 0.08576538,
+        "localScale": "(100.00000, 100.00000, 100.00000)",
+        "localRotation": "(270.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (16)",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-3881894600009606910-2030806324",
+        "wave": 1,
+        "before": "(-25.39962, 0.19540, -32.91015)",
+        "after": "(-25.41686, 0.19540, -32.89411)",
+        "deltaMetres": 0.0235403925,
+        "localScale": "(0.14889, 0.44831, 0.14889)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (9)/Natures_Bush_02 (30)",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-1816122543642080458-502087457",
+        "wave": 1,
+        "before": "(-25.39962, 0.19540, -33.79015)",
+        "after": "(-25.37685, 0.19540, -33.77411)",
+        "deltaMetres": 0.0278569255,
+        "localScale": "(0.14889, 0.44831, 0.14889)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (28)",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-730114261440328729-502087457",
+        "wave": 1,
+        "before": "(-24.84962, 0.19540, -32.91015)",
+        "after": "(-24.82060, 0.19540, -32.96705)",
+        "deltaMetres": 0.0638737753,
+        "localScale": "(0.14889, 0.44831, 0.14889)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (24)",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-5218970974232617055-2030806324",
+        "wave": 1,
+        "before": "(-24.84962, 0.19540, -33.79015)",
+        "after": "(-24.78060, 0.19540, -33.84705)",
+        "deltaMetres": 0.08945421,
+        "localScale": "(0.14889, 0.44831, 0.14889)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown2/Stone 2 Prefab (16)/stone 2",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-4346709269028335384-968744792",
+        "wave": 2,
+        "before": "(-24.05991, 0.10804, -32.13345)",
+        "after": "(-24.03992, 0.10804, -32.13345)",
+        "deltaMetres": 0.02,
+        "localScale": "(100.00000, 99.99997, 99.99997)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown2/bush prefab/bush",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-3720357159362655677-1578918748",
+        "wave": 2,
+        "before": "(-22.86551, 0.19414, -32.30910)",
+        "after": "(-22.88551, 0.19414, -32.30910)",
+        "deltaMetres": 0.02,
+        "localScale": "(163.48940, 163.48940, 163.48940)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown2/Stone 2 Prefab (18)/stone 2",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-4346709269028335384-76938632",
+        "wave": 2,
+        "before": "(-21.75990, 0.10804, -32.13345)",
+        "after": "(-21.77991, 0.10804, -32.13345)",
+        "deltaMetres": 0.02,
+        "localScale": "(100.00000, 99.99997, 99.99997)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown2/Stone 2 Prefab (26)/stone 2",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-4346709269028335384-933949397",
+        "wave": 2,
+        "before": "(-20.60989, 0.10804, -32.13345)",
+        "after": "(-20.60989, 0.10804, -32.11346)",
+        "deltaMetres": 0.02,
+        "localScale": "(100.00000, 99.99997, 99.99997)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown2/Stone 1 Prefab (11)/stone 1",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-9173591364953303298-1317635858",
+        "wave": 2,
+        "before": "(-25.30972, 0.08922, -31.24703)",
+        "after": "(-25.37646, 0.08922, -31.09427)",
+        "deltaMetres": 0.166711971,
+        "localScale": "(100.00000, 99.99997, 99.99997)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown2/Stone 2 Prefab (24)/stone 2",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-4346709269028335384-1203565667",
+        "wave": 2,
+        "before": "(-26.71297, 0.10804, -31.28344)",
+        "after": "(-26.56021, 0.10804, -31.17670)",
+        "deltaMetres": 0.186365947,
+        "localScale": "(100.00000, 99.99997, 99.99997)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown2/Stone 2 Prefab (6)/stone 2",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-4346709269028335384-1787943570",
+        "wave": 2,
+        "before": "(-19.41296, 0.10804, -31.28345)",
+        "after": "(-19.47970, 0.10804, -31.13068)",
+        "deltaMetres": 0.166711971,
+        "localScale": "(100.00000, 99.99997, 99.99997)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown2/Stone 2 Prefab (2)/stone 2",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-4346709269028335384-146480100",
+        "wave": 2,
+        "before": "(-22.67239, 0.10804, -30.43345)",
+        "after": "(-22.51962, 0.10804, -30.32671)",
+        "deltaMetres": 0.186365947,
+        "localScale": "(100.00000, 99.99997, 99.99997)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown2/Stone 2 Prefab (12)/stone 2",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-4346709269028335384-1758923536",
+        "wave": 2,
+        "before": "(-28.02240, 0.10804, -30.43345)",
+        "after": "(-27.95609, 0.10804, -30.66911)",
+        "deltaMetres": 0.244799837,
+        "localScale": "(100.00000, 99.99997, 99.99997)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown2/Stone 2 Prefab (10)/stone 2",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-4346709269028335384-517726840",
+        "wave": 2,
+        "before": "(-24.99435, 0.10804, -29.58344)",
+        "after": "(-24.88805, 0.10804, -29.81910)",
+        "deltaMetres": 0.2585201,
+        "localScale": "(100.00000, 99.99997, 99.99997)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown2/Stone 2 Prefab (08)/stone 2",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-4346709269028335384-2138171047",
+        "wave": 2,
+        "before": "(-26.34436, 0.10804, -29.58344)",
+        "after": "(-26.41069, 0.10804, -29.34780)",
+        "deltaMetres": 0.244799837,
+        "localScale": "(100.00000, 99.99997, 99.99997)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown2/Stone 2 Prefab (20)/stone 2",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-4346709269028335384-1692886612",
+        "wave": 2,
+        "before": "(-19.69435, 0.10804, -29.58344)",
+        "after": "(-19.58803, 0.10804, -29.81910)",
+        "deltaMetres": 0.2585201,
+        "localScale": "(100.00000, 99.99997, 99.99997)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown2/Stone 2 Prefab (23)/stone 2",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-4346709269028335384-1314460592",
+        "wave": 2,
+        "before": "(-22.83458, 0.10804, -28.73344)",
+        "after": "(-22.85542, 0.10804, -28.94416)",
+        "deltaMetres": 0.21173951,
+        "localScale": "(100.00000, 99.99997, 99.99997)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown2/Stone 1 Prefab (17)/stone 1",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-9173591364953303298-507395661",
+        "wave": 2,
+        "before": "(-21.63142, 0.08890, -28.69642)",
+        "after": "(-21.42071, 0.08890, -28.67727)",
+        "deltaMetres": 0.211580634,
+        "localScale": "(100.00000, 99.99997, 99.99997)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/GrassAroundPlace/Stone 1 Prefab (24)/stone 1",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-9173591364953303298-670412254",
+        "wave": 2,
+        "before": "(-24.08193, 0.08997, -28.25152)",
+        "after": "(-24.10278, 0.08997, -28.46223)",
+        "deltaMetres": 0.21173951,
+        "localScale": "(100.00000, 99.99997, 99.99997)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown2/Stone 2 Prefab (27)/stone 2",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-4346709269028335384-1828362198",
+        "wave": 2,
+        "before": "(-18.74824, 0.10804, -27.88344)",
+        "after": "(-18.85541, 0.10804, -27.97283)",
+        "deltaMetres": 0.139537722,
+        "localScale": "(100.00000, 99.99997, 99.99997)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown/Stone 2 Prefab (08)/stone 2",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-4346709269028335384-1736669308",
+        "wave": 2,
+        "before": "(-22.41995, 0.10804, -27.36657)",
+        "after": "(-22.33058, 0.10804, -27.43374)",
+        "deltaMetres": 0.1117952,
+        "localScale": "(100.00000, 99.99997, 99.99997)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown/Stone 2 Prefab (27)/stone 2",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-4346709269028335384-604095027",
+        "wave": 2,
+        "before": "(-20.34280, 0.10804, -26.51657)",
+        "after": "(-20.25343, 0.10804, -26.58373)",
+        "deltaMetres": 0.1117952,
+        "localScale": "(100.00000, 99.99997, 99.99997)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown2/Stone 1 Prefab (16)/stone 1",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-9173591364953303298-918404352",
+        "wave": 2,
+        "before": "(-19.15861, 0.09167, -26.15178)",
+        "after": "(-19.23147, 0.09167, -26.25769)",
+        "deltaMetres": 0.128532261,
+        "localScale": "(100.00000, 99.99997, 99.99997)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown/Stone 1 Prefab (20)/stone 1",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-9173591364953303298-1898545204",
+        "wave": 2,
+        "before": "(-23.85380, 0.09267, -25.69630)",
+        "after": "(-23.91971, 0.09267, -25.62346)",
+        "deltaMetres": 0.09822966,
+        "localScale": "(100.00000, 99.99997, 99.99997)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown2/Stone 2 Prefab (9)/stone 2",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-4346709269028335384-951781093",
+        "wave": 2,
+        "before": "(-22.81930, 0.10804, -25.33345)",
+        "after": "(-22.89215, 0.10804, -25.43935)",
+        "deltaMetres": 0.128532261,
+        "localScale": "(100.00000, 99.99997, 99.99997)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown/Stone 2 Prefab (7)/stone 2",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-4346709269028335384-1360827457",
+        "wave": 2,
+        "before": "(-18.99144, 0.10804, -24.81656)",
+        "after": "(-18.96976, 0.10804, -24.61483)",
+        "deltaMetres": 0.2029079,
+        "localScale": "(100.00000, 99.99997, 99.99997)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown/Stone 1 Prefab (16)/stone 1",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-9173591364953303298-2000957602",
+        "wave": 2,
+        "before": "(-22.22287, 0.09168, -23.99822)",
+        "after": "(-22.42462, 0.09168, -23.97654)",
+        "deltaMetres": 0.2029079,
+        "localScale": "(100.00000, 99.99997, 99.99997)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown/Stone 2 Prefab (21)/stone 2",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-4346709269028335384-337015039",
+        "wave": 2,
+        "before": "(-19.73093, 0.10804, -23.11657)",
+        "after": "(-19.79849, 0.10804, -23.35491)",
+        "deltaMetres": 0.247734085,
+        "localScale": "(100.00000, 99.99997, 99.99997)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown/Stone 2 Prefab (23)/stone 2",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-4346709269028335384-1519937670",
+        "wave": 2,
+        "before": "(-18.43092, 0.10804, -23.11657)",
+        "after": "(-18.53850, 0.10804, -23.35491)",
+        "deltaMetres": 0.261490941,
+        "localScale": "(100.00000, 99.99997, 99.99997)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown/bush prefab/bush",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-1917477282-0",
+        "wave": 2,
+        "before": "(-23.36998, 0.19414, -22.09092)",
+        "after": "(-23.60832, 0.19414, -22.02335)",
+        "deltaMetres": 0.247734085,
+        "localScale": "(163.48940, 163.48940, 163.48940)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown/Stone 2 Prefab (9)/stone 2",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-4346709269028335384-2020265350",
+        "wave": 2,
+        "before": "(-22.17558, 0.10804, -22.26656)",
+        "after": "(-22.06802, 0.10804, -22.02822)",
+        "deltaMetres": 0.261490941,
+        "localScale": "(100.00000, 99.99997, 99.99997)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown/Stone 2 Prefab (14)/stone 2",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-4346709269028335384-759298911",
+        "wave": 2,
+        "before": "(-26.59979, 0.10804, -21.41656)",
+        "after": "(-26.70526, 0.10804, -21.58246)",
+        "deltaMetres": 0.1965776,
+        "localScale": "(100.00000, 99.99997, 99.99997)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown/Stone 2 Prefab (5)/stone 2",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-4346709269028335384-2089512605",
+        "wave": 2,
+        "before": "(-19.79980, 0.10804, -21.41656)",
+        "after": "(-19.90527, 0.10804, -21.58246)",
+        "deltaMetres": 0.1965776,
+        "localScale": "(100.00000, 99.99997, 99.99997)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/MyTown/Stone 2 Prefab (2)/stone 2",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-4346709269028335384-1659608269",
+        "wave": 2,
+        "before": "(-18.64980, 0.10804, -21.41656)",
+        "after": "(-18.66734, 0.10804, -21.43909)",
+        "deltaMetres": 0.02855165,
+        "localScale": "(100.00000, 99.99997, 99.99997)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      },
+      {
+        "name": "Garden/NextPlace/Stone 2 Prefab (8)/stone 2",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-4346709269028335384-282632645",
+        "wave": 2,
+        "before": "(-24.91934, 0.10804, -20.23344)",
+        "after": "(-24.90187, 0.10804, -20.21589)",
+        "deltaMetres": 0.0247677881,
+        "localScale": "(100.00000, 99.99997, 99.99997)",
+        "localRotation": "(270.01980, 0.00000, 0.00000)"
+      }
+    ]
+  }
+]

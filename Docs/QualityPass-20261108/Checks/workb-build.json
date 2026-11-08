@@ -1,0 +1,9 @@
+{
+  "buildId": "build_8307b7446aa2",
+  "result": "Succeeded",
+  "totalErrors": 0,
+  "totalWarnings": 15,
+  "totalSizeBytes": 29954979,
+  "buildTimeMs": 131335,
+  "provenance": "Recorded Unity CLI build result; per-asset breakdown omitted"
+}

@@ -26,6 +26,7 @@ namespace PinePie.SimpleJoystick.Examples.DemoScript
         private bool inputSuspended;
 
         private BlackHoleController playerHole;   // ссылка на нашу дыру игрока
+        public Vector3 IntentDirection { get; private set; }
 
         void Start()
         {
@@ -96,6 +97,7 @@ namespace PinePie.SimpleJoystick.Examples.DemoScript
 
             if (movement.magnitude > 1f)
                 movement = movement.normalized;
+            IntentDirection = movement;
 
             // Поворот WithoutCamera
             if (movement.magnitude > 0.01f)
@@ -170,6 +172,7 @@ namespace PinePie.SimpleJoystick.Examples.DemoScript
 
         private void ResetHeldInput()
         {
+            IntentDirection = Vector3.zero;
             isBoosting = false;
             if (boostControl != null) boostControl.isHolding = false;
             if (joystickController != null) joystickController.ResetInput();

@@ -1,0 +1,74 @@
+[
+  {
+    "scene": "Assets/Scenes/Low Poly City.unity",
+    "group": "Автодвор",
+    "prefab": "Assets/Prefabs/MapPolish/CityPrimaryLandmark.prefab",
+    "reusedCityVisualInLab": false,
+    "labelBound": true,
+    "targets": 5,
+    "colliders": 0
+  },
+  {
+    "scene": "Assets/Scenes/Low Poly City.unity",
+    "group": "Хвойный сквер",
+    "prefab": "Assets/Prefabs/MapPolish/CitySecondaryLandmark.prefab",
+    "reusedCityVisualInLab": false,
+    "labelBound": true,
+    "targets": 5,
+    "colliders": 0
+  },
+  {
+    "scene": "Assets/Scenes/Garden.unity",
+    "group": "Сад отдыха",
+    "prefab": "Assets/Prefabs/MapPolish/GardenPrimaryLandmark.prefab",
+    "reusedCityVisualInLab": false,
+    "labelBound": true,
+    "targets": 5,
+    "colliders": 0
+  },
+  {
+    "scene": "Assets/Scenes/Garden.unity",
+    "group": "Цветочная аллея",
+    "prefab": "Assets/Prefabs/MapPolish/GardenSecondaryLandmark.prefab",
+    "reusedCityVisualInLab": false,
+    "labelBound": true,
+    "targets": 5,
+    "colliders": 0
+  },
+  {
+    "scene": "Assets/Scenes/MedievalCastle.unity",
+    "group": "Квартал мастеров",
+    "prefab": "Assets/Prefabs/MapPolish/CastlePrimaryLandmark.prefab",
+    "reusedCityVisualInLab": false,
+    "labelBound": true,
+    "targets": 5,
+    "colliders": 0
+  },
+  {
+    "scene": "Assets/Scenes/MedievalCastle.unity",
+    "group": "Северные ворота",
+    "prefab": "Assets/Prefabs/MapPolish/CastleSecondaryLandmark.prefab",
+    "reusedCityVisualInLab": false,
+    "labelBound": true,
+    "targets": 5,
+    "colliders": 0
+  },
+  {
+    "scene": "Assets/Tests/RoundExperienceLab.unity",
+    "group": "Автодвор",
+    "prefab": "Assets/Prefabs/MapPolish/CityPrimaryLandmark.prefab",
+    "reusedCityVisualInLab": true,
+    "labelBound": true,
+    "targets": 5,
+    "colliders": 0
+  },
+  {
+    "scene": "Assets/Tests/RoundExperienceLab.unity",
+    "group": "Хвойный сквер",
+    "prefab": "Assets/Prefabs/MapPolish/CitySecondaryLandmark.prefab",
+    "reusedCityVisualInLab": true,
+    "labelBound": true,
+    "targets": 5,
+    "colliders": 0
+  }
+]

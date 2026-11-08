@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "checks": 10,
+  "covered": [
+    "no consume before cloud commit",
+    "failed save stays pending",
+    "failed consume remains recoverable",
+    "unknown SKU neither delivered nor consumed"
+  ]
+}

@@ -20,6 +20,8 @@ MonoBehaviour:
   cutawayFadeOutSeconds: 0.14
   cutawayFadeInSeconds: 0.35
   targetHintRadius: 5.5
+  blockedTargetHintSeconds: 1.2
+  secondaryGoalRevealFraction: 0.5
   rewardedOffers:
   - id: couple
     requiredAds: 1

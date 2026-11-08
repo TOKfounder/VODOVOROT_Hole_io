@@ -14,6 +14,8 @@ namespace Vodovorot.RoundExperience
         [SerializeField, Range(.03f, 1f)] private float cutawayFadeOutSeconds = .14f;
         [SerializeField, Range(.03f, 1f)] private float cutawayFadeInSeconds = .35f;
         [SerializeField, Range(2f, 10f)] private float targetHintRadius = 5.5f;
+        [SerializeField, Range(.5f, 3f)] private float blockedTargetHintSeconds = 1.2f;
+        [SerializeField, Range(.35f, .8f)] private float secondaryGoalRevealFraction = .5f;
         [SerializeField] private RewardedOfferDefinition[] rewardedOffers =
         {
             new RewardedOfferDefinition("couple", 1, 5),
@@ -34,6 +36,8 @@ namespace Vodovorot.RoundExperience
                 CutawayFadeOutSeconds = Mathf.Clamp(cutawayFadeOutSeconds, .03f, 1f),
                 CutawayFadeInSeconds = Mathf.Clamp(cutawayFadeInSeconds, .03f, 1f),
                 TargetHintRadius = Mathf.Clamp(targetHintRadius, 2f, 10f),
+                BlockedTargetHintSeconds = Mathf.Clamp(blockedTargetHintSeconds, .5f, 3f),
+                SecondaryGoalRevealFraction = Mathf.Clamp(secondaryGoalRevealFraction, .35f, .8f),
                 RewardedOffers = Array.ConvertAll(rewardedOffers, offer => new RewardedOfferValues
                 {
                     Id = offer.Id,
@@ -79,6 +83,8 @@ namespace Vodovorot.RoundExperience
         public float CutawayFadeOutSeconds;
         public float CutawayFadeInSeconds;
         public float TargetHintRadius;
+        public float BlockedTargetHintSeconds;
+        public float SecondaryGoalRevealFraction;
         public RewardedOfferValues[] RewardedOffers;
 
         public bool TryGetRewardedOffer(string id, out RewardedOfferValues offer)

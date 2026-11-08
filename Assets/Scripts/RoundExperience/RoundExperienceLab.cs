@@ -111,6 +111,8 @@ public sealed class RoundExperienceLab : MonoBehaviour
         sliders[4].SetValueWithoutNotify(working.CutawayFadeOutSeconds);
         sliders[5].SetValueWithoutNotify(working.CutawayFadeInSeconds);
         sliders[6].SetValueWithoutNotify(working.TargetHintRadius);
+        sliders[7].SetValueWithoutNotify(working.BlockedTargetHintSeconds);
+        sliders[8].SetValueWithoutNotify(working.SecondaryGoalRevealFraction);
     }
 
     private void ApplySliders(float unused)
@@ -122,6 +124,12 @@ public sealed class RoundExperienceLab : MonoBehaviour
         working.CutawayFadeOutSeconds = sliders[4].value;
         working.CutawayFadeInSeconds = sliders[5].value;
         working.TargetHintRadius = sliders[6].value;
+        working.BlockedTargetHintSeconds = sliders[7].value;
+        working.SecondaryGoalRevealFraction = sliders[8].value;
+        foreach (TooLargeTargetFeedback feedback in FindObjectsByType<TooLargeTargetFeedback>(FindObjectsInactive.Include))
+            feedback.VisibleSeconds = working.BlockedTargetHintSeconds;
+        foreach (LateRoundGoals goals in FindObjectsByType<LateRoundGoals>(FindObjectsInactive.Include))
+            goals.RevealFraction = working.SecondaryGoalRevealFraction;
         game.ConfigureExperienceForTesting(working);
         cutaway.ReleaseSeconds = working.CutawayReleaseSeconds;
         cutaway.FadeOutSeconds = working.CutawayFadeOutSeconds;
@@ -134,6 +142,8 @@ public sealed class RoundExperienceLab : MonoBehaviour
         valueLabels[4].text = "Скрытие: " + working.CutawayFadeOutSeconds.ToString("0.00") + " с";
         valueLabels[5].text = "Появление: " + working.CutawayFadeInSeconds.ToString("0.00") + " с";
         valueLabels[6].text = "Подсветка: " + working.TargetHintRadius.ToString("0.0") + " м";
+        valueLabels[7].text = "Подсказка: " + working.BlockedTargetHintSeconds.ToString("0.0") + " с";
+        valueLabels[8].text = "Доп. цели: " + (working.SecondaryGoalRevealFraction * 100).ToString("0") + "% раунда";
     }
 
     private void Restart()
@@ -160,6 +170,8 @@ public sealed class RoundExperienceLab : MonoBehaviour
         serialized.FindProperty("cutawayFadeOutSeconds").floatValue = working.CutawayFadeOutSeconds;
         serialized.FindProperty("cutawayFadeInSeconds").floatValue = working.CutawayFadeInSeconds;
         serialized.FindProperty("targetHintRadius").floatValue = working.TargetHintRadius;
+        serialized.FindProperty("blockedTargetHintSeconds").floatValue = working.BlockedTargetHintSeconds;
+        serialized.FindProperty("secondaryGoalRevealFraction").floatValue = working.SecondaryGoalRevealFraction;
         serialized.ApplyModifiedProperties();
         AssetDatabase.SaveAssetIfDirty(settings);
         status.text = "Параметры сохранены в RoundExperienceSettings.asset.\nНовые раунды используют выбранные значения.";

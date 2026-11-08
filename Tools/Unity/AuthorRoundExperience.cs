@@ -287,28 +287,29 @@ public static class AuthorRoundExperience
         RectTransform rect = panel.GetComponent<RectTransform>();
         rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(0, 1);
         rect.anchoredPosition = new Vector2(12, -12);
-        rect.sizeDelta = new Vector2(350, 602);
+        rect.sizeDelta = new Vector2(680, 470);
         panel.GetComponent<Image>().color = new Color(.03f, .12f, .18f, .96f);
-        Text heading = TextAt(panel.transform, "Title", new Vector2(175, -24), new Vector2(326, 38), 24, Color.white);
+        Text heading = TextAt(panel.transform, "Title", new Vector2(340, -24), new Vector2(650, 38), 24, Color.white);
         heading.rectTransform.anchorMin = heading.rectTransform.anchorMax = new Vector2(0, 1);
         heading.text = "ТЕСТ · параметры раунда";
-        var sliders = new Slider[7];
-        var labels = new Text[7];
-        float[] minimum = { 15, 0, 0, 0, .03f, .03f, 2 };
-        float[] maximum = { 180, 25, 10, 1, 1, 1, 10 };
+        var sliders = new Slider[9];
+        var labels = new Text[9];
+        float[] minimum = { 15, 0, 0, 0, .03f, .03f, 2, .5f, .35f };
+        float[] maximum = { 180, 25, 10, 1, 1, 1, 10, 3, .8f };
         string[] captions = { "Раунд: 180 с", "Мин. опыт: 5", "Мин. монеты: 1", "Возврат объектов: 0.15 с",
-            "Скрытие: 0.14 с", "Появление: 0.35 с", "Подсветка: 5.5 м" };
-        for (int i = 0; i < 7; i++)
+            "Скрытие: 0.14 с", "Появление: 0.35 с", "Подсветка: 5.5 м", "Подсказка: 1.2 с", "Доп. цели: 50% раунда" };
+        for (int i = 0; i < 9; i++)
         {
-            float y = -62 - i * 62;
-            labels[i] = TextAt(panel.transform, "Value" + i, new Vector2(175, y), new Vector2(326, 30), 20, Color.white);
+            float y = -62 - (i % 5) * 62;
+            float x = 175 + (i / 5) * 330;
+            labels[i] = TextAt(panel.transform, "Value" + i, new Vector2(x, y), new Vector2(326, 30), 20, Color.white);
             labels[i].rectTransform.anchorMin = labels[i].rectTransform.anchorMax = new Vector2(0, 1);
             labels[i].text = captions[i];
             GameObject control = new GameObject("Slider" + i, typeof(RectTransform), typeof(Image), typeof(Slider));
             control.transform.SetParent(panel.transform, false);
             RectTransform sliderRect = control.GetComponent<RectTransform>();
             sliderRect.anchorMin = sliderRect.anchorMax = new Vector2(0, 1);
-            sliderRect.anchoredPosition = new Vector2(175, y - 24);
+            sliderRect.anchoredPosition = new Vector2(x, y - 24);
             sliderRect.sizeDelta = new Vector2(302, 18);
             control.GetComponent<Image>().color = new Color(.22f, .33f, .4f, 1f);
             GameObject handle = new GameObject("Handle", typeof(RectTransform), typeof(Image));
@@ -323,11 +324,11 @@ public static class AuthorRoundExperience
             sliders[i].maxValue = maximum[i];
             sliders[i].wholeNumbers = i < 3;
         }
-        Button restart = LabButton(panel.transform, "Restart", "Заново", 90, -496);
-        Button reset = LabButton(panel.transform, "Reset", "Сброс", 260, -496);
-        Button save = LabButton(panel.transform, "Save", "Сохранить", 90, -538);
-        Button stop = LabButton(panel.transform, "Stop", "Стоп", 260, -538);
-        Text status = TextAt(panel.transform, "Status", new Vector2(175, -578), new Vector2(328, 40), 15, Color.white);
+        Button restart = LabButton(panel.transform, "Restart", "Заново", 90, -382);
+        Button reset = LabButton(panel.transform, "Reset", "Сброс", 255, -382);
+        Button save = LabButton(panel.transform, "Save", "Сохранить", 420, -382);
+        Button stop = LabButton(panel.transform, "Stop", "Стоп", 585, -382);
+        Text status = TextAt(panel.transform, "Status", new Vector2(340, -434), new Vector2(650, 44), 15, Color.white);
         status.rectTransform.anchorMin = status.rectTransform.anchorMax = new Vector2(0, 1);
         status.text = "Отдельный профиль · не входит в релиз";
         RoundExperienceLab lab = canvasObject.GetComponent<RoundExperienceLab>();
@@ -336,9 +337,9 @@ public static class AuthorRoundExperience
         serialized.FindProperty("game").objectReferenceValue = scene.GetRootGameObjects().SelectMany(g => g.GetComponentsInChildren<GamingManager>(true)).Single();
         serialized.FindProperty("cutaway").objectReferenceValue = scene.GetRootGameObjects().SelectMany(g => g.GetComponentsInChildren<CameraCutawayView>(true)).Single();
         serialized.FindProperty("hints").objectReferenceValue = scene.GetRootGameObjects().SelectMany(g => g.GetComponentsInChildren<EdibleTargetHints>(true)).Single();
-        serialized.FindProperty("sliders").arraySize = 7;
-        serialized.FindProperty("valueLabels").arraySize = 7;
-        for (int i = 0; i < 7; i++)
+        serialized.FindProperty("sliders").arraySize = 9;
+        serialized.FindProperty("valueLabels").arraySize = 9;
+        for (int i = 0; i < 9; i++)
         {
             serialized.FindProperty("sliders").GetArrayElementAtIndex(i).objectReferenceValue = sliders[i];
             serialized.FindProperty("valueLabels").GetArrayElementAtIndex(i).objectReferenceValue = labels[i];

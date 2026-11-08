@@ -1,0 +1,19 @@
+{
+  "hostModel": "Mac15,13",
+  "cpu": "Apple M3",
+  "ramBytes": 8589934592,
+  "browser": "Chromium157,IAB",
+  "viewportCss": [
+    1280,
+    720
+  ],
+  "actualDpr": 2,
+  "canvas": [
+    2560,
+    1440
+  ],
+  "scene": "Low Poly City",
+  "route": "idle at authored starting position;no movement;3s warmup+20active seconds;music/sfx0;noEditor authoring/build duringcapture",
+  "physicalWeakDevice": false,
+  "note": "Viewport override was set before opening a new tab; capture-authoritative DOM/player values show nativeDPR2. Compare with these actual values,not the requested override."
+}

@@ -1,0 +1,2297 @@
+{
+  "status": "completed",
+  "buildId": "build_9618675237fc",
+  "result": "Succeeded",
+  "platform": "WebGL",
+  "outputPath": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/builds/QualityPass-20261108/FinalSpaced",
+  "totalSizeBytes": 29950496,
+  "buildTimeMs": 158892,
+  "buildStartedAt": "2026-11-08T06:40:50.4582080Z",
+  "buildEndedAt": "2026-11-08T06:43:29.3509940Z",
+  "totalWarnings": 16,
+  "totalErrors": 0,
+  "buildSteps": [
+    {
+      "name": "Build player",
+      "durationMs": 158532,
+      "depth": 0,
+      "messages": [
+        {
+          "type": "Warning",
+          "content": "Pre-baked collision is disabled on 28 mesh(es) referenced by Mesh Collider components in this build. In future versions of Unity, the build process will no longer automatically pre-bake collision for these meshes; enable pre-baked collision in the Mesh import settings. Use Project Auditor (Window > Analysis > Project Auditor > Game Objects) to find and fix similar issues across the project. Affected meshes:\n - 'Cube' (triangle collision is disabled)\n - 'stone 1' (convex collision is disabled)\n - 'Wall' (convex collision is disabled)\n - 'Wall' (convex collision is disabled)\n - 'Cube' (convex collision is disabled)\n - 'plant 1' (convex collision is disabled)\n - 'stone 1' (convex collision is disabled)\n - 'Cube' (convex collision is disabled)\n - 'stone 1' (convex collision is disabled)\n - 'bus stop' (convex collision is disabled)\n - 'Power poles' (convex collision is disabled)\n - 'hedge.001' (convex collision is disabled)\n - 'Building_G' (convex collision is disabled)\n - 'Building_n' (convex collision is disabled)\n - 'Building_Q' (convex collision is disabled)\n - 'Building R' (convex collision is disabled)\n - 'Wall' (convex collision is disabled)\n - 'Building_M' (convex collision is disabled)\n - 'stone pot' (convex collision is disabled)\n - 'TowerB' (convex collision is disabled)\n - 'HouseB' (convex collision is disabled)\n - 'Column' (triangle collision is disabled)\n - 'House' (triangle collision is disabled)\n - 'BridgeEnd' (triangle collision is disabled)\n - 'BridgeMiddle' (triangle collision is disabled)\n - 'BridgeStart' (triangle collision is disabled)\n - 'Castle' (triangle collision is disabled)\n - 'CastleTop' (triangle collision is disabled)"
+        }
+      ]
+    },
+    {
+      "name": "Call PrepareForBuild callbacks",
+      "durationMs": 0,
+      "depth": 1,
+      "messages": []
+    },
+    {
+      "name": "Call internal build started callbacks",
+      "durationMs": 5,
+      "depth": 1,
+      "messages": []
+    },
+    {
+      "name": "Preprocess Player",
+      "durationMs": 284,
+      "depth": 1,
+      "messages": [
+        {
+          "type": "Log",
+          "content": "Pipeline: this build does not include the Pipeline (Project Settings > Pipeline > Runtime), so its assemblies and settings are excluded from it."
+        }
+      ]
+    },
+    {
+      "name": "Save scenes before build",
+      "durationMs": 5,
+      "depth": 1,
+      "messages": []
+    },
+    {
+      "name": "Back up scenes",
+      "durationMs": 69,
+      "depth": 1,
+      "messages": []
+    },
+    {
+      "name": "Prepare For Build",
+      "durationMs": 0,
+      "depth": 1,
+      "messages": []
+    },
+    {
+      "name": "ProducePlayerScriptAssemblies",
+      "durationMs": 4139,
+      "depth": 1,
+      "messages": []
+    },
+    {
+      "name": "Prebuild Cleanup and Recompile",
+      "durationMs": 3407,
+      "depth": 2,
+      "messages": [
+        {
+          "type": "Warning",
+          "content": "You are building a player, but you have uncompiled code changes. This means that any post-processing or importing code you may have changed will not affect this player build."
+        }
+      ]
+    },
+    {
+      "name": "Compile scripts",
+      "durationMs": 3023,
+      "depth": 3,
+      "messages": [
+        {
+          "type": "Warning",
+          "content": "Assets/PluginYourGames/Scripts/Basic/WindowGame.cs(46,22): warning CS8321: The local function 'SetPause' is declared but never used"
+        },
+        {
+          "type": "Warning",
+          "content": "Assets/PluginYourGames/Scripts/Basic/WindowGame.cs(64,22): warning CS8321: The local function 'SetPause' is declared but never used"
+        },
+        {
+          "type": "Warning",
+          "content": "Assets/PluginYourGames/Example/Scripts/Scenes/DemoScenePartial.cs(39,72): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'"
+        },
+        {
+          "type": "Warning",
+          "content": "Assets/PluginYourGames/Example/Scripts/Scenes/DemoScenePartial.cs(39,41): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'"
+        },
+        {
+          "type": "Warning",
+          "content": "Assets/PluginYourGames/Example/Scripts/Scenes/AllDemoScenes.cs(89,93): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'"
+        },
+        {
+          "type": "Warning",
+          "content": "Assets/PluginYourGames/Example/Scripts/Scenes/AllDemoScenes.cs(89,57): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'"
+        },
+        {
+          "type": "Warning",
+          "content": "Assets/Scripts/Stage3/MenuPresentationStyle.cs(108,54): warning CS0618: 'Object.FindObjectsOfType<T>(bool)' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'"
+        },
+        {
+          "type": "Warning",
+          "content": "Assets/Scripts/HoleParent.cs(49,18): warning CS0414: The field 'HoleParent.keepScoreOnStart' is assigned but its value is never used"
+        },
+        {
+          "type": "Warning",
+          "content": "Assets/PluginYourGames/Modules/Leaderboards/Scripts/LBPlayerDataYG.cs(50,21): warning UAC1001: Field 'data' type 'YG.LBPlayerDataYG.Data' is skipped by serialization (missing the [Serializable] attribute). Refer to the Serialization rules analyzer reference. (https://docs.unity3d.com/6000.6/Documentation/Manual/script-serialization-analyzer.html#uac1001)"
+        },
+        {
+          "type": "Warning",
+          "content": "Assets/Scripts/Stage3/BackgroundMusicPlayer.cs(68,21): warning UAC0009: DEVELOPMENT_BUILD preprocessor directive has been deprecated. Please use one of the managed code variant directives (such as DEBUG, UNITY_ENABLE_CHECKS or UNITY_INCLUDE_INSTRUMENTATION) if different code paths are desired for different managed code variants. Checking for development build is possible at runtime using Debug.isDebugBuild. See the Conditional Compilation manual page for more details."
+        },
+        {
+          "type": "Warning",
+          "content": "Assets/Scripts/Stage3/BackgroundMusicPlayer.cs(90,21): warning UAC0009: DEVELOPMENT_BUILD preprocessor directive has been deprecated. Please use one of the managed code variant directives (such as DEBUG, UNITY_ENABLE_CHECKS or UNITY_INCLUDE_INSTRUMENTATION) if different code paths are desired for different managed code variants. Checking for development build is possible at runtime using Debug.isDebugBuild. See the Conditional Compilation manual page for more details."
+        }
+      ]
+    },
+    {
+      "name": "Generate and validate platform script types",
+      "durationMs": 37,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Verify Build setup",
+      "durationMs": 742,
+      "depth": 1,
+      "messages": []
+    },
+    {
+      "name": "GetUnityAssemblies",
+      "durationMs": 15,
+      "depth": 2,
+      "messages": []
+    },
+    {
+      "name": "GetPlayerAssemblies",
+      "durationMs": 59,
+      "depth": 2,
+      "messages": []
+    },
+    {
+      "name": "Check old data build",
+      "durationMs": 652,
+      "depth": 2,
+      "messages": []
+    },
+    {
+      "name": "Prepare assets for target platform",
+      "durationMs": 31,
+      "depth": 1,
+      "messages": []
+    },
+    {
+      "name": "Prepare splash screen",
+      "durationMs": 9,
+      "depth": 1,
+      "messages": [
+        {
+          "type": "Log",
+          "content": "Including Unity Splash Screen logo because 'Show Unity Logo' is enabled."
+        }
+      ]
+    },
+    {
+      "name": "Build scripts DLLs",
+      "durationMs": 9,
+      "depth": 1,
+      "messages": []
+    },
+    {
+      "name": "GetSystemAssemblies",
+      "durationMs": 2,
+      "depth": 2,
+      "messages": []
+    },
+    {
+      "name": "Compile Global Game Manager dependencies",
+      "durationMs": 41,
+      "depth": 1,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (Sprite) from Library/SplashScreenCache/91/914ccc9a4e8ab6e77854c75a16955a54",
+      "durationMs": 5,
+      "depth": 2,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MonoManager) from Library/MonoManager.asset",
+      "durationMs": 3,
+      "depth": 2,
+      "messages": []
+    },
+    {
+      "name": "Building scenes",
+      "durationMs": 8750,
+      "depth": 1,
+      "messages": []
+    },
+    {
+      "name": "Building scene Assets/Scenes/MainMenu.unity",
+      "durationMs": 832,
+      "depth": 2,
+      "messages": []
+    },
+    {
+      "name": "Building scene 0: MainMenu",
+      "durationMs": 772,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Load scene (and close previous ones)",
+      "durationMs": 294,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Compile game scene dependencies",
+      "durationMs": 294,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load objectComic Sans MS (Font) from Assets/Images/Comic Sans MS.ttf",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MonoBehaviour)",
+      "durationMs": 27,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectUI_SquareRounded 1 (Sprite) from Assets/Images/Sprite/Primitives/UI_SquareRounded 1.png",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectapp-fill (Sprite) from Assets/Images/app-fill.png",
+      "durationMs": 60,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectUI_SquareRounded (Sprite) from Assets/Images/Sprite/Primitives/UI_SquareRounded.png",
+      "durationMs": 2,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectOnSounds (Sprite) from Assets/Images/OnSounds.png",
+      "durationMs": 35,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectRus (Sprite) from Assets/Images/Rus.png",
+      "durationMs": 16,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectcurrency-icon-s@2x (Sprite) from Assets/Images/currency-icon-s@2x.png",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectchest (Sprite) from Assets/Images/chest.png",
+      "durationMs": 2,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectbox (Sprite) from Assets/Images/box.png",
+      "durationMs": 10,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectbag (Sprite) from Assets/Images/bag.png",
+      "durationMs": 7,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objecthand (Sprite) from Assets/Images/hand.png",
+      "durationMs": 3,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectanonymus (Sprite) from Assets/Images/anonymus.jpg",
+      "durationMs": 8,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectUI_SquareFlat (Sprite) from Assets/Images/Sprite/Primitives/UI_SquareFlat.png",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectSquare (Sprite) from Assets/Images/Sprite/Primitives/Square.png",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MeshRenderer)",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MeshRenderer)",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectSign_slow (Material) from Assets/Materials/Material_meshs/Sign_slow.mat",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (AudioSource)",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectEng (Sprite) from Assets/Images/Eng.png",
+      "durationMs": 3,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectmap3 (Sprite) from Assets/Images/map3.png",
+      "durationMs": 2,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectMap2 (Sprite) from Assets/Images/Map2.png",
+      "durationMs": 6,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Compile game scene",
+      "durationMs": 177,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Rebuild resources",
+      "durationMs": 5,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Analyze resource dependencies",
+      "durationMs": 45,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Compile Resources folder dependencies",
+      "durationMs": 8,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Building scene Assets/Scenes/Low Poly City.unity",
+      "durationMs": 3214,
+      "depth": 2,
+      "messages": []
+    },
+    {
+      "name": "Building scene 1: Low Poly City",
+      "durationMs": 3214,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Load scene (and close previous ones)",
+      "durationMs": 1262,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Compile game scene dependencies",
+      "durationMs": 894,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load objectNatures (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Natures.mat",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectBuilding_Gift Shop (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Building_Gift Shop.mat",
+      "durationMs": 2,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectBuilding_Music Store (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Building_Music Store.mat",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MeshRenderer)",
+      "durationMs": 32,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectBuilding_Restaurant (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Building_Restaurant.mat",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectBuilding Sky_big_color03 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Building Sky_big_color03.mat",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectBuilding Sky_big_color02 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Building Sky_big_color02.mat",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectRoad (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Road.mat",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectBuilding_House_01_color01 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Building_House_01_color01.mat",
+      "durationMs": 2,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectBuilding_House_04_color02 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Building_House_04_color02.mat",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectBuilding_House_02_color03 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Building_House_02_color03.mat",
+      "durationMs": 2,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectBuilding_Shoes Shop (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Building_Shoes Shop.mat",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectBuilding_House_04_color01 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Building_House_04_color01.mat",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectBuilding_House_03_color03 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Building_House_03_color03.mat",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectBuilding_Bar (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Building_Bar.mat",
+      "durationMs": 2,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectProps_Props_01 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Props_Props_01.mat",
+      "durationMs": 2,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectProps_TrafficProps (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Props_TrafficProps.mat",
+      "durationMs": 4,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectVehicle_Police Car (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Vehicle_Police Car.mat",
+      "durationMs": 2,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectVehicle_SUV_color03 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Vehicle_SUV_color03.mat",
+      "durationMs": 3,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectBuilding_Super Market (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Building_Super Market.mat",
+      "durationMs": 3,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectVehicle_Truck_color02 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Vehicle_Truck_color02.mat",
+      "durationMs": 3,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectVehicle_Bus_color03 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Vehicle_Bus_color03.mat",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectBuilding_Auto Service (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Building_Auto Service.mat",
+      "durationMs": 3,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectVehicle_Car_color01 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Vehicle_Car_color01.mat",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectVehicle_Ambulance (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Vehicle_Ambulance.mat",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectVehicle_Bus_color01 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Vehicle_Bus_color01.mat",
+      "durationMs": 3,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectVehicle_Car_color03 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Vehicle_Car_color03.mat",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectVehicle_Taxi (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Vehicle_Taxi.mat",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectBuilding_Clothing (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Building_Clothing.mat",
+      "durationMs": 3,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectVehicle_Car_color02 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Vehicle_Car_color02.mat",
+      "durationMs": 5,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectVehicle_Pick up Truck_color03 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Vehicle_Pick up Truck_color03.mat",
+      "durationMs": 3,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectBuilding_Factory (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Building_Factory.mat",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectVehicle_Container_color02 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Vehicle_Container_color02.mat",
+      "durationMs": 3,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectVehicle_Container_color01 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Vehicle_Container_color01.mat",
+      "durationMs": 2,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MeshRenderer)",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectBuilding_Residential_color03 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Building_Residential_color03.mat",
+      "durationMs": 2,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectBuilding_Bakery (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Building_Bakery.mat",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MeshRenderer)",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectVehicle_Pick up Truck_color01 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Vehicle_Pick up Truck_color01.mat",
+      "durationMs": 6,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectVehicle_Pick up Truck_color02 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Vehicle_Pick up Truck_color02.mat",
+      "durationMs": 3,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectBuilding_Fast Food (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Building_Fast Food.mat",
+      "durationMs": 4,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectVehicle_Container_color03 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Vehicle_Container_color03.mat",
+      "durationMs": 4,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectBuilding_Books Shop (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Building_Books Shop.mat",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectVehicle_SUV_color01 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Vehicle_SUV_color01.mat",
+      "durationMs": 2,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectBuilding_Residential_color01 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Building_Residential_color01.mat",
+      "durationMs": 3,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MonoBehaviour)",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectBuilding_House_04_color03 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Building_House_04_color03.mat",
+      "durationMs": 4,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectBuilding_House_03_color02 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Building_House_03_color02.mat",
+      "durationMs": 3,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (GameObject)",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (GameObject)",
+      "durationMs": 4,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MonoBehaviour)",
+      "durationMs": 8,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MeshRenderer)",
+      "durationMs": 4,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (GameObject)",
+      "durationMs": 20,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectBuilding Sky_small_color02 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Building Sky_small_color02.mat",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectBuilding_Gas Station (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Building_Gas Station.mat",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectBuilding_Coffee Shop (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Building_Coffee Shop.mat",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MeshRenderer) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Models/Building_House_02_color01.fbx",
+      "durationMs": 2,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectVehicle_Bus_color02 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Vehicle_Bus_color02.mat",
+      "durationMs": 2,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectProps_BillBoard_large (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Props_BillBoard_large.mat",
+      "durationMs": 2,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectBuilding Sky_small_color01 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Building Sky_small_color01.mat",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Collect Mono scripts",
+      "durationMs": 2,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Compile game scene",
+      "durationMs": 1039,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MeshFilter)",
+      "durationMs": 20,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MonoBehaviour)",
+      "durationMs": 2,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MonoBehaviour)",
+      "durationMs": 7,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (Transform)",
+      "durationMs": 24,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Building scene Assets/Scenes/Garden.unity",
+      "durationMs": 2585,
+      "depth": 2,
+      "messages": []
+    },
+    {
+      "name": "Building scene 2: Garden",
+      "durationMs": 2584,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Load scene (and close previous ones)",
+      "durationMs": 833,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Compile game scene dependencies",
+      "durationMs": 697,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load objectplant 1 (Material) from Assets/Materials/Material_meshs/plant 1.mat",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (BoxCollider)",
+      "durationMs": 14,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MeshRenderer)",
+      "durationMs": 23,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectstreet 4 (Material) from Assets/Materials/Material_meshs/street 4.mat",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectstreet 7 (Material) from Assets/Materials/Material_meshs/street 7.mat",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MeshRenderer)",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MeshRenderer)",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectstreet 5 (Material) from Assets/Materials/Material_meshs/street 5.mat",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectphone botth (Material) from Assets/Materials/Material_meshs/phone botth.mat",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MeshRenderer)",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MeshRenderer)",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectstreet 12 (Material) from Assets/Materials/Material_meshs/street 12.mat",
+      "durationMs": 2,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MeshRenderer)",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MeshRenderer)",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectBus stop pole texture (Material) from Assets/Materials/Material_meshs/Bus stop pole texture.mat",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Collect Mono scripts",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Compile game scene",
+      "durationMs": 991,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (BoxCollider)",
+      "durationMs": 2,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MeshFilter)",
+      "durationMs": 38,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (BoxCollider)",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (GameObject)",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MonoBehaviour)",
+      "durationMs": 2,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Building scene Assets/Scenes/MedievalCastle.unity",
+      "durationMs": 2117,
+      "depth": 2,
+      "messages": []
+    },
+    {
+      "name": "Building scene 3: MedievalCastle",
+      "durationMs": 2116,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Load scene (and close previous ones)",
+      "durationMs": 400,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Compile game scene dependencies",
+      "durationMs": 775,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load objectCastleWallTexture (Material) from Assets/UsedAssets/Advance Studios/Medieval Castle/Art/Materials/CastleWallTexture.mat",
+      "durationMs": 5,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MeshRenderer)",
+      "durationMs": 2,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectCastleTexture (Material) from Assets/UsedAssets/Advance Studios/Medieval Castle/Art/Materials/CastleTexture.mat",
+      "durationMs": 2,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (Transform)",
+      "durationMs": 14,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MeshFilter)",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MeshRenderer)",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MeshRenderer)",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectCastleTower (Material) from Assets/UsedAssets/Advance Studios/Medieval Castle/Art/Model/Tower B.fbx",
+      "durationMs": 10,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MeshRenderer)",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectDoorsWindowsTexture (Material) from Assets/UsedAssets/Advance Studios/Medieval Castle/Art/Model/Materials/DoorsWindowsTexture.mat",
+      "durationMs": 14,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MeshRenderer)",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectCastleTowerBTexture (Material) from Assets/UsedAssets/Advance Studios/Medieval Castle/Art/Model/Materials/CastleTowerBTexture.mat",
+      "durationMs": 10,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MeshRenderer)",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectBridgeTexture (Material) from Assets/UsedAssets/Advance Studios/Medieval Castle/Art/Model/Materials/BridgeTexture.mat",
+      "durationMs": 8,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectCasaATextura (Material) from Assets/UsedAssets/Advance Studios/Medieval Castle/Art/Model/Materials/CasaATextura.mat",
+      "durationMs": 10,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectCasaBTextura (Material) from Assets/UsedAssets/Advance Studios/Medieval Castle/Art/Model/Materials/CasaBTextura.mat",
+      "durationMs": 8,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Load objectCastleTopTexture (Material) from Assets/UsedAssets/Advance Studios/Medieval Castle/Art/Model/Materials/CastleTopTexture.mat",
+      "durationMs": 8,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Collect Mono scripts",
+      "durationMs": 2,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Compile game scene",
+      "durationMs": 916,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (Transform)",
+      "durationMs": 42,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Build GlobalGameManagers file",
+      "durationMs": 273,
+      "depth": 1,
+      "messages": []
+    },
+    {
+      "name": "Writing asset files",
+      "durationMs": 1567,
+      "depth": 1,
+      "messages": []
+    },
+    {
+      "name": "Packaging assets - globalgamemanagers.assets",
+      "durationMs": 48,
+      "depth": 2,
+      "messages": []
+    },
+    {
+      "name": "Extract assets to write",
+      "durationMs": 14,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Load dependencies - [unnamed] (Sprite) from Library/SplashScreenCache/91/914ccc9a4e8ab6e77854c75a16955a54",
+      "durationMs": 4,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write file:globalgamemanagers.assets",
+      "durationMs": 33,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Write object - LayoutRebuilder (MonoScript) from Packages/com.unity.ugui/Runtime/UGUI/UI/Core/Layout/LayoutRebuilder.cs",
+      "durationMs": 2,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - Scrollbar (MonoScript) from Packages/com.unity.ugui/Runtime/UGUI/UI/Core/Scrollbar.cs",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - TMP_InputField (MonoScript) from Packages/com.unity.ugui/Runtime/TMP/TMP_InputField.cs",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - PlayableTrack (MonoScript) from Packages/com.unity.timeline/Runtime/Scripting/PlayableTrack.cs",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - ColorGrading (MonoScript) from Packages/com.unity.postprocessing/PostProcessing/Runtime/Effects/ColorGrading.cs",
+      "durationMs": 3,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - TextMeshProUGUI (MonoScript) from Packages/com.unity.ugui/Runtime/TMP/TextMeshProUGUI.cs",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - Sprites-Default (Material) from Resources/unity_builtin_extra",
+      "durationMs": 2,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - Splash Screen Unity Logo (Texture2D) from Library/SplashScreenCache/91/914ccc9a4e8ab6e77854c75a16955a54",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load object from Library/SplashScreenCache/91/914ccc9a4e8ab6e77854c75a16955a54",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Finish writing",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Packaging assets - resources.assets",
+      "durationMs": 111,
+      "depth": 2,
+      "messages": []
+    },
+    {
+      "name": "Extract assets to write",
+      "durationMs": 18,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Load dependencies - [unnamed] (MonoBehaviour) from Assets/Resources/Stage3/RankingVisualStyle.asset",
+      "durationMs": 6,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load dependencies - [unnamed] (MonoBehaviour) from Assets/Resources/Stage3/SkinVisualCatalog.asset",
+      "durationMs": 5,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load dependencies - LiberationSans SDF - Outline (Material) from Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Outline.mat",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load dependencies - [unnamed] (MonoBehaviour) from Assets/TextMesh Pro/Resources/TMP Settings.asset",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write file:resources.assets",
+      "durationMs": 93,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Write object - LiberationSans SDF Atlas (Texture2D) from Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+      "durationMs": 6,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - TextMeshPro/Sprite (Shader) from Assets/TextMesh Pro/Shaders/TMP_Sprite.shader",
+      "durationMs": 10,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - TextMeshPro/Mobile/Distance Field (Shader) from Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+      "durationMs": 3,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - AbsorbLordDeep (AudioClip) from Assets/Audio/Stage2/Resources/Stage2Audio/AbsorbLordDeep.wav",
+      "durationMs": 5,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load object from Assets/Audio/Stage2/Resources/Stage2Audio/AbsorbLordDeep.wav",
+      "durationMs": 5,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Write object - FullMedieval (AudioClip) from Assets/Audio/Stage3/Resources/Stage3Music/FullMedieval.wav",
+      "durationMs": 14,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - FullMenu (AudioClip) from Assets/Audio/Stage3/Resources/Stage3Music/FullMenu.wav",
+      "durationMs": 12,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - FullCity (AudioClip) from Assets/Audio/Stage3/Resources/Stage3Music/FullCity.wav",
+      "durationMs": 13,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - FullGarden (AudioClip) from Assets/Audio/Stage3/Resources/Stage3Music/FullGarden.wav",
+      "durationMs": 12,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - LiberationSans (Font) from Assets/TextMesh Pro/Fonts/LiberationSans.ttf",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - GUI_4 (Sprite) from Assets/Images/Sprite/GUI.png",
+      "durationMs": 2,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Packaging assets - sharedassets0.assets = additional assets for scene 0: Assets/Scenes/MainMenu.unity",
+      "durationMs": 1041,
+      "depth": 2,
+      "messages": []
+    },
+    {
+      "name": "Extract assets to write",
+      "durationMs": 701,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Load dependencies - Forth (Material) from Assets/Materials/ToiletMaterials/Forth.mat",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load dependencies - Water1 (Material) from Assets/Materials/ToiletMaterials/Water1.mat",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load dependencies - DemoSceneSettings (LightingSettings) from Assets/Scenes/SceneAdditionThings/DemoSceneSettings.lighting",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load dependencies - [unnamed] (MonoBehaviour) from Assets/PluginYourGames/Modules/Leaderboards/Prefabs/LB Player Data.prefab",
+      "durationMs": 3,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load dependencies - TriggerForTabAnim (AnimationClip) from Assets/Scenes/SceneAdditionThings/TriggerForTabAnim.anim",
+      "durationMs": 11,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load dependencies - Snapshot (AudioMixerSnapshotController) from Assets/MyAudioMixer.mixer",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load dependencies - MyAudioMixer (AudioMixerController) from Assets/MyAudioMixer.mixer",
+      "durationMs": 657,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load dependencies - market (Sprite) from Assets/Images/market.png",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load dependencies - Map1 (Sprite) from Assets/Images/Map1.png",
+      "durationMs": 5,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load dependencies - ReflectionProbe-0 (Cubemap) from Assets/Scenes/MainMenu/ReflectionProbe-0.exr",
+      "durationMs": 2,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write file:sharedassets0.assets",
+      "durationMs": 338,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Write object - ssspiral (Texture2D) from Assets/Materials/ssspiral.png",
+      "durationMs": 33,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load object from Assets/Materials/ssspiral.png",
+      "durationMs": 32,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Write object - Rus (Texture2D) from Assets/Images/Rus.png",
+      "durationMs": 2,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - GUI (Texture2D) from Assets/Images/Sprite/GUI.png",
+      "durationMs": 79,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - Map2 (Texture2D) from Assets/Images/Map2.png",
+      "durationMs": 6,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - map3 (Texture2D) from Assets/Images/map3.png",
+      "durationMs": 6,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - gold-en (Texture2D) from Assets/Art/SkinComparison/gold-en.png",
+      "durationMs": 2,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load object from Assets/Art/SkinComparison/gold-en.png",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Write object - white-ru (Texture2D) from Assets/Art/SkinComparison/white-ru.png",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load object from Assets/Art/SkinComparison/white-ru.png",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Write object - obodok-en (Texture2D) from Assets/Art/SkinComparison/obodok-en.png",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load object from Assets/Art/SkinComparison/obodok-en.png",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Write object - scrag-ru (Texture2D) from Assets/Art/SkinComparison/scrag-ru.png",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load object from Assets/Art/SkinComparison/scrag-ru.png",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Write object - app-fill (Texture2D) from Assets/Images/app-fill.png",
+      "durationMs": 14,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load object from Assets/Images/app-fill.png",
+      "durationMs": 3,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Write object - white-en (Texture2D) from Assets/Art/SkinComparison/white-en.png",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load object from Assets/Art/SkinComparison/white-en.png",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Write object - Eng (Texture2D) from Assets/Images/Eng.png",
+      "durationMs": 3,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - lord-en (Texture2D) from Assets/Art/SkinComparison/lord-en.png",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load object from Assets/Art/SkinComparison/lord-en.png",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Write object - lord-ru (Texture2D) from Assets/Art/SkinComparison/lord-ru.png",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - OnSounds (Texture2D) from Assets/Images/OnSounds.png",
+      "durationMs": 12,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - obodok-ru (Texture2D) from Assets/Art/SkinComparison/obodok-ru.png",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load object from Assets/Art/SkinComparison/obodok-ru.png",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Write object - Standard (Shader) from Resources/unity_builtin_extra",
+      "durationMs": 77,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - Skybox/Procedural (Shader) from Resources/unity_builtin_extra",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - POPpop (AudioClip) from Assets/SoundsAndMelodies/POPpop.mp3",
+      "durationMs": 48,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - Rus (Sprite) from Assets/Images/Rus.png",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - map3 (Sprite) from Assets/Images/map3.png",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - app-fill (Sprite) from Assets/Images/app-fill.png",
+      "durationMs": 3,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Finish writing",
+      "durationMs": 11,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Packaging assets - sharedassets1.assets = additional assets for scene 1: Assets/Scenes/Low Poly City.unity",
+      "durationMs": 164,
+      "depth": 2,
+      "messages": []
+    },
+    {
+      "name": "Extract assets to write",
+      "durationMs": 59,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Load dependencies - Building_Drug Store (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Building_Drug Store.mat",
+      "durationMs": 2,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load dependencies - Building_Restaurant (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Building_Restaurant.mat",
+      "durationMs": 3,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load dependencies - neskolzko (PhysicsMaterial) from Assets/Materials/neskolzko.physicMaterial",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load dependencies - [unnamed] (GameObject) from Assets/Prefabs/GamingPrefabs/Helper_Hole.prefab",
+      "durationMs": 5,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load dependencies - [unnamed] (GameObject) from Assets/Prefabs/GamingPrefabs/ColonPrefab.prefab",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load dependencies - Vehicle_Car_color01 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Vehicle_Car_color01.mat",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load dependencies - Vehicle_Bus_color03 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Vehicle_Bus_color03.mat",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load dependencies - Vehicle_Bus_color02 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Vehicle_Bus_color02.mat",
+      "durationMs": 3,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load dependencies - Building_House_03_color01 (Material) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Building_House_03_color01.mat",
+      "durationMs": 5,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load dependencies - [unnamed] (MeshRenderer) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Models/Building_House_02_color01.fbx",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load dependencies - Props_Roof HelipadAvatar (Avatar) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Models/Props_Roof Helipad.fbx",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write file:sharedassets1.assets",
+      "durationMs": 104,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Write object - Vehicle_Ambulance (Texture2D) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Textures/Vehicle_Ambulance.png",
+      "durationMs": 2,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load object from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Textures/Vehicle_Ambulance.png",
+      "durationMs": 2,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Write object - Building Sky_big_color01 (Texture2D) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Textures/Building Sky_big_color01.png",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load object from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Textures/Building Sky_big_color01.png",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Write object - Building_House_02_color02 (Texture2D) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Textures/Building_House_02_color02.png",
+      "durationMs": 3,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - settings (Texture2D) from Assets/Images/settings.png",
+      "durationMs": 4,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - Building_Residential_color01 (Texture2D) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Textures/Building_Residential_color01.png",
+      "durationMs": 3,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load object from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Textures/Building_Residential_color01.png",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Write object - Vehicle_Police Car (Texture2D) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Textures/Vehicle_Police Car.png",
+      "durationMs": 2,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - Vehicle_SUV_2 (Texture2D) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Textures/Vehicle_SUV_2.png",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load object from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Textures/Vehicle_SUV_2.png",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Write object - Vehicle_SUV_3 (Texture2D) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Textures/Vehicle_SUV_3.png",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - Building_House_02_color03 (Texture2D) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Textures/Building_House_02_color03.png",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - Props_RoofProps (Texture2D) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Textures/Props_RoofProps.png",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - Vehicle_Pick up Truck_1 (Texture2D) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Textures/Vehicle_Pick up Truck_1.png",
+      "durationMs": 2,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - Natures (Texture2D) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Textures/Natures.png",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - Building_Clothing (Texture2D) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Textures/Building_Clothing.png",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - Vehicle_Taxi (Texture2D) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Textures/Vehicle_Taxi.png",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - Building_Bar (Texture2D) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Textures/Building_Bar.png",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - Vehicle_Bus_3 (Texture2D) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Textures/Vehicle_Bus_3.png",
+      "durationMs": 3,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load object from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Textures/Vehicle_Bus_3.png",
+      "durationMs": 2,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Write object - TargetBracket (Mesh) from Assets/Art/MapPolish/TargetBracket.asset",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load object from Assets/Art/MapPolish/TargetBracket.asset",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Write object - Vehicle_Bus (Mesh) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Models/Vehicle_Bus.fbx",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load object from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Models/Vehicle_Bus.fbx",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Write object - Building_Fruits  Shop (Mesh) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Models/Building_Fruits  Shop.fbx",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - Vehicle_Truck (Mesh) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Models/Vehicle_Truck.fbx",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - Building_House_03_color01 (Mesh) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Models/Building_House_03_color01.fbx",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - Building_Residential_color01 (Mesh) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Models/Building_Residential_color01.fbx",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - Building_Gift Shop (Mesh) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Models/Building_Gift Shop.fbx",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load object from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Models/Building_Gift Shop.fbx",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Write object - Building_Stadium (Mesh) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Models/Building_Stadium.fbx",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - Natures_Fir Tree (Mesh) from Assets/UsedAssets/SimplePoly City - Low Poly Assets/Models/Natures_Fir Tree.fbx",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - Vodovorot/Map surround (Shader) from Assets/Scripts/RoundExperience/MapSurface.shader",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - Vodovorot/Cutaway dither (Shader) from Assets/Scripts/RoundExperience/CutawayDither.shader",
+      "durationMs": 4,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - ReflectionProbe-0 1 (Cubemap) from Assets/Scenes/SceneAdditionThings/ReflectionProbe-0 1.exr",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - settings (Sprite) from Assets/Images/settings.png",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Finish writing",
+      "durationMs": 2,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Packaging assets - sharedassets2.assets = additional assets for scene 2: Assets/Scenes/Garden.unity",
+      "durationMs": 56,
+      "depth": 2,
+      "messages": []
+    },
+    {
+      "name": "Extract assets to write",
+      "durationMs": 16,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Load dependencies - street 4 (Material) from Assets/Materials/Material_meshs/street 4.mat",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write file:sharedassets2.assets",
+      "durationMs": 39,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Write object - phone booth texture (Texture2D) from Assets/Meshes,textures/props_FBX/phone booth texture.png",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - GardenDecor (Mesh) from Assets/Art/MapPolish/GardenDecor.asset",
+      "durationMs": 2,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load object from Assets/Art/MapPolish/GardenDecor.asset",
+      "durationMs": 2,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Write object - GardenGround (Mesh) from Assets/Art/MapPolish/GardenGround.asset",
+      "durationMs": 2,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load object from Assets/Art/MapPolish/GardenGround.asset",
+      "durationMs": 2,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Write object - Power poles (Mesh) from Assets/Meshes,textures/props_FBX/Power_poles.fbx",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load object from Assets/Meshes,textures/props_FBX/Power_poles.fbx",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Write object - Building_n (Mesh) from Assets/Meshes,textures/Buildings_FBX/Building_N.fbx",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - Building R (Mesh) from Assets/Meshes,textures/Buildings_FBX/Building_R.fbx",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Write object - Building_G (Mesh) from Assets/Meshes,textures/Buildings_FBX/Building_W.fbx",
+      "durationMs": 2,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Finish writing",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Packaging assets - sharedassets3.assets = additional assets for scene 3: Assets/Scenes/MedievalCastle.unity",
+      "durationMs": 33,
+      "depth": 2,
+      "messages": []
+    },
+    {
+      "name": "Extract assets to write",
+      "durationMs": 5,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Write file:sharedassets3.assets",
+      "durationMs": 27,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Write object - DoorsWindowsTexture (Texture2D) from Assets/UsedAssets/Advance Studios/Medieval Castle/Art/Textures/DoorsWindowsTexture.png",
+      "durationMs": 3,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load object from Assets/UsedAssets/Advance Studios/Medieval Castle/Art/Textures/DoorsWindowsTexture.png",
+      "durationMs": 3,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Write object - CastleWallTexture (Texture2D) from Assets/UsedAssets/Advance Studios/Medieval Castle/Art/Textures/CastleWallTexture.png",
+      "durationMs": 1,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load object from Assets/UsedAssets/Advance Studios/Medieval Castle/Art/Textures/CastleWallTexture.png",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Write object - CasaATextura (Texture2D) from Assets/UsedAssets/Advance Studios/Medieval Castle/Art/Textures/CasaATextura.png",
+      "durationMs": 2,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load object from Assets/UsedAssets/Advance Studios/Medieval Castle/Art/Textures/CasaATextura.png",
+      "durationMs": 1,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Write object - CastleDecor (Mesh) from Assets/Art/MapPolish/CastleDecor.asset",
+      "durationMs": 5,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load object from Assets/Art/MapPolish/CastleDecor.asset",
+      "durationMs": 5,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Write object - CastleGround (Mesh) from Assets/Art/MapPolish/CastleGround.asset",
+      "durationMs": 2,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Load object from Assets/Art/MapPolish/CastleGround.asset",
+      "durationMs": 2,
+      "depth": 5,
+      "messages": []
+    },
+    {
+      "name": "Finish writing",
+      "durationMs": 3,
+      "depth": 4,
+      "messages": []
+    },
+    {
+      "name": "Building Resources/unity_builtin_extra",
+      "durationMs": 81,
+      "depth": 1,
+      "messages": []
+    },
+    {
+      "name": "Write file:Library/PlayerDataCache/WebGL/Data/Resources/unity_builtin_extra",
+      "durationMs": 80,
+      "depth": 2,
+      "messages": []
+    },
+    {
+      "name": "Write object - Legacy Shaders/VertexLit (Shader) from Resources/unity_builtin_extra",
+      "durationMs": 3,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Write object - Legacy Shaders/Diffuse (Shader) from Resources/unity_builtin_extra",
+      "durationMs": 8,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Write object - Hidden/Internal-DepthNormalsTexture (Shader) from Resources/unity_builtin_extra",
+      "durationMs": 4,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Write object - Hidden/Internal-ScreenSpaceShadows (Shader) from Resources/unity_builtin_extra",
+      "durationMs": 4,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Write object - Hidden/Internal-DeferredShading (Shader) from Resources/unity_builtin_extra",
+      "durationMs": 8,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Write object - Hidden/Internal-MotionVectors (Shader) from Resources/unity_builtin_extra",
+      "durationMs": 1,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Write object - Hidden/Internal-GUITextureClip (Shader) from Resources/unity_builtin_extra",
+      "durationMs": 1,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Write object - Hidden/Internal-GUITextureClipText (Shader) from Resources/unity_builtin_extra",
+      "durationMs": 1,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Write object - Hidden/Internal-GUITextureBlit (Shader) from Resources/unity_builtin_extra",
+      "durationMs": 1,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Write object - Hidden/Internal-GUIRoundedRectWithColorPerBorder (Shader) from Resources/unity_builtin_extra",
+      "durationMs": 1,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Write object - Hidden/Internal-UIRDefault (Shader) from Resources/unity_builtin_extra",
+      "durationMs": 22,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Write object - Sprites/Default (Shader) from Resources/unity_builtin_extra",
+      "durationMs": 2,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Write object - UI/Default (Shader) from Resources/unity_builtin_extra",
+      "durationMs": 2,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Write object - Hidden/Internal-ODSWorldTexture (Shader) from Resources/unity_builtin_extra",
+      "durationMs": 1,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Write object - Hidden/Physics2D/SDF_PolygonGeometry (Shader) from Resources/unity_builtin_extra",
+      "durationMs": 1,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Creating compressed player package",
+      "durationMs": 9392,
+      "depth": 1,
+      "messages": []
+    },
+    {
+      "name": "Write data build dirty tracking information",
+      "durationMs": 4133,
+      "depth": 1,
+      "messages": []
+    },
+    {
+      "name": "Postprocess built player",
+      "durationMs": 125088,
+      "depth": 1,
+      "messages": [
+        {
+          "type": "Warning",
+          "content": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/Library/Bee/artifacts/WebGL/il2cppOutput/cpp: [Unity.TextMeshPro] - System.Void TMPro.TMP_TextParsingUtilities::.cctor() - Method was given it's own cpp file because it is large and costly to compile"
+        },
+        {
+          "type": "Warning",
+          "content": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/Library/Bee/artifacts/WebGL/il2cppOutput/cpp: [Unity.TextMeshPro] - System.Void TMPro.TextMeshPro::GenerateTextMesh() - Method was given it's own cpp file because it is large and costly to compile"
+        },
+        {
+          "type": "Warning",
+          "content": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/Library/Bee/artifacts/WebGL/il2cppOutput/cpp: [Unity.TextMeshPro] - System.Void TMPro.TextMeshProUGUI::GenerateTextMesh() - Method was given it's own cpp file because it is large and costly to compile"
+        }
+      ]
+    },
+    {
+      "name": "Setup incremental player build",
+      "durationMs": 299,
+      "depth": 2,
+      "messages": []
+    },
+    {
+      "name": "Incremental player build",
+      "durationMs": 124308,
+      "depth": 2,
+      "messages": []
+    },
+    {
+      "name": "Report output files",
+      "durationMs": 97,
+      "depth": 2,
+      "messages": []
+    },
+    {
+      "name": "Call Post-Process callbacks",
+      "durationMs": 797,
+      "depth": 1,
+      "messages": []
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    {
+      "message": "Pre-baked collision is disabled on 28 mesh(es) referenced by Mesh Collider components in this build. In future versions of Unity, the build process will no longer automatically pre-bake collision for these meshes; enable pre-baked collision in the Mesh import settings. Use Project Auditor (Window > Analysis > Project Auditor > Game Objects) to find and fix similar issues across the project. Affected meshes:\n - 'Cube' (triangle collision is disabled)\n - 'stone 1' (convex collision is disabled)\n - 'Wall' (convex collision is disabled)\n - 'Wall' (convex collision is disabled)\n - 'Cube' (convex collision is disabled)\n - 'plant 1' (convex collision is disabled)\n - 'stone 1' (convex collision is disabled)\n - 'Cube' (convex collision is disabled)\n - 'stone 1' (convex collision is disabled)\n - 'bus stop' (convex collision is disabled)\n - 'Power poles' (convex collision is disabled)\n - 'hedge.001' (convex collision is disabled)\n - 'Building_G' (convex collision is disabled)\n - 'Building_n' (convex collision is disabled)\n - 'Building_Q' (convex collision is disabled)\n - 'Building R' (convex collision is disabled)\n - 'Wall' (convex collision is disabled)\n - 'Building_M' (convex collision is disabled)\n - 'stone pot' (convex collision is disabled)\n - 'TowerB' (convex collision is disabled)\n - 'HouseB' (convex collision is disabled)\n - 'Column' (triangle collision is disabled)\n - 'House' (triangle collision is disabled)\n - 'BridgeEnd' (triangle collision is disabled)\n - 'BridgeMiddle' (triangle collision is disabled)\n - 'BridgeStart' (triangle collision is disabled)\n - 'Castle' (triangle collision is disabled)\n - 'CastleTop' (triangle collision is disabled)"
+    },
+    {
+      "message": "You are building a player, but you have uncompiled code changes. This means that any post-processing or importing code you may have changed will not affect this player build."
+    },
+    {
+      "message": "warning CS8321: The local function 'SetPause' is declared but never used",
+      "file": "Assets/PluginYourGames/Scripts/Basic/WindowGame.cs"
+    },
+    {
+      "message": "warning CS8321: The local function 'SetPause' is declared but never used",
+      "file": "Assets/PluginYourGames/Scripts/Basic/WindowGame.cs"
+    },
+    {
+      "message": "warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'",
+      "file": "Assets/PluginYourGames/Example/Scripts/Scenes/DemoScenePartial.cs"
+    },
+    {
+      "message": "warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'",
+      "file": "Assets/PluginYourGames/Example/Scripts/Scenes/DemoScenePartial.cs"
+    },
+    {
+      "message": "warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'",
+      "file": "Assets/PluginYourGames/Example/Scripts/Scenes/AllDemoScenes.cs"
+    },
+    {
+      "message": "warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'",
+      "file": "Assets/PluginYourGames/Example/Scripts/Scenes/AllDemoScenes.cs"
+    },
+    {
+      "message": "warning CS0618: 'Object.FindObjectsOfType<T>(bool)' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'",
+      "file": "Assets/Scripts/Stage3/MenuPresentationStyle.cs"
+    },
+    {
+      "message": "warning CS0414: The field 'HoleParent.keepScoreOnStart' is assigned but its value is never used",
+      "file": "Assets/Scripts/HoleParent.cs"
+    },
+    {
+      "message": "warning UAC1001: Field 'data' type 'YG.LBPlayerDataYG.Data' is skipped by serialization (missing the [Serializable] attribute). Refer to the Serialization rules analyzer reference. (https://docs.unity3d.com/6000.6/Documentation/Manual/script-serialization-analyzer.html#uac1001)",
+      "file": "Assets/PluginYourGames/Modules/Leaderboards/Scripts/LBPlayerDataYG.cs"
+    },
+    {
+      "message": "warning UAC0009: DEVELOPMENT_BUILD preprocessor directive has been deprecated. Please use one of the managed code variant directives (such as DEBUG, UNITY_ENABLE_CHECKS or UNITY_INCLUDE_INSTRUMENTATION) if different code paths are desired for different managed code variants. Checking for development build is possible at runtime using Debug.isDebugBuild. See the Conditional Compilation manual page for more details.",
+      "file": "Assets/Scripts/Stage3/BackgroundMusicPlayer.cs"
+    },
+    {
+      "message": "warning UAC0009: DEVELOPMENT_BUILD preprocessor directive has been deprecated. Please use one of the managed code variant directives (such as DEBUG, UNITY_ENABLE_CHECKS or UNITY_INCLUDE_INSTRUMENTATION) if different code paths are desired for different managed code variants. Checking for development build is possible at runtime using Debug.isDebugBuild. See the Conditional Compilation manual page for more details.",
+      "file": "Assets/Scripts/Stage3/BackgroundMusicPlayer.cs"
+    },
+    {
+      "message": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/Library/Bee/artifacts/WebGL/il2cppOutput/cpp: [Unity.TextMeshPro] - System.Void TMPro.TMP_TextParsingUtilities::.cctor() - Method was given it's own cpp file because it is large and costly to compile"
+    },
+    {
+      "message": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/Library/Bee/artifacts/WebGL/il2cppOutput/cpp: [Unity.TextMeshPro] - System.Void TMPro.TextMeshPro::GenerateTextMesh() - Method was given it's own cpp file because it is large and costly to compile"
+    },
+    {
+      "message": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/Library/Bee/artifacts/WebGL/il2cppOutput/cpp: [Unity.TextMeshPro] - System.Void TMPro.TextMeshProUGUI::GenerateTextMesh() - Method was given it's own cpp file because it is large and costly to compile"
+    }
+  ]
+}

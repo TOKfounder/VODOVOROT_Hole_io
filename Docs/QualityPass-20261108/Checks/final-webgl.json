@@ -1,0 +1,67 @@
+{
+  "finalBuild": "build_620fdb160c2e",
+  "gameplayAssetBuild": "build_7b89ed982fdd",
+  "actualWebGL": {
+    "maps": [
+      "City",
+      "Garden",
+      "Castle"
+    ],
+    "viewports": [
+      [
+        1280,
+        720
+      ],
+      [
+        568,
+        320
+      ],
+      [
+        390,
+        844
+      ]
+    ],
+    "observedDpr": [
+      1,
+      2
+    ],
+    "growthUpperBoundSeconds": {
+      "City": [
+        11,
+        53
+      ],
+      "Garden": [
+        15,
+        52
+      ],
+      "Castle": [
+        5,
+        39
+      ]
+    },
+    "timingScope": "One developer route, HUD readings, no controlled A/B comparison",
+    "naturalGardenRoundSeconds": 180,
+    "naturalReward": {
+      "xp": 5,
+      "coins": 1,
+      "diamonds": 0
+    },
+    "menuAfterReward": {
+      "xp": 6,
+      "coins": 2
+    },
+    "lateGoalEarlyProgress": "1/5",
+    "goalPanelAboveBoost": true,
+    "soundRestored": [
+      0.5,
+      0.5
+    ]
+  },
+  "livePlatform": "Console verified. Actual SDK IAP/restore/ranking NOT VERIFIED; certificate handoff declined by user.",
+  "userCancelled": [
+    7,
+    10
+  ],
+  "remainingTechnicalFinding": "Browser reported dynamic non-convex MeshCollider on Medieval Column(13); collider unchanged; outside selected package.",
+  "personalSaveSHA256": "05c3f28f982d89f8061c480072968b932fb6789d7e5a4706787681becd71bf0b"
+}

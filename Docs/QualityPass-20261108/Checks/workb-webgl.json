@@ -1,0 +1,33 @@
+{
+  "build": "build_8307b7446aa2",
+  "scope": "Actual IAB keyboard/pointer WebGL, local SDK stub, disposable browser profile",
+  "canvas": [
+    2560,
+    1440
+  ],
+  "cssViewport": [
+    1280,
+    720
+  ],
+  "dpr": 2,
+  "audioDuring": [
+    0,
+    0
+  ],
+  "observed": {
+    "skinComparison": "Actual open/next/back; selected white changed on right, equipped red stayed on left. Missing-font nav arrows found and fixed in newer source; not accepted final.",
+    "blockedTarget": "Movement toward pickup while size1 showed Нужен размер3; actual keyboard d950ms+w550ms.",
+    "lateGoal": "Appeared in second half: Автодвор0/5,Машины25м,requires2. Direction glyph absent; newer source uses savedImage.",
+    "naturalRound": "180s completed, local guest ranking dismissed, result +5XP/+1coin/+0diamond; no caption/icon/value/action overlap; old paper still too wide (source fixed later).",
+    "continue": "Returned through one local fake interstitial and mainmenu shows5XP/1coin."
+  },
+  "notProven": [
+    "first/second growth timings: car detour and uncontrolled idle did not match baseline route; repeat from fresh start",
+    "other2maps",
+    "DPR1 and narrow browsers after finaliconbuild",
+    "physicalphone",
+    "liveSDK",
+    "weakdeviceperformance"
+  ],
+  "sourceFollowup": "PolishQualityIcons saved canonical nav/directionImage sprites, rounded buttons/paper, AuthorQualityResults Repair flexWidth0 caps paper800CSS. Pending native regression and WorkC build."
+}

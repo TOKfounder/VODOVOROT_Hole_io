@@ -45,7 +45,7 @@ public static class CheckMapPolish
             Check(YG.YG2.saves.musicValue == 0 && YG.YG2.saves.soundValue == 0, "Music and SFX zero through isolated game profile");
             RoundExperienceLab lab = One<RoundExperienceLab>();
             var labData = new SerializedObject(lab);
-            Check(labData.FindProperty("sliders").arraySize == 7, "saved existing lab has seven live controls");
+            Check(labData.FindProperty("sliders").arraySize == 9, "saved existing lab has nine live controls");
             var hide = (UnityEngine.UI.Slider)labData.FindProperty("sliders").GetArrayElementAtIndex(4).objectReferenceValue;
             var show = (UnityEngine.UI.Slider)labData.FindProperty("sliders").GetArrayElementAtIndex(5).objectReferenceValue;
             var reach = (UnityEngine.UI.Slider)labData.FindProperty("sliders").GetArrayElementAtIndex(6).objectReferenceValue;
@@ -150,7 +150,7 @@ public static class CheckMapPolish
         finally
         {
             Application.logMessageReceived -= Log;
-            File.WriteAllText("Docs/MapPolish-20261108/Checks/editor-polish.json", Newtonsoft.Json.JsonConvert.SerializeObject(
+            File.WriteAllText("Docs/QualityPass-20261108/Checks/map-regression.json", Newtonsoft.Json.JsonConvert.SerializeObject(
                 new
                 {
                     environment = "Editor controlled actual-component fixtures, not gameplay",

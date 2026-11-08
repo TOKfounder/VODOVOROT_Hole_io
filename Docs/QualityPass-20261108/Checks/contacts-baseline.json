@@ -1,0 +1,58 @@
+{
+  "scope": "Editor controlled real physical contacts, not gameplay",
+  "checks": [
+    {
+      "name": "isolated silent physical fixture",
+      "passed": true
+    },
+    {
+      "name": "no contact leaves idle object intact",
+      "passed": true
+    },
+    {
+      "name": "real trigger contact activates idle fitting object",
+      "passed": true
+    },
+    {
+      "name": "real physical fall scores fitting object once",
+      "passed": true
+    },
+    {
+      "name": "scored object cannot score again on staying contact",
+      "passed": true
+    },
+    {
+      "name": "oversized contact remains blocked at initial size",
+      "passed": true
+    },
+    {
+      "name": "growth while staying in trigger activates same candidate without re-entry",
+      "passed": true
+    },
+    {
+      "name": "reset candidate blocks again at small size",
+      "passed": true
+    },
+    {
+      "name": "exit removes candidate: remote growth cannot activate it",
+      "passed": true
+    },
+    {
+      "name": "real re-entry after exit activates fitting reset object",
+      "passed": true
+    },
+    {
+      "name": "pool preparation restores value, renderer, collider and target eligibility",
+      "passed": true
+    },
+    {
+      "name": "pooled object re-enters physical absorption and scores once in new life",
+      "passed": true
+    },
+    {
+      "name": "personal save byte-identical",
+      "passed": true
+    }
+  ],
+  "failure": null
+}

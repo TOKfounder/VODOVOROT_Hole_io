@@ -1,5 +1,10 @@
 mergeInto(LibraryManager.library,
 {
+    AcknowledgePurchaseDelivery_js: function(token, accepted)
+    {
+        AcknowledgePurchaseDelivery(UTF8ToString(token), accepted);
+    },
+
 	InitPayments_js: function()
 	{
 		var returnStr = paymentsData;

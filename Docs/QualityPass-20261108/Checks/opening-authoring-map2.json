@@ -1,0 +1,1819 @@
+[
+  {
+    "scene": "Assets/Scenes/MedievalCastle.unity",
+    "originalCount": 210,
+    "moved": 181,
+    "edits": [
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (4)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-2199036850574787075-1160892917",
+        "wave": 1,
+        "before": "(-66.29001, 0.26259, -48.60000)",
+        "after": "(-66.29001, 0.26259, -48.60500)",
+        "deltaMetres": 0.005,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (1)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-3379125691767412294-1160892917",
+        "wave": 1,
+        "before": "(-65.91000, 0.26259, -48.60000)",
+        "after": "(-65.91000, 0.26259, -48.59500)",
+        "deltaMetres": 0.005,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (2)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-4260657519298796758-1160892917",
+        "wave": 1,
+        "before": "(-66.29001, 0.26259, -48.05000)",
+        "after": "(-66.27251, 0.26259, -48.04307)",
+        "deltaMetres": 0.01882555,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (13)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-3483658189460936263-1160892917",
+        "wave": 1,
+        "before": "(-65.91000, 0.26259, -48.05000)",
+        "after": "(-65.89250, 0.26259, -48.03307)",
+        "deltaMetres": 0.0243504141,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (13)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-4672334296832118222-1160892917",
+        "wave": 1,
+        "before": "(-65.91000, 0.26259, -47.50000)",
+        "after": "(-65.80200, 0.26259, -47.43252)",
+        "deltaMetres": 0.1273496,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (5)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-8921840908114910032-1160892917",
+        "wave": 1,
+        "before": "(-65.41000, 0.26259, -46.95000)",
+        "after": "(-65.31343, 0.26259, -46.93046)",
+        "deltaMetres": 0.09853249,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (7)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-1625528224052297174-749147402",
+        "wave": 1,
+        "before": "(-66.29001, 0.26259, -46.40000)",
+        "after": "(-66.24905, 0.26259, -46.46794)",
+        "deltaMetres": 0.0793311447,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (6)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-6434858880366184037-1160892917",
+        "wave": 1,
+        "before": "(-65.91000, 0.26259, -46.40000)",
+        "after": "(-65.86905, 0.26259, -46.42794)",
+        "deltaMetres": 0.04958324,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (5)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-1049674705974820401-749147402",
+        "wave": 1,
+        "before": "(-65.79001, 0.26259, -45.85000)",
+        "after": "(-65.82339, 0.26259, -45.91724)",
+        "deltaMetres": 0.07507509,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (12)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-8142179049803657722-1160892917",
+        "wave": 1,
+        "before": "(-65.41000, 0.26259, -45.85000)",
+        "after": "(-65.44339, 0.26259, -45.87724)",
+        "deltaMetres": 0.0430924259,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (1)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-8041892673314881767-1160892917",
+        "wave": 1,
+        "before": "(-66.29001, 0.26259, -45.30000)",
+        "after": "(-66.38248, 0.26259, -45.31907)",
+        "deltaMetres": 0.09441406,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (12)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-7683007102724043713-1160892917",
+        "wave": 1,
+        "before": "(-65.91000, 0.26259, -45.30000)",
+        "after": "(-66.00247, 0.26259, -45.27908)",
+        "deltaMetres": 0.09480504,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (10)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-6485760161504897928-1160892917",
+        "wave": 1,
+        "before": "(-66.28999, 0.26259, -44.75000)",
+        "after": "(-66.39923, 0.26259, -44.72184)",
+        "deltaMetres": 0.112811692,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (11)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-3124811385531822246-1160892917",
+        "wave": 1,
+        "before": "(-65.91000, 0.26259, -44.75000)",
+        "after": "(-66.01924, 0.26259, -44.68184)",
+        "deltaMetres": 0.128761053,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (1)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-6871989670401225415-749147402",
+        "wave": 1,
+        "before": "(-66.29001, 0.26259, -44.20000)",
+        "after": "(-66.36604, 0.26259, -44.17300)",
+        "deltaMetres": 0.0806875,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (8)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-5517199319987266096-1160892917",
+        "wave": 1,
+        "before": "(-65.91000, 0.26259, -44.20000)",
+        "after": "(-65.98604, 0.26259, -44.13300)",
+        "deltaMetres": 0.1013445,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (4)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-2894610377590869408-1160892917",
+        "wave": 1,
+        "before": "(-66.29001, 0.26259, -43.65000)",
+        "after": "(-66.29805, 0.26259, -43.67139)",
+        "deltaMetres": 0.0228494871,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (7)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-3461166233281649136-1160892917",
+        "wave": 1,
+        "before": "(-65.91000, 0.26259, -43.65000)",
+        "after": "(-65.91805, 0.26259, -43.63139)",
+        "deltaMetres": 0.0202764571,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (5)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-4491651647331388433-1160892917",
+        "wave": 1,
+        "before": "(-65.91000, 0.26259, -43.10000)",
+        "after": "(-65.84637, 0.26259, -43.12838)",
+        "deltaMetres": 0.06967195,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (11)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-255735319449003540-1160892917",
+        "wave": 1,
+        "before": "(-65.90999, 0.26259, -42.55000)",
+        "after": "(-65.80380, 0.26259, -42.57676)",
+        "deltaMetres": 0.109509647,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (2)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-1565452846533429537-749147402",
+        "wave": 1,
+        "before": "(-65.91000, 0.26259, -42.00000)",
+        "after": "(-65.80984, 0.26259, -41.97815)",
+        "deltaMetres": 0.10252329,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (9)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-8245096107139696851-1160892917",
+        "wave": 1,
+        "before": "(-66.29001, 0.26259, -41.45000)",
+        "after": "(-66.24170, 0.26259, -41.42140)",
+        "deltaMetres": 0.0561494157,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (2)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-2701359214526528257-1160892917",
+        "wave": 1,
+        "before": "(-65.91000, 0.26259, -41.45000)",
+        "after": "(-65.86169, 0.26259, -41.38140)",
+        "deltaMetres": 0.0839099,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (3)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-5551365452873447155-1160892917",
+        "wave": 1,
+        "before": "(-66.29001, 0.26259, -40.90000)",
+        "after": "(-66.31564, 0.26259, -40.87349)",
+        "deltaMetres": 0.0368826836,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (4)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-4816787824216707490-1160892917",
+        "wave": 1,
+        "before": "(-65.91000, 0.26259, -40.90000)",
+        "after": "(-65.93564, 0.26259, -40.83348)",
+        "deltaMetres": 0.0712854862,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (5)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-4393914743122681285-749147402",
+        "wave": 1,
+        "before": "(-66.29001, 0.26259, -40.35000)",
+        "after": "(-66.37787, 0.26259, -40.37231)",
+        "deltaMetres": 0.0906515345,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (1)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-8659059633429518508-1160892917",
+        "wave": 1,
+        "before": "(-65.91000, 0.26259, -40.35000)",
+        "after": "(-65.99786, 0.26259, -40.33231)",
+        "deltaMetres": 0.08962588,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (2)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-6358966349934559048-1160892917",
+        "wave": 1,
+        "before": "(-66.28999, 0.26259, -39.80000)",
+        "after": "(-66.39989, 0.26259, -39.86882)",
+        "deltaMetres": 0.129660323,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (4)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-6154460389248633321-1160892917",
+        "wave": 1,
+        "before": "(-65.91000, 0.26259, -39.80000)",
+        "after": "(-66.01990, 0.26259, -39.82882)",
+        "deltaMetres": 0.1136068,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (7)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-2759499015109808118-1160892917",
+        "wave": 1,
+        "before": "(-66.29001, 0.26259, -39.25000)",
+        "after": "(-66.37166, 0.26259, -39.31627)",
+        "deltaMetres": 0.105152838,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (8)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-8078082029887117765-749147402",
+        "wave": 1,
+        "before": "(-65.91000, 0.26259, -39.25000)",
+        "after": "(-65.99165, 0.26259, -39.27627)",
+        "deltaMetres": 0.08576538,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (6)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-1573497680474790264-1160892917",
+        "wave": 1,
+        "before": "(-66.29001, 0.26259, -38.70000)",
+        "after": "(-66.30606, 0.26259, -38.71723)",
+        "deltaMetres": 0.0235403925,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (3)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-39516801840218266-749147402",
+        "wave": 1,
+        "before": "(-65.91000, 0.26259, -38.70000)",
+        "after": "(-65.92606, 0.26259, -38.67723)",
+        "deltaMetres": 0.0278569255,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (6)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-2190960717516996848-749147402",
+        "wave": 2,
+        "before": "(-67.07500, 0.26259, -37.00001)",
+        "after": "(-67.07500, 0.26259, -37.02001)",
+        "deltaMetres": 0.02,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (13)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-6533424976955476549-1160892917",
+        "wave": 2,
+        "before": "(-67.42500, 0.26259, -37.00000)",
+        "after": "(-67.42500, 0.26259, -36.98000)",
+        "deltaMetres": 0.02,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (8)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-4439724510372851628-1160892917",
+        "wave": 2,
+        "before": "(-67.77499, 0.26259, -37.00000)",
+        "after": "(-67.77499, 0.26259, -37.02000)",
+        "deltaMetres": 0.02,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (10)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-3526634398232000394-1160892917",
+        "wave": 2,
+        "before": "(-68.12500, 0.26259, -37.00000)",
+        "after": "(-68.12500, 0.26259, -36.98000)",
+        "deltaMetres": 0.02,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (4)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-7326712179855178697-749147402",
+        "wave": 2,
+        "before": "(-66.87807, 0.26259, -36.15000)",
+        "after": "(-66.72530, 0.26259, -36.08326)",
+        "deltaMetres": 0.166711971,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (3)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-3479268924434133690-1160892917",
+        "wave": 2,
+        "before": "(-67.57806, 0.26259, -36.15000)",
+        "after": "(-67.42529, 0.26259, -36.08326)",
+        "deltaMetres": 0.166711971,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (6)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-7535821924586216753-1160892917",
+        "wave": 2,
+        "before": "(-67.92805, 0.26259, -36.15000)",
+        "after": "(-67.77528, 0.26259, -36.04326)",
+        "deltaMetres": 0.186365947,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (1)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-7624591751988138195-749147402",
+        "wave": 2,
+        "before": "(-66.68750, 0.26259, -35.30001)",
+        "after": "(-66.45186, 0.26259, -35.23369)",
+        "deltaMetres": 0.244799837,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (3)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-2880468383198751473-1160892917",
+        "wave": 2,
+        "before": "(-66.03751, 0.26259, -35.30000)",
+        "after": "(-65.80186, 0.26259, -35.19367)",
+        "deltaMetres": 0.2585201,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (8)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-845527363097666725-749147402",
+        "wave": 2,
+        "before": "(-67.38750, 0.26259, -35.30000)",
+        "after": "(-67.15186, 0.26259, -35.23367)",
+        "deltaMetres": 0.244799837,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb (1)/Props_Dustbin (1)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-5119420713410745651-1160892917",
+        "wave": 2,
+        "before": "(-67.73749, 0.26259, -35.30000)",
+        "after": "(-67.50185, 0.26259, -35.19367)",
+        "deltaMetres": 0.2585201,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (5)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-3018589862757520474-1160892917",
+        "wave": 2,
+        "before": "(-66.50945, 0.26259, -34.45000)",
+        "after": "(-66.29874, 0.26259, -34.47085)",
+        "deltaMetres": 0.21173951,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (2)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-8937965568967301699-749147402",
+        "wave": 2,
+        "before": "(-65.85945, 0.26259, -34.45000)",
+        "after": "(-65.64874, 0.26259, -34.43085)",
+        "deltaMetres": 0.211580634,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (10)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-3362974021021576313-1160892917",
+        "wave": 2,
+        "before": "(-65.20946, 0.26259, -34.45000)",
+        "after": "(-64.99875, 0.26259, -34.47085)",
+        "deltaMetres": 0.21173951,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (5)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-4834399454031923288-1160892917",
+        "wave": 2,
+        "before": "(-67.05945, 0.26259, -34.45000)",
+        "after": "(-66.84874, 0.26259, -34.43085)",
+        "deltaMetres": 0.211580634,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (10)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-2828468719145398209-1160892917",
+        "wave": 2,
+        "before": "(-66.34969, 0.26259, -33.60000)",
+        "after": "(-66.26031, 0.26259, -33.70716)",
+        "deltaMetres": 0.139537722,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (11)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-5623448710952931453-749147402",
+        "wave": 2,
+        "before": "(-65.69968, 0.26259, -33.60001)",
+        "after": "(-65.61031, 0.26259, -33.66717)",
+        "deltaMetres": 0.1117952,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (4)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-3588144869301824050-1160892917",
+        "wave": 2,
+        "before": "(-65.04968, 0.26259, -33.60000)",
+        "after": "(-64.96031, 0.26259, -33.70716)",
+        "deltaMetres": 0.139537722,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (8)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-4674631117646097381-1160892917",
+        "wave": 2,
+        "before": "(-66.21335, 0.26259, -32.75000)",
+        "after": "(-66.28621, 0.26259, -32.85589)",
+        "deltaMetres": 0.128532261,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (12)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-1877375941291224568-1160892917",
+        "wave": 2,
+        "before": "(-65.56334, 0.26259, -32.75000)",
+        "after": "(-65.63620, 0.26259, -32.81590)",
+        "deltaMetres": 0.09822966,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (10)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-1694481168388070881-749147402",
+        "wave": 2,
+        "before": "(-64.91335, 0.26259, -32.75000)",
+        "after": "(-64.98621, 0.26259, -32.85589)",
+        "deltaMetres": 0.128532261,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (6)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-173263039634882867-1160892917",
+        "wave": 2,
+        "before": "(-64.26334, 0.26259, -32.75001)",
+        "after": "(-64.33620, 0.26259, -32.81590)",
+        "deltaMetres": 0.09822966,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (3)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-7308326217596100700-749147402",
+        "wave": 2,
+        "before": "(-66.10484, 0.26259, -31.90001)",
+        "after": "(-66.30659, 0.26259, -31.91833)",
+        "deltaMetres": 0.20257619,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfWhiteStolb/Props_Dustbin (7)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-936466681348091503-749147402",
+        "wave": 2,
+        "before": "(-65.45485, 0.26259, -31.90000)",
+        "after": "(-65.65660, 0.26259, -31.87832)",
+        "deltaMetres": 0.2029079,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (11)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-7601968587102550550-1160892917",
+        "wave": 2,
+        "before": "(-64.80486, 0.26259, -31.90001)",
+        "after": "(-65.00661, 0.26259, -31.91833)",
+        "deltaMetres": 0.20257619,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb/Props_Dustbin (13)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-3142857003844984349-1160892917",
+        "wave": 2,
+        "before": "(-64.15486, 0.26259, -31.90000)",
+        "after": "(-64.35661, 0.26259, -31.87832)",
+        "deltaMetres": 0.2029079,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (7)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-6559779191120661439-1160892917",
+        "wave": 2,
+        "before": "(-63.87770, 0.26259, -31.05000)",
+        "after": "(-64.11604, 0.26259, -30.94243)",
+        "deltaMetres": 0.261490941,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (13)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-5555965820441793038-1160892917",
+        "wave": 2,
+        "before": "(-63.22769, 0.26259, -31.05000)",
+        "after": "(-63.46603, 0.26259, -30.98243)",
+        "deltaMetres": 0.247734085,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb (1)/Props_Dustbin (2)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-5966745702805036963-1160892917",
+        "wave": 2,
+        "before": "(-62.57769, 0.26259, -31.05000)",
+        "after": "(-62.81604, 0.26259, -30.94243)",
+        "deltaMetres": 0.261490941,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (4)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-6462209690545685654-749147402",
+        "wave": 2,
+        "before": "(-66.97633, 0.26259, -29.35001)",
+        "after": "(-66.99388, 0.26259, -29.37253)",
+        "deltaMetres": 0.02855165,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (3)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-939462590357917432-1160892917",
+        "wave": 2,
+        "before": "(-67.32634, 0.26259, -29.35000)",
+        "after": "(-67.34389, 0.26259, -29.33252)",
+        "deltaMetres": 0.0247677881,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (11)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-7815823717340640819-749147402",
+        "wave": 2,
+        "before": "(-63.17633, 0.26259, -29.35001)",
+        "after": "(-63.19387, 0.26259, -29.37253)",
+        "deltaMetres": 0.02855165,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (11)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-293478912478501015-1160892917",
+        "wave": 2,
+        "before": "(-62.52632, 0.26259, -29.35000)",
+        "after": "(-62.54387, 0.26259, -29.33252)",
+        "deltaMetres": 0.0247677881,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (12)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-989777500353246643-1160892917",
+        "wave": 2,
+        "before": "(-66.06583, 0.26259, -27.65000)",
+        "after": "(-65.83414, 0.26259, -27.75502)",
+        "deltaMetres": 0.2543771,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (9)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-6711311068027003106-1160892917",
+        "wave": 2,
+        "before": "(-65.41582, 0.26259, -27.65000)",
+        "after": "(-65.18413, 0.26259, -27.71502)",
+        "deltaMetres": 0.24063684,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (9)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-7013652907859614768-1160892917",
+        "wave": 2,
+        "before": "(-64.76582, 0.26259, -27.65000)",
+        "after": "(-64.53413, 0.26259, -27.75502)",
+        "deltaMetres": 0.2543771,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfWhiteStolb/Props_Dustbin (5)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-1504421799539551624-749147402",
+        "wave": 2,
+        "before": "(-66.61581, 0.26259, -27.65000)",
+        "after": "(-66.38412, 0.26259, -27.71502)",
+        "deltaMetres": 0.24063684,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (1)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-119972162937323127-1160892917",
+        "wave": 2,
+        "before": "(-65.66048, 0.26259, -26.80000)",
+        "after": "(-65.44193, 0.26259, -26.81664)",
+        "deltaMetres": 0.219180822,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (13)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-9069824754332868654-749147402",
+        "wave": 2,
+        "before": "(-65.01048, 0.26259, -26.80000)",
+        "after": "(-64.79193, 0.26259, -26.77663)",
+        "deltaMetres": 0.219793573,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfWhiteStolb/Props_Dustbin (6)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-4567605542042548449-749147402",
+        "wave": 2,
+        "before": "(-64.36047, 0.26259, -26.80001)",
+        "after": "(-64.14192, 0.26259, -26.81665)",
+        "deltaMetres": 0.219180822,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb/Props_Dustbin (9)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-1812324720541850368-1160892917",
+        "wave": 2,
+        "before": "(-66.28470, 0.26259, -25.95000)",
+        "after": "(-66.17928, 0.26259, -25.88163)",
+        "deltaMetres": 0.125650138,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb/Props_Dustbin (10)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-7687179940477818779-1160892917",
+        "wave": 2,
+        "before": "(-65.63469, 0.26259, -25.95000)",
+        "after": "(-65.52927, 0.26259, -25.84163)",
+        "deltaMetres": 0.151186168,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (9)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-3838925183445732934-749147402",
+        "wave": 2,
+        "before": "(-64.48471, 0.26259, -25.95000)",
+        "after": "(-64.37929, 0.26259, -25.88163)",
+        "deltaMetres": 0.125650138,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfWhiteStolb/Props_Dustbin (8)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-7668199683660745340-749147402",
+        "wave": 2,
+        "before": "(-63.83468, 0.26259, -25.95000)",
+        "after": "(-63.72926, 0.26259, -25.84163)",
+        "deltaMetres": 0.151186168,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb (1)/Props_Dustbin (6)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-3504909801166472464-1160892917",
+        "wave": 2,
+        "before": "(-66.43443, 0.26259, -25.10000)",
+        "after": "(-66.49037, 0.26259, -25.03542)",
+        "deltaMetres": 0.08543139,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (3)/BlokOfBlackStolb/Props_Dustbin (1)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-7633626672591179698-1160892917",
+        "wave": 2,
+        "before": "(-65.28444, 0.26259, -25.10001)",
+        "after": "(-65.34038, 0.26259, -24.99543)",
+        "deltaMetres": 0.118593857,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb (1)/Props_Dustbin (7)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-6477951648902339205-1160892917",
+        "wave": 2,
+        "before": "(-64.63443, 0.26259, -25.10000)",
+        "after": "(-64.69037, 0.26259, -25.03542)",
+        "deltaMetres": 0.08543139,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (9)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-8567009999365473403-1160892917",
+        "wave": 2,
+        "before": "(-62.98443, 0.26259, -25.10000)",
+        "after": "(-63.04037, 0.26259, -24.99542)",
+        "deltaMetres": 0.118593857,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (8)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-7196239209101724161-1160892917",
+        "wave": 2,
+        "before": "(-65.45488, 0.26259, -24.25000)",
+        "after": "(-65.64659, 0.26259, -24.23420)",
+        "deltaMetres": 0.192350939,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (6)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-8503390849724296788-1160892917",
+        "wave": 2,
+        "before": "(-64.80489, 0.26259, -24.25000)",
+        "after": "(-64.99660, 0.26259, -24.27420)",
+        "deltaMetres": 0.193222851,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfBlackStolb/Props_Dustbin (4)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-3786230606694822762-1160892917",
+        "wave": 2,
+        "before": "(-64.15489, 0.26259, -24.25000)",
+        "after": "(-64.34660, 0.26259, -24.23420)",
+        "deltaMetres": 0.192350939,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb/Props_Dustbin (11)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-4618252184229946229-1160892917",
+        "wave": 2,
+        "before": "(-66.14052, 0.26259, -23.40000)",
+        "after": "(-66.38028, 0.26259, -23.46876)",
+        "deltaMetres": 0.24942708,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfBlackStolb/Props_Dustbin (1)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-354368310020794159-1160892917",
+        "wave": 2,
+        "before": "(-65.49052, 0.26259, -23.40000)",
+        "after": "(-65.73029, 0.26259, -23.50876)",
+        "deltaMetres": 0.263276279,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (12)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-3293656780121994580-749147402",
+        "wave": 2,
+        "before": "(-64.84052, 0.26259, -23.40001)",
+        "after": "(-65.08028, 0.26259, -23.46877)",
+        "deltaMetres": 0.24942708,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (5)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-6097757257324163937-1160892917",
+        "wave": 2,
+        "before": "(-66.98535, 0.26259, -22.55000)",
+        "after": "(-67.16348, 0.26259, -22.65412)",
+        "deltaMetres": 0.206331268,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (3)/BlokOfBlackStolb/Props_Dustbin (5)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-4379109499600044708-1160892917",
+        "wave": 2,
+        "before": "(-66.33536, 0.26259, -22.55000)",
+        "after": "(-66.51349, 0.26259, -22.61412)",
+        "deltaMetres": 0.189321786,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb/Props_Dustbin (13)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-3057190066115447669-1160892917",
+        "wave": 2,
+        "before": "(-65.68536, 0.26259, -22.55000)",
+        "after": "(-65.86349, 0.26259, -22.65412)",
+        "deltaMetres": 0.206331268,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfWhiteStolb/Props_Dustbin (1)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-4985414421553930622-749147402",
+        "wave": 2,
+        "before": "(-65.03535, 0.26259, -22.55001)",
+        "after": "(-65.21349, 0.26259, -22.61414)",
+        "deltaMetres": 0.189321786,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb (1)/Props_Dustbin (7)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-1054812989848942390-749147402",
+        "wave": 2,
+        "before": "(-67.18307, 0.26259, -21.70000)",
+        "after": "(-67.21808, 0.26259, -21.71496)",
+        "deltaMetres": 0.0380655862,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfWhiteStolb/Props_Dustbin (2)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-1137278904554232472-749147402",
+        "wave": 2,
+        "before": "(-66.03308, 0.26259, -21.70000)",
+        "after": "(-66.06808, 0.26259, -21.67496)",
+        "deltaMetres": 0.0430391356,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb (1)/Props_Dustbin (5)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-5006671842002433430-749147402",
+        "wave": 2,
+        "before": "(-64.73308, 0.26259, -21.70000)",
+        "after": "(-64.76808, 0.26259, -21.67496)",
+        "deltaMetres": 0.0430391356,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfBlackStolb/Props_Dustbin (13)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-7699079183293299879-1160892917",
+        "wave": 2,
+        "before": "(-67.37730, 0.26259, -20.85000)",
+        "after": "(-67.25317, 0.26259, -20.78086)",
+        "deltaMetres": 0.142094716,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb/Props_Dustbin (4)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-8488811270542971344-1160892917",
+        "wave": 2,
+        "before": "(-66.72733, 0.26259, -20.85000)",
+        "after": "(-66.60320, 0.26259, -20.74086)",
+        "deltaMetres": 0.165294215,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfWhiteStolb/Props_Dustbin (3)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-1944871559049466659-749147402",
+        "wave": 2,
+        "before": "(-66.07732, 0.26259, -20.85000)",
+        "after": "(-65.95319, 0.26259, -20.78086)",
+        "deltaMetres": 0.142094716,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfBlackStolb/Props_Dustbin (2)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-1238223269717765567-1160892917",
+        "wave": 2,
+        "before": "(-65.42731, 0.26259, -20.85000)",
+        "after": "(-65.30318, 0.26259, -20.74086)",
+        "deltaMetres": 0.165294215,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb (1)/Props_Dustbin (13)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-2970600745702985403-1160892917",
+        "wave": 2,
+        "before": "(-67.06177, 0.26259, -20.00000)",
+        "after": "(-66.83528, 0.26259, -19.93633)",
+        "deltaMetres": 0.235265061,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb (1)/Props_Dustbin (1)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-1175134265626392704-749147402",
+        "wave": 2,
+        "before": "(-66.41177, 0.26259, -20.00001)",
+        "after": "(-66.18529, 0.26259, -19.89634)",
+        "deltaMetres": 0.249084115,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfBlackStolb/Props_Dustbin (10)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-3164743146214667553-1160892917",
+        "wave": 2,
+        "before": "(-65.76178, 0.26259, -20.00000)",
+        "after": "(-65.53529, 0.26259, -19.93633)",
+        "deltaMetres": 0.235265061,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (13)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-575786121542011739-749147402",
+        "wave": 2,
+        "before": "(-65.11177, 0.26259, -20.00001)",
+        "after": "(-64.88528, 0.26259, -19.89634)",
+        "deltaMetres": 0.249084115,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (3)/BlokOfBlackStolb/Props_Dustbin (7)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-8583174466918121476-1160892917",
+        "wave": 2,
+        "before": "(-67.73051, 0.26259, -19.15000)",
+        "after": "(-67.50531, 0.26259, -19.17588)",
+        "deltaMetres": 0.2266977,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfWhiteStolb (1)/Props_Dustbin (1)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-4051517045886303320-1160892917",
+        "wave": 2,
+        "before": "(-65.93051, 0.26259, -19.15000)",
+        "after": "(-65.70531, 0.26259, -19.17588)",
+        "deltaMetres": 0.2266977,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb (1)/Props_Dustbin (7)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-960771011458908306-749147402",
+        "wave": 2,
+        "before": "(-65.28052, 0.26259, -19.15000)",
+        "after": "(-65.05531, 0.26259, -19.13589)",
+        "deltaMetres": 0.225657508,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb/Props_Dustbin (3)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-5263672632756581658-1160892917",
+        "wave": 2,
+        "before": "(-67.87807, 0.26259, -18.30000)",
+        "after": "(-67.75717, 0.26259, -18.40952)",
+        "deltaMetres": 0.163133636,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (3)/BlokOfBlackStolb/Props_Dustbin (2)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-8950308988774843682-1160892917",
+        "wave": 2,
+        "before": "(-66.72807, 0.26259, -18.30000)",
+        "after": "(-66.60718, 0.26259, -18.36951)",
+        "deltaMetres": 0.139467165,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfWhiteStolb/Props_Dustbin (11)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-6087590147875242948-749147402",
+        "wave": 2,
+        "before": "(-66.07806, 0.26259, -18.30000)",
+        "after": "(-65.95717, 0.26259, -18.40952)",
+        "deltaMetres": 0.163133636,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb (1)/Props_Dustbin (11)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-4806266093701624787-1160892917",
+        "wave": 2,
+        "before": "(-65.42807, 0.26259, -18.30000)",
+        "after": "(-65.30717, 0.26259, -18.36951)",
+        "deltaMetres": 0.139467165,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb/Props_Dustbin (12)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-7695515094464441544-1160892917",
+        "wave": 2,
+        "before": "(-66.99968, 0.26259, -17.45000)",
+        "after": "(-67.03841, 0.26259, -17.55321)",
+        "deltaMetres": 0.110226274,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (7)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-2253949065865032129-1160892917",
+        "wave": 2,
+        "before": "(-66.34967, 0.26259, -17.45000)",
+        "after": "(-66.38840, 0.26259, -17.51321)",
+        "deltaMetres": 0.0741192251,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (9)/BlokOfWhiteStolb (1)/Props_Dustbin (4)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-4170626780115306923-1160892917",
+        "wave": 2,
+        "before": "(-65.69968, 0.26259, -17.45000)",
+        "after": "(-65.73840, 0.26259, -17.55321)",
+        "deltaMetres": 0.110226274,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (9)/BlokOfWhiteStolb (1)/Props_Dustbin (10)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-5460824245872799619-1160892917",
+        "wave": 2,
+        "before": "(-65.04965, 0.26259, -17.45000)",
+        "after": "(-65.08838, 0.26259, -17.51321)",
+        "deltaMetres": 0.0741192251,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfBlackStolb/Props_Dustbin (3)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-597120772396079008-1160892917",
+        "wave": 2,
+        "before": "(-68.09140, 0.26259, -16.60000)",
+        "after": "(-68.27203, 0.26259, -16.61327)",
+        "deltaMetres": 0.181116909,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfBlackStolb/Props_Dustbin (7)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-2347779708144543420-749147402",
+        "wave": 2,
+        "before": "(-67.44141, 0.26259, -16.60000)",
+        "after": "(-67.62204, 0.26259, -16.57328)",
+        "deltaMetres": 0.182595164,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb (1)/Props_Dustbin (12)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-248050557515067572-1160892917",
+        "wave": 2,
+        "before": "(-68.15028, 0.26259, -15.75000)",
+        "after": "(-68.39018, 0.26259, -15.68011)",
+        "deltaMetres": 0.249874,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfWhiteStolb/Props_Dustbin (9)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-6652213520231491042-749147402",
+        "wave": 2,
+        "before": "(-67.00031, 0.26259, -15.75000)",
+        "after": "(-67.24020, 0.26259, -15.64011)",
+        "deltaMetres": 0.2638716,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (3)/BlokOfWhiteStolb/Props_Dustbin (1)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-3747060020273481188-1160892917",
+        "wave": 2,
+        "before": "(-66.35028, 0.26259, -15.75000)",
+        "after": "(-66.59018, 0.26259, -15.68011)",
+        "deltaMetres": 0.249874,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (3)/BlokOfBlackStolb/Props_Dustbin (6)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-2186552477454786449-1160892917",
+        "wave": 2,
+        "before": "(-67.67442, 0.26259, -14.90000)",
+        "after": "(-67.86385, 0.26259, -14.83727)",
+        "deltaMetres": 0.199533448,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb/Props_Dustbin (8)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-2872130042607235555-1160892917",
+        "wave": 2,
+        "before": "(-67.02443, 0.26259, -14.90000)",
+        "after": "(-67.21385, 0.26259, -14.79727)",
+        "deltaMetres": 0.215481371,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfWhiteStolb/Props_Dustbin (4)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-9213313542104836208-749147402",
+        "wave": 2,
+        "before": "(-66.37442, 0.26259, -14.90000)",
+        "after": "(-66.56384, 0.26259, -14.83727)",
+        "deltaMetres": 0.199533448,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb (1)/Props_Dustbin (6)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-7486896299212744867-749147402",
+        "wave": 2,
+        "before": "(-65.72443, 0.26259, -14.90000)",
+        "after": "(-65.91385, 0.26259, -14.79727)",
+        "deltaMetres": 0.215481371,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (9)/BlokOfWhiteStolb (1)/Props_Dustbin (12)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-7004336072383215089-1160892917",
+        "wave": 2,
+        "before": "(-68.16304, 0.26259, -14.05000)",
+        "after": "(-68.21532, 0.26259, -14.07755)",
+        "deltaMetres": 0.05909145,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfBlackStolb/Props_Dustbin (12)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-4652340119815832232-1160892917",
+        "wave": 2,
+        "before": "(-67.01305, 0.26259, -14.05000)",
+        "after": "(-67.06532, 0.26259, -14.03755)",
+        "deltaMetres": 0.053731367,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb (1)/Props_Dustbin (2)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-399448151164678672-749147402",
+        "wave": 2,
+        "before": "(-66.36304, 0.26259, -14.05000)",
+        "after": "(-66.41531, 0.26259, -14.07755)",
+        "deltaMetres": 0.05909145,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb/Props_Dustbin (2)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-5794507583048650501-1160892917",
+        "wave": 2,
+        "before": "(-65.71304, 0.26259, -14.05000)",
+        "after": "(-65.76532, 0.26259, -14.03755)",
+        "deltaMetres": 0.053731367,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfWhiteStolb (1)/Props_Dustbin (2)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-8277137185101760446-1160892917",
+        "wave": 2,
+        "before": "(-68.11650, 0.26259, -13.20000)",
+        "after": "(-68.00772, 0.26259, -13.31026)",
+        "deltaMetres": 0.154890284,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfBlackStolb/Props_Dustbin (6)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-8305445847823169292-1160892917",
+        "wave": 2,
+        "before": "(-67.46649, 0.26259, -13.20000)",
+        "after": "(-67.35771, 0.26259, -13.27026)",
+        "deltaMetres": 0.129501238,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfWhiteStolb/Props_Dustbin (10)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-1005982322297917016-749147402",
+        "wave": 2,
+        "before": "(-66.31650, 0.26259, -13.20000)",
+        "after": "(-66.20772, 0.26259, -13.31026)",
+        "deltaMetres": 0.154890284,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (3)/BlokOfBlackStolb/Props_Dustbin (4)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-6454093359296207863-1160892917",
+        "wave": 2,
+        "before": "(-65.66650, 0.26259, -13.20000)",
+        "after": "(-65.55772, 0.26259, -13.27026)",
+        "deltaMetres": 0.129501238,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfWhiteStolb (1)/Props_Dustbin (4)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-201081516986381654-1160892917",
+        "wave": 2,
+        "before": "(-68.03630, 0.26259, -12.35000)",
+        "after": "(-67.81622, 0.26259, -12.45226)",
+        "deltaMetres": 0.24267216,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb (1)/Props_Dustbin (1)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-4937184725801979779-749147402",
+        "wave": 2,
+        "before": "(-67.38631, 0.26259, -12.35000)",
+        "after": "(-67.16623, 0.26259, -12.41225)",
+        "deltaMetres": 0.228711963,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb/Props_Dustbin (9)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-1266550965916998912-1160892917",
+        "wave": 2,
+        "before": "(-66.73630, 0.26259, -12.35000)",
+        "after": "(-66.51622, 0.26259, -12.45226)",
+        "deltaMetres": 0.24267216,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfBlackStolb/Props_Dustbin (11)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-95252437345550799-1160892917",
+        "wave": 2,
+        "before": "(-64.08630, 0.26259, -12.35000)",
+        "after": "(-63.86623, 0.26259, -12.41225)",
+        "deltaMetres": 0.228711963,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfWhiteStolb (1)/Props_Dustbin (5)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-7635544131858755758-1160892917",
+        "wave": 2,
+        "before": "(-66.92505, 0.26259, -11.50000)",
+        "after": "(-66.69438, 0.26259, -11.51160)",
+        "deltaMetres": 0.2309682,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb/Props_Dustbin (4)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-3611493606959845522-1160892917",
+        "wave": 2,
+        "before": "(-67.27505, 0.26259, -11.50000)",
+        "after": "(-67.04439, 0.26259, -11.47160)",
+        "deltaMetres": 0.232417926,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb (1)/Props_Dustbin (6)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-4524079489087477276-749147402",
+        "wave": 2,
+        "before": "(-66.12505, 0.26259, -11.50000)",
+        "after": "(-65.89438, 0.26259, -11.51160)",
+        "deltaMetres": 0.2309682,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (9)/BlokOfWhiteStolb (1)/Props_Dustbin (2)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-5329205371417754435-1160892917",
+        "wave": 2,
+        "before": "(-65.47502, 0.26259, -11.50000)",
+        "after": "(-65.24435, 0.26259, -11.47160)",
+        "deltaMetres": 0.232417926,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb/Props_Dustbin (6)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-3605107914881390006-1160892917",
+        "wave": 2,
+        "before": "(-66.78632, 0.26259, -10.65000)",
+        "after": "(-66.65057, 0.26259, -10.57938)",
+        "deltaMetres": 0.153010413,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (3)/BlokOfWhiteStolb/Props_Dustbin (5)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-7336148954884884754-1160892917",
+        "wave": 2,
+        "before": "(-66.13632, 0.26259, -10.65000)",
+        "after": "(-66.00058, 0.26259, -10.53939)",
+        "deltaMetres": 0.175103754,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfWhiteStolb/Props_Dustbin (12)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-2812831821797938218-749147402",
+        "wave": 2,
+        "before": "(-65.48631, 0.26259, -10.65000)",
+        "after": "(-65.35057, 0.26259, -10.57938)",
+        "deltaMetres": 0.153010413,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (9)/BlokOfWhiteStolb (1)/Props_Dustbin (1)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-221390167458545829-1160892917",
+        "wave": 2,
+        "before": "(-64.83632, 0.26259, -10.65000)",
+        "after": "(-64.70058, 0.26259, -10.53939)",
+        "deltaMetres": 0.175103754,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (3)/BlokOfBlackStolb/Props_Dustbin (3)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-7301330294095986493-1160892917",
+        "wave": 2,
+        "before": "(-67.12462, 0.26259, -9.80000)",
+        "after": "(-67.14592, 0.26259, -9.73822)",
+        "deltaMetres": 0.06534442,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (9)/BlokOfWhiteStolb (1)/Props_Dustbin (3)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-6683582981448282872-1160892917",
+        "wave": 2,
+        "before": "(-66.47461, 0.26259, -9.80000)",
+        "after": "(-66.49591, 0.26259, -9.69822)",
+        "deltaMetres": 0.103980921,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb/Props_Dustbin (11)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-1853705597084400422-1160892917",
+        "wave": 2,
+        "before": "(-65.82462, 0.26259, -9.80000)",
+        "after": "(-65.84592, 0.26259, -9.73822)",
+        "deltaMetres": 0.06534442,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb (1)/Props_Dustbin (9)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-1982342308051946406-1160892917",
+        "wave": 2,
+        "before": "(-64.17461, 0.26259, -9.80000)",
+        "after": "(-64.19591, 0.26259, -9.69822)",
+        "deltaMetres": 0.103980921,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfBlackStolb/Props_Dustbin (6)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-5319106729906649385-749147402",
+        "wave": 2,
+        "before": "(-67.44514, 0.26259, -8.95001)",
+        "after": "(-67.61374, 0.26259, -8.97924)",
+        "deltaMetres": 0.171107009,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfBlackStolb/Props_Dustbin (5)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-7731777192463164444-749147402",
+        "wave": 2,
+        "before": "(-66.79514, 0.26259, -8.95001)",
+        "after": "(-66.96373, 0.26259, -8.93924)",
+        "deltaMetres": 0.1689344,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfBlackStolb/Props_Dustbin (8)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-6633084139821669756-749147402",
+        "wave": 2,
+        "before": "(-66.14514, 0.26259, -8.95001)",
+        "after": "(-66.31374, 0.26259, -8.97924)",
+        "deltaMetres": 0.171107009,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (9)/BlokOfWhiteStolb (1)/Props_Dustbin (11)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-1316810120695439903-1160892917",
+        "wave": 2,
+        "before": "(-64.99512, 0.26259, -8.95001)",
+        "after": "(-65.16371, 0.26259, -8.93924)",
+        "deltaMetres": 0.1689344,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfBlackStolb/Props_Dustbin (8)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-7394610956956767065-1160892917",
+        "wave": 2,
+        "before": "(-67.25371, 0.26259, -8.10000)",
+        "after": "(-67.49246, 0.26259, -8.21097)",
+        "deltaMetres": 0.263281226,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfBlackStolb (1)/Props_Dustbin (7)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-8001512959457797468-749147402",
+        "wave": 2,
+        "before": "(-66.60371, 0.26259, -8.10000)",
+        "after": "(-66.84247, 0.26259, -8.17097)",
+        "deltaMetres": 0.249077663,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb (1)/Props_Dustbin (8)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-8231169472961154294-749147402",
+        "wave": 2,
+        "before": "(-65.30371, 0.26259, -8.10000)",
+        "after": "(-65.54247, 0.26259, -8.17097)",
+        "deltaMetres": 0.249077663,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb (1)/Props_Dustbin (2)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-1036894966468424805-749147402",
+        "wave": 2,
+        "before": "(-65.90651, 0.26259, -7.25001)",
+        "after": "(-66.10620, 0.26259, -7.31130)",
+        "deltaMetres": 0.2088794,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb (1)/Props_Dustbin (3)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-2084450119600687119-749147402",
+        "wave": 2,
+        "before": "(-65.25650, 0.26259, -7.25000)",
+        "after": "(-65.45619, 0.26259, -7.35129)",
+        "deltaMetres": 0.223905757,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (3)/BlokOfWhiteStolb/Props_Dustbin (2)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-9144442631209418242-1160892917",
+        "wave": 2,
+        "before": "(-64.60651, 0.26259, -7.25000)",
+        "after": "(-64.80620, 0.26259, -7.31129)",
+        "deltaMetres": 0.2088794,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (9)/BlokOfWhiteStolb (1)/Props_Dustbin (9)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-1903933972145472569-1160892917",
+        "wave": 2,
+        "before": "(-66.85989, 0.26259, -6.40000)",
+        "after": "(-66.92915, 0.26259, -6.40993)",
+        "deltaMetres": 0.06996667,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (3)/BlokOfBlackStolb/Props_Dustbin (8)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-829788671783861188-1160892917",
+        "wave": 2,
+        "before": "(-66.20990, 0.26259, -6.40000)",
+        "after": "(-66.27916, 0.26259, -6.36993)",
+        "deltaMetres": 0.0755054,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb/Props_Dustbin (3)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-6286827132634835905-1160892917",
+        "wave": 2,
+        "before": "(-65.55991, 0.26259, -6.40000)",
+        "after": "(-65.62917, 0.26259, -6.40993)",
+        "deltaMetres": 0.06996667,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfBlackStolb/Props_Dustbin (9)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-6369109987532487098-1160892917",
+        "wave": 2,
+        "before": "(-64.90990, 0.26259, -6.40000)",
+        "after": "(-64.97916, 0.26259, -6.36993)",
+        "deltaMetres": 0.0755054,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb (1)/Props_Dustbin (4)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-2319203002830597317-749147402",
+        "wave": 2,
+        "before": "(-66.67024, 0.26259, -5.55000)",
+        "after": "(-66.57739, 0.26259, -5.47868)",
+        "deltaMetres": 0.11707858,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfWhiteStolb (1)/Props_Dustbin (3)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-7488275797821459973-1160892917",
+        "wave": 2,
+        "before": "(-65.52025, 0.26259, -5.55000)",
+        "after": "(-65.42740, 0.26259, -5.43868)",
+        "deltaMetres": 0.144956544,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfWhiteStolb (1)/Props_Dustbin (10)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-8134581603839579006-1160892917",
+        "wave": 2,
+        "before": "(-65.87024, 0.26259, -5.55000)",
+        "after": "(-65.77739, 0.26259, -5.47868)",
+        "deltaMetres": 0.11707858,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfWhiteStolb (1)/Props_Dustbin (6)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-4788808835347768775-1160892917",
+        "wave": 2,
+        "before": "(-64.72025, 0.26259, -5.55000)",
+        "after": "(-64.62740, 0.26259, -5.43868)",
+        "deltaMetres": 0.144956544,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb/Props_Dustbin (5)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-1196378102259124355-1160892917",
+        "wave": 2,
+        "before": "(-66.49367, 0.26259, -4.70001)",
+        "after": "(-66.28119, 0.26259, -4.63921)",
+        "deltaMetres": 0.221012086,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (9)/BlokOfBlackStolb/Props_Dustbin (13)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-5785720503336088194-1160892917",
+        "wave": 2,
+        "before": "(-65.84369, 0.26259, -4.70001)",
+        "after": "(-65.63121, 0.26259, -4.59921)",
+        "deltaMetres": 0.235181078,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfWhiteStolb/Props_Dustbin (13)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-7471343954516112279-749147402",
+        "wave": 2,
+        "before": "(-65.19366, 0.26259, -4.70001)",
+        "after": "(-64.98119, 0.26259, -4.63921)",
+        "deltaMetres": 0.221012086,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (3)/BlokOfWhiteStolb/Props_Dustbin (7)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-9066032201540373237-1160892917",
+        "wave": 2,
+        "before": "(-64.54367, 0.26259, -4.70001)",
+        "after": "(-64.33119, 0.26259, -4.59921)",
+        "deltaMetres": 0.235181078,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb (1)/Props_Dustbin (8)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-7764572604406506625-749147402",
+        "wave": 2,
+        "before": "(-66.33588, 0.26259, -3.85000)",
+        "after": "(-66.10098, 0.26259, -3.88091)",
+        "deltaMetres": 0.236927539,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (3)/BlokOfBlackStolb/Props_Dustbin (10)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-5112010012624248252-1160892917",
+        "wave": 2,
+        "before": "(-65.68588, 0.26259, -3.85000)",
+        "after": "(-65.45099, 0.26259, -3.84090)",
+        "deltaMetres": 0.235078841,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfWhiteStolb (1)/Props_Dustbin (7)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-8208054640535089993-1160892917",
+        "wave": 2,
+        "before": "(-65.03587, 0.26259, -3.85000)",
+        "after": "(-64.80098, 0.26259, -3.88091)",
+        "deltaMetres": 0.236927539,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfWhiteStolb (1)/Props_Dustbin (13)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-1925758284184891057-1160892917",
+        "wave": 2,
+        "before": "(-64.38588, 0.26259, -3.85000)",
+        "after": "(-64.15099, 0.26259, -3.84090)",
+        "deltaMetres": 0.235078841,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfBlackStolb (1)/Props_Dustbin (5)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-2653503038358169596-749147402",
+        "wave": 2,
+        "before": "(-66.20197, 0.26259, -3.00001)",
+        "after": "(-66.05212, 0.26259, -3.11166)",
+        "deltaMetres": 0.186872572,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (9)/BlokOfWhiteStolb (1)/Props_Dustbin (6)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-8745476067474037050-1160892917",
+        "wave": 2,
+        "before": "(-65.55196, 0.26259, -3.00000)",
+        "after": "(-65.40211, 0.26259, -3.07166)",
+        "deltaMetres": 0.166099936,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (9)/BlokOfWhiteStolb (1)/Props_Dustbin (5)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-5971085397862501459-1160892917",
+        "wave": 2,
+        "before": "(-64.90196, 0.26259, -3.00000)",
+        "after": "(-64.75212, 0.26259, -3.11165)",
+        "deltaMetres": 0.186872572,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb/Props_Dustbin (2)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-4758814643111846522-1160892917",
+        "wave": 2,
+        "before": "(-66.75197, 0.26259, -3.00000)",
+        "after": "(-66.60213, 0.26259, -3.07166)",
+        "deltaMetres": 0.166099936,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (3)/BlokOfWhiteStolb/Props_Dustbin (4)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-1077408037139418346-1160892917",
+        "wave": 2,
+        "before": "(-66.09627, 0.26259, -2.15000)",
+        "after": "(-66.10004, 0.26259, -2.25030)",
+        "deltaMetres": 0.100369595,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb (1)/Props_Dustbin (3)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-1969820409303596510-749147402",
+        "wave": 2,
+        "before": "(-65.44627, 0.26259, -2.15000)",
+        "after": "(-65.45004, 0.26259, -2.21030)",
+        "deltaMetres": 0.060416244,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (9)/BlokOfWhiteStolb (1)/Props_Dustbin (8)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-3195202589787024295-1160892917",
+        "wave": 2,
+        "before": "(-66.79625, 0.26259, -2.15000)",
+        "after": "(-66.80002, 0.26259, -2.25030)",
+        "deltaMetres": 0.100369595,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (3)/BlokOfWhiteStolb/Props_Dustbin (6)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-5642058391126924411-1160892917",
+        "wave": 2,
+        "before": "(-61.14627, 0.26259, -2.15000)",
+        "after": "(-61.15003, 0.26259, -2.21030)",
+        "deltaMetres": 0.060416244,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfBlackStolb/Props_Dustbin (2)/Props_Dustbin_visual",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-3151552297287410586-749147402",
+        "wave": 2,
+        "before": "(-66.37219, 0.26259, -1.30000)",
+        "after": "(-66.52785, 0.26259, -1.26825)",
+        "deltaMetres": 0.15885359,
+        "localScale": "(0.35515, 0.35515, 0.35515)",
+        "localRotation": "(0.00000, 180.00000, 180.00000)"
+      }
+    ]
+  }
+]

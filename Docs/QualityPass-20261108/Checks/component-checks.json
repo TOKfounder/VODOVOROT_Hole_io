@@ -1,0 +1,514 @@
+{
+  "checks": [
+    {
+      "name": "isolated actual Play profile",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "Music and SFX zero in game profile",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "objective IDs unique, repeated/foreign notification ignored",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "rival's target never counts as player completion",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "unavailable route resolves without fabricated success",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "early real collection can complete a route before reveal",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "saved lab has nine live controls",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "live controls change actual blocked-target and objective systems",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "Reset restores real saved values",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 1 two saved groups of five actual targets",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 1 no duplicate objective target",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 1 objective direction uses saved graphic icon",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 1 landmarks do not alter collisions or map score",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 1 district label fits authored sign: Автодвор",
+      "passed": true,
+      "evidence": "(1.30, 0.40, 0.00)"
+    },
+    {
+      "name": "map 1 district label fits authored sign: Хвойный сквер",
+      "passed": true,
+      "evidence": "(2.12, 0.40, 0.00)"
+    },
+    {
+      "name": "map 1 late goal hidden in first half",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 1 actual scored event counts early target once, economic value unchanged",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 1 late HUD reveals existing progress",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 1 late goal hidden while paused",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 1 required-size prediction equals actual endpoint 1",
+      "passed": true,
+      "evidence": {
+        "predicted": "(0.6426, 0.0019, 0.6426)",
+        "actual": "(0.6426, 0.0019, 0.6426)"
+      }
+    },
+    {
+      "name": "map 1 required-size prediction equals actual endpoint 2",
+      "passed": true,
+      "evidence": {
+        "predicted": "(1.2695, 0.0038, 1.2695)",
+        "actual": "(1.2695, 0.0038, 1.2695)"
+      }
+    },
+    {
+      "name": "map 1 required-size prediction equals actual endpoint 3",
+      "passed": true,
+      "evidence": {
+        "predicted": "(2.5233, 0.0075, 2.5233)",
+        "actual": "(2.5233, 0.0075, 2.5233)"
+      }
+    },
+    {
+      "name": "map 1 required-size prediction equals actual endpoint 4",
+      "passed": true,
+      "evidence": {
+        "predicted": "(3.7771, 0.0112, 3.7771)",
+        "actual": "(3.7771, 0.0112, 3.7771)"
+      }
+    },
+    {
+      "name": "map 1 required-size prediction equals actual endpoint 5",
+      "passed": true,
+      "evidence": {
+        "predicted": "(6.4258, 0.0191, 6.4258)",
+        "actual": "(6.4258, 0.0191, 6.4258)"
+      }
+    },
+    {
+      "name": "map 1 required-size prediction equals actual endpoint 6",
+      "passed": true,
+      "evidence": {
+        "predicted": "(9.4035, 0.0280, 9.4035)",
+        "actual": "(9.4035, 0.0280, 9.4035)"
+      }
+    },
+    {
+      "name": "map 1 required-size prediction equals actual endpoint 7",
+      "passed": true,
+      "evidence": {
+        "predicted": "(12.5380, 0.0373, 12.5380)",
+        "actual": "(12.5380, 0.0373, 12.5380)"
+      }
+    },
+    {
+      "name": "map 1 required-size prediction equals actual endpoint 8",
+      "passed": true,
+      "evidence": {
+        "predicted": "(15.6726, 0.0466, 15.6726)",
+        "actual": "(15.6726, 0.0466, 15.6726)"
+      }
+    },
+    {
+      "name": "map 1 required-size prediction equals actual endpoint 9",
+      "passed": true,
+      "evidence": {
+        "predicted": "(18.8071, 0.0560, 18.8071)",
+        "actual": "(18.8070, 0.0560, 18.8070)"
+      }
+    },
+    {
+      "name": "map 1 required-size prediction equals actual endpoint 10",
+      "passed": true,
+      "evidence": {
+        "predicted": "(21.1579, 0.0630, 21.1579)",
+        "actual": "(21.1579, 0.0630, 21.1579)"
+      }
+    },
+    {
+      "name": "map 1 required-size prediction equals actual endpoint 11",
+      "passed": true,
+      "evidence": {
+        "predicted": "(105.0059, 0.3125, 105.0059)",
+        "actual": "(105.0061, 0.3125, 105.0060)"
+      }
+    },
+    {
+      "name": "map 1 standing near large target does not show attempted-action hint",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 1 blocked attempted action shows actual required size without score change",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 1 blocked-target hint hidden under pause",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 2 two saved groups of five actual targets",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 2 no duplicate objective target",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 2 objective direction uses saved graphic icon",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 2 landmarks do not alter collisions or map score",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 2 district label fits authored sign: Сад отдыха",
+      "passed": true,
+      "evidence": "(1.61, 0.40, 0.00)"
+    },
+    {
+      "name": "map 2 district label fits authored sign: Цветочная аллея",
+      "passed": true,
+      "evidence": "(2.34, 0.40, 0.00)"
+    },
+    {
+      "name": "map 2 late goal hidden in first half",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 2 actual scored event counts early target once, economic value unchanged",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 2 late HUD reveals existing progress",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 2 late goal hidden while paused",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 2 required-size prediction equals actual endpoint 1",
+      "passed": true,
+      "evidence": {
+        "predicted": "(0.5480, 0.0019, 0.5480)",
+        "actual": "(0.5480, 0.0019, 0.5480)"
+      }
+    },
+    {
+      "name": "map 2 required-size prediction equals actual endpoint 2",
+      "passed": true,
+      "evidence": {
+        "predicted": "(1.0827, 0.0038, 1.0827)",
+        "actual": "(1.0826, 0.0038, 1.0827)"
+      }
+    },
+    {
+      "name": "map 2 required-size prediction equals actual endpoint 3",
+      "passed": true,
+      "evidence": {
+        "predicted": "(2.1519, 0.0075, 2.1520)",
+        "actual": "(2.1520, 0.0075, 2.1520)"
+      }
+    },
+    {
+      "name": "map 2 required-size prediction equals actual endpoint 4",
+      "passed": true,
+      "evidence": {
+        "predicted": "(3.2213, 0.0112, 3.2213)",
+        "actual": "(3.2213, 0.0112, 3.2213)"
+      }
+    },
+    {
+      "name": "map 2 required-size prediction equals actual endpoint 5",
+      "passed": true,
+      "evidence": {
+        "predicted": "(5.4802, 0.0191, 5.4803)",
+        "actual": "(5.4802, 0.0191, 5.4802)"
+      }
+    },
+    {
+      "name": "map 2 required-size prediction equals actual endpoint 6",
+      "passed": true,
+      "evidence": {
+        "predicted": "(8.0199, 0.0280, 8.0199)",
+        "actual": "(8.0199, 0.0280, 8.0199)"
+      }
+    },
+    {
+      "name": "map 2 required-size prediction equals actual endpoint 7",
+      "passed": true,
+      "evidence": {
+        "predicted": "(10.6932, 0.0373, 10.6932)",
+        "actual": "(10.6932, 0.0373, 10.6932)"
+      }
+    },
+    {
+      "name": "map 2 required-size prediction equals actual endpoint 8",
+      "passed": true,
+      "evidence": {
+        "predicted": "(13.3665, 0.0466, 13.3665)",
+        "actual": "(13.3664, 0.0466, 13.3664)"
+      }
+    },
+    {
+      "name": "map 2 required-size prediction equals actual endpoint 9",
+      "passed": true,
+      "evidence": {
+        "predicted": "(16.0397, 0.0560, 16.0397)",
+        "actual": "(16.0398, 0.0560, 16.0398)"
+      }
+    },
+    {
+      "name": "map 2 required-size prediction equals actual endpoint 10",
+      "passed": true,
+      "evidence": {
+        "predicted": "(18.0447, 0.0630, 18.0447)",
+        "actual": "(18.0447, 0.0630, 18.0447)"
+      }
+    },
+    {
+      "name": "map 2 required-size prediction equals actual endpoint 11",
+      "passed": true,
+      "evidence": {
+        "predicted": "(89.5553, 0.3125, 89.5553)",
+        "actual": "(89.5552, 0.3125, 89.5552)"
+      }
+    },
+    {
+      "name": "map 2 standing near large target does not show attempted-action hint",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 2 blocked attempted action shows actual required size without score change",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 2 blocked-target hint hidden under pause",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 3 two saved groups of five actual targets",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 3 no duplicate objective target",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 3 objective direction uses saved graphic icon",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 3 landmarks do not alter collisions or map score",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 3 district label fits authored sign: Квартал мастеров",
+      "passed": true,
+      "evidence": "(2.45, 0.40, 0.00)"
+    },
+    {
+      "name": "map 3 district label fits authored sign: Северные ворота",
+      "passed": true,
+      "evidence": "(2.34, 0.40, 0.00)"
+    },
+    {
+      "name": "map 3 late goal hidden in first half",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 3 actual scored event counts early target once, economic value unchanged",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 3 late HUD reveals existing progress",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 3 late goal hidden while paused",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 3 required-size prediction equals actual endpoint 1",
+      "passed": true,
+      "evidence": {
+        "predicted": "(0.5781, 0.0019, 0.5781)",
+        "actual": "(0.5781, 0.0019, 0.5781)"
+      }
+    },
+    {
+      "name": "map 3 required-size prediction equals actual endpoint 2",
+      "passed": true,
+      "evidence": {
+        "predicted": "(1.1421, 0.0038, 1.1421)",
+        "actual": "(1.1421, 0.0038, 1.1421)"
+      }
+    },
+    {
+      "name": "map 3 required-size prediction equals actual endpoint 3",
+      "passed": true,
+      "evidence": {
+        "predicted": "(2.2701, 0.0075, 2.2701)",
+        "actual": "(2.2701, 0.0075, 2.2701)"
+      }
+    },
+    {
+      "name": "map 3 required-size prediction equals actual endpoint 4",
+      "passed": true,
+      "evidence": {
+        "predicted": "(3.3981, 0.0112, 3.3981)",
+        "actual": "(3.3981, 0.0112, 3.3981)"
+      }
+    },
+    {
+      "name": "map 3 required-size prediction equals actual endpoint 5",
+      "passed": true,
+      "evidence": {
+        "predicted": "(5.7810, 0.0191, 5.7810)",
+        "actual": "(5.7810, 0.0191, 5.7810)"
+      }
+    },
+    {
+      "name": "map 3 required-size prediction equals actual endpoint 6",
+      "passed": true,
+      "evidence": {
+        "predicted": "(8.4599, 0.0280, 8.4599)",
+        "actual": "(8.4600, 0.0280, 8.4600)"
+      }
+    },
+    {
+      "name": "map 3 required-size prediction equals actual endpoint 7",
+      "passed": true,
+      "evidence": {
+        "predicted": "(11.2800, 0.0373, 11.2800)",
+        "actual": "(11.2799, 0.0373, 11.2799)"
+      }
+    },
+    {
+      "name": "map 3 required-size prediction equals actual endpoint 8",
+      "passed": true,
+      "evidence": {
+        "predicted": "(14.0999, 0.0466, 14.0999)",
+        "actual": "(14.0999, 0.0466, 14.0999)"
+      }
+    },
+    {
+      "name": "map 3 required-size prediction equals actual endpoint 9",
+      "passed": true,
+      "evidence": {
+        "predicted": "(16.9199, 0.0560, 16.9199)",
+        "actual": "(16.9199, 0.0560, 16.9199)"
+      }
+    },
+    {
+      "name": "map 3 required-size prediction equals actual endpoint 10",
+      "passed": true,
+      "evidence": {
+        "predicted": "(19.0349, 0.0630, 19.0349)",
+        "actual": "(19.0349, 0.0630, 19.0349)"
+      }
+    },
+    {
+      "name": "map 3 required-size prediction equals actual endpoint 11",
+      "passed": true,
+      "evidence": {
+        "predicted": "(94.4693, 0.3125, 94.4693)",
+        "actual": "(94.4693, 0.3125, 94.4694)"
+      }
+    },
+    {
+      "name": "map 3 standing near large target does not show attempted-action hint",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 3 blocked attempted action shows actual required size without score change",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "map 3 blocked-target hint hidden under pause",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "personal save byte-identical after actual-component tests",
+      "passed": true,
+      "evidence": null
+    }
+  ],
+  "failure": null
+}

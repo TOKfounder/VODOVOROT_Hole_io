@@ -1,0 +1,23 @@
+[
+  {
+    "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-1816122543642080458-502087457",
+    "name": "Natures_Bush_02 (30)",
+    "before": "(-25.37685, 0.19540, -33.77411)",
+    "after": "(-31.72501, 0.19540, -37.72001)",
+    "reason": "Three existing starter shrubs ease the garden turn; no added props, value, scale or collider changes"
+  },
+  {
+    "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-730114261440328729-502087457",
+    "name": "Natures_Bush_02 (28)",
+    "before": "(-24.82060, 0.19540, -32.96705)",
+    "after": "(-31.67001, 0.19540, -37.37001)",
+    "reason": "Three existing starter shrubs ease the garden turn; no added props, value, scale or collider changes"
+  },
+  {
+    "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-5218970974232617055-2030806324",
+    "name": "Natures_Bush_02 (24)",
+    "before": "(-24.78060, 0.19540, -33.84705)",
+    "after": "(-31.72501, 0.19540, -37.02000)",
+    "reason": "Three existing starter shrubs ease the garden turn; no added props, value, scale or collider changes"
+  }
+]

@@ -1,0 +1,331 @@
+{
+  "status": "completed",
+  "buildId": "build_620fdb160c2e",
+  "result": "Succeeded",
+  "platform": "WebGL",
+  "outputPath": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/builds/QualityPass-20261108/ReleaseFinal",
+  "totalSizeBytes": 29950137,
+  "buildTimeMs": 161089,
+  "buildStartedAt": "2026-11-08T06:50:14.2730140Z",
+  "buildEndedAt": "2026-11-08T06:52:55.3628020Z",
+  "totalWarnings": 14,
+  "totalErrors": 0,
+  "buildSteps": [
+    {
+      "name": "Build player",
+      "durationMs": 161061,
+      "depth": 0,
+      "messages": []
+    },
+    {
+      "name": "Call PrepareForBuild callbacks",
+      "durationMs": 2,
+      "depth": 1,
+      "messages": []
+    },
+    {
+      "name": "Call internal build started callbacks",
+      "durationMs": 13,
+      "depth": 1,
+      "messages": []
+    },
+    {
+      "name": "Preprocess Player",
+      "durationMs": 983,
+      "depth": 1,
+      "messages": [
+        {
+          "type": "Log",
+          "content": "Pipeline: this build does not include the Pipeline (Project Settings > Pipeline > Runtime), so its assemblies and settings are excluded from it."
+        }
+      ]
+    },
+    {
+      "name": "Save scenes before build",
+      "durationMs": 27,
+      "depth": 1,
+      "messages": []
+    },
+    {
+      "name": "Back up scenes",
+      "durationMs": 109,
+      "depth": 1,
+      "messages": []
+    },
+    {
+      "name": "Prepare For Build",
+      "durationMs": 7,
+      "depth": 1,
+      "messages": []
+    },
+    {
+      "name": "ProducePlayerScriptAssemblies",
+      "durationMs": 4373,
+      "depth": 1,
+      "messages": []
+    },
+    {
+      "name": "Prebuild Cleanup and Recompile",
+      "durationMs": 2234,
+      "depth": 2,
+      "messages": []
+    },
+    {
+      "name": "Compile scripts",
+      "durationMs": 1890,
+      "depth": 3,
+      "messages": [
+        {
+          "type": "Warning",
+          "content": "Assets/Scripts/Stage3/MenuPresentationStyle.cs(108,54): warning CS0618: 'Object.FindObjectsOfType<T>(bool)' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'"
+        },
+        {
+          "type": "Warning",
+          "content": "Assets/PluginYourGames/Example/Scripts/Scenes/DemoScenePartial.cs(39,72): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'"
+        },
+        {
+          "type": "Warning",
+          "content": "Assets/PluginYourGames/Example/Scripts/Scenes/DemoScenePartial.cs(39,41): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'"
+        },
+        {
+          "type": "Warning",
+          "content": "Assets/PluginYourGames/Example/Scripts/Scenes/AllDemoScenes.cs(89,93): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'"
+        },
+        {
+          "type": "Warning",
+          "content": "Assets/PluginYourGames/Example/Scripts/Scenes/AllDemoScenes.cs(89,57): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'"
+        },
+        {
+          "type": "Warning",
+          "content": "Assets/PluginYourGames/Scripts/Basic/WindowGame.cs(46,22): warning CS8321: The local function 'SetPause' is declared but never used"
+        },
+        {
+          "type": "Warning",
+          "content": "Assets/PluginYourGames/Scripts/Basic/WindowGame.cs(64,22): warning CS8321: The local function 'SetPause' is declared but never used"
+        },
+        {
+          "type": "Warning",
+          "content": "Assets/Scripts/HoleParent.cs(49,18): warning CS0414: The field 'HoleParent.keepScoreOnStart' is assigned but its value is never used"
+        },
+        {
+          "type": "Warning",
+          "content": "Assets/PluginYourGames/Modules/Leaderboards/Scripts/LBPlayerDataYG.cs(50,21): warning UAC1001: Field 'data' type 'YG.LBPlayerDataYG.Data' is skipped by serialization (missing the [Serializable] attribute). Refer to the Serialization rules analyzer reference. (https://docs.unity3d.com/6000.6/Documentation/Manual/script-serialization-analyzer.html#uac1001)"
+        },
+        {
+          "type": "Warning",
+          "content": "Assets/Scripts/Stage3/BackgroundMusicPlayer.cs(68,21): warning UAC0009: DEVELOPMENT_BUILD preprocessor directive has been deprecated. Please use one of the managed code variant directives (such as DEBUG, UNITY_ENABLE_CHECKS or UNITY_INCLUDE_INSTRUMENTATION) if different code paths are desired for different managed code variants. Checking for development build is possible at runtime using Debug.isDebugBuild. See the Conditional Compilation manual page for more details."
+        },
+        {
+          "type": "Warning",
+          "content": "Assets/Scripts/Stage3/BackgroundMusicPlayer.cs(90,21): warning UAC0009: DEVELOPMENT_BUILD preprocessor directive has been deprecated. Please use one of the managed code variant directives (such as DEBUG, UNITY_ENABLE_CHECKS or UNITY_INCLUDE_INSTRUMENTATION) if different code paths are desired for different managed code variants. Checking for development build is possible at runtime using Debug.isDebugBuild. See the Conditional Compilation manual page for more details."
+        }
+      ]
+    },
+    {
+      "name": "Generate and validate platform script types",
+      "durationMs": 30,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Verify Build setup",
+      "durationMs": 4898,
+      "depth": 1,
+      "messages": []
+    },
+    {
+      "name": "GetUnityAssemblies",
+      "durationMs": 21,
+      "depth": 2,
+      "messages": []
+    },
+    {
+      "name": "GetPlayerAssemblies",
+      "durationMs": 33,
+      "depth": 2,
+      "messages": []
+    },
+    {
+      "name": "Check old data build",
+      "durationMs": 4815,
+      "depth": 2,
+      "messages": []
+    },
+    {
+      "name": "Set up scripts only build",
+      "durationMs": 0,
+      "depth": 2,
+      "messages": []
+    },
+    {
+      "name": "Prepare assets for target platform",
+      "durationMs": 69,
+      "depth": 1,
+      "messages": []
+    },
+    {
+      "name": "Prepare splash screen",
+      "durationMs": 17,
+      "depth": 1,
+      "messages": [
+        {
+          "type": "Log",
+          "content": "Including Unity Splash Screen logo because 'Show Unity Logo' is enabled."
+        }
+      ]
+    },
+    {
+      "name": "Run script only build",
+      "durationMs": 80,
+      "depth": 1,
+      "messages": []
+    },
+    {
+      "name": "Compile Global Game Manager dependencies",
+      "durationMs": 69,
+      "depth": 2,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (PlayerSettings) from ProjectSettings/ProjectSettings.asset",
+      "durationMs": 1,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (Sprite) from Library/SplashScreenCache/91/914ccc9a4e8ab6e77854c75a16955a54",
+      "durationMs": 20,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (MonoManager) from Library/MonoManager.asset",
+      "durationMs": 5,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Load object[unnamed] (GraphicsSettings) from ProjectSettings/GraphicsSettings.asset",
+      "durationMs": 3,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Load objectSprites-Default (Material) from Resources/unity_builtin_extra",
+      "durationMs": 1,
+      "depth": 3,
+      "messages": []
+    },
+    {
+      "name": "Build scripts DLLs",
+      "durationMs": 22,
+      "depth": 1,
+      "messages": []
+    },
+    {
+      "name": "GetSystemAssemblies",
+      "durationMs": 10,
+      "depth": 2,
+      "messages": []
+    },
+    {
+      "name": "Postprocess built player",
+      "durationMs": 147364,
+      "depth": 1,
+      "messages": [
+        {
+          "type": "Warning",
+          "content": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/Library/Bee/artifacts/WebGL/il2cppOutput/cpp: [Unity.TextMeshPro] - System.Void TMPro.TMP_TextParsingUtilities::.cctor() - Method was given it's own cpp file because it is large and costly to compile"
+        },
+        {
+          "type": "Warning",
+          "content": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/Library/Bee/artifacts/WebGL/il2cppOutput/cpp: [Unity.TextMeshPro] - System.Void TMPro.TextMeshPro::GenerateTextMesh() - Method was given it's own cpp file because it is large and costly to compile"
+        },
+        {
+          "type": "Warning",
+          "content": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/Library/Bee/artifacts/WebGL/il2cppOutput/cpp: [Unity.TextMeshPro] - System.Void TMPro.TextMeshProUGUI::GenerateTextMesh() - Method was given it's own cpp file because it is large and costly to compile"
+        }
+      ]
+    },
+    {
+      "name": "Setup incremental player build",
+      "durationMs": 189,
+      "depth": 2,
+      "messages": []
+    },
+    {
+      "name": "Incremental player build",
+      "durationMs": 146053,
+      "depth": 2,
+      "messages": []
+    },
+    {
+      "name": "Report output files",
+      "durationMs": 395,
+      "depth": 2,
+      "messages": []
+    },
+    {
+      "name": "Call Post-Process callbacks",
+      "durationMs": 728,
+      "depth": 1,
+      "messages": []
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    {
+      "message": "warning CS0618: 'Object.FindObjectsOfType<T>(bool)' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'",
+      "file": "Assets/Scripts/Stage3/MenuPresentationStyle.cs"
+    },
+    {
+      "message": "warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'",
+      "file": "Assets/PluginYourGames/Example/Scripts/Scenes/DemoScenePartial.cs"
+    },
+    {
+      "message": "warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'",
+      "file": "Assets/PluginYourGames/Example/Scripts/Scenes/DemoScenePartial.cs"
+    },
+    {
+      "message": "warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'",
+      "file": "Assets/PluginYourGames/Example/Scripts/Scenes/AllDemoScenes.cs"
+    },
+    {
+      "message": "warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'",
+      "file": "Assets/PluginYourGames/Example/Scripts/Scenes/AllDemoScenes.cs"
+    },
+    {
+      "message": "warning CS8321: The local function 'SetPause' is declared but never used",
+      "file": "Assets/PluginYourGames/Scripts/Basic/WindowGame.cs"
+    },
+    {
+      "message": "warning CS8321: The local function 'SetPause' is declared but never used",
+      "file": "Assets/PluginYourGames/Scripts/Basic/WindowGame.cs"
+    },
+    {
+      "message": "warning CS0414: The field 'HoleParent.keepScoreOnStart' is assigned but its value is never used",
+      "file": "Assets/Scripts/HoleParent.cs"
+    },
+    {
+      "message": "warning UAC1001: Field 'data' type 'YG.LBPlayerDataYG.Data' is skipped by serialization (missing the [Serializable] attribute). Refer to the Serialization rules analyzer reference. (https://docs.unity3d.com/6000.6/Documentation/Manual/script-serialization-analyzer.html#uac1001)",
+      "file": "Assets/PluginYourGames/Modules/Leaderboards/Scripts/LBPlayerDataYG.cs"
+    },
+    {
+      "message": "warning UAC0009: DEVELOPMENT_BUILD preprocessor directive has been deprecated. Please use one of the managed code variant directives (such as DEBUG, UNITY_ENABLE_CHECKS or UNITY_INCLUDE_INSTRUMENTATION) if different code paths are desired for different managed code variants. Checking for development build is possible at runtime using Debug.isDebugBuild. See the Conditional Compilation manual page for more details.",
+      "file": "Assets/Scripts/Stage3/BackgroundMusicPlayer.cs"
+    },
+    {
+      "message": "warning UAC0009: DEVELOPMENT_BUILD preprocessor directive has been deprecated. Please use one of the managed code variant directives (such as DEBUG, UNITY_ENABLE_CHECKS or UNITY_INCLUDE_INSTRUMENTATION) if different code paths are desired for different managed code variants. Checking for development build is possible at runtime using Debug.isDebugBuild. See the Conditional Compilation manual page for more details.",
+      "file": "Assets/Scripts/Stage3/BackgroundMusicPlayer.cs"
+    },
+    {
+      "message": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/Library/Bee/artifacts/WebGL/il2cppOutput/cpp: [Unity.TextMeshPro] - System.Void TMPro.TMP_TextParsingUtilities::.cctor() - Method was given it's own cpp file because it is large and costly to compile"
+    },
+    {
+      "message": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/Library/Bee/artifacts/WebGL/il2cppOutput/cpp: [Unity.TextMeshPro] - System.Void TMPro.TextMeshPro::GenerateTextMesh() - Method was given it's own cpp file because it is large and costly to compile"
+    },
+    {
+      "message": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/Library/Bee/artifacts/WebGL/il2cppOutput/cpp: [Unity.TextMeshPro] - System.Void TMPro.TextMeshProUGUI::GenerateTextMesh() - Method was given it's own cpp file because it is large and costly to compile"
+    }
+  ]
+}

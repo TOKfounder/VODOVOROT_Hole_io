@@ -1,4 +1,4 @@
-﻿var cloudSaves = NO_DATA;
+var cloudSaves = NO_DATA;
 
 function SaveCloud(jsonData, flush) {
     var stage2Root = typeof window !== 'undefined' ? window : globalThis;
@@ -8,9 +8,12 @@ function SaveCloud(jsonData, flush) {
         return;
     }
     try {
-        player.setData({
-            saves: [jsonData],
-        }, flush);
+        // Purchase grants require a confirmed cloud commit; ordinary saves keep
+        // the configured flush policy. Rejections leave the platform order pending.
+        var deliveryPending = typeof pendingPurchaseDelivery !== 'undefined' && pendingPurchaseDelivery;
+        var write = Promise.resolve(player.setData({ saves: [jsonData] }, deliveryPending ? true : flush));
+        if (deliveryPending) window.__vodovorotPurchaseCloudWrite = write;
+        write.catch(() => console.warn('Cloud save failed; progress retained locally'));
     } catch (e) {
         console.error('CRASH Save Cloud: ', e.message);
     }

@@ -1,0 +1,19 @@
+{
+  "scene": "Assets/Scenes/MainMenu.unity",
+  "dirty": false,
+  "playing": false,
+  "isolated": false,
+  "music": 0.5,
+  "sfx": 0.5,
+  "runInBackground": false,
+  "windows": [
+    {
+      "type": "UnityEditor.GameView",
+      "position": "(x:588.00, y:62.00, width:275.00, height:485.00)"
+    },
+    {
+      "type": "UnityEditor.DeviceSimulation.SimulatorWindow",
+      "position": "(x:391.00, y:97.00, width:855.00, height:527.00)"
+    }
+  ]
+}

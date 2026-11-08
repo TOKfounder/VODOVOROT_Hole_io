@@ -207,8 +207,9 @@ public class FallingObject : MonoBehaviour
 		if (hole == null || value <= 0) return;
 		hole.AddScore(value);
 		Vodovorot.Stage2.Stage2Audio.PlayAbsorption(hole, value, size);
-		VodovorotGameManager.Instance?.GamingManager?.RegisterPlayerAbsorption(hole, value);
+		int scoredValue = value;
 		value = 0;
+		VodovorotGameManager.Instance?.GamingManager?.RegisterPlayerAbsorption(hole, scoredValue, this);
 
 		rb.isKinematic = true;
 		col.enabled = false;
@@ -231,10 +232,13 @@ public class FallingObject : MonoBehaviour
 			return;
 
 		HoleParent hole = other.GetComponentInParent<HoleParent>();
-		if (hole == null || candidateHoles.Contains(hole))
+		if (hole == null)
 			return;
 
-		candidateHoles.Add(hole);
+		if (hole.holeType == HoleParent.TypeOfHole.player && !CanBeEatenBy(hole))
+			hole.ReportRejectedTarget(this);
+		if (!candidateHoles.Contains(hole))
+			candidateHoles.Add(hole);
 	}
 
 	private void CacheObjectColliders()

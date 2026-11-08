@@ -25,24 +25,6 @@ public class HorizontalLayout3D : MonoBehaviour
     [Header("Данные скинов")]
     [SerializeField] private string[] toiletIDs = { "obodok", "white", "gold", "scrag", "lord" };
 
-    private readonly string[] featuresRu = 
-    {
-        "Этот красный тазик – для тех, кто любит жить на скорости! Бросай вызов привычному, залетай в тазик!",
-        "Этот унитаз готов поддержать тебя в любой трудной и странной ситуации!",
-        "Блеск роскоши для истинных чемпионов! Стань королём туалетных побед.",
-        "Сиди с комфортом и властвуй! Злые силы не пройдут через эту дыру...",
-        "На этом троне даже проблемы исчезают! Почувствуй себя властелином стока."
-    };
-
-    private readonly string[] featuresEn = 
-    {
-        "This red basin is for those who like to live at speed! Challenge the familiar, fly into the basin!",
-        "This toilet bowl is ready to support you in any difficult and strange situation!",
-        "The splendor of luxury for true champions! Become the king of toilet victories.",
-        "Sit comfortably and rule! Evil forces will not pass through this hole...",
-        "On this throne, even problems disappear! Feel like the lord of the drain."
-    };
-
     private readonly int[] necessaryLevels = { 0, 1, 4, 7, 10 };
     private readonly int[] costsForCoins = { 0, 20, 270, 800, 2400 };
     private readonly int[] costsForDonate = { 0, 10000, 10, 40, 100 };
@@ -418,7 +400,7 @@ public class HorizontalLayout3D : MonoBehaviour
                 : (YG2.saves.langRu ? "Одеть" : "equip");
         }
 
-        if (featureText != null) featureText.text = YG2.saves.langRu ? featuresRu[chosenObj] : featuresEn[chosenObj];
+        if (featureText != null) featureText.text = Vodovorot.RoundExperience.SkinAppearanceText.Description(chosenObj, YG2.saves.langRu) + "\n" + Vodovorot.RoundExperience.SkinAppearanceText.CosmeticPromise(YG2.saves.langRu);
         SynchronizeSelectedPurchase();
     }
 

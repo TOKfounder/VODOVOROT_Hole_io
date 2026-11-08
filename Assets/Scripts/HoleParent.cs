@@ -41,6 +41,7 @@ public class HoleParent : MonoBehaviour
     private Renderer holeRenderer;
 
     public event System.Action<HoleParent> GrowthProgressChanged;
+    public event System.Action<FallingObject> TargetRejected;
     public int PointsToNextSize => currentLevel >= scoreRequired.Length - 1
         ? 0 : Mathf.Max(0, Mathf.CeilToInt(scoreRequired[currentLevel + 1] - score));
 
@@ -268,6 +269,46 @@ public class HoleParent : MonoBehaviour
 
         return size * 0.8f;
     }
+
+    public int RequiredSizeFor(Vector3 objectSize)
+    {
+        for (int level = 0; level < levelScales.Length; level++)
+            if (Tool.CanFit2D(objectSize, GetFitSizeAtLevel(level)))
+                return level + 1;
+        return -1;
+    }
+
+    public Vector3 GetFitSizeAtLevel(int level)
+    {
+        Renderer visual = holeRenderer != null ? holeRenderer : hole != null ? hole.GetComponent<Renderer>() : null;
+        if (visual == null || level < 0 || level >= levelScales.Length)
+            return Vector3.zero;
+        // The visible spiral rotates between physics ticks. Runtime fit uses the
+        // cached physics dimensions, so derive future sizes from that same snapshot.
+        // Every level scales all three axes by the same ratio (Y keeps4.508031).
+        if (Application.isPlaying && size.x > 0f && transform.localScale.x > .0001f)
+            return GetFitSize() * (levelScales[level] / transform.localScale.x);
+
+        // Predict from the same authored mesh and level scales without changing
+        // the live transform or relying on a renderer bounds cache during growth.
+        float scale = levelScales[level];
+        Matrix4x4 parent = transform.parent != null ? transform.parent.localToWorldMatrix : Matrix4x4.identity;
+        Matrix4x4 rootAtLevel = parent * Matrix4x4.TRS(transform.localPosition, transform.localRotation,
+            new Vector3(scale, scale * 4.508031f, scale));
+        Matrix4x4 visualAtLevel = rootAtLevel * transform.worldToLocalMatrix * visual.localToWorldMatrix;
+        Bounds local = visual.localBounds;
+        Bounds predicted = new Bounds(visualAtLevel.MultiplyPoint3x4(Vector3.zero), Vector3.zero);
+        for (int corner = 0; corner < 8; corner++)
+        {
+            Vector3 point = new Vector3((corner & 1) == 0 ? local.min.x : local.max.x,
+                (corner & 2) == 0 ? local.min.y : local.max.y,
+                (corner & 4) == 0 ? local.min.z : local.max.z);
+            predicted.Encapsulate(visualAtLevel.MultiplyPoint3x4(point));
+        }
+        return predicted.size * .8f;
+    }
+
+    internal void ReportRejectedTarget(FallingObject item) => TargetRejected?.Invoke(item);
 
     public bool IsInHole(Vector3 objPos)
     {

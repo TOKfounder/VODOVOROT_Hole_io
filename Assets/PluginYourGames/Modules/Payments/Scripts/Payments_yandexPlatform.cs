@@ -83,9 +83,35 @@ namespace YG.Insides
             YG2.onGetPayments?.Invoke();
         }
 
+        [System.Serializable]
+        private sealed class PurchaseDelivery
+        {
+            public string productID;
+            public string purchaseToken;
+        }
+
+        [System.Runtime.InteropServices.DllImport("__Internal")]
+        private static extern void AcknowledgePurchaseDelivery_js(string token, bool accepted);
+
+        public void OnPurchaseDelivery(string json)
+        {
+            PurchaseDelivery delivery = UnityEngine.JsonUtility.FromJson<PurchaseDelivery>(json);
+            bool accepted = delivery != null && YG2.isSDKEnabled &&
+                !Vodovorot.Stage2.LeaderboardRoundService.IsAuthProfileWriteBlocked &&
+                Vodovorot.QualityPass.PurchaseDeliveryRules.TryApply(
+                    YG2.saves, delivery.productID, delivery.purchaseToken);
+            if (accepted) YG2.SaveProgress();
+#if !UNITY_EDITOR
+            AcknowledgePurchaseDelivery_js(delivery != null ? delivery.purchaseToken : "", accepted);
+#endif
+            if (accepted) OnPurchaseSuccess(delivery.productID);
+            else if (delivery != null) YGInsides.OnPurchaseFailed(delivery.productID);
+        }
+
         public void OnPurchaseSuccess(string id)
         {
-            YG2.PurchaseByID(id).consumed = true;
+            var purchase = YG2.PurchaseByID(id);
+            if (purchase != null) purchase.consumed = true;
             YGInsides.OnPurchaseSuccess(id);
         }
 

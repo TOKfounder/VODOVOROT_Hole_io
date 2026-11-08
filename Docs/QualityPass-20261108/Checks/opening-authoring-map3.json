@@ -1,0 +1,1179 @@
+[
+  {
+    "scene": "Assets/Tests/RoundExperienceLab.unity",
+    "originalCount": 142,
+    "moved": 117,
+    "edits": [
+      {
+        "name": "City/Props_Hydrant (25)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-115300740471560871-0",
+        "wave": 1,
+        "before": "(-31.89000, 0.10281, -36.70000)",
+        "after": "(-31.89000, 0.10281, -36.70500)",
+        "deltaMetres": 0.005,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Props_Hydrant (24)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-1228664313202957263-0",
+        "wave": 1,
+        "before": "(-31.51000, 0.10281, -36.70000)",
+        "after": "(-31.51000, 0.10281, -36.69499)",
+        "deltaMetres": 0.005,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (52)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-5130034190184992381-0",
+        "wave": 1,
+        "before": "(-31.89004, 0.10358, -36.14996)",
+        "after": "(-31.87253, 0.10358, -36.14304)",
+        "deltaMetres": 0.01882555,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (60)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-2318004887682268882-0",
+        "wave": 1,
+        "before": "(-31.51004, 0.10358, -36.14996)",
+        "after": "(-31.49254, 0.10358, -36.13304)",
+        "deltaMetres": 0.0243504141,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (48)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-4180218176119626736-0",
+        "wave": 1,
+        "before": "(-31.51004, 0.10358, -35.59996)",
+        "after": "(-31.40204, 0.10358, -35.53249)",
+        "deltaMetres": 0.1273496,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (56)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-2824066587086863489-0",
+        "wave": 1,
+        "before": "(-31.51004, 0.10358, -35.04997)",
+        "after": "(-31.41346, 0.10358, -35.03043)",
+        "deltaMetres": 0.09853249,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (53)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-621563313044739683-0",
+        "wave": 1,
+        "before": "(-31.89004, 0.10358, -34.49996)",
+        "after": "(-31.84907, 0.10358, -34.56790)",
+        "deltaMetres": 0.0793311447,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (50)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-4592889108423735415-0",
+        "wave": 1,
+        "before": "(-31.51004, 0.10358, -34.49996)",
+        "after": "(-31.46908, 0.10358, -34.52790)",
+        "deltaMetres": 0.04958324,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (61)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-6334487752364006827-0",
+        "wave": 1,
+        "before": "(-31.89004, 0.10358, -33.94995)",
+        "after": "(-31.92343, 0.10358, -34.01720)",
+        "deltaMetres": 0.07507509,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (33)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-5696891842369568941-0",
+        "wave": 1,
+        "before": "(-31.51004, 0.10358, -33.94996)",
+        "after": "(-31.54343, 0.10358, -33.97720)",
+        "deltaMetres": 0.0430924259,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (58)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-6650074421381946261-0",
+        "wave": 1,
+        "before": "(-31.89004, 0.10358, -33.39996)",
+        "after": "(-31.98251, 0.10358, -33.41903)",
+        "deltaMetres": 0.09441406,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (55)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-2606556982981505722-0",
+        "wave": 1,
+        "before": "(-31.51004, 0.10358, -33.39996)",
+        "after": "(-31.60251, 0.10358, -33.37903)",
+        "deltaMetres": 0.09480504,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (49)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-1467142691122992647-0",
+        "wave": 1,
+        "before": "(-31.89004, 0.10358, -32.84996)",
+        "after": "(-31.99928, 0.10358, -32.82180)",
+        "deltaMetres": 0.112811692,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (35)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-2809384669510133873-0",
+        "wave": 1,
+        "before": "(-31.51004, 0.10358, -32.84996)",
+        "after": "(-31.61927, 0.10358, -32.78180)",
+        "deltaMetres": 0.128761053,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (37)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-5747662890418039741-0",
+        "wave": 1,
+        "before": "(-31.89004, 0.10358, -32.29996)",
+        "after": "(-31.96607, 0.10358, -32.27295)",
+        "deltaMetres": 0.0806875,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (63)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-8124869231529924635-0",
+        "wave": 1,
+        "before": "(-31.51004, 0.10358, -32.29996)",
+        "after": "(-31.58607, 0.10358, -32.23296)",
+        "deltaMetres": 0.1013445,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (57)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-832556357915534202-0",
+        "wave": 1,
+        "before": "(-31.89004, 0.10358, -31.74996)",
+        "after": "(-31.89808, 0.10358, -31.77135)",
+        "deltaMetres": 0.0228494871,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (32)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-1774801404477776182-0",
+        "wave": 1,
+        "before": "(-31.51004, 0.10358, -31.74996)",
+        "after": "(-31.51807, 0.10358, -31.73135)",
+        "deltaMetres": 0.0202764571,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (51)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-2388244337488185511-0",
+        "wave": 1,
+        "before": "(-31.89004, 0.10358, -31.19995)",
+        "after": "(-31.82641, 0.10358, -31.26834)",
+        "deltaMetres": 0.09340686,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (39)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-8348073713282376103-0",
+        "wave": 1,
+        "before": "(-31.51004, 0.10358, -31.19995)",
+        "after": "(-31.44641, 0.10358, -31.22834)",
+        "deltaMetres": 0.06967195,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (59)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-6553657183635843682-0",
+        "wave": 1,
+        "before": "(-31.51004, 0.10358, -30.64996)",
+        "after": "(-31.40385, 0.10358, -30.67672)",
+        "deltaMetres": 0.109509647,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (36)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-1700319920309187123-0",
+        "wave": 1,
+        "before": "(-31.51004, 0.10358, -30.09996)",
+        "after": "(-31.40987, 0.10358, -30.07812)",
+        "deltaMetres": 0.10252329,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (46)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-286783786366812189-0",
+        "wave": 1,
+        "before": "(-31.89004, 0.10358, -29.54996)",
+        "after": "(-31.84172, 0.10358, -29.52136)",
+        "deltaMetres": 0.0561494157,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (43)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-5996013005991505521-0",
+        "wave": 1,
+        "before": "(-31.51004, 0.10358, -29.54996)",
+        "after": "(-31.46172, 0.10358, -29.48136)",
+        "deltaMetres": 0.0839099,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (38)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-8495040923240155464-0",
+        "wave": 1,
+        "before": "(-31.89004, 0.10358, -28.99996)",
+        "after": "(-31.91567, 0.10358, -28.97345)",
+        "deltaMetres": 0.0368826836,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (40)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-2504615504583379665-0",
+        "wave": 1,
+        "before": "(-31.51004, 0.10358, -28.99996)",
+        "after": "(-31.53568, 0.10358, -28.93344)",
+        "deltaMetres": 0.0712854862,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (47)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-7739377516612567148-0",
+        "wave": 1,
+        "before": "(-31.89004, 0.10358, -28.44995)",
+        "after": "(-31.97791, 0.10358, -28.47226)",
+        "deltaMetres": 0.0906515345,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (44)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-9147014899701962972-0",
+        "wave": 1,
+        "before": "(-31.51004, 0.10358, -28.44995)",
+        "after": "(-31.59790, 0.10358, -28.43227)",
+        "deltaMetres": 0.08962588,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (41)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-3873432047555095531-0",
+        "wave": 1,
+        "before": "(-31.89004, 0.10358, -27.89996)",
+        "after": "(-31.99993, 0.10358, -27.96877)",
+        "deltaMetres": 0.129660323,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (45)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-678150871770205653-0",
+        "wave": 1,
+        "before": "(-31.51004, 0.10358, -27.89996)",
+        "after": "(-31.61993, 0.10358, -27.92878)",
+        "deltaMetres": 0.1136068,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (52)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-3798059560349040885-0",
+        "wave": 1,
+        "before": "(-31.89004, 0.10358, -27.34996)",
+        "after": "(-31.97168, 0.10358, -27.41623)",
+        "deltaMetres": 0.105152838,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (60)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-5532245150222339932-0",
+        "wave": 1,
+        "before": "(-31.51004, 0.10358, -27.34996)",
+        "after": "(-31.59168, 0.10358, -27.37623)",
+        "deltaMetres": 0.08576538,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (48)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-5047648123414380676-0",
+        "wave": 1,
+        "before": "(-31.89004, 0.10358, -26.79996)",
+        "after": "(-31.90607, 0.10358, -26.81719)",
+        "deltaMetres": 0.0235403925,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (56)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-5340125118064224435-0",
+        "wave": 1,
+        "before": "(-31.51004, 0.10358, -26.79996)",
+        "after": "(-31.52608, 0.10358, -26.77719)",
+        "deltaMetres": 0.0278569255,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (33)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-5184461087361929376-0",
+        "wave": 1,
+        "before": "(-31.89004, 0.10358, -26.24996)",
+        "after": "(-31.83314, 0.10358, -26.22093)",
+        "deltaMetres": 0.0638737753,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (35)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-2496887879820627110-0",
+        "wave": 1,
+        "before": "(-31.51004, 0.10358, -26.24996)",
+        "after": "(-31.45313, 0.10358, -26.18093)",
+        "deltaMetres": 0.08945421,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (38)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-1217214932585170495-0",
+        "wave": 2,
+        "before": "(-32.68659, 0.10427, -25.09806)",
+        "after": "(-32.68659, 0.10427, -25.11806)",
+        "deltaMetres": 0.02,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (53)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-4413704569727864217-0",
+        "wave": 2,
+        "before": "(-32.03659, 0.10427, -25.09806)",
+        "after": "(-32.03659, 0.10427, -25.07806)",
+        "deltaMetres": 0.02,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (39)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-3632393847486964944-0",
+        "wave": 2,
+        "before": "(-31.38659, 0.10427, -25.09806)",
+        "after": "(-31.38659, 0.10427, -25.11806)",
+        "deltaMetres": 0.02,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (54)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-2456284397290736667-0",
+        "wave": 2,
+        "before": "(-30.73658, 0.10427, -25.09806)",
+        "after": "(-30.73658, 0.10427, -25.07806)",
+        "deltaMetres": 0.02,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (55)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-4902045730812168001-0",
+        "wave": 2,
+        "before": "(-30.53967, 0.10427, -24.24805)",
+        "after": "(-30.38689, 0.10427, -24.14131)",
+        "deltaMetres": 0.186365947,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (52)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-7264928353826649077-0",
+        "wave": 2,
+        "before": "(-30.34910, 0.10427, -23.39805)",
+        "after": "(-30.11345, 0.10427, -23.29173)",
+        "deltaMetres": 0.2585201,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (46)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-5021142075964303492-0",
+        "wave": 2,
+        "before": "(-30.17103, 0.10427, -22.54806)",
+        "after": "(-29.96032, 0.10427, -22.52890)",
+        "deltaMetres": 0.211580634,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (49)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-2444893912334037018-0",
+        "wave": 2,
+        "before": "(-31.96127, 0.10427, -21.69805)",
+        "after": "(-31.87189, 0.10427, -21.80521)",
+        "deltaMetres": 0.139537722,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (34)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-6390439057660989020-0",
+        "wave": 2,
+        "before": "(-31.31127, 0.10427, -21.69805)",
+        "after": "(-31.22189, 0.10427, -21.76521)",
+        "deltaMetres": 0.1117952,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (47)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-7470007362325883097-0",
+        "wave": 2,
+        "before": "(-30.66126, 0.10427, -21.69805)",
+        "after": "(-30.57188, 0.10427, -21.80521)",
+        "deltaMetres": 0.139537722,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (43)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-5640138049198912830-0",
+        "wave": 2,
+        "before": "(-30.01128, 0.10427, -21.69805)",
+        "after": "(-29.92190, 0.10427, -21.76521)",
+        "deltaMetres": 0.1117952,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (33)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-1863868922218642143-0",
+        "wave": 2,
+        "before": "(-31.82494, 0.10427, -20.84806)",
+        "after": "(-31.89777, 0.10427, -20.95395)",
+        "deltaMetres": 0.128532261,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (48)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-7027736348371445073-0",
+        "wave": 2,
+        "before": "(-31.17493, 0.10427, -20.84806)",
+        "after": "(-31.24779, 0.10427, -20.91394)",
+        "deltaMetres": 0.09822966,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (45)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-6087309161511475464-0",
+        "wave": 2,
+        "before": "(-30.52494, 0.10427, -20.84806)",
+        "after": "(-30.59779, 0.10427, -20.95395)",
+        "deltaMetres": 0.128532261,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (32)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-3866131853758971910-0",
+        "wave": 2,
+        "before": "(-29.87494, 0.10427, -20.84806)",
+        "after": "(-29.94778, 0.10427, -20.91394)",
+        "deltaMetres": 0.09822966,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (7)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-4391001050085025028-0",
+        "wave": 2,
+        "before": "(-31.71644, 0.10427, -19.99805)",
+        "after": "(-31.91818, 0.10427, -20.01637)",
+        "deltaMetres": 0.20257619,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (6)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-8848570265247908440-0",
+        "wave": 2,
+        "before": "(-31.06644, 0.10427, -19.99805)",
+        "after": "(-31.26818, 0.10427, -19.97637)",
+        "deltaMetres": 0.2029079,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (5)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-7043618979023863841-0",
+        "wave": 2,
+        "before": "(-30.41644, 0.10427, -19.99805)",
+        "after": "(-30.61817, 0.10427, -20.01637)",
+        "deltaMetres": 0.20257619,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (8)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-7942037516001879569-0",
+        "wave": 2,
+        "before": "(-29.76643, 0.10427, -19.99805)",
+        "after": "(-29.96817, 0.10427, -19.97637)",
+        "deltaMetres": 0.2029079,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (9)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-7338703977487823202-0",
+        "wave": 2,
+        "before": "(-31.63929, 0.10427, -19.14805)",
+        "after": "(-31.87763, 0.10427, -19.08049)",
+        "deltaMetres": 0.247734085,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (10)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-7317006925614063097-0",
+        "wave": 2,
+        "before": "(-30.98930, 0.10427, -19.14805)",
+        "after": "(-31.22764, 0.10427, -19.04049)",
+        "deltaMetres": 0.261490941,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (11)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-159924943184036020-0",
+        "wave": 2,
+        "before": "(-30.33929, 0.10427, -19.14805)",
+        "after": "(-30.57764, 0.10427, -19.08049)",
+        "deltaMetres": 0.247734085,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (4)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-5245507982940593275-0",
+        "wave": 2,
+        "before": "(-29.68930, 0.10427, -19.14805)",
+        "after": "(-29.92764, 0.10427, -19.04049)",
+        "deltaMetres": 0.261490941,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (12)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-6564341757628355817-0",
+        "wave": 2,
+        "before": "(-31.59599, 0.10427, -18.29806)",
+        "after": "(-31.76188, 0.10427, -18.23260)",
+        "deltaMetres": 0.178342253,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (2)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-4127577253850634727-0",
+        "wave": 2,
+        "before": "(-30.94599, 0.10427, -18.29806)",
+        "after": "(-31.11189, 0.10427, -18.19260)",
+        "deltaMetres": 0.1965776,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-8185120892927787820-0",
+        "wave": 2,
+        "before": "(-30.29599, 0.10427, -18.29806)",
+        "after": "(-30.46188, 0.10427, -18.23260)",
+        "deltaMetres": 0.178342253,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (1)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-3265538832132250331-0",
+        "wave": 2,
+        "before": "(-29.64600, 0.10427, -18.29806)",
+        "after": "(-29.81189, 0.10427, -18.19260)",
+        "deltaMetres": 0.1965776,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (13)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-6357917542868015720-0",
+        "wave": 2,
+        "before": "(-31.58792, 0.10427, -17.44805)",
+        "after": "(-31.60547, 0.10427, -17.47057)",
+        "deltaMetres": 0.02855165,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (14)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-5525102456112317767-0",
+        "wave": 2,
+        "before": "(-30.93793, 0.10427, -17.44805)",
+        "after": "(-30.95547, 0.10427, -17.43057)",
+        "deltaMetres": 0.0247677881,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (15)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-7821039859367282999-0",
+        "wave": 2,
+        "before": "(-30.28791, 0.10427, -17.44805)",
+        "after": "(-30.30546, 0.10427, -17.47057)",
+        "deltaMetres": 0.02855165,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (31)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-6393744342836798970-0",
+        "wave": 2,
+        "before": "(-29.63792, 0.10427, -17.44805)",
+        "after": "(-29.65546, 0.10427, -17.43057)",
+        "deltaMetres": 0.0247677881,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (58)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-5171770807050839053-0",
+        "wave": 2,
+        "before": "(-29.66535, 0.10427, -16.59806)",
+        "after": "(-29.52653, 0.10427, -16.66603)",
+        "deltaMetres": 0.154571652,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (67)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-5491028123372374670-0",
+        "wave": 2,
+        "before": "(-29.72742, 0.10427, -15.74805)",
+        "after": "(-29.49574, 0.10427, -15.81307)",
+        "deltaMetres": 0.24063684,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (16)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-3619049667767201654-0",
+        "wave": 2,
+        "before": "(-29.82207, 0.10427, -14.89805)",
+        "after": "(-29.60352, 0.10427, -14.87469)",
+        "deltaMetres": 0.219793573,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (60)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-2784950421957808736-0",
+        "wave": 2,
+        "before": "(-31.89629, 0.10427, -14.04806)",
+        "after": "(-31.79086, 0.10427, -13.97969)",
+        "deltaMetres": 0.125650138,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (17)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-2409274241643311687-0",
+        "wave": 2,
+        "before": "(-31.24628, 0.10427, -14.04805)",
+        "after": "(-31.14085, 0.10427, -13.93969)",
+        "deltaMetres": 0.151186168,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (25)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-1760106255665700083-0",
+        "wave": 2,
+        "before": "(-30.59628, 0.10427, -14.04806)",
+        "after": "(-30.49085, 0.10427, -13.97969)",
+        "deltaMetres": 0.125650138,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (66)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-3085322758799831130-0",
+        "wave": 2,
+        "before": "(-29.94628, 0.10427, -14.04806)",
+        "after": "(-29.84086, 0.10427, -13.93969)",
+        "deltaMetres": 0.151186168,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (24)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-2629040840522199301-0",
+        "wave": 2,
+        "before": "(-32.04602, 0.10427, -13.19806)",
+        "after": "(-32.10196, 0.10427, -13.13348)",
+        "deltaMetres": 0.08543139,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (65)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-6306578892188038259-0",
+        "wave": 2,
+        "before": "(-31.39603, 0.10427, -13.19806)",
+        "after": "(-31.45197, 0.10427, -13.09348)",
+        "deltaMetres": 0.118593857,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (23)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-6182676846592235712-0",
+        "wave": 2,
+        "before": "(-30.74603, 0.10427, -13.19806)",
+        "after": "(-30.80195, 0.10427, -13.13348)",
+        "deltaMetres": 0.08543139,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (18)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-260553222435738407-0",
+        "wave": 2,
+        "before": "(-30.09603, 0.10427, -13.19805)",
+        "after": "(-30.15196, 0.10427, -13.09348)",
+        "deltaMetres": 0.118593857,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (56)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-6844972813975834952-0",
+        "wave": 2,
+        "before": "(-32.21648, 0.10427, -12.34806)",
+        "after": "(-32.40817, 0.10427, -12.37226)",
+        "deltaMetres": 0.193222851,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (19)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-2543351784562940985-0",
+        "wave": 2,
+        "before": "(-31.56647, 0.10427, -12.34805)",
+        "after": "(-31.75817, 0.10427, -12.33226)",
+        "deltaMetres": 0.192350939,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (22)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-1196277186136443238-0",
+        "wave": 2,
+        "before": "(-30.91647, 0.10427, -12.34806)",
+        "after": "(-31.10818, 0.10427, -12.37226)",
+        "deltaMetres": 0.193222851,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (64)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-2036860262137740196-0",
+        "wave": 2,
+        "before": "(-30.26647, 0.10427, -12.34806)",
+        "after": "(-30.45818, 0.10427, -12.33226)",
+        "deltaMetres": 0.192350939,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (21)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-1154125554636672382-0",
+        "wave": 2,
+        "before": "(-32.40211, 0.10427, -11.49805)",
+        "after": "(-32.64187, 0.10427, -11.60680)",
+        "deltaMetres": 0.263276279,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (63)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-1562358163571951899-0",
+        "wave": 2,
+        "before": "(-31.75211, 0.10427, -11.49805)",
+        "after": "(-31.99187, 0.10427, -11.56681)",
+        "deltaMetres": 0.24942708,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (20)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-7570738747480038723-0",
+        "wave": 2,
+        "before": "(-31.10211, 0.10427, -11.49805)",
+        "after": "(-31.34187, 0.10427, -11.60680)",
+        "deltaMetres": 0.263276279,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/Natures_Bush_01 (62)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-8872437639146112846-0",
+        "wave": 2,
+        "before": "(-30.45213, 0.10427, -11.49805)",
+        "after": "(-30.69189, 0.10427, -11.56681)",
+        "deltaMetres": 0.24942708,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (32)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-5044771156337061786-0",
+        "wave": 2,
+        "before": "(-32.58539, 0.10358, -10.64996)",
+        "after": "(-32.76352, 0.10358, -10.75408)",
+        "deltaMetres": 0.206331268,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (54)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-2455281149630159045-0",
+        "wave": 2,
+        "before": "(-31.93539, 0.10358, -10.64996)",
+        "after": "(-32.11352, 0.10358, -10.71408)",
+        "deltaMetres": 0.189321786,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (62)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-3631250153488126885-0",
+        "wave": 2,
+        "before": "(-31.28539, 0.10358, -10.64996)",
+        "after": "(-31.46351, 0.10358, -10.75408)",
+        "deltaMetres": 0.206331268,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (50)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-6332460584170594706-0",
+        "wave": 2,
+        "before": "(-30.63538, 0.10358, -10.64996)",
+        "after": "(-30.81351, 0.10358, -10.71408)",
+        "deltaMetres": 0.189321786,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (34)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-1818627936323940650-0",
+        "wave": 2,
+        "before": "(-32.78311, 0.10358, -9.79996)",
+        "after": "(-32.81812, 0.10358, -9.81492)",
+        "deltaMetres": 0.0380655862,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (58)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-1266122524381595561-0",
+        "wave": 2,
+        "before": "(-32.13312, 0.10358, -9.79996)",
+        "after": "(-32.16812, 0.10358, -9.77491)",
+        "deltaMetres": 0.0430391356,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (37)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-4455006276742271885-0",
+        "wave": 2,
+        "before": "(-31.48310, 0.10358, -9.79996)",
+        "after": "(-31.51810, 0.10358, -9.81492)",
+        "deltaMetres": 0.0380655862,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (39)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-8648998209461678932-0",
+        "wave": 2,
+        "before": "(-30.83311, 0.10358, -9.79996)",
+        "after": "(-30.86811, 0.10358, -9.77491)",
+        "deltaMetres": 0.0430391356,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (36)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-5630503729035370279-0",
+        "wave": 2,
+        "before": "(-32.97734, 0.10358, -8.94996)",
+        "after": "(-32.85320, 0.10358, -8.88081)",
+        "deltaMetres": 0.142094716,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (53)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-1390884873691503998-0",
+        "wave": 2,
+        "before": "(-32.32734, 0.10358, -8.94996)",
+        "after": "(-32.20319, 0.10358, -8.84081)",
+        "deltaMetres": 0.165294215,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (61)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-7282097891271652999-0",
+        "wave": 2,
+        "before": "(-31.67735, 0.10358, -8.94996)",
+        "after": "(-31.55321, 0.10358, -8.88081)",
+        "deltaMetres": 0.142094716,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (38)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-516437466897089318-0",
+        "wave": 2,
+        "before": "(-31.02734, 0.10358, -8.94996)",
+        "after": "(-30.90321, 0.10358, -8.84081)",
+        "deltaMetres": 0.165294215,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (49)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-3441457831476216144-0",
+        "wave": 2,
+        "before": "(-33.16181, 0.02358, -8.09996)",
+        "after": "(-32.93533, 0.02358, -8.03630)",
+        "deltaMetres": 0.235265061,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (57)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-1931167756595377387-0",
+        "wave": 2,
+        "before": "(-32.51181, 0.02358, -8.09996)",
+        "after": "(-32.28532, 0.02358, -7.99630)",
+        "deltaMetres": 0.249084115,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (42)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-9066734337760733307-0",
+        "wave": 2,
+        "before": "(-31.86181, 0.02358, -8.09996)",
+        "after": "(-31.63532, 0.02358, -8.03630)",
+        "deltaMetres": 0.235265061,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (46)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-409218525329378141-0",
+        "wave": 2,
+        "before": "(-31.21180, 0.02358, -8.09996)",
+        "after": "(-30.98531, 0.02358, -7.99630)",
+        "deltaMetres": 0.249084115,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (40)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-8048950152255796209-0",
+        "wave": 2,
+        "before": "(-33.33055, 0.02358, -7.24996)",
+        "after": "(-33.10533, 0.02358, -7.27584)",
+        "deltaMetres": 0.2266977,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (55)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-3171732362433618452-0",
+        "wave": 2,
+        "before": "(-32.68055, 0.02358, -7.24996)",
+        "after": "(-32.45533, 0.02358, -7.23584)",
+        "deltaMetres": 0.225657508,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (63)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-3928839925481946864-0",
+        "wave": 2,
+        "before": "(-32.03055, 0.02358, -7.24996)",
+        "after": "(-31.80533, 0.02358, -7.27584)",
+        "deltaMetres": 0.2266977,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (44)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-2358682936109260504-0",
+        "wave": 2,
+        "before": "(-31.38055, 0.02358, -7.24996)",
+        "after": "(-31.15533, 0.02358, -7.23584)",
+        "deltaMetres": 0.225657508,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (47)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-9044755233104716519-0",
+        "wave": 2,
+        "before": "(-32.52811, 0.02358, -6.39996)",
+        "after": "(-32.40720, 0.02358, -6.46948)",
+        "deltaMetres": 0.139467165,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (41)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-6121170838450159882-0",
+        "wave": 2,
+        "before": "(-33.59971, 0.02358, -5.54996)",
+        "after": "(-33.63843, 0.02358, -5.65316)",
+        "deltaMetres": 0.110226274,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (45)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-2719899697737501145-0",
+        "wave": 2,
+        "before": "(-32.94971, 0.02358, -5.54996)",
+        "after": "(-32.98843, 0.02358, -5.61316)",
+        "deltaMetres": 0.0741192251,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (204)/Natures_Pot Bush_big (52)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-2489732776461573708-0",
+        "wave": 2,
+        "before": "(-32.29973, 0.02358, -5.54996)",
+        "after": "(-32.33845, 0.02358, -5.65316)",
+        "deltaMetres": 0.110226274,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (204)/Natures_Pot Bush_big (60)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-8918889590834357461-0",
+        "wave": 2,
+        "before": "(-31.64972, 0.02358, -5.54996)",
+        "after": "(-31.68844, 0.02358, -5.61316)",
+        "deltaMetres": 0.0741192251,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (204)/Natures_Pot Bush_big (48)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-130332260427861609-0",
+        "wave": 2,
+        "before": "(-33.69145, 0.02358, -4.69996)",
+        "after": "(-33.87208, 0.02358, -4.71323)",
+        "deltaMetres": 0.181116909,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (204)/Natures_Pot Bush_big (56)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-8427171539661112477-0",
+        "wave": 2,
+        "before": "(-33.04144, 0.02358, -4.69996)",
+        "after": "(-33.22208, 0.02358, -4.67323)",
+        "deltaMetres": 0.182595164,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (204)/Natures_Pot Bush_big (33)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-3578058886863156486-0",
+        "wave": 2,
+        "before": "(-32.39146, 0.02358, -4.69996)",
+        "after": "(-32.57208, 0.02358, -4.71323)",
+        "deltaMetres": 0.181116909,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (204)/Natures_Pot Bush_big (35)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-7004152938912207355-0",
+        "wave": 2,
+        "before": "(-31.74146, 0.02358, -4.69996)",
+        "after": "(-31.92210, 0.02358, -4.67323)",
+        "deltaMetres": 0.182595164,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (204)/Natures_Pot Bush_big (32)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-3822581474853872485-0",
+        "wave": 2,
+        "before": "(-33.75033, 0.02358, -3.84996)",
+        "after": "(-33.99023, 0.02358, -3.78007)",
+        "deltaMetres": 0.249874,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      },
+      {
+        "name": "City/FarmPoint (204)/Natures_Pot Bush_big (54)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-7391433175873746541-0",
+        "wave": 2,
+        "before": "(-33.10033, 0.02358, -3.84996)",
+        "after": "(-33.34022, 0.02358, -3.74006)",
+        "deltaMetres": 0.2638716,
+        "localScale": "(1.00000, 1.00000, 1.00000)",
+        "localRotation": "(0.00000, 0.00000, 0.00000)"
+      }
+    ]
+  }
+]

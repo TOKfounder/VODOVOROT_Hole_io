@@ -1,0 +1,266 @@
+[
+  {
+    "scene": "Assets/Scenes/Low Poly City.unity",
+    "nameRu": "Автодвор",
+    "nameEn": "Motor yard",
+    "landmark": "(-22.251, 0.120, -40.687)",
+    "targets": [
+      {
+        "path": "City/Vehicle_Taxi",
+        "globalId": "GlobalObjectId_V1-2-7e6d3f4e5d896154ab4438845532ac3e-1958698409437168750-0",
+        "position": "(-20.970, 0.000, -38.215)"
+      },
+      {
+        "path": "City/Vehicle_Pick up Truck_color01 (1)",
+        "globalId": "GlobalObjectId_V1-2-7e6d3f4e5d896154ab4438845532ac3e-4795090738033047987-0",
+        "position": "(-27.620, 0.000, -35.534)"
+      },
+      {
+        "path": "City/Vehicle_SUV_color03 (4)",
+        "globalId": "GlobalObjectId_V1-2-7e6d3f4e5d896154ab4438845532ac3e-3063354424590373131-0",
+        "position": "(-32.900, 0.000, -44.968)"
+      },
+      {
+        "path": "City/Vehicle_Ambulance (2)",
+        "globalId": "GlobalObjectId_V1-2-7e6d3f4e5d896154ab4438845532ac3e-3782389336262806702-0",
+        "position": "(-30.060, 0.000, -49.138)"
+      },
+      {
+        "path": "City/Vehicle_Container_color02 (1)",
+        "globalId": "GlobalObjectId_V1-2-7e6d3f4e5d896154ab4438845532ac3e-7284155632732436102-0",
+        "position": "(-12.205, 0.000, -35.580)"
+      }
+    ]
+  },
+  {
+    "scene": "Assets/Scenes/Low Poly City.unity",
+    "nameRu": "Хвойный сквер",
+    "nameEn": "Pine square",
+    "landmark": "(-23.400, 0.120, -28.356)",
+    "targets": [
+      {
+        "path": "City/Natures_Fir Tree (22)",
+        "globalId": "GlobalObjectId_V1-2-7e6d3f4e5d896154ab4438845532ac3e-887092850342798406-0",
+        "position": "(-26.540, 0.000, -25.900)"
+      },
+      {
+        "path": "City/Natures_Fir Tree (21)",
+        "globalId": "GlobalObjectId_V1-2-7e6d3f4e5d896154ab4438845532ac3e-5805220020442023116-0",
+        "position": "(-26.540, 0.000, -28.860)"
+      },
+      {
+        "path": "City/Natures_Fir Tree (23)",
+        "globalId": "GlobalObjectId_V1-2-7e6d3f4e5d896154ab4438845532ac3e-8283317643659897040-0",
+        "position": "(-26.540, 0.000, -23.220)"
+      },
+      {
+        "path": "City/Natures_Fir Tree (17)",
+        "globalId": "GlobalObjectId_V1-2-7e6d3f4e5d896154ab4438845532ac3e-3199959671497392439-0",
+        "position": "(-23.340, 0.000, -31.900)"
+      },
+      {
+        "path": "City/Natures_Fir Tree (16)",
+        "globalId": "GlobalObjectId_V1-2-7e6d3f4e5d896154ab4438845532ac3e-1796694879824650780-0",
+        "position": "(-26.540, 0.000, -31.900)"
+      }
+    ]
+  },
+  {
+    "scene": "Assets/Scenes/Garden.unity",
+    "nameRu": "Сад отдыха",
+    "nameEn": "Rest garden",
+    "landmark": "(-32.597, 0.120, -38.400)",
+    "targets": [
+      {
+        "path": "Garden/MyTown2/bench prefab (4)/bench",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-8293072451168172414-921295968",
+        "position": "(-33.490, 0.179, -36.536)"
+      },
+      {
+        "path": "Garden/MyTown2/Bench 2 prefab (3)/Bench 2",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-2467577284033368846-1705182296",
+        "position": "(-33.246, 0.179, -39.766)"
+      },
+      {
+        "path": "Garden/MyTown2/bench prefab (2)/bench",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-8293072451168172414-1547115355",
+        "position": "(-35.820, 0.179, -36.536)"
+      },
+      {
+        "path": "Garden/MyTown2/Bench 2 prefab (1)/Bench 2",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-2467577284033368846-1373089084",
+        "position": "(-35.583, 0.179, -39.766)"
+      },
+      {
+        "path": "Garden/MyTown2/bench prefab (10)/bench",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-8293072451168172414-2016751667",
+        "position": "(-35.670, 0.200, -33.147)"
+      }
+    ]
+  },
+  {
+    "scene": "Assets/Scenes/Garden.unity",
+    "nameRu": "Цветочная аллея",
+    "nameEn": "Flower walk",
+    "landmark": "(-14.877, 0.120, -31.024)",
+    "targets": [
+      {
+        "path": "Garden/MyTown2/stone pot prefab (1)/stone pot",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-2747929696105999707-1901950832",
+        "position": "(-29.811, 0.179, -36.746)"
+      },
+      {
+        "path": "Garden/MyTown2/stone pot prefab (2)/stone pot",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-2747929696105999707-1834105110",
+        "position": "(-29.811, 0.179, -39.351)"
+      },
+      {
+        "path": "Garden/MyTown2/Pot_tree prefab/Pot_tree",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-1448052792332474313-1931293672",
+        "position": "(-36.884, 0.179, -39.122)"
+      },
+      {
+        "path": "Garden/MyTown/stone pot prefab (1)/stone pot",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-2747929696105999707-1710703000",
+        "position": "(4.811, 0.179, -21.254)"
+      },
+      {
+        "path": "Garden/MyTown/stone pot prefab (2)/stone pot",
+        "globalId": "GlobalObjectId_V1-2-7759de288f5d4ee449a0ca5e2244944a-2747929696105999707-283803743",
+        "position": "(4.811, 0.179, -18.649)"
+      }
+    ]
+  },
+  {
+    "scene": "Assets/Scenes/MedievalCastle.unity",
+    "nameRu": "Квартал мастеров",
+    "nameEn": "Craft quarter",
+    "landmark": "(-55.062, 0.120, -40.830)",
+    "targets": [
+      {
+        "path": "Medievel City/CastlePrefab (1)/Castle/HouseB (14)/Simple Door Frame/Door",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-1874996847962818307-381744888",
+        "position": "(-49.397, 0.404, -37.256)"
+      },
+      {
+        "path": "Medievel City/CastlePrefab (1)/Castle/House (4)/Simple Door Frame/Door",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-7186265786289243770-381744888",
+        "position": "(-51.660, 0.404, -36.971)"
+      },
+      {
+        "path": "Medievel City/CastlePrefab (1)/Castle/House (8)/Simple Door Frame/Door",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-391357584944156385-381744888",
+        "position": "(-47.641, 0.404, -32.447)"
+      },
+      {
+        "path": "Medievel City/CastlePrefab (1)/Castle/HouseB (13)/Simple Door Frame/Door",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-7373570581209295797-381744888",
+        "position": "(-43.216, 0.404, -37.891)"
+      },
+      {
+        "path": "Medievel City/CastlePrefab (1)/Castle/House (5)/Simple Door Frame/Door",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-1155121516631443837-381744888",
+        "position": "(-46.439, 0.404, -44.280)"
+      }
+    ]
+  },
+  {
+    "scene": "Assets/Scenes/MedievalCastle.unity",
+    "nameRu": "Северные ворота",
+    "nameEn": "Northern gates",
+    "landmark": "(-78.503, 0.120, -28.921)",
+    "targets": [
+      {
+        "path": "Medievel City/CastlePrefab (2)/Castle/House (10)/Simple Door Frame",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-4212566076565377839-434135064",
+        "position": "(-75.893, 0.414, -24.022)"
+      },
+      {
+        "path": "Medievel City/CastlePrefab (2)/Castle/HouseB (15)/Simple Door Frame",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-4706125101596141803-434135064",
+        "position": "(-74.988, 0.414, -30.209)"
+      },
+      {
+        "path": "Medievel City/CastlePrefab (2)/Castle/HouseB/Simple Door Frame",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-2084207979677599978-434135064",
+        "position": "(-80.430, 0.414, -24.364)"
+      },
+      {
+        "path": "Medievel City/CastlePrefab (2)/Castle/House (19)/Simple Door Frame",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-2998806723793967145-434135064",
+        "position": "(-81.247, 0.414, -27.272)"
+      },
+      {
+        "path": "Medievel City/CastlePrefab (2)/Castle/House (1)/Simple Door Frame",
+        "globalId": "GlobalObjectId_V1-2-2b3e34ee345754949ac09bceea98777c-5566302507532232492-434135064",
+        "position": "(-71.116, 0.414, -29.899)"
+      }
+    ]
+  },
+  {
+    "scene": "Assets/Tests/RoundExperienceLab.unity",
+    "nameRu": "Автодвор",
+    "nameEn": "Motor yard",
+    "landmark": "(-22.251, 0.120, -40.687)",
+    "targets": [
+      {
+        "path": "City/Vehicle_Taxi",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-1958698409437168750-0",
+        "position": "(-20.970, 0.000, -38.215)"
+      },
+      {
+        "path": "City/Vehicle_Pick up Truck_color01 (1)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-4795090738033047987-0",
+        "position": "(-27.620, 0.000, -35.534)"
+      },
+      {
+        "path": "City/Vehicle_SUV_color03 (4)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-3063354424590373131-0",
+        "position": "(-32.900, 0.000, -44.968)"
+      },
+      {
+        "path": "City/Vehicle_Ambulance (2)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-3782389336262806702-0",
+        "position": "(-30.060, 0.000, -49.138)"
+      },
+      {
+        "path": "City/Vehicle_Container_color02 (1)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-7284155632732436102-0",
+        "position": "(-12.205, 0.000, -35.580)"
+      }
+    ]
+  },
+  {
+    "scene": "Assets/Tests/RoundExperienceLab.unity",
+    "nameRu": "Хвойный сквер",
+    "nameEn": "Pine square",
+    "landmark": "(-23.400, 0.120, -28.356)",
+    "targets": [
+      {
+        "path": "City/Natures_Fir Tree (22)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-887092850342798406-0",
+        "position": "(-26.540, 0.000, -25.900)"
+      },
+      {
+        "path": "City/Natures_Fir Tree (21)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-5805220020442023116-0",
+        "position": "(-26.540, 0.000, -28.860)"
+      },
+      {
+        "path": "City/Natures_Fir Tree (23)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-8283317643659897040-0",
+        "position": "(-26.540, 0.000, -23.220)"
+      },
+      {
+        "path": "City/Natures_Fir Tree (17)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-3199959671497392439-0",
+        "position": "(-23.340, 0.000, -31.900)"
+      },
+      {
+        "path": "City/Natures_Fir Tree (16)",
+        "globalId": "GlobalObjectId_V1-2-d6c56dcd8814f41dca535c324b5814ec-1796694879824650780-0",
+        "position": "(-26.540, 0.000, -31.900)"
+      }
+    ]
+  }
+]

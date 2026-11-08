@@ -1,0 +1,35 @@
+{
+  "build": "build_032fff736361",
+  "environment": "IAB actual native keyboard/pointer, local SDK stub, disposable browser save",
+  "dpr": 2,
+  "canvas": [
+    2560,
+    1440
+  ],
+  "css": [
+    1280,
+    720
+  ],
+  "audioDuring": [
+    0,
+    0
+  ],
+  "comparison": "Real left/right arrow graphics verified, selectedWhite/equippedRed,roundedcanonicalbuttons;Evidence/compare-workc-dpr2.png",
+  "results": "Capped800CSS paper, captions/icons/values/actions separate,disabledx3oninterruption;Evidence/results-workc-dpr2.png",
+  "cityGrowth": {
+    "firstObservedBySeconds": 11,
+    "secondObservedBySeconds": 53,
+    "timingMethod": "Read180-second HUD; pause through actual in-game settings immediately after each fixed native-input batch; paced zigzag developer route, not a controlled speed comparison with old route",
+    "firstEvidence": "../Evidence/city-opening-workc-paced-route.png",
+    "secondEvidence": "../Evidence/city-opening-workc-final-sweep.png",
+    "note": "Initial continuous W6s trial overshot some falling targets; accepted developer route uses short approaches/stops. No score or fit changes."
+  },
+  "pending": [
+    "Garden/Castle first-minute routes",
+    "landmark views",
+    "graphic late-goal direction atsecondhalf",
+    "browserDPR1/narrow RU/EN",
+    "realphone/liveSDK/weakdevice",
+    "physicsoptimization"
+  ]
+}

@@ -1,0 +1,1388 @@
+{
+  "scope": "Editor actual layout; DPR simulated, WebGL still required",
+  "checks": [
+    {
+      "name": "isolated silent Play profile",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "actual GameView pixel dimensions",
+      "passed": true,
+      "evidence": {
+        "css": "(1280, 720)",
+        "simulatedDpr": 1,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "name": "results paper inside viewport with bounded width (1280, 720) @1 desktop RU",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:240.00, y:220.00, width:800.00, height:280.00)",
+        "screen": "(x:0.00, y:0.00, width:1280.00, height:720.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (1280, 720) @1 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (1280, 720) @1 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (1280, 720) @1 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (1280, 720) @1 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (1280, 720) @1 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (1280, 720) @1 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "results paper inside viewport with bounded width (1280, 720) @1 desktop EN",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:240.00, y:220.00, width:800.00, height:280.00)",
+        "screen": "(x:0.00, y:0.00, width:1280.00, height:720.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (1280, 720) @1 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (1280, 720) @1 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (1280, 720) @1 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (1280, 720) @1 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (1280, 720) @1 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (1280, 720) @1 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "results paper inside viewport with bounded width (1280, 720) @1 mobile RU",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:240.00, y:220.00, width:800.00, height:280.00)",
+        "screen": "(x:0.00, y:0.00, width:1280.00, height:720.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (1280, 720) @1 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (1280, 720) @1 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (1280, 720) @1 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (1280, 720) @1 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (1280, 720) @1 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (1280, 720) @1 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "results paper inside viewport with bounded width (1280, 720) @1 mobile EN",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:240.00, y:220.00, width:800.00, height:280.00)",
+        "screen": "(x:0.00, y:0.00, width:1280.00, height:720.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (1280, 720) @1 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (1280, 720) @1 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (1280, 720) @1 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (1280, 720) @1 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (1280, 720) @1 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (1280, 720) @1 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "actual GameView pixel dimensions",
+      "passed": true,
+      "evidence": {
+        "css": "(1280, 720)",
+        "simulatedDpr": 2,
+        "width": 2560,
+        "height": 1440
+      }
+    },
+    {
+      "name": "results paper inside viewport with bounded width (1280, 720) @2 desktop RU",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:480.00, y:440.00, width:1600.00, height:560.00)",
+        "screen": "(x:0.00, y:0.00, width:2560.00, height:1440.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (1280, 720) @2 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (1280, 720) @2 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (1280, 720) @2 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (1280, 720) @2 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (1280, 720) @2 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (1280, 720) @2 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "results paper inside viewport with bounded width (1280, 720) @2 desktop EN",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:480.00, y:440.00, width:1600.00, height:560.00)",
+        "screen": "(x:0.00, y:0.00, width:2560.00, height:1440.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (1280, 720) @2 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (1280, 720) @2 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (1280, 720) @2 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (1280, 720) @2 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (1280, 720) @2 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (1280, 720) @2 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "results paper inside viewport with bounded width (1280, 720) @2 mobile RU",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:480.00, y:440.00, width:1600.00, height:560.00)",
+        "screen": "(x:0.00, y:0.00, width:2560.00, height:1440.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (1280, 720) @2 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (1280, 720) @2 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (1280, 720) @2 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (1280, 720) @2 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (1280, 720) @2 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (1280, 720) @2 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "results paper inside viewport with bounded width (1280, 720) @2 mobile EN",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:480.00, y:440.00, width:1600.00, height:560.00)",
+        "screen": "(x:0.00, y:0.00, width:2560.00, height:1440.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (1280, 720) @2 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (1280, 720) @2 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (1280, 720) @2 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (1280, 720) @2 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (1280, 720) @2 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (1280, 720) @2 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "actual GameView pixel dimensions",
+      "passed": true,
+      "evidence": {
+        "css": "(640, 360)",
+        "simulatedDpr": 1,
+        "width": 640,
+        "height": 360
+      }
+    },
+    {
+      "name": "results paper inside viewport with bounded width (640, 360) @1 desktop RU",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:12.00, y:40.00, width:616.00, height:280.00)",
+        "screen": "(x:0.00, y:0.00, width:640.00, height:360.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (640, 360) @1 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (640, 360) @1 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (640, 360) @1 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (640, 360) @1 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (640, 360) @1 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (640, 360) @1 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "results paper inside viewport with bounded width (640, 360) @1 desktop EN",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:12.00, y:40.00, width:616.00, height:280.00)",
+        "screen": "(x:0.00, y:0.00, width:640.00, height:360.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (640, 360) @1 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (640, 360) @1 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (640, 360) @1 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (640, 360) @1 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (640, 360) @1 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (640, 360) @1 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "results paper inside viewport with bounded width (640, 360) @1 mobile RU",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:12.00, y:40.00, width:616.00, height:280.00)",
+        "screen": "(x:0.00, y:0.00, width:640.00, height:360.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (640, 360) @1 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (640, 360) @1 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (640, 360) @1 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (640, 360) @1 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (640, 360) @1 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (640, 360) @1 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "results paper inside viewport with bounded width (640, 360) @1 mobile EN",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:12.00, y:40.00, width:616.00, height:280.00)",
+        "screen": "(x:0.00, y:0.00, width:640.00, height:360.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (640, 360) @1 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (640, 360) @1 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (640, 360) @1 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (640, 360) @1 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (640, 360) @1 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (640, 360) @1 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "actual GameView pixel dimensions",
+      "passed": true,
+      "evidence": {
+        "css": "(640, 360)",
+        "simulatedDpr": 2,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "name": "results paper inside viewport with bounded width (640, 360) @2 desktop RU",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:24.00, y:80.00, width:1232.00, height:560.00)",
+        "screen": "(x:0.00, y:0.00, width:1280.00, height:720.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (640, 360) @2 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (640, 360) @2 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (640, 360) @2 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (640, 360) @2 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (640, 360) @2 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (640, 360) @2 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "results paper inside viewport with bounded width (640, 360) @2 desktop EN",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:24.00, y:80.00, width:1232.00, height:560.00)",
+        "screen": "(x:0.00, y:0.00, width:1280.00, height:720.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (640, 360) @2 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (640, 360) @2 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (640, 360) @2 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (640, 360) @2 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (640, 360) @2 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (640, 360) @2 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "results paper inside viewport with bounded width (640, 360) @2 mobile RU",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:24.00, y:80.00, width:1232.00, height:560.00)",
+        "screen": "(x:0.00, y:0.00, width:1280.00, height:720.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (640, 360) @2 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (640, 360) @2 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (640, 360) @2 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (640, 360) @2 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (640, 360) @2 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (640, 360) @2 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "results paper inside viewport with bounded width (640, 360) @2 mobile EN",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:24.00, y:80.00, width:1232.00, height:560.00)",
+        "screen": "(x:0.00, y:0.00, width:1280.00, height:720.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (640, 360) @2 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (640, 360) @2 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (640, 360) @2 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (640, 360) @2 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (640, 360) @2 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (640, 360) @2 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "actual GameView pixel dimensions",
+      "passed": true,
+      "evidence": {
+        "css": "(568, 320)",
+        "simulatedDpr": 1,
+        "width": 568,
+        "height": 320
+      }
+    },
+    {
+      "name": "results paper inside viewport with bounded width (568, 320) @1 desktop RU",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:12.00, y:20.00, width:544.00, height:280.00)",
+        "screen": "(x:0.00, y:0.00, width:568.00, height:320.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (568, 320) @1 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (568, 320) @1 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (568, 320) @1 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (568, 320) @1 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (568, 320) @1 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (568, 320) @1 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "results paper inside viewport with bounded width (568, 320) @1 desktop EN",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:12.00, y:20.00, width:544.00, height:280.00)",
+        "screen": "(x:0.00, y:0.00, width:568.00, height:320.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (568, 320) @1 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (568, 320) @1 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (568, 320) @1 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (568, 320) @1 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (568, 320) @1 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (568, 320) @1 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "results paper inside viewport with bounded width (568, 320) @1 mobile RU",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:12.00, y:20.00, width:544.00, height:280.00)",
+        "screen": "(x:0.00, y:0.00, width:568.00, height:320.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (568, 320) @1 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (568, 320) @1 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (568, 320) @1 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (568, 320) @1 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (568, 320) @1 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (568, 320) @1 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "results paper inside viewport with bounded width (568, 320) @1 mobile EN",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:12.00, y:20.00, width:544.00, height:280.00)",
+        "screen": "(x:0.00, y:0.00, width:568.00, height:320.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (568, 320) @1 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (568, 320) @1 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (568, 320) @1 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (568, 320) @1 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (568, 320) @1 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (568, 320) @1 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "actual GameView pixel dimensions",
+      "passed": true,
+      "evidence": {
+        "css": "(568, 320)",
+        "simulatedDpr": 2,
+        "width": 1136,
+        "height": 640
+      }
+    },
+    {
+      "name": "results paper inside viewport with bounded width (568, 320) @2 desktop RU",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:24.00, y:40.00, width:1088.00, height:560.00)",
+        "screen": "(x:0.00, y:0.00, width:1136.00, height:640.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (568, 320) @2 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (568, 320) @2 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (568, 320) @2 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (568, 320) @2 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (568, 320) @2 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (568, 320) @2 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "results paper inside viewport with bounded width (568, 320) @2 desktop EN",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:24.00, y:40.00, width:1088.00, height:560.00)",
+        "screen": "(x:0.00, y:0.00, width:1136.00, height:640.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (568, 320) @2 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (568, 320) @2 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (568, 320) @2 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (568, 320) @2 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (568, 320) @2 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (568, 320) @2 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "results paper inside viewport with bounded width (568, 320) @2 mobile RU",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:24.00, y:40.00, width:1088.00, height:560.00)",
+        "screen": "(x:0.00, y:0.00, width:1136.00, height:640.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (568, 320) @2 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (568, 320) @2 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (568, 320) @2 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (568, 320) @2 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (568, 320) @2 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (568, 320) @2 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "results paper inside viewport with bounded width (568, 320) @2 mobile EN",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:24.00, y:40.00, width:1088.00, height:560.00)",
+        "screen": "(x:0.00, y:0.00, width:1136.00, height:640.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (568, 320) @2 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (568, 320) @2 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (568, 320) @2 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (568, 320) @2 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (568, 320) @2 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (568, 320) @2 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "actual GameView pixel dimensions",
+      "passed": true,
+      "evidence": {
+        "css": "(390, 844)",
+        "simulatedDpr": 1,
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "name": "results paper inside viewport with bounded width (390, 844) @1 desktop RU",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:12.00, y:187.00, width:366.00, height:470.00)",
+        "screen": "(x:0.00, y:0.00, width:390.00, height:844.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (390, 844) @1 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (390, 844) @1 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (390, 844) @1 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (390, 844) @1 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (390, 844) @1 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (390, 844) @1 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "results paper inside viewport with bounded width (390, 844) @1 desktop EN",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:12.00, y:187.00, width:366.00, height:470.00)",
+        "screen": "(x:0.00, y:0.00, width:390.00, height:844.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (390, 844) @1 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (390, 844) @1 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (390, 844) @1 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (390, 844) @1 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (390, 844) @1 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (390, 844) @1 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "results paper inside viewport with bounded width (390, 844) @1 mobile RU",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:12.00, y:187.00, width:366.00, height:470.00)",
+        "screen": "(x:0.00, y:0.00, width:390.00, height:844.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (390, 844) @1 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (390, 844) @1 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (390, 844) @1 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (390, 844) @1 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (390, 844) @1 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (390, 844) @1 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "results paper inside viewport with bounded width (390, 844) @1 mobile EN",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:12.00, y:187.00, width:366.00, height:470.00)",
+        "screen": "(x:0.00, y:0.00, width:390.00, height:844.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (390, 844) @1 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (390, 844) @1 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (390, 844) @1 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (390, 844) @1 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (390, 844) @1 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (390, 844) @1 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "actual GameView pixel dimensions",
+      "passed": true,
+      "evidence": {
+        "css": "(390, 844)",
+        "simulatedDpr": 2,
+        "width": 780,
+        "height": 1688
+      }
+    },
+    {
+      "name": "results paper inside viewport with bounded width (390, 844) @2 desktop RU",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:24.00, y:374.00, width:732.00, height:940.00)",
+        "screen": "(x:0.00, y:0.00, width:780.00, height:1688.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (390, 844) @2 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (390, 844) @2 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (390, 844) @2 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (390, 844) @2 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (390, 844) @2 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (390, 844) @2 desktop RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "results paper inside viewport with bounded width (390, 844) @2 desktop EN",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:24.00, y:374.00, width:732.00, height:940.00)",
+        "screen": "(x:0.00, y:0.00, width:780.00, height:1688.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (390, 844) @2 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (390, 844) @2 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (390, 844) @2 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (390, 844) @2 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (390, 844) @2 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (390, 844) @2 desktop EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "results paper inside viewport with bounded width (390, 844) @2 mobile RU",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:24.00, y:374.00, width:732.00, height:940.00)",
+        "screen": "(x:0.00, y:0.00, width:780.00, height:1688.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (390, 844) @2 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (390, 844) @2 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (390, 844) @2 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (390, 844) @2 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (390, 844) @2 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (390, 844) @2 mobile RU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "results paper inside viewport with bounded width (390, 844) @2 mobile EN",
+      "passed": true,
+      "evidence": {
+        "paper": "(x:24.00, y:374.00, width:732.00, height:940.00)",
+        "screen": "(x:0.00, y:0.00, width:780.00, height:1688.00)"
+      }
+    },
+    {
+      "name": "result heading, account goal and body separate (390, 844) @2 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "reward totals separate from actions (390, 844) @2 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 0 (390, 844) @2 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 1 (390, 844) @2 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "caption, icon, value separate Reward row 2 (390, 844) @2 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "four original/new actions inside results paper (390, 844) @2 mobile EN",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "comparison shows actual selected/equipped catalog identities",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "comparison navigation uses real graphic icon previous",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "comparison navigation uses real graphic icon next",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "catalogue portrait follows actual selection 0",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "catalogue portrait follows actual selection 1",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "catalogue portrait follows actual selection 2",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "catalogue portrait follows actual selection 3",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "catalogue portrait follows actual selection 4",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "comparison sheet inside viewport (640, 360)",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "two legible separate real portraits (640, 360)",
+      "passed": true,
+      "evidence": {
+        "left": "(x:112.50, y:129.00, width:108.00, height:108.00)",
+        "right": "(x:419.50, y:129.00, width:108.00, height:108.00)"
+      }
+    },
+    {
+      "name": "comparison sheet inside viewport (390, 844)",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "two legible separate real portraits (390, 844)",
+      "passed": true,
+      "evidence": {
+        "left": "(x:24.00, y:345.00, width:160.00, height:160.00)",
+        "right": "(x:206.00, y:345.00, width:160.00, height:160.00)"
+      }
+    },
+    {
+      "name": "close returns to current shop selection and original purchase SKU",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "comparison does not purchase, equip or change economy",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "personal save byte-identical",
+      "passed": true,
+      "evidence": null
+    }
+  ],
+  "failure": null
+}

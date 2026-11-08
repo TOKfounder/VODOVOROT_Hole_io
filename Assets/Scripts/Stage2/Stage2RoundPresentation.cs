@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
 using Vodovorot.Stage3;
@@ -12,11 +11,10 @@ namespace Vodovorot.Stage2
         private GamingManager match;
         private EndGameController results;
         private bool initialized;
-        private RectTransform actionBar;
-        private Button rankingButton, shareButton;
-#if UNITY_WEBGL && !UNITY_EDITOR
-        [DllImport("__Internal")] private static extern float LeaderboardStage2_CssRatio();
-#endif
+        [SerializeField] private RectTransform actionBar;
+        [SerializeField] private Button rankingButton;
+        [SerializeField] private Button shareButton;
+        public bool HasAuthoredActions => actionBar != null && rankingButton != null && shareButton != null;
 
         public static void Install(EndGameController results, GamingManager gamingManager)
         {
@@ -35,18 +33,13 @@ namespace Vodovorot.Stage2
             var parent = transform as RectTransform;
             if (parent == null || match == null) yield break;
 
-            bool ru = YG.YG2.saves.langRu;
-            var bar = new GameObject("Stage2ResultActions", typeof(RectTransform));
-            bar.transform.SetParent(parent, false);
-            var rect = (RectTransform)bar.transform;
-            actionBar = rect;
-            rect.anchorMin = new Vector2(0.08f, 0.015f);
-            rect.anchorMax = new Vector2(0.92f, 0.095f);
-            rect.offsetMin = rect.offsetMax = Vector2.zero;
-            rankingButton = Stage2Ui.Button(rect, ru ? "Рейтинг" : "Ranking", new Vector2(0, 0), new Vector2(0.48f, 1),
-                () => LeaderboardRoundPanel.Show(match.Stage2RoundId, match.IsStage2RankRewardEligible));
-            shareButton = Stage2Ui.Button(rect, ru ? "Поделиться" : "Share", new Vector2(0.52f, 0), new Vector2(1, 1),
-                () => AchievementCard.Show(match), RankingVisualStyle.Load().amber);
+            if (!HasAuthoredActions)
+            {
+                Debug.LogError("Round results require their saved action bar and buttons.");
+                yield break;
+            }
+            rankingButton.onClick.AddListener(OpenRanking);
+            shareButton.onClick.AddListener(Share);
 
             LeaderboardRoundPanel.ShareRequested += Share;
             // Always dismissible; guest invitation is offered after gameplay, never at the entrance.
@@ -59,14 +52,17 @@ namespace Vodovorot.Stage2
         private void LayoutActions()
         {
             if (actionBar == null) return;
-            float ratio = 1;
-#if UNITY_WEBGL && !UNITY_EDITOR
-            ratio = Mathf.Clamp(LeaderboardStage2_CssRatio(), .25f, 8);
-#endif
             bool ru = YG.YG2.saves == null || YG.YG2.saves.langRu;
-            if (rankingButton != null) rankingButton.GetComponentInChildren<Text>(true).text = ru ? "Рейтинг" : "Ranking";
-            if (shareButton != null) shareButton.GetComponentInChildren<Text>(true).text = ru ? "Поделиться" : "Share";
-            RoundResultsVisualStyle.Layout(results, match, actionBar, rankingButton, shareButton, ratio);
+            rankingButton.GetComponentInChildren<Text>(true).text = ru ? "Рейтинг" : "Ranking";
+            shareButton.GetComponentInChildren<Text>(true).text = ru ? "Поделиться" : "Share";
+            // Native saved layout groups own all geometry. They wrap columns in
+            // Canvas units; no per-element screen/DPR conversion runs here.
+        }
+
+        private void OpenRanking()
+        {
+            if (match != null)
+                LeaderboardRoundPanel.Show(match.Stage2RoundId, match.IsStage2RankRewardEligible);
         }
 
         private void Share() { if (match != null) AchievementCard.Show(match); }
@@ -74,6 +70,8 @@ namespace Vodovorot.Stage2
         private void OnDestroy()
         {
             LeaderboardRoundPanel.ShareRequested -= Share;
+            if (rankingButton != null) rankingButton.onClick.RemoveListener(OpenRanking);
+            if (shareButton != null) shareButton.onClick.RemoveListener(Share);
         }
     }
 

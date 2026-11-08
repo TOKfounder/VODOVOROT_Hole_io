@@ -52,6 +52,7 @@ public class GamingManager : MonoBehaviour
     public bool IsCoinBonusPending => coinBonusPending;
     public event System.Action ProgressUpdated;
     public event System.Action RewardUpdated;
+    public event System.Action<FallingObject> PlayerObjectAbsorbed;
 
     // Публичные данные
     public float perc = 0f;
@@ -403,11 +404,15 @@ public class GamingManager : MonoBehaviour
     }
 #endif
 
-    public void RegisterPlayerAbsorption(HoleParent owner, int amount)
+    public void RegisterPlayerAbsorption(HoleParent owner, int amount, FallingObject source = null)
     {
         if (endSequenceStarted || owner == null || amount <= 0) return;
         if (owner.holeType == HoleParent.TypeOfHole.player || owner.holeType == HoleParent.TypeOfHole.playerHelper)
+        {
             Stage2PlayerAbsorbedValue += amount;
+            if (source != null)
+                PlayerObjectAbsorbed?.Invoke(source);
+        }
     }
 
     public void ApplyCurrentTotalCleaningRewardIfNeeded()

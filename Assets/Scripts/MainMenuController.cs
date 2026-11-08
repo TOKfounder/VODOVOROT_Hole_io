@@ -344,19 +344,13 @@ public class MainMenuController : MonoBehaviour
 
     private void SuccessPurchased(string id)
     {
-        switch (id)
-        {
-            case "hand": YG2.saves.diamonds += 20; break;
-            case "bag": YG2.saves.diamonds += 100; break;
-            case "box": YG2.saves.diamonds += 300; break;
-            case "chest": YG2.saves.diamonds += 600; break;
-            case "gold": YG2.saves.massiveOfObtaining[2] = 1; break;
-            case "scrag": YG2.saves.massiveOfObtaining[3] = 1; break;
-            case "lord": YG2.saves.massiveOfObtaining[4] = 1; break;
-        }
-
+#if UNITY_EDITOR
+        // Editor's purchase simulator has no platform receipt. Real WebGL delivery
+        // is applied centrally with a receipt before this UI notification.
+        Vodovorot.QualityPass.PurchaseDeliveryRules.TryApply(
+            YG2.saves, id, System.Guid.NewGuid().ToString("N"));
         VodovorotGameManager.Instance.SaveProgress();
-        YG2.ConsumePurchaseByID(id);
+#endif
 
         VodovorotGameManager.Instance.HorizontalLayout3D?.UpdateForChosen();
         UpdatePanelOfValute();

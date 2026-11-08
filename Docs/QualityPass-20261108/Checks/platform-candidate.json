@@ -1,0 +1,17 @@
+{
+  "publicCandidateUrl": "https://yandex.ru/games/app/vodovorot-dyra-io-473763",
+  "appId": 473763,
+  "title": "ВОДОВОРОТ Дыра.ио",
+  "searchSnapshotPublisher": "TOKGames",
+  "livePagePublisher": "QasmarDev",
+  "browserObservation": "Own console inspected read-only; app title, active SKU catalog, configured tester and BestPlayers confirmed. Actual new-build SDK launch blocked by browser certificate; user declined manual confirmation. Runtime IAP/restore/ranking NOT VERIFIED.",
+  "draftOrOwnershipConfirmed": true,
+  "localProdGameIdStillBlank": true,
+  "consoleAppId": 473763,
+  "leaderboardTechnicalName": "BestPlayers",
+  "currentAccountIsConfiguredTester": true,
+  "existingDraftPreserved": true,
+  "officialProdProxy": "https://localhost:8780",
+  "platformRuntimeStatus": "Blocked by ERR_CERT_AUTHORITY_INVALID; user manual browser handoff requested. Not passed.",
+  "userDecision": "Leave real SDK verification unfinished; do not bypass certificate warning."
+}
