@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace Vodovorot.RoundExperience
 {
@@ -10,10 +11,15 @@ namespace Vodovorot.RoundExperience
         [SerializeField] private RoundExperienceSettings settings;
         [SerializeField] private GamingManager game;
         [SerializeField] private bool keepViewInsideMap = true;
+        [SerializeField, Range(2f, 24f)] private float surroundingViewMargin = 16f;
         [SerializeField] private Renderer[] occluders = new Renderer[0];
         [SerializeField] private Renderer[] playerVisuals = new Renderer[0];
+        [SerializeField] private Shader fadeShader;
         private bool[] originalVisibility;
         private float[] restoreAfter;
+        private float[] visibleAmount;
+        private CutawaySurfaceFade[] surfaces;
+        private readonly Dictionary<Material, Material> fadeMaterials = new Dictionary<Material, Material>();
         private float releaseSeconds;
         private bool originalOcclusionCulling;
         private Vector3 authoredLocalPosition;
@@ -33,9 +39,15 @@ namespace Vodovorot.RoundExperience
             set => releaseSeconds = Mathf.Clamp01(value);
         }
 
+        public float FadeOutSeconds { get; set; } = .14f;
+        public float FadeInSeconds { get; set; } = .35f;
+
         private void Awake()
         {
-            releaseSeconds = settings.CreateRuntimeValues().CutawayReleaseSeconds;
+            RoundExperienceValues values = settings.CreateRuntimeValues();
+            releaseSeconds = values.CutawayReleaseSeconds;
+            FadeOutSeconds = values.CutawayFadeOutSeconds;
+            FadeInSeconds = values.CutawayFadeInSeconds;
         }
 
         private void OnEnable()
@@ -43,8 +55,13 @@ namespace Vodovorot.RoundExperience
             if (viewCamera != null) originalOcclusionCulling = viewCamera.useOcclusionCulling;
             originalVisibility = new bool[occluders.Length];
             restoreAfter = new float[occluders.Length];
+            visibleAmount = new float[occluders.Length];
+            surfaces = new CutawaySurfaceFade[occluders.Length];
             for (int i = 0; i < occluders.Length; i++)
+            {
+                visibleAmount[i] = 1f;
                 if (occluders[i] != null) originalVisibility[i] = occluders[i].forceRenderingOff;
+            }
         }
 
         private void LateUpdate()
@@ -73,8 +90,22 @@ namespace Vodovorot.RoundExperience
                 bool obstructed = bounds.Contains(origin) ||
                     (bounds.IntersectRay(sight, out float hitDistance) && hitDistance < distance);
                 if (obstructed) restoreAfter[i] = Time.unscaledTime + releaseSeconds;
-                obstacle.forceRenderingOff = obstructed || Time.unscaledTime < restoreAfter[i];
-                anyHidden |= obstacle.forceRenderingOff;
+                bool cutAway = obstructed || Time.unscaledTime < restoreAfter[i];
+                float duration = cutAway ? FadeOutSeconds : FadeInSeconds;
+                // Reveal the silhouette on the first obstructed frame, then soften
+                // the remaining departure and the full return with an opaque dither.
+                if (obstructed) visibleAmount[i] = Mathf.Min(visibleAmount[i], .65f);
+                visibleAmount[i] = Mathf.MoveTowards(visibleAmount[i], cutAway ? 0f : 1f,
+                    Time.unscaledDeltaTime / Mathf.Max(.03f, duration));
+                bool fading = visibleAmount[i] < 1f;
+                if (fading && fadeShader != null)
+                {
+                    if (surfaces[i] == null) surfaces[i] = new CutawaySurfaceFade(obstacle, fadeShader, fadeMaterials);
+                    surfaces[i].Apply(visibleAmount[i]);
+                }
+                else surfaces[i]?.Restore();
+                obstacle.forceRenderingOff = visibleAmount[i] <= 0f;
+                anyHidden |= fading;
             }
             // A hidden static occluder still participates in Unity's baked occlusion.
             // Otherwise the camera reveals its clear color instead of the world behind it.
@@ -100,10 +131,10 @@ namespace Vodovorot.RoundExperience
                 top = Mathf.Max(top, point.z);
             }
             Vector3 shift = new Vector3(
-                // Keep a small border visible so a player touching a wall is
-                // still inside the frame instead of being clipped by its edge.
-                InwardShift(left, right, game.minX - 2f, game.maxX + 2f), 0,
-                InwardShift(bottom, top, game.minZ - 2f, game.maxZ + 2f));
+                // The saved perimeter now has paths and scenery. Reveal that
+                // context while the frame constraint below still protects the player.
+                InwardShift(left, right, game.minX - surroundingViewMargin, game.maxX + surroundingViewMargin), 0,
+                InwardShift(bottom, top, game.minZ - surroundingViewMargin, game.maxZ + surroundingViewMargin));
             Vector3 originalPosition = cameraTransform.position;
             cameraTransform.position = originalPosition + shift;
             if (TargetFitsFrame()) return;
@@ -140,7 +171,16 @@ namespace Vodovorot.RoundExperience
             if (viewCamera != null && haveCameraPosition) viewCamera.transform.localPosition = authoredLocalPosition;
             if (originalVisibility == null) return;
             for (int i = 0; i < occluders.Length; i++)
+            {
+                surfaces[i]?.Restore();
                 if (occluders[i] != null) occluders[i].forceRenderingOff = originalVisibility[i];
+            }
+            foreach (Material material in fadeMaterials.Values)
+            {
+                if (Application.isPlaying) Destroy(material);
+                else DestroyImmediate(material);
+            }
+            fadeMaterials.Clear();
         }
     }
 }

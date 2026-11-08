@@ -1,0 +1,28 @@
+{
+  "success": true,
+  "command": "command script",
+  "data": {
+    "command": "script",
+    "parameters": {
+      "file": "Tools/Unity/AuthorMapPolish.cs",
+      "entry": "AuthorMapPolish.Run",
+      "dry-run": "true"
+    },
+    "result": {
+      "diagnostics": [],
+      "compileMs": 1514,
+      "executeMs": 0,
+      "assemblyName": null,
+      "success": true,
+      "result": null,
+      "message": "Compiled successfully (dry run; nothing was loaded or executed)."
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

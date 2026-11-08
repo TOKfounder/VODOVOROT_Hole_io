@@ -1,0 +1,47 @@
+[
+  {
+    "scene": "Assets/Scenes/Low Poly City.unity",
+    "path": "City/SetOfBuildings/Road Concrete Tile (6)",
+    "material": "Assets/Art/MapPolish/CityCourtyardPaving.mat"
+  },
+  {
+    "scene": "Assets/Scenes/Low Poly City.unity",
+    "path": "City/SetOfBuildings (1)/Road Concrete Tile (6)",
+    "material": "Assets/Art/MapPolish/CityCourtyardPaving.mat"
+  },
+  {
+    "scene": "Assets/Scenes/Low Poly City.unity",
+    "path": "City/SetOfBuildings (2)/Road Concrete Tile (6)",
+    "material": "Assets/Art/MapPolish/CityCourtyardPaving.mat"
+  },
+  {
+    "scene": "Assets/Scenes/Low Poly City.unity",
+    "path": "City/SetOfBuildings (3)/Road Concrete Tile (6)",
+    "material": "Assets/Art/MapPolish/CityCourtyardPaving.mat"
+  },
+  {
+    "scene": "Assets/Scenes/MedievalCastle.unity",
+    "path": "Medievel City/Plane",
+    "material": "Assets/Art/MapPolish/CastleCourtyardPaving.mat"
+  },
+  {
+    "scene": "Assets/Tests/RoundExperienceLab.unity",
+    "path": "City/SetOfBuildings/Road Concrete Tile (6)",
+    "material": "Assets/Art/MapPolish/CityCourtyardPaving.mat"
+  },
+  {
+    "scene": "Assets/Tests/RoundExperienceLab.unity",
+    "path": "City/SetOfBuildings (1)/Road Concrete Tile (6)",
+    "material": "Assets/Art/MapPolish/CityCourtyardPaving.mat"
+  },
+  {
+    "scene": "Assets/Tests/RoundExperienceLab.unity",
+    "path": "City/SetOfBuildings (2)/Road Concrete Tile (6)",
+    "material": "Assets/Art/MapPolish/CityCourtyardPaving.mat"
+  },
+  {
+    "scene": "Assets/Tests/RoundExperienceLab.unity",
+    "path": "City/SetOfBuildings (3)/Road Concrete Tile (6)",
+    "material": "Assets/Art/MapPolish/CityCourtyardPaving.mat"
+  }
+]

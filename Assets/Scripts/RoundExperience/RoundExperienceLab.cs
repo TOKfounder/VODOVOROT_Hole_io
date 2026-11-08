@@ -18,6 +18,7 @@ public sealed class RoundExperienceLab : MonoBehaviour
     [SerializeField] private RoundExperienceSettings settings;
     [SerializeField] private GamingManager game;
     [SerializeField] private CameraCutawayView cutaway;
+    [SerializeField] private EdibleTargetHints hints;
     [SerializeField] private Slider[] sliders;
     [SerializeField] private Text[] valueLabels;
     [SerializeField] private Button restartButton;
@@ -107,6 +108,9 @@ public sealed class RoundExperienceLab : MonoBehaviour
         sliders[1].SetValueWithoutNotify(working.MinimumCompletedExperience);
         sliders[2].SetValueWithoutNotify(working.MinimumCompletedCoins);
         sliders[3].SetValueWithoutNotify(working.CutawayReleaseSeconds);
+        sliders[4].SetValueWithoutNotify(working.CutawayFadeOutSeconds);
+        sliders[5].SetValueWithoutNotify(working.CutawayFadeInSeconds);
+        sliders[6].SetValueWithoutNotify(working.TargetHintRadius);
     }
 
     private void ApplySliders(float unused)
@@ -115,12 +119,21 @@ public sealed class RoundExperienceLab : MonoBehaviour
         working.MinimumCompletedExperience = Mathf.RoundToInt(sliders[1].value);
         working.MinimumCompletedCoins = Mathf.RoundToInt(sliders[2].value);
         working.CutawayReleaseSeconds = sliders[3].value;
+        working.CutawayFadeOutSeconds = sliders[4].value;
+        working.CutawayFadeInSeconds = sliders[5].value;
+        working.TargetHintRadius = sliders[6].value;
         game.ConfigureExperienceForTesting(working);
         cutaway.ReleaseSeconds = working.CutawayReleaseSeconds;
+        cutaway.FadeOutSeconds = working.CutawayFadeOutSeconds;
+        cutaway.FadeInSeconds = working.CutawayFadeInSeconds;
+        hints.Radius = working.TargetHintRadius;
         valueLabels[0].text = "Раунд: " + working.RoundSeconds.ToString("0") + " с";
         valueLabels[1].text = "Мин. опыт: " + working.MinimumCompletedExperience;
         valueLabels[2].text = "Мин. монеты: " + working.MinimumCompletedCoins;
         valueLabels[3].text = "Возврат объектов: " + working.CutawayReleaseSeconds.ToString("0.00") + " с";
+        valueLabels[4].text = "Скрытие: " + working.CutawayFadeOutSeconds.ToString("0.00") + " с";
+        valueLabels[5].text = "Появление: " + working.CutawayFadeInSeconds.ToString("0.00") + " с";
+        valueLabels[6].text = "Подсветка: " + working.TargetHintRadius.ToString("0.0") + " м";
     }
 
     private void Restart()
@@ -144,6 +157,9 @@ public sealed class RoundExperienceLab : MonoBehaviour
         serialized.FindProperty("minimumCompletedExperience").intValue = working.MinimumCompletedExperience;
         serialized.FindProperty("minimumCompletedCoins").intValue = working.MinimumCompletedCoins;
         serialized.FindProperty("cutawayReleaseSeconds").floatValue = working.CutawayReleaseSeconds;
+        serialized.FindProperty("cutawayFadeOutSeconds").floatValue = working.CutawayFadeOutSeconds;
+        serialized.FindProperty("cutawayFadeInSeconds").floatValue = working.CutawayFadeInSeconds;
+        serialized.FindProperty("targetHintRadius").floatValue = working.TargetHintRadius;
         serialized.ApplyModifiedProperties();
         AssetDatabase.SaveAssetIfDirty(settings);
         status.text = "Параметры сохранены в RoundExperienceSettings.asset.\nНовые раунды используют выбранные значения.";

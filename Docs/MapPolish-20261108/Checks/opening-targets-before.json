@@ -1,0 +1,2192 @@
+[
+  {
+    "scene": "Assets/Scenes/Low Poly City.unity",
+    "count": 11896,
+    "player": "(-31.70, 0.16, -38.10)",
+    "fit": "(0.54, 0.00, 0.54)",
+    "within3": 0,
+    "within8": 41,
+    "items": [
+      {
+        "path": "City/Props_Traffic Signal_big (14)",
+        "position": "(-34.58, 0.08, -39.92)",
+        "size": "(0.24, 2.41, 0.24)",
+        "value": 2,
+        "source": "scene",
+        "distance": 3.40688252
+      },
+      {
+        "path": "City/Props_Traffic Signal_big (13)",
+        "position": "(-28.48, 0.08, -39.92)",
+        "size": "(0.24, 2.41, 0.24)",
+        "value": 2,
+        "source": "scene",
+        "distance": 3.70188212
+      },
+      {
+        "path": "City/Props_Hydrant (25)",
+        "position": "(-28.44, 0.08, -40.47)",
+        "size": "(0.17, 0.41, 0.17)",
+        "value": 1,
+        "source": "scene",
+        "distance": 4.03338575
+      },
+      {
+        "path": "City/Props_Traffic Signal_big (11)",
+        "position": "(-34.57, 0.08, -33.87)",
+        "size": "(0.24, 2.41, 0.24)",
+        "value": 2,
+        "source": "scene",
+        "distance": 5.112953
+      },
+      {
+        "path": "City/Props_Traffic Signal_big (12)",
+        "position": "(-28.48, 0.08, -33.87)",
+        "size": "(0.24, 2.41, 0.24)",
+        "value": 2,
+        "source": "scene",
+        "distance": 5.31839275
+      },
+      {
+        "path": "City/Props_Hydrant (24)",
+        "position": "(-34.61, 0.08, -33.44)",
+        "size": "(0.17, 0.41, 0.17)",
+        "value": 1,
+        "source": "scene",
+        "distance": 5.499064
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (52)",
+        "position": "(-34.70, 0.00, -33.35)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 5.622136
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (60)",
+        "position": "(-34.98, 0.00, -33.35)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 5.77640533
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (54)",
+        "position": "(-34.70, 0.00, -33.05)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 5.8778944
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (48)",
+        "position": "(-35.26, 0.00, -33.35)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 5.939865
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (62)",
+        "position": "(-34.98, 0.00, -33.05)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 6.025619
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (56)",
+        "position": "(-35.54, 0.00, -33.35)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 6.111796
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (53)",
+        "position": "(-34.70, 0.00, -32.74)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 6.14463043
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (50)",
+        "position": "(-35.26, 0.00, -33.05)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 6.18249369
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (61)",
+        "position": "(-34.98, 0.00, -32.74)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 6.28609
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (33)",
+        "position": "(-35.83, 0.00, -33.35)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 6.296724
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (58)",
+        "position": "(-35.54, 0.00, -33.05)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 6.34785175
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (55)",
+        "position": "(-34.70, 0.00, -32.44)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 6.40800428
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (49)",
+        "position": "(-35.26, 0.00, -32.74)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 6.43661976
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (35)",
+        "position": "(-36.11, 0.00, -33.35)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 6.483733
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (37)",
+        "position": "(-35.83, 0.00, -33.05)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 6.52609825
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (63)",
+        "position": "(-34.98, 0.00, -32.44)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 6.5437727
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (57)",
+        "position": "(-35.54, 0.00, -32.74)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 6.595614
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (32)",
+        "position": "(-36.39, 0.00, -33.35)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 6.67724943
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (51)",
+        "position": "(-35.26, 0.00, -32.44)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 6.68850231
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (39)",
+        "position": "(-36.11, 0.00, -33.05)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 6.706715
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (42)",
+        "position": "(-35.83, 0.00, -32.74)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 6.76733351
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (59)",
+        "position": "(-35.54, 0.00, -32.44)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 6.84164858
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (34)",
+        "position": "(-36.67, 0.00, -33.35)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 6.87672329
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (36)",
+        "position": "(-36.39, 0.00, -33.05)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 6.893975
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (46)",
+        "position": "(-36.11, 0.00, -32.74)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 6.941676
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (43)",
+        "position": "(-35.83, 0.00, -32.44)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 7.00734138
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (38)",
+        "position": "(-36.67, 0.00, -33.05)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 7.087352
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (40)",
+        "position": "(-36.39, 0.00, -32.74)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 7.12276173
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (47)",
+        "position": "(-36.11, 0.00, -32.44)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 7.175855
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (44)",
+        "position": "(-36.67, 0.00, -32.74)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 7.31008863
+      },
+      {
+        "path": "City/Props_Street Light (122)",
+        "position": "(-34.49, 0.08, -44.90)",
+        "size": "(0.25, 2.57, 0.24)",
+        "value": 2,
+        "source": "scene",
+        "distance": 7.347648
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (41)",
+        "position": "(-36.39, 0.00, -32.44)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 7.35117149
+      },
+      {
+        "path": "City/Props_Street Light (121)",
+        "position": "(-28.49, 0.08, -44.90)",
+        "size": "(0.25, 2.57, 0.24)",
+        "value": 2,
+        "source": "scene",
+        "distance": 7.51558256
+      },
+      {
+        "path": "City/FarmPoint (212)/Natures_Pot Bush_big (45)",
+        "position": "(-36.67, 0.00, -32.44)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 7.53282356
+      },
+      {
+        "path": "City/Props_Street Light (21)",
+        "position": "(-39.38, 0.08, -39.90)",
+        "size": "(0.24, 2.57, 0.25)",
+        "value": 2,
+        "source": "scene",
+        "distance": 7.888562
+      },
+      {
+        "path": "City/Props_Street Light (17)",
+        "position": "(-23.50, 0.08, -39.90)",
+        "size": "(0.24, 2.57, 0.25)",
+        "value": 2,
+        "source": "scene",
+        "distance": 8.39565849
+      },
+      {
+        "path": "City/Props_Street Light (20)",
+        "position": "(-39.38, 0.08, -33.90)",
+        "size": "(0.24, 2.57, 0.25)",
+        "value": 2,
+        "source": "scene",
+        "distance": 8.753822
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (52)",
+        "position": "(-32.44, 0.00, -29.12)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.015587
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (60)",
+        "position": "(-32.72, 0.00, -29.12)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.042753
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (48)",
+        "position": "(-33.00, 0.00, -29.12)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.078476
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (56)",
+        "position": "(-33.28, 0.00, -29.12)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.122659
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (33)",
+        "position": "(-33.56, 0.00, -29.12)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.176796
+      },
+      {
+        "path": "City/Props_Street Light (16)",
+        "position": "(-23.50, 0.08, -33.90)",
+        "size": "(0.24, 2.57, 0.25)",
+        "value": 2,
+        "source": "scene",
+        "distance": 9.213418
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (35)",
+        "position": "(-33.84, 0.00, -29.12)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.237739
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (32)",
+        "position": "(-34.12, 0.00, -29.12)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.306709
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (54)",
+        "position": "(-32.44, 0.00, -28.82)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.314572
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (62)",
+        "position": "(-32.72, 0.00, -28.82)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.340869
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (50)",
+        "position": "(-33.00, 0.00, -28.82)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.375456
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (34)",
+        "position": "(-34.40, 0.00, -29.12)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.383532
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (58)",
+        "position": "(-33.28, 0.00, -28.82)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.418245
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (37)",
+        "position": "(-33.56, 0.00, -28.82)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.470694
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (39)",
+        "position": "(-33.84, 0.00, -28.82)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.529757
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (36)",
+        "position": "(-34.12, 0.00, -28.82)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.596629
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (53)",
+        "position": "(-32.44, 0.00, -28.51)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.62159252
+      },
+      {
+        "path": "City/Props_Street Light (126)",
+        "position": "(-34.49, 0.08, -28.89)",
+        "size": "(0.25, 2.57, 0.24)",
+        "value": 2,
+        "source": "scene",
+        "distance": 9.626173
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (61)",
+        "position": "(-32.72, 0.00, -28.51)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.647053
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (38)",
+        "position": "(-34.40, 0.00, -28.82)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.671149
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (49)",
+        "position": "(-33.00, 0.00, -28.51)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.680546
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (57)",
+        "position": "(-33.28, 0.00, -28.51)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.72199249
+      },
+      {
+        "path": "City/Props_Street Light (125)",
+        "position": "(-28.49, 0.08, -28.89)",
+        "size": "(0.25, 2.57, 0.24)",
+        "value": 2,
+        "source": "scene",
+        "distance": 9.75496
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (42)",
+        "position": "(-33.56, 0.00, -28.51)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.77281
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (46)",
+        "position": "(-33.84, 0.00, -28.51)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.830058
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (40)",
+        "position": "(-34.12, 0.00, -28.51)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.894901
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (55)",
+        "position": "(-32.44, 0.00, -28.21)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.920701
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (63)",
+        "position": "(-32.72, 0.00, -28.21)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.94539452
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (44)",
+        "position": "(-34.40, 0.00, -28.51)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.967192
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (51)",
+        "position": "(-33.00, 0.00, -28.21)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.977882
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (59)",
+        "position": "(-33.28, 0.00, -28.21)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 10.0181036
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (43)",
+        "position": "(-33.56, 0.00, -28.21)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 10.0674267
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (47)",
+        "position": "(-33.84, 0.00, -28.21)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 10.1230087
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (41)",
+        "position": "(-34.12, 0.00, -28.21)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 10.1859837
+      },
+      {
+        "path": "City/FarmPoint (194)/Natures_Pot Bush_big (45)",
+        "position": "(-34.40, 0.00, -28.21)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 10.2562256
+      },
+      {
+        "path": "City/FarmPoint (204)/Natures_Pot Bush_big (52)",
+        "position": "(-32.52, 0.00, -27.74)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 10.3936958
+      },
+      {
+        "path": "City/FarmPoint (204)/Natures_Pot Bush_big (60)",
+        "position": "(-32.80, 0.00, -27.74)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 10.4195261
+      },
+      {
+        "path": "City/FarmPoint (204)/Natures_Pot Bush_big (48)",
+        "position": "(-33.08, 0.00, -27.74)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 10.4527941
+      },
+      {
+        "path": "City/FarmPoint (204)/Natures_Pot Bush_big (56)",
+        "position": "(-33.36, 0.00, -27.74)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 10.493433
+      },
+      {
+        "path": "City/FarmPoint (204)/Natures_Pot Bush_big (33)",
+        "position": "(-33.65, 0.00, -27.74)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 10.5428267
+      },
+      {
+        "path": "City/FarmPoint (204)/Natures_Pot Bush_big (35)",
+        "position": "(-33.93, 0.00, -27.74)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 10.5981331
+      },
+      {
+        "path": "City/FarmPoint (204)/Natures_Pot Bush_big (32)",
+        "position": "(-34.21, 0.00, -27.74)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 10.6605129
+      },
+      {
+        "path": "City/FarmPoint (204)/Natures_Pot Bush_big (54)",
+        "position": "(-32.52, 0.00, -27.44)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 10.6927538
+      },
+      {
+        "path": "City/FarmPoint (204)/Natures_Pot Bush_big (62)",
+        "position": "(-32.80, 0.00, -27.44)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 10.7178631
+      },
+      {
+        "path": "City/FarmPoint (204)/Natures_Pot Bush_big (34)",
+        "position": "(-34.49, 0.00, -27.74)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 10.7298346
+      },
+      {
+        "path": "City/FarmPoint (204)/Natures_Pot Bush_big (50)",
+        "position": "(-33.08, 0.00, -27.44)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 10.7502079
+      },
+      {
+        "path": "City/FarmPoint (204)/Natures_Pot Bush_big (58)",
+        "position": "(-33.36, 0.00, -27.44)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "source": "scene",
+        "distance": 10.7897243
+      }
+    ]
+  },
+  {
+    "scene": "Assets/Scenes/Garden.unity",
+    "count": 6057,
+    "player": "(-31.70, 0.16, -38.10)",
+    "fit": "(0.54, 0.00, 0.54)",
+    "within3": 1,
+    "within8": 20,
+    "items": [
+      {
+        "path": "Garden/MyTown2/Lamp_7_prefab (05)/Lamp 7",
+        "position": "(-34.10, 0.20, -37.62)",
+        "size": "(0.24, 0.53, 0.21)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.44930673
+      },
+      {
+        "path": "Garden/MyTown2/Lamp_7_prefab (04)/Lamp 7",
+        "position": "(-29.76, 0.20, -40.98)",
+        "size": "(0.24, 0.53, 0.21)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.47526383
+      },
+      {
+        "path": "Garden/MyTown2/Tree prefab (07)/Tree 1",
+        "position": "(-29.27, 0.18, -40.68)",
+        "size": "(0.17, 3.17, 0.17)",
+        "value": 2,
+        "source": "scene",
+        "distance": 3.54013038
+      },
+      {
+        "path": "Garden/MyTown2/Lamp_7_prefab (18)/Lamp 7",
+        "position": "(-30.93, 0.20, -41.96)",
+        "size": "(0.24, 0.53, 0.21)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.93198657
+      },
+      {
+        "path": "Garden/MyTown2/Lamp_7_prefab (19)/Lamp 7",
+        "position": "(-27.77, 0.20, -38.68)",
+        "size": "(0.24, 0.53, 0.21)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.97162771
+      },
+      {
+        "path": "Garden/MyTown2/Tree prefab (05)/Tree 1",
+        "position": "(-34.71, 0.18, -40.76)",
+        "size": "(0.17, 3.17, 0.17)",
+        "value": 2,
+        "source": "scene",
+        "distance": 4.01746464
+      },
+      {
+        "path": "Garden/MyTown2/Stone 1 Prefab (2)/stone 1",
+        "position": "(-28.31, 0.18, -40.49)",
+        "size": "(0.35, 0.35, 0.58)",
+        "value": 1,
+        "source": "scene",
+        "distance": 4.14562035
+      },
+      {
+        "path": "Garden/MyTown2/Lamp_7_prefab (06)/Lamp 7",
+        "position": "(-33.64, 0.20, -41.95)",
+        "size": "(0.24, 0.53, 0.21)",
+        "value": 1,
+        "source": "scene",
+        "distance": 4.313848
+      },
+      {
+        "path": "Garden/MyTown2/Lamp_7_prefab (13)/Lamp 7",
+        "position": "(-30.33, 0.20, -33.28)",
+        "size": "(0.24, 0.53, 0.21)",
+        "value": 1,
+        "source": "scene",
+        "distance": 5.015865
+      },
+      {
+        "path": "Garden/MyTown2/Lamp_7_prefab (15)/Lamp 7",
+        "position": "(-35.46, 0.20, -41.82)",
+        "size": "(0.24, 0.53, 0.21)",
+        "value": 1,
+        "source": "scene",
+        "distance": 5.287251
+      },
+      {
+        "path": "Garden/MyTown2/Lamp_7_prefab (08)/Lamp 7",
+        "position": "(-34.02, 0.20, -33.23)",
+        "size": "(0.24, 0.53, 0.21)",
+        "value": 1,
+        "source": "scene",
+        "distance": 5.39510965
+      },
+      {
+        "path": "Garden/MyTown2/Tree prefab (25)/Tree 1",
+        "position": "(-29.57, 0.20, -32.54)",
+        "size": "(0.17, 3.17, 0.17)",
+        "value": 2,
+        "source": "scene",
+        "distance": 5.95785427
+      },
+      {
+        "path": "Garden/MyTown2/street lamp 2 prefab (17)/street lamp 2",
+        "position": "(-26.71, 0.20, -33.41)",
+        "size": "(0.21, 3.44, 0.24)",
+        "value": 2,
+        "source": "scene",
+        "distance": 6.84527
+      },
+      {
+        "path": "Garden/MyTown2/Lamp_7_prefab (38)/Lamp 7",
+        "position": "(-27.00, 0.20, -33.07)",
+        "size": "(0.24, 0.53, 0.21)",
+        "value": 1,
+        "source": "scene",
+        "distance": 6.886373
+      },
+      {
+        "path": "Garden/MyTown2/Lamp_7_prefab (09)/Lamp 7",
+        "position": "(-37.20, 0.20, -33.31)",
+        "size": "(0.24, 0.53, 0.21)",
+        "value": 1,
+        "source": "scene",
+        "distance": 7.29674625
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (39)",
+        "position": "(-32.11, 0.05, -45.91)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 7.82045269
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (23)",
+        "position": "(-31.19, 0.05, -45.91)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 7.826198
+      },
+      {
+        "path": "Garden/MyTown2/Stone 1 Prefab (21)/stone 1",
+        "position": "(-23.98, 0.20, -39.63)",
+        "size": "(0.35, 0.35, 0.58)",
+        "value": 1,
+        "source": "scene",
+        "distance": 7.8673954
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (27)",
+        "position": "(-32.90, 0.05, -45.91)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 7.90151
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (31)",
+        "position": "(-30.40, 0.05, -45.91)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 7.917281
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (19)",
+        "position": "(-33.69, 0.05, -45.91)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 8.060391
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (6)/Natures_Bush_02 (19)",
+        "position": "(-29.59, 0.05, -45.91)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 8.088795
+      },
+      {
+        "path": "Garden/MyTown2/street lamp 2 prefab (26)/street lamp 2",
+        "position": "(-23.53, 0.20, -38.70)",
+        "size": "(0.21, 3.44, 0.24)",
+        "value": 2,
+        "source": "scene",
+        "distance": 8.191835
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (17)",
+        "position": "(-31.59, 0.05, -46.32)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 8.220469
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (29)",
+        "position": "(-32.50, 0.05, -46.32)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 8.258657
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (25)",
+        "position": "(-30.80, 0.05, -46.32)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 8.268911
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (9)/Natures_Bush_02 (31)",
+        "position": "(-34.50, 0.05, -45.91)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 8.296621
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (6)/Natures_Bush_02 (27)",
+        "position": "(-28.80, 0.05, -45.91)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 8.330868
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (21)",
+        "position": "(-33.29, 0.05, -46.32)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 8.372949
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (35)",
+        "position": "(-30.01, 0.05, -46.32)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 8.392326
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (9)/Natures_Bush_02 (35)",
+        "position": "(-34.11, 0.05, -46.32)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 8.564994
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (6)/Natures_Bush_02 (21)",
+        "position": "(-29.19, 0.05, -46.32)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 8.5933075
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (9)/Natures_Bush_02 (23)",
+        "position": "(-35.29, 0.05, -45.91)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 8.597137
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (6)/Natures_Bush_02 (39)",
+        "position": "(-28.01, 0.05, -45.91)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 8.638959
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (37)",
+        "position": "(-32.11, 0.05, -46.75)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 8.66134548
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (22)",
+        "position": "(-31.19, 0.05, -46.75)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 8.666531
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (26)",
+        "position": "(-32.90, 0.05, -46.75)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 8.734603
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (30)",
+        "position": "(-30.40, 0.05, -46.75)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 8.74887
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (9)/Natures_Bush_02 (25)",
+        "position": "(-34.90, 0.05, -46.32)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 8.820742
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (6)/Natures_Bush_02 (29)",
+        "position": "(-28.40, 0.05, -46.32)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 8.857476
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (18)",
+        "position": "(-33.69, 0.05, -46.75)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 8.878589
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (6)/Natures_Bush_02 (18)",
+        "position": "(-29.59, 0.05, -46.75)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 8.90438
+      },
+      {
+        "path": "Garden/MyTown2/Lamp_7_prefab (37)/Lamp 7",
+        "position": "(-24.11, 0.20, -33.31)",
+        "size": "(0.24, 0.53, 0.21)",
+        "value": 1,
+        "source": "scene",
+        "distance": 8.97674
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (16)",
+        "position": "(-31.59, 0.05, -47.16)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.062337
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (9)/Natures_Bush_02 (30)",
+        "position": "(-34.50, 0.05, -46.75)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.093589
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (28)",
+        "position": "(-32.50, 0.05, -47.16)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.096993
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (24)",
+        "position": "(-30.80, 0.05, -47.16)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.106301
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (6)/Natures_Bush_02 (26)",
+        "position": "(-28.80, 0.05, -46.75)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.124842
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (9)/Natures_Bush_02 (17)",
+        "position": "(-35.69, 0.05, -46.32)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.138793
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (20)",
+        "position": "(-33.29, 0.05, -47.16)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.200878
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (33)",
+        "position": "(-30.01, 0.05, -47.16)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.218513
+      },
+      {
+        "path": "Garden/MyTown2/Lamp_7_prefab (36)/Lamp 7",
+        "position": "(-27.00, 0.20, -30.07)",
+        "size": "(0.24, 0.53, 0.21)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.306986
+      },
+      {
+        "path": "Garden/MyTown2/street lamp 2 prefab (20)/street lamp 2",
+        "position": "(-40.87, 0.20, -36.31)",
+        "size": "(0.21, 3.44, 0.24)",
+        "value": 2,
+        "source": "scene",
+        "distance": 9.345595
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (9)/Natures_Bush_02 (22)",
+        "position": "(-35.29, 0.05, -46.75)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.368575
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (9)/Natures_Bush_02 (33)",
+        "position": "(-34.11, 0.05, -47.16)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.375979
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (6)/Natures_Bush_02 (20)",
+        "position": "(-29.19, 0.05, -47.16)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.401849
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (6)/Natures_Bush_02 (37)",
+        "position": "(-28.01, 0.05, -46.75)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.406965
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (38)",
+        "position": "(-32.11, 0.05, -47.60)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.509424
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (11)",
+        "position": "(-31.19, 0.05, -47.60)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.514145
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (13)",
+        "position": "(-32.90, 0.05, -47.60)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.576196
+      },
+      {
+        "path": "Garden/MyTown2/Tree prefab (18)/Tree 1",
+        "position": "(-36.39, 0.20, -29.75)",
+        "size": "(0.17, 3.17, 0.17)",
+        "value": 2,
+        "source": "scene",
+        "distance": 9.581779
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (15)",
+        "position": "(-30.40, 0.05, -47.60)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.589209
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (9)/Natures_Bush_02 (24)",
+        "position": "(-34.90, 0.05, -47.16)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.61017
+      },
+      {
+        "path": "Garden/NextPlace/Alleya (6)/Tree prefab (157)/Tree 1",
+        "position": "(-22.07, 0.20, -38.44)",
+        "size": "(0.17, 3.17, 0.17)",
+        "value": 2,
+        "source": "scene",
+        "distance": 9.636079
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (6)/Natures_Bush_02 (28)",
+        "position": "(-28.40, 0.05, -47.16)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.643895
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (9)",
+        "position": "(-33.69, 0.05, -47.60)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.707707
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (6)/Natures_Bush_02 (9)",
+        "position": "(-29.59, 0.05, -47.60)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.731298
+      },
+      {
+        "path": "Garden/NextPlace/Alleya (6)/Tree prefab (158)/Tree 1",
+        "position": "(-22.07, 0.20, -36.44)",
+        "size": "(0.17, 3.17, 0.17)",
+        "value": 2,
+        "source": "scene",
+        "distance": 9.77209949
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (9)/Natures_Bush_02 (16)",
+        "position": "(-35.69, 0.05, -47.16)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.9029
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (9)/Natures_Bush_02 (15)",
+        "position": "(-34.50, 0.05, -47.60)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.904726
+      },
+      {
+        "path": "Garden/NextPlace/Alleya (6)/Tree prefab (149)/Tree 1",
+        "position": "(-22.07, 0.20, -40.44)",
+        "size": "(0.17, 3.17, 0.17)",
+        "value": 2,
+        "source": "scene",
+        "distance": 9.910302
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (8)",
+        "position": "(-31.59, 0.05, -48.01)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.911226
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (6)/Natures_Bush_02 (13)",
+        "position": "(-28.80, 0.05, -47.60)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.933425
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (14)",
+        "position": "(-32.50, 0.05, -48.01)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.942927
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (12)",
+        "position": "(-30.80, 0.05, -48.01)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 9.951441
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (10)",
+        "position": "(-33.29, 0.05, -48.01)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 10.03806
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (34)",
+        "position": "(-30.01, 0.05, -48.01)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 10.054225
+      },
+      {
+        "path": "Garden/MyTown2/street lamp 2 prefab (23)/street lamp 2",
+        "position": "(-32.28, 0.20, -48.19)",
+        "size": "(0.21, 3.44, 0.24)",
+        "value": 2,
+        "source": "scene",
+        "distance": 10.1037512
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (9)/Natures_Bush_02 (11)",
+        "position": "(-35.29, 0.05, -47.60)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 10.1577778
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (6)/Natures_Bush_02 (38)",
+        "position": "(-28.01, 0.05, -47.60)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 10.1931934
+      },
+      {
+        "path": "Garden/MyTown2/Stone 1 Prefab (10)/stone 1",
+        "position": "(-33.82, 0.20, -48.07)",
+        "size": "(0.35, 0.35, 0.58)",
+        "value": 1,
+        "source": "scene",
+        "distance": 10.1936359
+      },
+      {
+        "path": "Garden/MyTown2/street lamp 2 prefab (25)/street lamp 2",
+        "position": "(-23.53, 0.20, -44.20)",
+        "size": "(0.21, 3.44, 0.24)",
+        "value": 2,
+        "source": "scene",
+        "distance": 10.1942711
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (9)/Natures_Bush_02 (34)",
+        "position": "(-34.11, 0.05, -48.01)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 10.1987982
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (6)/Natures_Bush_02 (10)",
+        "position": "(-29.19, 0.05, -48.01)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 10.2225847
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (36)",
+        "position": "(-32.11, 0.05, -48.44)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 10.350668
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (5)",
+        "position": "(-31.19, 0.05, -48.44)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 10.3550024
+      },
+      {
+        "path": "Garden/MyTown2/Tree prefab (27)/Tree 1",
+        "position": "(-31.08, 0.18, -48.49)",
+        "size": "(0.17, 3.17, 0.17)",
+        "value": 2,
+        "source": "scene",
+        "distance": 10.4045086
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (6)",
+        "position": "(-32.90, 0.05, -48.44)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 10.4120455
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (9)/Natures_Bush_02 (12)",
+        "position": "(-34.90, 0.05, -48.01)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 10.4145021
+      },
+      {
+        "path": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (7)",
+        "position": "(-30.40, 0.05, -48.44)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "source": "scene",
+        "distance": 10.4240131
+      }
+    ]
+  },
+  {
+    "scene": "Assets/Scenes/MedievalCastle.unity",
+    "count": 7604,
+    "player": "(-66.10, 0.16, -50.00)",
+    "fit": "(0.54, 0.00, 0.54)",
+    "within3": 45,
+    "within8": 90,
+    "items": [
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (4)/Props_Dustbin_visual",
+        "position": "(-65.84, 0.42, -48.60)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 1.44550884
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (1)/Props_Dustbin_visual",
+        "position": "(-66.65, 0.42, -48.61)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 1.51854694
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (2)/Props_Dustbin_visual",
+        "position": "(-66.25, 0.42, -48.41)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 1.61927629
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (13)/Props_Dustbin_visual",
+        "position": "(-67.10, 0.42, -48.59)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 1.74378371
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (10)/Props_Dustbin_visual",
+        "position": "(-65.41, 0.42, -48.41)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 1.75506985
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (13)/Props_Dustbin_visual",
+        "position": "(-64.99, 0.42, -48.60)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 1.80250621
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (3)/Props_Dustbin_visual",
+        "position": "(-65.84, 0.42, -48.17)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 1.86216092
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (5)/Props_Dustbin_visual",
+        "position": "(-66.65, 0.42, -48.16)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 1.93632257
+      },
+      {
+        "path": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (7)/Props_Dustbin_visual",
+        "position": "(-64.10, 0.42, -50.12)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.01949
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (6)/Props_Dustbin_visual",
+        "position": "(-66.25, 0.42, -47.95)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.069276
+      },
+      {
+        "path": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (5)/Props_Dustbin_visual",
+        "position": "(-64.10, 0.42, -50.57)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.09383082
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (12)/Props_Dustbin_visual",
+        "position": "(-67.11, 0.42, -48.17)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.10652256
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (1)/Props_Dustbin_visual",
+        "position": "(-64.52, 0.42, -48.60)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.12803388
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (12)/Props_Dustbin_visual",
+        "position": "(-65.00, 0.42, -48.17)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.14911556
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (10)/Props_Dustbin_visual",
+        "position": "(-67.51, 0.42, -48.40)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.149447
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (11)/Props_Dustbin_visual",
+        "position": "(-65.41, 0.42, -47.95)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.17718124
+      },
+      {
+        "path": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (1)/Props_Dustbin_visual",
+        "position": "(-64.10, 0.42, -51.01)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.25627017
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (8)/Props_Dustbin_visual",
+        "position": "(-65.84, 0.42, -47.72)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.309058
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (4)/Props_Dustbin_visual",
+        "position": "(-67.95, 0.42, -48.59)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.33499551
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (7)/Props_Dustbin_visual",
+        "position": "(-66.65, 0.42, -47.72)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.35998058
+      },
+      {
+        "path": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (6)/Props_Dustbin_visual",
+        "position": "(-63.70, 0.42, -50.36)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.440217
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (5)/Props_Dustbin_visual",
+        "position": "(-64.52, 0.42, -48.16)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.44500875
+      },
+      {
+        "path": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (7)/Props_Dustbin_visual",
+        "position": "(-64.10, 0.42, -51.43)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.46899962
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (11)/Props_Dustbin_visual",
+        "position": "(-67.51, 0.42, -47.95)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.50724435
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (9)/Props_Dustbin_visual",
+        "position": "(-67.10, 0.42, -47.71)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.50802159
+      },
+      {
+        "path": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (2)/Props_Dustbin_visual",
+        "position": "(-63.70, 0.42, -50.81)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.54717469
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (9)/Props_Dustbin_visual",
+        "position": "(-64.99, 0.42, -47.72)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.54846382
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (2)/Props_Dustbin_visual",
+        "position": "(-64.11, 0.42, -48.40)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.56170869
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (3)/Props_Dustbin_visual",
+        "position": "(-67.95, 0.42, -48.17)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.618647
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (4)/Props_Dustbin_visual",
+        "position": "(-65.84, 0.42, -47.30)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.7243886
+      },
+      {
+        "path": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (5)/Props_Dustbin_visual",
+        "position": "(-64.10, 0.42, -51.87)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.74806
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (1)/Props_Dustbin_visual",
+        "position": "(-66.65, 0.42, -47.31)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.76006651
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (2)/Props_Dustbin_visual",
+        "position": "(-68.36, 0.42, -48.40)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.78080273
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (4)/Props_Dustbin_visual",
+        "position": "(-63.70, 0.42, -48.59)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.79242587
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (7)/Props_Dustbin_visual",
+        "position": "(-64.52, 0.42, -47.71)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.793625
+      },
+      {
+        "path": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (8)/Props_Dustbin_visual",
+        "position": "(-63.28, 0.42, -50.12)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.8307724
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (6)/Props_Dustbin_visual",
+        "position": "(-64.11, 0.42, -47.95)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.868537
+      },
+      {
+        "path": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (3)/Props_Dustbin_visual",
+        "position": "(-63.29, 0.42, -50.58)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.8796258
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (13)/Props_Dustbin_visual",
+        "position": "(-67.06, 0.42, -47.27)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.90461183
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (2)/Props_Dustbin_visual",
+        "position": "(-66.25, 0.42, -47.11)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.90809917
+      },
+      {
+        "path": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (6)/Props_Dustbin_visual",
+        "position": "(-63.70, 0.42, -51.66)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.92847013
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (13)/Props_Dustbin_visual",
+        "position": "(-64.99, 0.42, -47.30)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.92947531
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (8)/Props_Dustbin_visual",
+        "position": "(-67.95, 0.42, -47.71)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.94927239
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (10)/Props_Dustbin_visual",
+        "position": "(-65.41, 0.42, -47.11)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.98584247
+      },
+      {
+        "path": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (4)/Props_Dustbin_visual",
+        "position": "(-63.29, 0.42, -51.01)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 2.999705
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (1)/Props_Dustbin_visual",
+        "position": "(-68.76, 0.42, -48.60)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.01738882
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (3)/Props_Dustbin_visual",
+        "position": "(-63.71, 0.42, -48.17)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.02661133
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (6)/Props_Dustbin_visual",
+        "position": "(-68.36, 0.42, -47.95)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.06578135
+      },
+      {
+        "path": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (1)/Props_Dustbin_visual",
+        "position": "(-64.10, 0.42, -52.31)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.06945419
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (3)/Props_Dustbin_visual",
+        "position": "(-65.84, 0.42, -46.87)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.14866614
+      },
+      {
+        "path": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (8)/Props_Dustbin_visual",
+        "position": "(-63.28, 0.42, -51.43)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.16715813
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb (1)/Props_Dustbin (1)/Props_Dustbin_visual",
+        "position": "(-64.48, 0.42, -47.28)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.179425
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (5)/Props_Dustbin_visual",
+        "position": "(-66.65, 0.42, -46.86)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.19756436
+      },
+      {
+        "path": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (2)/Props_Dustbin_visual",
+        "position": "(-63.70, 0.42, -52.11)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.20872116
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (10)/Props_Dustbin_visual",
+        "position": "(-67.47, 0.42, -47.08)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.23946428
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (5)/Props_Dustbin_visual",
+        "position": "(-68.76, 0.42, -48.16)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.248719
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (10)/Props_Dustbin_visual",
+        "position": "(-63.27, 0.42, -48.40)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.26235175
+      },
+      {
+        "path": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (11)/Props_Dustbin_visual",
+        "position": "(-62.85, 0.42, -50.36)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.2770052
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (4)/Props_Dustbin_visual",
+        "position": "(-67.91, 0.42, -47.27)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.28342152
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (12)/Props_Dustbin_visual",
+        "position": "(-67.07, 0.42, -46.84)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.3115108
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (8)/Props_Dustbin_visual",
+        "position": "(-63.70, 0.42, -47.71)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.325757
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (12)/Props_Dustbin_visual",
+        "position": "(-65.00, 0.42, -46.87)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.3264327
+      },
+      {
+        "path": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (10)/Props_Dustbin_visual",
+        "position": "(-62.85, 0.42, -50.81)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.35741019
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (6)/Props_Dustbin_visual",
+        "position": "(-66.25, 0.42, -46.65)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.36205339
+      },
+      {
+        "path": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (3)/Props_Dustbin_visual",
+        "position": "(-63.29, 0.42, -51.88)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.389479
+      },
+      {
+        "path": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfWhiteStolb/Props_Dustbin (7)/Props_Dustbin_visual",
+        "position": "(-64.10, 0.42, -52.74)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.405477
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (11)/Props_Dustbin_visual",
+        "position": "(-65.41, 0.42, -46.65)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.42952132
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb/Props_Dustbin (13)/Props_Dustbin_visual",
+        "position": "(-69.24, 0.42, -48.60)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.44538474
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (11)/Props_Dustbin_visual",
+        "position": "(-63.27, 0.42, -47.95)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.5084312
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (7)/Props_Dustbin_visual",
+        "position": "(-68.76, 0.42, -47.71)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.51858616
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (13)/Props_Dustbin_visual",
+        "position": "(-62.85, 0.42, -48.59)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.546766
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb (1)/Props_Dustbin (2)/Props_Dustbin_visual",
+        "position": "(-64.07, 0.42, -47.08)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.56462336
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb (1)/Props_Dustbin (5)/Props_Dustbin_visual",
+        "position": "(-64.48, 0.42, -46.83)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.5695405
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (8)/Props_Dustbin_visual",
+        "position": "(-65.84, 0.42, -46.42)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.59957027
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (7)/Props_Dustbin_visual",
+        "position": "(-66.65, 0.42, -46.42)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.63244629
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb/Props_Dustbin (12)/Props_Dustbin_visual",
+        "position": "(-69.24, 0.42, -48.17)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.64456439
+      },
+      {
+        "path": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (4)/Props_Dustbin_visual",
+        "position": "(-63.29, 0.42, -52.31)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.648042
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (3)/Props_Dustbin_visual",
+        "position": "(-67.91, 0.42, -46.84)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.64947534
+      },
+      {
+        "path": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (11)/Props_Dustbin_visual",
+        "position": "(-62.85, 0.42, -51.66)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.655139
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (11)/Props_Dustbin_visual",
+        "position": "(-67.47, 0.42, -46.62)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.65615225
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb (1)/Props_Dustbin (4)/Props_Dustbin_visual",
+        "position": "(-63.66, 0.42, -47.27)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.66931534
+      },
+      {
+        "path": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (9)/Props_Dustbin_visual",
+        "position": "(-62.44, 0.42, -50.12)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.67451787
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (2)/Props_Dustbin_visual",
+        "position": "(-68.32, 0.42, -47.08)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.67961049
+      },
+      {
+        "path": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (12)/Props_Dustbin_visual",
+        "position": "(-62.44, 0.42, -50.58)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.710686
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (12)/Props_Dustbin_visual",
+        "position": "(-62.86, 0.42, -48.17)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.73280478
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (9)/Props_Dustbin_visual",
+        "position": "(-67.06, 0.42, -46.39)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.74414015
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (9)/Props_Dustbin_visual",
+        "position": "(-64.99, 0.42, -46.42)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.75763559
+      },
+      {
+        "path": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfWhiteStolb/Props_Dustbin (5)/Props_Dustbin_visual",
+        "position": "(-64.10, 0.42, -53.19)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.77082872
+      },
+      {
+        "path": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (1)/Props_Dustbin_visual",
+        "position": "(-68.72, 0.42, -47.28)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.78778577
+      },
+      {
+        "path": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (13)/Props_Dustbin_visual",
+        "position": "(-62.44, 0.42, -51.01)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "source": "scene",
+        "distance": 3.80573773
+      }
+    ]
+  }
+]

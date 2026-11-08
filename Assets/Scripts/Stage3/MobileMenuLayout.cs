@@ -84,8 +84,12 @@ namespace Vodovorot.Stage3
                 desktopPanels[index] = desktop.transform.Find(PanelPaths[index]);
                 mobilePanels[index] = mobile.transform.Find(PanelPaths[index]);
             }
-            desktopPanels[PanelPaths.Length] = desktop.transform.Find("DesktopPanelOfSettings");
-            mobilePanels[PanelPaths.Length] = mobile.transform.Find("MobilePanelOfSettings");
+            // The 3D shop Canvas does not necessarily match the visible viewport.
+            // Settings keep their authored screen-space roots through rotation.
+            desktopPanels[PanelPaths.Length] = controller.DesktopSettingsPanel != null
+                ? controller.DesktopSettingsPanel.transform : desktop.transform.Find("DesktopPanelOfSettings");
+            mobilePanels[PanelPaths.Length] = controller.MobileSettingsPanel != null
+                ? controller.MobileSettingsPanel.transform : mobile.transform.Find("MobilePanelOfSettings");
             initialized = true;
         }
 
@@ -152,8 +156,16 @@ namespace Vodovorot.Stage3
             Transform[] sources = sourceIsDesktop ? desktopPanels : mobilePanels;
             Transform[] destinations = sourceIsDesktop ? mobilePanels : desktopPanels;
             for (int index = 0; index < sources.Length; index++)
+            {
                 if (sources[index] != null && destinations[index] != null)
+                {
                     destinations[index].gameObject.SetActive(sources[index].gameObject.activeSelf);
+                    // The settings overlay survives hiding the old 3D Canvas.
+                    // Transfer its open state once instead of leaving two forms active.
+                    if (index == PanelPaths.Length && sources[index] != destinations[index])
+                        sources[index].gameObject.SetActive(false);
+                }
+            }
             InputField sourceNickname = sourceIsDesktop ? desktopNickname : mobileNickname;
             InputField destinationNickname = sourceIsDesktop ? mobileNickname : desktopNickname;
             if (sourceNickname != null && destinationNickname != null)

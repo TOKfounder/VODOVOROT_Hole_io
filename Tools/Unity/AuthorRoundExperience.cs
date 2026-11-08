@@ -287,17 +287,18 @@ public static class AuthorRoundExperience
         RectTransform rect = panel.GetComponent<RectTransform>();
         rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(0, 1);
         rect.anchoredPosition = new Vector2(12, -12);
-        rect.sizeDelta = new Vector2(350, 410);
+        rect.sizeDelta = new Vector2(350, 602);
         panel.GetComponent<Image>().color = new Color(.03f, .12f, .18f, .96f);
         Text heading = TextAt(panel.transform, "Title", new Vector2(175, -24), new Vector2(326, 38), 24, Color.white);
         heading.rectTransform.anchorMin = heading.rectTransform.anchorMax = new Vector2(0, 1);
         heading.text = "ТЕСТ · параметры раунда";
-        var sliders = new Slider[4];
-        var labels = new Text[4];
-        float[] minimum = { 15, 0, 0, 0 };
-        float[] maximum = { 180, 25, 10, 1 };
-        string[] captions = { "Раунд: 180 с", "Мин. опыт: 5", "Мин. монеты: 1", "Возврат объектов: 0.15 с" };
-        for (int i = 0; i < 4; i++)
+        var sliders = new Slider[7];
+        var labels = new Text[7];
+        float[] minimum = { 15, 0, 0, 0, .03f, .03f, 2 };
+        float[] maximum = { 180, 25, 10, 1, 1, 1, 10 };
+        string[] captions = { "Раунд: 180 с", "Мин. опыт: 5", "Мин. монеты: 1", "Возврат объектов: 0.15 с",
+            "Скрытие: 0.14 с", "Появление: 0.35 с", "Подсветка: 5.5 м" };
+        for (int i = 0; i < 7; i++)
         {
             float y = -62 - i * 62;
             labels[i] = TextAt(panel.transform, "Value" + i, new Vector2(175, y), new Vector2(326, 30), 20, Color.white);
@@ -322,11 +323,11 @@ public static class AuthorRoundExperience
             sliders[i].maxValue = maximum[i];
             sliders[i].wholeNumbers = i < 3;
         }
-        Button restart = LabButton(panel.transform, "Restart", "Заново", 90, -308);
-        Button reset = LabButton(panel.transform, "Reset", "Сброс", 260, -308);
-        Button save = LabButton(panel.transform, "Save", "Сохранить", 90, -350);
-        Button stop = LabButton(panel.transform, "Stop", "Стоп", 260, -350);
-        Text status = TextAt(panel.transform, "Status", new Vector2(175, -390), new Vector2(328, 40), 15, Color.white);
+        Button restart = LabButton(panel.transform, "Restart", "Заново", 90, -496);
+        Button reset = LabButton(panel.transform, "Reset", "Сброс", 260, -496);
+        Button save = LabButton(panel.transform, "Save", "Сохранить", 90, -538);
+        Button stop = LabButton(panel.transform, "Stop", "Стоп", 260, -538);
+        Text status = TextAt(panel.transform, "Status", new Vector2(175, -578), new Vector2(328, 40), 15, Color.white);
         status.rectTransform.anchorMin = status.rectTransform.anchorMax = new Vector2(0, 1);
         status.text = "Отдельный профиль · не входит в релиз";
         RoundExperienceLab lab = canvasObject.GetComponent<RoundExperienceLab>();
@@ -334,9 +335,10 @@ public static class AuthorRoundExperience
         serialized.FindProperty("settings").objectReferenceValue = AssetDatabase.LoadAssetAtPath<RoundExperienceSettings>(SettingsPath);
         serialized.FindProperty("game").objectReferenceValue = scene.GetRootGameObjects().SelectMany(g => g.GetComponentsInChildren<GamingManager>(true)).Single();
         serialized.FindProperty("cutaway").objectReferenceValue = scene.GetRootGameObjects().SelectMany(g => g.GetComponentsInChildren<CameraCutawayView>(true)).Single();
-        serialized.FindProperty("sliders").arraySize = 4;
-        serialized.FindProperty("valueLabels").arraySize = 4;
-        for (int i = 0; i < 4; i++)
+        serialized.FindProperty("hints").objectReferenceValue = scene.GetRootGameObjects().SelectMany(g => g.GetComponentsInChildren<EdibleTargetHints>(true)).Single();
+        serialized.FindProperty("sliders").arraySize = 7;
+        serialized.FindProperty("valueLabels").arraySize = 7;
+        for (int i = 0; i < 7; i++)
         {
             serialized.FindProperty("sliders").GetArrayElementAtIndex(i).objectReferenceValue = sliders[i];
             serialized.FindProperty("valueLabels").GetArrayElementAtIndex(i).objectReferenceValue = labels[i];

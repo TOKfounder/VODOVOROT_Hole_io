@@ -47,8 +47,8 @@ public class TutorialController : MonoBehaviour
             "JoystickRuler",
             showHighlight: false),          // джойстик = вся область, скрываем
         new TutorialStep(
-            "Поглощай предметы — так ты растёшь в размере!",
-            "Absorb objects — this is how you grow!",
+            "Предметы с зелёными уголками уже можно поглотить. Ешь их и расти!",
+            "Green brackets mark objects you can absorb. Eat them to grow!",
             "Player_Hole"),
         new TutorialStep(
             "Следи за прогрессом — поглоти как можно больше!",
@@ -149,9 +149,6 @@ public class TutorialController : MonoBehaviour
         if (index == 0 && YG2.envir.isDesktop)
             return ru ? "Двигайся WASD или стрелками. Можно удерживать мышь и тянуть в нужную сторону."
                 : "Move with WASD or arrow keys. You can also hold and drag the mouse.";
-        if (index == 1)
-            return ru ? "Начни с мелких предметов. Очки приближают следующий размер — смотри подсказку сверху!"
-                : "Start with small objects. Points bring the next size closer — watch the readout above!";
         return ru ? steps[index].textRu : steps[index].textEn;
     }
 

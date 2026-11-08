@@ -1,0 +1,240 @@
+{
+  "environment": "Editor controlled actual-component fixtures, not gameplay",
+  "finishedUtc": "2026-11-08T03:05:28.904402Z",
+  "checks": [
+    {
+      "name": "isolated Play profile",
+      "passed": true
+    },
+    {
+      "name": "Music and SFX zero through isolated game profile",
+      "passed": true
+    },
+    {
+      "name": "saved existing lab has seven live controls",
+      "passed": true
+    },
+    {
+      "name": "live controls change the real fade and hint systems",
+      "passed": true
+    },
+    {
+      "name": "Reset restores saved camera/hint tuning",
+      "passed": true
+    },
+    {
+      "name": "Editor shader compiled: Vodovorot/Cutaway dither",
+      "passed": true
+    },
+    {
+      "name": "Editor shader compiled: Vodovorot/Map surround",
+      "passed": true
+    },
+    {
+      "name": "Editor shader compiled: Vodovorot/Edible target bracket",
+      "passed": true
+    },
+    {
+      "name": "menu-selected map retains its authored opening spawn on map 1",
+      "passed": true
+    },
+    {
+      "name": "original edible object count retained on map 1",
+      "passed": true
+    },
+    {
+      "name": "moved props preserve actual runtime value on map 1: ",
+      "passed": true
+    },
+    {
+      "name": "at least four real starting targets within3m on map 1",
+      "passed": true
+    },
+    {
+      "name": "saved surround changes neither collisions nor map scoring on map 1",
+      "passed": true
+    },
+    {
+      "name": "surround geometry is saved in editable assets on map 1",
+      "passed": true
+    },
+    {
+      "name": "eight authored pooled target markers on map 1",
+      "passed": true
+    },
+    {
+      "name": "eligible starting targets visibly marked on map 1",
+      "passed": true
+    },
+    {
+      "name": "hint selection uses the real fit and availability rules on map 1",
+      "passed": true
+    },
+    {
+      "name": "target hints hidden under pause on map 1",
+      "passed": true
+    },
+    {
+      "name": "consumed target marker removed on map 1",
+      "passed": true
+    },
+    {
+      "name": "next-size targets exist on map 1",
+      "passed": true
+    },
+    {
+      "name": "growth unlocks the same target in physics and hint rule on map 1 (target=(1.16, 0.40, 1.00), fit=(1.05, 0.00, 1.05))",
+      "passed": true
+    },
+    {
+      "name": "menu-selected map retains its authored opening spawn on map 2",
+      "passed": true
+    },
+    {
+      "name": "Garden segmented hedges participate in the real camera cutaway",
+      "passed": true
+    },
+    {
+      "name": "original edible object count retained on map 2",
+      "passed": true
+    },
+    {
+      "name": "moved props preserve actual runtime value on map 2: ",
+      "passed": true
+    },
+    {
+      "name": "at least four real starting targets within3m on map 2",
+      "passed": true
+    },
+    {
+      "name": "saved surround changes neither collisions nor map scoring on map 2",
+      "passed": true
+    },
+    {
+      "name": "surround geometry is saved in editable assets on map 2",
+      "passed": true
+    },
+    {
+      "name": "eight authored pooled target markers on map 2",
+      "passed": true
+    },
+    {
+      "name": "eligible starting targets visibly marked on map 2",
+      "passed": true
+    },
+    {
+      "name": "hint selection uses the real fit and availability rules on map 2",
+      "passed": true
+    },
+    {
+      "name": "target hints hidden under pause on map 2",
+      "passed": true
+    },
+    {
+      "name": "consumed target marker removed on map 2",
+      "passed": true
+    },
+    {
+      "name": "next-size targets exist on map 2",
+      "passed": true
+    },
+    {
+      "name": "growth unlocks the same target in physics and hint rule on map 2 (target=(1.00, 1.00, 0.05), fit=(1.46, 0.00, 1.46))",
+      "passed": true
+    },
+    {
+      "name": "menu-selected map retains its authored opening spawn on map 3",
+      "passed": true
+    },
+    {
+      "name": "original edible object count retained on map 3",
+      "passed": true
+    },
+    {
+      "name": "moved props preserve actual runtime value on map 3: ",
+      "passed": true
+    },
+    {
+      "name": "at least four real starting targets within3m on map 3",
+      "passed": true
+    },
+    {
+      "name": "saved surround changes neither collisions nor map scoring on map 3",
+      "passed": true
+    },
+    {
+      "name": "surround geometry is saved in editable assets on map 3",
+      "passed": true
+    },
+    {
+      "name": "eight authored pooled target markers on map 3",
+      "passed": true
+    },
+    {
+      "name": "eligible starting targets visibly marked on map 3",
+      "passed": true
+    },
+    {
+      "name": "hint selection uses the real fit and availability rules on map 3",
+      "passed": true
+    },
+    {
+      "name": "target hints hidden under pause on map 3",
+      "passed": true
+    },
+    {
+      "name": "consumed target marker removed on map 3",
+      "passed": true
+    },
+    {
+      "name": "next-size targets exist on map 3",
+      "passed": true
+    },
+    {
+      "name": "growth unlocks the same target in physics and hint rule on map 3 (target=(1.08, 5.30, 1.08), fit=(1.33, 0.00, 1.33))",
+      "passed": true
+    },
+    {
+      "name": "occluder has a real intermediate fade-out state",
+      "passed": true
+    },
+    {
+      "name": "temporary fade materials installed without editing sources",
+      "passed": true
+    },
+    {
+      "name": "fully hidden obstruction no longer participates in baked culling",
+      "passed": true
+    },
+    {
+      "name": "occluder returns progressively after release delay",
+      "passed": true
+    },
+    {
+      "name": "direction reversal finishes hidden without stale transition",
+      "passed": true
+    },
+    {
+      "name": "disable restores original visibility and exact shared materials",
+      "passed": true
+    },
+    {
+      "name": "disable restores original per-material property block",
+      "passed": true
+    },
+    {
+      "name": "disable restores original camera culling flag",
+      "passed": true
+    },
+    {
+      "name": "personal save byte-identical",
+      "passed": true
+    },
+    {
+      "name": "no runtime errors during focused component run",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "failure": null
+}

@@ -11,6 +11,9 @@ namespace Vodovorot.RoundExperience
         [SerializeField, Min(0)] private int minimumCompletedExperience = 5;
         [SerializeField, Min(0)] private int minimumCompletedCoins = 1;
         [SerializeField, Range(0f, 1f)] private float cutawayReleaseSeconds = 0.15f;
+        [SerializeField, Range(.03f, 1f)] private float cutawayFadeOutSeconds = .14f;
+        [SerializeField, Range(.03f, 1f)] private float cutawayFadeInSeconds = .35f;
+        [SerializeField, Range(2f, 10f)] private float targetHintRadius = 5.5f;
         [SerializeField] private RewardedOfferDefinition[] rewardedOffers =
         {
             new RewardedOfferDefinition("couple", 1, 5),
@@ -28,6 +31,9 @@ namespace Vodovorot.RoundExperience
                 MinimumCompletedExperience = Mathf.Max(0, minimumCompletedExperience),
                 MinimumCompletedCoins = Mathf.Max(0, minimumCompletedCoins),
                 CutawayReleaseSeconds = Mathf.Clamp01(cutawayReleaseSeconds),
+                CutawayFadeOutSeconds = Mathf.Clamp(cutawayFadeOutSeconds, .03f, 1f),
+                CutawayFadeInSeconds = Mathf.Clamp(cutawayFadeInSeconds, .03f, 1f),
+                TargetHintRadius = Mathf.Clamp(targetHintRadius, 2f, 10f),
                 RewardedOffers = Array.ConvertAll(rewardedOffers, offer => new RewardedOfferValues
                 {
                     Id = offer.Id,
@@ -70,6 +76,9 @@ namespace Vodovorot.RoundExperience
         public int MinimumCompletedExperience;
         public int MinimumCompletedCoins;
         public float CutawayReleaseSeconds;
+        public float CutawayFadeOutSeconds;
+        public float CutawayFadeInSeconds;
+        public float TargetHintRadius;
         public RewardedOfferValues[] RewardedOffers;
 
         public bool TryGetRewardedOffer(string id, out RewardedOfferValues offer)

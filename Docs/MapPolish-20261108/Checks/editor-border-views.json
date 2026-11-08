@@ -1,0 +1,246 @@
+{
+  "environment": "Controlled Editor world renders,1280x720; no HUD/native input",
+  "records": [
+    {
+      "map": 1,
+      "score": 0,
+      "corner": 0,
+      "player": "(-124.55, 0.16, -82.01)",
+      "viewport": "(0.50, 0.44, 4.73)",
+      "framed": true,
+      "pureBlueEdge": 0,
+      "evidence": "../Evidence/editor-border-map1-size1-corner0.png"
+    },
+    {
+      "map": 1,
+      "score": 0,
+      "corner": 1,
+      "player": "(-124.55, 0.16, 40.17)",
+      "viewport": "(0.50, 0.44, 4.73)",
+      "framed": true,
+      "pureBlueEdge": 0,
+      "evidence": "../Evidence/editor-border-map1-size1-corner1.png"
+    },
+    {
+      "map": 1,
+      "score": 0,
+      "corner": 2,
+      "player": "(13.66, 0.16, -82.01)",
+      "viewport": "(0.50, 0.44, 4.73)",
+      "framed": true,
+      "pureBlueEdge": 0,
+      "evidence": "../Evidence/editor-border-map1-size1-corner2.png"
+    },
+    {
+      "map": 1,
+      "score": 0,
+      "corner": 3,
+      "player": "(13.66, 0.16, 40.17)",
+      "viewport": "(0.50, 0.44, 4.73)",
+      "framed": true,
+      "pureBlueEdge": 0,
+      "evidence": "../Evidence/editor-border-map1-size1-corner3.png"
+    },
+    {
+      "map": 1,
+      "score": 163,
+      "corner": 0,
+      "player": "(-123.23, 0.16, -80.68)",
+      "viewport": "(0.30, 0.44, 18.57)",
+      "framed": true,
+      "pureBlueEdge": 0,
+      "evidence": "../Evidence/editor-border-map1-size3-corner0.png"
+    },
+    {
+      "map": 1,
+      "score": 163,
+      "corner": 1,
+      "player": "(-123.23, 0.16, 38.84)",
+      "viewport": "(0.30, 0.56, 20.40)",
+      "framed": true,
+      "pureBlueEdge": 0,
+      "evidence": "../Evidence/editor-border-map1-size3-corner1.png"
+    },
+    {
+      "map": 1,
+      "score": 163,
+      "corner": 2,
+      "player": "(12.35, 0.16, -80.70)",
+      "viewport": "(0.70, 0.44, 18.57)",
+      "framed": true,
+      "pureBlueEdge": 0,
+      "evidence": "../Evidence/editor-border-map1-size3-corner2.png"
+    },
+    {
+      "map": 1,
+      "score": 163,
+      "corner": 3,
+      "player": "(12.35, 0.16, 38.86)",
+      "viewport": "(0.70, 0.56, 20.40)",
+      "framed": true,
+      "pureBlueEdge": 0,
+      "evidence": "../Evidence/editor-border-map1-size3-corner3.png"
+    },
+    {
+      "map": 2,
+      "score": 0,
+      "corner": 0,
+      "player": "(-58.01, 0.16, -104.31)",
+      "viewport": "(0.50, 0.44, 4.73)",
+      "framed": true,
+      "pureBlueEdge": 0,
+      "evidence": "../Evidence/editor-border-map2-size1-corner0.png"
+    },
+    {
+      "map": 2,
+      "score": 0,
+      "corner": 1,
+      "player": "(-58.01, 0.16, 118.71)",
+      "viewport": "(0.50, 0.44, 4.73)",
+      "framed": true,
+      "pureBlueEdge": 0,
+      "evidence": "../Evidence/editor-border-map2-size1-corner1.png"
+    },
+    {
+      "map": 2,
+      "score": 0,
+      "corner": 2,
+      "player": "(32.26, 0.16, -104.31)",
+      "viewport": "(0.50, 0.44, 4.73)",
+      "framed": true,
+      "pureBlueEdge": 0,
+      "evidence": "../Evidence/editor-border-map2-size1-corner2.png"
+    },
+    {
+      "map": 2,
+      "score": 0,
+      "corner": 3,
+      "player": "(32.26, 0.16, 118.71)",
+      "viewport": "(0.50, 0.44, 4.73)",
+      "framed": true,
+      "pureBlueEdge": 0,
+      "evidence": "../Evidence/editor-border-map2-size1-corner3.png"
+    },
+    {
+      "map": 2,
+      "score": 163,
+      "corner": 0,
+      "player": "(-56.71, 0.16, -103.01)",
+      "viewport": "(0.30, 0.44, 18.57)",
+      "framed": true,
+      "pureBlueEdge": 0,
+      "evidence": "../Evidence/editor-border-map2-size3-corner0.png"
+    },
+    {
+      "map": 2,
+      "score": 163,
+      "corner": 1,
+      "player": "(-56.71, 0.16, 117.40)",
+      "viewport": "(0.30, 0.56, 20.40)",
+      "framed": true,
+      "pureBlueEdge": 0,
+      "evidence": "../Evidence/editor-border-map2-size3-corner1.png"
+    },
+    {
+      "map": 2,
+      "score": 163,
+      "corner": 2,
+      "player": "(30.94, 0.16, -102.98)",
+      "viewport": "(0.70, 0.44, 18.57)",
+      "framed": true,
+      "pureBlueEdge": 0,
+      "evidence": "../Evidence/editor-border-map2-size3-corner2.png"
+    },
+    {
+      "map": 2,
+      "score": 163,
+      "corner": 3,
+      "player": "(30.94, 0.16, 117.39)",
+      "viewport": "(0.70, 0.56, 20.39)",
+      "framed": true,
+      "pureBlueEdge": 0,
+      "evidence": "../Evidence/editor-border-map2-size3-corner3.png"
+    },
+    {
+      "map": 3,
+      "score": 0,
+      "corner": 0,
+      "player": "(-130.16, 0.16, -82.02)",
+      "viewport": "(0.50, 0.44, 4.73)",
+      "framed": true,
+      "pureBlueEdge": 0,
+      "evidence": "../Evidence/editor-border-map3-size1-corner0.png"
+    },
+    {
+      "map": 3,
+      "score": 0,
+      "corner": 1,
+      "player": "(-130.16, 0.16, 40.62)",
+      "viewport": "(0.50, 0.44, 4.73)",
+      "framed": true,
+      "pureBlueEdge": 0,
+      "evidence": "../Evidence/editor-border-map3-size1-corner1.png"
+    },
+    {
+      "map": 3,
+      "score": 0,
+      "corner": 2,
+      "player": "(16.47, 0.16, -82.02)",
+      "viewport": "(0.50, 0.44, 4.73)",
+      "framed": true,
+      "pureBlueEdge": 0,
+      "evidence": "../Evidence/editor-border-map3-size1-corner2.png"
+    },
+    {
+      "map": 3,
+      "score": 0,
+      "corner": 3,
+      "player": "(16.47, 0.16, 40.62)",
+      "viewport": "(0.50, 0.44, 4.73)",
+      "framed": true,
+      "pureBlueEdge": 0,
+      "evidence": "../Evidence/editor-border-map3-size1-corner3.png"
+    },
+    {
+      "map": 3,
+      "score": 163,
+      "corner": 0,
+      "player": "(-128.83, 0.16, -80.68)",
+      "viewport": "(0.30, 0.44, 18.57)",
+      "framed": true,
+      "pureBlueEdge": 0,
+      "evidence": "../Evidence/editor-border-map3-size3-corner0.png"
+    },
+    {
+      "map": 3,
+      "score": 163,
+      "corner": 1,
+      "player": "(-128.83, 0.16, 39.29)",
+      "viewport": "(0.30, 0.56, 20.40)",
+      "framed": true,
+      "pureBlueEdge": 0,
+      "evidence": "../Evidence/editor-border-map3-size3-corner1.png"
+    },
+    {
+      "map": 3,
+      "score": 163,
+      "corner": 2,
+      "player": "(15.14, 0.16, -80.68)",
+      "viewport": "(0.70, 0.44, 18.57)",
+      "framed": true,
+      "pureBlueEdge": 0,
+      "evidence": "../Evidence/editor-border-map3-size3-corner2.png"
+    },
+    {
+      "map": 3,
+      "score": 163,
+      "corner": 3,
+      "player": "(15.14, 0.16, 39.29)",
+      "viewport": "(0.70, 0.56, 20.40)",
+      "framed": true,
+      "pureBlueEdge": 0,
+      "evidence": "../Evidence/editor-border-map3-size3-corner3.png"
+    }
+  ],
+  "error": null
+}

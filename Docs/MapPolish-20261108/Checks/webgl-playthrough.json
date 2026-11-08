@@ -1,0 +1,94 @@
+{
+  "environment": "Actual keyboard/pointer input in IAB WebGL; local SDK adapter, disposable browser profile; no production payment/ranking claims",
+  "finalBuild": "build_04264ae372a6",
+  "finalSceneCoverage": [
+    "City south boundary/paving",
+    "Garden selected-map spawn, hedge cutaway, west boundary",
+    "Medieval southwest corner: former blue seam absent"
+  ],
+  "finalEvidence": [
+    "../Evidence/final-city-border.jpg",
+    "../Evidence/final-garden-cutaway.jpg",
+    "../Evidence/final-garden-border.jpg",
+    "../Evidence/final-castle-west-border.jpg"
+  ],
+  "firstGrowthObservedBySeconds": {
+    "City": 9,
+    "Garden": 14,
+    "Medieval": 10
+  },
+  "secondGrowthObservedBySeconds": {
+    "City": 33,
+    "Garden": 44,
+    "Medieval": 32
+  },
+  "timingMethod": "Read elapsed time from180-second HUD; pause between native input actions; upper bounds from one developer route, not new-user statistics or a controlled before/after benchmark",
+  "timingBuilds": {
+    "City": "build_ba63464c80be",
+    "Garden": "build_ac12cf163742",
+    "Medieval": "build_42778e72d265"
+  },
+  "laterChanges": "After timings: uniform surround ground height and60 Garden hedge cutaway references only. Final build separately played on all3maps.",
+  "naturalLoop": {
+    "map": "City",
+    "durationSeconds": 180,
+    "build": "build_ba63464c80be",
+    "observedResult": "2.5% capture,5XP,1coin; results,local interstitial and return to menu",
+    "evidence": "../Evidence/city-natural-results.jpg"
+  },
+  "settings": {
+    "viewports": [
+      [
+        390,
+        844
+      ],
+      [
+        844,
+        390
+      ],
+      [
+        640,
+        360
+      ],
+      [
+        1280,
+        720
+      ]
+    ],
+    "languages": [
+      "RU",
+      "EN"
+    ],
+    "checks": "visible complete labels/sliders/buttons; actual zero sliders; language switch; rotation preserving open form and close; actual End action",
+    "nativeDpr": "settings additionally fit original viewport/DPR after override reset",
+    "evidence": [
+      "../Evidence/settings-landscape-844-ru.jpg",
+      "../Evidence/settings-landscape-640-en.jpg",
+      "../Evidence/settings-game-landscape-ru.jpg",
+      "../Evidence/final-settings-native-dpr.jpg"
+    ]
+  },
+  "cameraFade": "Actual City approach/retreat and intermediate dither frame; final Garden route verified with hedge no longer covering rim. Controlled material/state restoration covered by58 component assertions.",
+  "audio": {
+    "baseline": [
+      0.5,
+      0.5
+    ],
+    "duringFinalGameplay": [
+      0,
+      0
+    ],
+    "restoredThroughGameUI": [
+      0.5,
+      0.5
+    ],
+    "evidence": "../Evidence/final-audio-restored.jpg"
+  },
+  "limitations": [
+    "Physical phone not tested",
+    "Production Yandex SDK/catalog/prices/ranking not tested",
+    "Separate results overlap observed at native DPR2; remains outside settings/map scope",
+    "No claim of player retention or conversion lift"
+  ],
+  "finishedUtc": "2026-11-08T03:17:07.398197+00:00"
+}

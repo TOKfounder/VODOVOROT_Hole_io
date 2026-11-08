@@ -427,7 +427,8 @@ public class FallingObject : MonoBehaviour
 		return isTriggered;
 	}
 
-	private bool CanBeEatenBy(HoleParent hole)
+	// Presentation reuses the actual fit rule; a hint never changes physics or value.
+	public bool CanBeEatenBy(HoleParent hole)
 	{
 		if (hole == null)
 			return false;
@@ -439,6 +440,9 @@ public class FallingObject : MonoBehaviour
 			? Tool.CanFitForHelperAndEnemies(size, hole.GetFitSize())
 			: Tool.CanFit2D(size, hole.GetFitSize());
 	}
+
+	public bool IsAvailableTarget => value > 0 && !isTriggered && isActiveAndEnabled &&
+		rb != null && rb.isKinematic && col != null && col.enabled && rend != null && rend.enabled;
 
 	private float GetDistanceToHoleCenterSqr(HoleParent hole)
 	{

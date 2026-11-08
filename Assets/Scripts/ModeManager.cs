@@ -39,8 +39,8 @@ public class ModeManager : MonoBehaviour
 	
 	public void StartCleaningMode()
 	{
-		if (YG2.saves.selectedMapID == 1)
-			mainPlayer.transform.position = new Vector3(-23.7f, 0.164f, -80.2f);
+		// Each saved map owns its opening layout and player spawn. Moving the
+		// Garden player here disconnected the menu launch from that authored route.
 	}
 
 	public void StartBossMode()

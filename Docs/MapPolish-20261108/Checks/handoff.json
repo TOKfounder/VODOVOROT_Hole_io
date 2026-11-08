@@ -1,0 +1,47 @@
+{
+  "editor": {
+    "restored": true,
+    "simulator": "UnityEditor.DeviceSimulation.SimulatorWindow",
+    "position": "(x:314.00, y:70.00, width:905.00, height:541.50)",
+    "docked": true,
+    "gamePosition": "(x:588.00, y:62.00, width:275.00, height:485.00)",
+    "scene": "Assets/Scenes/MainMenu.unity",
+    "dirty": false,
+    "music": 0.5,
+    "sfx": 0.5,
+    "isolated": false
+  },
+  "playMode": false,
+  "runInBackgroundOverride": false,
+  "personalSaveByteIdentical": true,
+  "saveSha256": "05c3f28f982d89f8061c480072968b932fb6789d7e5a4706787681becd71bf0b",
+  "browser": {
+    "tab": "4",
+    "url": "http://localhost:8775/?qaAds=1",
+    "menu": true,
+    "music": 0.5,
+    "sfx": 0.5,
+    "viewportOverrideReset": true,
+    "evidence": "../Evidence/final-menu-handoff.jpg"
+  },
+  "userReportTab1": "untouched",
+  "scope": "All5 selected improvements complete locally; final GitHub push verification performed after commit",
+  "editorStatus": {
+    "status": "ready",
+    "compiling": false,
+    "domainReloadInProgress": false,
+    "codeLoadCount": 58,
+    "autoRefresh": "enabled",
+    "playMode": "stopped",
+    "runInBackground": false,
+    "lastHeartbeat": "2026-11-08T03:18:10.332146Z",
+    "projectPath": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io",
+    "unityVersion": "6000.6.8f1",
+    "role": "main",
+    "instanceName": "Main Editor"
+  },
+  "obsoletePreviewServersStopped": [
+    8773,
+    8774
+  ]
+}

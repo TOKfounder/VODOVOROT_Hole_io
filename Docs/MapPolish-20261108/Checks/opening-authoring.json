@@ -1,0 +1,3474 @@
+[
+  {
+    "scene": "Assets/Scenes/Low Poly City.unity",
+    "initialCandidates": 40,
+    "secondCandidates": 102,
+    "moved": 142,
+    "edits": [
+      {
+        "name": "City/Props_Hydrant (25)",
+        "before": "(-28.44, 0.08, -40.47)",
+        "after": "(-31.89, 0.10, -36.70)",
+        "size": "(0.17, 0.41, 0.17)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/Props_Hydrant (24)",
+        "before": "(-34.61, 0.08, -33.44)",
+        "after": "(-31.51, 0.10, -36.70)",
+        "size": "(0.17, 0.41, 0.17)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (52)",
+        "before": "(-34.70, 0.00, -33.35)",
+        "after": "(-31.89, 0.10, -36.15)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (60)",
+        "before": "(-34.98, 0.00, -33.35)",
+        "after": "(-31.51, 0.10, -36.15)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (54)",
+        "before": "(-34.70, 0.00, -33.05)",
+        "after": "(-31.89, 0.10, -35.60)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (48)",
+        "before": "(-35.26, 0.00, -33.35)",
+        "after": "(-31.51, 0.10, -35.60)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (62)",
+        "before": "(-34.98, 0.00, -33.05)",
+        "after": "(-31.89, 0.10, -35.05)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (56)",
+        "before": "(-35.54, 0.00, -33.35)",
+        "after": "(-31.51, 0.10, -35.05)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (53)",
+        "before": "(-34.70, 0.00, -32.74)",
+        "after": "(-31.89, 0.10, -34.50)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (50)",
+        "before": "(-35.26, 0.00, -33.05)",
+        "after": "(-31.51, 0.10, -34.50)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (61)",
+        "before": "(-34.98, 0.00, -32.74)",
+        "after": "(-31.89, 0.10, -33.95)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (33)",
+        "before": "(-35.83, 0.00, -33.35)",
+        "after": "(-31.51, 0.10, -33.95)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (58)",
+        "before": "(-35.54, 0.00, -33.05)",
+        "after": "(-31.89, 0.10, -33.40)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (55)",
+        "before": "(-34.70, 0.00, -32.44)",
+        "after": "(-31.51, 0.10, -33.40)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (49)",
+        "before": "(-35.26, 0.00, -32.74)",
+        "after": "(-31.89, 0.10, -32.85)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (35)",
+        "before": "(-36.11, 0.00, -33.35)",
+        "after": "(-31.51, 0.10, -32.85)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (37)",
+        "before": "(-35.83, 0.00, -33.05)",
+        "after": "(-31.89, 0.10, -32.30)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (63)",
+        "before": "(-34.98, 0.00, -32.44)",
+        "after": "(-31.51, 0.10, -32.30)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (57)",
+        "before": "(-35.54, 0.00, -32.74)",
+        "after": "(-31.89, 0.10, -31.75)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (32)",
+        "before": "(-36.39, 0.00, -33.35)",
+        "after": "(-31.51, 0.10, -31.75)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (51)",
+        "before": "(-35.26, 0.00, -32.44)",
+        "after": "(-31.89, 0.10, -31.20)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (39)",
+        "before": "(-36.11, 0.00, -33.05)",
+        "after": "(-31.51, 0.10, -31.20)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (42)",
+        "before": "(-35.83, 0.00, -32.74)",
+        "after": "(-31.89, 0.10, -30.65)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (59)",
+        "before": "(-35.54, 0.00, -32.44)",
+        "after": "(-31.51, 0.10, -30.65)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (34)",
+        "before": "(-36.67, 0.00, -33.35)",
+        "after": "(-31.89, 0.10, -30.10)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (36)",
+        "before": "(-36.39, 0.00, -33.05)",
+        "after": "(-31.51, 0.10, -30.10)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (46)",
+        "before": "(-36.11, 0.00, -32.74)",
+        "after": "(-31.89, 0.10, -29.55)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (43)",
+        "before": "(-35.83, 0.00, -32.44)",
+        "after": "(-31.51, 0.10, -29.55)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (38)",
+        "before": "(-36.67, 0.00, -33.05)",
+        "after": "(-31.89, 0.10, -29.00)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (40)",
+        "before": "(-36.39, 0.00, -32.74)",
+        "after": "(-31.51, 0.10, -29.00)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (47)",
+        "before": "(-36.11, 0.00, -32.44)",
+        "after": "(-31.89, 0.10, -28.45)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (44)",
+        "before": "(-36.67, 0.00, -32.74)",
+        "after": "(-31.51, 0.10, -28.45)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (41)",
+        "before": "(-36.39, 0.00, -32.44)",
+        "after": "(-31.89, 0.10, -27.90)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (212)/Natures_Pot Bush_big (45)",
+        "before": "(-36.67, 0.00, -32.44)",
+        "after": "(-31.51, 0.10, -27.90)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (52)",
+        "before": "(-32.44, 0.00, -29.12)",
+        "after": "(-31.89, 0.10, -27.35)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (60)",
+        "before": "(-32.72, 0.00, -29.12)",
+        "after": "(-31.51, 0.10, -27.35)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (48)",
+        "before": "(-33.00, 0.00, -29.12)",
+        "after": "(-31.89, 0.10, -26.80)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (56)",
+        "before": "(-33.28, 0.00, -29.12)",
+        "after": "(-31.51, 0.10, -26.80)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (33)",
+        "before": "(-33.56, 0.00, -29.12)",
+        "after": "(-31.89, 0.10, -26.25)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (35)",
+        "before": "(-33.84, 0.00, -29.12)",
+        "after": "(-31.51, 0.10, -26.25)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "City/Natures_Bush_01 (38)",
+        "before": "(-31.30, 0.00, -4.90)",
+        "after": "(-32.69, 0.10, -25.10)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (53)",
+        "before": "(-32.16, 0.00, -4.90)",
+        "after": "(-32.04, 0.10, -25.10)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (39)",
+        "before": "(-32.90, 0.00, -4.90)",
+        "after": "(-31.39, 0.10, -25.10)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (54)",
+        "before": "(-30.48, 0.00, -4.90)",
+        "after": "(-30.74, 0.10, -25.10)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (51)",
+        "before": "(-33.76, 0.00, -4.90)",
+        "after": "(-32.49, 0.10, -24.25)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (37)",
+        "before": "(-29.62, 0.00, -4.90)",
+        "after": "(-31.84, 0.10, -24.25)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (40)",
+        "before": "(-34.58, 0.00, -4.90)",
+        "after": "(-31.19, 0.10, -24.25)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (55)",
+        "before": "(-28.76, 0.00, -4.90)",
+        "after": "(-30.54, 0.10, -24.25)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (50)",
+        "before": "(-35.44, 0.00, -4.90)",
+        "after": "(-32.30, 0.10, -23.40)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (36)",
+        "before": "(-27.90, 0.00, -4.90)",
+        "after": "(-31.65, 0.10, -23.40)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (41)",
+        "before": "(-36.42, 0.00, -4.90)",
+        "after": "(-31.00, 0.10, -23.40)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (52)",
+        "before": "(-26.92, 0.00, -4.90)",
+        "after": "(-30.35, 0.10, -23.40)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (44)",
+        "before": "(-37.28, 0.00, -4.90)",
+        "after": "(-32.12, 0.10, -22.55)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (35)",
+        "before": "(-26.06, 0.00, -4.90)",
+        "after": "(-31.47, 0.10, -22.55)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (42)",
+        "before": "(-38.26, 0.00, -4.90)",
+        "after": "(-30.82, 0.10, -22.55)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (46)",
+        "before": "(-25.00, 0.00, -4.90)",
+        "after": "(-30.17, 0.10, -22.55)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (49)",
+        "before": "(-39.12, 0.00, -4.90)",
+        "after": "(-31.96, 0.10, -21.70)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (34)",
+        "before": "(-24.14, 0.00, -4.90)",
+        "after": "(-31.31, 0.10, -21.70)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (47)",
+        "before": "(-23.24, 0.00, -4.90)",
+        "after": "(-30.66, 0.10, -21.70)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (43)",
+        "before": "(-40.34, 0.00, -4.90)",
+        "after": "(-30.01, 0.10, -21.70)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (33)",
+        "before": "(-22.38, 0.00, -4.90)",
+        "after": "(-31.82, 0.10, -20.85)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (48)",
+        "before": "(-41.20, 0.00, -4.90)",
+        "after": "(-31.17, 0.10, -20.85)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (45)",
+        "before": "(-21.60, 0.00, -4.90)",
+        "after": "(-30.52, 0.10, -20.85)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (32)",
+        "before": "(-20.74, 0.00, -4.90)",
+        "after": "(-29.87, 0.10, -20.85)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (7)",
+        "before": "(-32.14, 0.00, 8.01)",
+        "after": "(-31.72, 0.10, -20.00)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (6)",
+        "before": "(-29.85, 0.00, 8.01)",
+        "after": "(-31.07, 0.10, -20.00)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (5)",
+        "before": "(-26.54, 0.00, 8.01)",
+        "after": "(-30.42, 0.10, -20.00)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (8)",
+        "before": "(-38.21, 0.00, 8.01)",
+        "after": "(-29.77, 0.10, -20.00)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (9)",
+        "before": "(-38.96, 0.00, 8.01)",
+        "after": "(-31.64, 0.10, -19.15)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (10)",
+        "before": "(-39.72, 0.00, 8.01)",
+        "after": "(-30.99, 0.10, -19.15)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (11)",
+        "before": "(-40.50, 0.00, 8.01)",
+        "after": "(-30.34, 0.10, -19.15)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (4)",
+        "before": "(-22.36, 0.00, 8.01)",
+        "after": "(-29.69, 0.10, -19.15)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (12)",
+        "before": "(-42.16, 0.00, 8.01)",
+        "after": "(-31.60, 0.10, -18.30)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (2)",
+        "before": "(-20.36, 0.00, 8.01)",
+        "after": "(-30.95, 0.10, -18.30)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01",
+        "before": "(-19.50, 0.00, 8.01)",
+        "after": "(-30.30, 0.10, -18.30)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (1)",
+        "before": "(-18.68, 0.00, 8.01)",
+        "after": "(-29.65, 0.10, -18.30)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (13)",
+        "before": "(-46.50, 0.00, 8.01)",
+        "after": "(-31.59, 0.10, -17.45)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (14)",
+        "before": "(-49.42, 0.00, 8.01)",
+        "after": "(-30.94, 0.10, -17.45)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (15)",
+        "before": "(-50.28, 0.00, 8.01)",
+        "after": "(-30.29, 0.10, -17.45)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (31)",
+        "before": "(-68.75, 0.00, -4.90)",
+        "after": "(-29.64, 0.10, -17.45)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (3)",
+        "before": "(-12.57, 0.00, 8.01)",
+        "after": "(-31.62, 0.10, -16.60)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (57)",
+        "before": "(-69.60, 0.00, -4.90)",
+        "after": "(-30.97, 0.10, -16.60)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (30)",
+        "before": "(-70.40, 0.00, -4.90)",
+        "after": "(-30.32, 0.10, -16.60)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (58)",
+        "before": "(-71.25, 0.00, -4.90)",
+        "after": "(-29.67, 0.10, -16.60)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (29)",
+        "before": "(-72.15, 0.00, -4.90)",
+        "after": "(-31.68, 0.10, -15.75)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (59)",
+        "before": "(-73.00, 0.00, -4.90)",
+        "after": "(-31.03, 0.10, -15.75)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (28)",
+        "before": "(-74.09, 0.00, -4.90)",
+        "after": "(-30.38, 0.10, -15.75)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (67)",
+        "before": "(-74.94, 0.00, -4.90)",
+        "after": "(-29.73, 0.10, -15.75)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (27)",
+        "before": "(-75.94, 0.00, -4.90)",
+        "after": "(-31.77, 0.10, -14.90)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (61)",
+        "before": "(-76.79, 0.00, -4.90)",
+        "after": "(-31.12, 0.10, -14.90)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (26)",
+        "before": "(-77.64, 0.00, -4.90)",
+        "after": "(-30.47, 0.10, -14.90)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (16)",
+        "before": "(-65.32, 0.00, 8.01)",
+        "after": "(-29.82, 0.10, -14.90)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (60)",
+        "before": "(-78.49, 0.00, -4.90)",
+        "after": "(-31.90, 0.10, -14.05)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (17)",
+        "before": "(-66.15, 0.00, 8.01)",
+        "after": "(-31.25, 0.10, -14.05)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (25)",
+        "before": "(-79.34, 0.00, -4.90)",
+        "after": "(-30.60, 0.10, -14.05)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (66)",
+        "before": "(-80.19, 0.00, -4.90)",
+        "after": "(-29.95, 0.10, -14.05)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (24)",
+        "before": "(-80.91, 0.00, -4.90)",
+        "after": "(-32.05, 0.10, -13.20)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (65)",
+        "before": "(-81.76, 0.00, -4.90)",
+        "after": "(-31.40, 0.10, -13.20)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (23)",
+        "before": "(-82.61, 0.00, -4.90)",
+        "after": "(-30.75, 0.10, -13.20)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (18)",
+        "before": "(-71.79, 0.00, 8.01)",
+        "after": "(-30.10, 0.10, -13.20)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (56)",
+        "before": "(-83.46, 0.00, -4.90)",
+        "after": "(-32.22, 0.10, -12.35)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (19)",
+        "before": "(-72.70, 0.00, 8.01)",
+        "after": "(-31.57, 0.10, -12.35)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (22)",
+        "before": "(-84.44, 0.00, -4.90)",
+        "after": "(-30.92, 0.10, -12.35)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (64)",
+        "before": "(-85.29, 0.00, -4.90)",
+        "after": "(-30.27, 0.10, -12.35)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (21)",
+        "before": "(-86.30, 0.00, -4.90)",
+        "after": "(-32.40, 0.10, -11.50)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (63)",
+        "before": "(-87.15, 0.00, -4.90)",
+        "after": "(-31.75, 0.10, -11.50)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (20)",
+        "before": "(-88.36, 0.00, -4.90)",
+        "after": "(-31.10, 0.10, -11.50)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/Natures_Bush_01 (62)",
+        "before": "(-89.21, 0.00, -4.90)",
+        "after": "(-30.45, 0.10, -11.50)",
+        "size": "(0.53, 1.23, 0.52)",
+        "value": 2,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (32)",
+        "before": "(-34.12, 0.00, -29.12)",
+        "after": "(-32.59, 0.10, -10.65)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (54)",
+        "before": "(-32.44, 0.00, -28.82)",
+        "after": "(-31.94, 0.10, -10.65)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (62)",
+        "before": "(-32.72, 0.00, -28.82)",
+        "after": "(-31.29, 0.10, -10.65)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (50)",
+        "before": "(-33.00, 0.00, -28.82)",
+        "after": "(-30.64, 0.10, -10.65)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (34)",
+        "before": "(-34.40, 0.00, -29.12)",
+        "after": "(-32.78, 0.10, -9.80)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (58)",
+        "before": "(-33.28, 0.00, -28.82)",
+        "after": "(-32.13, 0.10, -9.80)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (37)",
+        "before": "(-33.56, 0.00, -28.82)",
+        "after": "(-31.48, 0.10, -9.80)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (39)",
+        "before": "(-33.84, 0.00, -28.82)",
+        "after": "(-30.83, 0.10, -9.80)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (36)",
+        "before": "(-34.12, 0.00, -28.82)",
+        "after": "(-32.98, 0.10, -8.95)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (53)",
+        "before": "(-32.44, 0.00, -28.51)",
+        "after": "(-32.33, 0.10, -8.95)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (61)",
+        "before": "(-32.72, 0.00, -28.51)",
+        "after": "(-31.68, 0.10, -8.95)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (38)",
+        "before": "(-34.40, 0.00, -28.82)",
+        "after": "(-31.03, 0.10, -8.95)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (49)",
+        "before": "(-33.00, 0.00, -28.51)",
+        "after": "(-33.16, 0.02, -8.10)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (57)",
+        "before": "(-33.28, 0.00, -28.51)",
+        "after": "(-32.51, 0.02, -8.10)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (42)",
+        "before": "(-33.56, 0.00, -28.51)",
+        "after": "(-31.86, 0.02, -8.10)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (46)",
+        "before": "(-33.84, 0.00, -28.51)",
+        "after": "(-31.21, 0.02, -8.10)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (40)",
+        "before": "(-34.12, 0.00, -28.51)",
+        "after": "(-33.33, 0.02, -7.25)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (55)",
+        "before": "(-32.44, 0.00, -28.21)",
+        "after": "(-32.68, 0.02, -7.25)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (63)",
+        "before": "(-32.72, 0.00, -28.21)",
+        "after": "(-32.03, 0.02, -7.25)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (44)",
+        "before": "(-34.40, 0.00, -28.51)",
+        "after": "(-31.38, 0.02, -7.25)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (51)",
+        "before": "(-33.00, 0.00, -28.21)",
+        "after": "(-33.48, 0.02, -6.40)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (59)",
+        "before": "(-33.28, 0.00, -28.21)",
+        "after": "(-32.83, 0.02, -6.40)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (43)",
+        "before": "(-33.56, 0.00, -28.21)",
+        "after": "(-33.18, 0.02, -6.40)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (47)",
+        "before": "(-33.84, 0.00, -28.21)",
+        "after": "(-32.53, 0.02, -6.40)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (41)",
+        "before": "(-34.12, 0.00, -28.21)",
+        "after": "(-33.60, 0.02, -5.55)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (194)/Natures_Pot Bush_big (45)",
+        "before": "(-34.40, 0.00, -28.21)",
+        "after": "(-32.95, 0.02, -5.55)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (204)/Natures_Pot Bush_big (52)",
+        "before": "(-32.52, 0.00, -27.74)",
+        "after": "(-32.30, 0.02, -5.55)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (204)/Natures_Pot Bush_big (60)",
+        "before": "(-32.80, 0.00, -27.74)",
+        "after": "(-31.65, 0.02, -5.55)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (204)/Natures_Pot Bush_big (48)",
+        "before": "(-33.08, 0.00, -27.74)",
+        "after": "(-33.69, 0.02, -4.70)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (204)/Natures_Pot Bush_big (56)",
+        "before": "(-33.36, 0.00, -27.74)",
+        "after": "(-33.04, 0.02, -4.70)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (204)/Natures_Pot Bush_big (33)",
+        "before": "(-33.65, 0.00, -27.74)",
+        "after": "(-32.39, 0.02, -4.70)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (204)/Natures_Pot Bush_big (35)",
+        "before": "(-33.93, 0.00, -27.74)",
+        "after": "(-31.74, 0.02, -4.70)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (204)/Natures_Pot Bush_big (32)",
+        "before": "(-34.21, 0.00, -27.74)",
+        "after": "(-33.75, 0.02, -3.85)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "City/FarmPoint (204)/Natures_Pot Bush_big (54)",
+        "before": "(-32.52, 0.00, -27.44)",
+        "after": "(-33.10, 0.02, -3.85)",
+        "size": "(0.29, 0.53, 0.29)",
+        "value": 1,
+        "wave": 2
+      }
+    ]
+  },
+  {
+    "scene": "Assets/Scenes/Garden.unity",
+    "initialCandidates": 40,
+    "secondCandidates": 57,
+    "moved": 79,
+    "edits": [
+      {
+        "name": "Garden/MyTown2/Lamp_7_prefab (05)/Lamp 7",
+        "before": "(-34.10, 0.20, -37.62)",
+        "after": "(-31.89, 0.19, -36.72)",
+        "size": "(0.24, 0.53, 0.21)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/MyTown2/Lamp_7_prefab (04)/Lamp 7",
+        "before": "(-29.76, 0.20, -40.98)",
+        "after": "(-31.51, 0.19, -36.72)",
+        "size": "(0.24, 0.53, 0.21)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/MyTown2/Lamp_7_prefab (18)/Lamp 7",
+        "before": "(-30.93, 0.20, -41.96)",
+        "after": "(-31.89, 0.19, -36.17)",
+        "size": "(0.24, 0.53, 0.21)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/MyTown2/Lamp_7_prefab (19)/Lamp 7",
+        "before": "(-27.77, 0.20, -38.68)",
+        "after": "(-31.51, 0.19, -36.17)",
+        "size": "(0.24, 0.53, 0.21)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/MyTown2/Lamp_7_prefab (06)/Lamp 7",
+        "before": "(-33.64, 0.20, -41.95)",
+        "after": "(-31.89, 0.19, -35.62)",
+        "size": "(0.24, 0.53, 0.21)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/MyTown2/Lamp_7_prefab (13)/Lamp 7",
+        "before": "(-30.33, 0.20, -33.28)",
+        "after": "(-31.51, 0.19, -35.62)",
+        "size": "(0.24, 0.53, 0.21)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/MyTown2/Lamp_7_prefab (15)/Lamp 7",
+        "before": "(-35.46, 0.20, -41.82)",
+        "after": "(-31.89, 0.19, -35.07)",
+        "size": "(0.24, 0.53, 0.21)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/MyTown2/Lamp_7_prefab (08)/Lamp 7",
+        "before": "(-34.02, 0.20, -33.23)",
+        "after": "(-31.51, 0.19, -35.07)",
+        "size": "(0.24, 0.53, 0.21)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/MyTown2/Lamp_7_prefab (38)/Lamp 7",
+        "before": "(-27.00, 0.20, -33.07)",
+        "after": "(-31.89, 0.19, -34.52)",
+        "size": "(0.24, 0.53, 0.21)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/MyTown2/Lamp_7_prefab (09)/Lamp 7",
+        "before": "(-37.20, 0.20, -33.31)",
+        "after": "(-31.51, 0.19, -34.52)",
+        "size": "(0.24, 0.53, 0.21)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (39)",
+        "before": "(-32.11, 0.05, -45.91)",
+        "after": "(-31.89, 0.20, -33.95)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (23)",
+        "before": "(-31.19, 0.05, -45.91)",
+        "after": "(-31.51, 0.20, -33.95)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (27)",
+        "before": "(-32.90, 0.05, -45.91)",
+        "after": "(-30.89, 0.20, -33.40)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (31)",
+        "before": "(-30.40, 0.05, -45.91)",
+        "after": "(-30.51, 0.20, -33.40)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (19)",
+        "before": "(-33.69, 0.05, -45.91)",
+        "after": "(-31.45, 0.20, -32.91)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (6)/Natures_Bush_02 (19)",
+        "before": "(-29.59, 0.05, -45.91)",
+        "after": "(-31.45, 0.20, -32.29)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (17)",
+        "before": "(-31.59, 0.05, -46.32)",
+        "after": "(-30.90, 0.20, -32.91)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (29)",
+        "before": "(-32.50, 0.05, -46.32)",
+        "after": "(-30.90, 0.20, -34.29)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (25)",
+        "before": "(-30.80, 0.05, -46.32)",
+        "after": "(-30.35, 0.20, -32.91)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (9)/Natures_Bush_02 (31)",
+        "before": "(-34.50, 0.05, -45.91)",
+        "after": "(-30.35, 0.20, -34.29)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (6)/Natures_Bush_02 (27)",
+        "before": "(-28.80, 0.05, -45.91)",
+        "after": "(-29.80, 0.20, -32.91)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (21)",
+        "before": "(-33.29, 0.05, -46.32)",
+        "after": "(-29.80, 0.20, -34.29)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (35)",
+        "before": "(-30.01, 0.05, -46.32)",
+        "after": "(-29.25, 0.20, -32.91)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (9)/Natures_Bush_02 (35)",
+        "before": "(-34.11, 0.05, -46.32)",
+        "after": "(-29.25, 0.20, -34.29)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (6)/Natures_Bush_02 (21)",
+        "before": "(-29.19, 0.05, -46.32)",
+        "after": "(-28.70, 0.20, -32.91)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (9)/Natures_Bush_02 (23)",
+        "before": "(-35.29, 0.05, -45.91)",
+        "after": "(-28.70, 0.20, -34.29)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (6)/Natures_Bush_02 (39)",
+        "before": "(-28.01, 0.05, -45.91)",
+        "after": "(-28.15, 0.20, -32.91)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (37)",
+        "before": "(-32.11, 0.05, -46.75)",
+        "after": "(-28.15, 0.20, -34.29)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (22)",
+        "before": "(-31.19, 0.05, -46.75)",
+        "after": "(-27.60, 0.20, -32.91)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (26)",
+        "before": "(-32.90, 0.05, -46.75)",
+        "after": "(-27.60, 0.20, -33.79)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (30)",
+        "before": "(-30.40, 0.05, -46.75)",
+        "after": "(-27.05, 0.20, -32.91)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (9)/Natures_Bush_02 (25)",
+        "before": "(-34.90, 0.05, -46.32)",
+        "after": "(-27.05, 0.20, -33.79)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (6)/Natures_Bush_02 (29)",
+        "before": "(-28.40, 0.05, -46.32)",
+        "after": "(-26.50, 0.20, -32.91)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (18)",
+        "before": "(-33.69, 0.05, -46.75)",
+        "after": "(-26.50, 0.20, -33.79)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (6)/Natures_Bush_02 (18)",
+        "before": "(-29.59, 0.05, -46.75)",
+        "after": "(-25.95, 0.20, -32.91)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/MyTown2/Lamp_7_prefab (37)/Lamp 7",
+        "before": "(-24.11, 0.20, -33.31)",
+        "after": "(-25.95, 0.19, -33.31)",
+        "size": "(0.24, 0.53, 0.21)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (16)",
+        "before": "(-31.59, 0.05, -47.16)",
+        "after": "(-25.40, 0.20, -32.91)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (9)/Natures_Bush_02 (30)",
+        "before": "(-34.50, 0.05, -46.75)",
+        "after": "(-25.40, 0.20, -33.79)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (10)/SetOfGrass (6)/Natures_Bush_02 (28)",
+        "before": "(-32.50, 0.05, -47.16)",
+        "after": "(-24.85, 0.20, -32.91)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/WholeGrass/MegaSetOfGrass (9)/SetOfGrass (9)/Natures_Bush_02 (24)",
+        "before": "(-30.80, 0.05, -47.16)",
+        "after": "(-24.85, 0.20, -33.79)",
+        "size": "(0.37, 0.45, 0.43)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Garden/MyTown2/Stone 2 Prefab (16)/stone 2",
+        "before": "(-28.52, 0.18, -39.72)",
+        "after": "(-24.06, 0.11, -32.13)",
+        "size": "(1.04, 0.58, 0.98)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown2/bush prefab/bush",
+        "before": "(-36.26, 0.18, -41.23)",
+        "after": "(-22.87, 0.19, -32.31)",
+        "size": "(0.85, 0.98, 0.80)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown2/Stone 2 Prefab (18)/stone 2",
+        "before": "(-31.85, 0.20, -31.17)",
+        "after": "(-21.76, 0.11, -32.13)",
+        "size": "(1.04, 0.58, 0.98)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown2/Stone 2 Prefab (26)/stone 2",
+        "before": "(-35.36, 0.20, -30.99)",
+        "after": "(-20.61, 0.11, -32.13)",
+        "size": "(1.04, 0.58, 0.98)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown2/Stone 1 Prefab (11)/stone 1",
+        "before": "(-32.51, 0.20, -29.17)",
+        "after": "(-25.31, 0.09, -31.25)",
+        "size": "(0.71, 0.71, 1.19)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown2/Stone 2 Prefab (24)/stone 2",
+        "before": "(-30.43, 0.20, -28.80)",
+        "after": "(-26.71, 0.11, -31.28)",
+        "size": "(1.04, 0.58, 0.98)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown2/Stone 2 Prefab (6)/stone 2",
+        "before": "(-41.81, 0.18, -37.20)",
+        "after": "(-19.41, 0.11, -31.28)",
+        "size": "(1.04, 0.58, 0.98)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown2/Stone 2 Prefab (2)/stone 2",
+        "before": "(-42.80, 0.18, -42.87)",
+        "after": "(-22.67, 0.11, -30.43)",
+        "size": "(1.04, 0.58, 0.98)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown2/Stone 2 Prefab (12)/stone 2",
+        "before": "(-41.70, 0.18, -25.22)",
+        "after": "(-28.02, 0.11, -30.43)",
+        "size": "(1.04, 0.58, 0.98)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown2/Stone 2 Prefab (10)/stone 2",
+        "before": "(-38.63, 0.20, -20.88)",
+        "after": "(-24.99, 0.11, -29.58)",
+        "size": "(1.04, 0.58, 0.98)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown2/Stone 2 Prefab (08)/stone 2",
+        "before": "(-22.96, 0.20, -21.56)",
+        "after": "(-26.34, 0.11, -29.58)",
+        "size": "(1.04, 0.58, 0.98)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown2/Stone 2 Prefab (20)/stone 2",
+        "before": "(-38.06, 0.20, -20.08)",
+        "after": "(-19.69, 0.11, -29.58)",
+        "size": "(1.04, 0.58, 0.98)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown2/Stone 2 Prefab (23)/stone 2",
+        "before": "(-40.92, 0.20, -20.48)",
+        "after": "(-22.83, 0.11, -28.73)",
+        "size": "(1.04, 0.58, 0.98)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown2/Stone 1 Prefab (17)/stone 1",
+        "before": "(-23.07, 0.20, -19.45)",
+        "after": "(-21.63, 0.09, -28.70)",
+        "size": "(0.71, 0.71, 1.20)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/GrassAroundPlace/Stone 1 Prefab (24)/stone 1",
+        "before": "(-55.26, 0.00, -41.94)",
+        "after": "(-24.08, 0.09, -28.25)",
+        "size": "(0.71, 0.71, 1.18)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/GrassAroundPlace/Stone 2 Prefab (22)/stone 2",
+        "before": "(-55.85, 0.00, -43.49)",
+        "after": "(-19.73, 0.11, -28.22)",
+        "size": "(1.04, 0.58, 0.98)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown2/Stone 2 Prefab (27)/stone 2",
+        "before": "(-25.06, 0.20, -10.30)",
+        "after": "(-18.75, 0.11, -27.88)",
+        "size": "(1.04, 0.58, 0.98)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown/Stone 2 Prefab (08)/stone 2",
+        "before": "(-2.04, 0.20, -36.44)",
+        "after": "(-22.42, 0.11, -27.37)",
+        "size": "(1.04, 0.58, 0.98)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown/Stone 1 Prefab (17)/stone 1",
+        "before": "(-1.93, 0.20, -38.55)",
+        "after": "(-21.32, 0.09, -27.40)",
+        "size": "(0.71, 0.71, 1.20)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown/Stone 2 Prefab (27)/stone 2",
+        "before": "(0.06, 0.20, -47.70)",
+        "after": "(-20.34, 0.11, -26.52)",
+        "size": "(1.04, 0.58, 0.98)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown2/Stone 1 Prefab (16)/stone 1",
+        "before": "(-32.35, 0.20, -0.27)",
+        "after": "(-19.16, 0.09, -26.15)",
+        "size": "(0.70, 0.70, 1.17)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown/Stone 1 Prefab (20)/stone 1",
+        "before": "(6.81, 0.20, -43.43)",
+        "after": "(-23.85, 0.09, -25.70)",
+        "size": "(0.69, 0.69, 1.15)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown2/Stone 2 Prefab (9)/stone 2",
+        "before": "(-36.93, 0.20, 0.51)",
+        "after": "(-22.82, 0.11, -25.33)",
+        "size": "(1.04, 0.58, 0.98)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown/Stone 2 Prefab (18)/stone 2",
+        "before": "(6.85, 0.20, -26.83)",
+        "after": "(-21.29, 0.11, -24.82)",
+        "size": "(1.04, 0.58, 0.98)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown/Stone 2 Prefab (16)/stone 2",
+        "before": "(3.52, 0.18, -18.28)",
+        "after": "(-20.14, 0.11, -24.82)",
+        "size": "(1.04, 0.58, 0.98)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown/Stone 2 Prefab (7)/stone 2",
+        "before": "(8.85, 0.20, -51.49)",
+        "after": "(-18.99, 0.11, -24.82)",
+        "size": "(1.04, 0.58, 0.98)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown/Stone 2 Prefab (26)/stone 2",
+        "before": "(10.36, 0.20, -27.01)",
+        "after": "(-23.32, 0.11, -23.97)",
+        "size": "(1.04, 0.58, 0.98)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown/Stone 1 Prefab (16)/stone 1",
+        "before": "(7.35, 0.20, -57.73)",
+        "after": "(-22.22, 0.09, -24.00)",
+        "size": "(0.70, 0.70, 1.17)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown/Stone 2 Prefab (21)/stone 2",
+        "before": "(13.63, 0.20, -43.49)",
+        "after": "(-19.73, 0.11, -23.12)",
+        "size": "(1.04, 0.58, 0.98)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown/Stone 2 Prefab (23)/stone 2",
+        "before": "(15.92, 0.20, -37.52)",
+        "after": "(-18.43, 0.11, -23.12)",
+        "size": "(1.04, 0.58, 0.98)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown/bush prefab/bush",
+        "before": "(11.26, 0.18, -16.77)",
+        "after": "(-24.52, 0.19, -22.09)",
+        "size": "(0.85, 0.98, 0.80)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown/bush prefab/bush",
+        "before": "(-24.52, 0.19, -22.09)",
+        "after": "(-23.37, 0.19, -22.09)",
+        "size": "(0.85, 0.98, 0.80)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown/Stone 2 Prefab (9)/stone 2",
+        "before": "(11.93, 0.20, -58.51)",
+        "after": "(-22.18, 0.11, -22.27)",
+        "size": "(1.04, 0.58, 0.98)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown/Stone 2 Prefab (12)/stone 2",
+        "before": "(16.70, 0.18, -32.78)",
+        "after": "(-25.53, 0.11, -22.27)",
+        "size": "(1.04, 0.58, 0.98)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown/Stone 2 Prefab (14)/stone 2",
+        "before": "(17.20, 0.18, -34.87)",
+        "after": "(-26.60, 0.11, -21.42)",
+        "size": "(1.04, 0.58, 0.98)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown/Stone 2 Prefab (6)/stone 2",
+        "before": "(16.81, 0.18, -20.80)",
+        "after": "(-20.95, 0.11, -21.42)",
+        "size": "(1.04, 0.58, 0.98)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown/Stone 2 Prefab (5)/stone 2",
+        "before": "(16.52, 0.18, -18.47)",
+        "after": "(-19.80, 0.11, -21.42)",
+        "size": "(1.04, 0.58, 0.98)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/MyTown/Stone 2 Prefab (2)/stone 2",
+        "before": "(17.80, 0.18, -15.13)",
+        "after": "(-18.65, 0.11, -21.42)",
+        "size": "(1.04, 0.58, 0.98)",
+        "value": 3,
+        "wave": 2
+      },
+      {
+        "name": "Garden/NextPlace/Stone 2 Prefab (8)/stone 2",
+        "before": "(-42.76, 0.18, 17.70)",
+        "after": "(-24.92, 0.11, -20.23)",
+        "size": "(1.04, 0.58, 0.98)",
+        "value": 3,
+        "wave": 2
+      }
+    ]
+  },
+  {
+    "scene": "Assets/Scenes/MedievalCastle.unity",
+    "initialCandidates": 40,
+    "secondCandidates": 170,
+    "moved": 210,
+    "edits": [
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (4)/Props_Dustbin_visual",
+        "before": "(-65.84, 0.42, -48.60)",
+        "after": "(-66.29, 0.26, -48.60)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (1)/Props_Dustbin_visual",
+        "before": "(-66.65, 0.42, -48.61)",
+        "after": "(-65.91, 0.26, -48.60)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (2)/Props_Dustbin_visual",
+        "before": "(-66.25, 0.42, -48.41)",
+        "after": "(-66.29, 0.26, -48.05)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (13)/Props_Dustbin_visual",
+        "before": "(-67.10, 0.42, -48.59)",
+        "after": "(-65.91, 0.26, -48.05)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (10)/Props_Dustbin_visual",
+        "before": "(-65.41, 0.42, -48.41)",
+        "after": "(-66.29, 0.26, -47.50)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (13)/Props_Dustbin_visual",
+        "before": "(-64.99, 0.42, -48.60)",
+        "after": "(-65.91, 0.26, -47.50)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (3)/Props_Dustbin_visual",
+        "before": "(-65.84, 0.42, -48.17)",
+        "after": "(-65.79, 0.26, -46.95)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (5)/Props_Dustbin_visual",
+        "before": "(-66.65, 0.42, -48.16)",
+        "after": "(-65.41, 0.26, -46.95)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (7)/Props_Dustbin_visual",
+        "before": "(-64.10, 0.42, -50.12)",
+        "after": "(-66.29, 0.26, -46.40)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (6)/Props_Dustbin_visual",
+        "before": "(-66.25, 0.42, -47.95)",
+        "after": "(-65.91, 0.26, -46.40)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (5)/Props_Dustbin_visual",
+        "before": "(-64.10, 0.42, -50.57)",
+        "after": "(-65.79, 0.26, -45.85)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (12)/Props_Dustbin_visual",
+        "before": "(-67.11, 0.42, -48.17)",
+        "after": "(-65.41, 0.26, -45.85)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (1)/Props_Dustbin_visual",
+        "before": "(-64.52, 0.42, -48.60)",
+        "after": "(-66.29, 0.26, -45.30)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (12)/Props_Dustbin_visual",
+        "before": "(-65.00, 0.42, -48.17)",
+        "after": "(-65.91, 0.26, -45.30)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (10)/Props_Dustbin_visual",
+        "before": "(-67.51, 0.42, -48.40)",
+        "after": "(-66.29, 0.26, -44.75)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (11)/Props_Dustbin_visual",
+        "before": "(-65.41, 0.42, -47.95)",
+        "after": "(-65.91, 0.26, -44.75)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (1)/Props_Dustbin_visual",
+        "before": "(-64.10, 0.42, -51.01)",
+        "after": "(-66.29, 0.26, -44.20)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (8)/Props_Dustbin_visual",
+        "before": "(-65.84, 0.42, -47.72)",
+        "after": "(-65.91, 0.26, -44.20)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (4)/Props_Dustbin_visual",
+        "before": "(-67.95, 0.42, -48.59)",
+        "after": "(-66.29, 0.26, -43.65)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (7)/Props_Dustbin_visual",
+        "before": "(-66.65, 0.42, -47.72)",
+        "after": "(-65.91, 0.26, -43.65)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (6)/Props_Dustbin_visual",
+        "before": "(-63.70, 0.42, -50.36)",
+        "after": "(-66.29, 0.26, -43.10)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (5)/Props_Dustbin_visual",
+        "before": "(-64.52, 0.42, -48.16)",
+        "after": "(-65.91, 0.26, -43.10)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (7)/Props_Dustbin_visual",
+        "before": "(-64.10, 0.42, -51.43)",
+        "after": "(-66.29, 0.26, -42.55)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (11)/Props_Dustbin_visual",
+        "before": "(-67.51, 0.42, -47.95)",
+        "after": "(-65.91, 0.26, -42.55)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (9)/Props_Dustbin_visual",
+        "before": "(-67.10, 0.42, -47.71)",
+        "after": "(-66.29, 0.26, -42.00)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (2)/Props_Dustbin_visual",
+        "before": "(-63.70, 0.42, -50.81)",
+        "after": "(-65.91, 0.26, -42.00)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb/Props_Dustbin (9)/Props_Dustbin_visual",
+        "before": "(-64.99, 0.42, -47.72)",
+        "after": "(-66.29, 0.26, -41.45)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (2)/Props_Dustbin_visual",
+        "before": "(-64.11, 0.42, -48.40)",
+        "after": "(-65.91, 0.26, -41.45)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (3)/Props_Dustbin_visual",
+        "before": "(-67.95, 0.42, -48.17)",
+        "after": "(-66.29, 0.26, -40.90)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (4)/Props_Dustbin_visual",
+        "before": "(-65.84, 0.42, -47.30)",
+        "after": "(-65.91, 0.26, -40.90)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (5)/Props_Dustbin_visual",
+        "before": "(-64.10, 0.42, -51.87)",
+        "after": "(-66.29, 0.26, -40.35)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (1)/Props_Dustbin_visual",
+        "before": "(-66.65, 0.42, -47.31)",
+        "after": "(-65.91, 0.26, -40.35)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (2)/Props_Dustbin_visual",
+        "before": "(-68.36, 0.42, -48.40)",
+        "after": "(-66.29, 0.26, -39.80)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (4)/Props_Dustbin_visual",
+        "before": "(-63.70, 0.42, -48.59)",
+        "after": "(-65.91, 0.26, -39.80)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (7)/Props_Dustbin_visual",
+        "before": "(-64.52, 0.42, -47.71)",
+        "after": "(-66.29, 0.26, -39.25)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (8)/Props_Dustbin_visual",
+        "before": "(-63.28, 0.42, -50.12)",
+        "after": "(-65.91, 0.26, -39.25)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (6)/Props_Dustbin_visual",
+        "before": "(-64.11, 0.42, -47.95)",
+        "after": "(-66.29, 0.26, -38.70)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (3)/Props_Dustbin_visual",
+        "before": "(-63.29, 0.42, -50.58)",
+        "after": "(-65.91, 0.26, -38.70)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (13)/Props_Dustbin_visual",
+        "before": "(-67.06, 0.42, -47.27)",
+        "after": "(-66.79, 0.26, -38.15)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (2)/Props_Dustbin_visual",
+        "before": "(-66.25, 0.42, -47.11)",
+        "after": "(-66.41, 0.26, -38.15)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 1
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (6)/Props_Dustbin_visual",
+        "before": "(-63.70, 0.42, -51.66)",
+        "after": "(-67.08, 0.26, -37.00)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (13)/Props_Dustbin_visual",
+        "before": "(-64.99, 0.42, -47.30)",
+        "after": "(-67.43, 0.26, -37.00)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (8)/Props_Dustbin_visual",
+        "before": "(-67.95, 0.42, -47.71)",
+        "after": "(-67.77, 0.26, -37.00)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (10)/Props_Dustbin_visual",
+        "before": "(-65.41, 0.42, -47.11)",
+        "after": "(-68.13, 0.26, -37.00)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (4)/Props_Dustbin_visual",
+        "before": "(-63.29, 0.42, -51.01)",
+        "after": "(-66.88, 0.26, -36.15)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (1)/Props_Dustbin_visual",
+        "before": "(-68.76, 0.42, -48.60)",
+        "after": "(-66.23, 0.26, -36.15)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (3)/Props_Dustbin_visual",
+        "before": "(-63.71, 0.42, -48.17)",
+        "after": "(-67.58, 0.26, -36.15)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (6)/Props_Dustbin_visual",
+        "before": "(-68.36, 0.42, -47.95)",
+        "after": "(-67.93, 0.26, -36.15)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (1)/Props_Dustbin_visual",
+        "before": "(-64.10, 0.42, -52.31)",
+        "after": "(-66.69, 0.26, -35.30)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (3)/Props_Dustbin_visual",
+        "before": "(-65.84, 0.42, -46.87)",
+        "after": "(-66.04, 0.26, -35.30)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (8)/Props_Dustbin_visual",
+        "before": "(-63.28, 0.42, -51.43)",
+        "after": "(-67.39, 0.26, -35.30)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb (1)/Props_Dustbin (1)/Props_Dustbin_visual",
+        "before": "(-64.48, 0.42, -47.28)",
+        "after": "(-67.74, 0.26, -35.30)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (5)/Props_Dustbin_visual",
+        "before": "(-66.65, 0.42, -46.86)",
+        "after": "(-66.51, 0.26, -34.45)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (2)/Props_Dustbin_visual",
+        "before": "(-63.70, 0.42, -52.11)",
+        "after": "(-65.86, 0.26, -34.45)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (10)/Props_Dustbin_visual",
+        "before": "(-67.47, 0.42, -47.08)",
+        "after": "(-65.21, 0.26, -34.45)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (5)/Props_Dustbin_visual",
+        "before": "(-68.76, 0.42, -48.16)",
+        "after": "(-67.06, 0.26, -34.45)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (10)/Props_Dustbin_visual",
+        "before": "(-63.27, 0.42, -48.40)",
+        "after": "(-66.35, 0.26, -33.60)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (11)/Props_Dustbin_visual",
+        "before": "(-62.85, 0.42, -50.36)",
+        "after": "(-65.70, 0.26, -33.60)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (4)/Props_Dustbin_visual",
+        "before": "(-67.91, 0.42, -47.27)",
+        "after": "(-65.05, 0.26, -33.60)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (12)/Props_Dustbin_visual",
+        "before": "(-67.07, 0.42, -46.84)",
+        "after": "(-64.40, 0.26, -33.60)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (8)/Props_Dustbin_visual",
+        "before": "(-63.70, 0.42, -47.71)",
+        "after": "(-66.21, 0.26, -32.75)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (12)/Props_Dustbin_visual",
+        "before": "(-65.00, 0.42, -46.87)",
+        "after": "(-65.56, 0.26, -32.75)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (10)/Props_Dustbin_visual",
+        "before": "(-62.85, 0.42, -50.81)",
+        "after": "(-64.91, 0.26, -32.75)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (6)/Props_Dustbin_visual",
+        "before": "(-66.25, 0.42, -46.65)",
+        "after": "(-64.26, 0.26, -32.75)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (3)/Props_Dustbin_visual",
+        "before": "(-63.29, 0.42, -51.88)",
+        "after": "(-66.10, 0.26, -31.90)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfWhiteStolb/Props_Dustbin (7)/Props_Dustbin_visual",
+        "before": "(-64.10, 0.42, -52.74)",
+        "after": "(-65.45, 0.26, -31.90)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (11)/Props_Dustbin_visual",
+        "before": "(-65.41, 0.42, -46.65)",
+        "after": "(-64.80, 0.26, -31.90)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb/Props_Dustbin (13)/Props_Dustbin_visual",
+        "before": "(-69.24, 0.42, -48.60)",
+        "after": "(-64.15, 0.26, -31.90)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (11)/Props_Dustbin_visual",
+        "before": "(-63.27, 0.42, -47.95)",
+        "after": "(-64.53, 0.26, -31.05)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb (1)/Props_Dustbin (7)/Props_Dustbin_visual",
+        "before": "(-68.76, 0.42, -47.71)",
+        "after": "(-63.88, 0.26, -31.05)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (13)/Props_Dustbin_visual",
+        "before": "(-62.85, 0.42, -48.59)",
+        "after": "(-63.23, 0.26, -31.05)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb (1)/Props_Dustbin (2)/Props_Dustbin_visual",
+        "before": "(-64.07, 0.42, -47.08)",
+        "after": "(-62.58, 0.26, -31.05)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb (1)/Props_Dustbin (5)/Props_Dustbin_visual",
+        "before": "(-64.48, 0.42, -46.83)",
+        "after": "(-63.98, 0.26, -30.20)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (8)/Props_Dustbin_visual",
+        "before": "(-65.84, 0.42, -46.42)",
+        "after": "(-64.33, 0.26, -30.20)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (7)/Props_Dustbin_visual",
+        "before": "(-66.65, 0.42, -46.42)",
+        "after": "(-63.18, 0.26, -30.20)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb/Props_Dustbin (12)/Props_Dustbin_visual",
+        "before": "(-69.24, 0.42, -48.17)",
+        "after": "(-63.53, 0.26, -30.20)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (4)/Props_Dustbin_visual",
+        "before": "(-63.29, 0.42, -52.31)",
+        "after": "(-66.98, 0.26, -29.35)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (3)/Props_Dustbin_visual",
+        "before": "(-67.91, 0.42, -46.84)",
+        "after": "(-67.33, 0.26, -29.35)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (11)/Props_Dustbin_visual",
+        "before": "(-62.85, 0.42, -51.66)",
+        "after": "(-63.18, 0.26, -29.35)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (11)/Props_Dustbin_visual",
+        "before": "(-67.47, 0.42, -46.62)",
+        "after": "(-62.53, 0.26, -29.35)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb (1)/Props_Dustbin (4)/Props_Dustbin_visual",
+        "before": "(-63.66, 0.42, -47.27)",
+        "after": "(-66.00, 0.26, -28.50)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (9)/Props_Dustbin_visual",
+        "before": "(-62.44, 0.42, -50.12)",
+        "after": "(-66.35, 0.26, -28.50)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (2)/Props_Dustbin_visual",
+        "before": "(-68.32, 0.42, -47.08)",
+        "after": "(-66.70, 0.26, -28.50)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (12)/Props_Dustbin_visual",
+        "before": "(-62.44, 0.42, -50.58)",
+        "after": "(-65.55, 0.26, -28.50)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (12)/Props_Dustbin_visual",
+        "before": "(-62.86, 0.42, -48.17)",
+        "after": "(-66.07, 0.26, -27.65)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (9)/Props_Dustbin_visual",
+        "before": "(-67.06, 0.42, -46.39)",
+        "after": "(-65.42, 0.26, -27.65)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb/Props_Dustbin (9)/Props_Dustbin_visual",
+        "before": "(-64.99, 0.42, -46.42)",
+        "after": "(-64.77, 0.26, -27.65)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfWhiteStolb/Props_Dustbin (5)/Props_Dustbin_visual",
+        "before": "(-64.10, 0.42, -53.19)",
+        "after": "(-66.62, 0.26, -27.65)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (1)/Props_Dustbin_visual",
+        "before": "(-68.72, 0.42, -47.28)",
+        "after": "(-65.66, 0.26, -26.80)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb/Props_Dustbin (13)/Props_Dustbin_visual",
+        "before": "(-62.44, 0.42, -51.01)",
+        "after": "(-65.01, 0.26, -26.80)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfWhiteStolb/Props_Dustbin (6)/Props_Dustbin_visual",
+        "before": "(-63.70, 0.42, -52.98)",
+        "after": "(-64.36, 0.26, -26.80)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (10)/Props_Dustbin_visual",
+        "before": "(-62.85, 0.42, -52.11)",
+        "after": "(-63.71, 0.26, -26.80)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb/Props_Dustbin (9)/Props_Dustbin_visual",
+        "before": "(-69.24, 0.42, -47.72)",
+        "after": "(-66.28, 0.26, -25.95)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb/Props_Dustbin (10)/Props_Dustbin_visual",
+        "before": "(-69.65, 0.42, -48.41)",
+        "after": "(-65.63, 0.26, -25.95)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (9)/Props_Dustbin_visual",
+        "before": "(-62.44, 0.42, -51.43)",
+        "after": "(-64.48, 0.26, -25.95)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfWhiteStolb/Props_Dustbin (8)/Props_Dustbin_visual",
+        "before": "(-63.28, 0.42, -52.74)",
+        "after": "(-63.83, 0.26, -25.95)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb (1)/Props_Dustbin (6)/Props_Dustbin_visual",
+        "before": "(-64.07, 0.42, -46.62)",
+        "after": "(-66.43, 0.26, -25.10)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (3)/BlokOfBlackStolb/Props_Dustbin (1)/Props_Dustbin_visual",
+        "before": "(-62.39, 0.42, -48.61)",
+        "after": "(-65.28, 0.26, -25.10)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb (1)/Props_Dustbin (7)/Props_Dustbin_visual",
+        "before": "(-64.48, 0.42, -46.39)",
+        "after": "(-64.63, 0.26, -25.10)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfWhiteStolb (1)/Props_Dustbin (9)/Props_Dustbin_visual",
+        "before": "(-62.85, 0.42, -47.71)",
+        "after": "(-62.98, 0.26, -25.10)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb (1)/Props_Dustbin (3)/Props_Dustbin_visual",
+        "before": "(-63.67, 0.42, -46.84)",
+        "after": "(-66.10, 0.26, -24.25)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (8)/Props_Dustbin_visual",
+        "before": "(-67.91, 0.42, -46.39)",
+        "after": "(-65.45, 0.26, -24.25)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (6)/Props_Dustbin_visual",
+        "before": "(-68.32, 0.42, -46.62)",
+        "after": "(-64.80, 0.26, -24.25)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfBlackStolb/Props_Dustbin (4)/Props_Dustbin_visual",
+        "before": "(-65.84, 0.42, -45.93)",
+        "after": "(-64.15, 0.26, -24.25)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb (1)/Props_Dustbin (10)/Props_Dustbin_visual",
+        "before": "(-63.23, 0.42, -47.08)",
+        "after": "(-66.79, 0.26, -23.40)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb/Props_Dustbin (11)/Props_Dustbin_visual",
+        "before": "(-69.65, 0.42, -47.95)",
+        "after": "(-66.14, 0.26, -23.40)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfBlackStolb/Props_Dustbin (1)/Props_Dustbin_visual",
+        "before": "(-66.65, 0.42, -45.93)",
+        "after": "(-65.49, 0.26, -23.40)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (12)/Props_Dustbin_visual",
+        "before": "(-62.44, 0.42, -51.88)",
+        "after": "(-64.84, 0.26, -23.40)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (5)/Props_Dustbin_visual",
+        "before": "(-68.72, 0.42, -46.83)",
+        "after": "(-66.99, 0.26, -22.55)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (3)/BlokOfBlackStolb/Props_Dustbin (5)/Props_Dustbin_visual",
+        "before": "(-62.39, 0.42, -48.16)",
+        "after": "(-66.34, 0.26, -22.55)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb/Props_Dustbin (13)/Props_Dustbin_visual",
+        "before": "(-69.24, 0.42, -47.30)",
+        "after": "(-65.69, 0.26, -22.55)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfWhiteStolb/Props_Dustbin (1)/Props_Dustbin_visual",
+        "before": "(-64.10, 0.42, -53.63)",
+        "after": "(-65.04, 0.26, -22.55)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb (1)/Props_Dustbin (7)/Props_Dustbin_visual",
+        "before": "(-61.92, 0.42, -50.10)",
+        "after": "(-67.18, 0.26, -21.70)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfWhiteStolb/Props_Dustbin (2)/Props_Dustbin_visual",
+        "before": "(-63.70, 0.42, -53.43)",
+        "after": "(-66.03, 0.26, -21.70)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (9)/BlokOfWhiteStolb (1)/Props_Dustbin (13)/Props_Dustbin_visual",
+        "before": "(-67.10, 0.42, -45.92)",
+        "after": "(-64.38, 0.26, -21.70)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb (1)/Props_Dustbin (5)/Props_Dustbin_visual",
+        "before": "(-61.92, 0.42, -50.54)",
+        "after": "(-64.73, 0.26, -21.70)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfBlackStolb/Props_Dustbin (13)/Props_Dustbin_visual",
+        "before": "(-64.99, 0.42, -45.93)",
+        "after": "(-67.38, 0.26, -20.85)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb/Props_Dustbin (4)/Props_Dustbin_visual",
+        "before": "(-70.09, 0.42, -48.60)",
+        "after": "(-66.73, 0.26, -20.85)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfWhiteStolb/Props_Dustbin (3)/Props_Dustbin_visual",
+        "before": "(-63.29, 0.42, -53.20)",
+        "after": "(-66.08, 0.26, -20.85)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfBlackStolb/Props_Dustbin (2)/Props_Dustbin_visual",
+        "before": "(-66.25, 0.42, -45.73)",
+        "after": "(-65.43, 0.26, -20.85)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb (1)/Props_Dustbin (13)/Props_Dustbin_visual",
+        "before": "(-62.81, 0.42, -47.27)",
+        "after": "(-67.06, 0.26, -20.00)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb (1)/Props_Dustbin (1)/Props_Dustbin_visual",
+        "before": "(-61.92, 0.42, -50.98)",
+        "after": "(-66.41, 0.26, -20.00)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfBlackStolb/Props_Dustbin (10)/Props_Dustbin_visual",
+        "before": "(-65.41, 0.42, -45.73)",
+        "after": "(-65.76, 0.26, -20.00)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb/Props_Dustbin (13)/Props_Dustbin_visual",
+        "before": "(-62.44, 0.42, -52.31)",
+        "after": "(-65.11, 0.26, -20.00)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (3)/BlokOfBlackStolb/Props_Dustbin (7)/Props_Dustbin_visual",
+        "before": "(-62.39, 0.42, -47.72)",
+        "after": "(-67.73, 0.26, -19.15)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb (1)/Props_Dustbin (8)/Props_Dustbin_visual",
+        "before": "(-63.66, 0.42, -46.39)",
+        "after": "(-67.08, 0.26, -19.15)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfWhiteStolb (1)/Props_Dustbin (1)/Props_Dustbin_visual",
+        "before": "(-64.52, 0.42, -45.93)",
+        "after": "(-65.93, 0.26, -19.15)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb (1)/Props_Dustbin (7)/Props_Dustbin_visual",
+        "before": "(-61.96, 0.42, -51.42)",
+        "after": "(-65.28, 0.26, -19.15)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb/Props_Dustbin (3)/Props_Dustbin_visual",
+        "before": "(-70.09, 0.42, -48.17)",
+        "after": "(-67.88, 0.26, -18.30)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (3)/BlokOfBlackStolb/Props_Dustbin (2)/Props_Dustbin_visual",
+        "before": "(-61.99, 0.42, -48.41)",
+        "after": "(-66.73, 0.26, -18.30)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfWhiteStolb/Props_Dustbin (11)/Props_Dustbin_visual",
+        "before": "(-62.85, 0.42, -52.98)",
+        "after": "(-66.08, 0.26, -18.30)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb (1)/Props_Dustbin (11)/Props_Dustbin_visual",
+        "before": "(-63.23, 0.42, -46.62)",
+        "after": "(-65.43, 0.26, -18.30)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb/Props_Dustbin (12)/Props_Dustbin_visual",
+        "before": "(-69.24, 0.42, -46.87)",
+        "after": "(-67.00, 0.26, -17.45)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb (1)/Props_Dustbin (7)/Props_Dustbin_visual",
+        "before": "(-68.72, 0.42, -46.39)",
+        "after": "(-66.35, 0.26, -17.45)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (9)/BlokOfWhiteStolb (1)/Props_Dustbin (4)/Props_Dustbin_visual",
+        "before": "(-67.95, 0.42, -45.92)",
+        "after": "(-65.70, 0.26, -17.45)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (9)/BlokOfWhiteStolb (1)/Props_Dustbin (10)/Props_Dustbin_visual",
+        "before": "(-67.51, 0.42, -45.73)",
+        "after": "(-65.05, 0.26, -17.45)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfBlackStolb/Props_Dustbin (3)/Props_Dustbin_visual",
+        "before": "(-65.84, 0.42, -45.50)",
+        "after": "(-68.09, 0.26, -16.60)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfBlackStolb/Props_Dustbin (7)/Props_Dustbin_visual",
+        "before": "(-64.10, 0.42, -54.05)",
+        "after": "(-67.44, 0.26, -16.60)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb (1)/Props_Dustbin (5)/Props_Dustbin_visual",
+        "before": "(-61.96, 0.42, -51.86)",
+        "after": "(-65.79, 0.26, -16.60)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfBlackStolb/Props_Dustbin (5)/Props_Dustbin_visual",
+        "before": "(-66.65, 0.42, -45.49)",
+        "after": "(-66.14, 0.26, -16.60)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb (1)/Props_Dustbin (12)/Props_Dustbin_visual",
+        "before": "(-62.82, 0.42, -46.84)",
+        "after": "(-68.15, 0.26, -15.75)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfWhiteStolb/Props_Dustbin (9)/Props_Dustbin_visual",
+        "before": "(-62.44, 0.42, -52.74)",
+        "after": "(-67.00, 0.26, -15.75)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (3)/BlokOfWhiteStolb/Props_Dustbin (1)/Props_Dustbin_visual",
+        "before": "(-62.39, 0.42, -47.31)",
+        "after": "(-66.35, 0.26, -15.75)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb/Props_Dustbin (10)/Props_Dustbin_visual",
+        "before": "(-69.65, 0.42, -47.11)",
+        "after": "(-65.20, 0.26, -15.75)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (3)/BlokOfBlackStolb/Props_Dustbin (6)/Props_Dustbin_visual",
+        "before": "(-61.99, 0.42, -47.95)",
+        "after": "(-67.67, 0.26, -14.90)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb/Props_Dustbin (8)/Props_Dustbin_visual",
+        "before": "(-70.08, 0.42, -47.72)",
+        "after": "(-67.02, 0.26, -14.90)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfWhiteStolb/Props_Dustbin (4)/Props_Dustbin_visual",
+        "before": "(-63.29, 0.42, -53.63)",
+        "after": "(-66.37, 0.26, -14.90)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb (1)/Props_Dustbin (6)/Props_Dustbin_visual",
+        "before": "(-61.52, 0.42, -50.33)",
+        "after": "(-65.72, 0.26, -14.90)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (9)/BlokOfWhiteStolb (1)/Props_Dustbin (12)/Props_Dustbin_visual",
+        "before": "(-67.11, 0.42, -45.49)",
+        "after": "(-68.16, 0.26, -14.05)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfBlackStolb/Props_Dustbin (12)/Props_Dustbin_visual",
+        "before": "(-65.00, 0.42, -45.50)",
+        "after": "(-67.01, 0.26, -14.05)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb (1)/Props_Dustbin (2)/Props_Dustbin_visual",
+        "before": "(-61.52, 0.42, -50.78)",
+        "after": "(-66.36, 0.26, -14.05)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb/Props_Dustbin (2)/Props_Dustbin_visual",
+        "before": "(-70.50, 0.42, -48.41)",
+        "after": "(-65.71, 0.26, -14.05)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfWhiteStolb (1)/Props_Dustbin (2)/Props_Dustbin_visual",
+        "before": "(-64.11, 0.42, -45.73)",
+        "after": "(-68.12, 0.26, -13.20)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfBlackStolb/Props_Dustbin (6)/Props_Dustbin_visual",
+        "before": "(-66.25, 0.42, -45.28)",
+        "after": "(-67.47, 0.26, -13.20)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfWhiteStolb/Props_Dustbin (10)/Props_Dustbin_visual",
+        "before": "(-62.85, 0.42, -53.43)",
+        "after": "(-66.32, 0.26, -13.20)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (3)/BlokOfBlackStolb/Props_Dustbin (4)/Props_Dustbin_visual",
+        "before": "(-61.58, 0.42, -48.60)",
+        "after": "(-65.67, 0.26, -13.20)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfWhiteStolb (1)/Props_Dustbin (4)/Props_Dustbin_visual",
+        "before": "(-63.70, 0.42, -45.92)",
+        "after": "(-68.04, 0.26, -12.35)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb (1)/Props_Dustbin (1)/Props_Dustbin_visual",
+        "before": "(-61.96, 0.42, -52.31)",
+        "after": "(-67.39, 0.26, -12.35)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb/Props_Dustbin (9)/Props_Dustbin_visual",
+        "before": "(-69.24, 0.42, -46.42)",
+        "after": "(-66.74, 0.26, -12.35)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfBlackStolb/Props_Dustbin (11)/Props_Dustbin_visual",
+        "before": "(-65.41, 0.42, -45.28)",
+        "after": "(-64.09, 0.26, -12.35)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfWhiteStolb (1)/Props_Dustbin (5)/Props_Dustbin_visual",
+        "before": "(-64.52, 0.42, -45.48)",
+        "after": "(-66.93, 0.26, -11.50)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb/Props_Dustbin (4)/Props_Dustbin_visual",
+        "before": "(-70.09, 0.42, -47.30)",
+        "after": "(-67.28, 0.26, -11.50)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb (1)/Props_Dustbin (6)/Props_Dustbin_visual",
+        "before": "(-61.56, 0.42, -51.65)",
+        "after": "(-66.13, 0.26, -11.50)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (9)/BlokOfWhiteStolb (1)/Props_Dustbin (2)/Props_Dustbin_visual",
+        "before": "(-68.36, 0.42, -45.73)",
+        "after": "(-65.48, 0.26, -11.50)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb/Props_Dustbin (6)/Props_Dustbin_visual",
+        "before": "(-70.50, 0.42, -47.95)",
+        "after": "(-66.79, 0.26, -10.65)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (3)/BlokOfWhiteStolb/Props_Dustbin (5)/Props_Dustbin_visual",
+        "before": "(-62.39, 0.42, -46.86)",
+        "after": "(-66.14, 0.26, -10.65)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfWhiteStolb/Props_Dustbin (12)/Props_Dustbin_visual",
+        "before": "(-62.44, 0.42, -53.20)",
+        "after": "(-65.49, 0.26, -10.65)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (9)/BlokOfWhiteStolb (1)/Props_Dustbin (1)/Props_Dustbin_visual",
+        "before": "(-68.76, 0.42, -45.93)",
+        "after": "(-64.84, 0.26, -10.65)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (3)/BlokOfBlackStolb/Props_Dustbin (3)/Props_Dustbin_visual",
+        "before": "(-61.58, 0.42, -48.17)",
+        "after": "(-67.12, 0.26, -9.80)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (9)/BlokOfWhiteStolb (1)/Props_Dustbin (3)/Props_Dustbin_visual",
+        "before": "(-67.95, 0.42, -45.49)",
+        "after": "(-66.47, 0.26, -9.80)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb/Props_Dustbin (11)/Props_Dustbin_visual",
+        "before": "(-69.65, 0.42, -46.65)",
+        "after": "(-65.82, 0.26, -9.80)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (6)/BlokOfBlackStolb (1)/Props_Dustbin (9)/Props_Dustbin_visual",
+        "before": "(-62.81, 0.42, -46.39)",
+        "after": "(-64.17, 0.26, -9.80)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfBlackStolb/Props_Dustbin (6)/Props_Dustbin_visual",
+        "before": "(-63.70, 0.42, -54.28)",
+        "after": "(-67.45, 0.26, -8.95)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfBlackStolb/Props_Dustbin (5)/Props_Dustbin_visual",
+        "before": "(-64.10, 0.42, -54.49)",
+        "after": "(-66.80, 0.26, -8.95)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfBlackStolb/Props_Dustbin (8)/Props_Dustbin_visual",
+        "before": "(-63.28, 0.42, -54.05)",
+        "after": "(-66.15, 0.26, -8.95)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (9)/BlokOfWhiteStolb (1)/Props_Dustbin (11)/Props_Dustbin_visual",
+        "before": "(-67.51, 0.42, -45.27)",
+        "after": "(-65.00, 0.26, -8.95)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfBlackStolb/Props_Dustbin (8)/Props_Dustbin_visual",
+        "before": "(-65.84, 0.42, -45.05)",
+        "after": "(-67.25, 0.26, -8.10)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfBlackStolb (1)/Props_Dustbin (7)/Props_Dustbin_visual",
+        "before": "(-61.92, 0.42, -52.72)",
+        "after": "(-66.60, 0.26, -8.10)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfBlackStolb/Props_Dustbin (7)/Props_Dustbin_visual",
+        "before": "(-66.65, 0.42, -45.05)",
+        "after": "(-65.95, 0.26, -8.10)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb (1)/Props_Dustbin (8)/Props_Dustbin_visual",
+        "before": "(-61.11, 0.42, -50.10)",
+        "after": "(-65.30, 0.26, -8.10)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb/Props_Dustbin (1)/Props_Dustbin_visual",
+        "before": "(-70.90, 0.42, -48.61)",
+        "after": "(-66.56, 0.26, -7.25)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb (1)/Props_Dustbin (2)/Props_Dustbin_visual",
+        "before": "(-61.56, 0.42, -52.11)",
+        "after": "(-65.91, 0.26, -7.25)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb (1)/Props_Dustbin (3)/Props_Dustbin_visual",
+        "before": "(-61.11, 0.42, -50.55)",
+        "after": "(-65.26, 0.26, -7.25)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (3)/BlokOfWhiteStolb/Props_Dustbin (2)/Props_Dustbin_visual",
+        "before": "(-61.99, 0.42, -47.11)",
+        "after": "(-64.61, 0.26, -7.25)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (9)/BlokOfWhiteStolb (1)/Props_Dustbin (9)/Props_Dustbin_visual",
+        "before": "(-67.10, 0.42, -45.04)",
+        "after": "(-66.86, 0.26, -6.40)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (3)/BlokOfBlackStolb/Props_Dustbin (8)/Props_Dustbin_visual",
+        "before": "(-61.58, 0.42, -47.72)",
+        "after": "(-66.21, 0.26, -6.40)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb/Props_Dustbin (3)/Props_Dustbin_visual",
+        "before": "(-70.09, 0.42, -46.87)",
+        "after": "(-65.56, 0.26, -6.40)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfBlackStolb/Props_Dustbin (9)/Props_Dustbin_visual",
+        "before": "(-64.99, 0.42, -45.05)",
+        "after": "(-64.91, 0.26, -6.40)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfBlackStolb (1)/Props_Dustbin (4)/Props_Dustbin_visual",
+        "before": "(-61.11, 0.42, -50.98)",
+        "after": "(-66.67, 0.26, -5.55)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfWhiteStolb (1)/Props_Dustbin (3)/Props_Dustbin_visual",
+        "before": "(-63.71, 0.42, -45.49)",
+        "after": "(-65.52, 0.26, -5.55)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfWhiteStolb (1)/Props_Dustbin (10)/Props_Dustbin_visual",
+        "before": "(-63.27, 0.42, -45.73)",
+        "after": "(-65.87, 0.26, -5.55)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfWhiteStolb (1)/Props_Dustbin (6)/Props_Dustbin_visual",
+        "before": "(-64.11, 0.42, -45.27)",
+        "after": "(-64.72, 0.26, -5.55)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfBlackStolb/Props_Dustbin (5)/Props_Dustbin_visual",
+        "before": "(-70.90, 0.42, -48.16)",
+        "after": "(-66.49, 0.26, -4.70)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (9)/BlokOfBlackStolb/Props_Dustbin (13)/Props_Dustbin_visual",
+        "before": "(-69.24, 0.42, -45.93)",
+        "after": "(-65.84, 0.26, -4.70)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfWhiteStolb/Props_Dustbin (13)/Props_Dustbin_visual",
+        "before": "(-62.44, 0.42, -53.63)",
+        "after": "(-65.19, 0.26, -4.70)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (3)/BlokOfWhiteStolb/Props_Dustbin (7)/Props_Dustbin_visual",
+        "before": "(-62.39, 0.42, -46.42)",
+        "after": "(-64.54, 0.26, -4.70)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb (1)/Props_Dustbin (8)/Props_Dustbin_visual",
+        "before": "(-61.15, 0.42, -51.42)",
+        "after": "(-66.34, 0.26, -3.85)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (3)/BlokOfBlackStolb/Props_Dustbin (10)/Props_Dustbin_visual",
+        "before": "(-61.15, 0.42, -48.41)",
+        "after": "(-65.69, 0.26, -3.85)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfWhiteStolb (1)/Props_Dustbin (7)/Props_Dustbin_visual",
+        "before": "(-64.52, 0.42, -45.04)",
+        "after": "(-65.04, 0.26, -3.85)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (8)/BlokOfWhiteStolb (1)/Props_Dustbin (13)/Props_Dustbin_visual",
+        "before": "(-62.85, 0.42, -45.92)",
+        "after": "(-64.39, 0.26, -3.85)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfBlackStolb (1)/Props_Dustbin (5)/Props_Dustbin_visual",
+        "before": "(-61.92, 0.42, -53.16)",
+        "after": "(-66.20, 0.26, -3.00)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (9)/BlokOfWhiteStolb (1)/Props_Dustbin (6)/Props_Dustbin_visual",
+        "before": "(-68.36, 0.42, -45.27)",
+        "after": "(-65.55, 0.26, -3.00)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (9)/BlokOfWhiteStolb (1)/Props_Dustbin (5)/Props_Dustbin_visual",
+        "before": "(-68.76, 0.42, -45.48)",
+        "after": "(-64.90, 0.26, -3.00)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (7)/BlokOfWhiteStolb/Props_Dustbin (2)/Props_Dustbin_visual",
+        "before": "(-70.50, 0.42, -47.11)",
+        "after": "(-66.75, 0.26, -3.00)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (3)/BlokOfWhiteStolb/Props_Dustbin (4)/Props_Dustbin_visual",
+        "before": "(-61.58, 0.42, -47.30)",
+        "after": "(-66.10, 0.26, -2.15)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (11)/BlokOfWhiteStolb (1)/Props_Dustbin (3)/Props_Dustbin_visual",
+        "before": "(-61.15, 0.42, -51.87)",
+        "after": "(-65.45, 0.26, -2.15)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (9)/BlokOfWhiteStolb (1)/Props_Dustbin (8)/Props_Dustbin_visual",
+        "before": "(-67.95, 0.42, -45.04)",
+        "after": "(-66.80, 0.26, -2.15)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (1)/FourBlocks (3)/BlokOfWhiteStolb/Props_Dustbin (6)/Props_Dustbin_visual",
+        "before": "(-61.99, 0.42, -46.65)",
+        "after": "(-61.15, 0.26, -2.15)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfBlackStolb/Props_Dustbin (3)/Props_Dustbin_visual",
+        "before": "(-63.29, 0.42, -54.50)",
+        "after": "(-66.02, 0.26, -1.30)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      },
+      {
+        "name": "Medievel City/FastFarming (2)/FourBlocks (9)/BlokOfBlackStolb/Props_Dustbin (2)/Props_Dustbin_visual",
+        "before": "(-63.70, 0.42, -54.73)",
+        "after": "(-66.37, 0.26, -1.30)",
+        "size": "(0.33, 0.40, 0.33)",
+        "value": 1,
+        "wave": 2
+      }
+    ]
+  }
+]

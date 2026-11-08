@@ -1,0 +1,10 @@
+Map polish final state ·2026-11-08
+All5 selected changes implemented and verified.
+Before checkpoint:0aa78ad971fac174580e52180f0fda1eed9c9be1 onwww, pushed before edits.
+58 actual-component checks PASS;44 settings checks PASS;24 border views PASS.
+Final WebGL build04264ae372a6 Succeeded,29,869,816bytes,0errors,1existing mesh-collision warning (incremental build).
+Actual WebGL all3maps; Garden legacy menu teleport fixed;60 hedge segments added to cutaway; border-ground vertical crack eliminated.
+Observed size2/3 by:City9/33s,Garden14/44s,Medieval10/32s; exact provenance in Checks/webgl-playthrough.json.
+Original personal save byte-identical; Editor MainMenu clean,Play stopped,Simulator restored; both browser and Editor audio.5/.5,viewport override reset.
+Remaining separate issue: results layout atnativeDPR2. Production SDK/physicalphone unverified.
+Final commit/push done after this state file; SHA and remote/API verification in final chat reply. SeeREPORT.html.

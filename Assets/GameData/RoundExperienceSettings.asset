@@ -17,6 +17,9 @@ MonoBehaviour:
   minimumCompletedExperience: 5
   minimumCompletedCoins: 1
   cutawayReleaseSeconds: 0.15
+  cutawayFadeOutSeconds: 0.14
+  cutawayFadeInSeconds: 0.35
+  targetHintRadius: 5.5
   rewardedOffers:
   - id: couple
     requiredAds: 1

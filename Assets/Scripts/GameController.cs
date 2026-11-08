@@ -12,6 +12,8 @@ public class GameController : MonoBehaviour
 
 	public GameObject CanvasForDesktop;
 	public GameObject CanvasForMobile;
+	public GameObject MobileSettingsPanel;
+	public GameObject DesktopSettingsPanel;
 
 [HideInInspector]
 	public Canvas currentCanvas;

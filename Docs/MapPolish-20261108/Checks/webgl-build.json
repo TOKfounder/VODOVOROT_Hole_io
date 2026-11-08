@@ -1,0 +1,72 @@
+{
+  "success": true,
+  "command": "command build",
+  "data": {
+    "command": "build",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "buildId": "build_04264ae372a6",
+      "result": "Succeeded",
+      "platform": "WebGL",
+      "outputPath": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/builds/MapPolish-20261108/Yandex",
+      "totalSizeBytes": 29869816,
+      "buildTimeMs": 95309,
+      "buildStartedAt": "2026-11-08T03:06:44.3020540Z",
+      "buildEndedAt": "2026-11-08T03:08:19.6119560Z",
+      "totalWarnings": 1,
+      "totalErrors": 0,
+      "files": [
+        {
+          "path": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/builds/MapPolish-20261108/Yandex/Build/Yandex.framework.js.br",
+          "role": "br",
+          "sizeBytes": 79066
+        },
+        {
+          "path": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/builds/MapPolish-20261108/Yandex/Build/Yandex.wasm.br",
+          "role": "br",
+          "sizeBytes": 5869638
+        },
+        {
+          "path": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/builds/MapPolish-20261108/Yandex/Build/Yandex.data.br",
+          "role": "br",
+          "sizeBytes": 23793610
+        },
+        {
+          "path": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/builds/MapPolish-20261108/Yandex/Build/Yandex.loader.js",
+          "role": "js",
+          "sizeBytes": 27675
+        },
+        {
+          "path": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/builds/MapPolish-20261108/Yandex/Images/logo.png",
+          "role": "png",
+          "sizeBytes": 85457
+        },
+        {
+          "path": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/builds/MapPolish-20261108/Yandex/index.html",
+          "role": "html",
+          "sizeBytes": 12478
+        },
+        {
+          "path": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io/builds/MapPolish-20261108/Yandex/style.css",
+          "role": "css",
+          "sizeBytes": 1892
+        }
+      ],
+      "errors": [],
+      "warnings": [
+        {
+          "message": "Pre-baked collision is disabled on 28 mesh(es) referenced by Mesh Collider components in this build. In future versions of Unity, the build process will no longer automatically pre-bake collision for these meshes; enable pre-baked collision in the Mesh import settings. Use Project Auditor (Window > Analysis > Project Auditor > Game Objects) to find and fix similar issues across the project. Affected meshes:\n - 'Cube' (triangle collision is disabled)\n - 'stone 1' (convex collision is disabled)\n - 'Cube' (convex collision is disabled)\n - 'stone 1' (convex collision is disabled)\n - 'stone 1' (convex collision is disabled)\n - 'plant 1' (convex collision is disabled)\n - 'Power poles' (convex collision is disabled)\n - 'Wall' (convex collision is disabled)\n - 'Cube' (convex collision is disabled)\n - 'Wall' (convex collision is disabled)\n - 'Building_Q' (convex collision is disabled)\n - 'hedge.001' (convex collision is disabled)\n - 'Building R' (convex collision is disabled)\n - 'Building_G' (convex collision is disabled)\n - 'Wall' (convex collision is disabled)\n - 'Building_M' (convex collision is disabled)\n - 'Building_n' (convex collision is disabled)\n - 'bus stop' (convex collision is disabled)\n - 'stone pot' (convex collision is disabled)\n - 'TowerB' (convex collision is disabled)\n - 'Column' (triangle collision is disabled)\n - 'CastleTop' (triangle collision is disabled)\n - 'House' (triangle collision is disabled)\n - 'Castle' (triangle collision is disabled)\n - 'BridgeStart' (triangle collision is disabled)\n - 'HouseB' (convex collision is disabled)\n - 'BridgeEnd' (triangle collision is disabled)\n - 'BridgeMiddle' (triangle collision is disabled)"
+        }
+      ],
+      "note": "Final build: Garden authored spawn,60 cutaway hedges,continuous ground; incremental report includes1 existing mesh-collision warning. Previous full source compile succeeded with15 existing warnings."
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "/Users/ruslanrassulov/Desktop/Games/VODOVOROT_Hole_io"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

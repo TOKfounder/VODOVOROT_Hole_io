@@ -1,0 +1,2516 @@
+[
+  {
+    "path": "Assets/Scenes/MainMenu.unity",
+    "roots": [
+      "Directional light",
+      "Player_Hole",
+      "MainPlatform",
+      "CanvasForMobile",
+      "CanvasForDesktop",
+      "CanvasOfMap",
+      "EventSystem",
+      "GameController",
+      "MainMenuController",
+      "Camera",
+      "AudioManager",
+      "LanguageManager",
+      "VodovorotGameManager"
+    ],
+    "player": null,
+    "walls": null,
+    "cameras": [
+      {
+        "name": "Camera",
+        "position": "(3.30, 39.58, -13.02)",
+        "rotation": "(55.68, 0.00, 0.00)",
+        "fov": 60.0,
+        "far": 1000.0,
+        "clear": "SolidColor",
+        "background": "RGBA(1.000, 1.000, 1.000, 0.000)"
+      }
+    ],
+    "broadSurfaces": [
+      {
+        "name": "MainPlatform",
+        "center": "(7.00, -0.16, 12.55)",
+        "size": "(1397.16, 0.25, 792.71)",
+        "materials": [
+          "Assets/Materials/ToiletMaterials/Water1.mat | Standard"
+        ]
+      },
+      {
+        "name": "Player_Hole/Toilet",
+        "center": "(3.32, 32.84, -9.13)",
+        "size": "(2.95, 2.63, 2.38)",
+        "materials": [
+          "Assets/Prefabs/Prefs/Toilet.fbx | Standard"
+        ]
+      },
+      {
+        "name": "Player_Hole/Obodok",
+        "center": "(3.29, 32.13, -9.13)",
+        "size": "(2.33, 1.21, 2.22)",
+        "materials": [
+          "Assets/Materials/ToiletMaterials/Obodok.mat | Standard"
+        ]
+      },
+      {
+        "name": "Player_Hole/Toilet/Cylinder (1)",
+        "center": "(3.04, 32.73, -9.06)",
+        "size": "(1.98, 0.01, 1.98)",
+        "materials": [
+          "Assets/Materials/SpiralWaterMaterial.mat | Standard"
+        ]
+      },
+      {
+        "name": "Player_Hole/Obodok/Cylinder",
+        "center": "(3.33, 32.73, -9.14)",
+        "size": "(1.98, 0.01, 1.98)",
+        "materials": [
+          "Assets/Materials/SpiralWaterMaterial.mat | Standard"
+        ]
+      },
+      {
+        "name": "CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (4)/Toilet",
+        "center": "(2.66, 36.94, -10.10)",
+        "size": "(1.14, 1.44, 1.58)",
+        "materials": [
+          "Assets/Materials/Material_meshs/Sign_slow.mat | Standard"
+        ]
+      },
+      {
+        "name": "CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (2)/Toilet",
+        "center": "(4.08, 36.94, -10.10)",
+        "size": "(1.13, 1.43, 1.56)",
+        "materials": [
+          "Assets/Materials/ToiletMaterials/Second.mat | Standard"
+        ]
+      },
+      {
+        "name": "CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (1)/Toilet",
+        "center": "(3.37, 37.08, -10.77)",
+        "size": "(0.79, 1.47, 1.45)",
+        "materials": [
+          "Assets/Prefabs/Prefs/Toilet.fbx | Standard"
+        ]
+      },
+      {
+        "name": "CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (3)/Toilet",
+        "center": "(3.37, 36.78, -9.43)",
+        "size": "(0.80, 1.43, 1.42)",
+        "materials": [
+          "Assets/Materials/Material_meshs/Grid.mat | Standard"
+        ]
+      },
+      {
+        "name": "CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (4)/Cylinder",
+        "center": "(2.69, 36.92, -10.23)",
+        "size": "(0.97, 0.29, 0.93)",
+        "materials": [
+          "Assets/Materials/SpiralWaterMaterial.mat | Standard"
+        ]
+      },
+      {
+        "name": "CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (4)/Toilet/mesh-1.023",
+        "center": "(2.70, 36.96, -10.25)",
+        "size": "(0.89, 0.33, 0.98)",
+        "materials": [
+          "Assets/Prefabs/Prefs/Toilet.fbx | Standard"
+        ]
+      },
+      {
+        "name": "CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (2)/Toilet/mesh-1.023",
+        "center": "(4.03, 36.96, -10.26)",
+        "size": "(0.87, 0.33, 0.97)",
+        "materials": [
+          "Assets/Prefabs/Prefs/Toilet.fbx | Standard"
+        ]
+      },
+      {
+        "name": "CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (3)/Cylinder",
+        "center": "(3.37, 36.77, -9.56)",
+        "size": "(0.93, 0.28, 0.89)",
+        "materials": [
+          "Assets/Materials/SpiralWaterMaterial.mat | Standard"
+        ]
+      },
+      {
+        "name": "CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (1)/Cylinder",
+        "center": "(3.37, 37.08, -10.90)",
+        "size": "(0.92, 0.33, 0.86)",
+        "materials": [
+          "Assets/Materials/SpiralWaterMaterial.mat | Standard"
+        ]
+      },
+      {
+        "name": "CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (0)/obodok/Toilet",
+        "center": "(3.55, 36.78, -10.93)",
+        "size": "(0.77, 0.89, 0.99)",
+        "materials": [
+          "Assets/Materials/ToiletMaterials/Obodok.mat | Standard"
+        ]
+      },
+      {
+        "name": "Player_Hole/Obodok/Plane",
+        "center": "(4.21, 33.47, -9.36)",
+        "size": "(0.58, 1.51, 1.20)",
+        "materials": [
+          "Assets/Materials/ToiletMaterials/Obodok.mat | Standard"
+        ]
+      },
+      {
+        "name": "CanvasForMobile/PanelOfSkins/LayoutGroup3D/SkinManicen (4)/Toilet",
+        "center": "(2.76, 36.71, -11.02)",
+        "size": "(0.66, 0.86, 0.94)",
+        "materials": [
+          "Assets/Materials/Material_meshs/Sign_slow.mat | Standard"
+        ]
+      },
+      {
+        "name": "CanvasForDesktop/PanelOfSkins/LayoutGroup3D/SkinManicen (2)/Cylinder",
+        "center": "(4.04, 36.92, -10.23)",
+        "size": "(0.81, 0.29, 0.76)",
+        "materials": [
+          "Assets/Materials/SpiralWaterMaterial.mat | Standard"
+        ]
+      }
+    ],
+    "settings": [
+      {
+        "name": "CanvasForMobile/MobilePanelOfSettings",
+        "rect": "(x:-360.00, y:-640.00, width:720.00, height:1280.00)",
+        "scale": "(0.67, 0.67, 0.67)",
+        "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+        "elements": [
+          {
+            "name": "CanvasForMobile/MobilePanelOfSettings",
+            "rect": "(x:-360.00, y:-640.00, width:720.00, height:1280.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "CanvasForMobile/MobilePanelOfSettings/RaycastTarget",
+            "rect": "(x:-1055.10, y:-1468.30, width:2110.20, height:2936.60)",
+            "position": "(136.00, 128.90)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "CanvasForMobile/MobilePanelOfSettings/Return",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(-37.00, -37.00)",
+            "anchors": "(1.00, 1.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "CanvasForMobile/MobilePanelOfSettings/Caption",
+            "rect": "(x:-169.15, y:-60.60, width:338.30, height:121.20)",
+            "position": "(0.00, -109.00)",
+            "anchors": "(0.50, 1.00)..(0.50, 1.00)",
+            "text": "Настройки"
+          },
+          {
+            "name": "CanvasForMobile/MobilePanelOfSettings/LanguageButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(55.56, 327.78)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "CanvasForMobile/MobilePanelOfSettings/LanguageButton/Text (Legacy)",
+            "rect": "(x:-84.00, y:-37.00, width:168.00, height:74.00)",
+            "position": "(-110.00, 0.00)",
+            "anchors": "(0.00, 0.50)..(0.00, 0.50)",
+            "text": "Язык"
+          },
+          {
+            "name": "CanvasForMobile/MobilePanelOfSettings/SoundButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(300.00, 118.89)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "CanvasForMobile/MobilePanelOfSettings/SoundButton/Text (Legacy)",
+            "rect": "(x:-84.00, y:-37.00, width:168.00, height:74.00)",
+            "position": "(-440.00, 0.00)",
+            "anchors": "(0.00, 0.50)..(0.00, 0.50)",
+            "text": "Звуки"
+          },
+          {
+            "name": "CanvasForMobile/MobilePanelOfSettings/SoundButton/Slider",
+            "rect": "(x:-167.50, y:-10.00, width:335.00, height:20.00)",
+            "position": "(-226.00, 0.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "CanvasForMobile/MobilePanelOfSettings/SoundButton/Slider/Background",
+            "rect": "(x:-167.50, y:-5.00, width:335.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "CanvasForMobile/MobilePanelOfSettings/SoundButton/Slider/Fill Area",
+            "rect": "(x:-157.50, y:-5.00, width:315.00, height:10.00)",
+            "position": "(-5.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "CanvasForMobile/MobilePanelOfSettings/SoundButton/Slider/Fill Area/Fill",
+            "rect": "(x:-162.50, y:-5.00, width:325.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "CanvasForMobile/MobilePanelOfSettings/SoundButton/Slider/Handle Slide Area",
+            "rect": "(x:-157.50, y:-6.25, width:315.00, height:12.50)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "CanvasForMobile/MobilePanelOfSettings/SoundButton/Slider/Handle Slide Area/Handle",
+            "rect": "(x:-10.00, y:-6.25, width:20.00, height:12.50)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(1.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "CanvasForMobile/MobilePanelOfSettings/SoundButton/SoundButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "CanvasForMobile/MobilePanelOfSettings/SoundButton/krest1",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "CanvasForMobile/MobilePanelOfSettings/MelodyButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(300.00, -81.11)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "CanvasForMobile/MobilePanelOfSettings/MelodyButton/Text (Legacy)",
+            "rect": "(x:-105.03, y:-37.00, width:210.06, height:74.00)",
+            "position": "(-456.00, 0.00)",
+            "anchors": "(0.00, 0.50)..(0.00, 0.50)",
+            "text": "Музыка"
+          },
+          {
+            "name": "CanvasForMobile/MobilePanelOfSettings/MelodyButton/Slider",
+            "rect": "(x:-167.50, y:-10.00, width:335.00, height:20.00)",
+            "position": "(-226.00, -2.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "CanvasForMobile/MobilePanelOfSettings/MelodyButton/Slider/Background",
+            "rect": "(x:-167.50, y:-5.00, width:335.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "CanvasForMobile/MobilePanelOfSettings/MelodyButton/Slider/Fill Area",
+            "rect": "(x:-157.50, y:-5.00, width:315.00, height:10.00)",
+            "position": "(-5.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "CanvasForMobile/MobilePanelOfSettings/MelodyButton/Slider/Fill Area/Fill",
+            "rect": "(x:-162.50, y:-5.00, width:325.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "CanvasForMobile/MobilePanelOfSettings/MelodyButton/Slider/Handle Slide Area",
+            "rect": "(x:-157.50, y:-7.50, width:315.00, height:15.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "CanvasForMobile/MobilePanelOfSettings/MelodyButton/Slider/Handle Slide Area/Handle",
+            "rect": "(x:-10.00, y:-7.50, width:20.00, height:15.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(1.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "CanvasForMobile/MobilePanelOfSettings/MelodyButton/MelodyButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "CanvasForMobile/MobilePanelOfSettings/MelodyButton/krest2",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          }
+        ]
+      },
+      {
+        "name": "CanvasForDesktop/DesktopPanelOfSettings",
+        "rect": "(x:-360.00, y:-418.69, width:720.00, height:837.38)",
+        "scale": "(0.67, 0.67, 0.67)",
+        "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+        "elements": [
+          {
+            "name": "CanvasForDesktop/DesktopPanelOfSettings",
+            "rect": "(x:-360.00, y:-418.69, width:720.00, height:837.38)",
+            "position": "(0.00, 10.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "CanvasForDesktop/DesktopPanelOfSettings/RaycastTarget",
+            "rect": "(x:-1055.10, y:-1468.30, width:2110.20, height:2936.60)",
+            "position": "(136.00, 128.90)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "CanvasForDesktop/DesktopPanelOfSettings/Return",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(-37.00, -37.00)",
+            "anchors": "(1.00, 1.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "CanvasForDesktop/DesktopPanelOfSettings/Caption",
+            "rect": "(x:-169.15, y:-60.60, width:338.30, height:121.20)",
+            "position": "(0.00, -109.00)",
+            "anchors": "(0.50, 1.00)..(0.50, 1.00)",
+            "text": "Настройки"
+          },
+          {
+            "name": "CanvasForDesktop/DesktopPanelOfSettings/LanguageButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(55.56, 146.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "CanvasForDesktop/DesktopPanelOfSettings/LanguageButton/Text (Legacy)",
+            "rect": "(x:-84.00, y:-37.00, width:168.00, height:74.00)",
+            "position": "(-110.00, 0.00)",
+            "anchors": "(0.00, 0.50)..(0.00, 0.50)",
+            "text": "Язык"
+          },
+          {
+            "name": "CanvasForDesktop/DesktopPanelOfSettings/SoundButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(300.00, -60.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "CanvasForDesktop/DesktopPanelOfSettings/SoundButton/Text (Legacy)",
+            "rect": "(x:-84.00, y:-37.00, width:168.00, height:74.00)",
+            "position": "(-440.00, 0.00)",
+            "anchors": "(0.00, 0.50)..(0.00, 0.50)",
+            "text": "Звуки"
+          },
+          {
+            "name": "CanvasForDesktop/DesktopPanelOfSettings/SoundButton/Slider",
+            "rect": "(x:-167.50, y:-10.00, width:335.00, height:20.00)",
+            "position": "(-226.00, 0.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "CanvasForDesktop/DesktopPanelOfSettings/SoundButton/Slider/Background",
+            "rect": "(x:-167.50, y:-5.00, width:335.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "CanvasForDesktop/DesktopPanelOfSettings/SoundButton/Slider/Fill Area",
+            "rect": "(x:-157.50, y:-5.00, width:315.00, height:10.00)",
+            "position": "(-5.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "CanvasForDesktop/DesktopPanelOfSettings/SoundButton/Slider/Fill Area/Fill",
+            "rect": "(x:-162.50, y:-5.00, width:325.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "CanvasForDesktop/DesktopPanelOfSettings/SoundButton/Slider/Handle Slide Area",
+            "rect": "(x:-157.50, y:-6.25, width:315.00, height:12.50)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "CanvasForDesktop/DesktopPanelOfSettings/SoundButton/Slider/Handle Slide Area/Handle",
+            "rect": "(x:-10.00, y:-6.25, width:20.00, height:12.50)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(1.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "CanvasForDesktop/DesktopPanelOfSettings/SoundButton/SoundButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "CanvasForDesktop/DesktopPanelOfSettings/SoundButton/krest1",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "CanvasForDesktop/DesktopPanelOfSettings/MelodyButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(300.00, -260.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/Text (Legacy)",
+            "rect": "(x:-105.03, y:-37.00, width:210.06, height:74.00)",
+            "position": "(-456.00, 0.00)",
+            "anchors": "(0.00, 0.50)..(0.00, 0.50)",
+            "text": "Музыка"
+          },
+          {
+            "name": "CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/Slider",
+            "rect": "(x:-167.50, y:-10.00, width:335.00, height:20.00)",
+            "position": "(-226.00, -2.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/Slider/Background",
+            "rect": "(x:-167.50, y:-5.00, width:335.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/Slider/Fill Area",
+            "rect": "(x:-157.50, y:-5.00, width:315.00, height:10.00)",
+            "position": "(-5.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/Slider/Fill Area/Fill",
+            "rect": "(x:-162.50, y:-5.00, width:325.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/Slider/Handle Slide Area",
+            "rect": "(x:-157.50, y:-7.50, width:315.00, height:15.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/Slider/Handle Slide Area/Handle",
+            "rect": "(x:-10.00, y:-7.50, width:20.00, height:15.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(1.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/MelodyButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/krest2",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "path": "Assets/Scenes/Low Poly City.unity",
+    "roots": [
+      "City",
+      "ImmersivePack",
+      "EventSystem",
+      "VodovorotGameManager"
+    ],
+    "player": {
+      "position": "(-31.70, 0.16, -38.10)",
+      "scale": "(0.41, 1.85, 0.41)",
+      "fit": "(0.54, 0.00, 0.54)"
+    },
+    "walls": [
+      {
+        "name": "ImmersivePack/Bounds/wall (3)",
+        "position": "(32.70, 3.77, -13.95)",
+        "size": "(36.12, 99.24, 312.32)",
+        "min": "(14.64, -45.85, -170.11)",
+        "max": "(50.76, 53.39, 142.21)",
+        "renderer": false
+      },
+      {
+        "name": "ImmersivePack/Bounds/wall (2)",
+        "position": "(-143.60, 3.77, -16.05)",
+        "size": "(36.12, 99.24, 312.32)",
+        "min": "(-161.66, -45.85, -172.21)",
+        "max": "(-125.54, 53.39, 140.11)",
+        "renderer": false
+      },
+      {
+        "name": "ImmersivePack/Bounds/wall (1)",
+        "position": "(-55.70, 3.77, -106.35)",
+        "size": "(260.01, 99.24, 46.72)",
+        "min": "(-185.70, -45.85, -129.71)",
+        "max": "(74.31, 53.39, -82.99)",
+        "renderer": false
+      },
+      {
+        "name": "ImmersivePack/Bounds/wall",
+        "position": "(-52.70, 3.77, 64.51)",
+        "size": "(260.01, 99.24, 46.72)",
+        "min": "(-182.70, -45.85, 41.15)",
+        "max": "(77.31, 53.39, 87.87)",
+        "renderer": false
+      }
+    ],
+    "cameras": [
+      {
+        "name": "ImmersivePack/Player_Hole/Camera",
+        "position": "(-31.70, 3.12, -39.72)",
+        "rotation": "(55.68, 0.00, 0.00)",
+        "fov": 60.0,
+        "far": 1000.0,
+        "clear": "SolidColor",
+        "background": "RGBA(0.000, 0.000, 1.000, 1.000)"
+      }
+    ],
+    "broadSurfaces": [
+      {
+        "name": "ImmersivePack/Bounds/wall",
+        "center": "(-52.70, 3.77, 64.51)",
+        "size": "(260.01, 99.24, 46.72)",
+        "materials": [
+          "Resources/unity_builtin_extra | Standard"
+        ]
+      },
+      {
+        "name": "ImmersivePack/Bounds/wall (1)",
+        "center": "(-55.70, 3.77, -106.35)",
+        "size": "(260.01, 99.24, 46.72)",
+        "materials": [
+          "Resources/unity_builtin_extra | Standard"
+        ]
+      },
+      {
+        "name": "ImmersivePack/Bounds/wall (2)",
+        "center": "(-143.60, 3.77, -16.05)",
+        "size": "(36.12, 99.24, 312.32)",
+        "materials": [
+          "Resources/unity_builtin_extra | Standard"
+        ]
+      },
+      {
+        "name": "ImmersivePack/Bounds/wall (3)",
+        "center": "(32.70, 3.77, -13.95)",
+        "size": "(36.12, 99.24, 312.32)",
+        "materials": [
+          "Resources/unity_builtin_extra | Standard"
+        ]
+      },
+      {
+        "name": "City/SetOfBuildings (1)/Road Concrete Tile (6)",
+        "center": "(-50.62, 0.00, -77.74)",
+        "size": "(130.01, 0.02, 9.72)",
+        "materials": [
+          "Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Road.mat | Legacy Shaders/Diffuse"
+        ]
+      },
+      {
+        "name": "City/SetOfBuildings/Road Concrete Tile (6)",
+        "center": "(-54.77, 0.00, 35.95)",
+        "size": "(124.22, 0.02, 9.72)",
+        "materials": [
+          "Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Road.mat | Legacy Shaders/Diffuse"
+        ]
+      },
+      {
+        "name": "City/SetOfBuildings (3)/Road Concrete Tile (6)",
+        "center": "(-120.36, 0.00, -20.85)",
+        "size": "(9.72, 0.02, 123.63)",
+        "materials": [
+          "Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Road.mat | Legacy Shaders/Diffuse"
+        ]
+      },
+      {
+        "name": "City/SetOfBuildings (2)/Road Concrete Tile (6)",
+        "center": "(9.34, 0.00, -19.26)",
+        "size": "(9.72, 0.02, 120.23)",
+        "materials": [
+          "Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Road.mat | Legacy Shaders/Diffuse"
+        ]
+      },
+      {
+        "name": "City/Natures_Grass Tile (3)",
+        "center": "(-31.50, 0.00, 19.10)",
+        "size": "(40.08, 0.02, 24.05)",
+        "materials": [
+          "Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Natures.mat | Legacy Shaders/Diffuse"
+        ]
+      },
+      {
+        "name": "City/Natures_Grass Tile (9)",
+        "center": "(-111.50, 0.00, -20.90)",
+        "size": "(8.02, 0.02, 104.20)",
+        "materials": [
+          "Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Natures.mat | Legacy Shaders/Diffuse"
+        ]
+      },
+      {
+        "name": "City/Natures_Grass Tile (8)",
+        "center": "(0.50, 0.00, -20.90)",
+        "size": "(8.02, 0.02, 104.20)",
+        "materials": [
+          "Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Natures.mat | Legacy Shaders/Diffuse"
+        ]
+      },
+      {
+        "name": "City/Road Concrete Tile (5)",
+        "center": "(-55.50, 0.00, -68.90)",
+        "size": "(104.20, 0.02, 8.02)",
+        "materials": [
+          "Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Road.mat | Legacy Shaders/Diffuse"
+        ]
+      },
+      {
+        "name": "City/Natures_Grass Tile (4)",
+        "center": "(-68.50, 0.00, 19.10)",
+        "size": "(18.04, 0.02, 24.05)",
+        "materials": [
+          "Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Natures.mat | Legacy Shaders/Diffuse"
+        ]
+      },
+      {
+        "name": "City/Natures_Grass Tile (2)",
+        "center": "(-31.50, 0.00, -4.90)",
+        "size": "(40.08, 0.02, 8.02)",
+        "materials": [
+          "Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Natures.mat | Legacy Shaders/Diffuse"
+        ]
+      },
+      {
+        "name": "City/Natures_Grass Tile (1)",
+        "center": "(-79.50, 0.00, -4.90)",
+        "size": "(40.08, 0.02, 8.02)",
+        "materials": [
+          "Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Natures.mat | Legacy Shaders/Diffuse"
+        ]
+      },
+      {
+        "name": "City/Road Concrete Tile",
+        "center": "(-91.50, 0.00, -48.90)",
+        "size": "(16.03, 0.02, 16.03)",
+        "materials": [
+          "Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Road.mat | Legacy Shaders/Diffuse"
+        ]
+      },
+      {
+        "name": "City/Road Concrete Tile (2)",
+        "center": "(-43.50, 0.00, -48.90)",
+        "size": "(16.03, 0.02, 16.03)",
+        "materials": [
+          "Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Road.mat | Legacy Shaders/Diffuse"
+        ]
+      },
+      {
+        "name": "City/Road Concrete Tile (3)",
+        "center": "(-67.50, 0.00, -24.90)",
+        "size": "(16.03, 0.02, 16.03)",
+        "materials": [
+          "Assets/UsedAssets/SimplePoly City - Low Poly Assets/Materials/Road.mat | Legacy Shaders/Diffuse"
+        ]
+      }
+    ],
+    "settings": [
+      {
+        "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings",
+        "rect": "(x:0.00, y:0.00, width:0.00, height:0.00)",
+        "scale": "(0.90, 0.90, 0.90)",
+        "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+        "elements": [
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings",
+            "rect": "(x:0.00, y:0.00, width:0.00, height:0.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/RaycastTarget",
+            "rect": "(x:-1055.10, y:-1468.30, width:2110.20, height:2936.60)",
+            "position": "(136.00, 128.90)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/Return",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(-37.00, -37.00)",
+            "anchors": "(1.00, 1.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/Caption",
+            "rect": "(x:-169.15, y:-60.60, width:338.30, height:121.20)",
+            "position": "(0.00, -109.00)",
+            "anchors": "(0.50, 1.00)..(0.50, 1.00)",
+            "text": "Настройки"
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/LanguageButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(55.56, 327.78)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/LanguageButton/Text (Legacy)",
+            "rect": "(x:-84.00, y:-37.00, width:168.00, height:74.00)",
+            "position": "(-110.00, 0.00)",
+            "anchors": "(0.00, 0.50)..(0.00, 0.50)",
+            "text": "Язык"
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/SoundButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(249.97, 118.89)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/SoundButton/Text (Legacy)",
+            "rect": "(x:-84.00, y:-37.00, width:168.00, height:74.00)",
+            "position": "(-440.00, 0.00)",
+            "anchors": "(0.00, 0.50)..(0.00, 0.50)",
+            "text": "Звуки"
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/SoundButton/Slider",
+            "rect": "(x:-167.50, y:-10.00, width:335.00, height:20.00)",
+            "position": "(-226.00, 0.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/SoundButton/Slider/Background",
+            "rect": "(x:-167.50, y:-5.00, width:335.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/SoundButton/Slider/Fill Area",
+            "rect": "(x:-157.50, y:-5.00, width:315.00, height:10.00)",
+            "position": "(-5.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/SoundButton/Slider/Fill Area/Fill",
+            "rect": "(x:-162.50, y:-5.00, width:325.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/SoundButton/Slider/Handle Slide Area",
+            "rect": "(x:-157.50, y:-6.25, width:315.00, height:12.50)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/SoundButton/Slider/Handle Slide Area/Handle",
+            "rect": "(x:-10.00, y:-6.25, width:20.00, height:12.50)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(1.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/SoundButton/SoundButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/SoundButton/krest1",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/MelodyButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(255.10, -81.11)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/MelodyButton/Text (Legacy)",
+            "rect": "(x:-105.03, y:-37.00, width:210.06, height:74.00)",
+            "position": "(-456.00, 0.00)",
+            "anchors": "(0.00, 0.50)..(0.00, 0.50)",
+            "text": "Музыка"
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/MelodyButton/Slider",
+            "rect": "(x:-167.50, y:-10.00, width:335.00, height:20.00)",
+            "position": "(-226.00, -2.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/MelodyButton/Slider/Background",
+            "rect": "(x:-167.50, y:-5.00, width:335.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/MelodyButton/Slider/Fill Area",
+            "rect": "(x:-157.50, y:-5.00, width:315.00, height:10.00)",
+            "position": "(-5.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/MelodyButton/Slider/Fill Area/Fill",
+            "rect": "(x:-162.50, y:-5.00, width:325.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/MelodyButton/Slider/Handle Slide Area",
+            "rect": "(x:-157.50, y:-7.50, width:315.00, height:15.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/MelodyButton/Slider/Handle Slide Area/Handle",
+            "rect": "(x:-10.00, y:-7.50, width:20.00, height:15.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(1.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/MelodyButton/MelodyButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/MelodyButton/krest2",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/ReturningToHome",
+            "rect": "(x:-102.95, y:-57.12, width:205.91, height:114.25)",
+            "position": "(-3.28, 187.33)",
+            "anchors": "(0.50, 0.00)..(0.50, 0.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/ReturningToHome/Text (Legacy)",
+            "rect": "(x:-188.87, y:-37.00, width:377.75, height:74.00)",
+            "position": "(0.00, -23.00)",
+            "anchors": "(0.50, 0.00)..(0.50, 0.00)",
+            "text": "Завершить игру"
+          }
+        ]
+      },
+      {
+        "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings",
+        "rect": "(x:-389.21, y:-670.40, width:778.43, height:1340.80)",
+        "scale": "(0.90, 0.90, 0.90)",
+        "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+        "elements": [
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings",
+            "rect": "(x:-389.21, y:-670.40, width:778.43, height:1340.80)",
+            "position": "(0.00, 10.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/RaycastTarget",
+            "rect": "(x:-1055.10, y:-1468.30, width:2110.20, height:2936.60)",
+            "position": "(136.00, 128.90)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/Return",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(-37.00, -37.00)",
+            "anchors": "(1.00, 1.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/Caption",
+            "rect": "(x:-169.15, y:-60.60, width:338.30, height:121.20)",
+            "position": "(0.00, 45.00)",
+            "anchors": "(0.50, 0.80)..(0.50, 0.80)",
+            "text": "Настройки"
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/LanguageButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(55.56, 14.00)",
+            "anchors": "(0.50, 0.66)..(0.50, 0.66)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/LanguageButton/Text (Legacy)",
+            "rect": "(x:-84.00, y:-37.00, width:168.00, height:74.00)",
+            "position": "(-110.00, 0.00)",
+            "anchors": "(0.00, 0.50)..(0.00, 0.50)",
+            "text": "Язык"
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/SoundButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(300.00, 19.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/SoundButton/Text (Legacy)",
+            "rect": "(x:-84.00, y:-37.00, width:168.00, height:74.00)",
+            "position": "(-440.00, 0.00)",
+            "anchors": "(0.00, 0.50)..(0.00, 0.50)",
+            "text": "Звуки"
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/SoundButton/Slider",
+            "rect": "(x:-167.50, y:-10.00, width:335.00, height:20.00)",
+            "position": "(-226.00, 0.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/SoundButton/Slider/Background",
+            "rect": "(x:-167.50, y:-5.00, width:335.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/SoundButton/Slider/Fill Area",
+            "rect": "(x:-157.50, y:-5.00, width:315.00, height:10.00)",
+            "position": "(-5.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/SoundButton/Slider/Fill Area/Fill",
+            "rect": "(x:-162.50, y:-5.00, width:325.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/SoundButton/Slider/Handle Slide Area",
+            "rect": "(x:-157.50, y:-6.25, width:315.00, height:12.50)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/SoundButton/Slider/Handle Slide Area/Handle",
+            "rect": "(x:-10.00, y:-6.25, width:20.00, height:12.50)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(1.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/SoundButton/SoundButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/SoundButton/krest1",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/MelodyButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(300.00, 8.00)",
+            "anchors": "(0.50, 0.31)..(0.50, 0.31)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/Text (Legacy)",
+            "rect": "(x:-105.03, y:-37.00, width:210.06, height:74.00)",
+            "position": "(-456.00, 0.00)",
+            "anchors": "(0.00, 0.50)..(0.00, 0.50)",
+            "text": "Музыка"
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/Slider",
+            "rect": "(x:-167.50, y:-10.00, width:335.00, height:20.00)",
+            "position": "(-226.00, -2.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/Slider/Background",
+            "rect": "(x:-167.50, y:-5.00, width:335.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/Slider/Fill Area",
+            "rect": "(x:-157.50, y:-5.00, width:315.00, height:10.00)",
+            "position": "(-5.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/Slider/Fill Area/Fill",
+            "rect": "(x:-162.50, y:-5.00, width:325.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/Slider/Handle Slide Area",
+            "rect": "(x:-157.50, y:-7.50, width:315.00, height:15.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/Slider/Handle Slide Area/Handle",
+            "rect": "(x:-10.00, y:-7.50, width:20.00, height:15.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(1.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/MelodyButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/krest2",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/ReturningToHome",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(248.00, -19.00)",
+            "anchors": "(0.50, 0.16)..(0.50, 0.16)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/ReturningToHome/Text (Legacy)",
+            "rect": "(x:-158.54, y:-37.00, width:317.08, height:74.00)",
+            "position": "(-161.00, 7.83)",
+            "anchors": "(0.00, 0.50)..(0.00, 0.50)",
+            "text": "Завершить игру"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "path": "Assets/Scenes/Garden.unity",
+    "roots": [
+      "Directional light",
+      "Garden",
+      "ImmersivePack",
+      "EventSystem",
+      "VodovorotGameManager",
+      "Helper_Hole"
+    ],
+    "player": {
+      "position": "(-31.70, 0.16, -38.10)",
+      "scale": "(0.41, 1.85, 0.41)",
+      "fit": "(0.54, 0.00, 0.54)"
+    },
+    "walls": [
+      {
+        "name": "ImmersivePack/Bounds/wall (3)",
+        "position": "(51.30, 3.77, 12.55)",
+        "size": "(36.12, 99.24, 312.32)",
+        "min": "(33.24, -45.85, -143.61)",
+        "max": "(69.36, 53.39, 168.71)",
+        "renderer": false
+      },
+      {
+        "name": "ImmersivePack/Bounds/wall (2)",
+        "position": "(-77.06, 3.77, 12.55)",
+        "size": "(36.12, 99.24, 312.32)",
+        "min": "(-95.12, -45.85, -143.61)",
+        "max": "(-59.00, 53.39, 168.71)",
+        "renderer": false
+      },
+      {
+        "name": "ImmersivePack/Bounds/wall (1)",
+        "position": "(7.07, 3.77, -128.65)",
+        "size": "(260.01, 99.24, 46.72)",
+        "min": "(-122.94, -45.85, -152.01)",
+        "max": "(137.08, 53.39, -105.29)",
+        "renderer": false
+      },
+      {
+        "name": "ImmersivePack/Bounds/wall",
+        "position": "(7.07, 3.77, 143.05)",
+        "size": "(260.01, 99.24, 46.72)",
+        "min": "(-122.94, -45.85, 119.69)",
+        "max": "(137.08, 53.39, 166.41)",
+        "renderer": false
+      }
+    ],
+    "cameras": [
+      {
+        "name": "ImmersivePack/Player_Hole/Camera",
+        "position": "(-31.70, 3.12, -39.72)",
+        "rotation": "(55.68, 0.00, 0.00)",
+        "fov": 60.0,
+        "far": 1000.0,
+        "clear": "SolidColor",
+        "background": "RGBA(0.000, 0.000, 1.000, 1.000)"
+      }
+    ],
+    "broadSurfaces": [
+      {
+        "name": "Garden/MainPlatform",
+        "center": "(-12.55, -4.22, 7.00)",
+        "size": "(792.71, 0.25, 1397.16)",
+        "materials": [
+          "Assets/Materials/ToiletMaterials/Water1.mat | Standard"
+        ]
+      },
+      {
+        "name": "ImmersivePack/Bounds/wall",
+        "center": "(7.07, 3.77, 143.05)",
+        "size": "(260.01, 99.24, 46.72)",
+        "materials": [
+          "Resources/unity_builtin_extra | Standard"
+        ]
+      },
+      {
+        "name": "ImmersivePack/Bounds/wall (1)",
+        "center": "(7.07, 3.77, -128.65)",
+        "size": "(260.01, 99.24, 46.72)",
+        "materials": [
+          "Resources/unity_builtin_extra | Standard"
+        ]
+      },
+      {
+        "name": "ImmersivePack/Bounds/wall (2)",
+        "center": "(-77.06, 3.77, 12.55)",
+        "size": "(36.12, 99.24, 312.32)",
+        "materials": [
+          "Resources/unity_builtin_extra | Standard"
+        ]
+      },
+      {
+        "name": "ImmersivePack/Bounds/wall (3)",
+        "center": "(51.30, 3.77, 12.55)",
+        "size": "(36.12, 99.24, 312.32)",
+        "materials": [
+          "Resources/unity_builtin_extra | Standard"
+        ]
+      },
+      {
+        "name": "Garden/GardenPart/Building_R_Prefab (1)/Building_R",
+        "center": "(11.43, 4.73, -83.84)",
+        "size": "(12.60, 9.26, 14.44)",
+        "materials": [
+          "Assets/Materials/Colors_buildings/A2.mat | Standard",
+          "Assets/Materials/Colors_buildings/H2.mat | Standard",
+          "Assets/Materials/Colors_buildings/A.mat | Standard",
+          "Assets/Materials/Colors_buildings/A.mat | Standard",
+          "Assets/Materials/color_windows/Windows no light.mat | Standard",
+          "Assets/Materials/Colors_buildings/A3.mat | Standard",
+          "Assets/Materials/Colors_buildings/K1.mat | Standard",
+          "Assets/Materials/color_windows/Windows no light.mat | Standard",
+          "Assets/Materials/Colors_buildings/K7.mat | Standard",
+          "Assets/Materials/Colors_buildings/I3.mat | Standard",
+          "Assets/Materials/Colors_buildings/A3.mat | Standard",
+          "Assets/Materials/Colors_buildings/A3.mat | Standard"
+        ]
+      },
+      {
+        "name": "Garden/NextPlace/Building_R_Prefab (2)/Building_R",
+        "center": "(-36.53, 4.73, 97.95)",
+        "size": "(12.60, 9.26, 14.44)",
+        "materials": [
+          "Assets/Materials/Colors_buildings/A2.mat | Standard",
+          "Assets/Materials/Colors_buildings/H2.mat | Standard",
+          "Assets/Materials/Colors_buildings/A.mat | Standard",
+          "Assets/Materials/Colors_buildings/A.mat | Standard",
+          "Assets/Materials/color_windows/Windows no light.mat | Standard",
+          "Assets/Materials/Colors_buildings/A3.mat | Standard",
+          "Assets/Materials/Colors_buildings/K1.mat | Standard",
+          "Assets/Materials/color_windows/Windows no light.mat | Standard",
+          "Assets/Materials/Colors_buildings/K7.mat | Standard",
+          "Assets/Materials/Colors_buildings/I3.mat | Standard",
+          "Assets/Materials/Colors_buildings/A3.mat | Standard",
+          "Assets/Materials/Colors_buildings/A3.mat | Standard"
+        ]
+      },
+      {
+        "name": "Garden/GardenBlock/Building_Q_prefab (2)/Building_Q",
+        "center": "(-13.51, 3.41, -90.09)",
+        "size": "(8.58, 6.44, 15.45)",
+        "materials": [
+          "Assets/Materials/Colors_buildings/K4.mat | Standard",
+          "Assets/Materials/Colors_buildings/A1.mat | Standard",
+          "Assets/Materials/Colors_buildings/K7.mat | Standard",
+          "Assets/Materials/Colors_buildings/A.mat | Standard",
+          "Assets/Materials/Colors_buildings/K7.mat | Standard",
+          "Assets/Materials/Colors_buildings/A3.mat | Standard",
+          "Assets/Materials/color_windows/Windows no light.mat | Standard",
+          "Assets/Materials/color_windows/Windows no light.mat | Standard",
+          "Assets/Materials/Colors_buildings/A1.mat | Standard",
+          "Assets/Materials/Colors_buildings/B3.mat | Standard",
+          "Assets/Materials/Colors_buildings/A2.mat | Standard",
+          "Assets/Materials/Colors_buildings/K1.mat | Standard",
+          "Assets/Materials/Colors_buildings/A.mat | Standard"
+        ]
+      },
+      {
+        "name": "Garden/NextPlace/Building_Q_prefab (3)/Building_Q",
+        "center": "(-11.48, 3.41, 104.09)",
+        "size": "(8.58, 6.44, 15.45)",
+        "materials": [
+          "Assets/Materials/Colors_buildings/K4.mat | Standard",
+          "Assets/Materials/Colors_buildings/A1.mat | Standard",
+          "Assets/Materials/Colors_buildings/K7.mat | Standard",
+          "Assets/Materials/Colors_buildings/A.mat | Standard",
+          "Assets/Materials/Colors_buildings/K7.mat | Standard",
+          "Assets/Materials/Colors_buildings/A3.mat | Standard",
+          "Assets/Materials/color_windows/Windows no light.mat | Standard",
+          "Assets/Materials/color_windows/Windows no light.mat | Standard",
+          "Assets/Materials/Colors_buildings/A1.mat | Standard",
+          "Assets/Materials/Colors_buildings/B3.mat | Standard",
+          "Assets/Materials/Colors_buildings/A2.mat | Standard",
+          "Assets/Materials/Colors_buildings/K1.mat | Standard",
+          "Assets/Materials/Colors_buildings/A.mat | Standard"
+        ]
+      },
+      {
+        "name": "Garden/NextPlace/Street 4 Prefab (058)/street",
+        "center": "(-34.90, 0.05, 117.00)",
+        "size": "(32.97, 0.00, 4.01)",
+        "materials": [
+          "Assets/Materials/Material_meshs/street 4.mat | Standard"
+        ]
+      },
+      {
+        "name": "Garden/MyTown2/Street 4 Prefab (025)/street",
+        "center": "(9.93, 0.05, -103.00)",
+        "size": "(32.97, 0.00, 4.01)",
+        "materials": [
+          "Assets/Materials/Material_meshs/street 4.mat | Standard"
+        ]
+      },
+      {
+        "name": "Garden/GardenBlock/Building_W_prefab (2)/Building_W",
+        "center": "(-36.24, 3.15, -84.54)",
+        "size": "(9.15, 5.92, 9.55)",
+        "materials": [
+          "Assets/Materials/Colors_buildings/B3.mat | Standard",
+          "Assets/Materials/Colors_buildings/K7.mat | Standard",
+          "Assets/Materials/Colors_buildings/K7.mat | Standard",
+          "Assets/Materials/Colors_buildings/A3.mat | Standard",
+          "Assets/Materials/color_windows/Windows no light.mat | Standard",
+          "Assets/Materials/Colors_buildings/H3.mat | Standard",
+          "Assets/Materials/color_windows/Windows no light.mat | Standard",
+          "Assets/Materials/Colors_buildings/K7.mat | Standard",
+          "Assets/Materials/Colors_buildings/A1.mat | Standard",
+          "Assets/Materials/Colors_buildings/K7.mat | Standard",
+          "Assets/Materials/Colors_buildings/J2.mat | Standard"
+        ]
+      },
+      {
+        "name": "Garden/GardenBlock/Building_W_prefab (3)/Building_W",
+        "center": "(-36.24, 3.15, -72.20)",
+        "size": "(9.15, 5.92, 9.55)",
+        "materials": [
+          "Assets/Materials/Colors_buildings/B3.mat | Standard",
+          "Assets/Materials/Colors_buildings/K7.mat | Standard",
+          "Assets/Materials/Colors_buildings/K7.mat | Standard",
+          "Assets/Materials/Colors_buildings/A3.mat | Standard",
+          "Assets/Materials/color_windows/Windows no light.mat | Standard",
+          "Assets/Materials/Colors_buildings/H3.mat | Standard",
+          "Assets/Materials/color_windows/Windows no light.mat | Standard",
+          "Assets/Materials/Colors_buildings/K7.mat | Standard",
+          "Assets/Materials/Colors_buildings/A1.mat | Standard",
+          "Assets/Materials/Colors_buildings/K7.mat | Standard",
+          "Assets/Materials/Colors_buildings/J2.mat | Standard"
+        ]
+      },
+      {
+        "name": "Garden/NextPlace/Building_W_prefab (4)/Building_W",
+        "center": "(11.25, 3.15, 98.54)",
+        "size": "(9.15, 5.92, 9.55)",
+        "materials": [
+          "Assets/Materials/Colors_buildings/B3.mat | Standard",
+          "Assets/Materials/Colors_buildings/K7.mat | Standard",
+          "Assets/Materials/Colors_buildings/K7.mat | Standard",
+          "Assets/Materials/Colors_buildings/A3.mat | Standard",
+          "Assets/Materials/color_windows/Windows no light.mat | Standard",
+          "Assets/Materials/Colors_buildings/H3.mat | Standard",
+          "Assets/Materials/color_windows/Windows no light.mat | Standard",
+          "Assets/Materials/Colors_buildings/K7.mat | Standard",
+          "Assets/Materials/Colors_buildings/A1.mat | Standard",
+          "Assets/Materials/Colors_buildings/K7.mat | Standard",
+          "Assets/Materials/Colors_buildings/J2.mat | Standard"
+        ]
+      },
+      {
+        "name": "Garden/NextPlace/Building_W_prefab (5)/Building_W",
+        "center": "(11.25, 3.15, 86.20)",
+        "size": "(9.15, 5.92, 9.55)",
+        "materials": [
+          "Assets/Materials/Colors_buildings/B3.mat | Standard",
+          "Assets/Materials/Colors_buildings/K7.mat | Standard",
+          "Assets/Materials/Colors_buildings/K7.mat | Standard",
+          "Assets/Materials/Colors_buildings/A3.mat | Standard",
+          "Assets/Materials/color_windows/Windows no light.mat | Standard",
+          "Assets/Materials/Colors_buildings/H3.mat | Standard",
+          "Assets/Materials/color_windows/Windows no light.mat | Standard",
+          "Assets/Materials/Colors_buildings/K7.mat | Standard",
+          "Assets/Materials/Colors_buildings/A1.mat | Standard",
+          "Assets/Materials/Colors_buildings/K7.mat | Standard",
+          "Assets/Materials/Colors_buildings/J2.mat | Standard"
+        ]
+      },
+      {
+        "name": "Garden/GardenBlock/Building_N_Prefab (1)/Building_N",
+        "center": "(-35.20, 4.29, -95.00)",
+        "size": "(11.50, 8.22, 7.58)",
+        "materials": [
+          "Assets/Materials/Colors_buildings/K7.mat | Standard",
+          "Assets/Materials/Colors_buildings/A.mat | Standard",
+          "Assets/Materials/color_windows/Windows no light.mat | Standard",
+          "Assets/Materials/Colors_buildings/K3.mat | Standard",
+          "Assets/Materials/Colors_buildings/A2.mat | Standard",
+          "Assets/Materials/Colors_buildings/K7.mat | Standard",
+          "Assets/Materials/color_windows/Windows no light.mat | Standard",
+          "Assets/Materials/Colors_buildings/J3.mat | Standard",
+          "Assets/Materials/Colors_buildings/A3.mat | Standard",
+          "Assets/Materials/Colors_buildings/A.mat | Standard",
+          "Assets/Materials/Colors_buildings/A2.mat | Standard",
+          "null"
+        ]
+      },
+      {
+        "name": "Garden/NextPlace/Building_N_Prefab (2)/Building_N",
+        "center": "(10.20, 4.29, 109.00)",
+        "size": "(11.50, 8.22, 7.58)",
+        "materials": [
+          "Assets/Materials/Colors_buildings/K7.mat | Standard",
+          "Assets/Materials/Colors_buildings/A.mat | Standard",
+          "Assets/Materials/color_windows/Windows no light.mat | Standard",
+          "Assets/Materials/Colors_buildings/K3.mat | Standard",
+          "Assets/Materials/Colors_buildings/A2.mat | Standard",
+          "Assets/Materials/Colors_buildings/K7.mat | Standard",
+          "Assets/Materials/color_windows/Windows no light.mat | Standard",
+          "Assets/Materials/Colors_buildings/J3.mat | Standard",
+          "Assets/Materials/Colors_buildings/A3.mat | Standard",
+          "Assets/Materials/Colors_buildings/A.mat | Standard",
+          "Assets/Materials/Colors_buildings/A2.mat | Standard",
+          "null"
+        ]
+      },
+      {
+        "name": "Helper_Hole/WithoutCamera/Obodok",
+        "center": "(-16.93, -1.80, 44.75)",
+        "size": "(7.61, 4.94, 8.24)",
+        "materials": [
+          "Assets/Materials/ToiletMaterials/HelperMat.mat | Standard"
+        ]
+      }
+    ],
+    "settings": [
+      {
+        "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings",
+        "rect": "(x:0.00, y:0.00, width:0.00, height:0.00)",
+        "scale": "(0.90, 0.90, 0.90)",
+        "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+        "elements": [
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings",
+            "rect": "(x:0.00, y:0.00, width:0.00, height:0.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/RaycastTarget",
+            "rect": "(x:-1055.10, y:-1468.30, width:2110.20, height:2936.60)",
+            "position": "(136.00, 128.90)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/Return",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(-37.00, -37.00)",
+            "anchors": "(1.00, 1.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/Caption",
+            "rect": "(x:-169.15, y:-60.60, width:338.30, height:121.20)",
+            "position": "(0.00, -109.00)",
+            "anchors": "(0.50, 1.00)..(0.50, 1.00)",
+            "text": "Настройки"
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/LanguageButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(55.56, 327.78)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/LanguageButton/Text (Legacy)",
+            "rect": "(x:-84.00, y:-37.00, width:168.00, height:74.00)",
+            "position": "(-110.00, 0.00)",
+            "anchors": "(0.00, 0.50)..(0.00, 0.50)",
+            "text": "Язык"
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/SoundButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(249.97, 118.89)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/SoundButton/Text (Legacy)",
+            "rect": "(x:-84.00, y:-37.00, width:168.00, height:74.00)",
+            "position": "(-440.00, 0.00)",
+            "anchors": "(0.00, 0.50)..(0.00, 0.50)",
+            "text": "Звуки"
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/SoundButton/Slider",
+            "rect": "(x:-167.50, y:-10.00, width:335.00, height:20.00)",
+            "position": "(-226.00, 0.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/SoundButton/Slider/Background",
+            "rect": "(x:-167.50, y:-5.00, width:335.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/SoundButton/Slider/Fill Area",
+            "rect": "(x:-157.50, y:-5.00, width:315.00, height:10.00)",
+            "position": "(-5.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/SoundButton/Slider/Fill Area/Fill",
+            "rect": "(x:-162.50, y:-5.00, width:325.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/SoundButton/Slider/Handle Slide Area",
+            "rect": "(x:-157.50, y:-6.25, width:315.00, height:12.50)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/SoundButton/Slider/Handle Slide Area/Handle",
+            "rect": "(x:-10.00, y:-6.25, width:20.00, height:12.50)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(1.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/SoundButton/SoundButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/SoundButton/krest1",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/MelodyButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(255.10, -81.11)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/MelodyButton/Text (Legacy)",
+            "rect": "(x:-105.03, y:-37.00, width:210.06, height:74.00)",
+            "position": "(-456.00, 0.00)",
+            "anchors": "(0.00, 0.50)..(0.00, 0.50)",
+            "text": "Музыка"
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/MelodyButton/Slider",
+            "rect": "(x:-167.50, y:-10.00, width:335.00, height:20.00)",
+            "position": "(-226.00, -2.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/MelodyButton/Slider/Background",
+            "rect": "(x:-167.50, y:-5.00, width:335.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/MelodyButton/Slider/Fill Area",
+            "rect": "(x:-157.50, y:-5.00, width:315.00, height:10.00)",
+            "position": "(-5.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/MelodyButton/Slider/Fill Area/Fill",
+            "rect": "(x:-162.50, y:-5.00, width:325.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/MelodyButton/Slider/Handle Slide Area",
+            "rect": "(x:-157.50, y:-7.50, width:315.00, height:15.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/MelodyButton/Slider/Handle Slide Area/Handle",
+            "rect": "(x:-10.00, y:-7.50, width:20.00, height:15.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(1.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/MelodyButton/MelodyButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/MelodyButton/krest2",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/ReturningToHome",
+            "rect": "(x:-102.95, y:-57.12, width:205.91, height:114.25)",
+            "position": "(-3.28, 187.33)",
+            "anchors": "(0.50, 0.00)..(0.50, 0.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/ReturningToHome/Text (Legacy)",
+            "rect": "(x:-188.87, y:-37.00, width:377.75, height:74.00)",
+            "position": "(0.00, -23.00)",
+            "anchors": "(0.50, 0.00)..(0.50, 0.00)",
+            "text": "Завершить игру"
+          }
+        ]
+      },
+      {
+        "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings",
+        "rect": "(x:-389.21, y:-670.40, width:778.43, height:1340.80)",
+        "scale": "(0.90, 0.90, 0.90)",
+        "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+        "elements": [
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings",
+            "rect": "(x:-389.21, y:-670.40, width:778.43, height:1340.80)",
+            "position": "(0.00, 10.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/RaycastTarget",
+            "rect": "(x:-1055.10, y:-1468.30, width:2110.20, height:2936.60)",
+            "position": "(136.00, 128.90)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/Return",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(-37.00, -37.00)",
+            "anchors": "(1.00, 1.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/Caption",
+            "rect": "(x:-169.15, y:-60.60, width:338.30, height:121.20)",
+            "position": "(0.00, 45.00)",
+            "anchors": "(0.50, 0.80)..(0.50, 0.80)",
+            "text": "Настройки"
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/LanguageButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(55.56, 14.00)",
+            "anchors": "(0.50, 0.66)..(0.50, 0.66)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/LanguageButton/Text (Legacy)",
+            "rect": "(x:-84.00, y:-37.00, width:168.00, height:74.00)",
+            "position": "(-110.00, 0.00)",
+            "anchors": "(0.00, 0.50)..(0.00, 0.50)",
+            "text": "Язык"
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/SoundButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(300.00, 19.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/SoundButton/Text (Legacy)",
+            "rect": "(x:-84.00, y:-37.00, width:168.00, height:74.00)",
+            "position": "(-440.00, 0.00)",
+            "anchors": "(0.00, 0.50)..(0.00, 0.50)",
+            "text": "Звуки"
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/SoundButton/Slider",
+            "rect": "(x:-167.50, y:-10.00, width:335.00, height:20.00)",
+            "position": "(-226.00, 0.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/SoundButton/Slider/Background",
+            "rect": "(x:-167.50, y:-5.00, width:335.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/SoundButton/Slider/Fill Area",
+            "rect": "(x:-157.50, y:-5.00, width:315.00, height:10.00)",
+            "position": "(-5.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/SoundButton/Slider/Fill Area/Fill",
+            "rect": "(x:-162.50, y:-5.00, width:325.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/SoundButton/Slider/Handle Slide Area",
+            "rect": "(x:-157.50, y:-6.25, width:315.00, height:12.50)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/SoundButton/Slider/Handle Slide Area/Handle",
+            "rect": "(x:-10.00, y:-6.25, width:20.00, height:12.50)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(1.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/SoundButton/SoundButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/SoundButton/krest1",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/MelodyButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(300.00, 8.00)",
+            "anchors": "(0.50, 0.31)..(0.50, 0.31)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/Text (Legacy)",
+            "rect": "(x:-105.03, y:-37.00, width:210.06, height:74.00)",
+            "position": "(-456.00, 0.00)",
+            "anchors": "(0.00, 0.50)..(0.00, 0.50)",
+            "text": "Музыка"
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/Slider",
+            "rect": "(x:-167.50, y:-10.00, width:335.00, height:20.00)",
+            "position": "(-226.00, -2.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/Slider/Background",
+            "rect": "(x:-167.50, y:-5.00, width:335.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/Slider/Fill Area",
+            "rect": "(x:-157.50, y:-5.00, width:315.00, height:10.00)",
+            "position": "(-5.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/Slider/Fill Area/Fill",
+            "rect": "(x:-162.50, y:-5.00, width:325.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/Slider/Handle Slide Area",
+            "rect": "(x:-157.50, y:-7.50, width:315.00, height:15.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/Slider/Handle Slide Area/Handle",
+            "rect": "(x:-10.00, y:-7.50, width:20.00, height:15.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(1.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/MelodyButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/krest2",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/ReturningToHome",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(248.00, -19.00)",
+            "anchors": "(0.50, 0.16)..(0.50, 0.16)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/ReturningToHome/Text (Legacy)",
+            "rect": "(x:-158.54, y:-37.00, width:317.08, height:74.00)",
+            "position": "(-161.00, 7.83)",
+            "anchors": "(0.00, 0.50)..(0.00, 0.50)",
+            "text": "Завершить игру"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "path": "Assets/Scenes/MedievalCastle.unity",
+    "roots": [
+      "Medievel City",
+      "ImmersivePack",
+      "EventSystem",
+      "VodovorotGameManager"
+    ],
+    "player": {
+      "position": "(-66.10, 0.16, -50.00)",
+      "scale": "(0.41, 1.85, 0.41)",
+      "fit": "(0.54, 0.00, 0.54)"
+    },
+    "walls": [
+      {
+        "name": "ImmersivePack/Bounds/wall (3)",
+        "position": "(35.50, 3.77, -13.95)",
+        "size": "(36.12, 99.24, 312.32)",
+        "min": "(17.44, -45.85, -170.11)",
+        "max": "(53.56, 53.39, 142.21)",
+        "renderer": false
+      },
+      {
+        "name": "ImmersivePack/Bounds/wall (2)",
+        "position": "(-149.20, 3.77, -16.05)",
+        "size": "(36.12, 99.24, 312.32)",
+        "min": "(-167.26, -45.85, -172.21)",
+        "max": "(-131.14, 53.39, 140.11)",
+        "renderer": false
+      },
+      {
+        "name": "ImmersivePack/Bounds/wall (1)",
+        "position": "(-55.70, 3.77, -106.35)",
+        "size": "(260.01, 99.24, 46.72)",
+        "min": "(-185.70, -45.85, -129.71)",
+        "max": "(74.31, 53.39, -82.99)",
+        "renderer": false
+      },
+      {
+        "name": "ImmersivePack/Bounds/wall",
+        "position": "(-52.70, 3.77, 64.95)",
+        "size": "(260.01, 99.24, 46.72)",
+        "min": "(-182.70, -45.85, 41.59)",
+        "max": "(77.31, 53.39, 88.31)",
+        "renderer": false
+      }
+    ],
+    "cameras": [
+      {
+        "name": "ImmersivePack/Player_Hole/Camera",
+        "position": "(-66.10, 3.12, -51.62)",
+        "rotation": "(55.68, 0.00, 0.00)",
+        "fov": 60.0,
+        "far": 1000.0,
+        "clear": "SolidColor",
+        "background": "RGBA(0.000, 0.000, 1.000, 1.000)"
+      }
+    ],
+    "broadSurfaces": [
+      {
+        "name": "Medievel City/MainPlatform",
+        "center": "(-53.00, -4.22, -17.00)",
+        "size": "(792.71, 0.25, 1192.84)",
+        "materials": [
+          "Assets/Materials/ToiletMaterials/Water1.mat | Standard"
+        ]
+      },
+      {
+        "name": "Medievel City/Plane",
+        "center": "(-56.35, -0.15, -20.47)",
+        "size": "(148.60, 0.00, 124.54)",
+        "materials": [
+          "Assets/UsedAssets/Advance Studios/Medieval Castle/Art/Floor.mat | Standard"
+        ]
+      },
+      {
+        "name": "ImmersivePack/Bounds/wall",
+        "center": "(-52.70, 3.77, 64.95)",
+        "size": "(260.01, 99.24, 46.72)",
+        "materials": [
+          "Resources/unity_builtin_extra | Standard"
+        ]
+      },
+      {
+        "name": "ImmersivePack/Bounds/wall (1)",
+        "center": "(-55.70, 3.77, -106.35)",
+        "size": "(260.01, 99.24, 46.72)",
+        "materials": [
+          "Resources/unity_builtin_extra | Standard"
+        ]
+      },
+      {
+        "name": "ImmersivePack/Bounds/wall (2)",
+        "center": "(-149.20, 3.77, -16.05)",
+        "size": "(36.12, 99.24, 312.32)",
+        "materials": [
+          "Resources/unity_builtin_extra | Standard"
+        ]
+      },
+      {
+        "name": "ImmersivePack/Bounds/wall (3)",
+        "center": "(35.50, 3.77, -13.95)",
+        "size": "(36.12, 99.24, 312.32)",
+        "materials": [
+          "Resources/unity_builtin_extra | Standard"
+        ]
+      },
+      {
+        "name": "Medievel City/GreatWalls/TowerB (11)",
+        "center": "(11.52, 8.77, -49.12)",
+        "size": "(15.80, 16.75, 15.80)",
+        "materials": [
+          "Assets/UsedAssets/Advance Studios/Medieval Castle/Art/Model/Materials/CastleTowerTexture.mat | Standard"
+        ]
+      },
+      {
+        "name": "Medievel City/GreatWalls/Half2/TowerB (15)",
+        "center": "(-123.47, 8.77, 8.16)",
+        "size": "(15.80, 16.75, 15.80)",
+        "materials": [
+          "Assets/UsedAssets/Advance Studios/Medieval Castle/Art/Model/Materials/CastleTowerTexture.mat | Standard"
+        ]
+      },
+      {
+        "name": "Medievel City/GreatWalls/TowerB (13)",
+        "center": "(-57.70, 8.77, -74.48)",
+        "size": "(15.80, 16.75, 15.80)",
+        "materials": [
+          "Assets/UsedAssets/Advance Studios/Medieval Castle/Art/Model/Materials/CastleTowerTexture.mat | Standard"
+        ]
+      },
+      {
+        "name": "Medievel City/GreatWalls/Half2/TowerB (22)",
+        "center": "(-96.83, 8.77, -70.98)",
+        "size": "(15.01, 16.75, 15.01)",
+        "materials": [
+          "Assets/UsedAssets/Advance Studios/Medieval Castle/Art/Model/Materials/CastleTowerTexture.mat | Standard"
+        ]
+      },
+      {
+        "name": "Medievel City/GreatWalls/TowerB (18)",
+        "center": "(-15.10, 8.77, 30.08)",
+        "size": "(15.01, 16.75, 15.01)",
+        "materials": [
+          "Assets/UsedAssets/Advance Studios/Medieval Castle/Art/Model/Materials/CastleTowerTexture.mat | Standard"
+        ]
+      },
+      {
+        "name": "Medievel City/GreatWalls/Half2/TowerB (23)",
+        "center": "(-121.41, 8.77, -58.23)",
+        "size": "(12.36, 16.75, 12.36)",
+        "materials": [
+          "Assets/UsedAssets/Advance Studios/Medieval Castle/Art/Model/Materials/CastleTowerTexture.mat | Standard"
+        ]
+      },
+      {
+        "name": "Medievel City/GreatWalls/TowerB (19)",
+        "center": "(9.52, 8.77, 17.39)",
+        "size": "(12.36, 16.75, 12.36)",
+        "materials": [
+          "Assets/UsedAssets/Advance Studios/Medieval Castle/Art/Model/Materials/CastleTowerTexture.mat | Standard"
+        ]
+      },
+      {
+        "name": "Medievel City/GreatWalls/TowerB (17)",
+        "center": "(-54.79, 8.77, 34.76)",
+        "size": "(12.14, 16.75, 12.14)",
+        "materials": [
+          "Assets/UsedAssets/Advance Studios/Medieval Castle/Art/Model/Materials/CastleTowerTexture.mat | Standard"
+        ]
+      },
+      {
+        "name": "Medievel City/GreatWalls (1)/TowerB (11)",
+        "center": "(-4.41, 6.36, -42.44)",
+        "size": "(12.07, 12.80, 12.07)",
+        "materials": [
+          "Assets/UsedAssets/Advance Studios/Medieval Castle/Art/Model/Materials/CastleTowerTexture.mat | Standard"
+        ]
+      },
+      {
+        "name": "Medievel City/GreatWalls (1)/Half2/TowerB (15)",
+        "center": "(-107.54, 6.36, 1.32)",
+        "size": "(12.07, 12.80, 12.07)",
+        "materials": [
+          "Assets/UsedAssets/Advance Studios/Medieval Castle/Art/Model/Materials/CastleTowerTexture.mat | Standard"
+        ]
+      },
+      {
+        "name": "Medievel City/GreatWalls (1)/TowerB (13)",
+        "center": "(-57.29, 6.36, -61.81)",
+        "size": "(12.07, 12.80, 12.07)",
+        "materials": [
+          "Assets/UsedAssets/Advance Studios/Medieval Castle/Art/Model/Materials/CastleTowerTexture.mat | Standard"
+        ]
+      },
+      {
+        "name": "Medievel City/GreatWalls (1)/Half2/TowerB (22)",
+        "center": "(-87.19, 6.36, -59.14)",
+        "size": "(11.46, 12.80, 11.46)",
+        "materials": [
+          "Assets/UsedAssets/Advance Studios/Medieval Castle/Art/Model/Materials/CastleTowerTexture.mat | Standard"
+        ]
+      }
+    ],
+    "settings": [
+      {
+        "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings",
+        "rect": "(x:-389.21, y:-656.71, width:778.43, height:1313.42)",
+        "scale": "(0.90, 0.90, 0.90)",
+        "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+        "elements": [
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings",
+            "rect": "(x:-389.21, y:-656.71, width:778.43, height:1313.42)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/RaycastTarget",
+            "rect": "(x:-1055.10, y:-1468.30, width:2110.20, height:2936.60)",
+            "position": "(136.00, 128.90)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/Return",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(-37.00, -37.00)",
+            "anchors": "(1.00, 1.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/Caption",
+            "rect": "(x:-169.15, y:-60.60, width:338.30, height:121.20)",
+            "position": "(0.00, -109.00)",
+            "anchors": "(0.50, 1.00)..(0.50, 1.00)",
+            "text": "Настройки"
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/LanguageButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(55.56, 327.78)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/LanguageButton/Text (Legacy)",
+            "rect": "(x:-84.00, y:-37.00, width:168.00, height:74.00)",
+            "position": "(-110.00, 0.00)",
+            "anchors": "(0.00, 0.50)..(0.00, 0.50)",
+            "text": "Язык"
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/SoundButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(249.97, 118.89)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/SoundButton/Text (Legacy)",
+            "rect": "(x:-84.00, y:-37.00, width:168.00, height:74.00)",
+            "position": "(-440.00, 0.00)",
+            "anchors": "(0.00, 0.50)..(0.00, 0.50)",
+            "text": "Звуки"
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/SoundButton/Slider",
+            "rect": "(x:-167.50, y:-10.00, width:335.00, height:20.00)",
+            "position": "(-226.00, 0.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/SoundButton/Slider/Background",
+            "rect": "(x:-167.50, y:-5.00, width:335.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/SoundButton/Slider/Fill Area",
+            "rect": "(x:-157.50, y:-5.00, width:315.00, height:10.00)",
+            "position": "(-5.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/SoundButton/Slider/Fill Area/Fill",
+            "rect": "(x:-162.50, y:-5.00, width:325.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/SoundButton/Slider/Handle Slide Area",
+            "rect": "(x:-157.50, y:-6.25, width:315.00, height:12.50)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/SoundButton/Slider/Handle Slide Area/Handle",
+            "rect": "(x:-10.00, y:-6.25, width:20.00, height:12.50)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(1.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/SoundButton/SoundButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/SoundButton/krest1",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/MelodyButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(255.10, -81.11)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/MelodyButton/Text (Legacy)",
+            "rect": "(x:-105.03, y:-37.00, width:210.06, height:74.00)",
+            "position": "(-456.00, 0.00)",
+            "anchors": "(0.00, 0.50)..(0.00, 0.50)",
+            "text": "Музыка"
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/MelodyButton/Slider",
+            "rect": "(x:-167.50, y:-10.00, width:335.00, height:20.00)",
+            "position": "(-226.00, -2.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/MelodyButton/Slider/Background",
+            "rect": "(x:-167.50, y:-5.00, width:335.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/MelodyButton/Slider/Fill Area",
+            "rect": "(x:-157.50, y:-5.00, width:315.00, height:10.00)",
+            "position": "(-5.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/MelodyButton/Slider/Fill Area/Fill",
+            "rect": "(x:-162.50, y:-5.00, width:325.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/MelodyButton/Slider/Handle Slide Area",
+            "rect": "(x:-157.50, y:-7.50, width:315.00, height:15.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/MelodyButton/Slider/Handle Slide Area/Handle",
+            "rect": "(x:-10.00, y:-7.50, width:20.00, height:15.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(1.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/MelodyButton/MelodyButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/MelodyButton/krest2",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/ReturningToHome",
+            "rect": "(x:-102.95, y:-57.12, width:205.91, height:114.25)",
+            "position": "(-3.28, 187.33)",
+            "anchors": "(0.50, 0.00)..(0.50, 0.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForMobile/MobilePanelOfSettings/ReturningToHome/Text (Legacy)",
+            "rect": "(x:-188.87, y:-37.00, width:377.75, height:74.00)",
+            "position": "(0.00, -23.00)",
+            "anchors": "(0.50, 0.00)..(0.50, 0.00)",
+            "text": "Завершить игру"
+          }
+        ]
+      },
+      {
+        "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings",
+        "rect": "(x:0.00, y:-13.69, width:0.00, height:27.38)",
+        "scale": "(0.90, 0.90, 0.90)",
+        "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+        "elements": [
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings",
+            "rect": "(x:0.00, y:-13.69, width:0.00, height:27.38)",
+            "position": "(0.00, 10.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/RaycastTarget",
+            "rect": "(x:-1055.10, y:-1468.30, width:2110.20, height:2936.60)",
+            "position": "(136.00, 128.90)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/Return",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(-37.00, -37.00)",
+            "anchors": "(1.00, 1.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/Caption",
+            "rect": "(x:-169.15, y:-60.60, width:338.30, height:121.20)",
+            "position": "(0.00, 45.00)",
+            "anchors": "(0.50, 0.80)..(0.50, 0.80)",
+            "text": "Настройки"
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/LanguageButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(55.56, 14.00)",
+            "anchors": "(0.50, 0.66)..(0.50, 0.66)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/LanguageButton/Text (Legacy)",
+            "rect": "(x:-84.00, y:-37.00, width:168.00, height:74.00)",
+            "position": "(-110.00, 0.00)",
+            "anchors": "(0.00, 0.50)..(0.00, 0.50)",
+            "text": "Язык"
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/SoundButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(300.00, 19.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/SoundButton/Text (Legacy)",
+            "rect": "(x:-84.00, y:-37.00, width:168.00, height:74.00)",
+            "position": "(-440.00, 0.00)",
+            "anchors": "(0.00, 0.50)..(0.00, 0.50)",
+            "text": "Звуки"
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/SoundButton/Slider",
+            "rect": "(x:-167.50, y:-10.00, width:335.00, height:20.00)",
+            "position": "(-226.00, 0.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/SoundButton/Slider/Background",
+            "rect": "(x:-167.50, y:-5.00, width:335.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/SoundButton/Slider/Fill Area",
+            "rect": "(x:-157.50, y:-5.00, width:315.00, height:10.00)",
+            "position": "(-5.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/SoundButton/Slider/Fill Area/Fill",
+            "rect": "(x:-162.50, y:-5.00, width:325.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/SoundButton/Slider/Handle Slide Area",
+            "rect": "(x:-157.50, y:-6.25, width:315.00, height:12.50)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/SoundButton/Slider/Handle Slide Area/Handle",
+            "rect": "(x:-10.00, y:-6.25, width:20.00, height:12.50)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(1.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/SoundButton/SoundButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/SoundButton/krest1",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/MelodyButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(300.00, 8.00)",
+            "anchors": "(0.50, 0.31)..(0.50, 0.31)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/Text (Legacy)",
+            "rect": "(x:-105.03, y:-37.00, width:210.06, height:74.00)",
+            "position": "(-456.00, 0.00)",
+            "anchors": "(0.00, 0.50)..(0.00, 0.50)",
+            "text": "Музыка"
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/Slider",
+            "rect": "(x:-167.50, y:-10.00, width:335.00, height:20.00)",
+            "position": "(-226.00, -2.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/Slider/Background",
+            "rect": "(x:-167.50, y:-5.00, width:335.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/Slider/Fill Area",
+            "rect": "(x:-157.50, y:-5.00, width:315.00, height:10.00)",
+            "position": "(-5.00, 0.00)",
+            "anchors": "(0.00, 0.25)..(1.00, 0.75)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/Slider/Fill Area/Fill",
+            "rect": "(x:-162.50, y:-5.00, width:325.00, height:10.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/Slider/Handle Slide Area",
+            "rect": "(x:-157.50, y:-7.50, width:315.00, height:15.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/Slider/Handle Slide Area/Handle",
+            "rect": "(x:-10.00, y:-7.50, width:20.00, height:15.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(1.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/MelodyButton",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.50, 0.50)..(0.50, 0.50)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/MelodyButton/krest2",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(0.00, 0.00)",
+            "anchors": "(0.00, 0.00)..(1.00, 1.00)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/ReturningToHome",
+            "rect": "(x:-50.00, y:-50.00, width:100.00, height:100.00)",
+            "position": "(248.00, -19.00)",
+            "anchors": "(0.50, 0.16)..(0.50, 0.16)",
+            "text": null
+          },
+          {
+            "name": "ImmersivePack/CanvasForDesktop/DesktopPanelOfSettings/ReturningToHome/Text (Legacy)",
+            "rect": "(x:-158.54, y:-37.00, width:317.08, height:74.00)",
+            "position": "(-161.00, 7.83)",
+            "anchors": "(0.00, 0.50)..(0.00, 0.50)",
+            "text": "Завершить игру"
+          }
+        ]
+      }
+    ]
+  }
+]

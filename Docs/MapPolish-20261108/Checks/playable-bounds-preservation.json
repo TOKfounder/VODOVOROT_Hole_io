@@ -1,0 +1,97 @@
+{
+  "checkpoint": "0aa78ad971fac174580e52180f0fda1eed9c9be1",
+  "prefabWallComponents": [
+    {
+      "name": "wall (3)",
+      "type": "4",
+      "fileId": "7570480821618186288",
+      "unchanged": true
+    },
+    {
+      "name": "wall (3)",
+      "type": "65",
+      "fileId": "4714834802718971948",
+      "unchanged": true
+    },
+    {
+      "name": "wall (1)",
+      "type": "4",
+      "fileId": "1327642208225851992",
+      "unchanged": true
+    },
+    {
+      "name": "wall (1)",
+      "type": "65",
+      "fileId": "5882653068619354435",
+      "unchanged": true
+    },
+    {
+      "name": "wall (2)",
+      "type": "4",
+      "fileId": "798070492856658378",
+      "unchanged": true
+    },
+    {
+      "name": "wall (2)",
+      "type": "65",
+      "fileId": "4359398169967636866",
+      "unchanged": true
+    },
+    {
+      "name": "wall",
+      "type": "4",
+      "fileId": "1450685083035762048",
+      "unchanged": true
+    },
+    {
+      "name": "wall",
+      "type": "65",
+      "fileId": "6740681040849998426",
+      "unchanged": true
+    }
+  ],
+  "sceneWalls": [
+    {
+      "scene": "Assets/Scenes/Low Poly City.unity",
+      "wallAndAncestorPoseOverridesUnchanged": true,
+      "poseOverrideCount": 18
+    },
+    {
+      "scene": "Assets/Scenes/Garden.unity",
+      "wallAndAncestorPoseOverridesUnchanged": true,
+      "poseOverrideCount": 10
+    },
+    {
+      "scene": "Assets/Scenes/MedievalCastle.unity",
+      "wallAndAncestorPoseOverridesUnchanged": true,
+      "poseOverrideCount": 18
+    }
+  ],
+  "wallAncestorPoses": [
+    {
+      "fileId": "3612664684229357111",
+      "poseUnchanged": true
+    },
+    {
+      "fileId": "1327642208225851992",
+      "poseUnchanged": true
+    },
+    {
+      "fileId": "798070492856658378",
+      "poseUnchanged": true
+    },
+    {
+      "fileId": "1450685083035762048",
+      "poseUnchanged": true
+    },
+    {
+      "fileId": "1557965830314579506",
+      "poseUnchanged": true
+    },
+    {
+      "fileId": "7570480821618186288",
+      "poseUnchanged": true
+    }
+  ],
+  "verifiedUtc": "2026-11-08T03:17:07.397110+00:00"
+}

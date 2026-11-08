@@ -1,0 +1,14 @@
+Map/UI/first-minute polish — finite scope,2026-11-08
+Checkpoint0aa78ad971fac174580e52180f0fda1eed9c9be1 pushed and branch API verified before edits.
+1. Authored three themed border surrounds and ground infill; remove pure blue camera clear. Preserve wall colliders/playable bounds; no runtime environment builder. Verify all3 maps at edges/corners in WebGL plus authored geometry containment.
+2. Re-anchor existing settings elements to responsive panel proportions in saved common gameplay prefab and menu. Preserve localized Text refs, sliders/listeners/Language callbacks; verify RU/EN at844x390/640x360 plusportrait/desktop and buttons.
+3. Camera volume sweep retained; add short screen-door fade with authored shader and per-renderer state. Restore original shared materials, property blocks, visibility and occlusion on disable; no shader asset mutation. Verify transition/reversal and actual WebGL approach/retreat.
+4. Pool8 authored ground target brackets; nearest eligible on-screen objects within limited radius, same actual FallingObject fit predicate. No physics/score/value changes. Hide swallowed/oversized/inactive/paused targets; verify after growth and WebGL.
+5. Curate starter props in saved scenes, preserve each original collider/scale/value and map total. Existing first thresholds26/163 initially retained; use density and timed first-minute route evidence to judge and iterate. Target visible early opportunities within3m, first growth within15s when following route, two growth steps within60s where route allows. No passive reward or auto-consumption.
+Risk map:
+Scene wall colliders -> GamingManager.Awake bounds -> MovementScript/camera: preserve them exactly.
+CameraCutawayView -> Renderer material/MPB -> world visibility: restore state on interruption/disable; no per-frame material instantiation.
+FallingObject.CanBeEatenBy -> hints: expose/reuse predicate only; actual fit+score gates unchanged.
+Existing settings RectTransforms -> serialized UnityEvents/Text arrays/AudioManager -> UI callbacks: keep instance links/listeners and localizedtext.
+Starter transform edits -> FallingObject.Start caches originalsize/value/reset -> mapAllValues/score: compute/recheck values and overlap; source GUIDs/meta retained. Existing City cascade 16 props excluded from selection.
+Checks: compile, focused actual-component fixtures; baseline/after WebGL, natural180s final loop, allmaps+settingssizes; original save bytes/audio/editor state restored; explicit final manifest,commit,push,remote/API verify. Live production SDK/physicalphone not claimed.

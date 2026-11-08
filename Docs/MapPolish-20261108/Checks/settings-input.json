@@ -1,0 +1,306 @@
+{
+  "environment": "Editor pointer-event/component fixture, not native or browser input",
+  "width": 960,
+  "height": 2658,
+  "checks": [
+    {
+      "name": "isolated silent profile",
+      "passed": true
+    },
+    {
+      "name": "settings use the authored viewport Canvas: scene0 mobile=False",
+      "passed": true
+    },
+    {
+      "name": "label inside viewport: 0/False/Caption",
+      "passed": true
+    },
+    {
+      "name": "label inside viewport: 0/False/LanguageLabel",
+      "passed": true
+    },
+    {
+      "name": "label inside viewport: 0/False/SoundLabel",
+      "passed": true
+    },
+    {
+      "name": "label inside viewport: 0/False/MusicLabel",
+      "passed": true
+    },
+    {
+      "name": "pointer reaches slider instead of backdrop: SoundSlider",
+      "passed": true
+    },
+    {
+      "name": "SFX pointer changes both controls and real profile: 0/False",
+      "passed": true
+    },
+    {
+      "name": "pointer reaches slider instead of backdrop: MusicSlider",
+      "passed": true
+    },
+    {
+      "name": "music pointer changes real profile: 0/False",
+      "passed": true
+    },
+    {
+      "name": "existing close action still closes panel: 0/False",
+      "passed": true
+    },
+    {
+      "name": "settings use the authored viewport Canvas: scene0 mobile=True",
+      "passed": true
+    },
+    {
+      "name": "label inside viewport: 0/True/Caption",
+      "passed": true
+    },
+    {
+      "name": "label inside viewport: 0/True/LanguageLabel",
+      "passed": true
+    },
+    {
+      "name": "label inside viewport: 0/True/SoundLabel",
+      "passed": true
+    },
+    {
+      "name": "label inside viewport: 0/True/MusicLabel",
+      "passed": true
+    },
+    {
+      "name": "pointer reaches slider instead of backdrop: SoundSlider",
+      "passed": true
+    },
+    {
+      "name": "SFX pointer changes both controls and real profile: 0/True",
+      "passed": true
+    },
+    {
+      "name": "pointer reaches slider instead of backdrop: MusicSlider",
+      "passed": true
+    },
+    {
+      "name": "music pointer changes real profile: 0/True",
+      "passed": true
+    },
+    {
+      "name": "existing close action still closes panel: 0/True",
+      "passed": true
+    },
+    {
+      "name": "settings use the authored viewport Canvas: scene1 mobile=False",
+      "passed": true
+    },
+    {
+      "name": "label inside viewport: 1/False/Caption",
+      "passed": true
+    },
+    {
+      "name": "label inside viewport: 1/False/LanguageLabel",
+      "passed": true
+    },
+    {
+      "name": "label inside viewport: 1/False/SoundLabel",
+      "passed": true
+    },
+    {
+      "name": "label inside viewport: 1/False/MusicLabel",
+      "passed": true
+    },
+    {
+      "name": "label inside viewport: 1/False/ExitLabel",
+      "passed": true
+    },
+    {
+      "name": "pointer reaches slider instead of backdrop: SoundSlider",
+      "passed": true
+    },
+    {
+      "name": "SFX pointer changes both controls and real profile: 1/False",
+      "passed": true
+    },
+    {
+      "name": "pointer reaches slider instead of backdrop: MusicSlider",
+      "passed": true
+    },
+    {
+      "name": "music pointer changes real profile: 1/False",
+      "passed": true
+    },
+    {
+      "name": "existing close action still closes panel: 1/False",
+      "passed": true
+    },
+    {
+      "name": "settings use the authored viewport Canvas: scene1 mobile=True",
+      "passed": true
+    },
+    {
+      "name": "label inside viewport: 1/True/Caption",
+      "passed": true
+    },
+    {
+      "name": "label inside viewport: 1/True/LanguageLabel",
+      "passed": true
+    },
+    {
+      "name": "label inside viewport: 1/True/SoundLabel",
+      "passed": true
+    },
+    {
+      "name": "label inside viewport: 1/True/MusicLabel",
+      "passed": true
+    },
+    {
+      "name": "label inside viewport: 1/True/ExitLabel",
+      "passed": true
+    },
+    {
+      "name": "pointer reaches slider instead of backdrop: SoundSlider",
+      "passed": true
+    },
+    {
+      "name": "SFX pointer changes both controls and real profile: 1/True",
+      "passed": true
+    },
+    {
+      "name": "pointer reaches slider instead of backdrop: MusicSlider",
+      "passed": true
+    },
+    {
+      "name": "music pointer changes real profile: 1/True",
+      "passed": true
+    },
+    {
+      "name": "existing close action still closes panel: 1/True",
+      "passed": true
+    },
+    {
+      "name": "personal save bytes unchanged",
+      "passed": true
+    }
+  ],
+  "traces": [
+    {
+      "map": 0,
+      "mobile": false,
+      "slider": "SoundSlider",
+      "amount": 0.0,
+      "position": "(348.96, 1283.00)",
+      "raycasts": [
+        "Handle",
+        "Fill",
+        "Background",
+        "RaycastTarget",
+        "DesktopPanelOfSettings",
+        "Background"
+      ]
+    },
+    {
+      "map": 0,
+      "mobile": false,
+      "slider": "MusicSlider",
+      "amount": 0.0,
+      "position": "(348.96, 826.25)",
+      "raycasts": [
+        "Handle",
+        "Fill",
+        "Background",
+        "RaycastTarget",
+        "DesktopPanelOfSettings",
+        "Background"
+      ]
+    },
+    {
+      "map": 0,
+      "mobile": true,
+      "slider": "SoundSlider",
+      "amount": 0.0,
+      "position": "(348.96, 1283.00)",
+      "raycasts": [
+        "Handle",
+        "Fill",
+        "Background",
+        "RaycastTarget",
+        "MobilePanelOfSettings",
+        "Background"
+      ]
+    },
+    {
+      "map": 0,
+      "mobile": true,
+      "slider": "MusicSlider",
+      "amount": 0.0,
+      "position": "(348.96, 826.25)",
+      "raycasts": [
+        "Handle",
+        "Fill",
+        "Background",
+        "RaycastTarget",
+        "MobilePanelOfSettings",
+        "Background"
+      ]
+    },
+    {
+      "map": 1,
+      "mobile": false,
+      "slider": "SoundSlider",
+      "amount": 0.0,
+      "position": "(348.96, 1283.00)",
+      "raycasts": [
+        "Handle",
+        "Fill",
+        "Background",
+        "RaycastTarget",
+        "DesktopPanelOfSettings",
+        "JoystickRuler"
+      ]
+    },
+    {
+      "map": 1,
+      "mobile": false,
+      "slider": "MusicSlider",
+      "amount": 0.0,
+      "position": "(348.96, 826.25)",
+      "raycasts": [
+        "Handle",
+        "Fill",
+        "Background",
+        "RaycastTarget",
+        "DesktopPanelOfSettings",
+        "JoystickRuler"
+      ]
+    },
+    {
+      "map": 1,
+      "mobile": true,
+      "slider": "SoundSlider",
+      "amount": 0.0,
+      "position": "(348.96, 1283.00)",
+      "raycasts": [
+        "Handle",
+        "Fill",
+        "Background",
+        "RaycastTarget",
+        "MobilePanelOfSettings",
+        "JoystickRuler"
+      ]
+    },
+    {
+      "map": 1,
+      "mobile": true,
+      "slider": "MusicSlider",
+      "amount": 0.0,
+      "position": "(348.96, 826.25)",
+      "raycasts": [
+        "Handle",
+        "Fill",
+        "Background",
+        "RaycastTarget",
+        "MobilePanelOfSettings",
+        "JoystickRuler"
+      ]
+    }
+  ],
+  "error": null
+}

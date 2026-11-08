@@ -1,0 +1,20 @@
+{
+  "entries": 20,
+  "expectedLocalSdkDisabled": 18,
+  "knownBaselineWarnings": [
+    {
+      "level": "warn",
+      "message": "BoxCollider does not support negative scale or size.\nThe effective box size has been forced positive and is likely to give unexpected collision geometry.\nIf you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path \"Medievel City/CastlePrefab (2)/Castle/Castle/Double Door Frame/Double Door\"\n",
+      "timestamp": "2026-11-08T03:13:36.830Z",
+      "url": "http://localhost:8775/Build/Yandex.framework.js.br"
+    },
+    {
+      "level": "warn",
+      "message": "BoxCollider does not support negative scale or size.\nThe effective box size has been forced positive and is likely to give unexpected collision geometry.\nIf you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path \"Medievel City/CastlePrefab (1)/Castle/Castle/Double Door Frame/Double Door\"\n",
+      "timestamp": "2026-11-08T03:13:36.831Z",
+      "url": "http://localhost:8775/Build/Yandex.framework.js.br"
+    }
+  ],
+  "baselineEvidence": "../../ImprovementPass-20261107/Checks/webgl-all-maps-logs.json",
+  "unexpected": []
+}
